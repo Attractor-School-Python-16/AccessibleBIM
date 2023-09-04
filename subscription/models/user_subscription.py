@@ -6,7 +6,7 @@ from subscription.models.subscription import AbstractModel, Subscription
 
 # Create your models here.
 class UsersSubscription(AbstractModel):
-    subscription = models.ForeignKey(Subscription, on_delete=models.DO_NOTHING, related_name='subscriptions',
+    subscription = models.ForeignKey(Subscription, on_delete=models.DO_NOTHING, related_name='us_subscriptions',
                                      verbose_name='Подписки')
-    user = models.ForeignKey(get_user_model(), on_delete=models.DO_NOTHING, related_name='users',
+    user = models.ForeignKey(get_user_model(), on_delete=models.DO_NOTHING, related_name='us_users',
                              verbose_name='Пользователи')
