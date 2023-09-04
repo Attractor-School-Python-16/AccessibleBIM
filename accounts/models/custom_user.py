@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUser(AbstractUser):
@@ -8,7 +9,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(_("last name"), max_length=150, null=False, blank=False)
     father_name = models.CharField(_("father name"), max_length=150, null=True, blank=True)
     email = models.EmailField(_("email address"), null=False, blank=False)
-    phone_number = models.CharField(_("phone_number"), max_length=20, null=False, blank=False)
+    phone_number = PhoneNumberField(_("phone_number"), null=False, blank=False)
     job_title = models.CharField(_("job_title"), max_length=150, null=True, blank=True)
     # country = models.ForeignKey()
     is_moderator = models.BooleanField(_("is_moderator"), default=False)
@@ -16,7 +17,7 @@ class CustomUser(AbstractUser):
     # subscription = models.ManyToManyField()
 
     def __str__(self):
-        return self.get_full_name()
+        return f'{self.pk}. {self.get_full_name()}'
 
     class Meta:
         app_label = 'accounts'
