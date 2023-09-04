@@ -13,6 +13,7 @@ class StepModel(AbstractModel):
     }
 
     # chapter = models.ForeignKey('courses.ChapterModel', related_name='step', on_delete=models.CASCADE, verbose_name='Chapter')
+    title = models.CharField(max_length= 250, blank=False, null=False)
     lesson_type = models.CharField(max_length=10, choices=TYPE_CHOICES, blank=False, null=False)
     # text = models.ForeignKey('step.Text', related_name='step', on_delete=models.RESTRICT, verbose_name='Текст')
     # video = models.ForeignKey('step.Video', related_name='step', on_delete=models.RESTRICT, verbose_name='Видео')
