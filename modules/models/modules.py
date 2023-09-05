@@ -13,3 +13,17 @@ class AbstractModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class Module(AbstractModel):
+    title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
+    description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
+    image = models.ImageField(null=False, blank=False, upload_to='module', verbose_name='Фото для модуля')
+
+    class Meta:
+        db_table = 'Module'
+        verbose_name = 'Модуль'
+        verbose_name_plural = 'Модули'
+
+    def __str__(self):
+        return f'{self.title}'
