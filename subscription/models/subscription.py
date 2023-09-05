@@ -17,7 +17,7 @@ class AbstractModel(models.Model):
 
 
 class Subscription(AbstractModel):
-    # course = models.ForeignKey('courses.Course', on_delete=models.PROTECT, related_name='courses', verbose_name='Курс')
+    # course = models.ForeignKey('modules.Course', on_delete=models.PROTECT, related_name='modules', verbose_name='Курс')
     price = models.IntegerField(null=False, blank=False, verbose_name='Цена за курс')
     discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='Скидка на курс')
     end_date = models.DateTimeField(verbose_name='Дата обновления')
