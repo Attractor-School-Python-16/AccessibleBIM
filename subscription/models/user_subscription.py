@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from modules.models.modules import AbstractModel
-from subscription.models.subscription import Subscription
+from subscription.models.subscription import AbstractModel, Subscription
 
 
 # Create your models here.
