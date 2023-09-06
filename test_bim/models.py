@@ -1,13 +1,11 @@
 from django.db import models
+from modules.models.modules import AbstractModel
 
 
 # from django.urls import reverse
 
 
 # Create your models here.
-
-class AbstractModel(models.Model):
-    pass
 
 
 class TestBim(AbstractModel):
@@ -57,5 +55,3 @@ class AnswerBim(AbstractModel):
         db_table = 'answer_bim'
         verbose_name = 'Ответ Bim'
         verbose_name_plural = 'Ответ Bim'
-
-
