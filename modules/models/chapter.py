@@ -1,12 +1,12 @@
 from django.db import models
 
-from modules.models.courses import Course
-from modules.models.modules import AbstractModel, Module
+from modules.models.courses import CourseModel
+from modules.models.modules import AbstractModel
 
 
 # Create your models here.
-class Chapter(AbstractModel):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='ct_course',
+class ChapterModel(AbstractModel):
+    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE, related_name='ct_course',
                                verbose_name='Курсы')
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
@@ -21,7 +21,7 @@ class Chapter(AbstractModel):
         # Это означает, что модель еще не сохранена в базе данных
         if self._state.adding:
             # Получаем максимальное значение serial_number из базы данных
-            last_id = Chapter.objects.filter(customer=self.course).aggregate(largest=models.Max('serial_number'))[
+            last_id = ChapterModel.objects.filter(customer=self.course).aggregate(largest=models.Max('serial_number'))[
                 'largest']
 
             # Агрегация может вернуть None! Сначала проверьте это.
@@ -30,7 +30,7 @@ class Chapter(AbstractModel):
             if last_id is not None:
                 self.serial_number = last_id + 1
 
-        super(Chapter, self).save(*args, **kwargs)
+        super(ChapterModel, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.title} {self.description}'

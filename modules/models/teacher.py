@@ -1,10 +1,10 @@
 from django.db import models
 
-from modules.models.modules import AbstractModel, Module
+from modules.models.modules import AbstractModel
 
 
 # Create your models here.
-class Teacher(AbstractModel):
+class TeacherModel(AbstractModel):
     first_name = models.CharField(max_length=40, null=False, blank=False, verbose_name="Имя")
     last_name = models.CharField(max_length=40, null=False, blank=False, verbose_name="Фамилия")
     father_name = models.CharField(max_length=40, null=True, blank=True, verbose_name="Отчество")

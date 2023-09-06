@@ -15,7 +15,7 @@ class AbstractModel(models.Model):
         abstract = True
 
 
-class Module(AbstractModel):
+class ModuleModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
     image = models.ImageField(null=False, blank=False, upload_to='module', verbose_name='Фото для модуля')
