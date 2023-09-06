@@ -1,8 +1,7 @@
 import os
 from django.db import models
+from modules.models.modules import AbstractModel
 
-
-# from courses.models.modules import AbstractModel
 
 def file_upload_to(instance, filename):
     step_pk = instance.step.pk
