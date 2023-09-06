@@ -7,5 +7,4 @@ from subscription.models.user_subscription import UsersSubscription
 
 admin.site.register(SubscriptionModel)
 
-
 admin.site.register(UsersSubscription)
