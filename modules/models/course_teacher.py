@@ -1,14 +1,12 @@
 from django.db import models
 
-from modules.models.courses import CourseModel
 from modules.models.modules import AbstractModel
-from modules.models.teacher import TeacherModel
 
 
 # Create your models here.
 class CourseTeacherModel(AbstractModel):
-    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE, related_name='ct_course',
+    ct_course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='course',
                                verbose_name='Курсы')
-    teacher = models.ForeignKey(TeacherModel, on_delete=models.CASCADE, related_name='ct_teacher',
+    ct_teacher = models.ForeignKey('modules.TeacherModel', on_delete=models.CASCADE, related_name='teacher',
                                 verbose_name='Учителя')
 
