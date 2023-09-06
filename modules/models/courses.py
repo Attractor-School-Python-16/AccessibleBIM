@@ -1,16 +1,20 @@
 from django.db import models
 
-from modules.models.modules import AbstractModel, Module
+from modules.models.course_teacher import CourseTeacherModel
+from modules.models.modules import AbstractModel, ModuleModel
+from modules.models.teacher import TeacherModel
 
 
 # Create your models here.
-class Course(AbstractModel):
+class CourseModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
     image = models.ImageField(null=False, blank=False, upload_to='course', verbose_name='Фото для курса')
-    module_id = models.ForeignKey(Module, related_name='courses', on_delete=models.CASCADE)
-    courseTarget_id = models.ForeignKey(Module, related_name='courses', on_delete=models.DO_NOTHING)
+    module_id = models.ForeignKey(ModuleModel, related_name='courses', on_delete=models.CASCADE)
+    courseTarget_id = models.ForeignKey(ModuleModel, related_name='courses', on_delete=models.DO_NOTHING)
     learnTime = models.IntegerField(null=False, blank=False, default=0, verbose_name='Время на прохождение курса')
+    teachers = models.ManyToManyField(TeacherModel, related_name='courses', through=CourseTeacherModel,
+                                      through_fields=('course', 'teacher'))
 
     class Meta:
         db_table = 'Course'
