@@ -1,5 +1,5 @@
 from django.db import models
-
+from modules.models.modules import AbstractModel
 
 # from courses.models.modules import AbstractModel
 
