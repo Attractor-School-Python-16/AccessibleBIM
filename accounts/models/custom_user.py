@@ -5,6 +5,23 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUser(AbstractUser):
+    ENTREPRENEUR = 1
+    LIMITED_LIABILITY_COMPANY = 2
+    OPENED_JOINT_STOCK_COMPANY = 3
+    CLOSED_JOINT_STOCK_COMPANY = 4
+    ADDITIONAL_LIABILITY_COMPANY = 5
+    STATE_COMPANY = 6
+    OTHER = 7
+    TYPE_CORP_CHOICES = [
+        (ENTREPRENEUR, _("entrepreneur")),
+        (LIMITED_LIABILITY_COMPANY, _("limited_liability_company")),
+        (OPENED_JOINT_STOCK_COMPANY, _("opened joint stock company")),
+        (CLOSED_JOINT_STOCK_COMPANY, _("closed joint stock company")),
+        (ADDITIONAL_LIABILITY_COMPANY, _("additional liability company")),
+        (STATE_COMPANY, _("state company")),
+        (OTHER, _("other typecorp")),
+    ]
+
     first_name = models.CharField(_("first name"), max_length=150, null=False, blank=False)
     last_name = models.CharField(_("last name"), max_length=150, null=False, blank=False)
     father_name = models.CharField(_("father name"), max_length=150, null=True, blank=True)
@@ -13,7 +30,8 @@ class CustomUser(AbstractUser):
     job_title = models.CharField(_("job_title"), max_length=150, null=True, blank=True)
     # country = models.ForeignKey()
     is_moderator = models.BooleanField(_("is_moderator"), default=False)
-    # company = models.ForeignKey()
+    company = models.CharField(_('company_name'), max_length=150, null=True, blank=True)
+    type_corp = models.IntegerField(_('company_type'), choices=TYPE_CORP_CHOICES)
     # subscription = models.ManyToManyField()
 
     def __str__(self):
