@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
 
     'accounts',
-    'courses',
+    'modules',
     'step',
     'progress',
     'subscription',
