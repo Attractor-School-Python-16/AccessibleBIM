@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
-from step.forms.step_forms import StepForm
+from step.forms.step_form import StepForm
 from step.models.step import StepModel
 
 
@@ -18,7 +18,7 @@ class StepDetailView(DetailView):
 
 class StepCreateView(CreateView):
     form_class = StepForm
-    template_name = "posts/post_create.html"
+    template_name = "step/step_create.html"
 
 
 class StepUpdateView(UpdateView):
