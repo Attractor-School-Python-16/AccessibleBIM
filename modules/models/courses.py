@@ -1,11 +1,9 @@
 from django.db import models
 
+from modules.models import TeacherModel, AbstractModel
 from modules.models.course_teacher import CourseTeacherModel
-from modules.models.modules import AbstractModel
-from modules.models.teacher import TeacherModel
 
 
-# Create your models here.
 class CourseModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')

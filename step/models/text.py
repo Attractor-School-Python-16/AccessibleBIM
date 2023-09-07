@@ -1,7 +1,6 @@
 from django.db import models
-from modules.models.modules import AbstractModel
 
-# from courses.models.modules import AbstractModel
+from modules.models import AbstractModel
 
 
 class TextModel(AbstractModel):

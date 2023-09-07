@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from modules.models.modules import AbstractModel
-from subscription.models.subscription import SubscriptionModel
+
+from modules.models import AbstractModel
+from subscription.models import SubscriptionModel
 
 
-# Create your models here.
 class UsersSubscription(AbstractModel):
     subscription = models.ForeignKey(SubscriptionModel, on_delete=models.CASCADE, related_name='us_subscriptions',
                                      verbose_name='Подписки')

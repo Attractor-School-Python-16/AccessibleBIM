@@ -1,5 +1,5 @@
 from django.db import models
-from modules.models.modules import AbstractModel
+from modules.models import AbstractModel
 
 
 class StepModel(AbstractModel):
@@ -15,6 +15,6 @@ class StepModel(AbstractModel):
                                    verbose_name='Тип занятия')
     text = models.ForeignKey('step.TextModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Текст')
     video = models.ForeignKey('step.VideoModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Видео')
-    # test = models.ForeignKey('step.Test', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест')
+    test = models.ForeignKey('test_bim.test_bim.TestBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест')
     file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файл')
     learn_time = models.PositiveIntegerField(blank=False, null=False)
