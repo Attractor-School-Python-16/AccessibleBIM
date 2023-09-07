@@ -1,0 +1,52 @@
+.ul_tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  }
+
+/* Base for lists & headers
+--------------------------- */
+.ul_tree {
+  overflow: hidden;
+  }
+.li_tree,
+.header {
+  position: relative;
+  padding-left: 1.2em;
+  }
+.header + .ul_tree {
+  margin-left: 30px;
+  padding-top: 10px;
+  }
+.li_tree {
+  margin-bottom: .8em;
+  }
+
+/* Stripes
+--------------------------- */
+.li_tree:before,
+.header:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: .5em;
+  width: 15px;
+  height: 0;
+  border-bottom: 1px solid #333;
+  }
+  .li_tree:last-child:before,
+  .header:last-of-type:before {
+    height: 1000px;
+    border: 1px solid #333;
+    border-width: 0 0 1px 1px
+    }
+
+/* If .ul_tree Has Headers Inside
+--------------------------- */
+.p-has-headers > .li_tree {
+  margin: 10px 0
+  }
+.p-has-headers > .li_tree:before {
+  content: none;
+  }
