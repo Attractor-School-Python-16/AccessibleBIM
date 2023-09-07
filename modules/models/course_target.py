@@ -8,7 +8,6 @@ from modules.models.modules import AbstractModel
 class CourseTargetModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Для кого предназначен курс')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Подробное описание')
-    courseTarget_id = models.ForeignKey(CourseModel, related_name='courses', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'CourseTarget'
