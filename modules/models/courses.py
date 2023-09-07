@@ -1,6 +1,7 @@
 from django.db import models
 
-from modules.models import TeacherModel, AbstractModel
+from modules.models.teacher import TeacherModel
+from modules.models.module import AbstractModel
 from modules.models.course_teacher import CourseTeacherModel
 
 
