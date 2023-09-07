@@ -1,7 +1,7 @@
 from django.urls import path
 
 from modules.views.modules import HomeView, ModulesView, ModulesDetailView, StepTextView, StepVideoView, StepFileView, \
-    TeacherDetailView
+    TeacherDetailView, TestDetailView, SubscriptionDetailView
 
 app_name = 'modules'
 
@@ -15,5 +15,7 @@ urlpatterns = [
     path('step/1/text/', StepTextView.as_view(), name="step_text"),  # поменять число на PK Chapter / text
     path('step/1/video/', StepVideoView.as_view(), name="step_video"),  # поменять число на PK Chapter / video
     path('step/1/file/', StepFileView.as_view(), name="step_file"),  # поменять число на PK Chapter / video
-    path('teacher/1/', TeacherDetailView.as_view(), name="teacher_detail"),  # поменять число на PK Teacher
+    path('teacher/1/', TeacherDetailView.as_view(), name="teacher_detail"),
+    path('test/1/', TestDetailView.as_view(), name="test_bim"), # поменять число на PK Test
+    path('subscription/', SubscriptionDetailView.as_view(), name="subscription"),
 ]
