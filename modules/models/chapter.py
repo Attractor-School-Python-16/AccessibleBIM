@@ -1,9 +1,8 @@
 from django.db import models
 
-from modules.models.modules import AbstractModel
+from modules.models.module import AbstractModel
 
 
-# Create your models here.
 class ChapterModel(AbstractModel):
     course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course',
                                verbose_name='Курсы')

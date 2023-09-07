@@ -1,16 +1,14 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from modules.models.modules import AbstractModel
 
-
-# Create your models here.
+from modules.models import AbstractModel
 
 
 class ProgressTestAnswers(AbstractModel):
-    # user = models.ForeignKey(get_user_model(),
-    #                          on_delete=models.CASCADE,
-    #                          related_name="user_answers",
-    #                          verbose_name="Пользователь")
+    user = models.ForeignKey(get_user_model(),
+                             on_delete=models.CASCADE,
+                             related_name="user_answers",
+                             verbose_name="Пользователь")
     progress_test = models.ForeignKey('progress.ProgressTest',
                                       related_name='user_answers',
                                       on_delete=models.CASCADE,
