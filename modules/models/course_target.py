@@ -1,10 +1,8 @@
 from django.db import models
 
-from modules.models.courses import CourseModel
-from modules.models.modules import AbstractModel
+from modules.models import AbstractModel
 
 
-# Create your models here.
 class CourseTargetModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Для кого предназначен курс')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Подробное описание')

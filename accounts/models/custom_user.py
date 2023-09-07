@@ -32,7 +32,9 @@ class CustomUser(AbstractUser):
     is_moderator = models.BooleanField(_("is_moderator"), default=False)
     company = models.CharField(_('company_name'), max_length=150, null=True, blank=True)
     type_corp = models.IntegerField(_('company_type'), choices=TYPE_CORP_CHOICES)
-    # subscription = models.ManyToManyField()
+    subscriptions = models.ManyToManyField(_("subscriptions"), related_name="users",
+                                           through="subscription.user_subscription.UsersSubscription",
+                                           through_fields=("user", "subscription"))
 
     def __str__(self):
         return f'{self.pk}. {self.get_full_name()}'
