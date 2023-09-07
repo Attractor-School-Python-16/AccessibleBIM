@@ -1,0 +1,7 @@
+{% if step.video %}
+    {% include 'video/video_detail.html' %}
+{% elif step.text %}
+    {% include 'video/text_detail.html' %}
+{% elif step.test %}
+    {% include 'test_bim/templates/test_detail.html' %}
+{% endif %}

@@ -13,13 +13,13 @@
     <script>
         document.getElementById("cancel-button").addEventListener("click", function(e) {
             e.preventDefault();
-            // Получаем URL предыдущей страницы из хранилища браузера
+            {#Получаем URL предыдущей страницы из хранилища браузера#}
             let previousUrl = document.referrer;
-            // Если URL предыдущей страницы существует, идет редирект на нее
+            {#Если URL предыдущей страницы существует, идет редирект на нее#}
             if (previousUrl) {
                 window.location.href = previousUrl;
             } else {
-                // В противном случае, редирект на индекс
+                {#В противном случае, редирект на индекс#}
                 window.location.href = "{% url 'modules:index' %}";
             }
         });
