@@ -5,7 +5,7 @@ from modules.models import AbstractModel
 
 class CourseTargetModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Для кого предназначен курс')
-    description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Подробное описание')
+    description = models.TextField(max_length=150, null=True, blank=True, verbose_name='Подробное описание')
 
     class Meta:
         db_table = 'CourseTarget'
