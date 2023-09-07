@@ -1,6 +1,6 @@
 from django.db import models
 
-from modules.models import AbstractModel
+from modules.models.module import AbstractModel
 
 
 class ChapterModel(AbstractModel):
