@@ -8,177 +8,17 @@
                 <div class="ps-5">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <span class="nav-link text-light">{{ profile_user.username }}</span>
+                            <span class="nav-link text-light">Username</span>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <span class="nav-link text-light">{{ profile_user.first_name }} {{ profile_user.last_name }}</span>
+                            <span class="nav-link text-light">FirstName LastName</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <h3>Избранные Альбомы</h3>
-            <div class="row mt-3">
-
-                {% for album in user.favorites_album.all %}
-                    {% if not album.private %}
-                        <div class="col-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <a href="{% url "albums:detail" album.pk %}"><h5
-                                            class="card-title">{{ album.title }}</h5></a>
-                                    <p class="card-text">{{ album.discriptions }}</p>
-                                    <a href="{% url 'accounts:profile' album.author.pk %}"
-                                       class="card-text">{{ album.author.first_name }} {{ album.author.last_name }}</a>
-                                    <p class="card-text">{{ album.private }}</p>
-                                    {% if user in album.favorites.all %}
-                                        <a class="favoritesPhoto" href="{% url "api_v1:albums-unfavorite" album.pk %}"
-                                           data-album-id="{{ photo.pk }}"><i
-                                                class="fa-solid fa-heart fa-2xl"></i></a>
-                                    {% else %}
-                                        <a class="favoritesPhoto" href="{% url "api_v1:albums-favorite" album.pk %}"
-                                           data-album-id="{{ album.pk }}"><i
-                                                class="fa-regular fa-heart fa-2xl"></i></a>
-                                    {% endif %}
-                                </div>
-
-                            </div>
-                        </div>
-                    {% endif %}
-                {% empty %}
-                    <span>Альбомов нет</span>
-                {% endfor %}
-            </div>
-
-            <div class="row mt-3">
-                <h3>Избранные Фотографии</h3>
-                {% for photo in user.favorites_photo.all %}
-                    {% if not photo.private %}
-                        <div class="col-3">
-                            <div class="card" style="width: 18rem;">
-                                {% if user.is_authenticated %}
-                                    <a href="{% url 'photos:detail' photo.pk %}"><img src="{{ photo.photo.url }}"
-                                                                                      class="card-img-top" alt="photos"></a>
-                                {% else %}
-                                    <img src="{{ photo.photo.url }}"
-                                         class="card-img-top" alt="photos">
-                                {% endif %}
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ photo.title }}</h5>
-                                    {% if user.is_authenticated %}
-                                        <a href="{% url "accounts:profile" photo.author.pk %}"
-                                           class="card-text">{{ photo.author.first_name }} {{ photo.author.last_name }}</a>
-                                    {% else %}
-                                        <p class="card-text">{{ photo.author.first_name }} {{ photo.author.last_name }}</p>
-                                    {% endif %}
-                                    <p class="card-text">{{ photo.create_date }}</p>
-                                    {% if user.is_authenticated and photo.album %}
-                                        <a href="{% url "albums:detail" photo.album.pk %}"
-                                           class="card-text">{{ photo.album.title }}</a>
-                                    {% else %}
-                                        <p class="card-text">
-                                            {% if photo.album %}{{ photo.album }}{% else %} Альбома нет{% endif %}</p>
-                                    {% endif %}
-                                    <p class="card-text">{{ photo.private }}</p>
-                                    {% if user in photo.favorites.all %}
-                                        <a class="favoritesPhoto" href="{% url "api_v1:photos-unfavorite" photo.pk %}"
-                                           data-photo-id="{{ photo.pk }}"><i
-                                                class="fa-solid fa-heart fa-2xl"></i></a>
-                                    {% else %}
-                                        <a class="favoritesPhoto" href="{% url "api_v1:photos-favorite" photo.pk %}"
-                                           data-photo-id="{{ photo.pk }}"><i
-                                                class="fa-regular fa-heart fa-2xl"></i></a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% empty %}
-                    <span>Фото нет</span>
-                {% endfor %}
-            </div>
-
-
-            <h3>Альбомы</h3>
-            <div class="row mt-3">
-                {% for album in albums %}
-                    <div class="col-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="{% url "albums:detail" album.pk %}"><h5
-                                        class="card-title">{{ album.title }}</h5></a>
-                                <p class="card-text">{{ album.discriptions }}</p>
-                                <a href="{% url 'accounts:profile' album.author.pk %}"
-                                   class="card-text">{{ album.author.first_name }} {{ album.author.last_name }}</a>
-                                <p class="card-text">{{ album.private }}</p>
-                                {% if user in album.favorites.all %}
-                                    <a class="favoritesPhoto" href="{% url "api_v1:albums-unfavorite" album.pk %}"
-                                       data-album-id="{{ photo.pk }}"><i
-                                            class="fa-solid fa-heart fa-2xl"></i></a>
-                                {% else %}
-                                    <a class="favoritesPhoto" href="{% url "api_v1:albums-favorite" album.pk %}"
-                                       data-album-id="{{ album.pk }}"><i
-                                            class="fa-regular fa-heart fa-2xl"></i></a>
-                                {% endif %}
-                            </div>
-
-                        </div>
-                    </div>
-                {% empty %}
-                    <span>Альбомов нет</span>
-                {% endfor %}
-            </div>
-
-            <div class="row mt-3">
-                <h3>Фотографии</h3>
-                {% for photo in photos %}
-
-                    <div class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            {% if user.is_authenticated %}
-                                <a href="{% url 'photos:detail' photo.pk %}"><img src="{{ photo.photo.url }}"
-                                                                                  class="card-img-top" alt="photos"></a>
-                            {% else %}
-                                <img src="{{ photo.photo.url }}"
-                                     class="card-img-top" alt="photos">
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ photo.title }}</h5>
-                                {% if user.is_authenticated %}
-                                    <a href="{% url "accounts:profile" photo.author.pk %}"
-                                       class="card-text">{{ photo.author.first_name }} {{ photo.author.last_name }}</a>
-                                {% else %}
-                                    <p class="card-text">{{ photo.author.first_name }} {{ photo.author.last_name }}</p>
-                                {% endif %}
-                                <p class="card-text">{{ photo.create_date }}</p>
-                                {% if user.is_authenticated and photo.album %}
-                                    <a href="{% url "albums:detail" photo.album.pk %}"
-                                       class="card-text">{{ photo.album.title }}</a>
-                                {% else %}
-                                    <p class="card-text">
-                                        {% if photo.album %}{{ photo.album }}{% else %} Альбома нет{% endif %}</p>
-                                {% endif %}
-                                <p class="card-text">{{ photo.private }}</p>
-                                {% if user in photo.favorites.all %}
-                                    <a class="favoritesPhoto" href="{% url "api_v1:photos-unfavorite" photo.pk %}"
-                                       data-photo-id="{{ photo.pk }}"><i
-                                            class="fa-solid fa-heart fa-2xl"></i></a>
-                                {% else %}
-                                    <a class="favoritesPhoto" href="{% url "api_v1:photos-favorite" photo.pk %}"
-                                       data-photo-id="{{ photo.pk }}"><i
-                                            class="fa-regular fa-heart fa-2xl"></i></a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                {% empty %}
-                    <span>Фото нет</span>
-                {% endfor %}
-            </div>
-        </div>
     </div>
 
 {% endblock %}
