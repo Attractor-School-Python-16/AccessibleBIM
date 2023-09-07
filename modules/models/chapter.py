@@ -1,12 +1,11 @@
 from django.db import models
 
-from modules.models.courses import CourseModel
 from modules.models.modules import AbstractModel
 
 
 # Create your models here.
 class ChapterModel(AbstractModel):
-    course = models.ForeignKey(CourseModel, on_delete=models.CASCADE, related_name='ct_course',
+    course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course',
                                verbose_name='Курсы')
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
