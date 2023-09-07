@@ -39,3 +39,11 @@ class StepFileView(TemplateView):
 
 class TeacherDetailView(TemplateView):
     template_name = 'teachers/teacher_detail.html'
+
+
+class TestDetailView(TemplateView):
+    template_name = 'tests_bim/test_bim_detail.html'
+
+
+class SubscriptionDetailView(TemplateView):
+    template_name = 'subscriptions/subscription.html'

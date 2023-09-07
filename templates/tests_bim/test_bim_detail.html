@@ -3,41 +3,33 @@
 {% block content %}
     {% include 'partials/main_block.html' %}
 
-    <div class="container">
-        <p>Данный курс был составлен: <a href="{% url 'modules:teacher_detail' %}">Учитель 1,</a> <a
-                href="{% url 'modules:teacher_detail' %}">Учитель 2</a></p>
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Глава #1
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-
-                        <div class="accordion" id="sub-accordionExample">
-                            <div>
-                                <h1></h1>
-                                <ul class="ul_tree p-has-headers">
-                                    <li class="li_tree">
-                                        <a href="{% url 'modules:step_text' %}" class="header">Пример Текста</a>
-                                    </li>
-                                    <li class="li_tree">
-                                        <a href="{% url 'modules:step_video' %}" class="header">Пример Видео</a>
-                                    </li>
-                                    <li class="li_tree">
-                                        <a href="{% url 'modules:step_file' %}" class="header">Пример Файла</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    <div class="container mt-5">
+        <h3>Вопрос №1</h3>
+        <p>Сам вопрос</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Вопрос 1
+            </label>
         </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Вопрос 2
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+            <label class="form-check-label" for="flexRadioDefault3">
+                Вопрос 3
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+            <label class="form-check-label" for="flexRadioDefault4">
+                Вопрос 4
+            </label>
+        </div>
+        <a href="#" class="btn btn-success mt-3">Следующее вопрос</a>
     </div>
 {% endblock %}
