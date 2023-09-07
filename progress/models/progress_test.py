@@ -1,18 +1,15 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from modules.models.modules import AbstractModel
-
-
-# Create your models here.
+from modules.models import AbstractModel
 
 
 class ProgressTest(AbstractModel):
-    # start_time = models.DateTimeField(auto_now_add=True, verbose_name='Начало тестирования',)
-    # end_time = models.DateTimeField(null=True, blank=True, verbose_name='Конец тестирования')
-    # user = models.ForeignKey(get_user_model(),
-    #                          on_delete=models.CASCADE,
-    #                          related_name="progress",
-    #                          verbose_name="Пользователь")
+    start_time = models.DateTimeField(auto_now_add=True, verbose_name='Начало тестирования',)
+    end_time = models.DateTimeField(null=True, blank=True, verbose_name='Конец тестирования')
+    user = models.ForeignKey(get_user_model(),
+                             on_delete=models.CASCADE,
+                             related_name="progress",
+                             verbose_name="Пользователь")
     test = models.ForeignKey('test_bim.TestBim',
                              related_name='progress',
                              on_delete=models.CASCADE,
