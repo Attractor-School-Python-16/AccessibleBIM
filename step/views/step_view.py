@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
 from step.forms.step_forms import StepForm
 from step.models.step import StepModel
@@ -15,6 +15,10 @@ class StepListView(ListView):
 class StepDetailView(DetailView):
     queryset = StepModel.objects.all()
     template_name = "step/step_detail.html"
+
+class StepCreateView(CreateView):
+    form_class = StepForm
+    template_name = "posts/post_create.html"
 
 
 class StepUpdateView(UpdateView):
