@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class AbstractModel(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     update_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
