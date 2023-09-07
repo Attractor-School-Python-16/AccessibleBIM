@@ -35,3 +35,7 @@ class StepTextView(TemplateView):
 
 class StepFileView(TemplateView):
     template_name = 'steps/step_detail_file.html'
+
+
+class TeacherDetailView(TemplateView):
+    template_name = 'teachers/teacher_detail.html'
