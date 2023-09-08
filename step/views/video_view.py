@@ -10,7 +10,6 @@ class VideoListView(ListView):
     model = VideoModel
     template_name = 'video/video_list.html'
     context_object_name = 'videos'
-    paginate_by = 1
 
 
 class VideoDetailView(DetailView):
@@ -18,7 +17,7 @@ class VideoDetailView(DetailView):
     template_name = "video/video_detail.html"
 
 
-class StepCreateView(CreateView):
+class VideoCreateView(CreateView):
     form_class = VideoForm
     template_name = "video/video_create.html"
 
@@ -30,7 +29,7 @@ class VideoUpdateView(UpdateView):
     success_url = reverse_lazy('video_list')
 
 
-class StepDeleteView(DeleteView):
+class VideoDeleteView(DeleteView):
     model = VideoModel
     template_name = 'video/video_delete.html'
     success_url = reverse_lazy('video_list')

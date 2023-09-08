@@ -13,7 +13,7 @@
     <script>
         document.getElementById("cancel-button").addEventListener("click", function(e) {
             e.preventDefault();
-            {#Получаем URL предыдущей страницы из хранилища браузера#}
+            {#Получаем URL предыдущей страницы#}
             let previousUrl = document.referrer;
             {#Если URL предыдущей страницы существует, идет редирект на нее#}
             if (previousUrl) {
