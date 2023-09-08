@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Тест{% endblock %}
+{% block content %}
+    {% include 'partials/main_block.html' %}
+
+    <div class="container mt-5">
+        <h3>Выберете курс на который хотите подписаться</h3>
+        <select class="form-select" aria-label="Default select example">
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <h3>Цена: 3000</h3>
+        <a href="#" class="btn btn-success mt-3">Купить</a>
+    </div>
+{% endblock %}
