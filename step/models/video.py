@@ -11,6 +11,14 @@ def video_upload_to(instance, filename):
 
 
 class VideoModel(AbstractModel):
-    title = models.CharField(max_length=250, blank=False, null=False, verbose_name="Наименование видео")
-    description = models.CharField(max_length=500, verbose_name="Описание видео")
+    video_title = models.CharField(max_length=250, blank=False, null=False, verbose_name="Наименование видео")
+    video_description = models.CharField(max_length=500, verbose_name="Описание видео")
     video_file = models.FileField(upload_to=video_upload_to, blank=False, null=False, verbose_name="Файл видео")
+
+    def __str__(self):
+        return f'Видео {self.id} {self.video_title}'
+
+    class Meta:
+        db_table = 'videos'
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'

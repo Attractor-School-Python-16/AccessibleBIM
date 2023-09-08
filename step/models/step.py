@@ -18,3 +18,11 @@ class StepModel(AbstractModel):
     test = models.ForeignKey('test_bim.TestBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест')
     file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файл')
     learn_time = models.PositiveIntegerField(blank=False, null=False)
+
+    def __str__(self):
+        return f'Занятие {self.id} {self.title}'
+
+    class Meta:
+        db_table = 'steps'
+        verbose_name = 'Занятие'
+        verbose_name_plural = 'Занятия'
