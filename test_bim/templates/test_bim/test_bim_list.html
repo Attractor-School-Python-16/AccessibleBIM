@@ -6,6 +6,9 @@
 {% endblock %}
 {% block content %}
 <h2>Список тестов</h2>
+    <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url "test_bim:test_create" %}">
+        <button type="submit" class="btn btn-primary">Добавить новый тест</button>
+    </a>
 {% for test in tests %}
     <div class="row justify-content-center mt-1">
         <div class="card">
@@ -20,7 +23,7 @@
                     <button type="submit" class="btn btn-primary">Редактировать</button>
                 </a>
                 <a href="{% url 'test_bim:test_delete' pk=test.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                    <button type="submit" class="btn btn-primary">Удалить</button>
+                    <button type="submit" class="btn btn-danger">Удалить</button>
                 </a>
             </div>
         </div>
