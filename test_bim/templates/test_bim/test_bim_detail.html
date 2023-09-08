@@ -7,6 +7,9 @@
 {% block content %}
 <h3>Тест "{{ test.title }}"</h3>
     <h4>Количестов вопросов: {{ test.questions_qty }}</h4>
+    <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url "test_bim:question_create" pk=test.pk %}">
+        <button type="submit" class="btn btn-primary">Добавить новый вопрос</button>
+    </a>
     <a href="{% url 'test_bim:test_update' pk=test.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
         <button type="submit" class="btn btn-primary">Редактировать</button>
     </a>
