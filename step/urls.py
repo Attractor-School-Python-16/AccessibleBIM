@@ -1,8 +1,11 @@
 from django.urls import path
 
+from step.views.file_view import FileListView, FileDetailView, FileCreateView, FileUpdateView, FileDeleteView
 from step.views.step_view import StepListView, StepDetailView, StepUpdateView, StepDeleteView, StepCreateView
 from step.views.text_view import TextListView, TextDetailView, TextCreateView, TextUpdateView, TextDeleteView
 from step.views.video_view import VideoListView, VideoDetailView, VideoCreateView, VideoUpdateView, VideoDeleteView
+
+
 
 app_name = 'step'
 
@@ -18,8 +21,13 @@ urlpatterns = [
     path('video/<int:pk>/update/', VideoUpdateView.as_view(), name='video_update'),
     path('video/<int:pk>/delete/', VideoDeleteView.as_view(), name='video_delete'),
     path('texts/', TextListView.as_view(), name='text_list'),
-    path('video/<int:pk>/', TextDetailView.as_view(), name='text_detail'),
-    path('video/create/', TextCreateView.as_view(), name='text_create'),
-    path('video/<int:pk>/update/', TextUpdateView.as_view(), name='text_update'),
-    path('video/<int:pk>/delete/', TextDeleteView.as_view(), name='text_delete')
+    path('text/<int:pk>/', TextDetailView.as_view(), name='text_detail'),
+    path('text/create/', TextCreateView.as_view(), name='text_create'),
+    path('text/<int:pk>/update/', TextUpdateView.as_view(), name='text_update'),
+    path('text/<int:pk>/delete/', TextDeleteView.as_view(), name='text_delete'),
+    path('files/', FileListView.as_view(), name='file_list'),
+    path('file/<int:pk>/', FileDetailView.as_view(), name='file_detail'),
+    path('file/create/', FileCreateView.as_view(), name='file_create'),
+    path('file/<int:pk>/update/', FileUpdateView.as_view(), name='file_update'),
+    path('file/<int:pk>/delete/', FileDeleteView.as_view(), name='file_delete')
 ]
