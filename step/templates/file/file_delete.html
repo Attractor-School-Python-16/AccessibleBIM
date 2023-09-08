@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}
-    Удаление текста
+    Удаление файла
 {% endblock %}
 {% block content %}
-    <h3 class="mt-4">Вы уверены, что хотите удалить этот текст?</h3>
+    <h3 class="mt-4">Вы уверены, что хотите удалить этот файл?</h3>
     <form action="" method="post" id="delete-form">
         {% csrf_token %}
         <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
