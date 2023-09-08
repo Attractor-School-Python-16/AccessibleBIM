@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Обновить тест "{{ test.title }}"</h1>
+ {% include 'partial/form.html' with button_text='Обновить тест' %}
+{% endblock %}

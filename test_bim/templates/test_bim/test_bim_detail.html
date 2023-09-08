@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block link %}
+        <li class="nav-item">
+            <a class="nav-link text-white" href="{% url "test_bim:question_create" pk=test.pk %}">Добавить новый вопрос</a>
+        </li>
+{% endblock %}
+{% block content %}
+<h3>Тест "{{ test.title }}"</h3>
+    <h4>Количестов вопросов: {{ test.questions_qty }}</h4>
+    <a href="{% url 'test_bim:test_update' pk=test.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+        <button type="submit" class="btn btn-primary">Редактировать</button>
+    </a>
+    <a href="{% url 'test_bim:test_delete' pk=test.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+        <button type="submit" class="btn btn-primary">Удалить</button>
+    </a>
+{% for question in questions %}
+    <div class="row justify-content-center mt-1">
+        <div class="card">
+            <h3 class="card-title">
+                {{ question.title }}
+            </h3>
+            <div class="card-body">
+                <a href="{% url 'test_bim:question_detail' pk=question.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                    <button type="submit" class="btn btn-primary">Подробнее</button>
+                </a>
+                <a href="{% url 'test_bim:question_update' pk=question.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                    <button type="submit" class="btn btn-primary">Редактировать</button>
+                </a>
+                <a href="{% url 'test_bim:question_delete' pk=question.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                    <button type="submit" class="btn btn-primary">Удалить</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

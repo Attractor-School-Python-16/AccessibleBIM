@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Изменить ответ "{{ answer.title }}"</h1>
+ {% include 'partial/form.html' with button_text='Изменить' %}
+{% endblock %}
