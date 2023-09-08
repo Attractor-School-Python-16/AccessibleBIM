@@ -6,7 +6,7 @@
     <h1>Список видео</h1>
     <ul>
         {% for video in videos %}
-            <li><a href="{% url 'video_detail' video.pk %}">{{ video.title }}</a></li>
+            <li><a href="{% url 'video_detail' video.pk %}">{{ video.video_title }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

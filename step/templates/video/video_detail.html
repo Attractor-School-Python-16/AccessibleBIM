@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block title %}
-    {{ video.title }}
+    {{ video.video_title }}
 {% endblock %}
 {% block content %}
-    <h1>{{ video.title }}</h1>
-    <p>{{ video.description }}</p>
+    <h1>{{ video.video_title }}</h1>
+    <p>{{ video.video_description }}</p>
     <video width="640" height="360" controls>
         <source src="{{ video.video_file.url }}" type="video/mp4">
     </video>
+    <a href="{% url 'video_update' %}">Редактировать видео</a>
+    <a href="{% url 'video_delete' %}">Удалить видео</a>
     <a href="{% url 'video_list' %}">Вернуться к списку видео</a>
 {% endblock %}
