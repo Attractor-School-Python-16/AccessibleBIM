@@ -3,7 +3,7 @@ from django import forms
 from step.models import VideoModel
 
 
-class VideoModelForm(forms.ModelForm):
+class VideoForm(forms.ModelForm):
     class Meta:
         model = VideoModel
         fields = ['title', 'description', 'video_file']
