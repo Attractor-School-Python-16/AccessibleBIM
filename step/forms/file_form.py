@@ -3,7 +3,7 @@ from django import forms
 from step.models import FileModel
 
 
-class TextForm(forms.ModelForm):
+class FileForm(forms.ModelForm):
     class Meta:
         model = FileModel
         fields = '__all__'
