@@ -1,6 +1,7 @@
 from django.urls import path
 
 from step.views.step_view import StepListView, StepDetailView, StepUpdateView, StepDeleteView, StepCreateView
+from step.views.text_view import TextListView, TextDetailView, TextCreateView, TextUpdateView, TextDeleteView
 from step.views.video_view import VideoListView, VideoDetailView, VideoCreateView, VideoUpdateView, VideoDeleteView
 
 app_name = 'step'
@@ -16,4 +17,9 @@ urlpatterns = [
     path('video/create/', VideoCreateView.as_view(), name='video_create'),
     path('video/<int:pk>/update/', VideoUpdateView.as_view(), name='video_update'),
     path('video/<int:pk>/delete/', VideoDeleteView.as_view(), name='video_delete'),
+    path('texts/', TextListView.as_view(), name='text_list'),
+    path('video/<int:pk>/', TextDetailView.as_view(), name='text_detail'),
+    path('video/create/', TextCreateView.as_view(), name='text_create'),
+    path('video/<int:pk>/update/', TextUpdateView.as_view(), name='text_update'),
+    path('video/<int:pk>/delete/', TextDeleteView.as_view(), name='text_delete')
 ]
