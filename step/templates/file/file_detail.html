@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-    {{ text.text_title }}
+    {{ file.file_title }}
 {% endblock %}
 {% block content %}
-    <h1>{{ text.text_title }}</h1>
-    <p>{{ text.text_description }}</p>
-    <p>{{ text.content }}</p>
-    <a href="{% url 'text_update' %}">Редактировать текст</a>
-    <a href="{% url 'text_delete' %}">Удалить текст</a>
-    <a href="{% url 'text_list' %}">Вернуться к списку текстов</a>
+    <h1>{{ file.file_title }}</h1>
+    <a href="{{ file.lesson_file.url }}" download=>Скачать файл</a>
+    <a href="{% url 'file_update' %}">Редактировать файл</a>
+    <a href="{% url 'file_delete' %}">Удалить файл</a>
 {% endblock %}
