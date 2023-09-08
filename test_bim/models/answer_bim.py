@@ -1,8 +1,5 @@
 from django.db import models
-from modules.models.modules import AbstractModel
-
-
-# Create your models here.
+from modules.models import AbstractModel
 
 
 class AnswerBim(AbstractModel):
