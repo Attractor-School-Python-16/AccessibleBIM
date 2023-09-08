@@ -1,6 +1,6 @@
 from django.db import models
 
-from modules.models.modules import AbstractModel
+from modules.models import AbstractModel
 
 
 # Create your models here.
