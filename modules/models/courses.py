@@ -10,13 +10,13 @@ class CourseModel(AbstractModel):
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
     image = models.ImageField(null=False, blank=False, upload_to='course', verbose_name='Фото для курса')
     module_id = models.ForeignKey('modules.ModuleModel', related_name='courses', on_delete=models.CASCADE)
-    courseTarget_id = models.ForeignKey('modules.CourseModel', related_name='courses', on_delete=models.DO_NOTHING)
+    courseTarget_id = models.ForeignKey('modules.CourseTargetModel', related_name='courses', on_delete=models.DO_NOTHING)
     learnTime = models.IntegerField(null=False, blank=False, default=0, verbose_name='Время на прохождение курса')
     teachers = models.ManyToManyField(TeacherModel, related_name='courses', through=CourseTeacherModel,
                                       through_fields=('ct_course', 'ct_teacher'))
 
     class Meta:
-        db_table = 'Course'
+        db_table = 'course'
         verbose_name = 'Модуль'
         verbose_name_plural = 'Модули'
 
