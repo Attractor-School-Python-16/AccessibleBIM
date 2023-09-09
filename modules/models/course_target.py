@@ -8,7 +8,7 @@ class CourseTargetModel(AbstractModel):
     description = models.TextField(max_length=150, null=True, blank=True, verbose_name='Подробное описание')
 
     class Meta:
-        db_table = 'CourseTarget'
+        db_table = 'course_target'
         verbose_name = 'Целевая аудитория'
         verbose_name_plural = 'Целевая аудитория'
 
