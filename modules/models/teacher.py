@@ -13,7 +13,7 @@ class TeacherModel(AbstractModel):
     description = models.CharField(max_length=500, null=True, blank=True, verbose_name="О себе")
 
     class Meta:
-        db_table = 'Teacher'
+        db_table = 'teacher'
         verbose_name = 'Учителя'
         verbose_name_plural = 'Учитель'
 
