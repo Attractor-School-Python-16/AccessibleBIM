@@ -1,0 +1,9 @@
+<form action="" method="post" class="my-3" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="id_file_title">Введите наименование файла:</label>
+    <input type="text" id="id_file_title" name="file_title" required>
+
+    <label for="id_lesson_file">Загрузите файл:</label>
+    <input type="file" id="id_lesson_file" name="lesson_file" required>
+</form>
