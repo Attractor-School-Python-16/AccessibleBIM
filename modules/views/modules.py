@@ -9,7 +9,7 @@ class HomeView(TemplateView):
     template_name = 'index.html'
 
 
-class ModulesView(ListView):
+class ModulesListView(ListView):
     model = ModuleModel
     template_name = 'modules/modules_list.html'
     context_object_name = 'modules'
@@ -25,13 +25,13 @@ class ModuleCreateView(CreateView):
         return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
 
 
-class ModulesDetailView(DetailView):
+class ModuleDetailView(DetailView):
     model = ModuleModel
     context_object_name = 'module'
     template_name = 'modules/module_detail.html'
 
 
-class ModulesUpdateView(UpdateView):
+class ModuleUpdateView(UpdateView):
     model = ModuleModel
     form_class = ModulesForm
     context_object_name = 'module'
@@ -41,9 +41,9 @@ class ModulesUpdateView(UpdateView):
         return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
 
 
-class ModulesDeleteView(DeleteView):
+class ModuleDeleteView(DeleteView):
     model = ModuleModel
-    template_name = "modules/modules_delete.html"
+    template_name = "modules/module_delete.html"
     context_object_name = 'module'
     success_url = reverse_lazy("modules:modules_list")
 
