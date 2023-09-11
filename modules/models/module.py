@@ -1,4 +1,14 @@
+import os
+
 from django.db import models
+
+
+def module_upload_to(instance, filename):
+    print(instance)
+    # module_pk = instance.module.pk
+    # if not module_pk:
+    #     module_pk = "unknown"
+    # return os.path.join('media', str(module_pk), 'video', filename)
 
 
 class AbstractModel(models.Model):
