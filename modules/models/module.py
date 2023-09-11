@@ -20,7 +20,7 @@ class ModuleModel(AbstractModel):
     image = models.ImageField(null=False, blank=False, upload_to='module', verbose_name='Фото для модуля')
 
     class Meta:
-        db_table = 'Module'
+        db_table = 'module'
         verbose_name = 'Модуль'
         verbose_name_plural = 'Модули'
 

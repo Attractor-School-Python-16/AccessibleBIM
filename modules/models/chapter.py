@@ -11,7 +11,7 @@ class ChapterModel(AbstractModel):
     serial_number = models.IntegerField(default=1)
 
     class Meta:
-        db_table = 'Chapter'
+        db_table = 'chapter'
         verbose_name = 'Главы'
         verbose_name_plural = 'Глава'
 
