@@ -27,7 +27,17 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'modules:teacher_create' %}">Создать</a></li>
-                        <li><a class="dropdown-item" href="{% url 'modules:teachers_list' %}">Список модулей</a></li>
+                        <li><a class="dropdown-item" href="{% url 'modules:teachers_list' %}">Список учителей</a></li>
+                    </ul>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        ЦА курса
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'modules:course_target_create' %}">Создать</a></li>
+                        <li><a class="dropdown-item" href="{% url 'modules:course_targets_list' %}">Список ЦА</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
