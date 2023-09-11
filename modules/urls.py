@@ -1,18 +1,30 @@
 from django.urls import path
 
-from modules.views.modules import HomeView, ModulesView, StepTextView, StepVideoView, StepFileView, TeacherDetailView, \
-    TestDetailView, SubscriptionDetailView, AccountDetailView, RegisterLoginView, AccountLoginView, ModuleCreateView, \
-    ModulesDetailView, ModulesDeleteView, ModulesUpdateView
+from modules.views.modules import HomeView, StepTextView, StepVideoView, StepFileView, TeacherDetailView, \
+    TestDetailView, SubscriptionDetailView, AccountDetailView, RegisterLoginView, AccountLoginView
+
+from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetailView, ModuleDeleteView, \
+    ModuleUpdateView
+
+from modules.views.teachers import TeachersListView, TeacherCreateView, TeacherDetailView, TeacherDeleteView, \
+    TeacherUpdateView
 
 app_name = 'modules'
 
 urlpatterns = [
     path('', HomeView.as_view(), name="index"),
-    path('courses/', ModulesView.as_view(), name="modules_list"),
+    path('courses/', ModulesListView.as_view(), name="modules_list"),
     path('course/create/', ModuleCreateView.as_view(), name="module_create"),
-    path('course/<int:pk>/detail/', ModulesDetailView.as_view(), name="module_detail"),
-    path('course/<int:pk>/update/', ModulesUpdateView.as_view(), name="module_update"),
-    path('course/<int:pk>/delete/', ModulesDeleteView.as_view(), name="module_delete"),
+    path('course/<int:pk>/detail/', ModuleDetailView.as_view(), name="module_detail"),
+    path('course/<int:pk>/update/', ModuleUpdateView.as_view(), name="module_update"),
+    path('course/<int:pk>/delete/', ModuleDeleteView.as_view(), name="module_delete"),
+
+
+    path('teachers/', TeachersListView.as_view(), name="teachers_list"),
+    path('teacher/create/', TeacherCreateView.as_view(), name="teacher_create"),
+    path('teacher/<int:pk>/detail/', TeacherDetailView.as_view(), name="teacher_detail"),
+    path('teacher/<int:pk>/update/', TeacherUpdateView.as_view(), name="teacher_update"),
+    path('teacher/<int:pk>/delete/', TeacherDeleteView.as_view(), name="teacher_delete"),
 
 
     path('accounts/login/', AccountLoginView.as_view(), name="login"),
