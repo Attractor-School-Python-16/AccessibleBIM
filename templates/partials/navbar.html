@@ -15,7 +15,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav me-right mb-2 mb-lg-0">
-
+                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
                            href="{% url "accounts:logout" %}">Выйти</a>
@@ -23,7 +23,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url "modules:profile" %}">Профиль: TestUser</a>
                     </li>
-
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
                            href="{% url "accounts:register" %}">Регистрация</a>
@@ -32,7 +32,7 @@
                         <a class="nav-link active" aria-current="page"
                            href="{% url "accounts:login" %}">Войти</a>
                     </li>
-
+                    {% endif %}
             </ul>
         </div>
     </div>
