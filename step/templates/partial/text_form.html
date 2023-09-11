@@ -1,0 +1,12 @@
+<form action="" method="post" class="my-3" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="id_text_title">Введите наименование текста:</label>
+    <input type="text" id="id_text_title" name="text_title" required>
+
+    <label for="id_text_description">Введите описание текста:</label>
+    <textarea id="id_text_description" name="text_description"></textarea>
+
+    <label for="id_text_file">Заполните текст занятия:</label>
+    <input type="file" id="id_text_content" name="text_content" required>
+</form>

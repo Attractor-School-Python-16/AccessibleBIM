@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ file.file_title }}
+{% endblock %}
+{% block content %}
+    <h1>{{ file.file_title }}</h1>
+    <a href="{{ file.lesson_file.url }}" download=>Скачать файл</a>
+    <a href="{% url 'file_update' %}">Редактировать файл</a>
+    <a href="{% url 'file_delete' %}">Удалить файл</a>
+{% endblock %}
