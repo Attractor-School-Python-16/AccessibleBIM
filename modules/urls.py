@@ -1,6 +1,6 @@
 from django.urls import path
 
-from modules.views.modules import HomeView, StepTextView, StepVideoView, StepFileView, TeacherDetailView, \
+from modules.views.modules import HomeView, StepTextView, StepVideoView, StepFileView, \
     TestDetailView, SubscriptionDetailView, AccountDetailView, RegisterLoginView, AccountLoginView
 
 from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetailView, ModuleDeleteView, \
@@ -8,6 +8,9 @@ from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetai
 
 from modules.views.teachers import TeachersListView, TeacherCreateView, TeacherDetailView, TeacherDeleteView, \
     TeacherUpdateView
+
+from modules.views.course_target import CourseTargetsListView, CourseTargetCreateView, CourseTargetDetailView, \
+    CourseTargetDeleteView, CourseTargetUpdateView
 
 app_name = 'modules'
 
@@ -19,13 +22,17 @@ urlpatterns = [
     path('course/<int:pk>/update/', ModuleUpdateView.as_view(), name="module_update"),
     path('course/<int:pk>/delete/', ModuleDeleteView.as_view(), name="module_delete"),
 
-
     path('teachers/', TeachersListView.as_view(), name="teachers_list"),
     path('teacher/create/', TeacherCreateView.as_view(), name="teacher_create"),
     path('teacher/<int:pk>/detail/', TeacherDetailView.as_view(), name="teacher_detail"),
     path('teacher/<int:pk>/update/', TeacherUpdateView.as_view(), name="teacher_update"),
     path('teacher/<int:pk>/delete/', TeacherDeleteView.as_view(), name="teacher_delete"),
 
+    path('course_targets/', CourseTargetsListView.as_view(), name="course_targets_list"),
+    path('course_target/create/', CourseTargetCreateView.as_view(), name="course_target_create"),
+    path('course_target/<int:pk>/detail/', CourseTargetDetailView.as_view(), name="course_target_detail"),
+    path('course_target/<int:pk>/update/', CourseTargetUpdateView.as_view(), name="course_target_update"),
+    path('course_target/<int:pk>/delete/', CourseTargetDeleteView.as_view(), name="course_target_delete"),
 
     path('accounts/login/', AccountLoginView.as_view(), name="login"),
     path('accounts/register/', RegisterLoginView.as_view(), name="register"),
