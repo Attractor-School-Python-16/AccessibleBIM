@@ -12,6 +12,8 @@ class RegisterView(CreateView):
     form_class = RegisterForm
 
     def form_valid(self, form):
-        user = form.save()
+        user = form.save(commit=False)
+        user.username = user.email
+        user.save()
         login(self.request, user)
         return redirect('/')
