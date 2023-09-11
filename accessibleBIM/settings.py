@@ -128,6 +128,8 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
