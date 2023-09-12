@@ -4,8 +4,11 @@
     {% include 'partials/main_block.html' with data=course %}
 
     <div class="container">
-        <p>Данный курс был составлен: <a href="{% url 'modules:teacher_detail' %}">Учитель 1,</a> <a
-                href="{% url 'modules:teacher_detail' %}">Учитель 2</a></p>
+        {% for teacher in course.teachers.all %}
+            <p>Данный курс был составлен: <a
+                    href="{% url 'modules:teacher_detail' teacher.pk %}">{{ teacher.first_name }} {{ teacher.last_name }}</a>
+            </p>
+        {% endfor %}
 
         <a href="{% url 'modules:course_delete' course.id %}" class="btn btn-danger">Удалить</a>
         <a href="{% url 'modules:course_update' course.id %}" class="btn btn-primary">Изменить</a>
