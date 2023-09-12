@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Главная{% endblock %}
+{% block title %}Профиль{% endblock %}
 {% block content %}
 
     <div class="col">
@@ -8,17 +8,33 @@
                 <div class="ps-5">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <span class="nav-link text-light">Username</span>
+                            <span class="nav-link text-light">Email: {{ user.email }}</span>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <span class="nav-link text-light">FirstName LastName</span>
+                            <span class="nav-link text-light">Имя: {{ request.user.get_full_name }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <div class="container">
+            <h3>Мои курсы:</h3>
+            {% for course in courses %}
+                <div class="card">
+                    <h5 class="card-header">Курс</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.description }}</p>
+                        <a href="#" class="btn btn-primary">Перейти</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>У вас нет приобретенных курсов</p>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
