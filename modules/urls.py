@@ -15,6 +15,9 @@ from modules.views.course_target import CourseTargetsListView, CourseTargetCreat
 from modules.views.courses import CoursesListView, CourseCreateView, CourseDetailView, CourseDeleteView, \
     CourseUpdateView
 
+from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterDetailView, ChapterDeleteView, \
+    ChapterUpdateView
+
 app_name = 'modules'
 
 urlpatterns = [
@@ -43,5 +46,19 @@ urlpatterns = [
     path('course/<int:pk>/update/', CourseUpdateView.as_view(), name="course_update"),
     path('course/<int:pk>/delete/', CourseDeleteView.as_view(), name="course_delete"),
 
+    path('сhapters/', ChaptersListView.as_view(), name="chapters_list"),
+    path('сhapter/create/', ChapterCreateView.as_view(), name="chapter_create"),
+    path('сhapter/<int:pk>/detail/', ChapterDetailView.as_view(), name="chapter_detail"),
+    path('сhapter/<int:pk>/update/', ChapterUpdateView.as_view(), name="chapter_update"),
+    path('сhapter/<int:pk>/delete/', ChapterDeleteView.as_view(), name="chapter_delete"),
+
+    path('accounts/login/', AccountLoginView.as_view(), name="login"),
+    path('accounts/register/', RegisterLoginView.as_view(), name="register"),
+    path('accounts/1/', AccountDetailView.as_view(), name="profile"),  # поменять число на PK Users
+    path('step/1/text/', StepTextView.as_view(), name="step_text"),  # поменять число на PK Chapter / text
+    path('step/1/video/', StepVideoView.as_view(), name="step_video"),  # поменять число на PK Chapter / video
+    path('step/1/file/', StepFileView.as_view(), name="step_file"),  # поменять число на PK Chapter / video
+    path('teacher/1/', TeacherDetailView.as_view(), name="teacher_detail"),
+    path('test/1/', TestDetailView.as_view(), name="test_bim"),  # поменять число на PK Test
     path('subscription/', SubscriptionDetailView.as_view(), name="subscription"),
 ]
