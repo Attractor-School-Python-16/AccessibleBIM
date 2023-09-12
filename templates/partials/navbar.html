@@ -45,24 +45,24 @@
                 </li>
             </ul>
             <ul class="navbar-nav me-right mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="">Выйти</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url "modules:profile" %}">Профиль: TestUser</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="{% url "modules:register" %}">Регистрация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="{% url "modules:login" %}">Войти</a>
-                </li>
-
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url "accounts:logout" %}">Выйти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url "accounts:profile" %}">{{ request.user.first_name }}</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url "accounts:register" %}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url "accounts:login" %}">Войти</a>
+                    </li>
+                    {% endif %}
             </ul>
         </div>
     </div>

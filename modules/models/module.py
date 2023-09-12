@@ -4,11 +4,10 @@ from django.db import models
 
 
 def module_upload_to(instance, filename):
-    print(instance)
-    # module_pk = instance.module.pk
-    # if not module_pk:
-    #     module_pk = "unknown"
-    # return os.path.join('media', str(module_pk), 'video', filename)
+    module = instance.title
+    if not module:
+        module = "unknown"
+    return os.path.join('modules', str(module), 'image', filename)
 
 
 class AbstractModel(models.Model):
@@ -27,7 +26,7 @@ class AbstractModel(models.Model):
 class ModuleModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
-    image = models.ImageField(null=False, blank=False, upload_to='module', verbose_name='Фото для модуля')
+    image = models.ImageField(null=False, blank=False, upload_to=module_upload_to, verbose_name='Фото для модуля')
 
     class Meta:
         db_table = 'module'
