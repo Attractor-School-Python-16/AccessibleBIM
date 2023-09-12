@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "phonenumber_field",
+    'captcha',
 
     'accounts',
     'modules',
@@ -126,6 +127,12 @@ USE_I18N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 
 # Static files (CSS, JavaScript, Images)
