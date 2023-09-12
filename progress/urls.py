@@ -1,6 +1,6 @@
 from django.urls import path
 
-from progress.views.progress_test_answers_view import ProgressTestAnswersCreateView, ProgressTestAnswersDeleteView
+from progress.views.progress_test_answers_view import ProgressTestAnswersDeleteView
 
 app_name = 'progress'
 
