@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Удаление модуля{% endblock %}
+{% block content %}
+    <div class="d-block">
+        <p class="card-text">Вы точно хотите удалить модуль:<span class="text-danger"> {{ module.title }}</span>
+        </p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="btn-group" role="group">
+            <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
+        </div>
+        <a class="btn btn-primary" href="{% url "modules:module_detail" module.pk %}">Нет</a>
+    </form>
+{% endblock %}
