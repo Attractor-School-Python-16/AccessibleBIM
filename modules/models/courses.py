@@ -7,7 +7,7 @@ from modules.models.module import AbstractModel
 from modules.models.course_teacher import CourseTeacherModel
 
 
-def module_upload_to(instance, filename):
+def courses_upload_to(instance, filename):
     courses = instance.title
     if not courses:
         courses = "unknown"
@@ -17,7 +17,7 @@ def module_upload_to(instance, filename):
 class CourseModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название курса')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание курса')
-    image = models.ImageField(null=False, blank=False, upload_to='course', verbose_name='Фото для курса')
+    image = models.ImageField(null=False, blank=False, upload_to=courses_upload_to, verbose_name='Фото для курса')
     module_id = models.ForeignKey('modules.ModuleModel', related_name='courses', on_delete=models.CASCADE)
     courseTarget_id = models.ForeignKey('modules.CourseTargetModel', related_name='courses',
                                         on_delete=models.DO_NOTHING)
