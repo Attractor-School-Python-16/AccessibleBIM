@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+    {% include 'partials/main_block.html' with data=course %}
+
+    <div class="container">
+        <p>Данный курс был составлен: <a href="{% url 'modules:teacher_detail' %}">Учитель 1,</a> <a
+                href="{% url 'modules:teacher_detail' %}">Учитель 2</a></p>
+
+        <a href="{% url 'modules:course_delete' course.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'modules:course_update' course.id %}" class="btn btn-primary">Изменить</a>
+        <div class="accordion mt-3" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Глава #1
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <div class="accordion" id="sub-accordionExample">
+                            <div>
+                                <h1></h1>
+                                <ul class="ul_tree p-has-headers">
+                                    <li class="li_tree">
+                                        <a href="{% url 'modules:step_text' %}" class="header">Пример Текста</a>
+                                    </li>
+                                    <li class="li_tree">
+                                        <a href="{% url 'modules:step_video' %}" class="header">Пример Видео</a>
+                                    </li>
+                                    <li class="li_tree">
+                                        <a href="{% url 'modules:step_file' %}" class="header">Пример Файла</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Глава #2 Тесты
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <div class="accordion" id="sub-accordionExample">
+                            <div>
+                                <h1></h1>
+                                <ul class="ul_tree p-has-headers">
+                                    <li class="li_tree">
+                                        <a href="{% url 'modules:test_bim' %}" class="header">Пример Теста</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
