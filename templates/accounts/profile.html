@@ -16,6 +16,11 @@
                             <span class="nav-link text-light">Имя: {{ request.user.get_full_name }}</span>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{% url 'accounts:change_password' %}" class="nav-link text-light">Сменить пароль</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
