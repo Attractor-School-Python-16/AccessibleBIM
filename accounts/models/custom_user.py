@@ -25,7 +25,7 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(_("first name"), max_length=150, null=False, blank=False)
     last_name = models.CharField(_("last name"), max_length=150, null=False, blank=False)
     father_name = models.CharField(_("father name"), max_length=150, null=True, blank=True)
-    email = models.EmailField(_("email address"), null=False, blank=False)
+    email = models.EmailField(_("email address"), null=False, blank=False, unique=True)
     phone_number = PhoneNumberField(_("phone_number"), null=False, blank=False)
     job_title = models.CharField(_("job_title"), max_length=150, null=True, blank=True)
     # country = models.ForeignKey()
@@ -35,6 +35,9 @@ class CustomUser(AbstractUser):
     subscriptions = models.ManyToManyField("subscription.SubscriptionModel", related_name="users",
                                            through="subscription.UsersSubscription",
                                            through_fields=("user", "subscription"))
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return f'{self.pk}. {self.get_full_name()}'
