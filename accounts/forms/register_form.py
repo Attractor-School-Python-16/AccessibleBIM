@@ -12,3 +12,10 @@ class RegisterForm(UserCreationForm):
         model = CustomUser
         fields = ['first_name', 'last_name', 'father_name', 'email', 'password1',
                   'password2', 'phone_number', 'job_title', 'type_corp', 'company']  # нужно добавить 'country'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in iter(self.fields):
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control'
+            })
