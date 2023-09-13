@@ -6,8 +6,8 @@ from modules.models.module import AbstractModel
 class ChapterModel(AbstractModel):
     course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course',
                                verbose_name='Курсы')
-    title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
-    description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
+    title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название главы')
+    description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание главы')
     serial_number = models.IntegerField(default=1)
 
     class Meta:
@@ -19,7 +19,7 @@ class ChapterModel(AbstractModel):
         # Это означает, что модель еще не сохранена в базе данных
         if self._state.adding:
             # Получаем максимальное значение serial_number из базы данных
-            last_id = ChapterModel.objects.filter(customer=self.course).aggregate(largest=models.Max('serial_number'))[
+            last_id = ChapterModel.objects.filter(course=self.course).aggregate(largest=models.Max('serial_number'))[
                 'largest']
 
             # Агрегация может вернуть None! Сначала проверьте это.
