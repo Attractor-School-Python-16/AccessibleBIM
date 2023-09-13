@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Тест{% endblock %}
+{% block content %}
+    {% include 'partials/main_block.html' %}
+
+    <div class="container">
+        <h3>Подписки на курсы:</h3>
+        {% for subscription in subscriptions %}
+            <a href="{% url 'subscription:subscription_detail' subscription.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <div class="card-body border-bottom">
+                            <h5 class="card-text">{{ subscription.course }}</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body border-bottom">
+                            <p class="card-text">Цена на курс:{{ subscription.price }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-body">
+                            <button href="#" class="btn btn-success">Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
