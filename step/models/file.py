@@ -4,7 +4,7 @@ from modules.models import AbstractModel
 
 
 def file_upload_to(instance, filename):
-    step_pk = instance.step.pk
+    step_pk = instance.id
     if not step_pk:
         step_pk = "unknown"
     return os.path.join('media', str(step_pk), 'file', filename)

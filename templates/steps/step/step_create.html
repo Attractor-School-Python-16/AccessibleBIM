@@ -1,14 +1,108 @@
+<!-- step_create.html -->
+
 {% extends "base.html" %}
 {% block title %}
     Добавить занятие
 {% endblock %}
 {% block content %}
-    <div class="d-flex justify-content-center">
-        <div class="container my-5 text-center">
-            <h2>Создайте занятие:</h2>
-            <div class="d-flex justify-content-center">
-                {% include "partial/form.html" with button_text="Добавить занятие" %}
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+
+            <div class="form-group">
+                <label for="id_title">{{ form.chapter.label }}</label>
+                {{ form.chapter }}
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="id_title">{{ form.title.label }}</label>
+                {{ form.title }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_file">{{ form.file.label }}</label>
+                {{ form.file }}
+            </div>
+
+            <div id="file-inputs">
+                <label for="file-title">Введите наименование файла</label>
+                <input type="text" name="file_title" id="file-title" class="form-control">
+                <label for="lesson-file">Загрузите файл</label>
+                <input type="file" name="lesson_file" id="lesson-file" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="id_learn_time">{{ form.learn_time.label }}</label>
+                {{ form.learn_time }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_lesson_type">{{ form.lesson_type.label }}</label>
+                {{ form.lesson_type }}
+            </div>
+
+            <div id="text-form" class="content-form" style="display: none;">
+                <label for="text_title">Введите наименование текста</label>
+                <input type="text" name="text_title" class="form-control">
+                <label for="text_description">Введите описание текста</label>
+                <input type="text" name="text_description" class="form-control">
+                <label for="content">Заполните текст занятия</label>
+                <textarea name="content" class="form-control"></textarea>
+            </div>
+
+            <div id="video-form" class="content-form" style="display: none;">
+                <label for="video_title">Введите наименование видео</label>
+                <input type="text" name="video_title">
+                <label for="video_description">Введите описание видео</label>
+                <input type="text" name="video_description">
+                <label for="">Загрузите видео-файл</label>
+                <input type="file" name="video_file">
+            </div>
+
+            <div id="test-form" class="content-form" style="display: none;">
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Step</button>
+        </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const lessonTypeSelect = document.getElementById("id_lesson_type");
+            const contentForms = document.querySelectorAll(".content-form");
+            const fileInput = document.getElementById("id_file");
+            const fileInputsContainer = document.getElementById("file-inputs");
+
+            if (fileInput.value) {
+                fileInputsContainer.style.display = "none";
+            }
+
+            lessonTypeSelect.addEventListener("change", function () {
+                const selectedValue = lessonTypeSelect.value;
+
+                contentForms.forEach(form => {
+                    form.style.display = "none";
+                });
+
+                if (selectedValue === "text") {
+                    document.getElementById("text-form").style.display = "block";
+                } else if (selectedValue === "video") {
+                    document.getElementById("video-form").style.display = "block";
+                } else if (selectedValue === "test") {
+                    document.getElementById("test-form").style.display = "block";
+                }
+            });
+
+            fileInput.addEventListener("change", function () {
+                if (fileInput.value) {
+                    fileInputsContainer.style.display = "none";
+                } else {
+                    fileInputsContainer.style.display = "block";
+                }
+            });
+        });
+    </script>
 {% endblock %}
