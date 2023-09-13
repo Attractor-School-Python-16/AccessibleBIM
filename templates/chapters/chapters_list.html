@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Главы{% endblock %}
+{% block content %}
+    <div class="container">
+        {% for chapter in chapters %}
+            <a href="{% url 'modules:chapter_detail' chapter.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <h5>{{ chapter.title }}</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body border-bottom">
+                            <p class="card-text">{{ chapter.description }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card-body">
+                            <img class="img-thumbnail" src="{{ module.image.url }}" alt="{{ module.title }}">
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
