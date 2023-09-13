@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+    {% include 'partials/main_block.html' with data=chapter %}
+
+    <div class="container">
+
+        <a href="{% url 'modules:chapter_delete' chapter.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'modules:chapter_update' chapter.id %}" class="btn btn-primary">Изменить</a>
+        <div>
+            <p>Курс: {{ chapter.course }}</p>
+            <p>Порядковый номер: {{ chapter.serial_number }}</p>
+        </div>
+    </div>
+{% endblock %}
