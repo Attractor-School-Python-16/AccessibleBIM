@@ -1,7 +1,6 @@
 from django.urls import path
 
-from modules.views.modules import HomeView, StepTextView, StepVideoView, StepFileView, \
-    TestDetailView, SubscriptionDetailView, AccountDetailView, RegisterLoginView, AccountLoginView
+from modules.views.modules import HomeView, StepTextView, StepVideoView, StepFileView, TestDetailView
 
 from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetailView, ModuleDeleteView, \
     ModuleUpdateView
@@ -52,13 +51,9 @@ urlpatterns = [
     path('сhapter/<int:pk>/update/', ChapterUpdateView.as_view(), name="chapter_update"),
     path('сhapter/<int:pk>/delete/', ChapterDeleteView.as_view(), name="chapter_delete"),
 
-    path('accounts/login/', AccountLoginView.as_view(), name="login"),
-    path('accounts/register/', RegisterLoginView.as_view(), name="register"),
-    path('accounts/1/', AccountDetailView.as_view(), name="profile"),  # поменять число на PK Users
     path('step/1/text/', StepTextView.as_view(), name="step_text"),  # поменять число на PK Chapter / text
     path('step/1/video/', StepVideoView.as_view(), name="step_video"),  # поменять число на PK Chapter / video
     path('step/1/file/', StepFileView.as_view(), name="step_file"),  # поменять число на PK Chapter / video
-    path('teacher/1/', TeacherDetailView.as_view(), name="teacher_detail"),
+
     path('test/1/', TestDetailView.as_view(), name="test_bim"),  # поменять число на PK Test
-    path('subscription/', SubscriptionDetailView.as_view(), name="subscription"),
 ]
