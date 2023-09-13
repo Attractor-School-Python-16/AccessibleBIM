@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Список прогресса по тестам
+{% endblock %}
+
+{% block content %}
+    <h2>Список прогресса по тестам</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Тест</th>
+                <th>Начало тестирования</th>
+                <th>Конец тестирования</th>
+                <th>Пройден</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for progress_test in progress_tests %}
+                <tr>
+                    <td><a href="{% url 'user_profile' progress_test.user.pk %}">{{ progress_test.user.pk }}</a></td>
+                    <td><a href="{% url 'test_detail' progress_test.test.pk %}">{{ progress_test.test.test_title }}</a></td>
+                    <td>{{ progress_test.start_time }}</td>
+                    <td>{{ progress_test.end_time }}</td>
+                    <td>{% if progress_test.is_passed %}Да{% else %}Нет{% endif %}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">Нет данных</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

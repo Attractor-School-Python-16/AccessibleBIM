@@ -22,6 +22,7 @@ from accessibleBIM import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('modules.urls')),
+    path('', include('progress.urls')),
     path('', include('accounts.urls')),
     path('', include('subscription.urls')),
     path('captcha/', include('captcha.urls')),
