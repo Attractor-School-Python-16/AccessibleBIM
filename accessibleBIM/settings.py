@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -113,7 +114,17 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+with open('accessibleBIM/config.txt') as f:
+    EMAIL_APP_PASSWORD = f.read().strip()
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_FROM = 'accessible.bim.info@gmail.com'
+EMAIL_HOST_USER = 'accessible.bim.info@gmail.com'
+EMAIL_HOST_PASSWORD = EMAIL_APP_PASSWORD
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+PASSWORD_RESET_TIMEOUT = 14400
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
