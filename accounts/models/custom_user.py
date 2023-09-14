@@ -26,6 +26,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(_("last name"), max_length=150, null=False, blank=False)
     father_name = models.CharField(_("father name"), max_length=150, null=True, blank=True)
     email = models.EmailField(_("email address"), null=False, blank=False, unique=True)
+    email_verified = models.BooleanField(_("email_verified"), default=False)
     phone_number = PhoneNumberField(_("phone_number"), null=False, blank=False)
     job_title = models.CharField(_("job_title"), max_length=150, null=True, blank=True)
     # country = models.ForeignKey()
