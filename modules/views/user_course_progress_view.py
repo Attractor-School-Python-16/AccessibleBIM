@@ -14,4 +14,11 @@ def create_user_course_progress(user, step):
     return user_course_progress
 
 
+#функцию update_status_user_course_progress вызываем в представлении,
+# которую напишем для ссылки <a href="#" class="btn btn-success">Следующее занятие</a>
+# в step_detail_text.html
+def update_status_user_course_progress(user_course_progress):
+    user_course_progress.status = 'finished'
+    user_course_progress.updated_at = timezone.now()
+    user_course_progress.save()
 
