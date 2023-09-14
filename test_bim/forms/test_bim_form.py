@@ -13,6 +13,6 @@ class TestBimForm(forms.ModelForm):
             'questions_qty': 'Количество вопросов в тесте',
         }
         widgets = {
-            'title': widgets.TextInput(attrs={'class': 'form-control'}),
+            'test_title': widgets.TextInput(attrs={'class': 'form-control'}),
             'questions_qty': widgets.NumberInput(attrs={'class': 'form-control'}),
         }
