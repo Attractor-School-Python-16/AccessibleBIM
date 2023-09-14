@@ -1,9 +1,4 @@
 {% extends 'base.html' %}
-{% block link %}
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{% url "test_bim:answer_create" pk=question.pk %}">Добавить новый ответ</a>
-        </li>
-{% endblock %}
 {% block content %}
 <h3>Вопрос "{{ question.title }}"</h3>
     <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url "test_bim:answer_create" pk=question.pk %}">

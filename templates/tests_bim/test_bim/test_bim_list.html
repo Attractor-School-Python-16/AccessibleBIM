@@ -1,9 +1,4 @@
 {% extends "base.html" %}
-{% block link %}
-        <li class="nav-item">
-            <a class="nav-link text-white" href="{% url "test_bim:test_create" %}">Добавить новый тест</a>
-        </li>
-{% endblock %}
 {% block content %}
 <h2>Список тестов</h2>
     <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url "test_bim:test_create" %}">
@@ -14,6 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ test.test_title }}</h5>
+                <a class="btn btn-primary" href="{% url 'test_bim:take_test' pk=test.pk %}" role="button">Прохождение теста</a>
                 <a class="btn btn-primary" href="{% url 'test_bim:test_detail' pk=test.pk %}" role="button">Подробнее</a>
                 <a class="btn btn-primary" href="{% url 'test_bim:test_update' pk=test.pk %}" role="button">Редактировать</a>
                 <a class="btn btn-danger" href="{% url 'test_bim:test_delete' pk=test.pk %}" role="button">Удалить</a>
