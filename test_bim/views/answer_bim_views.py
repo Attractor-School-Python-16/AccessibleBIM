@@ -9,7 +9,7 @@ from test_bim.forms.answer_bim_form import AnswerBimForm
 
 class AnswerBimCreateView(CreateView):
     form_class = AnswerBimForm
-    template_name = "answer_bim/answer_bim_create.html"
+    template_name = "tests_bim/answer_bim/answer_bim_create.html"
 
     def form_valid(self, form):
         question = get_object_or_404(QuestionBim, pk=self.kwargs.get("pk"))
@@ -22,7 +22,7 @@ class AnswerBimCreateView(CreateView):
 class AnswerBimUpdateView(UpdateView):
     model = AnswerBim
     form_class = AnswerBimForm
-    template_name = 'answer_bim/answer_bim_update.html'
+    template_name = 'tests_bim/answer_bim/answer_bim_update.html'
     success_url = reverse_lazy('test_bim:tests_list')
     context_object_name = 'answer'
 
@@ -30,5 +30,5 @@ class AnswerBimUpdateView(UpdateView):
 class AnswerBimDeleteView(DeleteView):
     model = AnswerBim
     context_object_name = 'answer'
-    template_name = 'answer_bim/answer_bim_delete.html'
+    template_name = 'tests_bim/answer_bim/answer_bim_delete.html'
     success_url = reverse_lazy('test_bim:tests_list')

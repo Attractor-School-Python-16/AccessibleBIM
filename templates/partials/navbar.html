@@ -59,10 +59,19 @@
                         <li><a class="dropdown-item" href="{% url 'modules:chapters_list' %}">Список глав</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Тесты
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'test_bim:tests_list' %}">Список тестов</a></li>
+                        <li><a class="dropdown-item" href="{% url "test_bim:test_create" %}">Создать</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'modules:subscription' %}">Подписка</a>
                 </li>
-
             </ul>
             <ul class="navbar-nav me-right mb-2 mb-lg-0">
                 {% if request.user.is_authenticated %}

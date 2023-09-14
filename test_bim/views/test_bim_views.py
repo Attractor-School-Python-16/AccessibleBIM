@@ -7,14 +7,14 @@ from test_bim.forms.test_bim_form import TestBimForm
 
 class TestsBimListView(ListView):
     model = TestBim
-    template_name = 'test_bim/test_bim_list.html'
+    template_name = 'tests_bim/test_bim/test_bim_list.html'
     context_object_name = 'tests'
 
 
 
 class TestBimDetailView(DetailView):
     queryset = TestBim.objects.all()
-    template_name = "test_bim/test_bim_detail.html"
+    template_name = "tests_bim/test_bim/test_bim_detail.html"
     context_object_name = 'test'
 
     def get_context_data(self, **kwargs):
@@ -25,7 +25,7 @@ class TestBimDetailView(DetailView):
 
 class TestBimCreateView(CreateView):
     form_class = TestBimForm
-    template_name = "test_bim/test_bim_create.html"
+    template_name = "tests_bim/test_bim/test_bim_create.html"
 
     def get_success_url(self):
         return reverse("test_bim:test_detail", kwargs={"pk": self.object.pk})
@@ -37,7 +37,7 @@ class TestBimCreateView(CreateView):
 class TestBimUpdateView(UpdateView):
     model = TestBim
     form_class = TestBimForm
-    template_name = 'test_bim/test_bim_update.html'
+    template_name = 'tests_bim/test_bim/test_bim_update.html'
     success_url = reverse_lazy('test_bim:tests_list')
     context_object_name = 'test'
 
@@ -45,7 +45,7 @@ class TestBimUpdateView(UpdateView):
 class TestBimDeleteView(DeleteView):
     model = TestBim
     context_object_name = 'test'
-    template_name = 'test_bim/test_bim_delete.html'
+    template_name = 'tests_bim/test_bim/test_bim_delete.html'
     success_url = reverse_lazy('test_bim:tests_list')
 
 
