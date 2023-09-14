@@ -19,7 +19,6 @@ class Migration(migrations.Migration):
             name='lesson_type',
             field=models.CharField(choices=[('text', 'Текст'), ('video', 'Видео'), ('test', 'Тест')], max_length=10, verbose_name='Тип занятия'),
 
-            field=models.CharField(choices=[('video', 'Видео'), ('test', 'Тест'), ('text', 'Текст')], max_length=10, verbose_name='Тип занятия'),
 
         ),
     ]
