@@ -9,7 +9,7 @@ from test_bim.forms.question_bim_form import QuestionBimForm
 
 class QuestionBimDetailView(DetailView):
     queryset = QuestionBim.objects.all()
-    template_name = "question_bim/question_bim_detail.html"
+    template_name = "tests_bim/question_bim/question_bim_detail.html"
     context_object_name = 'question'
 
     def get_context_data(self, **kwargs):
@@ -20,7 +20,7 @@ class QuestionBimDetailView(DetailView):
 
 class QuestionBimCreateView(CreateView):
     form_class = QuestionBimForm
-    template_name = "question_bim/question_bim_create.html"
+    template_name = "tests_bim/question_bim/question_bim_create.html"
 
     def form_valid(self, form):
         test = get_object_or_404(TestBim, pk=self.kwargs.get("pk"))
@@ -33,7 +33,7 @@ class QuestionBimCreateView(CreateView):
 class QuestionBimUpdateView(UpdateView):
     model = QuestionBim
     form_class = QuestionBimForm
-    template_name = 'question_bim/question_bim_update.html'
+    template_name = 'tests_bim/question_bim/question_bim_update.html'
     success_url = reverse_lazy('test_bim:tests_list')
     context_object_name = 'question'
 
@@ -41,5 +41,5 @@ class QuestionBimUpdateView(UpdateView):
 class QuestionBimDeleteView(DeleteView):
     model = QuestionBim
     context_object_name = 'question'
-    template_name = 'question_bim/question_bim_delete.html'
+    template_name = 'tests_bim/question_bim/question_bim_delete.html'
     success_url = reverse_lazy('test_bim:tests_list')

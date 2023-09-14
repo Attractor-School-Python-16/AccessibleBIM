@@ -13,22 +13,15 @@
 {% for answer in answers %}
     <div class="row justify-content-center mt-1">
         <div class="card">
-            <h3 class="card-title">
-                {{ answer.answer }}
-            </h3>
             <div class="card-body">
+                <h5 class="card-title">{{ answer.answer }}</h5>
                 {% if answer.is_correct %}
                     <p class="card-text" style="color: yellowgreen">Верный ответ</p>
                 {% else %}
                     <p class="card-text" style="color: red">Неверный ответ</p>
                 {% endif %}
-
-                <a href="{% url 'test_bim:answer_update' pk=answer.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                    <button type="submit" class="btn btn-primary">Редактировать ответ</button>
-                </a>
-                <a href="{% url 'test_bim:answer_delete' pk=answer.pk %}" class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                    <button type="submit" class="btn btn-primary">Удалить ответ</button>
-                </a>
+                <a class="btn btn-primary" href="{% url 'test_bim:answer_update' pk=answer.pk %}" role="button">Редактировать ответ</a>
+                <a class="btn btn-danger" href="{% url 'test_bim:answer_delete' pk=answer.pk %}" role="button">Удалить ответ</a>
             </div>
         </div>
     </div>
