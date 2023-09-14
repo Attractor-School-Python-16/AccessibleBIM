@@ -7,7 +7,8 @@ def file_upload_to(instance, filename):
     step_pk = instance.id
     if not step_pk:
         step_pk = "unknown"
-    return os.path.join('media', str(step_pk), 'file', filename)
+    return os.path.join(f'step_{str(step_pk)}', 'file', filename)
+#принт показывает, что айдишник находится, но сохранять нормаьно не получается
 
 
 class FileModel(AbstractModel):
