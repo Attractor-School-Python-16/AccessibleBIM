@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, UpdateView, DeleteView, C
 from step.forms.step_form import StepForm
 from step.forms.video_form import VideoForm
 # from test_bim.forms.test_form import TestForm
-from step.models import VideoModel, TextModel, FileModel, file_upload_to
+from step.models import VideoModel, TextModel, FileModel, file_upload_to, video_upload_to
 from step.models.step import StepModel
 from test_bim.models import TestBim
 
@@ -14,6 +14,7 @@ class StepListView(ListView):
     template_name = 'step/step_list.html'
     context_object_name = 'steps'
     paginate_by = 1
+    success_url = reverse_lazy('modules:index')
 
 
 class StepDetailView(DetailView):
@@ -29,11 +30,13 @@ class StepCreateView(CreateView):
     def form_valid(self, form):
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
-            self.handle_text_lesson(form)
+            text_instance = self.handle_text_lesson(form)
         elif lesson_type == 'video':
-            self.handle_video_lesson(form)
+            video_instance = self.handle_video_lesson(form)
         elif lesson_type == 'test':
-            self.handle_test_lesson(form)
+
+            pass
+        form.instance.save()
         self.handle_uploaded_file(form)
         return super().form_valid(form)
 
@@ -47,36 +50,33 @@ class StepCreateView(CreateView):
             content=content
         )
         form.instance.text = text_instance
+        return text_instance
 
     def handle_video_lesson(self, form):
-        video_title = self.request.POST.get('video_title')
-        video_description = self.request.POST.get('video_description')
-        video_file = self.request.FILES.get('video_file')
+        form.instance.save()
         video_instance = VideoModel.objects.create(
-            video_title=video_title,
-            video_description=video_description,
-            video_file=video_file
-        )
-        form.instance.video = video_instance
+            video_title=self.request.POST.get('video_title'),
+            video_description=self.request.POST.get('video_description'),
+            video_file=self.request.FILES.get('video_file'),
 
-    def handle_test_lesson(self, form):
-        # Handle test case if needed
-        pass
+        )
+        video_upload_to(instance=form.instance, filename=self.request.POST.get('video_title'))
+        form.instance.video = video_instance
+        return video_instance
 
     def handle_uploaded_file(self, form):
-        form.instance.save()
         selected_file = form.cleaned_data.get('file')
         if selected_file:
-            form.instance.file.add(selected_file)
-
+            form.instance.file = selected_file
         uploaded_file = self.request.FILES.get('lesson_file')
         if uploaded_file:
-            file_path = file_upload_to(form.instance, uploaded_file.name)
             file_instance = FileModel.objects.create(
-                file_title=uploaded_file.name,
+                file_title=self.request.POST.get('file_title'),
                 lesson_file=uploaded_file
             )
-            form.instance.file.add(file_instance)
+            file_upload_to(instance=form.instance, filename=self.request.POST.get('file_title'))
+            form.instance.file = file_instance
+            return file_instance
 
 
 

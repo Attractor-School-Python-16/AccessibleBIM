@@ -14,6 +14,7 @@ class StepForm(forms.ModelForm):
     video = forms.ModelChoiceField(queryset=VideoModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     test = forms.ModelChoiceField(queryset=TestBim.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     file = forms.ModelChoiceField(queryset=FileModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+
     class Meta:
         model = StepModel
         fields = '__all__'

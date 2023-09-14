@@ -23,9 +23,11 @@
             </div>
 
             <div class="form-group">
-                <label for="id_file">{{ form.file.label }}</label>
+                <label for="id_file">Выберите файл</label>
                 {{ form.file }}
             </div>
+
+            <p>или</p>
 
             <div id="file-inputs">
                 <label for="file-title">Введите наименование файла</label>
@@ -55,11 +57,11 @@
 
             <div id="video-form" class="content-form" style="display: none;">
                 <label for="video_title">Введите наименование видео</label>
-                <input type="text" name="video_title">
+                <input type="text" name="video_title" class="form-control">
                 <label for="video_description">Введите описание видео</label>
-                <input type="text" name="video_description">
+                <input type="text" name="video_description" class="form-control">
                 <label for="">Загрузите видео-файл</label>
-                <input type="file" name="video_file">
+                <input type="file" name="video_file" class="form-control">
             </div>
 
             <div id="test-form" class="content-form" style="display: none;">
