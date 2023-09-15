@@ -7,11 +7,8 @@ from modules.models import AbstractModel
 
 
 def video_upload_to(instance, filename):
-    step_pk = instance.id
-    if not step_pk:
-        step_pk = "unknown"
-    return os.path.join(f'step_{str(step_pk)}', 'video', filename)
-#принт показывает, что айдишник находится, но сохранять нормаьно не получается
+    return os.path.join('steps', 'videos', filename)
+#по аналогии с функцией в модели файла
 
 
 class VideoModel(AbstractModel):
