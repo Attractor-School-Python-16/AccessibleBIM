@@ -25,7 +25,7 @@ class VideoCreateView(CreateView):
 
 class VideoUpdateView(UpdateView):
     model = VideoModel
-    form_class = StepForm
+    form_class = VideoForm
     template_name = 'steps/video/video_update.html'
     success_url = reverse_lazy('step:video_list')
 
