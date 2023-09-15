@@ -18,11 +18,11 @@ class StepModel(AbstractModel):
     text = models.ForeignKey('step.TextModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Текст', blank=True, null=True)
     video = models.ForeignKey('step.VideoModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Видео', blank=True, null=True)
     test = models.ForeignKey('test_bim.TestBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест', blank=True, null=True)
-    file = models.ForeignKey('step.FileModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Файл', blank=True, null=True)
+    file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файлы', blank=True, null=True)
     learn_time = models.PositiveIntegerField(blank=False, null=False)
 
     def get_absolute_url(self):
-        return reverse("modules:index")
+        return reverse("step:step_list")
 
     def __str__(self):
         return f'Занятие {self.id} {self.title}'
