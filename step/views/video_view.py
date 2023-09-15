@@ -8,28 +8,29 @@ from step.models import VideoModel
 
 class VideoListView(ListView):
     model = VideoModel
-    template_name = 'video/video_list.html'
+    template_name = 'steps/video/video_list.html'
     context_object_name = 'videos'
 
 
 class VideoDetailView(DetailView):
     queryset = VideoModel.objects.all()
-    template_name = "video/video_detail.html"
+    template_name = "steps/video/video_detail.html"
+    context_object_name = 'video'
 
 
 class VideoCreateView(CreateView):
     form_class = VideoForm
-    template_name = "video/video_create.html"
+    template_name = "steps/video/video_create.html"
 
 
 class VideoUpdateView(UpdateView):
     model = VideoModel
     form_class = StepForm
-    template_name = 'video/video_update.html'
-    success_url = reverse_lazy('video_list')
+    template_name = 'steps/video/video_update.html'
+    success_url = reverse_lazy('step:video_list')
 
 
 class VideoDeleteView(DeleteView):
     model = VideoModel
-    template_name = 'video/video_delete.html'
-    success_url = reverse_lazy('video_list')
+    template_name = 'steps/video/video_delete.html'
+    success_url = reverse_lazy('step:video_list')
