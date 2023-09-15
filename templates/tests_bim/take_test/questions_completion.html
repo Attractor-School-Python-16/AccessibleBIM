@@ -2,29 +2,21 @@
 {% block title %}Тест{% endblock %}
 {% block content %}
     <div class="container mt-5">
-        {% if page_obj.has_next %}
-            <form action="?page={{ page_obj.next_page_number }}&next={{ request.path }}" method="post">
-        {% else %}
-            <form action="" method="post">
-        {% endif %}
-        {% csrf_token %}
-        {% for q in question %}
-            <h3>Вопрос №{{ page_obj.number }}</h3>
-            <p>{{ q.title }}</p>
-            {% for answer in q.answer_bim.all %}
+        <h3>Вопрос №{{ page_obj.number }}</h3>
+        <p>{{ question.get.title }}</p>
+        {% for answer in question.get.answer_bim.all %}
+            {% if answer.id in user_answers_id %}
+            {% endif %}
+            <div class="form-check">
                 {% if answer.id in user_answers_id %}
+                    <input checked class="form-check-input answer-radio" type="radio" id="answer-{{ answer.id }}" name="answer" value="{{ answer.id }}">
+                {% else %}
+                    <input class="form-check-input answer-radio" type="radio" id="answer-{{ answer.id }}" name="answer" value="{{ answer.id }}">
                 {% endif %}
-                <div class="form-check">
-                    {% if answer.id in user_answers_id %}
-                        <input checked  class="form-check-input" type="radio" name="answer" value="{{ answer.id }}" id="answer-{{ answer.id }}">
-                    {% else %}
-                        <input class="form-check-input" type="radio" name="answer" value="{{ answer.id }}" id="answer-{{ answer.id }}">
-                    {% endif %}
-                    <label class="form-check-label" for="answer-{{ answer.id }}">
-                        {{ answer.answer }}
-                    </label>
-                </div>
-            {% endfor %}
+                <label class="form-check-label" for="answer-{{ answer.id }}">
+                    {{ answer.answer }}
+                </label>
+            </div>
         {% endfor %}
         <div class="pagination mt-3">
             <div class="step-links">
@@ -34,15 +26,53 @@
                 {% else %}
                     <span class="btn btn-primary disabled">Предыдущий вопрос</span>
                 {% endif %}
-                <button class="btn btn-primary" type="submit">
-                    {% if page_obj.has_next %}
-                        Следующий вопрос
-                    {% else %}
-                        Завершить тест
-                    {% endif %}
-                </button>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Следующий вопрос</a>
+                {% else %}
+                    <span class="btn btn-primary disabled">Следующий вопрос</span>
+                {% endif %}
             </div>
         </div>
-        </form>
     </div>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function onClick(event) {
+            let url = "{% url "test_bim:user_answer" progress_test_id %}"
+            let data = {
+                "answer_id": event.target.value,
+            }
+            fetch(url, {
+                method: "post",
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify(data)
+            })
+        }
+
+        function onLoad() {
+            let radioButtons = document.getElementsByClassName("answer-radio");
+
+            for (let button of radioButtons) {
+                button.addEventListener("click", onClick)
+            }
+        }
+
+        window.addEventListener("load", onLoad)
+    </script>
 {% endblock %}
