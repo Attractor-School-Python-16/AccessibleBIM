@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('modules.urls')),
     path('', include('progress.urls')),
     path('', include('accounts.urls')),
+    path('', include('step.urls')),
     path('', include('subscription.urls')),
     path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

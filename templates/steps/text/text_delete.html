@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% block title %}
-    Удаление видео
+    Удаление текста
 {% endblock %}
 {% block content %}
-    <h3 class="mt-4">Вы уверены, что хотите удалить это видео?</h3>
-    <form action="" method="post" id="delete-form">
-        {% csrf_token %}
-        <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
-        <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
-    </form>
+    <div class="container">
+        <h3 class="mt-4">Вы уверены, что хотите удалить этот текст?</h3>
+        <form action="" method="post" id="delete-form">
+            {% csrf_token %}
+            <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
+            <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
+        </form>
+    </div>
 
     <script>
-        document.getElementById("cancel-button").addEventListener("click", function(e) {
+        document.getElementById("cancel-button").addEventListener("click", function (e) {
             e.preventDefault();
             {#Получаем URL предыдущей страницы#}
             let previousUrl = document.referrer;
