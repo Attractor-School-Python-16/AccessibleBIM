@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="container">
     <h1>Список шагов</h1>
     <a href="{% url 'step:file_create' %}" class="btn btn-primary">Добавить</a>
-    <div class="container">
     <table class="table">
         <thead>
         <tr>

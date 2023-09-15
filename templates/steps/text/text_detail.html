@@ -3,10 +3,11 @@
     {{ text.text_title }}
 {% endblock %}
 {% block content %}
-    <h1>{{ text.text_title }}</h1>
-    <p>{{ text.text_description }}</p>
-    <p>{{ text.content }}</p>
-    <a href="{% url 'text_update' %}">Редактировать текст</a>
-    <a href="{% url 'text_delete' %}">Удалить текст</a>
-    <a href="{% url 'text_list' %}">Вернуться к списку текстов</a>
+    <div class="container">
+        <h1>{{ text.text_title }}</h1>
+        <p>{{ text.text_description }}</p>
+        <p>{{ text.content }}</p>
+        </br>
+        <a href="{% url 'step:text_list' %}">Вернуться к списку текстов</a>
+    </div>
 {% endblock %}
