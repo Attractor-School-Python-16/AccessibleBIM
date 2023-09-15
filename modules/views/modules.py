@@ -48,18 +48,6 @@ class ModuleDeleteView(DeleteView):
     success_url = reverse_lazy("modules:modules_list")
 
 
-class AccountDetailView(TemplateView):
-    template_name = 'accounts/profile.html'
-
-
-class AccountLoginView(TemplateView):
-    template_name = 'accounts/login.html'
-
-
-class RegisterLoginView(TemplateView):
-    template_name = 'accounts/register.html'
-
-
 class StepVideoView(TemplateView):
     template_name = 'steps/step_detail_video.html'
 
@@ -72,13 +60,5 @@ class StepFileView(TemplateView):
     template_name = 'steps/step_detail_file.html'
 
 
-class TeacherDetailView(TemplateView):
-    template_name = 'teachers/teacher_detail.html'
-
-
 class TestDetailView(TemplateView):
     template_name = 'tests_bim/test_bim_detail.html'
-
-
-class SubscriptionDetailView(TemplateView):
-    template_name = 'subscriptions/subscription.html'
