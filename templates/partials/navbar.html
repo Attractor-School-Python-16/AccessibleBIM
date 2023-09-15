@@ -59,6 +59,46 @@
                         <li><a class="dropdown-item" href="{% url 'modules:chapters_list' %}">Список глав</a></li>
                     </ul>
                 </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Занятия
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'step:step_create' %}">Создать</a></li>
+                        <li><a class="dropdown-item" href="{% url 'step:step_list' %}">Список занятий</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Файлы
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'step:file_create' %}">Создать</a></li>
+                        <li><a class="dropdown-item" href="{% url 'step:file_list' %}">Список файлов</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Видео
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'step:video_create' %}">Создать</a></li>
+                        <li><a class="dropdown-item" href="{% url 'step:video_list' %}">Список видео</a></li>
+                    </ul>
+                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Тексты
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'step:text_create' %}">Создать</a></li>
+                        <li><a class="dropdown-item" href="{% url 'step:text_list' %}">Список текстов</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
