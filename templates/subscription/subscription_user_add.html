@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Подписки{% endblock %}
+{% block content %}
+    {% include 'partials/main_block.html' %}
+
+    <div class="container">
+        <h3>Выдача подписки пользователю:</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</th>
+                <th scope="col">{{ user.email }}</th>
+                <th scope="col">{% if user.subscriptions.all %}{{ user.subscriptions.all }}{% else %}
+                    Активных подписок нет{% endif %}</th>
+            </tr>
+            </thead>
+        </table>
+        {% include 'partials/form.html' with button_text='Выдать подписку' %}
+    </div>
+{% endblock %}
