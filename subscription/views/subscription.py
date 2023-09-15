@@ -1,7 +1,11 @@
+from django.http import HttpResponseForbidden
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.views.generic.edit import FormMixin
 
+from accounts.models import CustomUser
 from subscription.forms.subscription_form import SubscriptionForm
+from subscription.forms.subscription_user_add_form import SubscriptionUserAddForm
 from subscription.models.subscription import SubscriptionModel
 
 
@@ -42,3 +46,38 @@ class SubscriptionDeleteView(DeleteView):
     template_name = "subscription/subscription_delete.html"
     context_object_name = 'subscription'
     success_url = reverse_lazy("subscription:subscription_list")
+
+
+class SubscriptionUserListView(ListView):
+    model = CustomUser
+    template_name = "subscription/subscription_user_list.html"
+    context_object_name = 'users'
+
+
+class SubscriptionUserAddView(DetailView, FormMixin):
+    model = CustomUser
+    template_name = "subscription/subscription_user_add.html"
+    context_object_name = 'user'
+    form_class = SubscriptionUserAddForm
+    success_url = reverse_lazy("subscription:subscription_users_list")
+
+    def get_context_data(self, **kwargs):
+        kwargs['subscriptions'] = SubscriptionModel.objects.all()
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form, *args, **kwargs):
+        subscription = form.save(commit=False)
+        subscription_pk = subscription
+        print(subscription_pk.us_users)
+        subscription_pk.us_users.add(self.object.pk)
+        # return redirect("topics:detail", pk=topic.pk)
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
