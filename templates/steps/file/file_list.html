@@ -1,12 +1,29 @@
 {% extends "base.html" %}
-{% block title %}
-    Список файлов
-{% endblock %}
+
 {% block content %}
-    <h1>Список файлов</h1>
-    <ul>
-        {% for video in videos %}
-            <li><a href="{% url 'file_detail' file.pk %}">{{ file.file_title }}</a></li>
+    <h1>Список шагов</h1>
+    <a href="{% url 'step:file_create' %}" class="btn btn-primary">Добавить</a>
+    <div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+                <td>{{ file.id }}</td>
+                <td><a href="{% url 'step:file_detail' file.id %}">{{ file.file_title }}</a></td>
+                <td>
+                    <a href="{% url 'step:file_update' file.id %}" class="btn btn-info btn-sm">Изменить</a>
+                    <a href="{% url 'step:file_delete' file.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+    </div>
 {% endblock %}
