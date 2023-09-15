@@ -5,5 +5,6 @@
 {% block content %}
     <div class="container">
         {% include "partials/form.html" with button_text="Войти" %}
+        <a href="{% url 'accounts:password_reset' %}">Забыли пароль?</a>
     </div>
 {% endblock %}

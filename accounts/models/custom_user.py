@@ -1,7 +1,24 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
+
+
+class CustomUserManager(UserManager):
+
+    def create_superuser(self, username=None, email=None, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        username = email
+        extra_fields['email_verified'] = True
+
+        return self._create_user(username, email, password, **extra_fields)
 
 
 class CustomUser(AbstractUser):
@@ -26,6 +43,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(_("last name"), max_length=150, null=False, blank=False)
     father_name = models.CharField(_("father name"), max_length=150, null=True, blank=True)
     email = models.EmailField(_("email address"), null=False, blank=False, unique=True)
+    email_verified = models.BooleanField(_("email_verified"), default=False)
     phone_number = PhoneNumberField(_("phone_number"), null=False, blank=False)
     job_title = models.CharField(_("job_title"), max_length=150, null=True, blank=True)
     # country = models.ForeignKey()
@@ -36,8 +54,10 @@ class CustomUser(AbstractUser):
                                            through="subscription.UsersSubscription",
                                            through_fields=("user", "subscription"))
 
+    objects = CustomUserManager()
+
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
         return f'{self.pk}. {self.get_full_name()}'
