@@ -90,8 +90,6 @@
         </form>
     </div>
     <script>
-        const fileSelect = document.getElementById("id_file");
-        const fileInputs = document.getElementById("file-inputs");
         const textContent = document.getElementById("text_content");
         const videoContent = document.getElementById("video_content");
         const testContent = document.getElementById("test_content");
@@ -124,7 +122,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            handleSelectChange(fileSelect, fileInputs);
             handleSelectChange(textSelect, textForm);
             handleSelectChange(videoSelect, videoForm);
             handleSelectChange(testSelect, testForm);
@@ -151,11 +148,6 @@
             handleLessonTypeChange();
 
             lessonType.addEventListener("change", handleLessonTypeChange);
-
-            fileSelect.addEventListener("change", function () {
-                handleSelectChange(fileSelect, fileInputs);
-            });
-
 
             textSelect.addEventListener("change", function () {
                 handleSelectChange(textSelect, textForm);
