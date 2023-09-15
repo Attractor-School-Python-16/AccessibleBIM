@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %}
-    Добавить текст
+    Редактировать файл
 {% endblock %}
 {% block content %}
     <div class="d-flex justify-content-center">
         <div class="container my-5 text-center">
-            <h2>Создайте текст:</h2>
+            <h2>Отредактируйте файл:</h2>
             <div class="d-flex justify-content-center">
-                {% include "partial/form.html" with button_text="Добавить текст" %}
+                {% include "partials/form.html" with button_text="Редактировать файл" %}
             </div>
         </div>
     </div>
