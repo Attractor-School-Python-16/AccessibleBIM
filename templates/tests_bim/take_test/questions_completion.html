@@ -2,34 +2,47 @@
 {% block title %}Тест{% endblock %}
 {% block content %}
     <div class="container mt-5">
+        {% if page_obj.has_next %}
+            <form action="?page={{ page_obj.next_page_number }}&next={{ request.path }}" method="post">
+        {% else %}
+            <form action="" method="post">
+        {% endif %}
+        {% csrf_token %}
         {% for q in question %}
-            <h3>Вопрос №{{ q.id }}</h3>
+            <h3>Вопрос №{{ page_obj.number }}</h3>
             <p>{{ q.title }}</p>
             {% for answer in q.answer_bim.all %}
+                {% if answer.id in user_answers_id %}
+                {% endif %}
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="answer-{{ answer.id }}">
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    {% if answer.id in user_answers_id %}
+                        <input checked  class="form-check-input" type="radio" name="answer" value="{{ answer.id }}" id="answer-{{ answer.id }}">
+                    {% else %}
+                        <input class="form-check-input" type="radio" name="answer" value="{{ answer.id }}" id="answer-{{ answer.id }}">
+                    {% endif %}
+                    <label class="form-check-label" for="answer-{{ answer.id }}">
                         {{ answer.answer }}
                     </label>
                 </div>
             {% endfor %}
         {% endfor %}
-        <div class="pagination">
-            <span class="step-links">
+        <div class="pagination mt-3">
+            <div class="step-links">
                 {% if page_obj.has_previous %}
-                    <a href="?page=1" class="btn btn-success mt-3">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-success mt-3">Предыдущий вопрос</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Предыдущий
+                        вопрос</a>
+                {% else %}
+                    <span class="btn btn-primary disabled">Предыдущий вопрос</span>
                 {% endif %}
-
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-success mt-3">Следующее вопрос</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-success mt-3">last &raquo;</a>
-                {% endif %}
-            </span>
+                <button class="btn btn-primary" type="submit">
+                    {% if page_obj.has_next %}
+                        Следующий вопрос
+                    {% else %}
+                        Завершить тест
+                    {% endif %}
+                </button>
+            </div>
         </div>
+        </form>
     </div>
 {% endblock %}
