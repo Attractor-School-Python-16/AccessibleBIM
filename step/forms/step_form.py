@@ -13,7 +13,7 @@ class StepForm(forms.ModelForm):
     text = forms.ModelChoiceField(queryset=TextModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     video = forms.ModelChoiceField(queryset=VideoModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     test = forms.ModelChoiceField(queryset=TestBim.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
-    file = forms.ModelChoiceField(queryset=FileModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    file = forms.ModelMultipleChoiceField(queryset=FileModel.objects.all(), initial=None, required=False, widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
 
     class Meta:
         model = StepModel
