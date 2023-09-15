@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Создание подписки{% endblock %}
+<h1>Создание модуля</h1>
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="col">
+            {% include "partials/form.html" with button_text="Создать" %}
+        </div>
+    </div>
+{% endblock %}
