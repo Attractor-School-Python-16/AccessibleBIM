@@ -8,6 +8,8 @@
             {% if answer.id in user_answers_id %}
             {% endif %}
             <div class="form-check">
+{#                Отправляется запрос при каждом клике на кнопку radio#}
+{#                TODO: Нужно будет использовать декоратор debounce или другое решение#}
                 {% if answer.id in user_answers_id %}
                     <input checked class="form-check-input answer-radio" type="radio" id="answer-{{ answer.id }}" name="answer" value="{{ answer.id }}">
                 {% else %}
