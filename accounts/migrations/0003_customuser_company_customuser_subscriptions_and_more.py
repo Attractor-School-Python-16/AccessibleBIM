@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='customuser',
-            name='subscriptions',
+            name='subscription',
             field=models.ManyToManyField(related_name='users', through='subscription.UsersSubscription', to='subscription.subscriptionmodel'),
         ),
         migrations.AddField(
