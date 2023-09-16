@@ -1,5 +1,7 @@
 import json
+from datetime import datetime
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.views import View
@@ -11,19 +13,20 @@ from progress.views.progress_test_view import create_progress_test
 from test_bim.models import TestBim, QuestionBim, AnswerBim
 
 
-class TakeTestView(DetailView):
+class TakeTestView(LoginRequiredMixin, DetailView):
     queryset = TestBim.objects.all()
     template_name = "tests_bim/take_test/take_test.html"
     context_object_name = 'test'
 
     def post(self, request, pk, *args, **kwargs):
-        progress_test = ProgressTest.objects.filter(test_id=pk, user_id=request.user.pk)
-        if not progress_test:
+        if not ProgressTest.objects.filter(test_id=pk, user_id=request.user.pk):
             progress_test = create_progress_test(user=request.user, test=self.get_object())
-        return redirect("test_bim:test_completion", pk=progress_test[0].pk)
+        else:
+            progress_test = ProgressTest.objects.get(test_id=pk, user_id=request.user.pk)
+        return redirect("test_bim:test_completion", pk=progress_test.pk)
 
 
-class QuestionsCompletionView(ListView):
+class QuestionsCompletionView(LoginRequiredMixin, ListView):
     paginate_by = 1
     context_object_name = "question"
     template_name = "tests_bim/take_test/questions_completion.html"
@@ -40,7 +43,7 @@ class QuestionsCompletionView(ListView):
         return QuestionBim.objects.filter(test_bim_id=progress_test.test.pk)
 
 
-class UserAnswerAPIView(View):
+class UserAnswerAPIView(LoginRequiredMixin, View):
 
     def post(self, request, pk, *args, **kwargs):
         body = json.loads(request.body)
@@ -58,3 +61,24 @@ class UserAnswerAPIView(View):
             user_answer.save()
 
         return HttpResponse(status=200)
+
+
+class TestResultView(LoginRequiredMixin, DetailView):
+    queryset = ProgressTest.objects.all()
+    template_name = "tests_bim/take_test/test_result.html"
+    context_object_name = 'progress'
+
+    def get(self, request, *args, **kwargs):
+        progress = self.get_object()
+        if progress.user_progress.count() != progress.test.questions_qty:
+            return redirect("test_bim:test_completion", pk=progress.pk)
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, pk, *args, **kwargs):
+        progress = self.get_object()
+        if progress.user_progress.count() == progress.test.questions_qty:
+            progress.end_time = datetime.now()
+            progress.is_passed = (progress.accuracy() > 0.75)
+            progress.save()
+            return redirect("test_bim:test_result", pk=progress.pk)
+        return redirect("test_bim:test_completion", pk=pk)

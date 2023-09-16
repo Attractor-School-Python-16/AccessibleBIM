@@ -3,7 +3,7 @@ from django.urls import path
 from test_bim.views.answer_bim_views import AnswerBimCreateView, AnswerBimUpdateView, AnswerBimDeleteView
 from test_bim.views.question_bim_views import QuestionBimCreateView, QuestionBimDetailView, QuestionBimUpdateView, \
     QuestionBimDeleteView
-from test_bim.views.take_test_views import TakeTestView, QuestionsCompletionView, UserAnswerAPIView
+from test_bim.views.take_test_views import TakeTestView, QuestionsCompletionView, UserAnswerAPIView, TestResultView
 from test_bim.views.test_bim_views import TestsBimListView, TestBimCreateView, TestBimDetailView, TestBimUpdateView, \
     TestBimDeleteView
 
@@ -25,4 +25,5 @@ urlpatterns = [
     path('take-test/<int:pk>/', TakeTestView.as_view(), name='take_test'),
     path('test-completion/<int:pk>/', QuestionsCompletionView.as_view(), name='test_completion'),
     path('api/answer/<int:pk>', UserAnswerAPIView.as_view(), name='user_answer'),
+    path('test-result/<int:pk>', TestResultView.as_view(), name='test_result'),
 ]
