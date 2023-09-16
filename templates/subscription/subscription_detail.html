@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Подписка на{{ subscription.course }}{% endblock %}
+{% block content %}
+    <div class="container mt-3">
+        <p>Подписка на курс: {{ subscription.course }}</p>
+        <a href="{% url 'subscription:subscription_delete' subscription.id %}" class="btn btn-danger">Удалить</a>
+        <a href="{% url 'subscription:subscription_update' subscription.id %}" class="btn btn-primary">Изменить</a>
+    </div>
+{% endblock %}
