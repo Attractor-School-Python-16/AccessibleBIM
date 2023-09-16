@@ -43,6 +43,7 @@ class QuestionsCompletionView(LoginRequiredMixin, ListView):
         return QuestionBim.objects.filter(test_bim_id=progress_test.test.pk)
 
 
+# TODO: Желательно нужно будет переместить API представления в соответствующее приложение
 class UserAnswerAPIView(LoginRequiredMixin, View):
 
     def post(self, request, pk, *args, **kwargs):
@@ -75,6 +76,8 @@ class TestResultView(LoginRequiredMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def post(self, request, pk, *args, **kwargs):
+        # Если пользователь еще не ответил на все вопросы то его перекидывает в начало теста
+        # TODO: Нужно будет явно уточнить пользователю что он еще не ответи на все вопросы
         progress = self.get_object()
         if progress.user_progress.count() == progress.test.questions_qty:
             progress.end_time = datetime.now()
