@@ -29,7 +29,8 @@
                 {% if page_obj.has_next %}
                     <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Следующий вопрос</a>
                 {% else %}
-                    <span class="btn btn-primary disabled">Следующий вопрос</span>
+                    <button class="btn btn-primary" form="form-test-result">Завершить тест</button>
+                    <form id="form-test-result" action="{% url "test_bim:test_result" progress_test_id %}" method="post">{% csrf_token %}</form>
                 {% endif %}
             </div>
         </div>
