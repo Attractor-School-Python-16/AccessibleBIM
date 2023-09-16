@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ text.text_title }}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>{{ text.text_title }}</h1>
+        <p>{{ text.text_description }}</p>
+        <p>{{ text.content }}</p>
+        </br>
+        <a href="{% url 'step:text_list' %}">Вернуться к списку текстов</a>
+    </div>
+{% endblock %}

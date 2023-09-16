@@ -1,5 +1,7 @@
 from django import forms
 
+from modules.models import ChapterModel
+from step.models import FileModel
 from step.models.step import StepModel
 from step.models.text import TextModel
 from step.models.video import VideoModel
@@ -7,9 +9,12 @@ from test_bim.models.test_bim import TestBim
 
 
 class StepForm(forms.ModelForm):
-    text = forms.ModelChoiceField(queryset=TextModel.objects.all())
-    video = forms.ModelChoiceField(queryset=VideoModel.objects.all())
-    test = forms.ModelChoiceField(queryset=TestBim.objects.all())
+    chapter = forms.ModelChoiceField(queryset=ChapterModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    text = forms.ModelChoiceField(queryset=TextModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    video = forms.ModelChoiceField(queryset=VideoModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    test = forms.ModelChoiceField(queryset=TestBim.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    file = forms.ModelMultipleChoiceField(queryset=FileModel.objects.all(), initial=None, required=False, widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
+
     class Meta:
         model = StepModel
         fields = '__all__'
@@ -24,12 +29,7 @@ class StepForm(forms.ModelForm):
             'learn_time': 'Укажите продолжительность изучения материала или прохождения теста'
         }
         widgets = {
-            'chapter': forms.Select(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'lesson_type': forms.Select(attrs={'class': 'form-control'}),
-            'text': forms.Select(attrs={'class': 'form-control'}),
-            'video': forms.Select(attrs={'class': 'form-control'}),
-            'test': forms.Select(attrs={'class': 'form-control'}),
-            'file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'learn_time': forms.NumberInput(attrs={'class': 'form-control'}),
         }
