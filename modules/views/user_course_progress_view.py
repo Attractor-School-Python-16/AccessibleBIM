@@ -22,3 +22,8 @@ def update_status_user_course_progress(user_course_progress):
     user_course_progress.updated_at = timezone.now()
     user_course_progress.save()
 
+
+#решила отказаться от асинхронности  в функции удаления, лучше взять
+# из модели Users_Subscription поле created_at + 30 дней и запустить функцию удаления в это время.
+def delete_user_course_progress(user_course_progress):
+    user_course_progress.delete()
