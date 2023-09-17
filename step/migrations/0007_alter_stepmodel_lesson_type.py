@@ -20,7 +20,5 @@ class Migration(migrations.Migration):
 
             field=models.CharField(choices=[('video', 'Видео'), ('text', 'Текст'), ('test', 'Тест')], max_length=10, verbose_name='Тип занятия'),
 
-            field=models.CharField(choices=[('test', 'Тест'), ('video', 'Видео'), ('text', 'Текст')], max_length=10, verbose_name='Тип занятия'),
-
         ),
     ]
