@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="col">
+            <h3>Тест "{{ test.test_title }}"</h3>
+            <h4>Количество вопросов: {{ test.questions_qty }}</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+                <button class="btn btn-success">Пройти тест</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
