@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="col">
+            <h3>Тест "{{ progress.test.test_title }}"</h3>
+            <h4>Количество вопросов: {{ progress.test.questions_qty }}</h4>
+            <h4>Результат:
+                {% if progress.is_passed %}
+                    Сдано
+                {% else %}
+                    Не сдано
+                {% endif %}
+            </h4>
+            <h4>Верных ответов: {{ progress.correct_answers }} из {{ progress.user_progress.count }} ({{ progress.accuracy }})</h4>
+            <a href="#" class="btn btn-primary">Далее</a>
+        </div>
+    </div>
+{% endblock %}
