@@ -27,4 +27,5 @@ urlpatterns = [
     path('', include('step.urls')),
     path('', include('subscription.urls')),
     path('captcha/', include('captcha.urls')),
+    path('test_bim/', include('test_bim.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

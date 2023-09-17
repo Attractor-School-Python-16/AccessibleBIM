@@ -15,6 +15,8 @@ def create_progress_tests_answers(progress_test, question, answer):
     )
     progress_test_answer.save()
 
+    return progress_test_answer
+
 
 # закомментировала создание ProgressTestAnswers, т.к. нам нужно,
 # чтобы в БД эти данные появлялись авто-ки после начала теста. Но возможно для статистики это понадобится,
