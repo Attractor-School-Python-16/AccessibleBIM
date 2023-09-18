@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+    <h1>Список видео</h1>
+    <a href="{% url 'step:video_create' %}" class="btn btn-primary">Добавить</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>{{ video.id }}</td>
+                <td><a href="{% url 'step:video_detail' video.id %}">{{ video.video_title }}</a></td>
+                <td>
+                    <a href="{% url 'step:video_update' video.id %}" class="btn btn-info btn-sm">Изменить</a>
+                    <a href="{% url 'step:video_delete' video.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

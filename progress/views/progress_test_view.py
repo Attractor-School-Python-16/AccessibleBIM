@@ -1,12 +1,12 @@
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views.generic import DeleteView
 
 from progress.models import ProgressTest, ProgressTestAnswers
-from django.utils import timezone
 
 
-#функцию нужно вызвать во вьюшке, которая создает возможность прохождения теста для юзера, чтобы функция
-#вызывалась после клика на кнопку Начать тест
+# функцию нужно вызвать во вьюшке, которая создает возможность прохождения теста для юзера, чтобы функция
+# вызывалась после клика на кнопку Начать тест
 def create_progress_test(user, test):
     progress_test = ProgressTest.objects.create(user=user, test=test)
     progress_test.save()
@@ -32,12 +32,13 @@ def create_progress_test(user, test):
 
         progress_test.save()
 
+    return progress_test
+
 
 # end_time запишем после завершения вьюшек тестов - возьмем время клика на кнопку Завершить тест.
 
 
 class ProgressTestDeleteView(DeleteView):
     model = ProgressTest
-    success_url = reverse_lazy('index.html')       #как будет главная админки, нужно поменять путь
+    success_url = reverse_lazy('index.html')  # как будет главная админки, нужно поменять путь
     template_name = 'progress_test_delete.html'
-
