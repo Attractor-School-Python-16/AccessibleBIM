@@ -20,6 +20,7 @@ class StepModel(AbstractModel):
     test = models.ForeignKey('test_bim.TestBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест', blank=True, null=True)
     file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файлы')
     learn_time = models.PositiveIntegerField(blank=False, null=False)
+    serial_number = models.PositiveIntegerField(blank=False, null=False)
 
     def get_absolute_url(self):
         return reverse("step:step_list")
