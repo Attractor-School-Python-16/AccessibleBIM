@@ -1,9 +1,0 @@
-{% for step in steps %}
-    {% if step.video %}
-        {% include 'video/video_detail.html' %}
-    {% elif step.text %}
-        {% include 'text/text_detail.html' %}
-    {% elif step.test %}
-        {% include 'test_bim/templates/test_detail.html' %}
-    {% endif %}
-{% endfor %}

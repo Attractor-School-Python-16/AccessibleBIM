@@ -1,13 +1,14 @@
 import os
 from django.db import models
+from django.urls import reverse
+
 from modules.models import AbstractModel
 
 
+
 def video_upload_to(instance, filename):
-    step_pk = instance.step.pk
-    if not step_pk:
-        step_pk = "unknown"
-    return os.path.join('media', str(step_pk), 'video', filename)
+    return os.path.join('steps', 'videos', filename)
+#по аналогии с функцией в модели файла
 
 
 class VideoModel(AbstractModel):
@@ -15,6 +16,9 @@ class VideoModel(AbstractModel):
     video_description = models.CharField(max_length=500, verbose_name="Описание видео")
     video_file = models.FileField(upload_to=video_upload_to, blank=False, null=False, verbose_name="Файл видео")
 
+
+    def get_absolute_url(self):
+        return reverse("step:video_list")
     def __str__(self):
         return f'Видео {self.id} {self.video_title}'
 

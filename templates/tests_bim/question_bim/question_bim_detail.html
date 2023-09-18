@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Вопрос "{{ question.title }}"</h3>
+    <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url "test_bim:answer_create" pk=question.pk %}">
+         <button type="submit" class="btn btn-primary">Добавить новый ответ</button>
+    </a>
+    <h5>Варианты ответов:</h5>
+{% for answer in answers %}
+    <div class="row justify-content-center mt-1">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ answer.answer }}</h5>
+                {% if answer.is_correct %}
+                    <p class="card-text" style="color: yellowgreen">Верный ответ</p>
+                {% else %}
+                    <p class="card-text" style="color: red">Неверный ответ</p>
+                {% endif %}
+                <a class="btn btn-primary" href="{% url 'test_bim:answer_update' pk=answer.pk %}" role="button">Редактировать ответ</a>
+                <a class="btn btn-danger" href="{% url 'test_bim:answer_delete' pk=answer.pk %}" role="button">Удалить ответ</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
