@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+    Просмотр файла
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>{{ file.file_title }}</h1>
+        <a href="{{ file.lesson_file.url }}" download=>Скачать файл</a>
+        <a href="{% url 'step:file_list' %}">Вернуться к списку файлов</a>
+    </div>
+{% endblock %}

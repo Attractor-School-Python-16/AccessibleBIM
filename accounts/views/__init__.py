@@ -1,2 +1,5 @@
 from accounts.views.register_view import RegisterView
 from accounts.views.profile_view import ProfileView
+from accounts.views.verification_email_sent_view import VerificationEmailSentView
+from accounts.views.verification_email_not_sent_view import VerificationEmailNotSentView
+from accounts.views.invalid_verification_link_view import InvalidVerificationLinkView
