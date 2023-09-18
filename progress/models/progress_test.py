@@ -16,6 +16,12 @@ class ProgressTest(AbstractModel):
                              verbose_name='Тест')
     is_passed = models.BooleanField(verbose_name='Тест пройден', default=False)
 
+    def correct_answers(self):
+        return self.user_progress.filter(answer__is_correct=True).count()
+
+    def accuracy(self):
+        return self.correct_answers() / self.user_progress.count()
+
     class Meta:
         db_table = 'progress'
         verbose_name = 'Прогрес'

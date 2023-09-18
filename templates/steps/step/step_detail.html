@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+    Просмотр занятия
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>{{ step.title }}</h1>
+        {% if step.video %}
+            <h1>Видео</h1>
+            {% include 'steps/partial/video_partial.html' %}
+        {% elif step.text %}
+            <h1>Текст</h1>
+            {% include 'steps/partial/text_partial.html' %}
+        {% elif step.test %}
+            <h1>Тест</h1>
+            {#    включить шаблон теста#}
+        {% endif %}
+        {% if files %}
+            {% for file in files %}
+                <p>Файл {{ file.file_title }}</p>
+                <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
+            {% endfor %}
+        {% endif %}
+    <a href="{% url 'step:step_list' %}">Вернуться к списку занятий</a>
+    </div>
+{% endblock %}
