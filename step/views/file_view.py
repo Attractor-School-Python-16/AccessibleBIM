@@ -37,7 +37,10 @@ class FileUpdateView(PermissionRequiredMixin, UpdateView):
         return self.request.user.has_perm('step.change_filemodel')
 
 
-class FileDeleteView(DeleteView):
+class FileDeleteView(PermissionRequiredMixin, DeleteView):
     model = FileModel
     template_name = 'steps/file/file_delete.html'
     success_url = reverse_lazy('file_list')
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.delete_filemodel')

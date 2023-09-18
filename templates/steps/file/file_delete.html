@@ -3,12 +3,14 @@
     Удаление файла
 {% endblock %}
 {% block content %}
-    <h3 class="mt-4">Вы уверены, что хотите удалить этот файл?</h3>
-    <form action="" method="post" id="delete-form">
-        {% csrf_token %}
-        <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
-        <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
-    </form>
+    {% if perms.step.delete_filmodel %}
+        <h3 class="mt-4">Вы уверены, что хотите удалить этот файл?</h3>
+        <form action="" method="post" id="delete-form">
+            {% csrf_token %}
+            <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
+            <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
+        </form>
+    {% endif %}
 
     <script>
         document.getElementById("cancel-button").addEventListener("click", function(e) {
