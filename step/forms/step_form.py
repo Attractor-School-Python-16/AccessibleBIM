@@ -32,4 +32,5 @@ class StepForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'lesson_type': forms.Select(attrs={'class': 'form-control'}),
             'learn_time': forms.NumberInput(attrs={'class': 'form-control'}),
+            'serial_number': forms.NumberInput(attrs={'class': 'form-control'}),
         }
