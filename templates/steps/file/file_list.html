@@ -3,7 +3,9 @@
 {% block content %}
     <div class="container">
     <h1>Список шагов</h1>
-    <a href="{% url 'step:file_create' %}" class="btn btn-primary">Добавить</a>
+    {% if perms.step.add_filmodel %}
+        <a href="{% url 'step:file_create' %}" class="btn btn-primary">Добавить</a>
+    {% endif %}
     <table class="table">
         <thead>
         <tr>
@@ -16,7 +18,11 @@
         {% for file in files %}
             <tr>
                 <td>{{ file.id }}</td>
-                <td><a href="{% url 'step:file_detail' file.id %}">{{ file.file_title }}</a></td>
+                <td>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'step:file_detail' file.id %}">{{ file.file_title }}</a>
+                    {% endif %}
+                </td>
                 <td>
                     <a href="{% url 'step:file_update' file.id %}" class="btn btn-info btn-sm">Изменить</a>
                     <a href="{% url 'step:file_delete' file.id %}" class="btn btn-danger btn-sm">Удалить</a>
