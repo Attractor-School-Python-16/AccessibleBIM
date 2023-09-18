@@ -3,7 +3,7 @@
     Удаление файла
 {% endblock %}
 {% block content %}
-    {% if perms.step.delete_filmodel %}
+    {% if perms.step.delete_filemodel %}
         <h3 class="mt-4">Вы уверены, что хотите удалить этот файл?</h3>
         <form action="" method="post" id="delete-form">
             {% csrf_token %}
