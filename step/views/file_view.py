@@ -27,11 +27,14 @@ class FileCreateView(PermissionRequiredMixin, CreateView):
         return self.request.user.has_perm('step.add_filemodel')
 
 
-class FileUpdateView(UpdateView):
+class FileUpdateView(PermissionRequiredMixin, UpdateView):
     model = FileModel
     form_class = FileForm
     template_name = 'steps/file/file_update.html'
     success_url = reverse_lazy('file_list')
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.change_filemodel')
 
 
 class FileDeleteView(DeleteView):
