@@ -68,11 +68,22 @@
             })
         }
 
+        function debounce(func, timeout = 300) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func.apply(this, args);
+                }, timeout);
+            };
+        }
+
         function onLoad() {
             let radioButtons = document.getElementsByClassName("answer-radio");
+            let debounceClick = debounce(onClick)
 
             for (let button of radioButtons) {
-                button.addEventListener("click", onClick)
+                button.addEventListener("click", debounceClick)
             }
         }
 
