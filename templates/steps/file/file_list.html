@@ -24,7 +24,9 @@
                     {% endif %}
                 </td>
                 <td>
+                    {% if perms.step.change_filmodel %}
                     <a href="{% url 'step:file_update' file.id %}" class="btn btn-info btn-sm">Изменить</a>
+                    {% endif %}
                     <a href="{% url 'step:file_delete' file.id %}" class="btn btn-danger btn-sm">Удалить</a>
                 </td>
             </tr>
