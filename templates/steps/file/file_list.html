@@ -24,10 +24,10 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% if perms.step.change_filmodel %}
+                        {% if perms.step.change_filemodel %}
                             <a href="{% url 'step:file_update' file.id %}" class="btn btn-info btn-sm">Изменить</a>
                         {% endif %}
-                        {% if perms.step.delete_filmodel %}
+                        {% if perms.step.delete_filemodel %}
                             <a href="{% url 'step:file_delete' file.id %}" class="btn btn-danger btn-sm">Удалить</a>
                         {% endif %}
                     </td>
