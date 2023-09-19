@@ -55,5 +55,5 @@ urlpatterns = [
     path('step/1/video/', StepVideoView.as_view(), name="step_video"),  # поменять число на PK Chapter / video
     path('step/1/file/', StepFileView.as_view(), name="step_file"),  # поменять число на PK Chapter / video
 
-    path('test/1/', TestDetailView.as_view(), name="quiz_bim"),  # поменять число на PK Test
+    path('quiz/1/', TestDetailView.as_view(), name="test_bim"),  # поменять число на PK Quiz
 ]

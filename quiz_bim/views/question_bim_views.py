@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
 
-from quiz_bim.models import TestBim
+from quiz_bim.models import QuizBim
 from quiz_bim.models.question_bim import QuestionBim
 from quiz_bim.forms.question_bim_form import QuestionBimForm
 
@@ -23,7 +23,7 @@ class QuestionBimCreateView(CreateView):
     template_name = "quiz_bim/question_bim/question_bim_create.html"
 
     def form_valid(self, form):
-        test = get_object_or_404(TestBim, pk=self.kwargs.get("pk"))
+        test = get_object_or_404(QuizBim, pk=self.kwargs.get("pk"))
         question = form.save(commit=False)
         question.test_bim = test
         question.save()

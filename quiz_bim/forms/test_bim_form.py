@@ -1,12 +1,12 @@
 from django import forms
-from quiz_bim.models.test_bim import TestBim
+from quiz_bim.models.test_bim import QuizBim
 from django.forms import widgets
 
 
 class TestBimForm(forms.ModelForm):
 
     class Meta:
-        model = TestBim
+        model = QuizBim
         fields = '__all__'
         labels = {
             'title': 'Тема тестирования',
