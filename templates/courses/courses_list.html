@@ -1,34 +1,21 @@
 {% extends 'base.html' %}
-{% block title %}Модули{% endblock %}
+{% block title %}Курсы{% endblock %}
 {% block content %}
     <div class="container">
-        {% for module in modules %}
-            <a href="{% url 'modules:module_detail' module.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
-                <div class="row g-0">
+        {% for course in courses %}
+            <a href="{% url 'modules:course_detail' course.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
+                <div class="row g-0 border mt-2">
                     <div class="col-md-3">
-                        <h5>{{ module.title }}</h5>
+                        <h5>{{ course.title }}</h5>
                     </div>
                     <div class="col-md-6">
                         <div class="card-body border-bottom">
-                            <p class="card-text">{{ module.description }}</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span class="card-text">Время прохождения</span>
-                                </div>
-                                <div class="col">
-                                    <span class="card-text">Уроков</span>
-                                </div>
-                                <div class="col">
-                                    <span class="card-text">Тестов</span>
-                                </div>
-                            </div>
+                            <p class="card-text">{{ course.description }}</p>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card-body">
-                            <img class="img-thumbnail" src="{{ module.image.url }}" alt="{{ module.title }}">
+                            <img class="img-thumbnail" src="{{ course.image.url }}" alt="{{ course.title }}">
                         </div>
                     </div>
                 </div>
