@@ -4,8 +4,8 @@
     {% include 'partials/main_block.html' with data=module %}
 
     <div class="container">
-        <p>Данный курс был составлен: <a href="{% url 'modules:teacher_detail' %}">Учитель 1,</a> <a
-                href="{% url 'modules:teacher_detail' %}">Учитель 2</a></p>
+        <p>Данный курс был составлен: <a href="{% url 'modules:teacher_detail' 1%}">Учитель 1,</a> <a
+                href="{% url 'modules:teacher_detail' 1%}">Учитель 2</a></p>
 
         <a href="{% url 'modules:module_delete' module.id %}" class="btn btn-danger">Удалить</a>
         <a href="{% url 'modules:module_update' module.id %}" class="btn btn-primary">Изменить</a>
