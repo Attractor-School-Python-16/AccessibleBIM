@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-<h3>Вы уверены что хотите удалить вопрос "{{ question.title }}"?</h3>
-    <form action="" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger mt-3">Да</button>
-    </form>
-    <a href="{% url "test_bim:question_detail" question.pk %}"><button type="submit" class="btn btn-primary mt-3">Нет</button></a>
-{% endblock %}

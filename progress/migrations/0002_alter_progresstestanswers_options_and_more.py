@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('test_bim', '0002_rename_title_testbim_test_title'),
+        ('quiz_bim', '0002_rename_title_testbim_test_title'),
         ('progress', '0001_initial'),
     ]
 
@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='progresstestanswers',
             name='question',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_question', to='test_bim.questionbim', verbose_name='Вопрос'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_question', to='quiz_bim.questionbim', verbose_name='Вопрос'),
         ),
     ]

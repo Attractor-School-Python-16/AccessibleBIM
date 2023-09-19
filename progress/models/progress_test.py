@@ -10,7 +10,7 @@ class ProgressTest(AbstractModel):
                              on_delete=models.CASCADE,
                              related_name="progress",
                              verbose_name="Пользователь")
-    test = models.ForeignKey('test_bim.TestBim',
+    test = models.ForeignKey('quiz_bim.TestBim',
                              related_name='progress',
                              on_delete=models.CASCADE,
                              verbose_name='Тест')
