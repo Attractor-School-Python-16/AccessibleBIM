@@ -28,4 +28,5 @@ urlpatterns = [
     path('', include('subscription.urls')),
     path('captcha/', include('captcha.urls')),
     path('test_bim/', include('test_bim.urls')),
+    path('rosetta/', include('rosetta.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
