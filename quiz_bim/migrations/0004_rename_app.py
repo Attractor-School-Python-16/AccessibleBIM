@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunSQL(
-            "UPDATE django_content_type SET app_label='quiz_bim' WHERE app_label='test_bim'; UPDATE django_migrations SET app='quiz_bim' WHERE app='test_bim'",
-            "UPDATE django_content_type SET app_label='test_bim' WHERE app_label='quiz_bim'; UPDATE django_migrations SET app='test_bim' WHERE app='quiz_bim'"
+            "UPDATE django_content_type SET app_label='quiz_bim' WHERE app_label='quiz_bim'; UPDATE django_migrations SET app='quiz_bim' WHERE app='quiz_bim'",
+            "UPDATE django_content_type SET app_label='quiz_bim' WHERE app_label='quiz_bim'; UPDATE django_migrations SET app='quiz_bim' WHERE app='quiz_bim'"
         )
     ]

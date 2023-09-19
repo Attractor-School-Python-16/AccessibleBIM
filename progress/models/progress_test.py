@@ -3,6 +3,8 @@ from django.db import models
 from modules.models import AbstractModel
 
 
+# TODO: Стоит также переименовать ProgressTest в ProgressQuiz
+# И тоже самое с полями
 class ProgressTest(AbstractModel):
     start_time = models.DateTimeField(auto_now_add=True, verbose_name='Начало тестирования',)
     end_time = models.DateTimeField(null=True, blank=True, verbose_name='Конец тестирования')
