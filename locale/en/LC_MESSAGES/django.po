@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-19 14:45+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: accessibleBIM/settings.py:145
+msgid "Russian"
+msgstr ""
+
+#: accessibleBIM/settings.py:146
+msgid "English"
+msgstr ""
+
+#: accounts/admin.py:10
+msgid "Personal info"
+msgstr ""
+
+#: accounts/admin.py:11
+msgid "Job related info"
+msgstr ""
+
+#: accounts/admin.py:13
+msgid "Permissions"
+msgstr ""
+
+#: accounts/admin.py:24
+msgid "Important dates"
+msgstr ""
+
+#: accounts/models/custom_user.py:33
+msgid "entrepreneur"
+msgstr ""
+
+#: accounts/models/custom_user.py:34
+msgid "limited_liability_company"
+msgstr ""
+
+#: accounts/models/custom_user.py:35
+msgid "opened joint stock company"
+msgstr ""
+
+#: accounts/models/custom_user.py:36
+msgid "closed joint stock company"
+msgstr ""
+
+#: accounts/models/custom_user.py:37
+msgid "additional liability company"
+msgstr ""
+
+#: accounts/models/custom_user.py:38
+msgid "state company"
+msgstr ""
+
+#: accounts/models/custom_user.py:39
+msgid "other typecorp"
+msgstr ""
+
+#: accounts/models/custom_user.py:42
+msgid "first name"
+msgstr ""
+
+#: accounts/models/custom_user.py:43
+msgid "last name"
+msgstr ""
+
+#: accounts/models/custom_user.py:44
+msgid "father name"
+msgstr ""
+
+#: accounts/models/custom_user.py:45
+msgid "email address"
+msgstr ""
+
+#: accounts/models/custom_user.py:46
+msgid "email_verified"
+msgstr ""
+
+#: accounts/models/custom_user.py:47
+msgid "phone_number"
+msgstr ""
+
+#: accounts/models/custom_user.py:48
+msgid "job_title"
+msgstr ""
+
+#: accounts/models/custom_user.py:50
+msgid "company_name"
+msgstr ""
+
+#: accounts/models/custom_user.py:51
+msgid "company_type"
+msgstr ""
