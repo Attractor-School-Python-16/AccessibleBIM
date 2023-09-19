@@ -13,7 +13,7 @@ from progress.views.progress_test_view import create_progress_test
 from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 
 
-class TakeTestView(LoginRequiredMixin, DetailView):
+class TakeQuizView(LoginRequiredMixin, DetailView):
     queryset = QuizBim.objects.all()
     template_name = "quiz_bim/take_test/take_test.html"
     context_object_name = 'test'
@@ -43,7 +43,7 @@ class QuestionsCompletionView(LoginRequiredMixin, ListView):
         return QuestionBim.objects.filter(test_bim_id=progress_test.test.pk)
 
 
-# TODO: Желательно нужно будет переместить API представления в соответствующее приложение
+# TODO: Желательно переместить API представления в соответствующее приложение
 class UserAnswerAPIView(LoginRequiredMixin, View):
 
     def post(self, request, pk, *args, **kwargs):
@@ -64,7 +64,7 @@ class UserAnswerAPIView(LoginRequiredMixin, View):
         return HttpResponse(status=200)
 
 
-class TestResultView(LoginRequiredMixin, DetailView):
+class QuizResultView(LoginRequiredMixin, DetailView):
     queryset = ProgressTest.objects.all()
     template_name = "quiz_bim/take_test/test_result.html"
     context_object_name = 'progress'
@@ -76,8 +76,8 @@ class TestResultView(LoginRequiredMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def post(self, request, pk, *args, **kwargs):
+        # TODO: Нужно будет явно уточнить пользователю что он еще не ответил на все вопросы
         # Если пользователь еще не ответил на все вопросы то его перекидывает в начало теста
-        # TODO: Нужно будет явно уточнить пользователю что он еще не ответи на все вопросы
         progress = self.get_object()
         if progress.user_progress.count() == progress.test.questions_qty:
             progress.end_time = datetime.now()

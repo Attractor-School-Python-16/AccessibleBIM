@@ -1,6 +1,6 @@
 from django.urls import path
 
-from modules.views.modules import HomeView, StepTextView, StepVideoView, StepFileView, TestDetailView
+from modules.views.modules import HomeView, StepTextView, StepVideoView, StepFileView, QuizDetailView
 
 from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetailView, ModuleDeleteView, \
     ModuleUpdateView
@@ -55,5 +55,5 @@ urlpatterns = [
     path('step/1/video/', StepVideoView.as_view(), name="step_video"),  # поменять число на PK Chapter / video
     path('step/1/file/', StepFileView.as_view(), name="step_file"),  # поменять число на PK Chapter / video
 
-    path('quiz/1/', TestDetailView.as_view(), name="test_bim"),  # поменять число на PK Quiz
+    path('quiz/1/', QuizDetailView.as_view(), name="quiz_bim"),  # поменять число на PK Quiz
 ]
