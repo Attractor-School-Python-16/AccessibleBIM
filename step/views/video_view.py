@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
@@ -19,9 +19,12 @@ class VideoDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'video'
 
 
-class VideoCreateView(CreateView):
+class VideoCreateView(PermissionRequiredMixin, CreateView):
     form_class = VideoForm
     template_name = "steps/video/video_create.html"
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.add_videomodel')
 
 
 class VideoUpdateView(UpdateView):
