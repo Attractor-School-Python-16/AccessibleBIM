@@ -61,4 +61,4 @@ class StepFileView(TemplateView):
 
 
 class TestDetailView(TemplateView):
-    template_name = 'tests_bim/test_bim_detail.html'
+    template_name = 'quiz_bim/test_bim_detail.html'

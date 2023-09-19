@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('modules', '0007_alter_coursemodel_image'),
-        ('test_bim', '0002_rename_title_testbim_test_title'),
+        ('quiz_bim', '0002_rename_title_testbim_test_title'),
         ('step', '0007_remove_stepmodel_file_alter_stepmodel_lesson_type_and_more'),
     ]
 
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='stepmodel',
             name='test',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.RESTRICT, related_name='step', to='test_bim.testbim', verbose_name='Тест'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.RESTRICT, related_name='step', to='quiz_bim.testbim', verbose_name='Тест'),
         ),
         migrations.AlterField(
             model_name='stepmodel',
