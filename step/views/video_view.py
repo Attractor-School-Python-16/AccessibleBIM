@@ -1,18 +1,19 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
-from step.forms.step_form import StepForm
+
 from step.forms.video_form import VideoForm
 from step.models import VideoModel
 
 
-class VideoListView(ListView):
+class VideoListView(LoginRequiredMixin, ListView):
     model = VideoModel
     template_name = 'steps/video/video_list.html'
     context_object_name = 'videos'
 
 
-class VideoDetailView(DetailView):
+class VideoDetailView(LoginRequiredMixin, DetailView):
     queryset = VideoModel.objects.all()
     template_name = "steps/video/video_detail.html"
     context_object_name = 'video'
