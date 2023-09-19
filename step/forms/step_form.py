@@ -5,7 +5,7 @@ from step.models import FileModel
 from step.models.step import StepModel
 from step.models.text import TextModel
 from step.models.video import VideoModel
-from test_bim.models.test_bim import TestBim
+from quiz_bim.models.test_bim import TestBim
 
 
 class StepForm(forms.ModelForm):

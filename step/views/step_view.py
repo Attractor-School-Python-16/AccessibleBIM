@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, UpdateView, DeleteView, C
 from step.forms.step_form import StepForm
 from step.models import VideoModel, TextModel, FileModel, video_upload_to
 from step.models.step import StepModel
-from test_bim.models import TestBim
+from quiz_bim.models import TestBim
 
 
 class StepListView(ListView):

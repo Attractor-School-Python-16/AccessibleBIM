@@ -17,7 +17,7 @@ class StepModel(AbstractModel):
                                    verbose_name='Тип занятия')
     text = models.ForeignKey('step.TextModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Текст', blank=True, null=True)
     video = models.ForeignKey('step.VideoModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Видео', blank=True, null=True)
-    test = models.ForeignKey('test_bim.TestBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест', blank=True, null=True)
+    test = models.ForeignKey('quiz_bim.TestBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест', blank=True, null=True)
     file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файлы')
     learn_time = models.PositiveIntegerField(blank=False, null=False)
     serial_number = models.PositiveIntegerField(blank=False, null=False)
