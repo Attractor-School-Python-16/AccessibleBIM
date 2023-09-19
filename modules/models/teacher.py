@@ -10,7 +10,7 @@ class TeacherModel(AbstractModel):
     job_title = models.CharField(max_length=150, null=True, blank=True, verbose_name="Должность")
     corp = models.CharField(max_length=150, null=True, blank=True, verbose_name="Место работы")
     experience = models.CharField(max_length=150, null=True, blank=True, verbose_name="Опыт работы")
-    description = models.CharField(max_length=500, null=True, blank=True, verbose_name="О себе")
+    description = models.TextField(max_length=500, null=True, blank=True, verbose_name="О себе")
 
     class Meta:
         db_table = 'teacher'
