@@ -2,8 +2,8 @@ from django.db import models
 from modules.models import AbstractModel
 
 
-class TestBim(AbstractModel):
-    test_title = models.CharField(max_length=100, verbose_name='Название теста')
+class QuizBim(AbstractModel):
+    title = models.CharField(max_length=100, verbose_name='Название теста')
     questions_qty = models.PositiveIntegerField(verbose_name='Количество вопросов')
 
     def __str__(self):
