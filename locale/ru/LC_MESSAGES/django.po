@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-19 14:45+0600\n"
-"PO-Revision-Date: 2023-09-19 09:14+0000\n"
+"POT-Creation-Date: 2023-09-20 01:24+0600\n"
+"PO-Revision-Date: 2023-09-19 19:25+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:145
+#: accessibleBIM/settings.py:146
 msgid "Russian"
 msgstr "Русский"
 
-#: accessibleBIM/settings.py:146
+#: accessibleBIM/settings.py:147
 msgid "English"
 msgstr "Английский"
 
@@ -71,7 +71,7 @@ msgstr "Государственное предприятие"
 msgid "other typecorp"
 msgstr "Другое"
 
-#: accounts/models/custom_user.py:42
+#: accounts/models/custom_user.py:42 templates/accounts/profile.html:19
 msgid "first name"
 msgstr "Имя"
 
@@ -83,7 +83,7 @@ msgstr "Фамилия"
 msgid "father name"
 msgstr "Отчество"
 
-#: accounts/models/custom_user.py:45
+#: accounts/models/custom_user.py:45 templates/accounts/profile.html:14
 msgid "email address"
 msgstr "Email"
 
@@ -106,3 +106,58 @@ msgstr "Компания"
 #: accounts/models/custom_user.py:51
 msgid "company_type"
 msgstr "Вид организации"
+
+#: templates/accounts/change_password.html:4
+#: templates/accounts/change_password_done.html:4
+#: templates/accounts/profile.html:25
+#| msgid "Change Password"
+msgid "Change password"
+msgstr "Сменить пароль"
+
+#: templates/accounts/change_password.html:8
+#| msgid "Password successfully changed"
+msgid "Password changing"
+msgstr "Изменение пароля"
+
+#: templates/accounts/change_password_done.html:8
+msgid "Password successfully changed"
+msgstr "Пароль успешно изменен"
+
+#: templates/accounts/login.html:4
+msgid "Login"
+msgstr "Вход"
+
+#: templates/accounts/login.html:9
+msgid "Forgot password"
+msgstr "Забыли пароль"
+
+#: templates/accounts/profile.html:4
+msgid "Profile"
+msgstr "Профиль"
+
+#: templates/accounts/profile.html:34
+msgid "My courses"
+msgstr "Мои курсы"
+
+#: templates/accounts/profile.html:37
+msgid "Course"
+msgstr "Курс"
+
+#: templates/accounts/profile.html:41
+msgid "Start"
+msgstr "Начать"
+
+#: templates/accounts/profile.html:45
+msgid "You don't have any purchased cources"
+msgstr "У вас нет приобретенных курсов"
+
+#: templates/accounts/register.html:4
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/accounts/register.html:8
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#~ msgid "Change Password"
+#~ msgstr "Сменить пароль"
