@@ -10,11 +10,11 @@ from django.views.generic import DetailView, ListView
 from progress.models import ProgressTest, ProgressTestAnswers
 from progress.views.progress_test_answers_view import create_progress_tests_answers
 from progress.views.progress_test_view import create_progress_test
-from quiz_bim.models import TestBim, QuestionBim, AnswerBim
+from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 
 
 class TakeTestView(LoginRequiredMixin, DetailView):
-    queryset = TestBim.objects.all()
+    queryset = QuizBim.objects.all()
     template_name = "quiz_bim/take_test/take_test.html"
     context_object_name = 'test'
 

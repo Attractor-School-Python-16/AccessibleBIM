@@ -4,7 +4,7 @@ from modules.models import AbstractModel
 
 class QuestionBim(AbstractModel):
     title = models.CharField(max_length=100, verbose_name='Вопрос')
-    test_bim = models.ForeignKey('quiz_bim.TestBim', related_name='question_bim', on_delete=models.CASCADE,
+    test_bim = models.ForeignKey('quiz_bim.QuizBim', related_name='question_bim', on_delete=models.CASCADE,
                                  verbose_name='Тест Bim')
 
     def __str__(self):
