@@ -27,11 +27,14 @@ class VideoCreateView(PermissionRequiredMixin, CreateView):
         return self.request.user.has_perm('step.add_videomodel')
 
 
-class VideoUpdateView(UpdateView):
+class VideoUpdateView(PermissionRequiredMixin, UpdateView):
     model = VideoModel
     form_class = VideoForm
     template_name = 'steps/video/video_update.html'
     success_url = reverse_lazy('step:video_list')
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.change_videomodel')
 
 
 class VideoDeleteView(DeleteView):
