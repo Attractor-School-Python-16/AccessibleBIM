@@ -37,7 +37,10 @@ class VideoUpdateView(PermissionRequiredMixin, UpdateView):
         return self.request.user.has_perm('step.change_videomodel')
 
 
-class VideoDeleteView(DeleteView):
+class VideoDeleteView(PermissionRequiredMixin, DeleteView):
     model = VideoModel
     template_name = 'steps/video/video_delete.html'
     success_url = reverse_lazy('step:video_list')
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.delete_videomodel')
