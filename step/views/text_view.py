@@ -26,11 +26,14 @@ class TextCreateView(PermissionRequiredMixin, CreateView):
         return self.request.user.has_perm('step.add_textmodel')
 
 
-class TextUpdateView(UpdateView):
+class TextUpdateView(PermissionRequiredMixin, UpdateView):
     model = TextModel
     form_class = TextForm
     template_name = 'steps/text/text_update.html'
     success_url = reverse_lazy('step:text_list')
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.change_textmodel')
 
 
 class TextDeleteView(DeleteView):
