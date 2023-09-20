@@ -25,6 +25,8 @@ class StepDetailView(DetailView):
         step = context['step']
         files = FileModel.objects.filter(step=step)
         context['files'] = files
+        if self.object.lesson_type == 'test':
+            context['questions'] = self.object.test.question_bim.all()
         return context
 
 
