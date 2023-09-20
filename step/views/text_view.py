@@ -36,7 +36,10 @@ class TextUpdateView(PermissionRequiredMixin, UpdateView):
         return self.request.user.has_perm('step.change_textmodel')
 
 
-class TextDeleteView(DeleteView):
+class TextDeleteView(PermissionRequiredMixin, DeleteView):
     model = TextModel
     template_name = 'steps/text/text_delete.html'
     success_url = reverse_lazy('step:text_list')
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.delete_textmodel')

@@ -25,7 +25,9 @@
                         {% if perms.step.change_textmodel %}
                             <a href="{% url 'step:text_update' text.id %}" class="btn btn-info btn-sm">Изменить</a>
                         {% endif %}
-                        <a href="{% url 'step:text_delete' text.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                        {% if perms.step.delete_textmodel %}
+                            <a href="{% url 'step:text_delete' text.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
