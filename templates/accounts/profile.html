@@ -24,8 +24,10 @@
                 </div>
             </div>
         </nav>
-
         <div class="container">
+        {% if is_moderator %}
+            <a href="{% url 'modules:moderator_page' %}" class="btn btn-primary my-3">Редактировать контент</a>
+        {% endif %}
             <h3>Мои курсы:</h3>
             {% for course in courses %}
                 <div class="card">

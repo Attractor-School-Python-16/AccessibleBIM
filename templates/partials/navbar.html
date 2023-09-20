@@ -18,7 +18,7 @@
                            href="{% url "accounts:logout" %}">Выйти</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url "accounts:profile" %}">{{ request.user.first_name }}</a>
+                        <a class="nav-link active" href="{% url "accounts:profile" request.user.id %}">{{ request.user.first_name }}</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
