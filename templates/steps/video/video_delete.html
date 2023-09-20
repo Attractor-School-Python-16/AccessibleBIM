@@ -3,16 +3,24 @@
     Удаление видео
 {% endblock %}
 {% block content %}
-    {% if perms.step.delete_videomodel %}
-        <div class="container">
-            <h3 class="mt-4">Вы уверены, что хотите удалить это видео?</h3>
-            <form action="" method="post" id="delete-form">
-                {% csrf_token %}
-                <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
-                <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
-            </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                {% if perms.step.delete_videomodel %}
+                    <h3 class="mt-4">Вы уверены, что хотите удалить это видео?</h3>
+                    <form action="" method="post" id="delete-form">
+                        {% csrf_token %}
+                        <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
+                        <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
+                    </form>
+                {% endif %}
+            </div>
         </div>
-    {% endif %}
+    </div>
+
 
     <script>
         document.getElementById("cancel-button").addEventListener("click", function (e) {
