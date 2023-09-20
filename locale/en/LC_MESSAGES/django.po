@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 01:24+0600\n"
-"PO-Revision-Date: 2023-09-19 19:25+0000\n"
+"POT-Creation-Date: 2023-09-20 15:05+0600\n"
+"PO-Revision-Date: 2023-09-20 09:08+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -107,15 +107,18 @@ msgstr "Company"
 msgid "company_type"
 msgstr "Company type"
 
+#: accounts/views/register_view.py:18
+msgid "Activate your user account"
+msgstr "Activate your user account"
+
 #: templates/accounts/change_password.html:4
+#: templates/accounts/change_password.html:9
 #: templates/accounts/change_password_done.html:4
 #: templates/accounts/profile.html:25
-#| msgid "Change Password"
 msgid "Change password"
 msgstr "Change Password"
 
 #: templates/accounts/change_password.html:8
-#| msgid "Password successfully changed"
 msgid "Password changing"
 msgstr "Change Password"
 
@@ -123,11 +126,55 @@ msgstr "Change Password"
 msgid "Password successfully changed"
 msgstr "Password successfully changed"
 
-#: templates/accounts/login.html:4
+#: templates/accounts/email/invalid_verification_link.html:4
+#: templates/accounts/email/verification-email-not-sent.html:4
+msgid "Invalid verification"
+msgstr "Verification error"
+
+#: templates/accounts/email/invalid_verification_link.html:7
+msgid "Invalid verification link"
+msgstr "Invalid verification link"
+
+#: templates/accounts/email/verification-email-not-sent.html:7
+msgid "Error during verification email sending"
+msgstr ""
+"We couldn't send verification email on submitted address. Please try again."
+
+#: templates/accounts/email/verification-email-sent.html:4
+msgid "Email sent"
+msgstr "Email sent"
+
+#: templates/accounts/email/verification-email-sent.html:7
+msgid "Email was sent. Check mailbox"
+msgstr ""
+"Email was sent. Please check your mailbox and verify your email address."
+
+#: templates/accounts/email/verification_email.html:4
+#, python-format
+#| msgid ""
+#| "\n"
+#| "Dear %(user.get_full_name)s,\n"
+#| "\n"
+#| "Please click on the link below to confirm your registration:\n"
+msgid ""
+"\n"
+"Dear %(name)s,\n"
+"\n"
+"Please click on the link below to confirm your registration:\n"
+msgstr ""
+"\n"
+"Dear %(name)s,\n"
+"\n"
+"Please click on the link below to confirm your registration:\n"
+"\tDear %(user.get_full_name)s,\n"
+"\n"
+"Please click on the link below to confirm your registration\n"
+
+#: templates/accounts/login.html:4 templates/accounts/login.html:8
 msgid "Login"
 msgstr "Login"
 
-#: templates/accounts/login.html:9
+#: templates/accounts/login.html:10
 msgid "Forgot password"
 msgstr "Forgot password"
 
