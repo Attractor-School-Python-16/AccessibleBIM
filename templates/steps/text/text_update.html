@@ -3,12 +3,14 @@
     Редактировать текст
 {% endblock %}
 {% block content %}
-    <div class="d-flex justify-content-center">
-        <div class="container my-5 text-center">
-            <h2>Отредактируйте текст:</h2>
-            <div class="d-flex justify-content-center">
-                {% include "partials/form.html" with button_text="Редактировать текст" %}
+    {% if perms.step.change_textmodel %}
+        <div class="d-flex justify-content-center">
+            <div class="container my-5 text-center">
+                <h2>Отредактируйте текст:</h2>
+                <div class="d-flex justify-content-center">
+                    {% include "partials/form.html" with button_text="Редактировать текст" %}
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
