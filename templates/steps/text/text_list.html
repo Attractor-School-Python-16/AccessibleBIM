@@ -22,7 +22,9 @@
                         <td><a href="{% url 'step:text_detail' text.id %}">{{ text.text_title }}</a></td>
                     {% endif %}
                     <td>
-                        <a href="{% url 'step:text_update' text.id %}" class="btn btn-info btn-sm">Изменить</a>
+                        {% if perms.step.change_textmodel %}
+                            <a href="{% url 'step:text_update' text.id %}" class="btn btn-info btn-sm">Изменить</a>
+                        {% endif %}
                         <a href="{% url 'step:text_delete' text.id %}" class="btn btn-danger btn-sm">Удалить</a>
                     </td>
                 </tr>
