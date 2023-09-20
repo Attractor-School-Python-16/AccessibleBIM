@@ -17,10 +17,13 @@ class TextDetailView(LoginRequiredMixin, DetailView):
     template_name = "steps/text/text_detail.html"
     context_object_name = 'text'
 
-class TextCreateView(CreateView):
+class TextCreateView(PermissionRequiredMixin, CreateView):
     model = TextModel
     form_class = TextForm
     template_name = "steps/text/text_create.html"
+
+    def has_permission(self):
+        return self.request.user.has_perm('step.add_textmodel')
 
 
 class TextUpdateView(UpdateView):

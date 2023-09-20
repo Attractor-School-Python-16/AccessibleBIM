@@ -3,12 +3,14 @@
     Добавить текст
 {% endblock %}
 {% block content %}
-    <div class="d-flex justify-content-center">
-        <div class="container my-5 text-center">
-            <h2>Создайте текст:</h2>
-            <div class="d-flex justify-content-center">
-                {% include "partials/form.html" with button_text="Добавить текст" %}
+    {% if perms.step.add_textmodel %}
+        <div class="d-flex justify-content-center">
+            <div class="container my-5 text-center">
+                <h2>Создайте текст:</h2>
+                <div class="d-flex justify-content-center">
+                    {% include "partials/form.html" with button_text="Добавить текст" %}
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
