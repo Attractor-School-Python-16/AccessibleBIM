@@ -27,33 +27,24 @@
                 <li><a class="dropdown-item" href="{% url 'modules:course_targets_list' %}">Список ЦА</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Курсы
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:course_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:courses_list' %}">Список курсов</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Главы
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:chapter_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:chapters_list' %}">Список глав</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Тесты
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'quiz_bim:tests_list' %}">Список тестов</a></li>
-                <li><a class="dropdown-item" href="{% url 'quiz_bim:test_create' %}">Создать</a></li>
-            </ul>
-        </li>
+{#        <li class="nav-item dropdown">#}
+{#            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                Курсы#}
+{#            </a>#}
+{#            <ul class="dropdown-menu">#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:course_create' %}">Создать</a></li>#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:courses_list' %}">Список курсов</a></li>#}
+{#            </ul>#}
+{#        </li>#}
+{#        <li class="nav-item dropdown">#}
+{#            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                Главы#}
+{#            </a>#}
+{#            <ul class="dropdown-menu">#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:chapter_create' %}">Создать</a></li>#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:chapters_list' %}">Список глав</a></li>#}
+{#            </ul>#}
+{#        </li>#}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Занятия
@@ -88,6 +79,15 @@
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'step:text_create' %}">Создать</a></li>
                 <li><a class="dropdown-item" href="{% url 'step:text_list' %}">Список текстов</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Тесты
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'quiz_bim:tests_list' %}">Список тестов</a></li>
+                <li><a class="dropdown-item" href="{% url 'quiz_bim:test_create' %}">Создать</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
