@@ -24,9 +24,5 @@ class Migration(migrations.Migration):
         migrations.AlterModelTable(
             name='quizbim',
             table='quiz_bim',
-        ),
-        migrations.RunSQL(
-            "ALTER TABLE test_bim RENAME TO quiz_bim",
-            "ALTER TABLE quiz_bim TO test_bim"
         )
     ]
