@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, DeleteView, UpdateView
 
@@ -8,6 +9,12 @@ from modules.models import ModuleModel, CourseModel
 class HomeView(TemplateView):
     template_name = 'index.html'
 
+
+class ModeratorView(PermissionRequiredMixin, TemplateView):
+    template_name = 'moderator_page.html'
+
+    def has_permission(self):
+        return self.request.user.groups.filter(name='moderators').exists()
 
 class ModulesListView(ListView):
     model = ModuleModel
