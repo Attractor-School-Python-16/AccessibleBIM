@@ -23,11 +23,8 @@ class StepDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         step = context['step']
-        print(step)
         files = FileModel.objects.filter(step=step)
-        print(files)
         context['files'] = files
-        print(context)
         return context
 
 
@@ -95,7 +92,6 @@ class StepUpdateView(UpdateView):
     success_url = reverse_lazy('step:step_list')
 
     def form_valid(self, form):
-        print(self.request.POST)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
             self.handle_text_lesson(form)
@@ -107,7 +103,6 @@ class StepUpdateView(UpdateView):
         return super().form_valid(form)
 
     def handle_text_lesson(self, form):
-        print(form)
         text = self.request.POST.get('text')
         if text:
             form.instance.text = TextModel.objects.get(pk=text)
