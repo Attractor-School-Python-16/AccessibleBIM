@@ -2,38 +2,47 @@
 
 {% block content %}
     <div class="container">
-        <h1>Список шагов</h1>
-        {% if perms.step.add_filemodel %}
-            <a href="{% url 'step:file_create' %}" class="btn btn-primary">Добавить</a>
-        {% endif %}
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Название</th>
-                <th>Действия</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for file in files %}
-                <tr>
-                    <td>{{ file.id }}</td>
-                    <td>
-                        {% if request.user.is_authenticated %}
-                            <a href="{% url 'step:file_detail' file.id %}">{{ file.file_title }}</a>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if perms.step.change_filemodel %}
-                            <a href="{% url 'step:file_update' file.id %}" class="btn btn-info btn-sm">Изменить</a>
-                        {% endif %}
-                        {% if perms.step.delete_filemodel %}
-                            <a href="{% url 'step:file_delete' file.id %}" class="btn btn-danger btn-sm">Удалить</a>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h1>Список шагов</h1>
+                {% if perms.step.add_filemodel %}
+                    <a href="{% url 'step:file_create' %}" class="btn btn-primary">Добавить</a>
+                {% endif %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for file in files %}
+                        <tr>
+                            <td>{{ file.id }}</td>
+                            <td>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'step:file_detail' file.id %}">{{ file.file_title }}</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if perms.step.change_filemodel %}
+                                    <a href="{% url 'step:file_update' file.id %}"
+                                       class="btn btn-info btn-sm">Изменить</a>
+                                {% endif %}
+                                {% if perms.step.delete_filemodel %}
+                                    <a href="{% url 'step:file_delete' file.id %}"
+                                       class="btn btn-danger btn-sm">Удалить</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}
