@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('create_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('update_at', models.DateTimeField(auto_now=True, verbose_name='Дата обновления')),
                 ('title', models.CharField(max_length=100, verbose_name='Вопрос')),
-                ('quiz_bim', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='question_bim', to='quiz_bim.testbim', verbose_name='Тест Bim')),
+                ('test_bim', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='question_bim', to='quiz_bim.testbim', verbose_name='Тест Bim')),
             ],
             options={
                 'verbose_name': 'Вопрос Bim',
