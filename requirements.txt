@@ -1,8 +1,10 @@
 asgiref==3.7.2
+bleach==6.0.0
 Django==4.1.10
 django-phonenumber-field==7.1.0
 django-ranged-response==0.2.0
 django-simple-captcha==0.5.18
+django-summernote==0.8.20.0
 factory-boy==3.3.0
 Faker==19.3.1
 phonenumbers==8.13.19
@@ -13,3 +15,4 @@ six==1.16.0
 sqlparse==0.4.4
 typing_extensions==4.7.1
 tzdata==2023.3
+webencodings==0.5.1

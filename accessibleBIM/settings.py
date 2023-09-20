@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     "phonenumber_field",
     'captcha',
+    'django_summernote',
 
     'accounts',
     'modules',
