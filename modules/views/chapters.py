@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, DetailView, DeleteView, U
 
 from modules.forms.chapters_form import ChaptersForm
 from modules.models import ChapterModel, CourseModel
+from step.models import StepModel
 
 
 class ChaptersListView(ListView):
@@ -34,6 +35,11 @@ class ChapterDetailView(DetailView):
     model = ChapterModel
     context_object_name = 'chapter'
     template_name = 'chapters/chapter_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['steps'] = StepModel.objects.filter(chapter=self.object.id)
+        return context
 
 
 class ChapterUpdateView(UpdateView):
