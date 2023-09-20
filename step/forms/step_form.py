@@ -5,14 +5,14 @@ from step.models import FileModel
 from step.models.step import StepModel
 from step.models.text import TextModel
 from step.models.video import VideoModel
-from test_bim.models.test_bim import TestBim
+from quiz_bim.models.quiz_bim import QuizBim
 
 
 class StepForm(forms.ModelForm):
     chapter = forms.ModelChoiceField(queryset=ChapterModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     text = forms.ModelChoiceField(queryset=TextModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     video = forms.ModelChoiceField(queryset=VideoModel.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
-    test = forms.ModelChoiceField(queryset=TestBim.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    test = forms.ModelChoiceField(queryset=QuizBim.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     file = forms.ModelMultipleChoiceField(queryset=FileModel.objects.all(), initial=None, required=False, widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
 
     class Meta:

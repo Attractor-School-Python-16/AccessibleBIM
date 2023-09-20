@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'step',
     'progress',
     'subscription',
-    'test_bim',
+    'quiz_bim',
 ]
 
 MIDDLEWARE = [

@@ -67,8 +67,8 @@
                         Тесты
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'test_bim:tests_list' %}">Список тестов</a></li>
-                        <li><a class="dropdown-item" href="{% url "test_bim:test_create" %}">Создать</a></li>
+                        <li><a class="dropdown-item" href="{% url 'quiz_bim:tests_list' %}">Список тестов</a></li>
+                        <li><a class="dropdown-item" href="{% url "quiz_bim:test_create" %}">Создать</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -118,6 +118,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'subscription:subscription_create' %}">Создать</a></li>
+                        <li><a class="dropdown-item" href="{% url 'subscription:subscription_users_list' %}">Выдача подписки юзеру</a></li>
                         <li><a class="dropdown-item" href="{% url 'subscription:subscription_list' %}">Список глав</a></li>
                     </ul>
                 </li>
