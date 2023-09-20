@@ -2,30 +2,32 @@
 
 {% block content %}
     <div class="container">
-    <h1>Список текстов</h1>
-    <a href="{% url 'step:text_create' %}" class="btn btn-primary">Добавить</a>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Название</th>
-            <th>Действия</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for text in texts %}
+        <h1>Список текстов</h1>
+        {% if perms.step.add_textmodel %}
+            <a href="{% url 'step:text_create' %}" class="btn btn-primary">Добавить</a>
+        {% endif %}
+        <table class="table">
+            <thead>
             <tr>
-                <td>{{ text.id }}</td>
-                {% if request.user.is_authenticated %}
-                    <td><a href="{% url 'step:text_detail' text.id %}">{{ text.text_title }}</a></td>
-                {% endif %}
-                <td>
-                    <a href="{% url 'step:text_update' text.id %}" class="btn btn-info btn-sm">Изменить</a>
-                    <a href="{% url 'step:text_delete' text.id %}" class="btn btn-danger btn-sm">Удалить</a>
-                </td>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Действия</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for text in texts %}
+                <tr>
+                    <td>{{ text.id }}</td>
+                    {% if request.user.is_authenticated %}
+                        <td><a href="{% url 'step:text_detail' text.id %}">{{ text.text_title }}</a></td>
+                    {% endif %}
+                    <td>
+                        <a href="{% url 'step:text_update' text.id %}" class="btn btn-info btn-sm">Изменить</a>
+                        <a href="{% url 'step:text_delete' text.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
