@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-9">
                 <div class="d-inline-block ms-5">
-                    {% include 'partials/main_block.html' with data=module %}
+                    {% include 'partials/main_block.html' with data=course %}
                     <div class="btn-group">
                         <a href="{% url 'modules:course_update' course.id %}"
                            class="btn btn-info btn-sm mx-3">Изменить</a>
