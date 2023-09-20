@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
             table='quiz_bim',
         ),
         migrations.RunSQL(
-            "ALTER TABLE quiz_bim RENAME TO quiz_bim",
-            "ALTER TABLE quiz_bim quiz_bim TO quiz_bim"
+            "ALTER TABLE test_bim RENAME TO quiz_bim",
+            "ALTER TABLE quiz_bim TO test_bim"
         )
     ]
