@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 15:43+0600\n"
-"PO-Revision-Date: 2023-09-20 09:37+0000\n"
+"POT-Creation-Date: 2023-09-20 23:04+0600\n"
+"PO-Revision-Date: 2023-09-20 17:04+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -71,7 +71,7 @@ msgstr "State Company"
 msgid "other typecorp"
 msgstr "Other"
 
-#: accounts/models/custom_user.py:42 templates/accounts/profile.html:19
+#: accounts/models/custom_user.py:42
 msgid "first name"
 msgstr "First name"
 
@@ -225,6 +225,10 @@ msgstr ""
 #: templates/accounts/profile.html:4
 msgid "Profile"
 msgstr "Profile"
+
+#: templates/accounts/profile.html:19
+msgid "Name"
+msgstr "Name"
 
 #: templates/accounts/profile.html:34
 msgid "My courses"
