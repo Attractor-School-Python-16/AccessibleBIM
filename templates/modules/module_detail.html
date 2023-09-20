@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <h1 class="my-3">Список курсов модуля {{ module.title }}</h1>
-                <a href="{% url 'modules:course_create' %}" class="btn btn-primary my-3">Добавить курс</a>
+                <a href="{% url 'modules:course_create' %}?module_pk={{ module.pk }}" class="btn btn-primary my-3">Добавить курс</a>
                 <table class="table">
                     <thead>
                         <tr>
