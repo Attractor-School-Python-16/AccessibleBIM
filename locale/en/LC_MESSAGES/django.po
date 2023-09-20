@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 15:05+0600\n"
-"PO-Revision-Date: 2023-09-20 09:08+0000\n"
+"POT-Creation-Date: 2023-09-20 15:43+0600\n"
+"PO-Revision-Date: 2023-09-20 09:37+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -114,6 +114,7 @@ msgstr "Activate your user account"
 #: templates/accounts/change_password.html:4
 #: templates/accounts/change_password.html:9
 #: templates/accounts/change_password_done.html:4
+#: templates/accounts/password-reset/password_reset_confirm.html:8
 #: templates/accounts/profile.html:25
 msgid "Change password"
 msgstr "Change Password"
@@ -151,11 +152,6 @@ msgstr ""
 
 #: templates/accounts/email/verification_email.html:4
 #, python-format
-#| msgid ""
-#| "\n"
-#| "Dear %(user.get_full_name)s,\n"
-#| "\n"
-#| "Please click on the link below to confirm your registration:\n"
 msgid ""
 "\n"
 "Dear %(name)s,\n"
@@ -177,6 +173,54 @@ msgstr "Login"
 #: templates/accounts/login.html:10
 msgid "Forgot password"
 msgstr "Forgot password"
+
+#: templates/accounts/password-reset/password_reset.html:4
+#: templates/accounts/password-reset/password_reset_complete.html:4
+#: templates/accounts/password-reset/password_reset_confirm.html:4
+#: templates/accounts/password-reset/password_reset_done.html:4
+#: templates/accounts/password-reset/password_reset_subject.txt:2
+msgid "Password reset"
+msgstr "Password reset"
+
+#: templates/accounts/password-reset/password_reset.html:7
+msgid "Enter you email to reset password"
+msgstr "Enter you email to reset password"
+
+#: templates/accounts/password-reset/password_reset.html:8
+msgid "Send email"
+msgstr "Send an email"
+
+#: templates/accounts/password-reset/password_reset_complete.html:7
+msgid "Password changed"
+msgstr "Password successfully changed"
+
+#: templates/accounts/password-reset/password_reset_confirm.html:12
+msgid "Save changes"
+msgstr "Save changes"
+
+#: templates/accounts/password-reset/password_reset_confirm.html:15
+msgid "Invalid password reset link"
+msgstr ""
+"Invalid link. Probably, you have used it before. Please request a new link."
+
+#: templates/accounts/password-reset/password_reset_done.html:7
+msgid "Password reset email sent"
+msgstr ""
+"Email with instructions for changing password was sent. Please check your "
+"mailbox."
+
+#: templates/accounts/password-reset/password_reset_email.html:4
+#, python-format
+msgid ""
+"\n"
+"Dear %(name)s,\n"
+"\n"
+"Please click the link below to reset your password:\n"
+msgstr ""
+"\n"
+"Dear %(name)s,\n"
+"\n"
+"Please click on the link below to reset your password:\n"
 
 #: templates/accounts/profile.html:4
 msgid "Profile"
