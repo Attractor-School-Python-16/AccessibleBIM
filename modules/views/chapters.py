@@ -2,7 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 
 from modules.forms.chapters_form import ChaptersForm
-from modules.models import ChapterModel
+from modules.models import ChapterModel, CourseModel
 
 
 class ChaptersListView(ListView):
@@ -16,6 +16,15 @@ class ChapterCreateView(CreateView):
     template_name = "chapters/chapter_create.html"
     model = ChapterModel
     form_class = ChaptersForm
+    course = None
+
+    def get_initial(self):
+        self.course = self.request.GET.get('course_pk')
+        return {'course': self.course}
+
+    def form_valid(self, form):
+        form.instance.course = CourseModel.objects.get(id=self.course)
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("modules:chapter_detail", kwargs={"pk": self.object.pk})
