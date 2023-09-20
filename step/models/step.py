@@ -5,10 +5,13 @@ from modules.models import AbstractModel
 
 
 class StepModel(AbstractModel):
+    VIDEO = 'video'
+    TEXT = 'text'
+    TEST = 'test'
     TYPE_CHOICES = {
-        ('video', 'Видео'),
-        ('text', 'Текст'),
-        ('test', 'Тест')
+        (VIDEO, 'Видео'),
+        (TEXT, 'Текст'),
+        (TEST, 'Тест')
     }
 
     chapter = models.ForeignKey('modules.ChapterModel', related_name='step', on_delete=models.CASCADE, verbose_name='Глава', blank=True, null=True)
