@@ -9,11 +9,11 @@ class ProgressTestAnswers(AbstractModel):
                                       on_delete=models.CASCADE,
                                       verbose_name='Прогресс теста'
                                       )
-    question = models.ForeignKey('test_bim.QuestionBim',
+    question = models.ForeignKey('quiz_bim.QuestionBim',
                                  related_name='user_question',
                                  on_delete=models.CASCADE,
                                  verbose_name='Вопрос')
-    answer = models.ForeignKey('test_bim.AnswerBim',
+    answer = models.ForeignKey('quiz_bim.AnswerBim',
                                related_name='user_answer',
                                on_delete=models.CASCADE,
                                verbose_name='Ответ')

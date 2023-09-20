@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('test_bim', '0001_initial'),
+        ('quiz_bim', '0001_initial'),
         ('modules', '0001_initial'),
     ]
 
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
                 ('learn_time', models.PositiveIntegerField()),
                 ('chapter', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='step', to='modules.chaptermodel', verbose_name='Chapter')),
                 ('file', models.ManyToManyField(related_name='step', to='step.filemodel', verbose_name='Файл')),
-                ('test', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='step', to='test_bim.testbim', verbose_name='Тест')),
+                ('test', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='step', to='quiz_bim.testbim', verbose_name='Тест')),
                 ('text', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='step', to='step.textmodel', verbose_name='Текст')),
                 ('video', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='step', to='step.videomodel', verbose_name='Видео')),
             ],
