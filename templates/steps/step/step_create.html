@@ -4,83 +4,89 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% for error in form.non_field_errors %}
-                <div class="alert alert-danger">{{ error }}</div>
-            {% endfor %}
-
-            <div class="form-group">
-                <label for="id_title">{{ form.chapter.label }}</label>
-                {{ form.chapter }}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
             </div>
+            <div class="col-md-9">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
 
-            <div class="form-group">
-                <label for="id_title">{{ form.title.label }}</label>
-                {{ form.title }}
+                    <div class="form-group">
+                        <label for="id_title">{{ form.chapter.label }}</label>
+                        {{ form.chapter }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_title">{{ form.title.label }}</label>
+                        {{ form.title }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_file">Выберите файлы</label>
+                        {{ form.file }}
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_learn_time">{{ form.learn_time.label }}</label>
+                        {{ form.learn_time }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_serial_number">{{ form.serial_number.label }}</label>
+                        {{ form.serial_number }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_lesson_type">{{ form.lesson_type.label }}</label>
+                        {{ form.lesson_type }}
+                    </div>
+
+                    <div id="text_content" style="display: none;">
+                        <div class="form-group">
+                            <label for="id_text">Выберите текст</label>
+                            {{ form.text }}
+                            <p>или</p>
+                        </div>
+
+                        <div id="text-form" class="content-form">
+                            <label for="text_title">Введите наименование текста</label>
+                            <input type="text" name="text_title" class="form-control">
+                            <label for="text_description">Введите описание текста</label>
+                            <input type="text" name="text_description" class="form-control">
+                            <label for="content">Заполните текст занятия</label>
+                            <textarea name="content" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="video_content" style="display: none;">
+                        <div class="form-group">
+                            <label for="id_video">Выберите видео</label>
+                            {{ form.video }}
+                            <p>или</p>
+                        </div>
+                        <div id="video-form" class="content-form">
+                            <label for="video_title">Введите наименование видео</label>
+                            <input type="text" name="video_title" class="form-control">
+                            <label for="video_description">Введите описание видео</label>
+                            <input type="text" name="video_description" class="form-control">
+                            <label for="video_file">Загрузите видео-файл</label>
+                            <input type="file" name="video_file" class="form-control">
+                        </div>
+                    </div>
+                    <div id="test_content" style="display: none;">
+                        <div class="form-group">
+                            <label for="id_test">Выберите тест</label>
+                            {{ form.test }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary my-3">Создать занятие</button>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="id_file">Выберите файлы</label>
-                {{ form.file }}
-            </div>
-
-
-            <div class="form-group">
-                <label for="id_learn_time">{{ form.learn_time.label }}</label>
-                {{ form.learn_time }}
-            </div>
-
-            <div class="form-group">
-                <label for="id_lesson_type">{{ form.lesson_type.label }}</label>
-                {{ form.lesson_type }}
-            </div>
-
-            <div id="text_content" style="display: none;">
-                <div class="form-group">
-                    <label for="id_text">Выберите текст</label>
-                    {{ form.text }}
-                    <p>или</p>
-                </div>
-
-                <div id="text-form" class="content-form">
-                    <label for="text_title">Введите наименование текста</label>
-                    <input type="text" name="text_title" class="form-control">
-                    <label for="text_description">Введите описание текста</label>
-                    <input type="text" name="text_description" class="form-control">
-                    <label for="content">Заполните текст занятия</label>
-                    <textarea name="content" class="form-control"></textarea>
-                </div>
-            </div>
-
-            <div id="video_content" style="display: none;">
-                <div class="form-group">
-                    <label for="id_video">Выберите видео</label>
-                    {{ form.video }}
-                    <p>или</p>
-                </div>
-                <div id="video-form" class="content-form">
-                    <label for="video_title">Введите наименование видео</label>
-                    <input type="text" name="video_title" class="form-control">
-                    <label for="video_description">Введите описание видео</label>
-                    <input type="text" name="video_description" class="form-control">
-                    <label for="video_file">Загрузите видео-файл</label>
-                    <input type="file" name="video_file" class="form-control">
-                </div>
-            </div>
-
-            <div id="test_content" style="display: none;">
-                <div class="form-group">
-                    <label for="id_test">Выберите тест</label>
-                    {{ form.test }}
-                    <p>или</p>
-                </div>
-                <div id="test-form" class="content-form">
-                    <!-- Добавьте поля для теста здесь -->
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Создать занятие</button>
-        </form>
+        </div>
     </div>
     <script>
         const textContent = document.getElementById("text_content");
@@ -102,6 +108,7 @@
                 form.style.display = "block";
             }
         }
+
 
         function clearInputsInDiv(div) {
             const inputElements = div.getElementsByTagName('input');
