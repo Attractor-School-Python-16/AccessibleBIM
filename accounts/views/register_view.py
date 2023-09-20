@@ -6,6 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
+from django.utils.translation import gettext_lazy as _
 
 from accounts.tokens import account_activation_token
 
@@ -14,7 +15,7 @@ from accounts.models import CustomUser
 
 
 def activate_email(request, user, to_email):
-    mail_subject = 'Activate your user account.'
+    mail_subject = _('Activate your user account')
     message = render_to_string('accounts/email/verification_email.html', {
         'user': user.get_full_name(),
         'domain': get_current_site(request).domain,

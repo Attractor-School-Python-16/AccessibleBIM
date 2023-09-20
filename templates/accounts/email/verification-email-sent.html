@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Email sent' %}{% endblock %}
 
 {% block content %}
-    <p>Вам было отправлено письмо. Пожалуйста, проверьте почту и подтвердите ваш email.</p>
+    <p>{% trans 'Email was sent. Check mailbox' %}</p>
 {% endblock %}

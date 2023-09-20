@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 01:24+0600\n"
-"PO-Revision-Date: 2023-09-19 19:25+0000\n"
+"POT-Creation-Date: 2023-09-20 15:05+0600\n"
+"PO-Revision-Date: 2023-09-20 09:11+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -107,15 +107,18 @@ msgstr "Компания"
 msgid "company_type"
 msgstr "Вид организации"
 
+#: accounts/views/register_view.py:18
+msgid "Activate your user account"
+msgstr "Подтвердите ваш аккаунт"
+
 #: templates/accounts/change_password.html:4
+#: templates/accounts/change_password.html:9
 #: templates/accounts/change_password_done.html:4
 #: templates/accounts/profile.html:25
-#| msgid "Change Password"
 msgid "Change password"
 msgstr "Сменить пароль"
 
 #: templates/accounts/change_password.html:8
-#| msgid "Password successfully changed"
 msgid "Password changing"
 msgstr "Изменение пароля"
 
@@ -123,11 +126,52 @@ msgstr "Изменение пароля"
 msgid "Password successfully changed"
 msgstr "Пароль успешно изменен"
 
-#: templates/accounts/login.html:4
+#: templates/accounts/email/invalid_verification_link.html:4
+#: templates/accounts/email/verification-email-not-sent.html:4
+msgid "Invalid verification"
+msgstr "Ошибка верификации"
+
+#: templates/accounts/email/invalid_verification_link.html:7
+msgid "Invalid verification link"
+msgstr "Неверная ссылка для активации"
+
+#: templates/accounts/email/verification-email-not-sent.html:7
+msgid "Error during verification email sending"
+msgstr "При отправке письма возникла ошибка. Попробуйте ещ раз."
+
+#: templates/accounts/email/verification-email-sent.html:4
+msgid "Email sent"
+msgstr "Письмо отправлено"
+
+#: templates/accounts/email/verification-email-sent.html:7
+msgid "Email was sent. Check mailbox"
+msgstr ""
+"Вам было отправлено письмо. Пожалуйста, проверьте почту и подтвердите ваш "
+"email."
+
+#: templates/accounts/email/verification_email.html:4
+#, python-format
+#| msgid ""
+#| "\n"
+#| "Dear %(user.get_full_name)s,\n"
+#| "\n"
+#| "Please click on the link below to confirm your registration:\n"
+msgid ""
+"\n"
+"Dear %(name)s,\n"
+"\n"
+"Please click on the link below to confirm your registration:\n"
+msgstr ""
+"\n"
+"Уважаемый(ая) %(name)s,\n"
+"\n"
+"Пожалуйста, нажмите на ссылку ниже для подтверждения регистрации:\n"
+
+#: templates/accounts/login.html:4 templates/accounts/login.html:8
 msgid "Login"
 msgstr "Вход"
 
-#: templates/accounts/login.html:9
+#: templates/accounts/login.html:10
 msgid "Forgot password"
 msgstr "Забыли пароль"
 
