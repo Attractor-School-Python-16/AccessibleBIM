@@ -2,7 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 
 from modules.forms.courses_form import CoursesForm
-from modules.models import CourseModel, ModuleModel
+from modules.models import CourseModel, ModuleModel, ChapterModel
 
 
 class CoursesListView(ListView):
@@ -34,6 +34,11 @@ class CourseDetailView(DetailView):
     model = CourseModel
     context_object_name = 'course'
     template_name = 'courses/course_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
+        return context
 
 
 class CourseUpdateView(UpdateView):
