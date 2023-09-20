@@ -11,6 +11,6 @@
         <div class="btn-group" role="group">
             <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
         </div>
-        <a class="btn btn-primary" href="{% url "modules:course_detail" module.pk %}">Нет</a>
+        <a class="btn btn-primary" href="{% url "modules:course_detail" course.pk %}">Нет</a>
     </form>
 {% endblock %}
