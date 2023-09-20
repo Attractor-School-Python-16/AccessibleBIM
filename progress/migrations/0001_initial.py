@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('test_bim', '0001_initial'),
+        ('quiz_bim', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('start_time', models.DateTimeField(auto_now_add=True, verbose_name='Начало тестирования')),
                 ('end_time', models.DateTimeField(blank=True, null=True, verbose_name='Конец тестирования')),
                 ('is_passed', models.BooleanField(default=False, verbose_name='Тест пройден')),
-                ('test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='progress', to='test_bim.testbim', verbose_name='Тест')),
+                ('test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='progress', to='quiz_bim.testbim', verbose_name='Тест')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='progress', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
             ],
             options={
@@ -39,9 +39,9 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('create_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('update_at', models.DateTimeField(auto_now=True, verbose_name='Дата обновления')),
-                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answer', to='test_bim.answerbim', verbose_name='Ответ')),
+                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answer', to='quiz_bim.answerbim', verbose_name='Ответ')),
                 ('progress_test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='progress.progresstest', verbose_name='Прогрес теста')),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='test_bim.questionbim', verbose_name='Вопрос')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to='quiz_bim.questionbim', verbose_name='Вопрос')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_answers', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
             ],
             options={

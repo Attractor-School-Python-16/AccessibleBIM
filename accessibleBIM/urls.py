@@ -31,5 +31,5 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('step.urls')),
     path('', include('subscription.urls')),
-    path('test_bim/', include('test_bim.urls')),
+    path('quiz_bim/', include('quiz_bim.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
