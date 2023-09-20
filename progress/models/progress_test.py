@@ -3,6 +3,8 @@ from django.db import models
 from modules.models import AbstractModel
 
 
+# TODO: Стоит также переименовать ProgressTest в ProgressQuiz
+# И тоже самое с полями
 class ProgressTest(AbstractModel):
     start_time = models.DateTimeField(auto_now_add=True, verbose_name='Начало тестирования',)
     end_time = models.DateTimeField(null=True, blank=True, verbose_name='Конец тестирования')
@@ -10,7 +12,7 @@ class ProgressTest(AbstractModel):
                              on_delete=models.CASCADE,
                              related_name="progress",
                              verbose_name="Пользователь")
-    test = models.ForeignKey('test_bim.TestBim',
+    test = models.ForeignKey('quiz_bim.QuizBim',
                              related_name='progress',
                              on_delete=models.CASCADE,
                              verbose_name='Тест')
