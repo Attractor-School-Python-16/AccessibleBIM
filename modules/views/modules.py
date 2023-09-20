@@ -2,7 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, DeleteView, UpdateView
 
 from modules.forms.modules_form import ModulesForm
-from modules.models import ModuleModel
+from modules.models import ModuleModel, CourseModel
 
 
 class HomeView(TemplateView):
@@ -29,6 +29,12 @@ class ModuleDetailView(DetailView):
     model = ModuleModel
     context_object_name = 'module'
     template_name = 'modules/module_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['courses'] = CourseModel.objects.filter(module_id=self.object.id)
+        return context
+
 
 
 class ModuleUpdateView(UpdateView):
