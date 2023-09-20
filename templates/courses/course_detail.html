@@ -1,75 +1,49 @@
 {% extends 'base.html' %}
 {% block title %}{{ course.title }}{% endblock %}
 {% block content %}
-    {% include 'partials/main_block.html' with data=course %}
-
     <div class="container">
-        {% for teacher in course.teachers.all %}
-            <p>Данный курс был составлен: <a
-                    href="{% url 'modules:teacher_detail' teacher.pk %}">{{ teacher.first_name }} {{ teacher.last_name }}</a>
-            </p>
-        {% endfor %}
-
-        <a href="{% url 'modules:course_delete' course.id %}" class="btn btn-danger">Удалить</a>
-        <a href="{% url 'modules:course_update' course.id %}" class="btn btn-primary">Изменить</a>
-        <div class="accordion mt-3" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        Глава #1
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-
-                        <div class="accordion" id="sub-accordionExample">
-                            <div>
-                                <h1></h1>
-                                <ul class="ul_tree p-has-headers">
-                                    <li class="li_tree">
-                                        <a href="{% url 'modules:step_text' %}" class="header">Пример Текста</a>
-                                    </li>
-                                    <li class="li_tree">
-                                        <a href="{% url 'modules:step_video' %}" class="header">Пример Видео</a>
-                                    </li>
-                                    <li class="li_tree">
-                                        <a href="{% url 'modules:step_file' %}" class="header">Пример Файла</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
             </div>
-        </div>
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Глава #2 Тесты
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-
-                        <div class="accordion" id="sub-accordionExample">
-                            <div>
-                                <h1></h1>
-                                <ul class="ul_tree p-has-headers">
-                                    <li class="li_tree">
-                                        <a href="{% url 'modules:quiz_bim' %}" class="header">Пример Теста</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="col-md-9">
+                <div class="d-inline-block ms-5">
+                    {% include 'partials/main_block.html' with data=module %}
+                    <div class="btn-group">
+                        <a href="{% url 'modules:course_update' course.id %}"
+                           class="btn btn-info btn-sm mx-3">Изменить</a>
+                        <a href="{% url 'modules:course_delete' course.id %}"
+                           class="btn btn-danger btn-sm">Удалить</a>
                     </div>
                 </div>
-
+                <h1 class="my-3">Список глав курса {{ course.title }}</h1>
+                <a href="{% url 'modules:chapter_create' %}?course_pk={{ course.pk }}" class="btn btn-primary
+                my-3">Добавить главу</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Название</th>
+                            <th class="text-end">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for chapter in chapters %}
+                            <tr>
+                                <td>{{ chapter.id }}</td>
+                                <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a href="{% url 'modules:chapter_update' chapter.id %}"
+                                           class="btn btn-info btn-sm mx-3">Изменить</a>
+                                        <a href="{% url 'modules:chapter_delete' chapter.id %}"
+                                           class="btn btn-danger btn-sm">Удалить</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
