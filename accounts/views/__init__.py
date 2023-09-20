@@ -3,3 +3,9 @@ from accounts.views.profile_view import ProfileView
 from accounts.views.verification_email_sent_view import VerificationEmailSentView
 from accounts.views.verification_email_not_sent_view import VerificationEmailNotSentView
 from accounts.views.invalid_verification_link_view import InvalidVerificationLinkView
+from accounts.views.password_update_view import PasswordUpdateView
+from accounts.views.password_update_done_view import PasswordUpdateDoneView
+from accounts.views.reset_password_view import ResetPasswordView
+from accounts.views.reset_password_done_view import ResetPasswordDoneView
+from accounts.views.reset_password_confirm_view import ResetPasswordConfirmView
+from accounts.views.reset_password_complete_view import ResetPasswordCompleteView
