@@ -4,6 +4,20 @@
 
 {% block content %}
     <div class="container">
-        {% include "partials/form.html" with button_text="Изменить" %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% include 'partials/sidebar.html' %}
+                    </div>
+                    <div class="col-md-9">
+                        {% include "partials/form.html" with button_text="Изменить" %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

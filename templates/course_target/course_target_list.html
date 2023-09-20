@@ -2,19 +2,27 @@
 {% block title %}Список ЦА{% endblock %}
 {% block content %}
     <div class="container">
-        {% for course_target in course_targets %}
-            <a href="{% url 'modules:course_target_detail' course_target.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <div class="card-body border-bottom">
-                            <p class="card-text">{{ course_target.title }}</p>
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                {% for course_target in course_targets %}
+                    <a href="{% url 'modules:course_target_detail' course_target.pk %}"
+                       class="card mb-3 mt-3 link-underline link-underline-opacity-0">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="card-body border-bottom">
+                                    <p class="card-text">{{ course_target.title }}</p>
+                                </div>
+                                <div class="card-body border-bottom">
+                                    <p class="card-text">{{ course_target.description }}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body border-bottom">
-                            <p class="card-text">{{ course_target.description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
