@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Тест{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h3>Вопрос №{{ page_obj.number }}</h3>
+        <p>{{ question.get.title }}</p>
+        {% for answer in question.get.answer_bim.all %}
+            {% if answer.id in user_answers_id %}
+            {% endif %}
+            <div class="form-check">
+                {% if answer.id in user_answers_id %}
+                    <input checked class="form-check-input answer-radio" type="radio" id="answer-{{ answer.id }}" name="answer" value="{{ answer.id }}">
+                {% else %}
+                    <input class="form-check-input answer-radio" type="radio" id="answer-{{ answer.id }}" name="answer" value="{{ answer.id }}">
+                {% endif %}
+                <label class="form-check-label" for="answer-{{ answer.id }}">
+                    {{ answer.answer }}
+                </label>
+            </div>
+        {% endfor %}
+        <div class="pagination mt-3">
+            <div class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Предыдущий
+                        вопрос</a>
+                {% else %}
+                    <span class="btn btn-primary disabled">Предыдущий вопрос</span>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Следующий вопрос</a>
+                {% else %}
+                    <button class="btn btn-primary" form="form-test-result">Завершить тест</button>
+                    <form id="form-test-result" action="{% url "quiz_bim:test_result" progress_test_id %}" method="post">{% csrf_token %}</form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function onClick(event) {
+            let url = "{% url "quiz_bim:user_answer" progress_test_id %}"
+            let data = {
+                "answer_id": event.target.value,
+            }
+            fetch(url, {
+                method: "post",
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify(data)
+            })
+        }
+
+        function debounce(func, timeout = 300) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func.apply(this, args);
+                }, timeout);
+            };
+        }
+
+        function onLoad() {
+            let radioButtons = document.getElementsByClassName("answer-radio");
+            let debounceClick = debounce(onClick)
+
+            for (let button of radioButtons) {
+                button.addEventListener("click", debounceClick)
+            }
+        }
+
+        window.addEventListener("load", onLoad)
+    </script>
+{% endblock %}
