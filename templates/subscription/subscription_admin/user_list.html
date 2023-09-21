@@ -4,41 +4,50 @@
     {% include 'partials/main_block.html' %}
 
     <div class="container">
-        <h3>Выдача подписки пользователю:</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">ФИО</th>
-                <th scope="col">Email</th>
-                <th scope="col">Текущая подписка</th>
-                <th scope="col">Подписка</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-                <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        {% for subscription in subscriptions %}
-                            {{ subscription }}
-                            {% if forloop.first and not forloop.last %}
-                                ,
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h3>Выдача подписки пользователю:</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ФИО</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Текущая подписка</th>
+                        <th scope="col">Подписка</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                {% for subscription in subscriptions %}
+                                    {{ subscription }}
+                                    {% if forloop.first and not forloop.last %}
+                                        ,
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            {% if subscriptions %}
+                                <td><a href="{% url 'subscription:subscription_user_delete' user.pk %}"
+                                       class="btn btn-success">Закрыть
+                                    доступ</a></td>
+                            {% else %}
+                                <td><a href="{% url 'subscription:subscription_user_add' user.pk %}"
+                                       class="btn btn-success">Предоставить
+                                    доступ</a></td>
                             {% endif %}
-                        {% endfor %}
-                    </td>
-                    {% if subscriptions %}
-                        <td><a href="{% url 'subscription:subscription_user_delete' user.pk %}" class="btn btn-success">Закрыть
-                            доступ</a></td>
-                    {% else %}
-                        <td><a href="{% url 'subscription:subscription_user_add' user.pk %}" class="btn btn-success">Предоставить
-                            доступ</a></td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

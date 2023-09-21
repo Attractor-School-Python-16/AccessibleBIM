@@ -2,24 +2,39 @@
 {% block title %}Главы{% endblock %}
 {% block content %}
     <div class="container">
-        {% for chapter in chapters %}
-            <a href="{% url 'modules:chapter_detail' chapter.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
-                <div class="row g-0">
-                    <div class="col-md-3">
-                        <h5>{{ chapter.title }}</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body border-bottom">
-                            <p class="card-text">{{ chapter.description }}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card-body">
-                            <img class="img-thumbnail" src="{{ module.image.url }}" alt="{{ module.title }}">
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h1>Список глав</h1><a href="{% url 'modules:chapter_create' %}" class="btn btn-primary my-3">Добавить
+                главу</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Название</th>
+                            <th class="text-end">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for chapter in chapters %}
+                            <tr>
+                                <td>{{ chapter.id }}</td>
+                                <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a href="{% url 'modules:chapter_update' chapter.id %}"
+                                           class="btn btn-info btn-sm mx-3">Изменить</a>
+                                        <a href="{% url 'modules:chapter_delete' chapter.id %}"
+                                           class="btn btn-danger btn-sm">Удалить</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

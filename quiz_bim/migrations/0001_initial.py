@@ -13,13 +13,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='TestBim',
+            name='QuizBim',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('create_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('update_at', models.DateTimeField(auto_now=True, verbose_name='Дата обновления')),
                 ('title', models.CharField(max_length=100, verbose_name='Название теста')),
-                ('questions_qty', models.IntegerField(verbose_name='Количество вопросов')),
+                ('questions_qty', models.PositiveIntegerField(verbose_name='Количество вопросов')),
             ],
             options={
                 'verbose_name': 'Тест Bim',
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('create_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('update_at', models.DateTimeField(auto_now=True, verbose_name='Дата обновления')),
                 ('title', models.CharField(max_length=100, verbose_name='Вопрос')),
-                ('test_bim', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='question_bim', to='quiz_bim.testbim', verbose_name='Тест Bim')),
+                ('test_bim', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='question_bim', to='quiz_bim.quizbim', verbose_name='Тест Bim')),
             ],
             options={
                 'verbose_name': 'Вопрос Bim',
