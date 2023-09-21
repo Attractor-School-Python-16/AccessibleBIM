@@ -17,3 +17,13 @@
 .note-editable {
     font-family: 'Arial Nova Light', sans-serif;
 }
+
+h1.test-font {
+    font-family: 'Arial Nova Light', sans-serif;
+    font-size: 24px;
+}
+
+h1.test-font-l {
+    font-family: 'Arial Nova', sans-serif;
+    font-size: 24px;
+}

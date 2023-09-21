@@ -4,9 +4,16 @@
 <h1>Создание модуля</h1>
 
 {% block content %}
+    <h1 class="test-font">Lorem Ipsum Это тестовый заголовок с примененным шрифтом</h1>
+    <h1 class="test-font-l">Lorem Ipsum 2 Это тестовый заголовок с примененным шрифтом</h1>
+
     <div class="container mt-3">
-        <div class="col">
+
+        <div class="col chapter">
+            {{ chapter|safe }}
             {% include "partials/form.html" with button_text="Создать" %}
         </div>
     </div>
 {% endblock %}
+
+
