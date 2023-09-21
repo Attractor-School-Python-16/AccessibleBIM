@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
 {% block title %}Создание Главы{% endblock %}
-<h1>Создание модуля</h1>
 
 {% block content %}
-    <div class="container mt-3">
-        <div class="col">
-            {% include "partials/form.html" with button_text="Создать" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h1>Создание главы</h1>
+                <div class="container mt-3">
+                    <div class="col">
+                        {% include "partials/form.html" with button_text="Создать" %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,105 @@
+<div class="d-inline-block">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-column">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Модули
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'modules:module_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:modules_list' %}">Список модулей</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Учителя
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'modules:teacher_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:teachers_list' %}">Список учителей</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ЦА курса
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'modules:course_target_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:course_targets_list' %}">Список ЦА</a></li>
+            </ul>
+        </li>
+{#        <li class="nav-item dropdown">#}
+{#            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                Курсы#}
+{#            </a>#}
+{#            <ul class="dropdown-menu">#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:course_create' %}">Создать</a></li>#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:courses_list' %}">Список курсов</a></li>#}
+{#            </ul>#}
+{#        </li>#}
+{#        <li class="nav-item dropdown">#}
+{#            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                Главы#}
+{#            </a>#}
+{#            <ul class="dropdown-menu">#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:chapter_create' %}">Создать</a></li>#}
+{#                <li><a class="dropdown-item" href="{% url 'modules:chapters_list' %}">Список глав</a></li>#}
+{#            </ul>#}
+{#        </li>#}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Занятия
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'step:step_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:step_list' %}">Список занятий</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Файлы
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'step:file_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:file_list' %}">Список файлов</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Видео
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'step:video_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:video_list' %}">Список видео</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Тексты
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'step:text_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:text_list' %}">Список текстов</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Тесты
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'quiz_bim:tests_list' %}">Список тестов</a></li>
+                <li><a class="dropdown-item" href="{% url 'quiz_bim:test_create' %}">Создать</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Подписки
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'subscription:subscription_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'subscription:subscription_users_list' %}">Выдача подписки
+                    юзеру</a></li>
+                <li><a class="dropdown-item" href="{% url 'subscription:subscription_list' %}">Список глав</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

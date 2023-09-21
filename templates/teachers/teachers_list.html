@@ -2,29 +2,37 @@
 {% block title %}Список учителей{% endblock %}
 {% block content %}
     <div class="container">
-        {% for teacher in teachers %}
-            <a href="{% url 'modules:teacher_detail' teacher.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
-                <div class="row g-0">
-                    <div class="col-md-3">
-                        <h5>{{ teacher.job_title }}/{{ teacher.corp }}</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body border-bottom">
-                            <p class="card-text">{{ teacher.description }}</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span class="card-text">{{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</span>
-                                </div>
-                                <div class="col">
-                                    <span class="card-text">{{ teacher.experience }} Лет/Месяцев/Дней</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                 <h1>Список учителей</h1>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ФИО</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for teacher in teachers %}
+                        <tr>
+                            <td>{{ teacher.id }}</td>
+                            <td><a href="{% url 'modules:teacher_detail' teacher.id %}">{{ teacher.first_name }}
+                                {{ teacher.last_name }}
+                            </a></td>
+                            <td>
+                                <a href="{% url 'modules:teacher_update' teacher.id %}" class="btn btn-info btn-sm">Изменить</a>
+                                <a href="{% url 'modules:teacher_delete' teacher.id %}" class="btn btn-danger
+                                btn-sm">Удалить</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}
