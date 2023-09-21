@@ -1,0 +1,19 @@
+<h3>Тест "{{ step.test.title }}"</h3>
+    <h4>Количестов вопросов: {{ step.test.questions_qty }}</h4>
+    <a class="btn btn-primary" href="{% url "quiz_bim:question_create" pk=step.test.pk %}" role="button">Добавить новый
+        вопрос</a>
+    <a class="btn btn-primary" href="{% url 'quiz_bim:take_test' pk=step.test.pk %}" role="button">Прохождение теста</a>
+    <a class="btn btn-primary" href="{% url 'quiz_bim:test_update' pk=step.test.pk %}" role="button">Редактировать</a>
+    <a class="btn btn-danger" href="{% url 'quiz_bim:test_delete' pk=step.test.pk %}" role="button">Удалить</a>
+{% for question in questions %}
+    <div class="row justify-content-center mt-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ question.title }}</h5>
+                <a class="btn btn-primary" href="{% url 'quiz_bim:question_detail' pk=question.pk %}" role="button">Подробнее</a>
+                <a class="btn btn-primary" href="{% url 'quiz_bim:question_update' pk=question.pk %}" role="button">Редактировать</a>
+                <a class="btn btn-danger" href="{% url 'quiz_bim:question_delete' pk=question.pk %}" role="button">Удалить</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}

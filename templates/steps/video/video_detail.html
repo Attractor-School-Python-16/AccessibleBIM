@@ -5,13 +5,20 @@
 {% block content %}
     {% if request.user.is_authenticated %}
         <div class="container">
-            <h1>{{ video.video_title }}</h1>
-            <p>{{ video.video_description }}</p>
-            <video width="640" height="360" controls>
-                <source src="{{ video.video_file.url }}" type="video/mp4">
-            </video>
-            </br>
-            <a href="{% url 'step:video_list' %}">Вернуться к списку видео</a>
+            <div class="row">
+                <div class="col-md-3">
+                    {% include 'partials/sidebar.html' %}
+                </div>
+                <div class="col-md-9">
+                    <h1>{{ video.video_title }}</h1>
+                    <p>{{ video.video_description }}</p>
+                    <video width="640" height="360" controls>
+                        <source src="{{ video.video_file.url }}" type="video/mp4">
+                    </video>
+                    </br>
+                    <a href="{% url 'step:video_list' %}">Вернуться к списку видео</a>
+                </div>
+            </div>
         </div>
     {% endif %}
 {% endblock %}

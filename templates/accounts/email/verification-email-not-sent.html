@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Invalid verification' %}{% endblock %}
 
 {% block content %}
-    <p>Ошибка при отправке письма</p>
+    <p>{% trans 'Error during verification email sending' %}</p>
 {% endblock %}
