@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
-        <h1>Создать новый тест</h1>
-        <div class="col">
-            {% include 'partials/form.html' with button_text='Создать тест' %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h1>Создать новый тест</h1>
+                <div class="col">
+                    {% include 'partials/form.html' with button_text='Создать тест' %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

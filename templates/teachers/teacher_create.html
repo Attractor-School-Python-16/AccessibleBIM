@@ -5,8 +5,15 @@
 
 {% block content %}
     <div class="container">
-        <div class="col">
-            {% include "partials/form.html" with button_text="Создать" %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <div class="col">
+                    {% include "partials/form.html" with button_text="Создать" %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

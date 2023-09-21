@@ -1,0 +1,66 @@
+[
+{
+  "model": "quiz_bim.quizbim",
+  "pk": 1,
+  "fields": {
+    "create_at": "2023-09-20T19:52:21.850Z",
+    "update_at": "2023-09-20T19:52:21.850Z",
+    "title": "test_quiz",
+    "questions_qty": 1
+  }
+},
+{
+  "model": "quiz_bim.answerbim",
+  "pk": 1,
+  "fields": {
+    "create_at": "2023-09-20T19:53:48.882Z",
+    "update_at": "2023-09-20T19:53:48.882Z",
+    "answer": "test_answer1",
+    "is_correct": false,
+    "question_bim": 1
+  }
+},
+{
+  "model": "quiz_bim.answerbim",
+  "pk": 2,
+  "fields": {
+    "create_at": "2023-09-20T19:53:57.270Z",
+    "update_at": "2023-09-20T19:53:57.270Z",
+    "answer": "test_answer2",
+    "is_correct": false,
+    "question_bim": 1
+  }
+},
+{
+  "model": "quiz_bim.answerbim",
+  "pk": 3,
+  "fields": {
+    "create_at": "2023-09-20T19:54:03.521Z",
+    "update_at": "2023-09-20T19:54:03.521Z",
+    "answer": "test_answer3",
+    "is_correct": true,
+    "question_bim": 1
+  }
+},
+{
+  "model": "quiz_bim.answerbim",
+  "pk": 4,
+  "fields": {
+    "create_at": "2023-09-20T19:54:08.689Z",
+    "update_at": "2023-09-20T19:54:08.689Z",
+    "answer": "test_answer4",
+    "is_correct": false,
+    "question_bim": 1
+  }
+},
+{
+  "model": "quiz_bim.questionbim",
+  "pk": 1,
+  "fields": {
+    "create_at": "2023-09-20T19:53:01.744Z",
+    "update_at": "2023-09-20T19:53:01.744Z",
+    "title": "test_question",
+    "test_bim": 1
+  }
+}
+]
