@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Вход{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'Registration' %}{% endblock %}
+
 {% block content %}
     <div class="container">
-        {% include "partials/form.html" with button_text="Регистрация" %}
+        {% trans 'Register' as register_text %}
+        {% include "partials/form.html" with button_text=register_text %}
     </div>
 {% endblock %}
