@@ -34,18 +34,17 @@
         {% if is_moderator %}
             <a href="{% url 'modules:moderator_page' %}" class="btn btn-primary my-3">Редактировать контент</a>
         {% endif %}
-            <h3>Мои курсы:</h3>
-            {% for course in courses %}
+            {% for subscription in user.subscriptions.all %}
                 <div class="card">
                     <h5 class="card-header">{% trans 'Course' %}</h5>
                     <div class="card-body">
-                        <h5 class="card-title">{{ course.title }}</h5>
-                        <p class="card-text">{{ course.description }}</p>
+                        <h5 class="card-title">{{ subscription.course.title }}</h5>
+                        <p class="card-text">{{ subscription.course.description }}</p>
                         <a href="#" class="btn btn-primary">{% trans 'Start' %}</a>
                     </div>
                 </div>
             {% empty %}
-                <p>{% trans "You don't have any purchased cources"  %}</p>
+                <p>{% trans "You don't have any purchased cources" %}</p>
             {% endfor %}
         </div>
     </div>
