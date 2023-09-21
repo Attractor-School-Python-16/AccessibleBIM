@@ -15,7 +15,7 @@
                     <div class="row justify-content-center mt-1">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">{{ test.test_title }}</h5>
+                                <h5 class="card-title">{{ test.title }}</h5>
                                 <a class="btn btn-primary" href="{% url 'quiz_bim:take_test' pk=test.pk %}"
                                    role="button">Прохождение теста</a>
                                 <a class="btn btn-primary" href="{% url 'quiz_bim:test_detail' pk=test.pk %}"
