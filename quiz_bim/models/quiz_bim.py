@@ -7,7 +7,7 @@ class QuizBim(AbstractModel):
     questions_qty = models.PositiveIntegerField(verbose_name='Количество вопросов')
 
     def __str__(self):
-        return f'{self.test_title}'
+        return f'{self.title}'
 
     class Meta:
         db_table = 'quiz_bim'

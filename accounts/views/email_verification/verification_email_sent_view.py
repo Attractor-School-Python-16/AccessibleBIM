@@ -4,4 +4,5 @@ from django.views import View
 
 class VerificationEmailSentView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'accounts/email/verification-email-sent.html')
+        email = request.GET.get('email')
+        return render(request, 'accounts/email/verification-email-sent.html', context={'email': email})
