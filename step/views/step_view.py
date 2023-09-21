@@ -43,6 +43,7 @@ class StepCreateView(CreateView):
 
 
     def form_valid(self, form):
+        print(form)
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
