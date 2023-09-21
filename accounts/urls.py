@@ -16,7 +16,7 @@ urlpatterns = [
     path('email-verification/sending-error/', VerificationEmailNotSentView.as_view(), name="verification_sending_error"),
     path('email-verification/invalid-link/', InvalidVerificationLinkView.as_view(), name="invalid_verification_link"),
     path('email-verification/<uidb64>/<token>', activate, name='activate'),
-    path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
+    path('profile/', ProfileView.as_view(), name='profile'),
     path('password-change/', PasswordChangeView.as_view(
         template_name="accounts/change_password.html",
         success_url='/password-change/done/'), name="change_password"),
