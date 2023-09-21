@@ -36,11 +36,6 @@
                         {{ form.learn_time }}
                     </div>
                     <div class="form-group">
-                        <label for="id_serial_number">{{ form.serial_number.label }}</label>
-                        {{ form.serial_number }}
-                    </div>
-
-                    <div class="form-group">
                         <label for="id_lesson_type">{{ form.lesson_type.label }}</label>
                         {{ form.lesson_type }}
                     </div>
@@ -81,6 +76,16 @@
                         <div class="form-group">
                             <label for="id_test">Выберите тест</label>
                             {{ form.test }}
+                            <p>или</p>
+                        </div>
+                        <div id="test-form" class="content-test">
+                            <label for="test_title">Введите наименование теста</label>
+                            <input type="text" name="test_title" class="form-control">
+                            <label for="test_questions_qty">Введите количество вопросов теста</label>
+                            <input type="number" name="test_questions_qty" id="test_questions_qty"
+                                   class="form-control">
+                            <button id="confirmQuestions" class="btn btn-primary my-3" type="button">Подтвердить</button>
+                            <div id="question-form" class="content-test"></div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary my-3">Создать занятие</button>
@@ -154,7 +159,81 @@
             }
         });
 
+    document.getElementById("confirmQuestions").addEventListener("click", function () {
+        const questionsQty = parseInt(document.getElementById("test_questions_qty").value, 10);
+        if (!isNaN(questionsQty)) {
+            createQuestionInputs(questionsQty);
+        }
+    });
 
+    function createQuestionInputs(questionsQty) {
+        const questionForm = document.getElementById("question-form");
+        questionForm.innerHTML = "";
+
+        for (let i = 1; i <= questionsQty; i++) {
+            const questionBlock = document.createElement("div");
+            questionBlock.setAttribute("class", "question-block");
+
+            const questionLabel = document.createElement("label");
+            questionLabel.setAttribute("for", `question_title_${i}`);
+            questionLabel.textContent = `Введите вопрос ${i}`;
+
+            const questionInput = document.createElement("input");
+            questionInput.setAttribute("type", "text");
+            questionInput.setAttribute("name", `question_title_${i}`);
+            questionInput.setAttribute("class", "form-control");
+
+            const answersContainer = document.createElement("div");
+            answersContainer.setAttribute("class", "content-test");
+
+            const addAnswerButton = document.createElement("button");
+            addAnswerButton.setAttribute("type", "button");
+            addAnswerButton.setAttribute("class", "btn btn-primary my-3");
+            addAnswerButton.textContent = "Добавить ответ";
+
+            addAnswerButton.addEventListener("click", function () {
+                createAnswerInputs(answersContainer);
+            });
+
+            questionBlock.appendChild(questionLabel);
+            questionBlock.appendChild(questionInput);
+            questionBlock.appendChild(answersContainer);
+            questionBlock.appendChild(addAnswerButton);
+            questionForm.appendChild(questionBlock);
+            createAnswerInputs(answersContainer);
+        }
+    }
+
+    function createAnswerInputs(answersContainer) {
+        const answerBlock = document.createElement("div");
+        answerBlock.setAttribute("class", "content-test");
+
+        const answerLabel = document.createElement("label");
+        answerLabel.setAttribute("for", "answer");
+        answerLabel.textContent = "Введите ответ";
+
+        const answerInput = document.createElement("input");
+        answerInput.setAttribute("type", "text");
+        answerInput.setAttribute("name", "answer");
+        answerInput.setAttribute("class", "form-control");
+
+        const isCorrectLabel = document.createElement("label");
+        isCorrectLabel.textContent = "Выберите правильность ответа";
+
+        const isCorrectSelect = document.createElement("select");
+        isCorrectSelect.setAttribute("name", "is_correct");
+        isCorrectSelect.setAttribute("class", "form-control");
+        isCorrectSelect.innerHTML = `
+            <option value="False" selected>Неверный ответ</option>
+            <option value="True">Верный ответ</option>
+        `;
+
+        answerBlock.appendChild(answerLabel);
+        answerBlock.appendChild(answerInput);
+        answerBlock.appendChild(isCorrectLabel);
+        answerBlock.appendChild(isCorrectSelect);
+        answersContainer.appendChild(answerBlock);
+    }
     </script>
 
 
