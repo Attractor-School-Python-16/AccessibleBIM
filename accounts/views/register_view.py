@@ -25,7 +25,7 @@ def activate_email(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     if email.send():
-        return redirect('accounts:verification_sent')
+        return redirect(f'/email-verification/?email={to_email}')
     else:
         return redirect('accounts:verification_sending_error')
 

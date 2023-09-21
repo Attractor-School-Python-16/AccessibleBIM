@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 23:04+0600\n"
-"PO-Revision-Date: 2023-09-20 17:04+0000\n"
+"POT-Creation-Date: 2023-09-21 14:27+0600\n"
+"PO-Revision-Date: 2023-09-21 08:29+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -89,7 +89,7 @@ msgstr "Email"
 
 #: accounts/models/custom_user.py:46
 msgid "email_verified"
-msgstr "Email подтвержден?"
+msgstr "Email подтвержден"
 
 #: accounts/models/custom_user.py:47
 msgid "phone_number"
@@ -110,6 +110,18 @@ msgstr "Вид организации"
 #: accounts/views/register_view.py:18
 msgid "Activate your user account"
 msgstr "Подтвердите ваш аккаунт"
+
+#: step/models/step.py:10
+msgid "Видео"
+msgstr ""
+
+#: step/models/step.py:11
+msgid "Текст"
+msgstr ""
+
+#: step/models/step.py:12
+msgid "Тест"
+msgstr ""
 
 #: templates/accounts/change_password.html:4
 #: templates/accounts/change_password.html:9
@@ -145,10 +157,14 @@ msgid "Email sent"
 msgstr "Письмо отправлено"
 
 #: templates/accounts/email/verification-email-sent.html:7
-msgid "Email was sent. Check mailbox"
+#, python-format
+msgid ""
+"\n"
+"        Email was sent to %(email)s. Please check your mailbox and verify your email address.\n"
+"    "
 msgstr ""
-"Вам было отправлено письмо. Пожалуйста, проверьте почту и подтвердите ваш "
-"email."
+"\n"
+"Письмо было отправлено на %(email)s. Пожалуйста, проверьте почту и подтвердите ваш email."
 
 #: templates/accounts/email/verification_email.html:4
 #, python-format
@@ -250,6 +266,11 @@ msgstr "Регистрация"
 #: templates/accounts/register.html:8
 msgid "Register"
 msgstr "Зарегистрироваться"
+
+#~ msgid "Email was sent. Check mailbox"
+#~ msgstr ""
+#~ "Вам было отправлено письмо. Пожалуйста, проверьте почту и подтвердите ваш "
+#~ "email."
 
 #~ msgid "Change Password"
 #~ msgstr "Сменить пароль"

@@ -4,5 +4,7 @@
 {% block title %}{% trans 'Email sent' %}{% endblock %}
 
 {% block content %}
-    <p>{% trans 'Email was sent. Check mailbox' %}</p>
+    <p>{% blocktrans with email=email %}
+        Email was sent to {{ email }}. Please check your mailbox and verify your email address.
+    {% endblocktrans %}</p>
 {% endblock %}
