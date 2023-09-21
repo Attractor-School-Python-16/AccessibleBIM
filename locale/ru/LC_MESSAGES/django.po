@@ -1,0 +1,276 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-21 14:27+0600\n"
+"PO-Revision-Date: 2023-09-21 08:29+0000\n"
+"Last-Translator: admin admin <admin@admin.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: accessibleBIM/settings.py:146
+msgid "Russian"
+msgstr "Русский"
+
+#: accessibleBIM/settings.py:147
+msgid "English"
+msgstr "Английский"
+
+#: accounts/admin.py:10
+msgid "Personal info"
+msgstr "Персональные данные"
+
+#: accounts/admin.py:11
+msgid "Job related info"
+msgstr "Профессиональные данные"
+
+#: accounts/admin.py:13
+msgid "Permissions"
+msgstr "Разрешения"
+
+#: accounts/admin.py:24
+msgid "Important dates"
+msgstr "Важные даты"
+
+#: accounts/models/custom_user.py:33
+msgid "entrepreneur"
+msgstr "Предприниматель"
+
+#: accounts/models/custom_user.py:34
+msgid "limited_liability_company"
+msgstr "ОсОО"
+
+#: accounts/models/custom_user.py:35
+msgid "opened joint stock company"
+msgstr "ОАО"
+
+#: accounts/models/custom_user.py:36
+msgid "closed joint stock company"
+msgstr "ЗАО"
+
+#: accounts/models/custom_user.py:37
+msgid "additional liability company"
+msgstr "ОДОО"
+
+#: accounts/models/custom_user.py:38
+msgid "state company"
+msgstr "Государственное предприятие"
+
+#: accounts/models/custom_user.py:39
+msgid "other typecorp"
+msgstr "Другое"
+
+#: accounts/models/custom_user.py:42
+msgid "first name"
+msgstr "Имя"
+
+#: accounts/models/custom_user.py:43
+msgid "last name"
+msgstr "Фамилия"
+
+#: accounts/models/custom_user.py:44
+msgid "father name"
+msgstr "Отчество"
+
+#: accounts/models/custom_user.py:45 templates/accounts/profile.html:14
+msgid "email address"
+msgstr "Email"
+
+#: accounts/models/custom_user.py:46
+msgid "email_verified"
+msgstr "Email подтвержден"
+
+#: accounts/models/custom_user.py:47
+msgid "phone_number"
+msgstr "Номер телефона"
+
+#: accounts/models/custom_user.py:48
+msgid "job_title"
+msgstr "Должность"
+
+#: accounts/models/custom_user.py:50
+msgid "company_name"
+msgstr "Компания"
+
+#: accounts/models/custom_user.py:51
+msgid "company_type"
+msgstr "Вид организации"
+
+#: accounts/views/register_view.py:18
+msgid "Activate your user account"
+msgstr "Подтвердите ваш аккаунт"
+
+#: step/models/step.py:10
+msgid "Видео"
+msgstr ""
+
+#: step/models/step.py:11
+msgid "Текст"
+msgstr ""
+
+#: step/models/step.py:12
+msgid "Тест"
+msgstr ""
+
+#: templates/accounts/change_password.html:4
+#: templates/accounts/change_password.html:9
+#: templates/accounts/change_password_done.html:4
+#: templates/accounts/password-reset/password_reset_confirm.html:8
+#: templates/accounts/profile.html:25
+msgid "Change password"
+msgstr "Сменить пароль"
+
+#: templates/accounts/change_password.html:8
+msgid "Password changing"
+msgstr "Изменение пароля"
+
+#: templates/accounts/change_password_done.html:8
+msgid "Password successfully changed"
+msgstr "Пароль успешно изменен"
+
+#: templates/accounts/email/invalid_verification_link.html:4
+#: templates/accounts/email/verification-email-not-sent.html:4
+msgid "Invalid verification"
+msgstr "Ошибка верификации"
+
+#: templates/accounts/email/invalid_verification_link.html:7
+msgid "Invalid verification link"
+msgstr "Неверная ссылка для активации"
+
+#: templates/accounts/email/verification-email-not-sent.html:7
+msgid "Error during verification email sending"
+msgstr "При отправке письма возникла ошибка. Попробуйте еще раз."
+
+#: templates/accounts/email/verification-email-sent.html:4
+msgid "Email sent"
+msgstr "Письмо отправлено"
+
+#: templates/accounts/email/verification-email-sent.html:7
+#, python-format
+msgid ""
+"\n"
+"        Email was sent to %(email)s. Please check your mailbox and verify your email address.\n"
+"    "
+msgstr ""
+"\n"
+"Письмо было отправлено на %(email)s. Пожалуйста, проверьте почту и подтвердите ваш email."
+
+#: templates/accounts/email/verification_email.html:4
+#, python-format
+msgid ""
+"\n"
+"Dear %(name)s,\n"
+"\n"
+"Please click on the link below to confirm your registration:\n"
+msgstr ""
+"\n"
+"Уважаемый(ая) %(name)s,\n"
+"\n"
+"Пожалуйста, нажмите на ссылку ниже для подтверждения регистрации:\n"
+
+#: templates/accounts/login.html:4 templates/accounts/login.html:8
+msgid "Login"
+msgstr "Вход"
+
+#: templates/accounts/login.html:10
+msgid "Forgot password"
+msgstr "Забыли пароль"
+
+#: templates/accounts/password-reset/password_reset.html:4
+#: templates/accounts/password-reset/password_reset_complete.html:4
+#: templates/accounts/password-reset/password_reset_confirm.html:4
+#: templates/accounts/password-reset/password_reset_done.html:4
+#: templates/accounts/password-reset/password_reset_subject.txt:2
+msgid "Password reset"
+msgstr "Сброс пароля"
+
+#: templates/accounts/password-reset/password_reset.html:7
+msgid "Enter you email to reset password"
+msgstr "Для сброса пароля укажите ваш email"
+
+#: templates/accounts/password-reset/password_reset.html:8
+msgid "Send email"
+msgstr "Отправить письмо"
+
+#: templates/accounts/password-reset/password_reset_complete.html:7
+msgid "Password changed"
+msgstr "Пароль успешно изменен"
+
+#: templates/accounts/password-reset/password_reset_confirm.html:12
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: templates/accounts/password-reset/password_reset_confirm.html:15
+msgid "Invalid password reset link"
+msgstr ""
+"Неверная ссылка. Возможно, вы уже использовали ее ранее. Пожалуйста, "
+"запросите новую ссылку для сброса пароля."
+
+#: templates/accounts/password-reset/password_reset_done.html:7
+msgid "Password reset email sent"
+msgstr "Письмо с ссылкой для сброса пароля отправлено вам на почту."
+
+#: templates/accounts/password-reset/password_reset_email.html:4
+#, python-format
+msgid ""
+"\n"
+"Dear %(name)s,\n"
+"\n"
+"Please click the link below to reset your password:\n"
+msgstr ""
+"\n"
+"Уважаемый(ая) %(name)s,\n"
+"\n"
+"Для сброса пароля, пожалуйста, нажмите на ссылку ниже:\n"
+"\n"
+
+#: templates/accounts/profile.html:4
+msgid "Profile"
+msgstr "Профиль"
+
+#: templates/accounts/profile.html:19
+msgid "Name"
+msgstr "Имя"
+
+#: templates/accounts/profile.html:34
+msgid "My courses"
+msgstr "Мои курсы"
+
+#: templates/accounts/profile.html:37
+msgid "Course"
+msgstr "Курс"
+
+#: templates/accounts/profile.html:41
+msgid "Start"
+msgstr "Начать"
+
+#: templates/accounts/profile.html:45
+msgid "You don't have any purchased cources"
+msgstr "У вас нет приобретенных курсов"
+
+#: templates/accounts/register.html:4
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/accounts/register.html:8
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#~ msgid "Email was sent. Check mailbox"
+#~ msgstr ""
+#~ "Вам было отправлено письмо. Пожалуйста, проверьте почту и подтвердите ваш "
+#~ "email."
+
+#~ msgid "Change Password"
+#~ msgstr "Сменить пароль"
