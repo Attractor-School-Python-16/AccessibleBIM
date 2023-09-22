@@ -11,7 +11,10 @@ from quiz_bim.forms.answer_bim_form import AnswerBimForm
 class AnswerBimCreateView(PermissionRequiredMixin, CreateView):
     form_class = AnswerBimForm
     template_name = "quiz_bim/answer_bim/answer_bim_create.html"
-    permission_required = 'quiz_bim.add_answerbim'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def form_valid(self, form):
         question = get_object_or_404(QuestionBim, pk=self.kwargs.get("pk"))
@@ -27,7 +30,10 @@ class AnswerBimUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'quiz_bim/answer_bim/answer_bim_update.html'
     success_url = reverse_lazy('quiz_bim:tests_list')
     context_object_name = 'answer'
-    permission_required = 'quiz_bim.change_answerbim'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
 
 class AnswerBimDeleteView(PermissionRequiredMixin, DeleteView):
@@ -35,4 +41,7 @@ class AnswerBimDeleteView(PermissionRequiredMixin, DeleteView):
     context_object_name = 'answer'
     template_name = 'quiz_bim/answer_bim/answer_bim_delete.html'
     success_url = reverse_lazy('quiz_bim:tests_list')
-    permission_required = 'quiz_bim.delete_answerbim'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
