@@ -2,15 +2,23 @@
 {% load static %}
 {% block title %}Удаление ЦА{% endblock %}
 {% block content %}
-    <div class="d-block">
-        <p class="card-text">Вы точно хотите удалить ЦА:<span class="text-danger"> {{ course_target.title }}</span>
-        </p>
-    </div>
-    <form method="POST">
-        {% csrf_token %}
-        <div class="btn-group" role="group">
-            <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <p class="card-text">Вы точно хотите удалить ЦА:<span
+                        class="text-danger"> {{ course_target.title }}</span>
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="btn-group" role="group">
+                        <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
+                    </div>
+                    <a class="btn btn-primary" href="{% url "modules:course_target_detail" course_target.pk %}">Нет</a>
+                </form>
+            </div>
         </div>
-        <a class="btn btn-primary" href="{% url "modules:course_target_detail" course_target.pk %}">Нет</a>
-    </form>
+    </div>
 {% endblock %}

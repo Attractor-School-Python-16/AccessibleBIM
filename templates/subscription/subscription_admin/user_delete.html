@@ -2,17 +2,26 @@
 {% load static %}
 {% block title %}Удаление курса{% endblock %}
 {% block content %}
-    <div class="d-block">
-        <p class="card-text">Вы точно хотите удалить подписку на курс <span
-                class="text-danger"> {{ subscription }}</span> у
-            <strong>{{ user.first_name }} {{ user.last_name }}:</strong></p>
-    </div>
-    <form method="POST">
-        {% csrf_token %}
-        <div class="btn-group" role="group">
-            <input type="hidden" name="delete" class="btn btn-danger" value="{{ subscription.pk }}">
-            <button type="submit" class="btn btn-danger">Да</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <div class="d-block">
+                    <p class="card-text">Вы точно хотите удалить подписку на курс <span
+                            class="text-danger"> {{ subscription }}</span> у
+                        <strong>{{ user.first_name }} {{ user.last_name }}:</strong></p>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="btn-group" role="group">
+                        <input type="hidden" name="delete" class="btn btn-danger" value="{{ subscription.pk }}">
+                        <button type="submit" class="btn btn-danger">Да</button>
+                    </div>
+                    <a class="btn btn-primary" href="{% url "subscription:subscription_users_list" %}">Нет</a>
+                </form>
+            </div>
         </div>
-        <a class="btn btn-primary" href="{% url "subscription:subscription_users_list" %}">Нет</a>
-    </form>
+    </div>
 {% endblock %}
