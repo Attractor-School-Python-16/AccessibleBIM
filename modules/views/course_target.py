@@ -13,6 +13,11 @@ class CourseTargetsListView(PermissionRequiredMixin, ListView):
     ordering = ("-create_at",)
     permission_required = 'modules.view_coursetargetmodel'
 
+    def has_permission(self):
+        user = self.request.user
+        print(user.groups.get("moderator"))
+        return self.request.user.has_perm("modules.view_coursetargetmodel")
+
 
 class CourseTargetCreateView(PermissionRequiredMixin, CreateView):
     template_name = "course_target/course_target_create.html"
