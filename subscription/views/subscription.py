@@ -60,10 +60,6 @@ class SubscriptionUserListView(ListView):
     context_object_name = 'users'
     queryset = CustomUser.objects.all().filter(is_superuser=0)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        kwargs['subscriptions'] = SubscriptionModel.objects.all().filter(us_subscriptions__is_active=True)
-        return super().get_context_data(**kwargs)
-
 
 class SubscriptionUserAddView(DetailView, FormMixin):
     model = CustomUser
@@ -84,7 +80,8 @@ class SubscriptionUserAddView(DetailView, FormMixin):
         find_subscription = get_object_or_404(SubscriptionModel, pk=self.button_value)
         user = get_object_or_404(CustomUser, pk=self.object.pk)
         if UsersSubscription.objects.all().filter(Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)):
-            user_subscription = get_object_or_404(UsersSubscription, (Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)))
+            user_subscription = get_object_or_404(UsersSubscription,
+                                                  (Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)))
             user_subscription.end_time = datetime.now() + timedelta(days=30)
             user_subscription.subscription_id = self.button_value
             user_subscription.is_active = True
@@ -127,7 +124,8 @@ class SubscriptionUserDeleteView(DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form, *args, **kwargs):
-        user_subscription = get_object_or_404(UsersSubscription, (Q(user_id=self.object.pk) & Q(subscription_id=self.delete_value)))
+        user_subscription = get_object_or_404(UsersSubscription,
+                                              (Q(user_id=self.object.pk) & Q(subscription_id=self.delete_value)))
         user_subscription.is_active = False
         user_subscription.save()
         return redirect('subscription:subscription_users_list')
@@ -139,4 +137,3 @@ class SubscriptionUserDeleteView(DeleteView):
         if self.form.is_valid():
             return self.form.cleaned_data['delete']
         return None
-
