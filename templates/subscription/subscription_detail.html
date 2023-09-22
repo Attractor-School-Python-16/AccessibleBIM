@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Подписка на{{ subscription.course }}{% endblock %}
 {% block content %}
-    <div class="container mt-3">
-        <p>Подписка на курс: {{ subscription.course }}</p>
-        <a href="{% url 'subscription:subscription_delete' subscription.id %}" class="btn btn-danger">Удалить</a>
-        <a href="{% url 'subscription:subscription_update' subscription.id %}" class="btn btn-primary">Изменить</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <p>Подписка на курс: {{ subscription.course }}</p>
+                <a href="{% url 'subscription:subscription_delete' subscription.id %}"
+                   class="btn btn-danger">Удалить</a>
+                <a href="{% url 'subscription:subscription_update' subscription.id %}"
+                   class="btn btn-primary">Изменить</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

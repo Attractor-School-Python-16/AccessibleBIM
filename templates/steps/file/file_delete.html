@@ -3,17 +3,25 @@
     Удаление файла
 {% endblock %}
 {% block content %}
-    {% if perms.step.delete_filemodel %}
-        <h3 class="mt-4">Вы уверены, что хотите удалить этот файл?</h3>
-        <form action="" method="post" id="delete-form">
-            {% csrf_token %}
-            <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
-            <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
-        </form>
-    {% endif %}
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                {% if perms.step.delete_filemodel %}
+                    <h3 class="mt-4">Вы уверены, что хотите удалить этот файл?</h3>
+                    <form action="" method="post" id="delete-form">
+                        {% csrf_token %}
+                        <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
+                        <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
     <script>
-        document.getElementById("cancel-button").addEventListener("click", function(e) {
+        document.getElementById("cancel-button").addEventListener("click", function (e) {
             e.preventDefault();
             {#Получаем URL предыдущей страницы#}
             let previousUrl = document.referrer;

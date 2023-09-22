@@ -2,19 +2,37 @@
 {% block title %}Список ЦА{% endblock %}
 {% block content %}
     <div class="container">
-        {% for course_target in course_targets %}
-            <a href="{% url 'modules:course_target_detail' course_target.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <div class="card-body border-bottom">
-                            <p class="card-text">{{ course_target.title }}</p>
-                        </div>
-                        <div class="card-body border-bottom">
-                            <p class="card-text">{{ course_target.description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                 <h1>Список целевых аудиторий</h1>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for course_target in course_targets %}
+                        <tr>
+                            <td>{{ course_target.id }}</td>
+                            <td><a href="{% url 'modules:course_target_detail' course_target.id %}">{{ course_target.title}}
+                            </a></td>
+                            <td>
+                                <a href="{% url 'modules:course_target_update' course_target.id %}" class="btn btn-info
+                                btn-sm">Изменить</a>
+                                <a href="{% url 'modules:course_target_delete' course_target.id %}" class="btn btn-danger
+                                btn-sm">Удалить</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

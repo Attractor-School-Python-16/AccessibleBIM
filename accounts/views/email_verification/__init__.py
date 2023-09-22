@@ -1,0 +1,3 @@
+from accounts.views.email_verification.invalid_verification_link_view import InvalidVerificationLinkView
+from accounts.views.email_verification.verification_email_sent_view import VerificationEmailSentView
+from accounts.views.email_verification.verification_email_not_sent_view import VerificationEmailNotSentView
