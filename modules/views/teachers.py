@@ -11,14 +11,20 @@ class TeachersListView(PermissionRequiredMixin, ListView):
     template_name = 'teachers/teachers_list.html'
     context_object_name = 'teachers'
     ordering = ("-create_at",)
-    permission_required = 'modules.view_teachermodel'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
 
 class TeacherCreateView(PermissionRequiredMixin, CreateView):
     template_name = "teachers/teacher_create.html"
     model = TeacherModel
     form_class = TeacherForm
-    permission_required = 'modules.add_teachermodel'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def get_success_url(self):
         return reverse("modules:teacher_detail", kwargs={"pk": self.object.pk})
@@ -28,7 +34,10 @@ class TeacherDetailView(PermissionRequiredMixin, DetailView):
     model = TeacherModel
     context_object_name = 'teacher'
     template_name = 'teachers/teacher_detail.html'
-    permission_required = 'modules.view_teachermodel'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
 
 class TeacherUpdateView(PermissionRequiredMixin, UpdateView):
@@ -36,7 +45,10 @@ class TeacherUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = TeacherForm
     context_object_name = 'teacher'
     template_name = 'teachers/teacher_update.html'
-    permission_required = 'modules.change_teachermodel'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def get_success_url(self):
         return reverse("modules:teacher_detail", kwargs={"pk": self.object.pk})
@@ -47,4 +59,7 @@ class TeacherDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = "teachers/teacher_delete.html"
     context_object_name = 'teacher'
     success_url = reverse_lazy("modules:teachers_list")
-    permission_required = 'modules.delete_teachermodel'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
