@@ -5,7 +5,7 @@ from modules.models import ChapterModel
 from step.forms.step_form import StepForm
 from step.models import VideoModel, TextModel, FileModel, video_upload_to
 from step.models.step import StepModel
-from quiz_bim.models import QuizBim
+from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 
 
 class StepListView(ListView):
@@ -89,8 +89,25 @@ class StepCreateView(CreateView):
         if test:
             form.instance.test = test
             return test
-
-
+        test_instance = QuizBim.objects.create(
+            title=self.request.POST.get('test_title'),
+            questions_qty=self.request.POST.get('test_questions_qty')
+        )
+        for i in range(1, int(test_instance.questions_qty) + 1):
+            question_text = self.request.POST.get(f'question_title_{i}')
+            question = QuestionBim.objects.create(title=question_text, test_bim=test_instance)
+            answers_qty = 0
+            for j in range(1, 11):  # Предположим, что не может быть больше 10 вариантов
+                answer_text = self.request.POST.get(f'answer_{i}_{j}')
+                if answer_text:
+                    answers_qty += 1
+            for j in range(1, answers_qty + 1):
+                answer_text = self.request.POST.get(f'answer_{i}_{j}')
+                is_correct = self.request.POST.get(f'is_correct_{i}_{j}')
+                if answer_text:
+                    AnswerBim.objects.create(answer=answer_text, is_correct=is_correct, question_bim=question)
+        form.instance.test = test_instance
+        return test_instance
 
 
 
