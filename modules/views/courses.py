@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 
@@ -11,12 +12,20 @@ class CoursesListView(ListView):
     context_object_name = 'courses'
     ordering = ("-create_at",)
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
-class CourseCreateView(CreateView):
+
+class CourseCreateView(PermissionRequiredMixin, CreateView):
     template_name = "courses/course_create.html"
     model = CourseModel
     form_class = CoursesForm
     module_pk = None
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def get_initial(self):
         self.module_pk = self.request.GET.get('module_pk')
@@ -30,10 +39,14 @@ class CourseCreateView(CreateView):
         return reverse("modules:course_detail", kwargs={"pk": self.object.pk})
 
 
-class CourseDetailView(DetailView):
+class CourseDetailView(PermissionRequiredMixin, DetailView):
     model = CourseModel
     context_object_name = 'course'
     template_name = 'courses/course_detail.html'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,18 +54,26 @@ class CourseDetailView(DetailView):
         return context
 
 
-class CourseUpdateView(UpdateView):
+class CourseUpdateView(PermissionRequiredMixin, UpdateView):
     model = CourseModel
     form_class = CoursesForm
     context_object_name = 'course'
     template_name = 'courses/course_update.html'
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
+
     def get_success_url(self):
         return reverse("modules:course_detail", kwargs={"pk": self.object.pk})
 
 
-class CourseDeleteView(DeleteView):
+class CourseDeleteView(PermissionRequiredMixin, DeleteView):
     model = CourseModel
     template_name = "courses/course_delete.html"
     context_object_name = 'course'
     success_url = reverse_lazy("modules:courses_list")
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
