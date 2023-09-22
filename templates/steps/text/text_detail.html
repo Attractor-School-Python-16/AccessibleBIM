@@ -3,11 +3,20 @@
     {{ text.text_title }}
 {% endblock %}
 {% block content %}
-    <div class="container">
-        <h1>{{ text.text_title }}</h1>
-        <p>{{ text.text_description }}</p>
-        <p>{{ text.content }}</p>
-        </br>
-        <a href="{% url 'step:text_list' %}">Вернуться к списку текстов</a>
-    </div>
+    {% if request.user.is_authenticated %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    {% include 'partials/sidebar.html' %}
+                </div>
+                <div class="col-md-9">
+                    <h1>{{ text.text_title }}</h1>
+                    <p>{{ text.text_description }}</p>
+                    <p>{{ text.content }}</p>
+                    </br>
+                    <a href="{% url 'step:text_list' %}">Вернуться к списку текстов</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

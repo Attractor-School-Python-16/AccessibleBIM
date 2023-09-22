@@ -1,20 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Список тестов</h2>
-    <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url "quiz_bim:test_create" %}">
-        <button type="submit" class="btn btn-primary">Добавить новый тест</button>
-    </a>
-{% for test in tests %}
-    <div class="row justify-content-center mt-1">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ test.title }}</h5>
-                <a class="btn btn-primary" href="{% url 'quiz_bim:take_test' pk=test.pk %}" role="button">Прохождение теста</a>
-                <a class="btn btn-primary" href="{% url 'quiz_bim:test_detail' pk=test.pk %}" role="button">Подробнее</a>
-                <a class="btn btn-primary" href="{% url 'quiz_bim:test_update' pk=test.pk %}" role="button">Редактировать</a>
-                <a class="btn btn-danger" href="{% url 'quiz_bim:test_delete' pk=test.pk %}" role="button">Удалить</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h2>Список тестов</h2>
+                <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                   href="{% url "quiz_bim:test_create" %}">
+                    <button type="submit" class="btn btn-primary">Добавить новый тест</button>
+                </a>
+                {% for test in tests %}
+                    <div class="row justify-content-center mt-1">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ test.title }}</h5>
+                                <a class="btn btn-primary" href="{% url 'quiz_bim:take_test' pk=test.pk %}"
+                                   role="button">Прохождение теста</a>
+                                <a class="btn btn-primary" href="{% url 'quiz_bim:test_detail' pk=test.pk %}"
+                                   role="button">Подробнее</a>
+                                <a class="btn btn-primary" href="{% url 'quiz_bim:test_update' pk=test.pk %}"
+                                   role="button">Редактировать</a>
+                                <a class="btn btn-danger" href="{% url 'quiz_bim:test_delete' pk=test.pk %}"
+                                   role="button">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-{% endfor %}
 {% endblock %}
