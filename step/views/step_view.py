@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
@@ -8,6 +9,7 @@ from step.models.step import StepModel
 from quiz_bim.models import QuizBim
 
 
+# Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
 class StepListView(ListView):
     model = StepModel
     template_name = 'steps/step/step_list.html'
@@ -15,10 +17,14 @@ class StepListView(ListView):
     success_url = reverse_lazy('modules:index')
 
 
-class StepDetailView(DetailView):
+class StepDetailView(PermissionRequiredMixin, DetailView):
     queryset = StepModel.objects.all()
     context_object_name = 'step'
     template_name = "steps/step/step_detail.html"
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -30,17 +36,19 @@ class StepDetailView(DetailView):
         return context
 
 
-class StepCreateView(CreateView):
+class StepCreateView(PermissionRequiredMixin, CreateView):
     model = StepModel
     form_class = StepForm
     template_name = "steps/step/step_create.html"
     chapter = None
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
+
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
-
-
 
     def form_valid(self, form):
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
@@ -86,12 +94,15 @@ class StepCreateView(CreateView):
         return video_instance
 
 
-
-class StepUpdateView(UpdateView):
+class StepUpdateView(PermissionRequiredMixin, UpdateView):
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
     success_url = reverse_lazy('step:step_list')
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def form_valid(self, form):
         lesson_type = form.cleaned_data['lesson_type']
@@ -136,8 +147,11 @@ class StepUpdateView(UpdateView):
         return video_instance
 
 
-
-class StepDeleteView(DeleteView):
+class StepDeleteView(PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
     success_url = reverse_lazy('step:step_list')
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
