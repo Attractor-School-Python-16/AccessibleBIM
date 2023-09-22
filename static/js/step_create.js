@@ -9,10 +9,10 @@ const textForm = document.getElementById("text-form");
 const videoForm = document.getElementById("video-form");
 const testForm = document.getElementById("test-form");
 
-
 function handleSelectChange(select, form) {
     if (select.value) {
         form.style.display = "none";
+        clearInputsInDiv(form);
     } else {
         form.style.display = "block";
     }
@@ -21,15 +21,32 @@ function handleSelectChange(select, form) {
 
 function clearInputsInDiv(div) {
     const inputElements = div.getElementsByTagName('input');
-    const selectElements = div.getElementsByTagName('select');
+    const textareaElements = div.querySelectorAll('textarea');
+
+
+    console.log("Select elements:", selectElements);
+    console.log(div);
+
 
     for (let i = 0; i < inputElements.length; i++) {
         inputElements[i].value = '';
     }
+
     for (let i = 0; i < selectElements.length; i++) {
-        selectElements[i].value = '';
+        const select = selectElements[i];
+        const defaultOption = select.querySelector('option[selected]');
+        if (defaultOption) {
+            select.value = defaultOption.value;
+        } else {
+            select.selectedIndex = -1;
+        }
+    }
+
+    for (let i = 0; i < textareaElements.length; i++) {
+        textareaElements[i].value = '';
     }
 }
+
 
 
 textSelect.addEventListener("change", function () {
@@ -49,26 +66,32 @@ lessonType.addEventListener("change", function () {
         textContent.style.display = "block";
         videoContent.style.display = "none";
         testContent.style.display = "none";
-        clearInputsInDiv(videoContent, testContent);
+        clearInputsInDiv(videoForm);
+        clearInputsInDiv(testForm);
     } else if (lessonType.value === "video") {
         textContent.style.display = "none";
         videoContent.style.display = "block";
         testContent.style.display = "none";
-        clearInputsInDiv(textContent, testContent);
+        clearInputsInDiv(textForm);
+        clearInputsInDiv(testForm);
     } else if (lessonType.value === "test") {
         textContent.style.display = "none";
         videoContent.style.display = "none";
         testContent.style.display = "block";
-        clearInputsInDiv(videoContent, textContent);
+        clearInputsInDiv(textForm);
+        clearInputsInDiv(videoForm);
     }
 });
 
 document.getElementById("confirmQuestions").addEventListener("click", function () {
-    const questionsQty = parseInt(document.getElementById("test_questions_qty").value, 10);
+    const questionsQtyInput = document.getElementsByName("test_questions_qty")[0];
+    const questionsQty = parseInt(questionsQtyInput.value);
     if (!isNaN(questionsQty)) {
         createQuestionInputs(questionsQty);
     }
 });
+
+let questionCounter = 1;
 
 function createQuestionInputs(questionsQty) {
     const questionForm = document.getElementById("question-form");
@@ -90,42 +113,56 @@ function createQuestionInputs(questionsQty) {
         const answersContainer = document.createElement("div");
         answersContainer.setAttribute("class", "content-test");
 
+        const answersQtyInput = document.createElement("input");
+        answersQtyInput.setAttribute("type", "hidden");
+        answersQtyInput.setAttribute("name", `answers_qty_${i}`);
+        answersQtyInput.value = 0;
+
         const addAnswerButton = document.createElement("button");
         addAnswerButton.setAttribute("type", "button");
         addAnswerButton.setAttribute("class", "btn btn-primary my-3");
         addAnswerButton.textContent = "Добавить ответ";
+        addAnswerButton.setAttribute("data-question-number", i);
 
         addAnswerButton.addEventListener("click", function () {
-            createAnswerInputs(answersContainer);
+            const questionNumber = this.getAttribute("data-question-number");
+            createAnswerInputs(answersContainer, questionNumber);
         });
 
         questionBlock.appendChild(questionLabel);
         questionBlock.appendChild(questionInput);
         questionBlock.appendChild(answersContainer);
+        questionBlock.appendChild(answersQtyInput);
         questionBlock.appendChild(addAnswerButton);
+
         questionForm.appendChild(questionBlock);
-        createAnswerInputs(answersContainer);
+
+        questionCounter++;
     }
 }
 
-function createAnswerInputs(answersContainer) {
+function createAnswerInputs(answersContainer, questionNumber) {
     const answerBlock = document.createElement("div");
     answerBlock.setAttribute("class", "content-test");
 
+    const questionIndex = questionNumber;
+    const answersQtyInput = answersContainer.parentElement.querySelector(`input[name="answers_qty_${questionIndex}"]`);
+    const currentAnswersQty = parseInt(answersQtyInput.value, 10);
+
     const answerLabel = document.createElement("label");
-    answerLabel.setAttribute("for", "answer");
-    answerLabel.textContent = "Введите ответ";
+    answerLabel.setAttribute("for", `answer_${questionNumber}_${currentAnswersQty + 1}`);
+    answerLabel.textContent = `Введите ответ ${currentAnswersQty + 1} для вопроса ${questionNumber}`;
 
     const answerInput = document.createElement("input");
     answerInput.setAttribute("type", "text");
-    answerInput.setAttribute("name", "answer");
+    answerInput.setAttribute("name", `answer_${questionNumber}_${currentAnswersQty + 1}`);
     answerInput.setAttribute("class", "form-control");
 
     const isCorrectLabel = document.createElement("label");
     isCorrectLabel.textContent = "Выберите правильность ответа";
 
     const isCorrectSelect = document.createElement("select");
-    isCorrectSelect.setAttribute("name", "is_correct");
+    isCorrectSelect.setAttribute("name", `is_correct_${questionNumber}_${currentAnswersQty + 1}`);
     isCorrectSelect.setAttribute("class", "form-control");
     isCorrectSelect.innerHTML = `
             <option value="False" selected>Неверный ответ</option>
@@ -136,6 +173,8 @@ function createAnswerInputs(answersContainer) {
     answerBlock.appendChild(answerInput);
     answerBlock.appendChild(isCorrectLabel);
     answerBlock.appendChild(isCorrectSelect);
+
     answersContainer.appendChild(answerBlock);
 
+    answersQtyInput.value = currentAnswersQty + 1;
 }
