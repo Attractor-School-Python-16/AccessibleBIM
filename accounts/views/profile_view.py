@@ -1,15 +1,11 @@
 from django.shortcuts import render
 
-from django.views import View
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views.generic import TemplateView
 from accounts.models import CustomUser
 
 
+class ProfileView(TemplateView):
+    template_name = 'accounts/profile.html'
 
-class ProfileView(View):
-    def get(self, request, *args, **kwargs):
-        is_moderator = self.request.user.groups.filter(name='moderators').exists()
-        context = {
-            'is_moderator': is_moderator
-        }
-        return render(request, 'accounts/profile.html', context)
+
