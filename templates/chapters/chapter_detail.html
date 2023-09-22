@@ -1,15 +1,56 @@
 {% extends 'base.html' %}
-{% block title %}{{ course.title }}{% endblock %}
+{% block title %}{{ chapter.title }}{% endblock %}
 {% block content %}
-    {% include 'partials/main_block.html' with data=chapter %}
-
     <div class="container">
-
-        <a href="{% url 'modules:chapter_delete' chapter.id %}" class="btn btn-danger">Удалить</a>
-        <a href="{% url 'modules:chapter_update' chapter.id %}" class="btn btn-primary">Изменить</a>
-        <div>
-            <p>Курс: {{ chapter.course }}</p>
-            <p>Порядковый номер: {{ chapter.serial_number }}</p>
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <div class="d-inline-block ms-5">
+                    <div>
+                        <h2>Глава: {{ chapter.title }}</h2>
+                        <h3>Описание: {{ chapter.description }}</h3>
+                        <p>Курс: {{ chapter.course }}</p>
+                        <p>Порядковый номер: {{ chapter.serial_number }}</p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="{% url 'modules:chapter_update' chapter.id %}"
+                           class="btn btn-info btn-sm mx-3">Изменить</a>
+                        <a href="{% url 'modules:chapter_delete' chapter.id %}"
+                           class="btn btn-danger btn-sm">Удалить</a>
+                    </div>
+                </div>
+                <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
+                <a href="{% url 'step:step_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
+                my-3">Добавить занятие</a>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th class="text-end">Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for step in steps %}
+                        <tr>
+                            <td>{{ chapter.id }}</td>
+                            <td><a href="{% url 'step:step_detail' step.id %}">{{ step.title }}</a></td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <a href="{% url 'step:step_update' step.id %}"
+                                       class="btn btn-info btn-sm mx-3">Изменить</a>
+                                    <a href="{% url 'step:step_delete' step.id %}"
+                                       class="btn btn-danger btn-sm">Удалить</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}
+

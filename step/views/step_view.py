@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
+from modules.models import ChapterModel
 from step.forms.step_form import StepForm
 from step.models import VideoModel, TextModel, FileModel, video_upload_to
 from step.models.step import StepModel
@@ -22,11 +23,10 @@ class StepDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         step = context['step']
-        print(step)
         files = FileModel.objects.filter(step=step)
-        print(files)
         context['files'] = files
-        print(context)
+        if self.object.lesson_type == 'test':
+            context['questions'] = self.object.test.question_bim.all()
         return context
 
 
@@ -34,17 +34,24 @@ class StepCreateView(CreateView):
     model = StepModel
     form_class = StepForm
     template_name = "steps/step/step_create.html"
+    chapter = None
+
+    def get_initial(self):
+        self.chapter = self.request.GET.get('chapter_pk')
+        return {'chapter': self.chapter}
+
+
 
     def form_valid(self, form):
+        form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
             self.handle_text_lesson(form)
         elif lesson_type == 'video':
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
-            pass
+            form.instance.test = QuizBim.objects.get(pk=self.request.POST.get('test'))
         form.instance.save()
-        # self.handle_uploaded_file(form)
         return super().form_valid(form)
 
     def handle_text_lesson(self, form):
@@ -87,7 +94,6 @@ class StepUpdateView(UpdateView):
     success_url = reverse_lazy('step:step_list')
 
     def form_valid(self, form):
-        print(self.request.POST)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
             self.handle_text_lesson(form)
@@ -99,7 +105,6 @@ class StepUpdateView(UpdateView):
         return super().form_valid(form)
 
     def handle_text_lesson(self, form):
-        print(form)
         text = self.request.POST.get('text')
         if text:
             form.instance.text = TextModel.objects.get(pk=text)

@@ -10,10 +10,10 @@ class SubscriptionModel(AbstractModel):
     price = models.IntegerField(null=False, blank=False, verbose_name='Цена за курс')
     discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='Скидка на курс')
     user_subscription = models.ManyToManyField(get_user_model(), through="UsersSubscription")
+
     # Стоит ли делать время завершения скидки? Или что мы тут хотели сделать?
 
     def get_total_price(self):
-        print(self.price)
         return self.price
 
     class Meta:
