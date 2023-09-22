@@ -12,7 +12,10 @@ class QuestionBimDetailView(PermissionRequiredMixin, DetailView):
     queryset = QuestionBim.objects.all()
     template_name = "quiz_bim/question_bim/question_bim_detail.html"
     context_object_name = 'question'
-    permission_required = 'quiz_bim.view_questionbim'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def get_context_data(self, **kwargs):
         answers = self.object.answer_bim.all()
@@ -23,7 +26,10 @@ class QuestionBimDetailView(PermissionRequiredMixin, DetailView):
 class QuestionBimCreateView(PermissionRequiredMixin, CreateView):
     form_class = QuestionBimForm
     template_name = "quiz_bim/question_bim/question_bim_create.html"
-    permission_required = 'quiz_bim.add_questionbim'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
     def form_valid(self, form):
         quiz = get_object_or_404(QuizBim, pk=self.kwargs.get("pk"))
@@ -39,7 +45,10 @@ class QuestionBimUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'quiz_bim/question_bim/question_bim_update.html'
     success_url = reverse_lazy('quiz_bim:tests_list')
     context_object_name = 'question'
-    permission_required = 'quiz_bim.change_questionbim'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
 
 
 class QuestionBimDeleteView(PermissionRequiredMixin, DeleteView):
@@ -47,4 +56,7 @@ class QuestionBimDeleteView(PermissionRequiredMixin, DeleteView):
     context_object_name = 'question'
     template_name = 'quiz_bim/question_bim/question_bim_delete.html'
     success_url = reverse_lazy('quiz_bim:tests_list')
-    permission_required = 'quiz_bim.delete_questionbim'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists()
