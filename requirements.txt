@@ -1,4 +1,5 @@
 asgiref==3.7.2
+bleach==6.0.0
 certifi==2023.7.22
 charset-normalizer==3.2.0
 Django==4.1.10
@@ -6,6 +7,7 @@ django-phonenumber-field==7.1.0
 django-ranged-response==0.2.0
 django-rosetta==0.9.9
 django-simple-captcha==0.5.18
+django-summernote==0.8.20.0
 factory-boy==3.3.0
 Faker==19.3.1
 idna==3.4
@@ -20,3 +22,4 @@ sqlparse==0.4.4
 typing_extensions==4.7.1
 tzdata==2023.3
 urllib3==2.0.4
+webencodings==0.5.1
