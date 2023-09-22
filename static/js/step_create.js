@@ -24,23 +24,11 @@ function clearInputsInDiv(div) {
     const textareaElements = div.querySelectorAll('textarea');
 
 
-    console.log("Select elements:", selectElements);
-    console.log(div);
-
 
     for (let i = 0; i < inputElements.length; i++) {
         inputElements[i].value = '';
     }
 
-    for (let i = 0; i < selectElements.length; i++) {
-        const select = selectElements[i];
-        const defaultOption = select.querySelector('option[selected]');
-        if (defaultOption) {
-            select.value = defaultOption.value;
-        } else {
-            select.selectedIndex = -1;
-        }
-    }
 
     for (let i = 0; i < textareaElements.length; i++) {
         textareaElements[i].value = '';
