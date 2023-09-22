@@ -2,37 +2,38 @@
 {% block title %}Модули{% endblock %}
 {% block content %}
     <div class="container">
-        {% for module in modules %}
-            <a href="{% url 'modules:module_detail' module.pk %}" class="card mb-3 mt-3 link-underline link-underline-opacity-0">
-                <div class="row g-0">
-                    <div class="col-md-3">
-                        <h5>{{ module.title }}</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body border-bottom">
-                            <p class="card-text">{{ module.description }}</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span class="card-text">Время прохождения</span>
-                                </div>
-                                <div class="col">
-                                    <span class="card-text">Уроков</span>
-                                </div>
-                                <div class="col">
-                                    <span class="card-text">Тестов</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card-body">
-                            <img class="img-thumbnail" src="{{ module.image.url }}" alt="{{ module.title }}">
-                        </div>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h1>Список модулей</h1><a href="{% url 'modules:module_create' %}" class="btn btn-primary my-3">Добавить модуль</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Название</th>
+                            <th class="text-end">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for module in modules %}
+                            <tr>
+                                <td>{{ module.id }}</td>
+                                <td><a href="{% url 'modules:module_detail' module.id %}">{{ module.title }}</a></td>
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a href="{% url 'modules:module_update' module.id %}"
+                                           class="btn btn-info btn-sm mx-3">Изменить</a>
+                                        <a href="{% url 'modules:module_delete' module.id %}"
+                                           class="btn btn-danger btn-sm">Удалить</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

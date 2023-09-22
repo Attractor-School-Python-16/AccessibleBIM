@@ -16,16 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 from accessibleBIM import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('rosetta/', include('rosetta.urls')),
+    path('captcha/', include('captcha.urls')),
+] + i18n_patterns(
+    path("i18n/", include("django.conf.urls.i18n")),
     path('', include('modules.urls')),
     path('', include('progress.urls')),
     path('', include('accounts.urls')),
     path('', include('step.urls')),
     path('', include('subscription.urls')),
-    path('captcha/', include('captcha.urls')),
     path('quiz_bim/', include('quiz_bim.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

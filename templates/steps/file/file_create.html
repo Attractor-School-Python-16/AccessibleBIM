@@ -3,14 +3,23 @@
     Добавить файл
 {% endblock %}
 {% block content %}
-    {% if perms.step.add_filemodel %}
-        <div class="d-flex justify-content-center">
-            <div class="container my-5 text-center">
-                <h2>Создайте файл:</h2>
-                <div class="d-flex justify-content-center">
-                    {% include "partials/form.html" with button_text="Добавить файл" %}
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                {% if perms.step.add_filemodel %}
+                    <div class="d-flex justify-content-center">
+                        <div class="container my-5 text-center">
+                            <h2>Создайте файл:</h2>
+                            <div class="d-flex justify-content-center">
+                                {% include "partials/form.html" with button_text="Добавить файл" %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
-    {% endif %}
+    </div>
 {% endblock %}
