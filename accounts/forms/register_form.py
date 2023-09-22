@@ -10,8 +10,8 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'father_name', 'email', 'password1',
-                  'password2', 'phone_number', 'job_title', 'type_corp', 'company']  # нужно добавить 'country'
+        fields = ['first_name', 'last_name', 'father_name', 'email', 'password1', 'password2',
+                  'country', 'phone_number', 'job_title', 'type_corp', 'company']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
