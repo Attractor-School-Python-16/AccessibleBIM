@@ -27,7 +27,7 @@
     "model": "accounts.customuser",
     "pk": 6,
     "fields": {
-        "password": "pbkdf2_sha256$390000$05HnMfuvLRQpBAGTf8FTAU$KZbNbn6jOjDU4KOG3AuOdD08WGPfxOvw2p4100JtwGw=",
+        "password": "pbkdf2_sha256$390000$reUK9jdZPPfN2A2VUVtXqx$3bNgYftBNX23e8GJLfvINfsg7kp6jGTmi2rtuqRJQVU=",
         "last_login": "2023-09-22T14:59:06.859Z",
         "is_superuser": false,
         "username": "moder",
