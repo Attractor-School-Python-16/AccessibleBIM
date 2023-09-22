@@ -49,7 +49,7 @@ class StepCreateView(CreateView):
         elif lesson_type == 'video':
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
-            form.instance.test = QuizBim.objects.get(pk=self.request.POST.get('test'))
+            self.handle_quiz_lesson(form)
         form.instance.save()
         return super().form_valid(form)
 
@@ -83,6 +83,14 @@ class StepCreateView(CreateView):
         video_upload_to(instance=form.instance, filename=self.request.POST.get('video_title'))
         form.instance.video = video_instance
         return video_instance
+
+    def handle_quiz_lesson(self, form):
+        test = self.request.POST.get('test')
+        if test:
+            form.instance.test = test
+            return test
+
+
 
 
 
