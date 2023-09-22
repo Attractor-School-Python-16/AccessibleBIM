@@ -17,6 +17,7 @@
     "email_verified": true,
     "phone_number": "",
     "job_title": null,
+    "country": "Kyrgyzstan",
     "company": null,
     "type_corp": 7,
     "groups": [],
@@ -41,6 +42,7 @@
     "email_verified": false,
     "phone_number": "",
     "job_title": null,
+    "country": "Kyrgyzstan",
     "company": null,
     "type_corp": 7,
     "groups": [
@@ -67,6 +69,7 @@
     "email_verified": false,
     "phone_number": "+996700622792",
     "job_title": null,
+    "country": "Kyrgyzstan",
     "company": null,
     "type_corp": 7,
     "groups": [],
