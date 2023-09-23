@@ -68,7 +68,7 @@ class CustomUser(AbstractUser):
             ("can_view_admin_panel ", "Can view admin panel"),
         )
 
-    def is_moderators(self):
+    def is_moderator(self):
         return self.groups.filter(name='moderators').exists()
 
     def get_full_name(self):
