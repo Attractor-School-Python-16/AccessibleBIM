@@ -72,7 +72,6 @@ class QuizResultView(LoginRequiredMixin, DetailView):
     def get(self, request, *args, **kwargs):
         progress = self.get_object()
         if progress.user_progress.count() != progress.test.question_bim.count():
-            print("Failed")
             return redirect("quiz_bim:test_completion", pk=progress.pk)
         return super().get(request, *args, **kwargs)
 
