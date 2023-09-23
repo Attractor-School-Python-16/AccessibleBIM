@@ -4,7 +4,9 @@ from modules.models import AbstractModel
 
 class QuizBim(AbstractModel):
     title = models.CharField(max_length=100, verbose_name='Название теста')
-    questions_qty = models.PositiveIntegerField(verbose_name='Количество вопросов')
+
+    def questions_qty(self):
+        return self.question_bim.count()
 
     def __str__(self):
         return f'{self.title}'
