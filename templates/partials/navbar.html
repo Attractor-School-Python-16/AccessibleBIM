@@ -22,7 +22,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url "accounts:profile" %}">{{ request.user.first_name }}</a>
                     </li>
-                    {% if user.is_moderators %}
+                    {% if user.is_moderator %}
                         <li class="nav-item">
                             <a href="{% url 'modules:moderator_page' %}" class="nav-link active">Админ панель</a>
                         </li>
