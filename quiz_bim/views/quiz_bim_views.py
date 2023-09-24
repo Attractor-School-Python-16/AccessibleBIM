@@ -13,7 +13,7 @@ class QuizBimListView(PermissionRequiredMixin, ListView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class QuizBimDetailView(PermissionRequiredMixin, DetailView):
@@ -23,7 +23,7 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_context_data(self, **kwargs):
         questions = self.object.question_bim.all()
@@ -37,7 +37,7 @@ class QuizBimCreateView(PermissionRequiredMixin, CreateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("quiz_bim:test_detail", kwargs={"pk": self.object.pk})
@@ -52,7 +52,7 @@ class QuizBimUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class QuizBimDeleteView(PermissionRequiredMixin, DeleteView):
@@ -63,6 +63,6 @@ class QuizBimDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
