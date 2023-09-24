@@ -23,7 +23,7 @@ class AnswerBimUpdateView(UpdateView):
     model = AnswerBim
     form_class = AnswerBimForm
     template_name = 'quiz_bim/answer_bim/answer_bim_update.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
+    success_url = reverse_lazy('quiz_bim:tests_list')  # TODO: Поменять редирект на question_detail
     context_object_name = 'answer'
 
 
@@ -31,4 +31,4 @@ class AnswerBimDeleteView(DeleteView):
     model = AnswerBim
     context_object_name = 'answer'
     template_name = 'quiz_bim/answer_bim/answer_bim_delete.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
+    success_url = reverse_lazy('quiz_bim:tests_list')  # TODO: Поменять редирект на question_detail

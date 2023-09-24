@@ -37,6 +37,8 @@ class TestQuestionBimCreateView(TestCase):
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(QuestionBim.objects.count() - previous_count, 1)
+        question = QuestionBim.objects.latest('create_at')
+        self.assertRedirects(response, reverse("quiz_bim:test_detail", kwargs={"pk": question.test_bim.pk}))
 
     def test_invalid_data(self):
         invalid_data = {
@@ -63,6 +65,7 @@ class TestQuestionBimUpdateView(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.question.refresh_from_db()
         self.assertEqual(self.question.title, "New title")
+        # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
     def test_invalid_data(self):
         invalid_data = {
@@ -87,6 +90,7 @@ class TestQuestionBimDeleteView(TestCase):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(previous_count - QuestionBim.objects.count(), 1)
+        # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
     def test_not_found(self):
         previous_count = QuestionBim.objects.count()
