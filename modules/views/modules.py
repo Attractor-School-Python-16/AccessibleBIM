@@ -35,7 +35,7 @@ class ModuleCreateView(PermissionRequiredMixin, CreateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
