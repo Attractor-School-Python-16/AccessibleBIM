@@ -14,7 +14,7 @@ class AnswerBimCreateView(PermissionRequiredMixin, CreateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def form_valid(self, form):
         question = get_object_or_404(QuestionBim, pk=self.kwargs.get("pk"))
@@ -33,7 +33,7 @@ class AnswerBimUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class AnswerBimDeleteView(PermissionRequiredMixin, DeleteView):
@@ -44,4 +44,4 @@ class AnswerBimDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
