@@ -15,7 +15,7 @@ class ChaptersListView(PermissionRequiredMixin, ListView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class ChapterCreateView(PermissionRequiredMixin, CreateView):
@@ -26,7 +26,7 @@ class ChapterCreateView(PermissionRequiredMixin, CreateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_initial(self):
         self.course = self.request.GET.get('course_pk')
@@ -47,7 +47,7 @@ class ChapterDetailView(PermissionRequiredMixin, DetailView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,7 +63,7 @@ class ChapterUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("modules:chapter_detail", kwargs={"pk": self.object.pk})
@@ -77,4 +77,4 @@ class ChapterDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
