@@ -64,3 +64,22 @@ class TestAnswerBimUpdateView(TestCase):
     def test_not_found(self):
         response = self.client.get(reverse("quiz_bim:answer_update", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+
+class TestAnswerBimDeleteView(TestCase):
+
+    def setUp(self) -> None:
+        self.answer = AnswerBimFactory.create()
+        self.url = reverse("quiz_bim:answer_delete", kwargs={"pk": self.answer.pk})
+
+    def test_delete_view(self):
+        previous_count = AnswerBim.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count - AnswerBim.objects.count(), 1)
+
+    def test_not_found(self):
+        previous_count = AnswerBim.objects.count()
+        response = self.client.post(reverse("quiz_bim:answer_delete", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+        self.assertEqual(previous_count, AnswerBim.objects.count())
