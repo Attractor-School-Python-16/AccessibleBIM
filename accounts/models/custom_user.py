@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -46,7 +47,7 @@ class CustomUser(AbstractUser):
     email_verified = models.BooleanField(_("email_verified"), default=False)
     phone_number = PhoneNumberField(_("phone_number"), null=False, blank=False)
     job_title = models.CharField(_("job_title"), max_length=150, null=True, blank=True)
-    # country = models.ForeignKey()
+    country = CountryField(blank_label="(select country)")
     company = models.CharField(_('company_name'), max_length=150, null=True, blank=True)
     type_corp = models.IntegerField(_('company_type'), choices=TYPE_CORP_CHOICES, default=7)
     subscriptions = models.ManyToManyField("subscription.SubscriptionModel", related_name="users",
@@ -63,6 +64,12 @@ class CustomUser(AbstractUser):
 
     class Meta:
         app_label = 'accounts'
+        permissions = (
+            ("can_view_admin_panel ", "Can view admin panel"),
+        )
+
+    def is_moderator(self):
+        return self.groups.filter(name='moderators').exists()
 
     def get_full_name(self):
         """
