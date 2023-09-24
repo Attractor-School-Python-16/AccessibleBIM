@@ -22,6 +22,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url "accounts:profile" %}">{{ request.user.first_name }}</a>
                     </li>
+                    {% if user.is_moderator %}
+                        <li class="nav-item">
+                            <a href="{% url 'modules:moderator_page' %}" class="nav-link active">Админ панель</a>
+                        </li>
+                    {% endif %}
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
@@ -40,7 +45,8 @@
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                    selected{% endif %}>
                                 {{ language.name_local }} ({{ language.code }})
                             </option>
                         {% endfor %}
