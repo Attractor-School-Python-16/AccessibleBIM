@@ -6,8 +6,8 @@ from modules.models.module import AbstractModel
 class ChapterModel(AbstractModel):
     course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course',
                                verbose_name='Курсы')
-    title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название главы')
-    description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание главы')
+    title = models.CharField(max_length=150, null=False, blank=False, verbose_name='Название главы')
+    description = models.TextField(max_length=350, null=False, blank=False, verbose_name='Описание главы')
     serial_number = models.IntegerField(default=1)
 
     class Meta:
