@@ -71,7 +71,7 @@ class QuizResultView(LoginRequiredMixin, DetailView):
 
     def get(self, request, *args, **kwargs):
         progress = self.get_object()
-        if progress.user_progress.count() != progress.test.questions_qty:
+        if progress.user_progress.count() != progress.test.question_bim.count():
             return redirect("quiz_bim:test_completion", pk=progress.pk)
         return super().get(request, *args, **kwargs)
 
@@ -79,7 +79,7 @@ class QuizResultView(LoginRequiredMixin, DetailView):
         # TODO: Нужно будет явно уточнить пользователю что он еще не ответил на все вопросы
         # Если пользователь еще не ответил на все вопросы то его перекидывает в начало теста
         progress = self.get_object()
-        if progress.user_progress.count() == progress.test.questions_qty:
+        if progress.user_progress.count() == progress.test.question_bim.count():
             progress.end_time = datetime.now()
             progress.is_passed = (progress.accuracy() > 0.75)
             progress.save()
