@@ -17,6 +17,7 @@ class TextDetailView(LoginRequiredMixin, DetailView):
     template_name = "steps/text/text_detail.html"
     context_object_name = 'text'
 
+
 class TextCreateView(PermissionRequiredMixin, CreateView):
     model = TextModel
     form_class = TextForm

@@ -14,7 +14,6 @@ class TextForm(forms.ModelForm):
         }
         widgets = {
             'text_title': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'text_description': forms.Textarea(attrs={'class': 'form-control'}),
             'text_description': SummernoteWidget(),
             'content': SummernoteWidget(),
             'video_file': forms.Textarea(attrs={'class': 'form-control'}),
