@@ -16,6 +16,7 @@ class ModeratorView(PermissionRequiredMixin, TemplateView):
     def has_permission(self):
         return self.request.user.groups.filter(name='moderators').exists()
 
+
 class ModulesListView(ListView):
     model = ModuleModel
     template_name = 'modules/modules_list.html'
@@ -41,7 +42,6 @@ class ModuleDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['courses'] = CourseModel.objects.filter(module_id=self.object.id)
         return context
-
 
 
 class ModuleUpdateView(UpdateView):

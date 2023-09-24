@@ -12,7 +12,3 @@ class QuizBimForm(forms.ModelForm):
             'title': 'Тема тестирования',
             'questions_qty': 'Количество вопросов в тесте',
         }
-        widgets = {
-            'test_title': widgets.TextInput(attrs={'class': 'form-control'}),
-            'questions_qty': widgets.NumberInput(attrs={'class': 'form-control'}),
-        }

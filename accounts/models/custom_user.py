@@ -64,6 +64,12 @@ class CustomUser(AbstractUser):
 
     class Meta:
         app_label = 'accounts'
+        permissions = (
+            ("can_view_admin_panel ", "Can view admin panel"),
+        )
+
+    def is_moderator(self):
+        return self.groups.filter(name='moderators').exists()
 
     def get_full_name(self):
         """
