@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'captcha',
     'rosetta',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
     'accounts',
     'modules',
@@ -176,3 +178,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if 'test' in sys.argv:
     CAPTCHA_TEST_MODE = True
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

@@ -27,15 +27,15 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Порядковый номер</th>
                         <th>Название</th>
                         <th class="text-end">Действия</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for step in steps %}
+                    {% for step in steps|dictsort:"serial_number" %}
                         <tr>
-                            <td>{{ chapter.id }}</td>
+                            <td>{{ chapter.serial_number }}</td>
                             <td><a href="{% url 'step:step_detail' step.id %}">{{ step.title }}</a></td>
                             <td class="text-end">
                                 <div class="btn-group">
