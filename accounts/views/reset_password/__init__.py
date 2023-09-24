@@ -1,0 +1,4 @@
+from accounts.views.reset_password.reset_password_complete_view import ResetPasswordCompleteView
+from accounts.views.reset_password.reset_password_confirm_view import ResetPasswordConfirmView
+from accounts.views.reset_password.reset_password_done_view import ResetPasswordDoneView
+from accounts.views.reset_password.reset_password_view import ResetPasswordView

@@ -12,8 +12,3 @@ class VideoForm(forms.ModelForm):
             'video_description': 'Введите описание видео',
             'video_file': 'Загрузите видео-файл',
         }
-        widgets = {
-            'video_title': forms.TextInput(attrs={'class': 'form-control'}),
-            'video_description': forms.Textarea(attrs={'class': 'form-control'}),
-            'video_file': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-        }
