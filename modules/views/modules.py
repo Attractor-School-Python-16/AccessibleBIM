@@ -17,26 +17,38 @@ class ModeratorView(PermissionRequiredMixin, TemplateView):
         return self.request.user.groups.filter(name='moderators').exists()
 
 
-class ModulesListView(ListView):
+class ModulesListView(PermissionRequiredMixin, ListView):
     model = ModuleModel
     template_name = 'modules/modules_list.html'
     context_object_name = 'modules'
     ordering = ("-create_at",)
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
-class ModuleCreateView(CreateView):
+
+class ModuleCreateView(PermissionRequiredMixin, CreateView):
     template_name = "modules/module_create.html"
     model = ModuleModel
     form_class = ModulesForm
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
 
 
-class ModuleDetailView(DetailView):
+class ModuleDetailView(PermissionRequiredMixin, DetailView):
     model = ModuleModel
     context_object_name = 'module'
     template_name = 'modules/module_detail.html'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -44,21 +56,29 @@ class ModuleDetailView(DetailView):
         return context
 
 
-class ModuleUpdateView(UpdateView):
+class ModuleUpdateView(PermissionRequiredMixin, UpdateView):
     model = ModuleModel
     form_class = ModulesForm
     context_object_name = 'module'
     template_name = 'modules/module_update.html'
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
+
     def get_success_url(self):
         return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
 
 
-class ModuleDeleteView(DeleteView):
+class ModuleDeleteView(PermissionRequiredMixin, DeleteView):
     model = ModuleModel
     template_name = "modules/module_delete.html"
     context_object_name = 'module'
     success_url = reverse_lazy("modules:modules_list")
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class StepVideoView(TemplateView):
