@@ -46,3 +46,32 @@ class TestQuestionBimCreateView(TestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(previous_count, QuestionBim.objects.count())
+
+
+class TestQuestionBimUpdateView(TestCase):
+    question = None
+
+    def setUp(self) -> None:
+        self.question = QuestionBimFactory.create()
+        self.url = reverse("quiz_bim:question_update", kwargs={"pk": self.question.pk})
+
+    def test_update_view(self):
+        new_data = {
+            "title": "New title"
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.question.refresh_from_db()
+        self.assertEqual(self.question.title, "New title")
+
+    def test_invalid_data(self):
+        invalid_data = {
+            "title": ""
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
+    def test_not_found(self):
+        response = self.client.get(reverse("quiz_bim:question_update", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
