@@ -11,7 +11,3 @@ class FileForm(forms.ModelForm):
             'file_title': 'Введите наименование файла',
             'lesson_file': 'Загрузите файл',
         }
-        widgets = {
-            'file_title': forms.TextInput(attrs={'class': 'form-control'}),
-            'lesson_file': forms.ClearableFileInput(attrs={'class': 'form-control'})
-        }

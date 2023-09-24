@@ -13,9 +13,13 @@ class StepForm(forms.ModelForm):
     test = forms.ModelChoiceField(queryset=QuizBim.objects.all(), required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     file = forms.ModelMultipleChoiceField(queryset=FileModel.objects.all(), initial=None, required=False, widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['file'].choices = [('', 'Пусто')] + list(self.fields['file'].choices)
+
     class Meta:
         model = StepModel
-        fields = ['title', 'lesson_type', 'text', 'video', 'test', 'file', 'learn_time', 'serial_number']
+        fields = ['title', 'lesson_type', 'text', 'video', 'test', 'file', 'learn_time']
         labels = {
             'title': 'Укажите название занятия',
             'lesson_type': 'Выберите тип занятия',
