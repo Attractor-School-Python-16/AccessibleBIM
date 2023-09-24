@@ -93,7 +93,7 @@ class SubscriptionUserAddView(PermissionRequiredMixin, DetailView, FormMixin):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def dispatch(self, request, *args, **kwargs):
         self.form = self.get_button_form()
