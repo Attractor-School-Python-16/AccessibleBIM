@@ -43,7 +43,7 @@ class QuestionBimUpdateView(PermissionRequiredMixin, UpdateView):
     model = QuestionBim
     form_class = QuestionBimForm
     template_name = 'quiz_bim/question_bim/question_bim_update.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
+    success_url = reverse_lazy('quiz_bim:tests_list')  # TODO: Поменять редирект на test_detail или question_detail
     context_object_name = 'question'
 
     def has_permission(self):
@@ -55,7 +55,7 @@ class QuestionBimDeleteView(PermissionRequiredMixin, DeleteView):
     model = QuestionBim
     context_object_name = 'question'
     template_name = 'quiz_bim/question_bim/question_bim_delete.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
+    success_url = reverse_lazy('quiz_bim:tests_list')  # TODO: Поменять редирект на test_detail
 
     def has_permission(self):
         user = self.request.user
