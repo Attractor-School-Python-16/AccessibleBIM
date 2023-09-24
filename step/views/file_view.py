@@ -31,7 +31,7 @@ class FileUpdateView(PermissionRequiredMixin, UpdateView):
     model = FileModel
     form_class = FileForm
     template_name = 'steps/file/file_update.html'
-    success_url = reverse_lazy('file_list')
+    success_url = reverse_lazy('step:file_list')
 
     def has_permission(self):
         return self.request.user.has_perm('step.change_filemodel')
