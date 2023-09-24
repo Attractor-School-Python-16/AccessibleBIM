@@ -19,13 +19,21 @@ class StepModel(AbstractModel):
     test = models.ForeignKey('quiz_bim.QuizBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест', blank=True, null=True)
     file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файлы')
     learn_time = models.PositiveIntegerField(blank=False, null=False)
-    serial_number = models.PositiveIntegerField(blank=False, null=False)
+    serial_number = models.PositiveIntegerField(default=1)
 
     def get_absolute_url(self):
         return reverse("step:step_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f'Занятие {self.id} {self.title}'
+
+    def save(self, *args, **kwargs):
+        if self._state.adding:
+            last_id = StepModel.objects.filter(chapter=self.chapter).aggregate(largest=models.Max('serial_number'))[
+                'largest']
+            if last_id is not None:
+                self.serial_number = last_id + 1
+        super(StepModel, self).save(*args, **kwargs)
 
     class Meta:
         db_table = 'steps'

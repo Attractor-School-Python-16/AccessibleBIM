@@ -22,15 +22,15 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Порядковый номер</th>
                             <th>Название</th>
                             <th class="text-end">Действия</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for chapter in chapters %}
+                        {% for chapter in chapters|dictsort:"serial_number" %}
                             <tr>
-                                <td>{{ chapter.id }}</td>
+                                <td>{{ chapter.serial_number }}</td>
                                 <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
                                 <td class="text-end">
                                     <div class="btn-group">

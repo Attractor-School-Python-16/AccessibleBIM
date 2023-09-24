@@ -31,7 +31,7 @@
         </nav>
         <div class="container">
             <h3>{% trans 'My courses' %}:</h3>
-        {% if is_moderator %}
+        {% if user.is_moderators %}
             <a href="{% url 'modules:moderator_page' %}" class="btn btn-primary my-3">Редактировать контент</a>
         {% endif %}
             {% for subscription in user.subscriptions.all %}
