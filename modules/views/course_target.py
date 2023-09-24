@@ -14,7 +14,7 @@ class CourseTargetsListView(PermissionRequiredMixin, ListView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class CourseTargetCreateView(PermissionRequiredMixin, CreateView):
@@ -24,7 +24,7 @@ class CourseTargetCreateView(PermissionRequiredMixin, CreateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("modules:course_target_detail", kwargs={"pk": self.object.pk})
@@ -37,7 +37,7 @@ class CourseTargetDetailView(PermissionRequiredMixin, DetailView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class CourseTargetUpdateView(PermissionRequiredMixin, UpdateView):
@@ -48,7 +48,7 @@ class CourseTargetUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("modules:course_target_detail", kwargs={"pk": self.object.pk})
@@ -62,4 +62,4 @@ class CourseTargetDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser

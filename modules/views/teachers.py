@@ -14,7 +14,7 @@ class TeachersListView(PermissionRequiredMixin, ListView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class TeacherCreateView(PermissionRequiredMixin, CreateView):
@@ -24,7 +24,7 @@ class TeacherCreateView(PermissionRequiredMixin, CreateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("modules:teacher_detail", kwargs={"pk": self.object.pk})
@@ -37,7 +37,7 @@ class TeacherDetailView(PermissionRequiredMixin, DetailView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class TeacherUpdateView(PermissionRequiredMixin, UpdateView):
@@ -48,7 +48,7 @@ class TeacherUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("modules:teacher_detail", kwargs={"pk": self.object.pk})
@@ -62,4 +62,4 @@ class TeacherDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
