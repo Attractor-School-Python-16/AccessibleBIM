@@ -23,7 +23,7 @@ class SubscriptionListView(PermissionRequiredMixin, ListView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class SubscriptionCreateView(PermissionRequiredMixin, CreateView):
@@ -33,7 +33,7 @@ class SubscriptionCreateView(PermissionRequiredMixin, CreateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("subscription:subscription_detail", kwargs={"pk": self.object.pk})
@@ -46,7 +46,7 @@ class SubscriptionDetailView(PermissionRequiredMixin, DetailView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class SubscriptionUpdateView(PermissionRequiredMixin, UpdateView):
@@ -57,7 +57,7 @@ class SubscriptionUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
         return reverse("subscription:subscription_detail", kwargs={"pk": self.object.pk})
@@ -71,7 +71,7 @@ class SubscriptionDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class SubscriptionUserListView(PermissionRequiredMixin, ListView):
@@ -82,7 +82,7 @@ class SubscriptionUserListView(PermissionRequiredMixin, ListView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class SubscriptionUserAddView(PermissionRequiredMixin, DetailView, FormMixin):
@@ -143,7 +143,7 @@ class SubscriptionUserDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         user = self.request.user
-        return user.groups.filter(name='moderators').exists()
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_context_data(self, **kwargs):
         subscription_m2m = get_object_or_404(UsersSubscription, (Q(user_id=self.object.pk) & Q(is_active=True)))
