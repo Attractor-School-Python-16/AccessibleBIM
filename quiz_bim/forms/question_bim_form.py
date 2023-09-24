@@ -11,6 +11,3 @@ class QuestionBimForm(forms.ModelForm):
         labels = {
             'title': 'Введите вопрос',
         }
-        widgets = {
-            'title': widgets.TextInput(attrs={'class': 'form-control'}),
-        }
