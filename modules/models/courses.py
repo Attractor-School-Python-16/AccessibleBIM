@@ -1,6 +1,7 @@
 import os
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from modules.models.teacher import TeacherModel
 from modules.models.module import AbstractModel
@@ -15,11 +16,10 @@ def courses_upload_to(instance, filename):
 
 
 class CourseModel(AbstractModel):
-    TYPE_CHOICES = {
-        ('RU', 'Русский'),
-        ('EN', 'Английский'),
-        ('KG', 'Кыргызский')
-    }
+    class TypeChoices(models.TextChoices):
+        RU = 'RU', _('Русский')
+        EN = 'EN', _('Английский')
+        KG = 'KG', _('Кыргызский')
 
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название курса')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание курса')
@@ -27,7 +27,7 @@ class CourseModel(AbstractModel):
     module_id = models.ForeignKey('modules.ModuleModel', related_name='courses', on_delete=models.CASCADE)
     courseTarget_id = models.ForeignKey('modules.CourseTargetModel', related_name='courses',
                                         on_delete=models.DO_NOTHING)
-    language = models.CharField(max_length=10, choices=TYPE_CHOICES, blank=False, null=False,
+    language = models.CharField(max_length=10, choices=TypeChoices.choices, blank=False, null=False,
                                    verbose_name='Язык занятия')
     learnTime = models.IntegerField(null=False, blank=False, default=0, verbose_name='Время на прохождение курса')
     teachers = models.ManyToManyField(TeacherModel, related_name='courses', through=CourseTeacherModel,

@@ -13,7 +13,3 @@ class AnswerBimForm(forms.ModelForm):
             'is_correct': 'Верный ответ',
 
         }
-        widgets = {
-            'answer': widgets.TextInput(attrs={'class': 'form-control'}),
-            'is_correct': widgets.Select(attrs={'class': 'form-select'}),
-        }
