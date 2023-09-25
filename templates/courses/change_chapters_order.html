@@ -39,7 +39,8 @@
                             <tr>
                                 <td>{{ chapter.serial_number }}</td>
                                 <td>
-                                    <select name="new_serial_number_{{ chapter.id }}" id="new_serial_number">
+                                    <select name="new_serial_number_{{ chapter.id }}" id="new_serial_number"
+                                            class="form-select" style="width:auto">
                                         {% for chapter_inner in chapters|dictsort:"serial_number" %}
                                             <option value="number_{{ chapter_inner.serial_number }}"
                                             {% if chapter.serial_number == chapter_inner.serial_number %}
