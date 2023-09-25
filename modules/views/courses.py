@@ -114,8 +114,8 @@ class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
         if len(unique_numbers) < len(new_serial_numbers):
             messages.error(request, 'Выберите разные порядковые номера для глав.')
         else:
-            for chapter_id, new_number in new_serial_numbers.items():
-                chapter = chapters.get(pk=chapter_id)
+            for chapter_num, new_number in new_serial_numbers.items():
+                chapter = chapters.get(serial_number=chapter_num)
                 chapter.serial_number = new_number
                 chapter.save()
 
