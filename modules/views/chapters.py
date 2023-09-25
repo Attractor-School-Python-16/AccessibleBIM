@@ -106,8 +106,8 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
         new_serial_numbers = {}
         for key, value in request.POST.items():
             if key.startswith('new_serial_number_'):
-                step_number = int(re.search(r'\d+', key).group())
-                new_serial_numbers[step_number] = int(re.search(r'\d+', value).group())
+                step_id = int(re.search(r'\d+', key).group())
+                new_serial_numbers[step_id] = int(re.search(r'\d+', value).group())
 
         steps = StepModel.objects.filter(chapter=chapter)
         unique_numbers = set(new_serial_numbers.values())
@@ -115,8 +115,8 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
         if len(unique_numbers) < len(new_serial_numbers):
             messages.error(request, 'Выберите разные порядковые номера для глав.')
         else:
-            for step_num, new_number in new_serial_numbers.items():
-                step = steps.get(serial_number=step_num)
+            for step_id, new_number in new_serial_numbers.items():
+                step = steps.get(id=step_id)
                 step.serial_number = new_number
                 step.save()
 
