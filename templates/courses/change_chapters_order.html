@@ -48,4 +48,32 @@
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        let form = document.querySelector("form");
+        let submitButton = document.querySelector("button[type='submit']");
+        let selectElements = document.querySelectorAll("select");
+
+        function checkSelectedValues() {
+            let selectedValues = new Set();
+            selectElements.forEach(function (select) {
+                let selectedOption = select.options[select.selectedIndex];
+                if (selectedOption.value) {
+                    selectedValues.add(selectedOption.value);
+                }
+            });
+            if (selectedValues.size < selectElements.length) {
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        }
+        selectElements.forEach(function (select) {
+            select.addEventListener("change", checkSelectedValues);
+        });
+        checkSelectedValues();
+    });
+</script>
+
 {% endblock %}
