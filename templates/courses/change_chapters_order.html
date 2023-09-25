@@ -40,12 +40,18 @@
                                 <td>{{ chapter.serial_number }}</td>
                                 <td>
                                     <select name="new_serial_number_{{ chapter.serial_number }}" id="new_serial_number">
-                                        {% for chapter in chapters|dictsort:"serial_number"  %}
-                                            <option value="number_{{ chapter.serial_number }}">{{ chapter.serial_number }}</option>
+                                        {% for chapter_inner in chapters|dictsort:"serial_number" %}
+                                            <option value="number_{{ chapter_inner.serial_number }}"
+                                            {% if chapter.serial_number == chapter_inner.serial_number %}
+                                                selected
+                                            {% endif %}
+                                            >{{ chapter_inner.serial_number }}</option>
                                         {% endfor %}
                                     </select>
                                 </td>
-                                <td><a href="{% url 'modules:chapter_detail' chapter.serial_number %}">{{ chapter.title }}</a></td>
+                                <td>
+                                    <a href="{% url 'modules:chapter_detail' chapter.serial_number %}">{{ chapter.title }}</a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -55,7 +61,7 @@
             </div>
         </div>
     </div>
-        <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
 
             let form = document.querySelector("form");
@@ -76,11 +82,11 @@
                     submitButton.disabled = false;
                 }
             }
+
             selectElements.forEach(function (select) {
                 select.addEventListener("change", checkSelectedValues);
             });
             checkSelectedValues();
         });
     </script>
-
 {% endblock %}
