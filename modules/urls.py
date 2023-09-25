@@ -53,6 +53,8 @@ urlpatterns = [
     path('сhapter/<int:pk>/detail/', ChapterDetailView.as_view(), name="chapter_detail"),
     path('сhapter/<int:pk>/update/', ChapterUpdateView.as_view(), name="chapter_update"),
     path('сhapter/<int:pk>/delete/', ChapterDeleteView.as_view(), name="chapter_delete"),
+    path('chapter/<int:pk>/change_steps_order', ChapterChangeStepsOrderView.as_view(),
+         name="change_steps_order"),
 
     path('step/1/text/', StepTextView.as_view(), name="step_text"),  # поменять число на PK Chapter / text
     path('step/1/video/', StepVideoView.as_view(), name="step_video"),  # поменять число на PK Chapter / video
