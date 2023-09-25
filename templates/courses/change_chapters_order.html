@@ -39,13 +39,13 @@
                             <tr>
                                 <td>{{ chapter.serial_number }}</td>
                                 <td>
-                                    <select name="new_serial_number_{{ chapter.id }}" id="new_serial_number">
-                                        {% for chapter in chapters %}
-                                            <option value="number_{{ chapter.id }}">{{ chapter.id }}</option>
+                                    <select name="new_serial_number_{{ chapter.serial_number }}" id="new_serial_number">
+                                        {% for chapter in chapters|dictsort:"serial_number"  %}
+                                            <option value="number_{{ chapter.serial_number }}">{{ chapter.serial_number }}</option>
                                         {% endfor %}
                                     </select>
                                 </td>
-                                <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
+                                <td><a href="{% url 'modules:chapter_detail' chapter.serial_number %}">{{ chapter.title }}</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
