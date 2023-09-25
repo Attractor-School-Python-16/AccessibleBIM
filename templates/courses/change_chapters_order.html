@@ -17,35 +17,34 @@
                     </div>
                 </div>
                 <h1 class="my-3">Список глав курса {{ course.title }}</h1>
-                <a href="{% url 'modules:chapter_create' %}?course_pk={{ course.id }}" class="btn btn-primary
-                my-3">Добавить главу</a>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Текуций порядковый номер</th>
-                        <th>Новый порядковый номер</th>
-                        <th>Название</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for chapter in chapters|dictsort:"serial_number" %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <td>{{ chapter.serial_number }}</td>
-                            <td>
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <select name="new_serial_number" id="new_serial_number">
+                            <th>Текуций порядковый номер</th>
+                            <th>Новый порядковый номер</th>
+                            <th>Название</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for chapter in chapters|dictsort:"serial_number" %}
+                            <tr>
+                                <td>{{ chapter.serial_number }}</td>
+                                <td>
+                                    <select name="new_serial_number_{{ chapter.id }}" id="new_serial_number">
                                         {% for chapter in chapters|dictsort:"serial_number" %}
                                             <option value="number_{{ chapter.id }}">{{ chapter.id }}</option>
                                         {% endfor %}
                                     </select>
-                                </form>
-                            </td>
-                            <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                                </td>
+                                <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-primary my-3">Изменить порядок глав</button>
+                </form>
             </div>
         </div>
     </div>
