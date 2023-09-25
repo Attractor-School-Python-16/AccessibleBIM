@@ -94,4 +94,4 @@ class CourseChangeChaptersOrderView (PermissionRequiredMixin, DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        pass
+        print(self.request.POST)
