@@ -17,6 +17,13 @@
                     </div>
                 </div>
                 <h1 class="my-3">Список глав курса {{ course.title }}</h1>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 <form action="" method="post">
                     {% csrf_token %}
                     <table class="table">
@@ -33,7 +40,7 @@
                                 <td>{{ chapter.serial_number }}</td>
                                 <td>
                                     <select name="new_serial_number_{{ chapter.id }}" id="new_serial_number">
-                                        {% for chapter in chapters|dictsort:"serial_number" %}
+                                        {% for chapter in chapters %}
                                             <option value="number_{{ chapter.id }}">{{ chapter.id }}</option>
                                         {% endfor %}
                                     </select>
@@ -48,32 +55,32 @@
             </div>
         </div>
     </div>
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-        let form = document.querySelector("form");
-        let submitButton = document.querySelector("button[type='submit']");
-        let selectElements = document.querySelectorAll("select");
+            let form = document.querySelector("form");
+            let submitButton = document.querySelector("button[type='submit']");
+            let selectElements = document.querySelectorAll("select");
 
-        function checkSelectedValues() {
-            let selectedValues = new Set();
-            selectElements.forEach(function (select) {
-                let selectedOption = select.options[select.selectedIndex];
-                if (selectedOption.value) {
-                    selectedValues.add(selectedOption.value);
+            function checkSelectedValues() {
+                let selectedValues = new Set();
+                selectElements.forEach(function (select) {
+                    let selectedOption = select.options[select.selectedIndex];
+                    if (selectedOption.value) {
+                        selectedValues.add(selectedOption.value);
+                    }
+                });
+                if (selectedValues.size < selectElements.length) {
+                    submitButton.disabled = true;
+                } else {
+                    submitButton.disabled = false;
                 }
-            });
-            if (selectedValues.size < selectElements.length) {
-                submitButton.disabled = true;
-            } else {
-                submitButton.disabled = false;
             }
-        }
-        selectElements.forEach(function (select) {
-            select.addEventListener("change", checkSelectedValues);
+            selectElements.forEach(function (select) {
+                select.addEventListener("change", checkSelectedValues);
+            });
+            checkSelectedValues();
         });
-        checkSelectedValues();
-    });
-</script>
+    </script>
 
 {% endblock %}
