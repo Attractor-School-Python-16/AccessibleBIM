@@ -21,24 +21,29 @@
                 my-3">Добавить главу</a>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th>Текуций порядковый номер</th>
-                            <th>Новый порядковый номер</th>
-                            <th>Название</th>
-                        </tr>
+                    <tr>
+                        <th>Текуций порядковый номер</th>
+                        <th>Новый порядковый номер</th>
+                        <th>Название</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {% for chapter in chapters|dictsort:"serial_number" %}
-                            <tr>
-                                <td>{{ chapter.serial_number }}</td>
-                                <td>
-                                    <form action="" method="post">
-                                        <select name="new_serial_number" id=""></select>
-                                    </form>
-                                </td>
-                                <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
-                            </tr>
-                        {% endfor %}
+                    {% for chapter in chapters|dictsort:"serial_number" %}
+                        <tr>
+                            <td>{{ chapter.serial_number }}</td>
+                            <td>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <select name="new_serial_number" id="new_serial_number">
+                                        {% for chapter in chapters|dictsort:"serial_number" %}
+                                            <option value="number_{{ chapter.id }}">{{ chapter.id }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            </td>
+                            <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
