@@ -116,7 +116,7 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
             messages.error(request, 'Выберите разные порядковые номера для глав.')
         else:
             for step_num, new_number in new_serial_numbers.items():
-                step = steps.get(pk=step_num)
+                step = steps.get(serial_number=step_num)
                 step.serial_number = new_number
                 step.save()
 
