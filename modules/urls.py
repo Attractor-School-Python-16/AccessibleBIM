@@ -15,7 +15,7 @@ from modules.views.courses import CoursesListView, CourseCreateView, CourseDetai
     CourseUpdateView, CourseChangeChaptersOrderView
 
 from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterDetailView, ChapterDeleteView, \
-    ChapterUpdateView
+    ChapterUpdateView, ChapterChangeStepsOrderView
 
 app_name = 'modules'
 

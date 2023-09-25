@@ -24,6 +24,8 @@
                 <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
                 <a href="{% url 'step:step_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
                 my-3">Добавить занятие</a>
+                <a href="{% url 'modules:change_steps_order' chapter.id %}" class="btn btn-secondary
+                my-3">Изменить порядок занятий в главе</a>
                 <table class="table">
                     <thead>
                     <tr>
