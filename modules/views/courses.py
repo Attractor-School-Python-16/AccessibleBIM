@@ -77,3 +77,21 @@ class CourseDeleteView(PermissionRequiredMixin, DeleteView):
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+
+class CourseChangeChaptersOrderView (PermissionRequiredMixin, DetailView):
+    model = CourseModel
+    context_object_name = 'course'
+    template_name = 'courses/change_chapters_order.html'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        pass
