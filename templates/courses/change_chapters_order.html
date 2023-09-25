@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <div class="d-inline-block ms-5">
+                    {% include 'partials/main_block.html' with data=course %}
+                    <div class="btn-group">
+                        <a href="{% url 'modules:course_update' course.id %}"
+                           class="btn btn-info btn-sm mx-3">Изменить</a>
+                        <a href="{% url 'modules:course_delete' course.id %}"
+                           class="btn btn-danger btn-sm">Удалить</a>
+                    </div>
+                </div>
+                <h1 class="my-3">Список глав курса {{ course.title }}</h1>
+                <a href="{% url 'modules:chapter_create' %}?course_pk={{ course.id }}" class="btn btn-primary
+                my-3">Добавить главу</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Текуций порядковый номер</th>
+                            <th>Новый порядковый номер</th>
+                            <th>Название</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for chapter in chapters|dictsort:"serial_number" %}
+                            <tr>
+                                <td>{{ chapter.serial_number }}</td>
+                                <td>
+                                    <form action="" method="post">
+                                        <select name="new_serial_number" id=""></select>
+                                    </form>
+                                </td>
+                                <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
