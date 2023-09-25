@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{ step.serial_number }}</td>
                                 <td>
-                                    <select name="new_serial_number_{{ step.serial_number }}" id="new_serial_number">
+                                    <select name="new_serial_number_{{ step.id }}" id="new_serial_number">
                                         {% for step_inner in steps|dictsort:"serial_number" %}
                                             <option value="number_{{ step_inner.serial_number }}"
                                             {% if step.serial_number == step_inner.serial_number %}

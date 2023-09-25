@@ -105,8 +105,8 @@ class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
         new_serial_numbers = {}
         for key, value in request.POST.items():
             if key.startswith('new_serial_number_'):
-                chapter_number = int(re.search(r'\d+', key).group())
-                new_serial_numbers[chapter_number] = int(re.search(r'\d+', value).group())
+                chapter_id = int(re.search(r'\d+', key).group())
+                new_serial_numbers[chapter_id] = int(re.search(r'\d+', value).group())
 
         chapters = ChapterModel.objects.filter(course=course)
         unique_numbers = set(new_serial_numbers.values())
@@ -114,8 +114,8 @@ class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
         if len(unique_numbers) < len(new_serial_numbers):
             messages.error(request, 'Выберите разные порядковые номера для глав.')
         else:
-            for chapter_num, new_number in new_serial_numbers.items():
-                chapter = chapters.get(serial_number=chapter_num)
+            for chapter_id, new_number in new_serial_numbers.items():
+                chapter = chapters.get(id=chapter_id)
                 chapter.serial_number = new_number
                 chapter.save()
 
