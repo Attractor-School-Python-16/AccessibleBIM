@@ -19,6 +19,8 @@
                 <h1 class="my-3">Список глав курса {{ course.title }}</h1>
                 <a href="{% url 'modules:chapter_create' %}?course_pk={{ course.id }}" class="btn btn-primary
                 my-3">Добавить главу</a>
+                <a href="{% url 'modules:change_chapters_order' %}?course_pk={{ course.id }}" class="btn btn-secondary
+                my-3">Изменить порядок глав в курсе</a>
                 <table class="table">
                     <thead>
                         <tr>
