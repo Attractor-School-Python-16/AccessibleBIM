@@ -26,7 +26,7 @@
                         <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
                     {% endfor %}
                 {% endif %}
-                <a href="{% url 'step:step_list' %}">Вернуться к списку занятий</a>
+                <a href="{% url 'modules:chapter_detail' step.chapter.pk %}">Вернуться к списку занятий</a>
             </div>
         </div>
     </div>

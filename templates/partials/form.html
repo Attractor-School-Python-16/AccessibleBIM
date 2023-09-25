@@ -1,3 +1,5 @@
+{% load crispy_forms_filters %}
+
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -6,8 +8,7 @@
     {% endfor %}
     {% for field in form %}
         <div class="mb-3">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
+            {{ field|as_crispy_field }}
             {% for error in field.errors %}
                 <div class="alert alert-danger" role="alert">
                     {{ error }}

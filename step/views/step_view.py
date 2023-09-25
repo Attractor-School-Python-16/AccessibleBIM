@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
@@ -5,9 +6,10 @@ from modules.models import ChapterModel
 from step.forms.step_form import StepForm
 from step.models import VideoModel, TextModel, FileModel, video_upload_to
 from step.models.step import StepModel
-from quiz_bim.models import QuizBim
+from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 
 
+# Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
 class StepListView(ListView):
     model = StepModel
     template_name = 'steps/step/step_list.html'
@@ -15,10 +17,14 @@ class StepListView(ListView):
     success_url = reverse_lazy('modules:index')
 
 
-class StepDetailView(DetailView):
+class StepDetailView(PermissionRequiredMixin, DetailView):
     queryset = StepModel.objects.all()
     context_object_name = 'step'
     template_name = "steps/step/step_detail.html"
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -30,16 +36,19 @@ class StepDetailView(DetailView):
         return context
 
 
-class StepCreateView(CreateView):
+class StepCreateView(PermissionRequiredMixin, CreateView):
     model = StepModel
     form_class = StepForm
     template_name = "steps/step/step_create.html"
     chapter = None
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
+
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
-
 
 
     def form_valid(self, form):
@@ -50,7 +59,7 @@ class StepCreateView(CreateView):
         elif lesson_type == 'video':
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
-            form.instance.test = QuizBim.objects.get(pk=self.request.POST.get('test'))
+            self.handle_quiz_lesson(form)
         form.instance.save()
         return super().form_valid(form)
 
@@ -85,13 +94,41 @@ class StepCreateView(CreateView):
         form.instance.video = video_instance
         return video_instance
 
+    def handle_quiz_lesson(self, form):
+        test = self.request.POST.get('test')
+        if test:
+            form.instance.test = test
+            return test
+        test_instance = QuizBim.objects.create(
+            title=self.request.POST.get('test_title'),
+            questions_qty=self.request.POST.get('test_questions_qty')
+        )
+        for i in range(1, int(test_instance.questions_qty) + 1):
+            question_text = self.request.POST.get(f'question_title_{i}')
+            question = QuestionBim.objects.create(title=question_text, test_bim=test_instance)
+            answers_qty = 0
+            for j in range(1, 11):  # Предположим, что не может быть больше 10 вариантов
+                answer_text = self.request.POST.get(f'answer_{i}_{j}')
+                if answer_text:
+                    answers_qty += 1
+            for j in range(1, answers_qty + 1):
+                answer_text = self.request.POST.get(f'answer_{i}_{j}')
+                is_correct = self.request.POST.get(f'is_correct_{i}_{j}')
+                if answer_text:
+                    AnswerBim.objects.create(answer=answer_text, is_correct=is_correct, question_bim=question)
+        form.instance.test = test_instance
+        return test_instance
 
 
-class StepUpdateView(UpdateView):
+class StepUpdateView(PermissionRequiredMixin, UpdateView):
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
     success_url = reverse_lazy('step:step_list')
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def form_valid(self, form):
         lesson_type = form.cleaned_data['lesson_type']
@@ -136,8 +173,11 @@ class StepUpdateView(UpdateView):
         return video_instance
 
 
-
-class StepDeleteView(DeleteView):
+class StepDeleteView(PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
     success_url = reverse_lazy('step:step_list')
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
