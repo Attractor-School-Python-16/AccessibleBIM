@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
-               {% if messages %}
+                {% if messages %}
                     <ul class="messages">
                         {% for message in messages %}
                             <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
@@ -45,8 +45,12 @@
                                 <td>{{ step.serial_number }}</td>
                                 <td>
                                     <select name="new_serial_number_{{ step.serial_number }}" id="new_serial_number">
-                                        {% for step in steps|dictsort:"serial_number"  %}
-                                            <option value="number_{{ step.serial_number }}">{{ step.serial_number }}</option>
+                                        {% for step_inner in steps|dictsort:"serial_number" %}
+                                            <option value="number_{{ step_inner.serial_number }}"
+                                            {% if step.serial_number == step_inner.serial_number %}
+                                                selected
+                                            {% endif %}
+                                            >{{ step_inner.serial_number }}</option>
                                         {% endfor %}
                                     </select>
                                 </td>
@@ -55,10 +59,38 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                    <button type="submit" class="btn btn-primary my-3">Изменить порядок глав</button>
+                    <button type="submit" class="btn btn-primary my-3">Изменить порядок занятий</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            let form = document.querySelector("form");
+            let submitButton = document.querySelector("button[type='submit']");
+            let selectElements = document.querySelectorAll("select");
+
+            function checkSelectedValues() {
+                let selectedValues = new Set();
+                selectElements.forEach(function (select) {
+                    let selectedOption = select.options[select.selectedIndex];
+                    if (selectedOption.value) {
+                        selectedValues.add(selectedOption.value);
+                    }
+                });
+                if (selectedValues.size < selectElements.length) {
+                    submitButton.disabled = true;
+                } else {
+                    submitButton.disabled = false;
+                }
+            }
+
+            selectElements.forEach(function (select) {
+                select.addEventListener("change", checkSelectedValues);
+            });
+            checkSelectedValues();
+        });
+    </script>
 {% endblock %}
 

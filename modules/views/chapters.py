@@ -86,7 +86,7 @@ class ChapterDeleteView(PermissionRequiredMixin, DeleteView):
 
 
 class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
-    template_name = 'courses/change_steps_order.html'
+    template_name = 'chapters/change_steps_order.html'
 
     def has_permission(self):
         user = self.request.user
@@ -102,23 +102,22 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        course = get_object_or_404(CourseModel, pk=kwargs['pk'])
-
+        chapter= get_object_or_404(ChapterModel, pk=kwargs['pk'])
         new_serial_numbers = {}
         for key, value in request.POST.items():
             if key.startswith('new_serial_number_'):
-                chapter_number = int(re.search(r'\d+', key).group())
-                new_serial_numbers[chapter_number] = int(re.search(r'\d+', value).group())
+                step_number = int(re.search(r'\d+', key).group())
+                new_serial_numbers[step_number] = int(re.search(r'\d+', value).group())
 
-        chapters = ChapterModel.objects.filter(course=course)
+        steps = StepModel.objects.filter(chapter=chapter)
         unique_numbers = set(new_serial_numbers.values())
 
         if len(unique_numbers) < len(new_serial_numbers):
             messages.error(request, 'Выберите разные порядковые номера для глав.')
         else:
-            for chapter_id, new_number in new_serial_numbers.items():
-                chapter = chapters.get(pk=chapter_id)
-                chapter.serial_number = new_number
-                chapter.save()
+            for step_num, new_number in new_serial_numbers.items():
+                step = steps.get(pk=step_num)
+                step.serial_number = new_number
+                step.save()
 
-        return redirect('modules:course_detail', pk=course.pk)
+        return redirect('modules:chapter_detail', pk=chapter.pk)
