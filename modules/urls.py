@@ -12,10 +12,10 @@ from modules.views.course_target import CourseTargetsListView, CourseTargetCreat
     CourseTargetDeleteView, CourseTargetUpdateView
 
 from modules.views.courses import CoursesListView, CourseCreateView, CourseDetailView, CourseDeleteView, \
-    CourseUpdateView
+    CourseUpdateView, CourseChangeChaptersOrderView
 
 from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterDetailView, ChapterDeleteView, \
-    ChapterUpdateView
+    ChapterUpdateView, ChapterChangeStepsOrderView
 
 app_name = 'modules'
 
@@ -45,12 +45,16 @@ urlpatterns = [
     path('course/<int:pk>/detail/', CourseDetailView.as_view(), name="course_detail"),
     path('course/<int:pk>/update/', CourseUpdateView.as_view(), name="course_update"),
     path('course/<int:pk>/delete/', CourseDeleteView.as_view(), name="course_delete"),
+    path('course/<int:pk>/change_chapters_order', CourseChangeChaptersOrderView.as_view(),
+         name="change_chapters_order"),
 
     path('сhapters/', ChaptersListView.as_view(), name="chapters_list"),
     path('сhapter/create/', ChapterCreateView.as_view(), name="chapter_create"),
     path('сhapter/<int:pk>/detail/', ChapterDetailView.as_view(), name="chapter_detail"),
     path('сhapter/<int:pk>/update/', ChapterUpdateView.as_view(), name="chapter_update"),
     path('сhapter/<int:pk>/delete/', ChapterDeleteView.as_view(), name="chapter_delete"),
+    path('chapter/<int:pk>/change_steps_order', ChapterChangeStepsOrderView.as_view(),
+         name="change_steps_order"),
 
     path('step/1/text/', StepTextView.as_view(), name="step_text"),  # поменять число на PK Chapter / text
     path('step/1/video/', StepVideoView.as_view(), name="step_video"),  # поменять число на PK Chapter / video

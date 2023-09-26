@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}{{ chapter.title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <div class="d-inline-block ms-5">
+                    <div>
+                        <h2>Глава: {{ chapter.title }}</h2>
+                        <h3>Описание: {{ chapter.description }}</h3>
+                        <p>Курс: {{ chapter.course }}</p>
+                        <p>Порядковый номер: {{ chapter.serial_number }}</p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="{% url 'modules:chapter_update' chapter.id %}"
+                           class="btn btn-info btn-sm mx-3">Изменить</a>
+                        <a href="{% url 'modules:chapter_delete' chapter.id %}"
+                           class="btn btn-danger btn-sm">Удалить</a>
+                    </div>
+                </div>
+                <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Текуций порядковый номер</th>
+                            <th>Новый порядковый номер</th>
+                            <th>Название</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for step in steps|dictsort:"serial_number" %}
+                            <tr>
+                                <td>{{ step.serial_number }}</td>
+                                <td>
+                                    <select name="new_serial_number_{{ step.id }}" id="new_serial_number"
+                                            class="form-select" style="width:auto">
+                                        {% for step_inner in steps|dictsort:"serial_number" %}
+                                            <option value="number_{{ step_inner.serial_number }}"
+                                            {% if step.serial_number == step_inner.serial_number %}
+                                                selected
+                                            {% endif %}
+                                            >{{ step_inner.serial_number }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td><a href="{% url 'step:step_detail' step.id %}">{{ step.title }}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-primary my-3">Изменить порядок занятий</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            let form = document.querySelector("form");
+            let submitButton = document.querySelector("button[type='submit']");
+            let selectElements = document.querySelectorAll("select");
+
+            function checkSelectedValues() {
+                let selectedValues = new Set();
+                selectElements.forEach(function (select) {
+                    let selectedOption = select.options[select.selectedIndex];
+                    if (selectedOption.value) {
+                        selectedValues.add(selectedOption.value);
+                    }
+                });
+                if (selectedValues.size < selectElements.length) {
+                    submitButton.disabled = true;
+                } else {
+                    submitButton.disabled = false;
+                }
+            }
+
+            selectElements.forEach(function (select) {
+                select.addEventListener("change", checkSelectedValues);
+            });
+            checkSelectedValues();
+        });
+    </script>
+{% endblock %}
+

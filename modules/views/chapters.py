@@ -1,5 +1,10 @@
+import re
+
+from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
+from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 
 from modules.forms.chapters_form import ChaptersForm
@@ -78,3 +83,41 @@ class ChapterDeleteView(PermissionRequiredMixin, DeleteView):
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+
+class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
+    template_name = 'chapters/change_steps_order.html'
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get(self, request, *args, **kwargs):
+        chapter = ChapterModel.objects.get(pk=kwargs['pk'])
+        steps = StepModel.objects.filter(chapter=chapter)
+        context = {
+            'chapter': chapter,
+            'steps': steps,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        chapter= get_object_or_404(ChapterModel, pk=kwargs['pk'])
+        new_serial_numbers = {}
+        for key, value in request.POST.items():
+            if key.startswith('new_serial_number_'):
+                step_id = int(re.search(r'\d+', key).group())
+                new_serial_numbers[step_id] = int(re.search(r'\d+', value).group())
+
+        steps = StepModel.objects.filter(chapter=chapter)
+        unique_numbers = set(new_serial_numbers.values())
+
+        if len(unique_numbers) < len(new_serial_numbers):
+            messages.error(request, 'Выберите разные порядковые номера для глав.')
+        else:
+            for step_id, new_number in new_serial_numbers.items():
+                step = steps.get(id=step_id)
+                step.serial_number = new_number
+                step.save()
+
+        return redirect('modules:chapter_detail', pk=chapter.pk)
