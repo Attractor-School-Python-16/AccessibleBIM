@@ -1,7 +1,7 @@
 
 
 $(document).ready(function() {
-    $('#summernote').summernote({
+    $('#description').summernote({
         fontNames: ['Arial Nova Light', 'Arial Nova'],
         fontNamesIgnoreCheck: ['Arial Nova Light', 'Arial Nova']
     });

@@ -211,15 +211,17 @@ SUMMERNOTE_CONFIG = {
             ['font', ['bold', 'italic', 'underline', 'clear', 'fontsize']],
             ['fontname', ['fontname']],
             ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
+            ['para', ['ul', 'ol', 'paragraph', 'height']],
             ['table', ['table']],
             ['insert', ['link', 'picture']],
             ['view', ['fullscreen']],
         ],
 
 
-        'fontNames': ['Arial', 'Arial Black', 'Arial Nova Light', 'Arial Nova'],
+        'fontNames': ['Arial', 'Arial Nova Light', 'Arial Nova'],
+        'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
         'addDefaultFonts': False,
+        'colors': ['#1974D2', '#1DACD6', '#34C924'],
         'lineHeights': ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
 
         'insertImage': ['filename', 'url'],
