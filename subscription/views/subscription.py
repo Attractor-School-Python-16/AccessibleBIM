@@ -105,17 +105,20 @@ class SubscriptionUserAddView(PermissionRequiredMixin, DetailView, FormMixin):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form, *args, **kwargs):
-        find_subscription = get_object_or_404(SubscriptionModel, pk=self.button_value)
+        subscription = get_object_or_404(SubscriptionModel, pk=self.button_value)
         user = get_object_or_404(CustomUser, pk=self.object.pk)
-        if UsersSubscription.objects.all().filter(Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)):
+        user_subscription = UsersSubscription.objects.all().filter(Q(user_id=self.object.pk) & Q(subscription_id=self.button_value))
+        if user_subscription:
             user_subscription = get_object_or_404(UsersSubscription,
                                                   (Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)))
             user_subscription.end_time = datetime.now() + timedelta(days=30)
             user_subscription.subscription_id = self.button_value
             user_subscription.is_active = True
             user_subscription.save()
-        find_subscription.user_subscription.add(user)
-        return redirect('subscription:subscription_users_list')
+            return redirect('subscription:subscription_users_list')
+        else:
+            UsersSubscription.objects.create(subscription=subscription, user=user, end_time=datetime.now() + timedelta(days=30))
+            return redirect('subscription:subscription_users_list')
 
     def post(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
