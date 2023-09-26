@@ -45,16 +45,11 @@
                             <label for="id_text">Выберите текст</label>
                             {{ form.text }}
                         </div>
-
-                        <div id="text-form" class="content-form">
-                            <p>или</p>
-                            <label for="text_title">Введите наименование текста</label>
-                            <input type="text" name="text_title" class="form-control">
-                            <label for="text_description">Введите описание текста</label>
-                            <input type="text" name="text_description" class="form-control">
-                            <label for="content">Заполните текст занятия</label>
-                            <textarea name="content" class="form-control"></textarea>
-                        </div>
+                        {% if text %}
+                            <a href="{% url 'step:text_update' text.id %}" id="text-link">
+                                Редактировать текст
+                            </a>
+                        {% endif %}
                     </div>
 
                     <div id="video_content" style="display: none;">
@@ -62,15 +57,11 @@
                             <label for="id_video">Выберите видео</label>
                             {{ form.video }}
                         </div>
-                        <div id="video-form" class="content-form">
-                            <p>или</p>
-                            <label for="video_title">Введите наименование видео</label>
-                            <input type="text" name="video_title" class="form-control">
-                            <label for="video_description">Введите описание видео</label>
-                            <input type="text" name="video_description" class="form-control">
-                            <label for="">Загрузите видео-файл</label>
-                            <input type="file" name="video_file" class="form-control">
-                        </div>
+                        {% if video %}
+                            <a href="{% url 'step:video_update' video.id %}" id="video-link">
+                                Редактировать видео
+                            </a>
+                        {% endif %}
                     </div>
 
                     <div id="test_content" style="display: none;">
@@ -78,83 +69,55 @@
                             <label for="id_test">Выберите тест</label>
                             {{ form.test }}
                         </div>
+                        {% if test %}
+                            <a href="{% url 'quiz_bim:test_update' test.id %}" id="test-link">
+                                Редактировать тест
+                            </a>
+                        {% endif %}
                     </div>
                     <button type="submit" class="btn btn-primary">Редактировать занятие</button>
                 </form>
             </div>
         </div>
     </div>
-    <script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const lessonType = document.getElementById("id_lesson_type");
         const textContent = document.getElementById("text_content");
         const videoContent = document.getElementById("video_content");
         const testContent = document.getElementById("test_content");
-        const lessonType = document.getElementById("id_lesson_type");
-        const textSelect = document.getElementById("id_text");
-        const videoSelect = document.getElementById("id_video");
-        const testSelect = document.getElementById("id_test");
-        const textForm = document.getElementById("text-form");
-        const videoForm = document.getElementById("video-form");
-        const testForm = document.getElementById("test-form");
 
-        function handleSelectChange(select, form) {
-            if (select.value) {
-                form.style.display = "none";
-            } else {
-                form.style.display = "block";
+        function handleLessonTypeChange() {
+            textContent.style.display = "none";
+            videoContent.style.display = "none";
+            testContent.style.display = "none";
+
+            const selectedType = lessonType.value;
+
+            if (selectedType === "text") {
+                textContent.style.display = "block";
+            } else if (selectedType === "video") {
+                videoContent.style.display = "block";
+            } else if (selectedType === "test") {
+                testContent.style.display = "block";
             }
         }
 
-        function clearInputsInDiv(div) {
-            const inputElements = div.getElementsByTagName('input');
-            const selectElements = div.getElementsByTagName('select');
 
-            for (let i = 0; i < inputElements.length; i++) {
-                inputElements[i].value = '';
-            }
-            for (let i = 0; i < selectElements.length; i++) {
-                selectElements[i].value = '';
-            }
+        handleLessonTypeChange();
+        lessonType.addEventListener("change", handleLessonTypeChange);
+
+        // Определить, какой тип урока уже выбран при загрузке страницы
+        const selectedTypeOnLoad = lessonType.value;
+
+        // Отобразить соответствующий блок контента на основе выбранного типа при загрузке страницы
+        if (selectedTypeOnLoad === "text") {
+            textContent.style.display = "block";
+        } else if (selectedTypeOnLoad === "video") {
+            videoContent.style.display = "block";
+        } else if (selectedTypeOnLoad === "test") {
+            testContent.style.display = "block";
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            handleSelectChange(textSelect, textForm);
-            handleSelectChange(videoSelect, videoForm);
-            handleSelectChange(testSelect, testForm);
-
-            function handleLessonTypeChange() {
-                if (lessonType.value === "text") {
-                    textContent.style.display = "block";
-                    videoContent.style.display = "none";
-                    testContent.style.display = "none";
-                    clearInputsInDiv(videoContent, testContent)
-                } else if (lessonType.value === "video") {
-                    textContent.style.display = "none";
-                    videoContent.style.display = "block";
-                    testContent.style.display = "none";
-                    clearInputsInDiv(textContent, testContent)
-                } else if (lessonType.value === "test") {
-                    textContent.style.display = "none";
-                    videoContent.style.display = "none";
-                    testContent.style.display = "block";
-                    clearInputsInDiv(videoContent, textContent)
-                }
-            }
-
-            handleLessonTypeChange();
-
-            lessonType.addEventListener("change", handleLessonTypeChange);
-
-            textSelect.addEventListener("change", function () {
-                handleSelectChange(textSelect, textForm);
-            });
-
-            videoSelect.addEventListener("change", function () {
-                handleSelectChange(videoSelect, videoForm);
-            });
-
-            testSelect.addEventListener("change", function () {
-                handleSelectChange(testSelect, testForm);
-            });
-        });
-    </script>
+    });
+</script>
 {% endblock %}

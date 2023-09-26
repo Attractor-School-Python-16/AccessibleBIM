@@ -131,6 +131,11 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['text'], context['video'], context['test'] = self.object.text, self.object.video, self.object.test
+        return context
+
     def form_valid(self, form):
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
