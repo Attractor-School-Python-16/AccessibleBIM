@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
@@ -133,44 +134,37 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
     def form_valid(self, form):
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
-            self.handle_text_lesson(form)
+            text = self.request.POST.get('text')
+            if text:
+                form.instance.text = TextModel.objects.get(pk=text)
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'No text selected'}
+                )
         elif lesson_type == 'video':
-            self.handle_video_lesson(form)
+            video = self.request.POST.get('video')
+            if video:
+                form.instance.video = VideoModel.objects.get(pk=video)
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'No video selected'}
+                )
         elif lesson_type == 'test':
-            pass
+            test = self.request.POST.get('test')
+            if test:
+                form.instance.test = QuizBim.objects.get(pk=test)
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'No test selected'}
+                )
         form.instance.save()
         return super().form_valid(form)
-
-    def handle_text_lesson(self, form):
-        text = self.request.POST.get('text')
-        if text:
-            form.instance.text = TextModel.objects.get(pk=text)
-            return text
-        text_title = self.request.POST.get('text_title')
-        text_description = self.request.POST.get('text_description')
-        content = self.request.POST.get('content')
-        text_instance = TextModel.objects.create(
-            text_title=text_title,
-            text_description=text_description,
-            content=content
-        )
-        form.instance.text = text_instance
-        return text_instance
-
-    def handle_video_lesson(self, form):
-        video = self.request.POST.get('video')
-        if video:
-            form.instance.video = VideoModel.objects.get(pk=video)
-            return video
-        form.instance.save()
-        video_instance = VideoModel.objects.create(
-            video_title=self.request.POST.get('video_title'),
-            video_description=self.request.POST.get('video_description'),
-            video_file=self.request.FILES.get('video_file'),
-        )
-        video_upload_to(instance=form.instance, filename=self.request.POST.get('video_title'))
-        form.instance.video = video_instance
-        return video_instance
 
 
 class StepDeleteView(PermissionRequiredMixin, DeleteView):
