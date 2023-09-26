@@ -47,7 +47,12 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'captcha',
     'rosetta',
+
     'django_summernote',
+
+    'crispy_forms',
+    'crispy_bootstrap5',
+
 
     'accounts',
     'modules',
@@ -181,6 +186,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if 'test' in sys.argv:
     CAPTCHA_TEST_MODE = True
 
+
 SUMMERNOTE_THEME = 'bs4'
 
 SUMMERNOTE_CONFIG = {
@@ -239,3 +245,6 @@ SUMMERNOTE_CONFIG = {
 
     'attachment_upload_to': custom_upload_to_func,
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+

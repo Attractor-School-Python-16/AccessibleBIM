@@ -12,6 +12,7 @@ class TextForm(forms.ModelForm):
             'text_description': 'Введите описание текста',
             'content': 'Заполните текст занятия',
         }
+<<<<<<< HEAD
         widgets = {
             'text_title': forms.TextInput(attrs={'class': 'form-control'}),
             'text_description': SummernoteWidget(),
@@ -20,3 +21,5 @@ class TextForm(forms.ModelForm):
 
         }
 
+=======
+>>>>>>> origin/dev
