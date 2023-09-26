@@ -1,9 +1,10 @@
 from django.contrib.auth import login, get_user_model
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import CreateView
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode, urlencode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.utils.translation import gettext_lazy as _
@@ -25,7 +26,7 @@ def activate_email(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     if email.send():
-        return redirect(f'/email-verification/?email={to_email}')
+        return redirect(reverse('accounts:verification_sent') + '?' + urlencode({'email': to_email}))
     else:
         return redirect('accounts:verification_sending_error')
 
