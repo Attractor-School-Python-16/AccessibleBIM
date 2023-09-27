@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, DeleteView, UpdateView
-
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 from modules.forms.modules_form import ModulesForm
 from modules.models import ModuleModel, CourseModel
 
@@ -17,7 +18,7 @@ class ModeratorView(PermissionRequiredMixin, TemplateView):
         return self.request.user.groups.filter(name='moderators').exists()
 
 
-class ModulesListView(PermissionRequiredMixin, ListView):
+class ModulesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = ModuleModel
     template_name = 'modules/modules_list.html'
     context_object_name = 'modules'
@@ -28,7 +29,7 @@ class ModulesListView(PermissionRequiredMixin, ListView):
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
-class ModuleCreateView(PermissionRequiredMixin, CreateView):
+class ModuleCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     template_name = "modules/module_create.html"
     model = ModuleModel
     form_class = ModulesForm
@@ -41,7 +42,7 @@ class ModuleCreateView(PermissionRequiredMixin, CreateView):
         return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
 
 
-class ModuleDetailView(PermissionRequiredMixin, DetailView):
+class ModuleDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
     model = ModuleModel
     context_object_name = 'module'
     template_name = 'modules/module_detail.html'
@@ -56,7 +57,7 @@ class ModuleDetailView(PermissionRequiredMixin, DetailView):
         return context
 
 
-class ModuleUpdateView(PermissionRequiredMixin, UpdateView):
+class ModuleUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = ModuleModel
     form_class = ModulesForm
     context_object_name = 'module'
@@ -70,7 +71,7 @@ class ModuleUpdateView(PermissionRequiredMixin, UpdateView):
         return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
 
 
-class ModuleDeleteView(PermissionRequiredMixin, DeleteView):
+class ModuleDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = ModuleModel
     template_name = "modules/module_delete.html"
     context_object_name = 'module'
@@ -79,19 +80,3 @@ class ModuleDeleteView(PermissionRequiredMixin, DeleteView):
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
-
-
-class StepVideoView(TemplateView):
-    template_name = 'steps/step_detail_video.html'
-
-
-class StepTextView(TemplateView):
-    template_name = 'steps/step_detail_text.html'
-
-
-class StepFileView(TemplateView):
-    template_name = 'steps/step_detail_file.html'
-
-
-class QuizDetailView(TemplateView):
-    template_name = 'quiz_bim/quiz_bim_detail.html'
