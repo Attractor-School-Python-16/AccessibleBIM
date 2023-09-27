@@ -38,7 +38,7 @@
                             {{ form.text }}
                         </div>
                         <div id="text-form" class="content-form">
-                            <p>или</p>
+                            <p class="my-2">или</p>
                             <label for="title_text">Введите наименование текста</label>
                             <input type="text" name="text_title" class="form-control" id="title_text">
                             <label for="description_text">Введите описание текста</label>
@@ -53,7 +53,7 @@
                             {{ form.video }}
                         </div>
                         <div id="video-form" class="content-form">
-                            <p>или</p>
+                            <p class="my-2">или</p>
                             <label for="title_video">Введите наименование видео</label>
                             <input type="text" name="video_title" class="form-control" id="title_video">
                             <label for="description_video">Введите описание видео</label>
@@ -68,11 +68,14 @@
                             {{ form.test }}
                         </div>
                         <div id="test-form" class="content-test">
-                            <p>или</p>
+                            <p class="my-2">или</p>
                             <label for="title_test">Введите наименование теста</label>
                             <input type="text" name="test_title" class="form-control" id="title_test">
-                            <label for="questions_qty_test">Введите количество вопросов теста</label>
+                            <label for="questions_qty_test">Введите количество вопросов в тесте</label>
                             <input type="number" name="test_questions_qty" id="questions_qty_test"
+                                   class="form-control">
+                            <label for="questions_qty_to_create">Введите количество создаваемых вопросов</label>
+                            <input type="number" name="questions_qty_to_create" id="questions_qty_to_create"
                                    class="form-control">
                             <button id="confirmQuestions" class="btn btn-primary my-3" type="button">Подтвердить
                             </button>
