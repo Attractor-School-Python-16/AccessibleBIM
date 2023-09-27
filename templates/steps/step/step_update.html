@@ -107,10 +107,8 @@
         handleLessonTypeChange();
         lessonType.addEventListener("change", handleLessonTypeChange);
 
-        // Определить, какой тип урока уже выбран при загрузке страницы
         const selectedTypeOnLoad = lessonType.value;
 
-        // Отобразить соответствующий блок контента на основе выбранного типа при загрузке страницы
         if (selectedTypeOnLoad === "text") {
             textContent.style.display = "block";
         } else if (selectedTypeOnLoad === "video") {
