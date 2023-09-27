@@ -72,7 +72,7 @@ lessonType.addEventListener("change", function () {
 });
 
 document.getElementById("confirmQuestions").addEventListener("click", function () {
-    const questionsQtyInput = document.getElementsByName("test_questions_qty")[0];
+    const questionsQtyInput = document.getElementsByName("questions_qty_to_create")[0];
     const questionsQty = parseInt(questionsQtyInput.value);
     if (!isNaN(questionsQty)) {
         createQuestionInputs(questionsQty);
