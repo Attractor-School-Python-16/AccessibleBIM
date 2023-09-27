@@ -1,25 +1,27 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 from step.forms.file_form import FileForm
 from step.models import FileModel
 
 
-class FileListView(LoginRequiredMixin, ListView):
+class FileListView(ListBreadcrumbMixin, LoginRequiredMixin, ListView):
     model = FileModel
     template_name = 'steps/file/file_list.html'
     context_object_name = 'files'
 
 
-
-class FileDetailView(LoginRequiredMixin, DetailView):
+class FileDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
+    model = FileModel
     queryset = FileModel.objects.all()
     template_name = "steps/file/file_detail.html"
     context_object_name = 'file'
 
 
-class FileCreateView(PermissionRequiredMixin, CreateView):
+class FileCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
+    model = FileModel
     form_class = FileForm
     template_name = "steps/file/file_create.html"
 
@@ -27,7 +29,7 @@ class FileCreateView(PermissionRequiredMixin, CreateView):
         return self.request.user.has_perm('step.add_filemodel')
 
 
-class FileUpdateView(PermissionRequiredMixin, UpdateView):
+class FileUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = FileModel
     form_class = FileForm
     template_name = 'steps/file/file_update.html'
@@ -37,7 +39,7 @@ class FileUpdateView(PermissionRequiredMixin, UpdateView):
         return self.request.user.has_perm('step.change_filemodel')
 
 
-class FileDeleteView(PermissionRequiredMixin, DeleteView):
+class FileDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = FileModel
     template_name = 'steps/file/file_delete.html'
     success_url = reverse_lazy('file_list')
