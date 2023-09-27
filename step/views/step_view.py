@@ -7,17 +7,20 @@ from step.forms.step_form import StepForm
 from step.models import VideoModel, TextModel, FileModel, video_upload_to
 from step.models.step import StepModel
 from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 
 
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
-class StepListView(ListView):
+class StepListView(ListBreadcrumbMixin, ListView):
     model = StepModel
     template_name = 'steps/step/step_list.html'
     context_object_name = 'steps'
     success_url = reverse_lazy('modules:index')
 
 
-class StepDetailView(PermissionRequiredMixin, DetailView):
+class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
+    model = StepModel
     queryset = StepModel.objects.all()
     context_object_name = 'step'
     template_name = "steps/step/step_detail.html"
@@ -36,7 +39,7 @@ class StepDetailView(PermissionRequiredMixin, DetailView):
         return context
 
 
-class StepCreateView(PermissionRequiredMixin, CreateView):
+class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     model = StepModel
     form_class = StepForm
     template_name = "steps/step/step_create.html"
@@ -49,7 +52,6 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
-
 
     def form_valid(self, form):
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
@@ -120,7 +122,7 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
         return test_instance
 
 
-class StepUpdateView(PermissionRequiredMixin, UpdateView):
+class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
@@ -173,7 +175,7 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         return video_instance
 
 
-class StepDeleteView(PermissionRequiredMixin, DeleteView):
+class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
     success_url = reverse_lazy('step:step_list')
