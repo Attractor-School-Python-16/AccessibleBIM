@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
 from modules.models import ChapterModel
@@ -125,7 +125,15 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
-    success_url = reverse_lazy('step:step_list')
+    chapter = None
+
+
+    def get_initial(self):
+        self.chapter = self.request.GET.get('chapter_pk')
+        return {'chapter': self.chapter}
+
+    def get_success_url(self):
+        return reverse('modules:chapter_detail', kwargs={"pk":self.chapter})
 
     def has_permission(self):
         user = self.request.user
@@ -142,31 +150,37 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
             text = self.request.POST.get('text')
             if text:
                 form.instance.text = TextModel.objects.get(pk=text)
+                form.instance.video = None
+                form.instance.test = None
             else:
                 return render(
                     self.request,
                     self.template_name,
-                    {'form': form, 'error_message': 'No text selected'}
+                    {'form': form, 'error_message': 'Текст не выбран'}
                 )
         elif lesson_type == 'video':
             video = self.request.POST.get('video')
             if video:
                 form.instance.video = VideoModel.objects.get(pk=video)
+                form.instance.text = None
+                form.instance.test = None
             else:
                 return render(
                     self.request,
                     self.template_name,
-                    {'form': form, 'error_message': 'No video selected'}
+                    {'form': form, 'error_message': 'Видео не выбрано'}
                 )
         elif lesson_type == 'test':
             test = self.request.POST.get('test')
             if test:
                 form.instance.test = QuizBim.objects.get(pk=test)
+                form.instance.video = None
+                form.instance.text = None
             else:
                 return render(
                     self.request,
                     self.template_name,
-                    {'form': form, 'error_message': 'No test selected'}
+                    {'form': form, 'error_message': 'Тест не выбран'}
                 )
         form.instance.save()
         return super().form_valid(form)
@@ -176,6 +190,14 @@ class StepDeleteView(PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
     success_url = reverse_lazy('step:step_list')
+    chapter = None
+
+    def get_initial(self):
+        self.chapter = self.request.GET.get('chapter_pk')
+        return {'chapter': self.chapter}
+
+    def get_success_url(self):
+        return reverse('modules:chapter_detail', kwargs={"pk": self.chapter})
 
     def has_permission(self):
         user = self.request.user
