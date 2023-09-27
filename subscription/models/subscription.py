@@ -18,8 +18,8 @@ class SubscriptionModel(AbstractModel):
 
     class Meta:
         db_table = 'subscription'
-        verbose_name = 'Подписки'
-        verbose_name_plural = 'Подписка'
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
 
     def __str__(self):
         return f'{self.course}'
