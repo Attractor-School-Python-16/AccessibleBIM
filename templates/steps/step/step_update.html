@@ -45,11 +45,6 @@
                             <label for="id_text">Выберите текст</label>
                             {{ form.text }}
                         </div>
-                        {% if text %}
-                            <a href="{% url 'step:text_update' text.id %}" id="text-link">
-                                Редактировать текст
-                            </a>
-                        {% endif %}
                     </div>
 
                     <div id="video_content" style="display: none;">
@@ -57,11 +52,6 @@
                             <label for="id_video">Выберите видео</label>
                             {{ form.video }}
                         </div>
-                        {% if video %}
-                            <a href="{% url 'step:video_update' video.id %}" id="video-link">
-                                Редактировать видео
-                            </a>
-                        {% endif %}
                     </div>
 
                     <div id="test_content" style="display: none;">
@@ -69,53 +59,76 @@
                             <label for="id_test">Выберите тест</label>
                             {{ form.test }}
                         </div>
-                        {% if test %}
-                            <a href="{% url 'quiz_bim:test_update' test.id %}" id="test-link">
-                                Редактировать тест
-                            </a>
-                        {% endif %}
                     </div>
+                    <a href="
+{#                                {% if text %}#}
+{#                                    {% url 'step:text_update' text.id %}#}
+{#                                {% elif video %}#}
+{#                                    {% url 'step:video_update' video.id %}#}
+{#                                {% elif test %}#}
+{#                                    {% url 'quiz_bim:test_update' test.id %}#}
+{#                                {% endif %}#}
+                            " id="content_update_link" target="_blank">Редактировать связанный контент</a>
+                    <br>
                     <button type="submit" class="btn btn-primary">Редактировать занятие</button>
                 </form>
             </div>
         </div>
     </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const lessonType = document.getElementById("id_lesson_type");
-        const textContent = document.getElementById("text_content");
-        const videoContent = document.getElementById("video_content");
-        const testContent = document.getElementById("test_content");
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const lessonType = document.getElementById("id_lesson_type");
+            const textContent = document.getElementById("text_content");
+            const videoContent = document.getElementById("video_content");
+            const testContent = document.getElementById("test_content");
+            const textSelect = document.getElementById("id_text");
+            const videoSelect = document.getElementById("id_video");
+            const testSelect = document.getElementById("id_test");
+            const contentUpdateLink = document.getElementById("content_update_link");
 
-        function handleLessonTypeChange() {
-            textContent.style.display = "none";
-            videoContent.style.display = "none";
-            testContent.style.display = "none";
+            function handleLessonTypeChange() {
+                textContent.style.display = "none";
+                videoContent.style.display = "none";
+                testContent.style.display = "none";
 
-            const selectedType = lessonType.value;
+                const selectedType = lessonType.value;
 
-            if (selectedType === "text") {
-                textContent.style.display = "block";
-            } else if (selectedType === "video") {
-                videoContent.style.display = "block";
-            } else if (selectedType === "test") {
-                testContent.style.display = "block";
+                if (selectedType === "text") {
+                    textContent.style.display = "block";
+                    contentUpdateLink.href = textSelect.value
+                        ? `http://localhost:8000//ru/text/${textSelect.value}/update/`
+                        : "";
+                } else if (selectedType === "video") {
+                    videoContent.style.display = "block";
+                    contentUpdateLink.href = videoSelect.value
+                        ? `http://localhost:8000//ru/video/${videoSelect.value}/update/`
+                        : "";
+                } else if (selectedType === "test") {
+                    testContent.style.display = "block";
+                    contentUpdateLink.href = testSelect.value
+                        ? `http://localhost:8000/ru/quiz_bim/test/${testSelect.value}/update/`
+                        : "";
+                } else {
+                    contentUpdateLink.href = "";
+                }
             }
-        }
 
+            handleLessonTypeChange();
+            lessonType.addEventListener("change", handleLessonTypeChange);
 
-        handleLessonTypeChange();
-        lessonType.addEventListener("change", handleLessonTypeChange);
+            textSelect.addEventListener("change", function () {
+                handleLessonTypeChange();
+            });
 
-        const selectedTypeOnLoad = lessonType.value;
+            videoSelect.addEventListener("change", function () {
+                handleLessonTypeChange();
+            });
 
-        if (selectedTypeOnLoad === "text") {
-            textContent.style.display = "block";
-        } else if (selectedTypeOnLoad === "video") {
-            videoContent.style.display = "block";
-        } else if (selectedTypeOnLoad === "test") {
-            testContent.style.display = "block";
-        }
-    });
-</script>
+            testSelect.addEventListener("change", function () {
+                handleLessonTypeChange();
+            });
+
+        });
+
+    </script>
 {% endblock %}
