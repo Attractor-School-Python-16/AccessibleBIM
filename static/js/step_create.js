@@ -88,6 +88,7 @@ function createQuestionInputs(questionsQty) {
     for (let i = 1; i <= questionsQty; i++) {
         const questionBlock = document.createElement("div");
         questionBlock.setAttribute("class", "question-block");
+        questionBlock.setAttribute("display", "none");
 
         const questionLabel = document.createElement("label");
         questionLabel.setAttribute("for", `question_title_${i}`);
@@ -165,4 +166,56 @@ function createAnswerInputs(answersContainer, questionNumber) {
     answersContainer.appendChild(answerBlock);
 
     answersQtyInput.value = currentAnswersQty + 1;
+}
+
+const questionsQtyInput = document.getElementById("questions_qty_to_create");
+const confirmQuestionsButton = document.getElementById("confirmQuestions");
+const paginationBlock = document.getElementById("pagination-block");
+
+// Обработчик события для кнопки "Подтвердить"
+confirmQuestionsButton.addEventListener("click", function () {
+  const questionsQty = parseInt(questionsQtyInput.value);
+
+  // Создаем элементы пагинации и добавляем их в блок paginationBlock
+  generatePagination(questionsQty);
+
+  // Показываем первый блок с вопросом, остальные скрываем
+  showQuestionBlock(1);
+});
+
+// Функция для создания элементов пагинации
+function generatePagination(numPages) {
+  paginationBlock.innerHTML = ""; // Очищаем блок перед добавлением новых элементов
+
+  for (let i = 1; i <= numPages; i++) {
+    const pageItem = document.createElement("li");
+    pageItem.classList.add("page-item");
+
+    const pageLink = document.createElement("a");
+    pageLink.classList.add("page-link");
+    pageLink.classList.add("btn");
+    pageLink.textContent = i;
+
+    pageItem.appendChild(pageLink);
+    paginationBlock.appendChild(pageItem);
+
+    // Добавляем обработчик события для каждого элемента пагинации
+    pageLink.addEventListener("click", function () {
+      // Обработка клика на элементе пагинации
+      showQuestionBlock(i); // Показываем соответствующий блок с вопросом
+    });
+  }
+}
+
+function showQuestionBlock(pageNumber) {
+  const questionBlocks = document.querySelectorAll(".question-block");
+  currentPage = pageNumber;
+
+  questionBlocks.forEach((block, index) => {
+    if (index === pageNumber - 1) {
+      block.style.display = "block";
+    } else {
+      block.style.display = "none";
+    }
+  });
 }
