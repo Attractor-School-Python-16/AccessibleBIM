@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load view_breadcrumbs %}
 {% block title %}Главы{% endblock %}
 {% block content %}
     <div class="container">
@@ -7,31 +8,34 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
-                <h1>Список глав</h1><a href="{% url 'modules:chapter_create' %}" class="btn btn-primary my-3">Добавить
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
+                <h1>Список глав</h1><a href="{% url 'modules:chaptermodel_create' %}" class="btn btn-primary my-3">Добавить
                 главу</a>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Название</th>
-                            <th class="text-end">Действия</th>
-                        </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th class="text-end">Действия</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {% for chapter in chapters %}
-                            <tr>
-                                <td>{{ chapter.id }}</td>
-                                <td><a href="{% url 'modules:chapter_detail' chapter.id %}">{{ chapter.title }}</a></td>
-                                <td class="text-end">
-                                    <div class="btn-group">
-                                        <a href="{% url 'modules:chapter_update' chapter.id %}"
-                                           class="btn btn-info btn-sm mx-3">Изменить</a>
-                                        <a href="{% url 'modules:chapter_delete' chapter.id %}"
-                                           class="btn btn-danger btn-sm">Удалить</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
+                    {% for chapter in chapters %}
+                        <tr>
+                            <td>{{ chapter.id }}</td>
+                            <td><a href="{% url 'modules:chaptermodel_detail' chapter.id %}">{{ chapter.title }}</a></td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <a href="{% url 'modules:chaptermodel_update' chapter.id %}"
+                                       class="btn btn-info btn-sm mx-3">Изменить</a>
+                                    <a href="{% url 'modules:chaptermodel_delete' chapter.id %}"
+                                       class="btn btn-danger btn-sm">Удалить</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>

@@ -15,9 +15,9 @@
                         <p>Порядковый номер: {{ chapter.serial_number }}</p>
                     </div>
                     <div class="btn-group">
-                        <a href="{% url 'modules:chapter_update' chapter.id %}"
+                        <a href="{% url 'modules:chaptermodel_update' chapter.id %}"
                            class="btn btn-info btn-sm mx-3">Изменить</a>
-                        <a href="{% url 'modules:chapter_delete' chapter.id %}"
+                        <a href="{% url 'modules:chaptermodel_delete' chapter.id %}"
                            class="btn btn-danger btn-sm">Удалить</a>
                     </div>
                 </div>
