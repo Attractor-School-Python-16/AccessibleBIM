@@ -10,9 +10,9 @@
                 <div class="d-inline-block ms-5">
                     {% include 'partials/main_block.html' with data=course %}
                     <div class="btn-group">
-                        <a href="{% url 'modules:course_update' course.id %}"
+                        <a href="{% url 'modules:coursemodel_update' course.id %}"
                            class="btn btn-info btn-sm mx-3">Изменить</a>
-                        <a href="{% url 'modules:course_delete' course.id %}"
+                        <a href="{% url 'modules:coursemodel_delete' course.id %}"
                            class="btn btn-danger btn-sm">Удалить</a>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <a href="{% url 'modules:chapter_detail' chapter.serial_number %}">{{ chapter.title }}</a>
+                                    <a href="{% url 'modules:chaptermodel_detail' chapter.serial_number %}">{{ chapter.title }}</a>
                                 </td>
                             </tr>
                         {% endfor %}
