@@ -7,10 +7,12 @@ from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
-    UpdateBreadcrumbMixin
+    UpdateBreadcrumbMixin, BaseBreadcrumbMixin
 from modules.forms.chapters_form import ChaptersForm
 from modules.models import ChapterModel, CourseModel
 from step.models import StepModel
+
+from django.utils.functional import cached_property
 
 
 class ChaptersListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -43,7 +45,7 @@ class ChapterCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVi
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("modules:chapter_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
 
 class ChapterDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -60,6 +62,9 @@ class ChapterDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVi
         context['steps'] = StepModel.objects.filter(chapter=self.object.id)
         return context
 
+    def get_success_url(self):
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
+
 
 class ChapterUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = ChapterModel
@@ -72,7 +77,7 @@ class ChapterUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVi
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:chapter_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
 
 class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -85,8 +90,11 @@ class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
+    def get_success_url(self):
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
-class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
+
+class ChapterChangeStepsOrderView(BaseBreadcrumbMixin, PermissionRequiredMixin, View):
     template_name = 'chapters/change_steps_order.html'
 
     def has_permission(self):
@@ -121,4 +129,9 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
                 step.serial_number = new_number
                 step.save()
 
-        return redirect('modules:chaptermodel_detail', pk=chapter.pk)
+        return redirect('modules:coursemodel_detail', pk=chapter.course.pk)
+
+    @cached_property
+    def crumbs(self):
+        return [
+            ("Изменение порядка для глав", reverse("modules:coursemodel_detail", kwargs={'pk': self.kwargs.get("pk")}))]

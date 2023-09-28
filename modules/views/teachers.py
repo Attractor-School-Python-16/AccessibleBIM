@@ -28,7 +28,7 @@ class TeacherCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVi
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:teacher_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:teachermodel_detail", kwargs={"pk": self.object.pk})
 
 
 class TeacherDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -52,14 +52,14 @@ class TeacherUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVi
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:teacher_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:teachermodel_list")
 
 
 class TeacherDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = TeacherModel
     template_name = "teachers/teacher_delete.html"
     context_object_name = 'teacher'
-    success_url = reverse_lazy("modules:teachers_list")
+    success_url = reverse_lazy("modules:teachermodel_list")
 
     def has_permission(self):
         user = self.request.user

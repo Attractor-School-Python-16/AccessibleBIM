@@ -2,13 +2,14 @@ import re
 from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
-    UpdateBreadcrumbMixin
+    UpdateBreadcrumbMixin, BaseBreadcrumbMixin
 from modules.forms.courses_form import CoursesForm
 from modules.models import CourseModel, ModuleModel, ChapterModel
+from django.utils.functional import cached_property
 
 
 class CoursesListView(ListBreadcrumbMixin, ListView):
@@ -41,7 +42,7 @@ class CourseCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVie
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("modules:course_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:modulemodel_detail", kwargs={"pk": self.object.module_id.pk})
 
 
 class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -70,18 +71,20 @@ class CourseUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVie
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:course_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:modulemodel_detail", kwargs={"pk": self.object.module_id.pk})
 
 
 class CourseDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = CourseModel
     template_name = "courses/course_delete.html"
     context_object_name = 'course'
-    success_url = reverse_lazy("modules:courses_list")
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get_success_url(self):
+        return reverse("modules:modulemodel_detail", kwargs={"pk": self.object.module_id.pk})
 
 
 class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
