@@ -1,6 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView, CreateView
 from view_breadcrumbs import CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
     UpdateBreadcrumbMixin
@@ -48,6 +47,7 @@ class AnswerBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Update
     @cached_property
     def crumbs(self):
         return [("Редактирование ответа", reverse("quiz_bim:answerbim_update", kwargs={'pk': self.kwargs.get("pk")}))]
+
 
 class AnswerBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = AnswerBim

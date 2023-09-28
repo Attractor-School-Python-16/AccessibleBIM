@@ -39,7 +39,7 @@ class ModuleCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVie
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:modulemodel_list")
 
 
 class ModuleDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -68,14 +68,14 @@ class ModuleUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVie
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:module_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:modulemodel_list")
 
 
 class ModuleDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = ModuleModel
     template_name = "modules/module_delete.html"
     context_object_name = 'module'
-    success_url = reverse_lazy("modules:modules_list")
+    success_url = reverse_lazy("modules:modulemodel_list")
 
     def has_permission(self):
         user = self.request.user

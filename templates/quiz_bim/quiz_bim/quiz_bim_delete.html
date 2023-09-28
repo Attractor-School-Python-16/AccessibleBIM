@@ -15,7 +15,7 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger mt-3">Да</button>
                 </form>
-                <a href="{% url "quiz_bim:quizbim_list" test.pk %}">
+                <a href="{% url "quiz_bim:quizbim_list" %}">
                     <button type="submit" class="btn btn-primary mt-3">Нет</button>
                 </a>
             </div>
