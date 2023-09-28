@@ -6,10 +6,9 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
-    UpdateBreadcrumbMixin, BaseBreadcrumbMixin
+    UpdateBreadcrumbMixin
 from modules.forms.courses_form import CoursesForm
 from modules.models import CourseModel, ModuleModel, ChapterModel
-from django.utils.functional import cached_property
 
 
 class CoursesListView(ListBreadcrumbMixin, ListView):
