@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'progress',
     'subscription',
     'quiz_bim',
+    'currency',
 ]
 
 MIDDLEWARE = [
