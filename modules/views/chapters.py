@@ -18,6 +18,7 @@ class ChaptersListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     template_name = 'chapters/chapters_list.html'
     context_object_name = 'chapters'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -29,6 +30,7 @@ class ChapterCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVi
     model = ChapterModel
     form_class = ChaptersForm
     course = None
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -50,6 +52,7 @@ class ChapterDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVi
     model = ChapterModel
     context_object_name = 'chapter'
     template_name = 'chapters/chapter_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -69,6 +72,7 @@ class ChapterUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVi
     form_class = ChaptersForm
     context_object_name = 'chapter'
     template_name = 'chapters/chapter_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -83,6 +87,7 @@ class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
     template_name = "chapters/chapter_delete.html"
     context_object_name = 'chapter'
     success_url = reverse_lazy("modules:chapters_list")
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

@@ -22,6 +22,7 @@ class SubscriptionListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListVie
     template_name = 'subscription/subscription_list.html'
     context_object_name = 'subscriptions'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -32,6 +33,7 @@ class SubscriptionCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Cre
     template_name = "subscription/subscription_create.html"
     model = SubscriptionModel
     form_class = SubscriptionForm
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -45,6 +47,7 @@ class SubscriptionDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, Det
     model = SubscriptionModel
     context_object_name = 'subscription'
     template_name = 'subscription/subscription_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -56,6 +59,7 @@ class SubscriptionUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upd
     form_class = SubscriptionForm
     context_object_name = 'subscription'
     template_name = 'subscription/subscription_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -70,6 +74,7 @@ class SubscriptionDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, Del
     template_name = "subscription/subscription_delete.html"
     context_object_name = 'subscription'
     success_url = reverse_lazy("subscription:subscriptionmodel_list")
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -81,6 +86,7 @@ class SubscriptionUserListView(ListBreadcrumbMixin, PermissionRequiredMixin, Lis
     template_name = "subscription/subscription_admin/user_list.html"
     context_object_name = 'users'
     queryset = CustomUser.objects.all().filter(is_superuser=0)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -96,6 +102,7 @@ class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, De
     template_name = "subscription/subscription_admin/user_add.html"
     context_object_name = 'user'
     form_class = SubscriptionUserAddForm
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -153,6 +160,7 @@ class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin,
     model = CustomUser
     template_name = "subscription/subscription_admin/user_delete.html"
     context_object_name = 'user'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

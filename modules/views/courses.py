@@ -2,7 +2,7 @@ import re
 from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
@@ -16,6 +16,7 @@ class CoursesListView(ListBreadcrumbMixin, ListView):
     template_name = 'courses/courses_list.html'
     context_object_name = 'courses'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -27,6 +28,7 @@ class CourseCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVie
     model = CourseModel
     form_class = CoursesForm
     module_pk = None
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -48,6 +50,7 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
     model = CourseModel
     context_object_name = 'course'
     template_name = 'courses/course_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -64,6 +67,7 @@ class CourseUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVie
     form_class = CoursesForm
     context_object_name = 'course'
     template_name = 'courses/course_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -77,6 +81,7 @@ class CourseDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVie
     model = CourseModel
     template_name = "courses/course_delete.html"
     context_object_name = 'course'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

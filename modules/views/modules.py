@@ -13,7 +13,6 @@ class HomeView(TemplateView):
 
 class ModeratorView(PermissionRequiredMixin, TemplateView):
     template_name = 'moderator_page.html'
-
     def has_permission(self):
         return self.request.user.groups.filter(name='moderators').exists()
 
@@ -23,6 +22,7 @@ class ModulesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     template_name = 'modules/modules_list.html'
     context_object_name = 'modules'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -33,6 +33,7 @@ class ModuleCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVie
     template_name = "modules/module_create.html"
     model = ModuleModel
     form_class = ModulesForm
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -46,6 +47,7 @@ class ModuleDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
     model = ModuleModel
     context_object_name = 'module'
     template_name = 'modules/module_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -62,6 +64,7 @@ class ModuleUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVie
     form_class = ModulesForm
     context_object_name = 'module'
     template_name = 'modules/module_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -76,6 +79,7 @@ class ModuleDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVie
     template_name = "modules/module_delete.html"
     context_object_name = 'module'
     success_url = reverse_lazy("modules:modulemodel_list")
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
