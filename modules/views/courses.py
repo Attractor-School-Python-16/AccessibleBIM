@@ -7,10 +7,10 @@ from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 
 from modules.forms.courses_form import CoursesForm
-from modules.models import CourseModel, ModuleModel, ChapterModel
+from modules.models import CourseModel, ModuleModel, ChapterModel, CourseTargetModel
 
 
-class CoursesListView(ListView):
+class CoursesListView(PermissionRequiredMixin, ListView):
     model = CourseModel
     template_name = 'courses/courses_list.html'
     context_object_name = 'courses'
@@ -19,6 +19,39 @@ class CoursesListView(ListView):
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+
+class CoursesUserListView(ListView):
+    model = CourseModel
+    template_name = 'courses/courses_user_list.html'
+    context_object_name = 'courses'
+    ordering = "-create_at"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['selected_modules'] = self.request.GET.getlist('modules', [])
+        context['selected_languages'] = self.request.GET.getlist('languages', [])
+        context['selected_targets'] = self.request.GET.getlist('targets', [])
+        context['course_targets'] = CourseTargetModel.objects.all()
+        context['modules'] = ModuleModel.objects.all()
+        return context
+
+    def get_queryset(self):
+        queryset = CourseModel.objects.all()
+        modules = self.request.GET.getlist('modules', [])
+        languages = self.request.GET.getlist('languages', [])
+        targets = self.request.GET.getlist('targets', [])
+
+        if modules:
+            queryset = queryset.filter(module_id__title__in=modules)
+
+        if languages:
+            queryset = queryset.filter(language__in=languages)
+
+        if targets:
+            queryset = queryset.filter(courseTarget_id__title__in=targets)
+
+        return queryset
 
 
 class CourseCreateView(PermissionRequiredMixin, CreateView):
