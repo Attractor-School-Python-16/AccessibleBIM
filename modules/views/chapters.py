@@ -7,12 +7,10 @@ from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
-    UpdateBreadcrumbMixin, BaseBreadcrumbMixin
+    UpdateBreadcrumbMixin
 from modules.forms.chapters_form import ChaptersForm
 from modules.models import ChapterModel, CourseModel
 from step.models import StepModel
-
-from django.utils.functional import cached_property
 
 
 class ChaptersListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -94,7 +92,7 @@ class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
         return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
 
-class ChapterChangeStepsOrderView(BaseBreadcrumbMixin, PermissionRequiredMixin, View):
+class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
     template_name = 'chapters/change_steps_order.html'
 
     def has_permission(self):
@@ -129,9 +127,4 @@ class ChapterChangeStepsOrderView(BaseBreadcrumbMixin, PermissionRequiredMixin, 
                 step.serial_number = new_number
                 step.save()
 
-        return redirect('modules:coursemodel_detail', pk=chapter.course.pk)
-
-    @cached_property
-    def crumbs(self):
-        return [
-            ("Изменение порядка для глав", reverse("modules:coursemodel_detail", kwargs={'pk': self.kwargs.get("pk")}))]
+        return redirect('modules:chaptermodel_detail', pk=chapter.course.pk)
