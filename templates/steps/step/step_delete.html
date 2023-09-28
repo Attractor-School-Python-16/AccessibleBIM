@@ -17,7 +17,7 @@
                 <form action="" method="post" id="delete-form">
                     {% csrf_token %}
                     <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
-                    <a href="#" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
+                    <a href="{% url "modules:chaptermodel_detail" stepmodel.chapter.pk %}" class="btn btn-secondary mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
                 </form>
             </div>
         </div>
