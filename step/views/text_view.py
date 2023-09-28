@@ -11,6 +11,7 @@ class TextListView(ListBreadcrumbMixin, LoginRequiredMixin, ListView):
     model = TextModel
     template_name = 'steps/text/text_list.html'
     context_object_name = 'texts'
+    home_path = reverse_lazy('modules:moderator_page')
 
 
 class TextDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
@@ -18,6 +19,7 @@ class TextDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
     queryset = TextModel.objects.all()
     template_name = "steps/text/text_detail.html"
     context_object_name = 'text'
+    home_path = reverse_lazy('modules:moderator_page')
 
 
 class TextCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
@@ -25,6 +27,7 @@ class TextCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
     form_class = TextForm
     template_name = "steps/text/text_create.html"
     success_url = reverse_lazy('step:textmodel_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         return self.request.user.has_perm('step.add_textmodel')
@@ -35,6 +38,7 @@ class TextUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     form_class = TextForm
     template_name = 'steps/text/text_update.html'
     success_url = reverse_lazy('step:textmodel_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         return self.request.user.has_perm('step.change_textmodel')
@@ -44,6 +48,7 @@ class TextDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     model = TextModel
     template_name = 'steps/text/text_delete.html'
     success_url = reverse_lazy('step:textmodel_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         return self.request.user.has_perm('step.delete_textmodel')

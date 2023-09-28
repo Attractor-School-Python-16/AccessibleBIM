@@ -6,7 +6,7 @@ from view_breadcrumbs import DetailBreadcrumbMixin, CreateBreadcrumbMixin, Delet
 from quiz_bim.models import QuizBim
 from quiz_bim.models.question_bim import QuestionBim
 from quiz_bim.forms.question_bim_form import QuestionBimForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.functional import cached_property
 
 
@@ -15,6 +15,7 @@ class QuestionBimDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, Deta
     queryset = QuestionBim.objects.all()
     template_name = "quiz_bim/question_bim/question_bim_detail.html"
     context_object_name = 'question'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -34,6 +35,7 @@ class QuestionBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Crea
     model = QuestionBim
     form_class = QuestionBimForm
     template_name = "quiz_bim/question_bim/question_bim_create.html"
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -56,6 +58,7 @@ class QuestionBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upda
     form_class = QuestionBimForm
     template_name = 'quiz_bim/question_bim/question_bim_update.html'
     context_object_name = 'question'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -73,6 +76,7 @@ class QuestionBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, Dele
     model = QuestionBim
     context_object_name = 'question'
     template_name = 'quiz_bim/question_bim/question_bim_delete.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

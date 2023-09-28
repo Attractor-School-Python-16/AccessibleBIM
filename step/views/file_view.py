@@ -11,6 +11,7 @@ class FileListView(ListBreadcrumbMixin, LoginRequiredMixin, ListView):
     model = FileModel
     template_name = 'steps/file/file_list.html'
     context_object_name = 'files'
+    home_path = reverse_lazy('modules:moderator_page')
 
 
 class FileDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
@@ -18,6 +19,7 @@ class FileDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
     queryset = FileModel.objects.all()
     template_name = "steps/file/file_detail.html"
     context_object_name = 'file'
+    home_path = reverse_lazy('modules:moderator_page')
 
 
 class FileCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
@@ -25,6 +27,7 @@ class FileCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
     form_class = FileForm
     template_name = "steps/file/file_create.html"
     success_url = reverse_lazy('step:filemodel_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         return self.request.user.has_perm('step.add_filemodel')
@@ -35,6 +38,7 @@ class FileUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     form_class = FileForm
     template_name = 'steps/file/file_update.html'
     success_url = reverse_lazy('step:filemodel_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         return self.request.user.has_perm('step.change_filemodel')
@@ -44,6 +48,7 @@ class FileDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     model = FileModel
     template_name = 'steps/file/file_delete.html'
     success_url = reverse_lazy('step:filemodel_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         return self.request.user.has_perm('step.delete_filemodel')

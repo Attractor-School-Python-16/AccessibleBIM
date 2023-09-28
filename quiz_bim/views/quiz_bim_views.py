@@ -11,6 +11,7 @@ class QuizBimListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = QuizBim
     template_name = 'quiz_bim/quiz_bim/quiz_bim_list.html'
     context_object_name = 'tests'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -22,6 +23,7 @@ class QuizBimDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVi
     queryset = QuizBim.objects.all()
     template_name = "quiz_bim/quiz_bim/quiz_bim_detail.html"
     context_object_name = 'test'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -37,6 +39,7 @@ class QuizBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVi
     model = QuizBim
     form_class = QuizBimForm
     template_name = "quiz_bim/quiz_bim/quiz_bim_create.html"
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -52,6 +55,7 @@ class QuizBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVi
     template_name = 'quiz_bim/quiz_bim/quiz_bim_update.html'
     success_url = reverse_lazy('quiz_bim:quizbim_list')
     context_object_name = 'test'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -63,6 +67,7 @@ class QuizBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
     context_object_name = 'test'
     template_name = 'quiz_bim/quiz_bim/quiz_bim_delete.html'
     success_url = reverse_lazy('quiz_bim:quizbim_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

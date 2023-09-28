@@ -16,6 +16,7 @@ class StepListView(ListBreadcrumbMixin, ListView):
     template_name = 'steps/step/step_list.html'
     context_object_name = 'steps'
     success_url = reverse_lazy('modules:index')
+    home_path = reverse_lazy('modules:moderator_page')
 
 
 class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -23,6 +24,7 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
     queryset = StepModel.objects.all()
     context_object_name = 'step'
     template_name = "steps/step/step_detail.html"
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -43,6 +45,7 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
     form_class = StepForm
     template_name = "steps/step/step_create.html"
     chapter = None
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -128,6 +131,7 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -182,6 +186,7 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
 class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

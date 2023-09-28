@@ -12,6 +12,7 @@ class CourseTargetsListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListVi
     template_name = 'course_target/course_target_list.html'
     context_object_name = 'course_targets'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -22,6 +23,7 @@ class CourseTargetCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Cre
     template_name = "course_target/course_target_create.html"
     model = CourseTargetModel
     form_class = CourseTargetForm
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -35,6 +37,7 @@ class CourseTargetDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, Det
     model = CourseTargetModel
     context_object_name = 'course_target'
     template_name = 'course_target/course_target_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -46,6 +49,7 @@ class CourseTargetUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upd
     form_class = CourseTargetForm
     context_object_name = 'course_target'
     template_name = 'course_target/course_target_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -60,6 +64,7 @@ class CourseTargetDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, Del
     template_name = "course_target/course_target_delete.html"
     context_object_name = 'course_target'
     success_url = reverse_lazy("modules:course_targets_list")
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
