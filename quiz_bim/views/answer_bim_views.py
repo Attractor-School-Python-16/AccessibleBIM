@@ -6,7 +6,7 @@ from view_breadcrumbs import CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
 from quiz_bim.models import QuestionBim
 from quiz_bim.models.answer_bim import AnswerBim
 from quiz_bim.forms.answer_bim_form import AnswerBimForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.functional import cached_property
 
 
@@ -14,6 +14,7 @@ class AnswerBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Create
     model = AnswerBim
     form_class = AnswerBimForm
     template_name = "quiz_bim/answer_bim/answer_bim_create.html"
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -36,6 +37,7 @@ class AnswerBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Update
     form_class = AnswerBimForm
     template_name = 'quiz_bim/answer_bim/answer_bim_update.html'
     context_object_name = 'answer'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -53,6 +55,7 @@ class AnswerBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, Delete
     model = AnswerBim
     context_object_name = 'answer'
     template_name = 'quiz_bim/answer_bim/answer_bim_delete.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

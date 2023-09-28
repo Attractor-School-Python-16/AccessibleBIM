@@ -12,6 +12,7 @@ class TeachersListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     template_name = 'teachers/teachers_list.html'
     context_object_name = 'teachers'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -22,6 +23,7 @@ class TeacherCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVi
     template_name = "teachers/teacher_create.html"
     model = TeacherModel
     form_class = TeacherForm
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -35,6 +37,7 @@ class TeacherDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVi
     model = TeacherModel
     context_object_name = 'teacher'
     template_name = 'teachers/teacher_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -46,6 +49,7 @@ class TeacherUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVi
     form_class = TeacherForm
     context_object_name = 'teacher'
     template_name = 'teachers/teacher_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -60,6 +64,7 @@ class TeacherDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
     template_name = "teachers/teacher_delete.html"
     context_object_name = 'teacher'
     success_url = reverse_lazy("modules:teachermodel_list")
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
