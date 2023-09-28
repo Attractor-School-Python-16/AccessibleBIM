@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-
+from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
 from step.forms.step_form import StepForm
 from step.models import VideoModel, TextModel, FileModel, video_upload_to
@@ -121,12 +120,14 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         form.instance.test = test_instance
         return test_instance
 
+    def get_success_url(self):
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
+
 
 class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
-    success_url = reverse_lazy('step:stepmodel__list')
 
     def has_permission(self):
         user = self.request.user
@@ -174,12 +175,17 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
         form.instance.video = video_instance
         return video_instance
 
+    def get_success_url(self):
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
+
 
 class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
-    success_url = reverse_lazy('step:stepmodel_list')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get_success_url(self):
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
