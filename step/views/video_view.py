@@ -24,6 +24,7 @@ class VideoCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView
     model = VideoModel
     form_class = VideoForm
     template_name = "steps/video/video_create.html"
+    success_url = reverse_lazy('step:videomodel_list')
 
     def has_permission(self):
         return self.request.user.has_perm('step.add_videomodel')
@@ -33,7 +34,7 @@ class VideoUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView
     model = VideoModel
     form_class = VideoForm
     template_name = 'steps/video/video_update.html'
-    success_url = reverse_lazy('step:video_list')
+    success_url = reverse_lazy('step:videomodel_list')
 
     def has_permission(self):
         return self.request.user.has_perm('step.change_videomodel')
@@ -42,7 +43,7 @@ class VideoUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView
 class VideoDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = VideoModel
     template_name = 'steps/video/video_delete.html'
-    success_url = reverse_lazy('step:video_list')
+    success_url = reverse_lazy('step:videomodel_list')
 
     def has_permission(self):
         return self.request.user.has_perm('step.delete_videomodel')

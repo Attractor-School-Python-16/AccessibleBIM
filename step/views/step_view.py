@@ -126,7 +126,7 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
-    success_url = reverse_lazy('step:step_list')
+    success_url = reverse_lazy('step:stepmodel__list')
 
     def has_permission(self):
         user = self.request.user
@@ -178,7 +178,7 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
 class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
-    success_url = reverse_lazy('step:step_list')
+    success_url = reverse_lazy('step:stepmodel_list')
 
     def has_permission(self):
         user = self.request.user

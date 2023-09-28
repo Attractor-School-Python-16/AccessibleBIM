@@ -28,7 +28,7 @@ class CourseTargetCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Cre
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:course_target_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:coursetargetmodel_detail", kwargs={"pk": self.object.pk})
 
 
 class CourseTargetDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -52,7 +52,7 @@ class CourseTargetUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upd
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:course_target_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:coursetargetmodel_list")
 
 
 class CourseTargetDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):

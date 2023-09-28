@@ -38,7 +38,7 @@ class SubscriptionCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Cre
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("subscription:subscription_detail", kwargs={"pk": self.object.pk})
+        return reverse("subscription:subscriptionmodel_list")
 
 
 class SubscriptionDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -62,14 +62,14 @@ class SubscriptionUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upd
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("subscription:subscription_detail", kwargs={"pk": self.object.pk})
+        return reverse("subscription:subscriptionmodel_detail", kwargs={"pk": self.object.pk})
 
 
 class SubscriptionDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = SubscriptionModel
     template_name = "subscription/subscription_delete.html"
     context_object_name = 'subscription'
-    success_url = reverse_lazy("subscription:subscription_list")
+    success_url = reverse_lazy("subscription:subscriptionmodel_list")
 
     def has_permission(self):
         user = self.request.user
@@ -111,17 +111,20 @@ class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, De
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form, *args, **kwargs):
-        find_subscription = get_object_or_404(SubscriptionModel, pk=self.button_value)
+        subscription = get_object_or_404(SubscriptionModel, pk=self.button_value)
         user = get_object_or_404(CustomUser, pk=self.object.pk)
-        if UsersSubscription.objects.all().filter(Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)):
+        user_subscription = UsersSubscription.objects.all().filter(Q(user_id=self.object.pk) & Q(subscription_id=self.button_value))
+        if user_subscription:
             user_subscription = get_object_or_404(UsersSubscription,
                                                   (Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)))
             user_subscription.end_time = datetime.now() + timedelta(days=30)
             user_subscription.subscription_id = self.button_value
             user_subscription.is_active = True
             user_subscription.save()
-        find_subscription.user_subscription.add(user)
-        return redirect('subscription:subscription_users_list')
+            return redirect('subscription:subscriptionmodel_user_list')
+        else:
+            UsersSubscription.objects.create(subscription=subscription, user=user, end_time=datetime.now() + timedelta(days=30))
+            return redirect('subscription:subscriptionmodel_user_list')
 
     def post(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -170,7 +173,7 @@ class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin,
                                               (Q(user_id=self.object.pk) & Q(subscription_id=self.delete_value)))
         user_subscription.is_active = False
         user_subscription.save()
-        return redirect('subscription:subscription_users_list')
+        return redirect('subscription:subscriptionmodel_user_list')
 
     def get_delete_form(self):
         return SubscriptionUserDeleteForm(self.request.POST)
