@@ -123,6 +123,8 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CELERY_BROKER_URL = 'redis://localhost'
+
 with open('accessibleBIM/config.txt') as f:
     EMAIL_APP_PASSWORD = f.read().strip()
 
