@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_celery_beat',
+    "view_breadcrumbs",
     "phonenumber_field",
     'captcha',
     'rosetta',
@@ -89,6 +90,8 @@ TEMPLATES = [
     },
 ]
 
+BREADCRUMBS_TEMPLATE = "partials/breadcrumbs.html"
+BREADCRUMBS_HOME_LABEL = "Home"
 WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 
 
