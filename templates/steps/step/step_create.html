@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static view_breadcrumbs %}
 {% block title %}
     Добавить занятие
 {% endblock %}
@@ -10,6 +10,10 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for error in form.non_field_errors %}

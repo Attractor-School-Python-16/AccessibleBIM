@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load view_breadcrumbs %}
 {% block title %}
     Редактировать занятие
 {% endblock %}
@@ -9,6 +10,9 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for error in form.non_field_errors %}
@@ -45,31 +49,12 @@
                             <label for="id_text">Выберите текст</label>
                             {{ form.text }}
                         </div>
-
-                        <div id="text-form" class="content-form">
-                            <p>или</p>
-                            <label for="text_title">Введите наименование текста</label>
-                            <input type="text" name="text_title" class="form-control">
-                            <label for="text_description">Введите описание текста</label>
-                            <input type="text" name="text_description" class="form-control">
-                            <label for="content">Заполните текст занятия</label>
-                            <textarea name="content" class="form-control"></textarea>
-                        </div>
                     </div>
 
                     <div id="video_content" style="display: none;">
                         <div class="form-group">
                             <label for="id_video">Выберите видео</label>
                             {{ form.video }}
-                        </div>
-                        <div id="video-form" class="content-form">
-                            <p>или</p>
-                            <label for="video_title">Введите наименование видео</label>
-                            <input type="text" name="video_title" class="form-control">
-                            <label for="video_description">Введите описание видео</label>
-                            <input type="text" name="video_description" class="form-control">
-                            <label for="">Загрузите видео-файл</label>
-                            <input type="file" name="video_file" class="form-control">
                         </div>
                     </div>
 
@@ -79,82 +64,75 @@
                             {{ form.test }}
                         </div>
                     </div>
+                    <a href="
+{#                                {% if text %}#}
+{#                                    {% url 'step:text_update' text.id %}#}
+{#                                {% elif video %}#}
+{#                                    {% url 'step:video_update' video.id %}#}
+{#                                {% elif test %}#}
+{#                                    {% url 'quiz_bim:test_update' test.id %}#}
+{#                                {% endif %}#}
+                            " id="content_update_link" target="_blank">Редактировать связанный контент</a>
+                    <br>
                     <button type="submit" class="btn btn-primary">Редактировать занятие</button>
                 </form>
             </div>
         </div>
     </div>
     <script>
-        const textContent = document.getElementById("text_content");
-        const videoContent = document.getElementById("video_content");
-        const testContent = document.getElementById("test_content");
-        const lessonType = document.getElementById("id_lesson_type");
-        const textSelect = document.getElementById("id_text");
-        const videoSelect = document.getElementById("id_video");
-        const testSelect = document.getElementById("id_test");
-        const textForm = document.getElementById("text-form");
-        const videoForm = document.getElementById("video-form");
-        const testForm = document.getElementById("test-form");
-
-        function handleSelectChange(select, form) {
-            if (select.value) {
-                form.style.display = "none";
-            } else {
-                form.style.display = "block";
-            }
-        }
-
-        function clearInputsInDiv(div) {
-            const inputElements = div.getElementsByTagName('input');
-            const selectElements = div.getElementsByTagName('select');
-
-            for (let i = 0; i < inputElements.length; i++) {
-                inputElements[i].value = '';
-            }
-            for (let i = 0; i < selectElements.length; i++) {
-                selectElements[i].value = '';
-            }
-        }
-
         document.addEventListener("DOMContentLoaded", function () {
-            handleSelectChange(textSelect, textForm);
-            handleSelectChange(videoSelect, videoForm);
-            handleSelectChange(testSelect, testForm);
+            const lessonType = document.getElementById("id_lesson_type");
+            const textContent = document.getElementById("text_content");
+            const videoContent = document.getElementById("video_content");
+            const testContent = document.getElementById("test_content");
+            const textSelect = document.getElementById("id_text");
+            const videoSelect = document.getElementById("id_video");
+            const testSelect = document.getElementById("id_test");
+            const contentUpdateLink = document.getElementById("content_update_link");
 
             function handleLessonTypeChange() {
-                if (lessonType.value === "text") {
+                textContent.style.display = "none";
+                videoContent.style.display = "none";
+                testContent.style.display = "none";
+
+                const selectedType = lessonType.value;
+
+                if (selectedType === "text") {
                     textContent.style.display = "block";
-                    videoContent.style.display = "none";
-                    testContent.style.display = "none";
-                    clearInputsInDiv(videoContent, testContent)
-                } else if (lessonType.value === "video") {
-                    textContent.style.display = "none";
+                    contentUpdateLink.href = textSelect.value
+                        ? `http://localhost:8000//ru/text/${textSelect.value}/update/`
+                        : "";
+                } else if (selectedType === "video") {
                     videoContent.style.display = "block";
-                    testContent.style.display = "none";
-                    clearInputsInDiv(textContent, testContent)
-                } else if (lessonType.value === "test") {
-                    textContent.style.display = "none";
-                    videoContent.style.display = "none";
+                    contentUpdateLink.href = videoSelect.value
+                        ? `http://localhost:8000//ru/video/${videoSelect.value}/update/`
+                        : "";
+                } else if (selectedType === "test") {
                     testContent.style.display = "block";
-                    clearInputsInDiv(videoContent, textContent)
+                    contentUpdateLink.href = testSelect.value
+                        ? `http://localhost:8000/ru/quiz_bim/test/${testSelect.value}/update/`
+                        : "";
+                } else {
+                    contentUpdateLink.href = "";
                 }
             }
 
             handleLessonTypeChange();
-
             lessonType.addEventListener("change", handleLessonTypeChange);
 
             textSelect.addEventListener("change", function () {
-                handleSelectChange(textSelect, textForm);
+                handleLessonTypeChange();
             });
 
             videoSelect.addEventListener("change", function () {
-                handleSelectChange(videoSelect, videoForm);
+                handleLessonTypeChange();
             });
 
             testSelect.addEventListener("change", function () {
-                handleSelectChange(testSelect, testForm);
+                handleLessonTypeChange();
             });
+
         });
+
     </script>
 {% endblock %}
