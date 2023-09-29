@@ -9,9 +9,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'modules:modulemodel_list' %}">Курсы</a>
-                </li>
+                {% if user.is_moderator %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'modules:modulemodel_list' %}">Курсы</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'modules:coursemodel_user_list' %}">Курсы</a>
+                    </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav me-right mb-2 mb-lg-0">
                 {% if request.user.is_authenticated %}

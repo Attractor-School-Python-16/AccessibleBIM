@@ -12,7 +12,7 @@ from modules.views.course_target import CourseTargetsListView, CourseTargetCreat
     CourseTargetDeleteView, CourseTargetUpdateView
 
 from modules.views.courses import CoursesListView, CourseCreateView, CourseDetailView, CourseDeleteView, \
-    CourseUpdateView, CourseChangeChaptersOrderView
+    CourseUpdateView, CourseChangeChaptersOrderView, CoursesUserListView
 
 from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterDetailView, ChapterDeleteView, \
     ChapterUpdateView, ChapterChangeStepsOrderView
@@ -44,6 +44,7 @@ urlpatterns = [
 
     path('courses/', CoursesListView.as_view(), name="coursemodel_list"),
     path('course/create/', CourseCreateView.as_view(), name="coursemodel_create"),
+    path('user_courses/', CoursesUserListView.as_view(), name="coursemodel_user_list"),
     path('course/<int:pk>/detail/', CourseDetailView.as_view(), name="coursemodel_detail"),
     path('course/<int:pk>/update/', CourseUpdateView.as_view(), name="coursemodel_update"),
     path('course/<int:pk>/delete/', CourseDeleteView.as_view(), name="coursemodel_delete"),
