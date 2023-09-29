@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_celery_beat',
+    'django_countries',
     "view_breadcrumbs",
     "phonenumber_field",
     'captcha',
