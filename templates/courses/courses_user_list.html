@@ -18,7 +18,7 @@
                             <p class="card-text">{{ course.description }}</p>
                             <p class="card-text">Язык обучения: {{ course.language }}</p>
                             <p class="card-text">Время обучения: {{ course.learnTime }} часов</p>
-                            <a href="{% url 'modules:coursemodel_detail' course.id %}" class="btn btn-info btn-sm mx-3">Подробнее</a>
+                            <a href="{% url 'modules:coursemodel_user_detail' course.id %}" class="btn btn-info btn-sm mx-3">Подробнее</a>
                         </div>
                     </div>
                 {% endfor %}
