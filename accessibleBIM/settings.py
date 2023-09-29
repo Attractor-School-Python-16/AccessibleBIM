@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_celery_beat',
+    "view_breadcrumbs",
     "phonenumber_field",
     'captcha',
     'rosetta',
@@ -88,6 +90,8 @@ TEMPLATES = [
     },
 ]
 
+BREADCRUMBS_TEMPLATE = "partials/breadcrumbs.html"
+BREADCRUMBS_HOME_LABEL = "Home"
 WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 
 
@@ -122,6 +126,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CELERY_BROKER_URL = 'redis://localhost'
 
 with open('accessibleBIM/config.txt') as f:
     EMAIL_APP_PASSWORD = f.read().strip()
