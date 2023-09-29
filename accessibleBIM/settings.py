@@ -249,3 +249,6 @@ SUMMERNOTE_CONFIG = {
 
     'attachment_upload_to': custom_upload_to_func,
 }
+
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
+CAPTCHA_LETTER_ROTATION = None
