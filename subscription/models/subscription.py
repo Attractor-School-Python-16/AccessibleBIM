@@ -5,7 +5,7 @@ from modules.models import AbstractModel
 
 
 class SubscriptionModel(AbstractModel):
-    course = models.ForeignKey('modules.CourseModel', on_delete=models.PROTECT, related_name='courses',
+    course = models.ForeignKey('modules.CourseModel', on_delete=models.PROTECT, related_name='subscription',
                                verbose_name='Курс')
     price = models.IntegerField(null=False, blank=False, verbose_name='Цена за курс')
     discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='Скидка на курс')
