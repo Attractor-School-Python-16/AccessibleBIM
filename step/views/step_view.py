@@ -1,26 +1,30 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-
+from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
 from step.forms.step_form import StepForm
 from step.models import VideoModel, TextModel, FileModel, video_upload_to
 from step.models.step import StepModel
 from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 
 
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
-class StepListView(ListView):
+class StepListView(ListBreadcrumbMixin, ListView):
     model = StepModel
     template_name = 'steps/step/step_list.html'
     context_object_name = 'steps'
     success_url = reverse_lazy('modules:index')
+    home_path = reverse_lazy('modules:moderator_page')
 
 
-class StepDetailView(PermissionRequiredMixin, DetailView):
+class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
+    model = StepModel
     queryset = StepModel.objects.all()
     context_object_name = 'step'
     template_name = "steps/step/step_detail.html"
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -36,11 +40,12 @@ class StepDetailView(PermissionRequiredMixin, DetailView):
         return context
 
 
-class StepCreateView(PermissionRequiredMixin, CreateView):
+class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     model = StepModel
     form_class = StepForm
     template_name = "steps/step/step_create.html"
     chapter = None
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -49,7 +54,6 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
-
 
     def form_valid(self, form):
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
@@ -119,12 +123,15 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
         form.instance.test = test_instance
         return test_instance
 
+    def get_success_url(self):
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
 
-class StepUpdateView(PermissionRequiredMixin, UpdateView):
+
+class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = StepModel
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
-    success_url = reverse_lazy('step:step_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -172,12 +179,18 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         form.instance.video = video_instance
         return video_instance
 
+    def get_success_url(self):
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
 
-class StepDeleteView(PermissionRequiredMixin, DeleteView):
+
+class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
-    success_url = reverse_lazy('step:step_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get_success_url(self):
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
