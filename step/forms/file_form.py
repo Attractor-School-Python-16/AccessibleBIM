@@ -11,13 +11,24 @@ from step.models import FileModel
 # 100MB - 104857600
 # 250MB - 214958080
 # 500MB - 429916160
+# application/octet-stream - .nwf, .rte
+# application/x-step .ifc
+# application/xml  .ifcXML
+
 
 CONTENTTYPES = ['text/plain',
                 'application/vnd.ms-excel',
                 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                 'application/pdf',
                 'application/msword',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/zip',
+                'application/x-7z-compressed',
+                'application/vnd.rar',
+                'application/octet-stream',
+                'application/x-step',
+                'application/xml',
+                ]
 
 
 class FileForm(forms.ModelForm):
