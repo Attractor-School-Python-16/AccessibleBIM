@@ -57,6 +57,7 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         return {'chapter': self.chapter}
 
     def form_valid(self, form):
+        print(self.request.POST)
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
@@ -64,7 +65,8 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         elif lesson_type == 'video':
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
-            self.handle_quiz_lesson(form)
+            pass
+            # self.handle_quiz_lesson(form)
         form.instance.save()
         return super().form_valid(form)
 

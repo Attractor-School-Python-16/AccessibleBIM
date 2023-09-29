@@ -82,6 +82,7 @@ let questionCounter = 1;
 
 function createQuestionInputs(questionsQty) {
     const questionForm = document.getElementById("question-form");
+    const questionBlocksCountInput = document.getElementById("questionBlocksCount");
     questionForm.innerHTML = "";
 
     for (let i = 1; i <= questionsQty; i++) {
@@ -126,6 +127,7 @@ function createQuestionInputs(questionsQty) {
         questionForm.appendChild(questionBlock);
 
         questionCounter++;
+        questionBlocksCountInput.value = parseInt(questionBlocksCountInput.value) + 1;
     }
 }
 
@@ -214,3 +216,5 @@ function showQuestionBlock(pageNumber) {
         }
     });
 }
+
+
