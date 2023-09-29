@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static view_breadcrumbs %}
 {% block title %}Удаление подписки{% endblock %}
 {% block content %}
     <div class="container">
@@ -8,6 +8,9 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
                 <div class="d-block">
                     <p class="card-text">Вы точно хотите удалить подписку на курс:<span
                             class="text-danger"> {{ subscription.course }}</span>
@@ -19,7 +22,7 @@
                         <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
                     </div>
                     <a class="btn btn-primary"
-                       href="{% url "subscription:subscription_detail" subscription.pk %}">Нет</a>
+                       href="{% url "subscription:subscriptionmodel_detail" subscription.pk %}">Нет</a>
                 </form>
             </div>
         </div>

@@ -5,16 +5,18 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 from modules.forms.courses_form import CoursesForm
 from modules.models import CourseModel, ModuleModel, ChapterModel, CourseTargetModel
 
 
-class CoursesListView(PermissionRequiredMixin, ListView):
+class CoursesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = CourseModel
     template_name = 'courses/courses_list.html'
     context_object_name = 'courses'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -50,15 +52,15 @@ class CoursesUserListView(ListView):
 
         if targets:
             queryset = queryset.filter(courseTarget_id__title__in=targets)
-
         return queryset
 
 
-class CourseCreateView(PermissionRequiredMixin, CreateView):
+class CourseCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     template_name = "courses/course_create.html"
     model = CourseModel
     form_class = CoursesForm
     module_pk = None
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -73,13 +75,14 @@ class CourseCreateView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("modules:course_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:modulemodel_detail", kwargs={"pk": self.object.module_id.pk})
 
 
-class CourseDetailView(PermissionRequiredMixin, DetailView):
+class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
     model = CourseModel
     context_object_name = 'course'
     template_name = 'courses/course_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -91,29 +94,33 @@ class CourseDetailView(PermissionRequiredMixin, DetailView):
         return context
 
 
-class CourseUpdateView(PermissionRequiredMixin, UpdateView):
+class CourseUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = CourseModel
     form_class = CoursesForm
     context_object_name = 'course'
     template_name = 'courses/course_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:course_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:modulemodel_detail", kwargs={"pk": self.object.module_id.pk})
 
 
-class CourseDeleteView(PermissionRequiredMixin, DeleteView):
+class CourseDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = CourseModel
     template_name = "courses/course_delete.html"
     context_object_name = 'course'
-    success_url = reverse_lazy("modules:courses_list")
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get_success_url(self):
+        return reverse("modules:modulemodel_detail", kwargs={"pk": self.object.module_id.pk})
 
 
 class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
@@ -152,4 +159,4 @@ class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
                 chapter.serial_number = new_number
                 chapter.save()
 
-        return redirect('modules:course_detail', pk=course.pk)
+        return redirect('modules:coursemodel_detail', pk=course.pk)
