@@ -19,6 +19,9 @@ class VideoForm(forms.ModelForm):
     def clean_video_file(self):
         current_file = self.cleaned_data.get("video_file", False)
         if current_file.content_type in CONTENTTYPES:
-            return current_file
+            if current_file.size <= 2097152000:
+                return current_file
+            else:
+                raise forms.ValidationError("Размер загружаемого файла не должен превышать 2ГБ")
         else:
             raise forms.ValidationError("Необходимо загрузить видео в формате MP4 или AVI")
