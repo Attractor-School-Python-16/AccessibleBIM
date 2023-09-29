@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load view_breadcrumbs %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -6,24 +7,27 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
                 <h3>Тест "{{ test.test_title }}"</h3>
                 <h4>Количестов вопросов: {{ test.questions_qty }}</h4>
-                <a class="btn btn-primary" href="{% url "quiz_bim:question_create" pk=test.pk %}" role="button">Добавить
+                <a class="btn btn-primary" href="{% url "quiz_bim:questionbim_create" pk=test.pk %}" role="button">Добавить
                     новый вопрос</a>
                 <a class="btn btn-primary" href="{% url 'quiz_bim:take_test' pk=test.pk %}" role="button">Прохождение
                     теста</a>
-                <a class="btn btn-primary" href="{% url 'quiz_bim:test_update' pk=test.pk %}" role="button">Редактировать</a>
-                <a class="btn btn-danger" href="{% url 'quiz_bim:test_delete' pk=test.pk %}" role="button">Удалить</a>
+                <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}" role="button">Редактировать</a>
+                <a class="btn btn-danger" href="{% url 'quiz_bim:quizbim_delete' pk=test.pk %}" role="button">Удалить</a>
                 {% for question in questions %}
                     <div class="row justify-content-center mt-2">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{ question.title }}</h5>
-                                <a class="btn btn-primary" href="{% url 'quiz_bim:question_detail' pk=question.pk %}"
+                                <a class="btn btn-primary" href="{% url 'quiz_bim:questionbim_detail' pk=question.pk %}"
                                    role="button">Подробнее</a>
-                                <a class="btn btn-primary" href="{% url 'quiz_bim:question_update' pk=question.pk %}"
+                                <a class="btn btn-primary" href="{% url 'quiz_bim:questionbim_update' pk=question.pk %}"
                                    role="button">Редактировать</a>
-                                <a class="btn btn-danger" href="{% url 'quiz_bim:question_delete' pk=question.pk %}"
+                                <a class="btn btn-danger" href="{% url 'quiz_bim:questionbim_delete' pk=question.pk %}"
                                    role="button">Удалить</a>
                             </div>
                         </div>
