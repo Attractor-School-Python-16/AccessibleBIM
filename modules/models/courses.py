@@ -35,8 +35,8 @@ class CourseModel(AbstractModel):
 
     class Meta:
         db_table = 'course'
-        verbose_name = 'Модуль'
-        verbose_name_plural = 'Модули'
+        verbose_name = 'Курс'
+        verbose_name_plural = 'Курсы'
 
     def __str__(self):
         return f'{self.title}'
