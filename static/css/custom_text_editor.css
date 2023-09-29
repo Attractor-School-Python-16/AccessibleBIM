@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Arial Nova Light';
+    src: url('/static/fonts/ArialNova-Light.woff2') format('woff2'),
+        url('/static/fonts/ArialNova-Light.ttf') format('ttf');
+    font-weight: 300; /* Это для light версии. Нужно протестить, возможно это нужно удалить */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arial Nova';
+    src: url('/static/fonts/ArialNovaSemibold.woff2') format('woff2'),
+        url('/static/fonts/ArialNovaSemibold.ttf') format('ttf');
+    font-weight: bold; /* Нужно протестить, возможно это нужно удалить */
+    font-style: normal;
+}
+
+.note-editable {
+    font-family: 'Arial Nova Light', sans-serif;
+}
+
+h1.test-font {
+    font-family: 'Arial Nova Light', sans-serif;
+    font-size: 24px;
+}
+
+h1.test-font-l {
+    font-family: 'Arial Nova', sans-serif;
+    font-size: 24px;
+}

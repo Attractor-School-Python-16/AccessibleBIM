@@ -5,8 +5,8 @@
                 Модули
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:module_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:modules_list' %}">Список модулей</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:modulemodel_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:modulemodel_list' %}">Список модулей</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -14,8 +14,8 @@
                 Учителя
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:teacher_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:teachers_list' %}">Список учителей</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:teachermodel_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:teachermodel_list' %}">Список учителей</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -23,8 +23,8 @@
                 ЦА курса
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:course_target_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:course_targets_list' %}">Список ЦА</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:coursetargetmodel_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'modules:coursetargetmodel_list' %}">Список ЦА</a></li>
             </ul>
         </li>
 {#        <li class="nav-item dropdown">#}
@@ -59,8 +59,8 @@
                 Файлы
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'step:file_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'step:file_list' %}">Список файлов</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:filemodel_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:filemodel_list' %}">Список файлов</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -68,8 +68,8 @@
                 Видео
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'step:video_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'step:video_list' %}">Список видео</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:videomodel_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:videomodel_list' %}">Список видео</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -77,8 +77,8 @@
                 Тексты
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'step:text_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'step:text_list' %}">Список текстов</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:textmodel_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'step:textmodel_list' %}">Список текстов</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -86,8 +86,8 @@
                 Тесты
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'quiz_bim:tests_list' %}">Список тестов</a></li>
-                <li><a class="dropdown-item" href="{% url 'quiz_bim:test_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'quiz_bim:quizbim_list' %}">Список тестов</a></li>
+                <li><a class="dropdown-item" href="{% url 'quiz_bim:quizbim_create' %}">Создать</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -95,10 +95,10 @@
                 Подписки
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'subscription:subscription_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'subscription:subscription_users_list' %}">Выдача подписки
+                <li><a class="dropdown-item" href="{% url 'subscription:subscriptionmodel_create' %}">Создать</a></li>
+                <li><a class="dropdown-item" href="{% url 'subscription:subscriptionmodel_user_list' %}">Выдача подписки
                     юзеру</a></li>
-                <li><a class="dropdown-item" href="{% url 'subscription:subscription_list' %}">Список подписок</a></li>
+                <li><a class="dropdown-item" href="{% url 'subscription:subscriptionmodel_list' %}">Список подписок</a></li>
             </ul>
         </li>
     </ul>

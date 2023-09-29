@@ -1,25 +1,29 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
-
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 from quiz_bim.models.quiz_bim import QuizBim
 from quiz_bim.forms.quiz_bim_form import QuizBimForm
 
 
-class QuizBimListView(PermissionRequiredMixin, ListView):
+class QuizBimListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = QuizBim
     template_name = 'quiz_bim/quiz_bim/quiz_bim_list.html'
     context_object_name = 'tests'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
-class QuizBimDetailView(PermissionRequiredMixin, DetailView):
+class QuizBimDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
+    model = QuizBim
     queryset = QuizBim.objects.all()
     template_name = "quiz_bim/quiz_bim/quiz_bim_detail.html"
     context_object_name = 'test'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -31,35 +35,39 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView):
         return super().get_context_data(**kwargs)
 
 
-class QuizBimCreateView(PermissionRequiredMixin, CreateView):
+class QuizBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
+    model = QuizBim
     form_class = QuizBimForm
     template_name = "quiz_bim/quiz_bim/quiz_bim_create.html"
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("quiz_bim:test_detail", kwargs={"pk": self.object.pk})
+        return reverse("quiz_bim:quizbim_list")
 
 
-class QuizBimUpdateView(PermissionRequiredMixin, UpdateView):
+class QuizBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = QuizBim
     form_class = QuizBimForm
     template_name = 'quiz_bim/quiz_bim/quiz_bim_update.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
+    success_url = reverse_lazy('quiz_bim:quizbim_list')
     context_object_name = 'test'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
-class QuizBimDeleteView(PermissionRequiredMixin, DeleteView):
+class QuizBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = QuizBim
     context_object_name = 'test'
     template_name = 'quiz_bim/quiz_bim/quiz_bim_delete.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
+    success_url = reverse_lazy('quiz_bim:quizbim_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user

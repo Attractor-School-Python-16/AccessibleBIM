@@ -6,28 +6,31 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 from modules.forms.chapters_form import ChaptersForm
 from modules.models import ChapterModel, CourseModel
 from step.models import StepModel
 
 
-class ChaptersListView(PermissionRequiredMixin, ListView):
+class ChaptersListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = ChapterModel
     template_name = 'chapters/chapters_list.html'
     context_object_name = 'chapters'
     ordering = ("-create_at",)
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
-class ChapterCreateView(PermissionRequiredMixin, CreateView):
+class ChapterCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     template_name = "chapters/chapter_create.html"
     model = ChapterModel
     form_class = ChaptersForm
     course = None
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -42,13 +45,14 @@ class ChapterCreateView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("modules:chapter_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
 
-class ChapterDetailView(PermissionRequiredMixin, DetailView):
+class ChapterDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
     model = ChapterModel
     context_object_name = 'chapter'
     template_name = 'chapters/chapter_detail.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -59,30 +63,38 @@ class ChapterDetailView(PermissionRequiredMixin, DetailView):
         context['steps'] = StepModel.objects.filter(chapter=self.object.id)
         return context
 
+    def get_success_url(self):
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
-class ChapterUpdateView(PermissionRequiredMixin, UpdateView):
+
+class ChapterUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = ChapterModel
     form_class = ChaptersForm
     context_object_name = 'chapter'
     template_name = 'chapters/chapter_update.html'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:chapter_detail", kwargs={"pk": self.object.pk})
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
 
-class ChapterDeleteView(PermissionRequiredMixin, DeleteView):
+class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = ChapterModel
     template_name = "chapters/chapter_delete.html"
     context_object_name = 'chapter'
     success_url = reverse_lazy("modules:chapters_list")
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get_success_url(self):
+        return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
 
 class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
@@ -102,7 +114,7 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        chapter= get_object_or_404(ChapterModel, pk=kwargs['pk'])
+        chapter = get_object_or_404(ChapterModel, pk=kwargs['pk'])
         new_serial_numbers = {}
         for key, value in request.POST.items():
             if key.startswith('new_serial_number_'):
@@ -120,4 +132,4 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
                 step.serial_number = new_number
                 step.save()
 
-        return redirect('modules:chapter_detail', pk=chapter.pk)
+        return redirect('modules:chaptermodel_detail', pk=chapter.course.pk)

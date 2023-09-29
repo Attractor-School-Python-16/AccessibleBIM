@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load view_breadcrumbs %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -6,12 +7,15 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
-                <h3>Вы уверены что хотите удалить ответ "{{ answer.answer }}"?</h3>
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
+                <h3>Вы уверены, что хотите удалить ответ "{{ answer.answer }}"?</h3>
                 <form action="" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger mt-3">Да</button>
                 </form>
-                <a href="{% url "quiz_bim:question_detail" answer.question_bim.pk %}">
+                <a href="{% url "quiz_bim:questionbim_detail" answer.question_bim.pk %}">
                     <button type="submit" class="btn btn-primary mt-3">Нет</button>
                 </a>
             </div>
