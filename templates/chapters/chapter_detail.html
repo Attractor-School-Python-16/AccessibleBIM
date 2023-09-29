@@ -45,9 +45,9 @@
                             <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
                             <td class="text-end">
                                 <div class="btn-group">
-                                    <a href="{% url 'step:step_update' step.id %}"
+                                    <a href="{% url 'step:stepmodel_update' step.id %}"
                                        class="btn btn-info btn-sm mx-3">Изменить</a>
-                                    <a href="{% url 'step:step_delete' step.id %}"
+                                    <a href="{% url 'step:stepmodel_delete' step.id %}"
                                        class="btn btn-danger btn-sm">Удалить</a>
                                 </div>
                             </td>

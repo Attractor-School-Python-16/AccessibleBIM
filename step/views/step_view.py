@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
@@ -140,7 +141,7 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
         return {'chapter': self.chapter}
 
     def get_success_url(self):
-        return reverse('modules:chapter_detail', kwargs={"pk":self.chapter})
+        return reverse('modules:chaptermodel_detail', kwargs={"pk":self.chapter})
 
     def has_permission(self):
         user = self.request.user
@@ -200,7 +201,6 @@ class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     model = StepModel
     template_name = 'steps/step/step_delete.html'
     home_path = reverse_lazy('modules:moderator_page')
-    success_url = reverse_lazy('step:step_list')
     chapter = None
 
     def get_initial(self):
