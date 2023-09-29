@@ -20,6 +20,7 @@ django-ranged-response==0.2.0
 django-rosetta==0.9.9
 django-simple-captcha==0.5.18
 django-summernote==0.8.20.0
+django-timezone-field==6.0.1
 django-view-breadcrumbs==2.4.1
 factory-boy==3.3.0
 Faker==19.3.1
