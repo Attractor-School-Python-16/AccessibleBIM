@@ -19,6 +19,9 @@
                     {% for error in form.non_field_errors %}
                         <div class="alert alert-danger">{{ error }}</div>
                     {% endfor %}
+                    {% if error_message %}
+                        <div class="alert alert-danger">{{ error_message }}</div>
+                    {% endif %}
                     <div class="form-group">
                         <label for="id_title">{{ form.title.label }}</label>
                         {{ form.title }}
@@ -84,8 +87,6 @@
                             <button id="confirmQuestions" class="btn btn-primary my-3" type="button">Подтвердить
                             </button>
                             <div id="question-form" class="content-test"></div>
-                            <button id="addQuestionButton" class="btn btn-primary my-3" type="button">Добавить вопрос
-                            </button>
                             <div class="d-flex justify-content-center">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination " id="pagination-block">

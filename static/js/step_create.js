@@ -72,7 +72,6 @@ lessonType.addEventListener("change", function () {
 document.getElementById("confirmQuestions").addEventListener("click", function () {
     const questionsQtyInput = document.getElementById("questions_qty_to_create")
     const questionsQty = parseInt(questionsQtyInput.value);
-    console.log(questionsQty)
     if (!isNaN(questionsQty)) {
         createQuestionInputs(questionsQty);
     }
@@ -98,6 +97,7 @@ function createQuestionInputs(questionsQty) {
         questionInput.setAttribute("type", "text");
         questionInput.setAttribute("name", `question_title_${i}`);
         questionInput.setAttribute("class", "form-control");
+        questionInput.setAttribute("required", "required");
 
         const answersContainer = document.createElement("div");
         answersContainer.setAttribute("class", "content-test");
@@ -147,6 +147,7 @@ function createAnswerInputs(answersContainer, questionNumber) {
     answerInput.setAttribute("type", "text");
     answerInput.setAttribute("name", `answer_${questionNumber}_${currentAnswersQty + 1}`);
     answerInput.setAttribute("class", "form-control");
+    // answerInput.setAttribute("required", "required");
 
     const isCorrectLabel = document.createElement("label");
     isCorrectLabel.textContent = "Выберите правильность ответа";
@@ -217,4 +218,18 @@ function showQuestionBlock(pageNumber) {
     });
 }
 
+const questionBlocksCount = document.getElementById("questions_qty_to_create");
+const questionsQty = document.getElementById("questions_qty_test");
+const sendButton = document.getElementById("submit_button");
 
+function handleInputChange() {
+    if (parseInt(questionBlocksCount.value) < parseInt(questionsQty.value)) {
+        alert('Количество создаваемых вопросов не может быть меньше количества вопросов в тесте');
+        sendButton.disabled = true;
+    } else {
+        sendButton.disabled = false;
+    }
+}
+
+questionBlocksCount.addEventListener('change', handleInputChange);
+questionsQty.addEventListener('change', handleInputChange);
