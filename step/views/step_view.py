@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
@@ -132,52 +133,65 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     form_class = StepForm
     template_name = 'steps/step/step_update.html'
     home_path = reverse_lazy('modules:moderator_page')
+    chapter = None
+
+
+    def get_initial(self):
+        self.chapter = self.request.GET.get('chapter_pk')
+        return {'chapter': self.chapter}
+
+    def get_success_url(self):
+        return reverse('modules:chaptermodel_detail', kwargs={"pk":self.chapter})
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['text'], context['video'], context['test'] = self.object.text, self.object.video, self.object.test
+        return context
+
     def form_valid(self, form):
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
-            self.handle_text_lesson(form)
+            text = self.request.POST.get('text')
+            if text:
+                form.instance.text = TextModel.objects.get(pk=text)
+                form.instance.video = None
+                form.instance.test = None
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'Текст не выбран'}
+                )
         elif lesson_type == 'video':
-            self.handle_video_lesson(form)
+            video = self.request.POST.get('video')
+            if video:
+                form.instance.video = VideoModel.objects.get(pk=video)
+                form.instance.text = None
+                form.instance.test = None
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'Видео не выбрано'}
+                )
         elif lesson_type == 'test':
-            pass
+            test = self.request.POST.get('test')
+            if test:
+                form.instance.test = QuizBim.objects.get(pk=test)
+                form.instance.video = None
+                form.instance.text = None
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'Тест не выбран'}
+                )
         form.instance.save()
         return super().form_valid(form)
-
-    def handle_text_lesson(self, form):
-        text = self.request.POST.get('text')
-        if text:
-            form.instance.text = TextModel.objects.get(pk=text)
-            return text
-        text_title = self.request.POST.get('text_title')
-        text_description = self.request.POST.get('text_description')
-        content = self.request.POST.get('content')
-        text_instance = TextModel.objects.create(
-            text_title=text_title,
-            text_description=text_description,
-            content=content
-        )
-        form.instance.text = text_instance
-        return text_instance
-
-    def handle_video_lesson(self, form):
-        video = self.request.POST.get('video')
-        if video:
-            form.instance.video = VideoModel.objects.get(pk=video)
-            return video
-        form.instance.save()
-        video_instance = VideoModel.objects.create(
-            video_title=self.request.POST.get('video_title'),
-            video_description=self.request.POST.get('video_description'),
-            video_file=self.request.FILES.get('video_file'),
-        )
-        video_upload_to(instance=form.instance, filename=self.request.POST.get('video_title'))
-        form.instance.video = video_instance
-        return video_instance
 
     def get_success_url(self):
         return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
@@ -187,6 +201,11 @@ class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     model = StepModel
     template_name = 'steps/step/step_delete.html'
     home_path = reverse_lazy('modules:moderator_page')
+    chapter = None
+
+    def get_initial(self):
+        self.chapter = self.request.GET.get('chapter_pk')
+        return {'chapter': self.chapter}
 
     def has_permission(self):
         user = self.request.user
