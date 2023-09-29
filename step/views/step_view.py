@@ -95,6 +95,7 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
         return video_instance
 
     def handle_quiz_lesson(self, form):
+        print(self.request.POST)
         test = self.request.POST.get('test')
         if test:
             form.instance.test = test
