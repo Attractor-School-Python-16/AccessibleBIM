@@ -47,7 +47,7 @@ class CustomUser(AbstractUser):
     email_verified = models.BooleanField(_("email_verified"), default=False)
     phone_number = PhoneNumberField(_("phone_number"), null=False, blank=False)
     job_title = models.CharField(_("job_title"), max_length=150, null=True, blank=True)
-    country = CountryField(blank_label="(select country)")
+    country = CountryField(_("country"), blank_label=_('select country'))
     company = models.CharField(_('company_name'), max_length=150, null=True, blank=True)
     type_corp = models.IntegerField(_('company_type'), choices=TYPE_CORP_CHOICES, default=7)
     subscriptions = models.ManyToManyField("subscription.SubscriptionModel", related_name="users",

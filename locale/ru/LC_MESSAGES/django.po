@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-21 14:27+0600\n"
-"PO-Revision-Date: 2023-09-21 08:29+0000\n"
+"POT-Creation-Date: 2023-09-29 22:59+0600\n"
+"PO-Revision-Date: 2023-09-29 17:00+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:146
+#: accessibleBIM/settings.py:159
 msgid "Russian"
 msgstr "Русский"
 
-#: accessibleBIM/settings.py:147
+#: accessibleBIM/settings.py:160
 msgid "English"
 msgstr "Английский"
 
@@ -43,73 +43,106 @@ msgstr "Разрешения"
 msgid "Important dates"
 msgstr "Важные даты"
 
-#: accounts/models/custom_user.py:33
+#: accounts/forms/register_form.py:9
+msgid "captcha"
+msgstr "Введите код на картинке"
+
+#: accounts/models/custom_user.py:34
 msgid "entrepreneur"
 msgstr "Предприниматель"
 
-#: accounts/models/custom_user.py:34
+#: accounts/models/custom_user.py:35
 msgid "limited_liability_company"
 msgstr "ОсОО"
 
-#: accounts/models/custom_user.py:35
+#: accounts/models/custom_user.py:36
 msgid "opened joint stock company"
 msgstr "ОАО"
 
-#: accounts/models/custom_user.py:36
+#: accounts/models/custom_user.py:37
 msgid "closed joint stock company"
 msgstr "ЗАО"
 
-#: accounts/models/custom_user.py:37
+#: accounts/models/custom_user.py:38
 msgid "additional liability company"
 msgstr "ОДОО"
 
-#: accounts/models/custom_user.py:38
+#: accounts/models/custom_user.py:39
 msgid "state company"
 msgstr "Государственное предприятие"
 
-#: accounts/models/custom_user.py:39
+#: accounts/models/custom_user.py:40
 msgid "other typecorp"
 msgstr "Другое"
 
-#: accounts/models/custom_user.py:42
+#: accounts/models/custom_user.py:43
 msgid "first name"
 msgstr "Имя"
 
-#: accounts/models/custom_user.py:43
+#: accounts/models/custom_user.py:44
 msgid "last name"
 msgstr "Фамилия"
 
-#: accounts/models/custom_user.py:44
+#: accounts/models/custom_user.py:45
 msgid "father name"
 msgstr "Отчество"
 
-#: accounts/models/custom_user.py:45 templates/accounts/profile.html:14
+#: accounts/models/custom_user.py:46 templates/accounts/profile.html:14
 msgid "email address"
 msgstr "Email"
 
-#: accounts/models/custom_user.py:46
+#: accounts/models/custom_user.py:47
 msgid "email_verified"
 msgstr "Email подтвержден"
 
-#: accounts/models/custom_user.py:47
+#: accounts/models/custom_user.py:48
 msgid "phone_number"
 msgstr "Номер телефона"
 
-#: accounts/models/custom_user.py:48
+#: accounts/models/custom_user.py:49
 msgid "job_title"
 msgstr "Должность"
 
 #: accounts/models/custom_user.py:50
+msgid "country"
+msgstr "Страна"
+
+#: accounts/models/custom_user.py:50
+#| msgid "country"
+msgid "select country"
+msgstr "Выберите страну"
+
+#: accounts/models/custom_user.py:51
 msgid "company_name"
 msgstr "Компания"
 
-#: accounts/models/custom_user.py:51
+#: accounts/models/custom_user.py:52
 msgid "company_type"
 msgstr "Вид организации"
 
-#: accounts/views/register_view.py:18
+#: accounts/views/register_view.py:19
 msgid "Activate your user account"
 msgstr "Подтвердите ваш аккаунт"
+
+#: currency/models/currency_rate.py:6
+msgid "USD"
+msgstr "$"
+
+#: currency/models/currency_rate.py:7
+msgid "RUB"
+msgstr "руб."
+
+#: modules/models/courses.py:20
+msgid "Русский"
+msgstr ""
+
+#: modules/models/courses.py:21
+msgid "Английский"
+msgstr ""
+
+#: modules/models/courses.py:22
+msgid "Кыргызский"
+msgstr ""
 
 #: step/models/step.py:10
 msgid "Видео"
@@ -243,19 +276,19 @@ msgstr "Профиль"
 msgid "Name"
 msgstr "Имя"
 
-#: templates/accounts/profile.html:34
+#: templates/accounts/profile.html:33
 msgid "My courses"
 msgstr "Мои курсы"
 
-#: templates/accounts/profile.html:37
+#: templates/accounts/profile.html:39
 msgid "Course"
 msgstr "Курс"
 
-#: templates/accounts/profile.html:41
+#: templates/accounts/profile.html:43
 msgid "Start"
 msgstr "Начать"
 
-#: templates/accounts/profile.html:45
+#: templates/accounts/profile.html:47
 msgid "You don't have any purchased cources"
 msgstr "У вас нет приобретенных курсов"
 
