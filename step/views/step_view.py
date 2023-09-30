@@ -57,6 +57,7 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         return {'chapter': self.chapter}
 
     def form_valid(self, form):
+        print(self.request.POST)
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
@@ -64,6 +65,21 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         elif lesson_type == 'video':
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
+            if len(self.request.POST.get('test_title')) < 1:
+                error_message = "Название теста не должно быть пустым"
+                return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+            if len(self.request.POST.get('test_questions_qty')) < 1:
+                error_message = "Количество вопросов в тесте должно быть указано"
+                return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+            for i in self.request.POST:
+                if i.startswith('answers_qty'):
+                    if int(self.request.POST.get(i)) < 1:
+                        error_message = "В вопросах должны быть ответы"
+                        return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+                if i.startswith('answer_'):
+                    if len(self.request.POST.get(i)) < 1:
+                        error_message = "Ответы не могут быть пустыми"
+                        return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
             self.handle_quiz_lesson(form)
         form.instance.save()
         return super().form_valid(form)
@@ -100,6 +116,7 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         return video_instance
 
     def handle_quiz_lesson(self, form):
+        print(self.request.POST)
         test = self.request.POST.get('test')
         if test:
             form.instance.test = test
