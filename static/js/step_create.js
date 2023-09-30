@@ -24,7 +24,6 @@ function clearInputsInDiv(div) {
     const textareaElements = div.querySelectorAll('textarea');
 
 
-
     for (let i = 0; i < inputElements.length; i++) {
         inputElements[i].value = '';
     }
@@ -34,7 +33,6 @@ function clearInputsInDiv(div) {
         textareaElements[i].value = '';
     }
 }
-
 
 
 textSelect.addEventListener("change", function () {
@@ -72,7 +70,7 @@ lessonType.addEventListener("change", function () {
 });
 
 document.getElementById("confirmQuestions").addEventListener("click", function () {
-    const questionsQtyInput = document.getElementsByName("test_questions_qty")[0];
+    const questionsQtyInput = document.getElementById("questions_qty_to_create")
     const questionsQty = parseInt(questionsQtyInput.value);
     if (!isNaN(questionsQty)) {
         createQuestionInputs(questionsQty);
@@ -83,11 +81,13 @@ let questionCounter = 1;
 
 function createQuestionInputs(questionsQty) {
     const questionForm = document.getElementById("question-form");
+    const questionBlocksCountInput = document.getElementById("questionBlocksCount");
     questionForm.innerHTML = "";
 
     for (let i = 1; i <= questionsQty; i++) {
         const questionBlock = document.createElement("div");
         questionBlock.setAttribute("class", "question-block");
+        questionBlock.setAttribute("display", "none");
 
         const questionLabel = document.createElement("label");
         questionLabel.setAttribute("for", `question_title_${i}`);
@@ -97,6 +97,7 @@ function createQuestionInputs(questionsQty) {
         questionInput.setAttribute("type", "text");
         questionInput.setAttribute("name", `question_title_${i}`);
         questionInput.setAttribute("class", "form-control");
+        questionInput.setAttribute("required", "required");
 
         const answersContainer = document.createElement("div");
         answersContainer.setAttribute("class", "content-test");
@@ -126,6 +127,7 @@ function createQuestionInputs(questionsQty) {
         questionForm.appendChild(questionBlock);
 
         questionCounter++;
+        questionBlocksCountInput.value = parseInt(questionBlocksCountInput.value) + 1;
     }
 }
 
@@ -145,6 +147,7 @@ function createAnswerInputs(answersContainer, questionNumber) {
     answerInput.setAttribute("type", "text");
     answerInput.setAttribute("name", `answer_${questionNumber}_${currentAnswersQty + 1}`);
     answerInput.setAttribute("class", "form-control");
+    // answerInput.setAttribute("required", "required");
 
     const isCorrectLabel = document.createElement("label");
     isCorrectLabel.textContent = "Выберите правильность ответа";
@@ -166,3 +169,67 @@ function createAnswerInputs(answersContainer, questionNumber) {
 
     answersQtyInput.value = currentAnswersQty + 1;
 }
+
+const questionsQtyInput = document.getElementById("questions_qty_to_create");
+const confirmQuestionsButton = document.getElementById("confirmQuestions");
+const paginationBlock = document.getElementById("pagination-block");
+
+confirmQuestionsButton.addEventListener("click", function () {
+    const questionsQty = parseInt(questionsQtyInput.value);
+
+    generatePagination(questionsQty);
+
+    showQuestionBlock(1);
+});
+
+
+function generatePagination(numPages) {
+    paginationBlock.innerHTML = "";
+
+    for (let i = 1; i <= numPages; i++) {
+        const pageItem = document.createElement("li");
+        pageItem.classList.add("page-item");
+
+        const pageLink = document.createElement("a");
+        pageLink.classList.add("page-link");
+        pageLink.classList.add("btn");
+        pageLink.textContent = i;
+
+        pageItem.appendChild(pageLink);
+        paginationBlock.appendChild(pageItem);
+
+
+        pageLink.addEventListener("click", function () {
+            showQuestionBlock(i);
+        });
+    }
+}
+
+function showQuestionBlock(pageNumber) {
+    const questionBlocks = document.querySelectorAll(".question-block");
+    currentPage = pageNumber;
+
+    questionBlocks.forEach((block, index) => {
+        if (index === pageNumber - 1) {
+            block.style.display = "block";
+        } else {
+            block.style.display = "none";
+        }
+    });
+}
+
+const questionBlocksCount = document.getElementById("questions_qty_to_create");
+const questionsQty = document.getElementById("questions_qty_test");
+const sendButton = document.getElementById("submit_button");
+
+function handleInputChange() {
+    if (parseInt(questionBlocksCount.value) < parseInt(questionsQty.value)) {
+        alert('Количество создаваемых вопросов не может быть меньше количества вопросов в тесте');
+        sendButton.disabled = true;
+    } else {
+        sendButton.disabled = false;
+    }
+}
+
+questionBlocksCount.addEventListener('change', handleInputChange);
+questionsQty.addEventListener('change', handleInputChange);
