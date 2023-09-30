@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Курсы{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/user_filter_sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+                <h1>Список доступных курсов</h1>
+                {% for course in courses %}
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <h5>{{ course.title }}</h5>
+
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ course.description }}</p>
+                            <p class="card-text">Язык обучения: {{ course.language }}</p>
+                            <p class="card-text">Время обучения: {{ course.learnTime }} часов</p>
+                            <a href="{% url 'modules:coursemodel_detail' course.id %}" class="btn btn-info btn-sm mx-3">Подробнее</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

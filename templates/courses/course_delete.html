@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static view_breadcrumbs%}
 {% block title %}Удаление курса{% endblock %}
 {% block content %}
     <div class="container">
@@ -8,8 +8,11 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
                 <div class="d-block">
-                    <p class="card-text">Вы точно хотите удалить курс:<span class="text-danger"> {{ module.title }}</span>
+                    <p class="card-text">Вы точно хотите удалить курс:<span class="text-danger"> {{ course.title }}</span>
                     </p>
                 </div>
                 <form method="POST">
@@ -17,7 +20,7 @@
                     <div class="btn-group" role="group">
                         <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
                     </div>
-                    <a class="btn btn-primary" href="{% url 'modules:course_detail' course.pk %}">Нет</a>
+                    <a class="btn btn-primary" href="{% url 'modules:modulemodel_detail' course.module_id.pk %}">Нет</a>
                 </form>
             </div>
         </div>

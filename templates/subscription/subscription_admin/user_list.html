@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load custom_tags %}
+{% load custom_tags view_breadcrumbs %}
 {% block title %}Подписки{% endblock %}
 {% block content %}
     {% include 'partials/main_block.html' %}
@@ -10,6 +10,9 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
                 <h3>Выдача подписки пользователю:</h3>
                 <table class="table">
                     <thead>
@@ -37,11 +40,11 @@
                                 </p>
                             </td>
                             {% if user|user_subs %}
-                                <td><a href="{% url 'subscription:subscription_user_delete' user.pk %}"
+                                <td><a href="{% url 'subscription:subscriptionmodel_user_delete' user.pk %}"
                                        class="btn btn-success">Закрыть
                                     доступ</a></td>
                             {% else %}
-                                <td><a href="{% url 'subscription:subscription_user_add' user.pk %}"
+                                <td><a href="{% url 'subscription:subscriptionmodel_user_add' user.pk %}"
                                        class="btn btn-success">Предоставить
                                     доступ</a></td>
                             {% endif %}

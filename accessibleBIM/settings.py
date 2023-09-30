@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
+from step.utils import custom_upload_to_func
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,11 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_celery_beat',
+    'django_countries',
+    "view_breadcrumbs",
     "phonenumber_field",
     'captcha',
     'rosetta',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_summernote',
 
     'accounts',
     'modules',
@@ -53,6 +58,7 @@ INSTALLED_APPS = [
     'progress',
     'subscription',
     'quiz_bim',
+    'currency',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +91,8 @@ TEMPLATES = [
     },
 ]
 
+BREADCRUMBS_TEMPLATE = "partials/breadcrumbs.html"
+BREADCRUMBS_HOME_LABEL = "Home"
 WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 
 
@@ -119,6 +127,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CELERY_BROKER_URL = 'redis://localhost'
 
 with open('accessibleBIM/config.txt') as f:
     EMAIL_APP_PASSWORD = f.read().strip()
@@ -180,3 +190,65 @@ if 'test' in sys.argv:
     CAPTCHA_TEST_MODE = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+SUMMERNOTE_THEME = 'bs4'
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True,
+
+    # Or, you can set it to `False` to use SummernoteInplaceWidget by default - no iframe mode
+    # In this case, you have to load Bootstrap/jQuery sources and dependencies manually.
+    # Use this when you're already using Bootstrap/jQuery based themes.
+    # 'iframe': False,
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+
+        # Change editor size
+        # 'width': '100%',
+        # 'height': '480',
+
+        # Use proper language setting automatically (default)
+        'lang': None,
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear', 'fontsize']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph', 'height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']],
+            ['view', ['fullscreen']],
+        ],
+
+
+        'fontNames': ['Arial', 'Arial Nova Light', 'Arial Nova'],
+        'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
+        'addDefaultFonts': False,
+        'colors': ['#1974D2', '#1DACD6', '#34C924'],
+        'lineHeights': ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
+
+        'insertImage': ['filename', 'url'],
+
+    },
+    # You can completely disable the attachment feature.
+    'disable_attachment': False,
+
+    # Set to `True` to return attachment paths in absolute URIs.
+    'attachment_absolute_uri': False,
+
+    'css': (
+        '/static/css/custom_text_editor.css',
+    ),
+
+    'attachment_upload_to': custom_upload_to_func,
+}
+
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
+CAPTCHA_LETTER_ROTATION = None
