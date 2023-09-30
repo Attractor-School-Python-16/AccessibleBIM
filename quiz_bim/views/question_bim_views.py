@@ -1,17 +1,21 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
-
+from view_breadcrumbs import DetailBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
+    UpdateBreadcrumbMixin
 from quiz_bim.models import QuizBim
 from quiz_bim.models.question_bim import QuestionBim
 from quiz_bim.forms.question_bim_form import QuestionBimForm
+from django.urls import reverse, reverse_lazy
+from django.utils.functional import cached_property
 
 
-class QuestionBimDetailView(PermissionRequiredMixin, DetailView):
+class QuestionBimDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
+    model = QuestionBim
     queryset = QuestionBim.objects.all()
     template_name = "quiz_bim/question_bim/question_bim_detail.html"
     context_object_name = 'question'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -22,10 +26,16 @@ class QuestionBimDetailView(PermissionRequiredMixin, DetailView):
         kwargs['answers'] = answers
         return super().get_context_data(**kwargs)
 
+    @cached_property
+    def crumbs(self):
+        return [("Детальный просмотр вопроса", reverse("quiz_bim:questionbim_update", kwargs={'pk': self.object.pk}))]
 
-class QuestionBimCreateView(PermissionRequiredMixin, CreateView):
+
+class QuestionBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
+    model = QuestionBim
     form_class = QuestionBimForm
     template_name = "quiz_bim/question_bim/question_bim_create.html"
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
@@ -36,27 +46,45 @@ class QuestionBimCreateView(PermissionRequiredMixin, CreateView):
         question = form.save(commit=False)
         question.test_bim = quiz
         question.save()
-        return redirect("quiz_bim:test_detail", pk=quiz.pk)
+        return redirect("quiz_bim:quizbim_detail", pk=quiz.pk)
+
+    @cached_property
+    def crumbs(self):
+        return [("Создание вопроса", reverse("quiz_bim:questionbim_create", kwargs={'pk': self.kwargs.get("pk")}))]
 
 
-class QuestionBimUpdateView(PermissionRequiredMixin, UpdateView):
+class QuestionBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = QuestionBim
     form_class = QuestionBimForm
     template_name = 'quiz_bim/question_bim/question_bim_update.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
     context_object_name = 'question'
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
+    def get_success_url(self):
+        return reverse("quiz_bim:quizbim_detail", kwargs={"pk": self.object.test_bim.pk})
 
-class QuestionBimDeleteView(PermissionRequiredMixin, DeleteView):
+    @cached_property
+    def crumbs(self):
+        return [("Изменение вопроса", reverse("quiz_bim:questionbim_update", kwargs={'pk': self.object.pk}))]
+
+
+class QuestionBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = QuestionBim
     context_object_name = 'question'
     template_name = 'quiz_bim/question_bim/question_bim_delete.html'
-    success_url = reverse_lazy('quiz_bim:tests_list')
+    home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    def get_success_url(self):
+        return reverse("quiz_bim:quizbim_detail", kwargs={"pk": self.object.test_bim.pk})
+
+    @cached_property
+    def crumbs(self):
+        return [("Удаления вопроса", reverse("quiz_bim:questionbim_delete", kwargs={'pk': self.object.pk}))]

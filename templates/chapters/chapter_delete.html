@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static view_breadcrumbs %}
 {% block title %}Удаление главы{% endblock %}
 {% block content %}
     <div class="container">
@@ -8,6 +8,9 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
                 <div class="d-block">
                     <p class="card-text">Вы точно хотите удалить главу:<span class="text-danger"> {{ chapter.title }}</span>
                     </p>
@@ -17,7 +20,7 @@
                     <div class="btn-group" role="group">
                         <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
                     </div>
-                    <a class="btn btn-primary" href="{% url "modules:chapter_detail" chapter.pk %}">Нет</a>
+                    <a class="btn btn-primary" href="{% url "modules:coursemodel_detail" chapter.course.pk %}">Нет</a>
                 </form>
             </div>
         </div>
