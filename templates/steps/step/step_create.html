@@ -19,6 +19,9 @@
                     {% for error in form.non_field_errors %}
                         <div class="alert alert-danger">{{ error }}</div>
                     {% endfor %}
+                    {% if error_message %}
+                        <div class="alert alert-danger">{{ error_message }}</div>
+                    {% endif %}
                     <div class="form-group">
                         <label for="id_title">{{ form.title.label }}</label>
                         {{ form.title }}
@@ -42,7 +45,7 @@
                             {{ form.text }}
                         </div>
                         <div id="text-form" class="content-form">
-                            <p>или</p>
+                            <p class="my-2">или</p>
                             <label for="title_text">Введите наименование текста</label>
                             <input type="text" name="text_title" class="form-control" id="title_text">
                             <label for="description_text">Введите описание текста</label>
@@ -57,7 +60,7 @@
                             {{ form.video }}
                         </div>
                         <div id="video-form" class="content-form">
-                            <p>или</p>
+                            <p class="my-2">или</p>
                             <label for="title_video">Введите наименование видео</label>
                             <input type="text" name="video_title" class="form-control" id="title_video">
                             <label for="description_video">Введите описание видео</label>
@@ -72,18 +75,28 @@
                             {{ form.test }}
                         </div>
                         <div id="test-form" class="content-test">
-                            <p>или</p>
+                            <p class="my-2">или</p>
                             <label for="title_test">Введите наименование теста</label>
                             <input type="text" name="test_title" class="form-control" id="title_test">
-                            <label for="questions_qty_test">Введите количество вопросов теста</label>
+                            <label for="questions_qty_test">Введите количество вопросов в тесте</label>
                             <input type="number" name="test_questions_qty" id="questions_qty_test"
+                                   class="form-control">
+                            <label for="questions_qty_to_create">Введите количество создаваемых вопросов</label>
+                            <input type="number" name="questions_forms_qty" id="questions_qty_to_create"
                                    class="form-control">
                             <button id="confirmQuestions" class="btn btn-primary my-3" type="button">Подтвердить
                             </button>
                             <div id="question-form" class="content-test"></div>
+                            <div class="d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination " id="pagination-block">
+                                    </ul>
+                                </nav>
+                            </div>
+                            <input type="hidden" id="questionBlocksCount" name="question_blocks_count" value="0">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary my-3">Создать занятие</button>
+                    <button type="submit" class="btn btn-primary my-3" id="submit_button">Создать занятие</button>
                 </form>
             </div>
         </div>
