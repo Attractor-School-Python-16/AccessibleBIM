@@ -9,15 +9,45 @@ const textForm = document.getElementById("text-form");
 const videoForm = document.getElementById("video-form");
 const testForm = document.getElementById("test-form");
 
+
+
+// function handleSelectChange(select, form) {
+//     if (select.value) {
+//         form.style.display = "none";
+//         clearInputsInDiv(form);
+//     } else {
+//         form.style.display = "block";
+//     }
+// }
+
 function handleSelectChange(select, form) {
     if (select.value) {
         form.style.display = "none";
         clearInputsInDiv(form);
     } else {
         form.style.display = "block";
+        if (form === textForm) {  // Проверка, если текущая форма - это форма текста
+            initializeSummernote();
+        }
     }
 }
 
+$(document).ready(function() {
+    $('#id_text').summernote();
+});
+
+
+function initializeSummernote() {
+    $('#content_text').summernote({  toolbar: [
+        ['style', ['bold', 'italic', 'underline']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']]
+    ]
+    });
+}
 
 function clearInputsInDiv(div) {
     const inputElements = div.getElementsByTagName('input');
@@ -233,3 +263,7 @@ function handleInputChange() {
 
 questionBlocksCount.addEventListener('change', handleInputChange);
 questionsQty.addEventListener('change', handleInputChange);
+
+window.onload = function() {
+    initializeSummernote();
+}
