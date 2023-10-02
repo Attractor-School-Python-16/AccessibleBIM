@@ -155,6 +155,16 @@ class CourseDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVie
     context_object_name = 'course'
     home_path = reverse_lazy('modules:moderator_page')
 
+    @cached_property
+    def crumbs(self):
+        module = self.get_object().module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk}))
+        ] + super().crumbs
+
+
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
