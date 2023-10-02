@@ -251,6 +251,21 @@ class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     home_path = reverse_lazy('modules:moderator_page')
     chapter = None
 
+    @cached_property
+    def crumbs(self):
+        chapter = self.get_object().chapter
+        course = chapter.course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course._meta.verbose_name_plural, reverse_lazy("modules:coursemodel_list")),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+            (chapter._meta.verbose_name_plural, reverse_lazy("modules:chaptermodel_list")),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
+        ] + super().crumbs
+
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
