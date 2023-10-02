@@ -110,7 +110,7 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
             title=self.request.POST.get('test_title'),
             questions_qty=self.request.POST.get('test_questions_qty')
         )
-        for i in range(1, int(test_instance.questions_qty) + 1):
+        for i in range(1, int(self.request.POST.get('question_blocks_count')) + 1):
             question_text = self.request.POST.get(f'question_title_{i}')
             question = QuestionBim.objects.create(title=question_text, test_bim=test_instance)
             answers_qty = 0
@@ -120,13 +120,18 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
                     answers_qty += 1
             for j in range(1, answers_qty + 1):
                 answer_text = self.request.POST.get(f'answer_{i}_{j}')
-                is_correct = self.request.POST.get(f'is_correct_{i}_{j}')
+                is_correct = bool(self.request.POST.get(f'is_correct_{i}_{j}'))
                 if answer_text:
                     AnswerBim.objects.create(answer=answer_text, is_correct=is_correct, question_bim=question)
         form.instance.test = test_instance
         return test_instance
 
     def quiz_validate(self, form):
+        questions_created = int(self.request.POST.get("question_blocks_count"))
+        questions_qty = int(self.request.POST.get("test_questions_qty"))
+        if questions_created < questions_qty:
+            error_message = "Количество создаваемых вопросов не может быть меньше вопросов в тесте"
+            return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
         if len(self.request.POST.get('test_title')) < 1:
             error_message = "Название теста не должно быть пустым"
             return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
@@ -138,12 +143,35 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
                 if int(self.request.POST.get(i)) < 1:
                     error_message = "В вопросах должны быть ответы"
                     return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+            if i.startswith('question_title'):
+                if len(self.request.POST.get(i)) < 1:
+                    error_message = "Вопросы не могут быть пустыми"
+                    return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
             if i.startswith('answer_'):
                 if len(self.request.POST.get(i)) < 1:
                     error_message = "Ответы не могут быть пустыми"
                     return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+        for i in range(1, int(self.request.POST.get('question_blocks_count')) + 1):
+            answers_qty = 0
+            for j in range(1, 11):
+                answer_text = self.request.POST.get(f'answer_{i}_{j}')
+                if answer_text:
+                    answers_qty += 1
+            correct_answer_count = 0
+            for j in range(1, answers_qty + 1):
+                if correct_answer_count > 1:
+                    error_message = f"Не может быть более одного правильного ответа (Вопрос {i})"
+                    return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+                if self.request.POST.get(f'is_correct_{i}_{j}') == 'True':
+                    correct_answer_count += 1
+            if correct_answer_count == 0:
+                error_message = f"Должен быть хотя бы один правильный ответ (Вопрос {i})"
+                return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
 
-    def get_quiz_context(self, form):
+
+
+
+    def get_quiz_context(self, form, error_message):
         pass
 
     def get_success_url(self):
