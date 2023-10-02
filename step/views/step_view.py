@@ -65,21 +65,6 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         elif lesson_type == 'video':
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
-            if len(self.request.POST.get('test_title')) < 1:
-                error_message = "Название теста не должно быть пустым"
-                return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
-            if len(self.request.POST.get('test_questions_qty')) < 1:
-                error_message = "Количество вопросов в тесте должно быть указано"
-                return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
-            for i in self.request.POST:
-                if i.startswith('answers_qty'):
-                    if int(self.request.POST.get(i)) < 1:
-                        error_message = "В вопросах должны быть ответы"
-                        return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
-                if i.startswith('answer_'):
-                    if len(self.request.POST.get(i)) < 1:
-                        error_message = "Ответы не могут быть пустыми"
-                        return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
             self.handle_quiz_lesson(form)
         form.instance.save()
         return super().form_valid(form)
@@ -140,6 +125,26 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
                     AnswerBim.objects.create(answer=answer_text, is_correct=is_correct, question_bim=question)
         form.instance.test = test_instance
         return test_instance
+
+    def quiz_validate(self, form):
+        if len(self.request.POST.get('test_title')) < 1:
+            error_message = "Название теста не должно быть пустым"
+            return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+        if len(self.request.POST.get('test_questions_qty')) < 1:
+            error_message = "Количество вопросов в тесте должно быть указано"
+            return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+        for i in self.request.POST:
+            if i.startswith('answers_qty'):
+                if int(self.request.POST.get(i)) < 1:
+                    error_message = "В вопросах должны быть ответы"
+                    return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+            if i.startswith('answer_'):
+                if len(self.request.POST.get(i)) < 1:
+                    error_message = "Ответы не могут быть пустыми"
+                    return render(self.request, self.template_name, {'form': form, 'error_message': error_message})
+
+    def get_quiz_context(self, form):
+        pass
 
     def get_success_url(self):
         return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
