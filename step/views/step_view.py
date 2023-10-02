@@ -10,7 +10,7 @@ from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
     UpdateBreadcrumbMixin
 
-from step.step_utilities import quiz_validate
+from step.step_validators import quiz_validate, text_validate, video_validate
 
 
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
@@ -63,8 +63,10 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
+            text_validate(self, form)
             self.handle_text_lesson(form)
         elif lesson_type == 'video':
+            video_validate(self, form)
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
             quiz_validate(self, form)
@@ -140,13 +142,12 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     home_path = reverse_lazy('modules:moderator_page')
     chapter = None
 
-
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
 
     def get_success_url(self):
-        return reverse('modules:chaptermodel_detail', kwargs={"pk":self.chapter})
+        return reverse('modules:chaptermodel_detail', kwargs={"pk": self.chapter})
 
     def has_permission(self):
         user = self.request.user
