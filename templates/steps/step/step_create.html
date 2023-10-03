@@ -47,7 +47,7 @@
                             {% else %}
                          style="display: none"
                             {% endif %}
-                                        >
+                    >
                         <div class="form-group">
                             <label for="id_text">Выберите текст</label>
                             {{ form.text }}
@@ -69,10 +69,16 @@
                                     {% endif %}
                             >
                             <label for="content_text">Заполните текст занятия</label>
-                            <textarea name="content" class="form-control" id="content_text">{{ returned.content }}</textarea>
+                            <textarea name="content" class="form-control"
+                                      id="content_text">{{ returned.content }}</textarea>
                         </div>
                     </div>
-                    <div id="video_content" style="display: none;">
+                    <div id="video_content"
+                    {% if returned.type_video == True %}
+                         style="display: block"
+                            {% else %}
+                         style="display: none"
+                            {% endif %}>
                         <div class="form-group">
                             <label for="id_video">Выберите видео</label>
                             {{ form.video }}
@@ -80,11 +86,21 @@
                         <div id="video-form" class="content-form">
                             <p class="my-2">или</p>
                             <label for="title_video">Введите наименование видео</label>
-                            <input type="text" name="video_title" class="form-control" id="title_video">
+                            <input type="text" name="video_title" class="form-control" id="title_video"
+                                    {% if returned %}
+                                   value="{{ returned.video_title }}"
+                                    {% endif %}>
                             <label for="description_video">Введите описание видео</label>
-                            <input type="text" name="video_description" class="form-control" id="description_video">
+                            <input type="text" name="video_description" class="form-control" id="description_video"
+                                    {% if returned %}
+                                   value="{{ returned.video_description }}"
+                                    {% endif %}>
                             <label for="file_video">Загрузите видео-файл</label>
-                            <input type="file" name="video_file" class="form-control" id="file_video">
+                            <input type="file" name="video_file" class="form-control" id="file_video"
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.video_file }}"#}
+{#                                    {% endif %}#}
+                            >
                         </div>
                     </div>
                     <div id="test_content" style="display: none;">
