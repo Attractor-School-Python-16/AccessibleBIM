@@ -10,7 +10,7 @@ from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
     UpdateBreadcrumbMixin
 
-from step.step_validators import quiz_validate, text_validate, video_validate
+from step.step_validators import quiz_validate, text_validate, video_validate, get_returning_context
 
 
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
@@ -58,12 +58,18 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
 
+
     def form_valid(self, form):
         print(self.request.POST)
         form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
         lesson_type = form.cleaned_data['lesson_type']
         if lesson_type == 'text':
-            text_validate(self, form)
+            error_messages = text_validate(self)
+            if error_messages:
+                returned = get_returning_context(self)
+                print(returned)
+                return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages,
+                                                                 'returned': returned})
             self.handle_text_lesson(form)
         elif lesson_type == 'video':
             video_validate(self, form)
@@ -133,6 +139,7 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
 
     def get_success_url(self):
         return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
+
 
 
 class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
