@@ -19,8 +19,10 @@
                     {% for error in form.non_field_errors %}
                         <div class="alert alert-danger">{{ error }}</div>
                     {% endfor %}
-                    {% if error_message %}
-                        <div class="alert alert-danger">{{ error_message }}</div>
+                    {% if error_messages %}
+                        {% for error_message in error_messages %}
+                            <div class="alert alert-danger">{{ error_message }}</div>
+                        {% endfor %}
                     {% endif %}
                     <div class="form-group">
                         <label for="id_title">{{ form.title.label }}</label>
@@ -39,7 +41,13 @@
                         <label for="id_lesson_type">{{ form.lesson_type.label }}</label>
                         {{ form.lesson_type }}
                     </div>
-                    <div id="text_content" style="display: none;">
+                    <div id="text_content"
+                            {% if returned.type_text == True %}
+                         style="display: block"
+                            {% else %}
+                         style="display: none"
+                            {% endif %}
+                                        >
                         <div class="form-group">
                             <label for="id_text">Выберите текст</label>
                             {{ form.text }}
@@ -47,11 +55,21 @@
                         <div id="text-form" class="content-form">
                             <p class="my-2">или</p>
                             <label for="title_text">Введите наименование текста</label>
-                            <input type="text" name="text_title" class="form-control" id="title_text">
-                            <label for="description_text">Введите описание текста</label>
-                            <input type="text" name="text_description" class="form-control" id="description_text">
+                            <input type="text" name="text_title" class="form-control" id="title_text"
+                                    {% if returned %}
+                                   value="{{ returned.text_title }}"
+                                    {% endif %}
+                            >
+                            <label for="description_text">Введите описание текста
+
+                            </label>
+                            <input type="text" name="text_description" class="form-control" id="description_text"
+                                    {% if returned %}
+                                   value="{{ returned.text_description }}"
+                                    {% endif %}
+                            >
                             <label for="content_text">Заполните текст занятия</label>
-                            <textarea name="content" class="form-control" id="content_text"></textarea>
+                            <textarea name="content" class="form-control" id="content_text">{{ returned.content }}</textarea>
                         </div>
                     </div>
                     <div id="video_content" style="display: none;">
