@@ -19,22 +19,25 @@ def text_validate(self):
     elif len(content) < 50:
         error_messages.append("Содержимое текста должно быть длиной более 50 символов")
     if error_messages:
-        return (error_messages)
+        return error_messages
     return None
 
 
-def video_validate(self, form):
+def video_validate(self):
     CONTENTTYPES = ['video/mp4',
                     'video/x-msvideo']
     error_messages = []
-    video_title = self.request.POST.get('text_title')
-    video_description = self.request.POST.get('text_description')
-    current_file = self.cleaned_data.get("video_file", False)
-    if current_file.content_type in CONTENTTYPES:
-        if current_file.size > 2097152000:
-            error_messages.append("Содержимое текста должно быть длиной более 50 символов")
+    video_title = self.request.POST.get('video_title')
+    video_description = self.request.POST.get('video_description')
+    current_file = self.request.FILES.get("video_file")
+    if not current_file:
+        error_messages.append("Не загружен файл видео")
     else:
-        error_messages.append("Необходимо загрузить видео в формате MP4 или AVI")
+        if current_file.content_type in CONTENTTYPES:
+            if current_file.size > 2097152000:
+                error_messages.append("Размер файла видео не должен превышать 2 Гб")
+        else:
+            error_messages.append("Необходимо загрузить видео в формате MP4 или AVI")
     if len(video_title) < 1:
         error_messages.append("Название видео не может быть пустым")
     elif len(video_title) < 4:
@@ -44,39 +47,41 @@ def video_validate(self, form):
     elif len(video_description) < 10:
         error_messages.append("Описание видео должно быть длиной более 10 символов")
     if error_messages:
-        return render_error(self, form, ", ".join(error_messages))
+        return error_messages
     return None
 
 
-def quiz_validate(self, form):
+def quiz_validate(self):
+    error_messages = []
+    questions_qty = self.request.POST.get("test_questions_qty")
+    if questions_qty.isdigit() and len(questions_qty) >= 1:
+        questions_qty = int(questions_qty)
+    else:
+        error_messages.append("Количество вопросов в тесте должно быть указано и должно быть числом")
     questions_created = int(self.request.POST.get("question_blocks_count"))
-    questions_qty = int(self.request.POST.get("test_questions_qty"))
     if questions_created < questions_qty:
-        return render_error(self, form, "Количество создаваемых вопросов не может быть меньше вопросов в тесте")
+        error_messages.append("Количество создаваемых вопросов не может быть меньше вопросов в тесте")
     test_title = self.request.POST.get('test_title')
-    test_questions_qty = self.request.POST.get('test_questions_qty')
     if len(test_title) < 1:
-        return self.render_error(self, form, "Название теста не должно быть пустым")
-    if len(test_questions_qty) < 1:
-        return self.render_error(self, form, "Количество вопросов в тесте должно быть указано")
+        error_messages.append("Название теста не должно быть пустым")
     for i in self.request.POST:
         if i.startswith('answers_qty'):
             if int(self.request.POST.get(i)) < 1:
-                return self.render_error(self, form, "В вопросах должны быть ответы")
+                error_messages.append("В вопросах должны быть ответы")
         if i.startswith('question_title'):
             if len(self.request.POST.get(i)) < 1:
-                return self.render_error(self, form, "Вопросы не могут быть пустыми")
+                error_messages.append("Вопросы не могут быть пустыми")
         if i.startswith('answer_'):
             if len(self.request.POST.get(i)) < 1:
-                return self.render_error(self, form, "Ответы не могут быть пустыми")
+                error_messages.append("Ответы не могут быть пустыми")
     for i in range(1, questions_created + 1):
         answers_qty = sum(1 for j in range(1, 11) if self.request.POST.get(f'answer_{i}_{j}'))
         correct_answer_count = sum(
             1 for j in range(1, answers_qty + 1) if self.request.POST.get(f'is_correct_{i}_{j}') == 'True')
         if correct_answer_count > 1:
-            return self.render_error(self, form, f"Не может быть более одного правильного ответа (Вопрос {i})")
+            error_messages.append(f"Не может быть более одного правильного ответа (Вопрос {i})")
         if correct_answer_count == 0:
-            return self.render_error(self, form, f"Должен быть хотя бы один правильный ответ (Вопрос {i})")
+            error_messages.append(f"Должен быть хотя бы один правильный ответ (Вопрос {i})")
 
 
 def render_error(self, form, error_message):
@@ -88,13 +93,13 @@ def get_returning_context(self):
     context_to_return = {}
     lesson_type = self.request.POST.get('lesson_type')
     if lesson_type == 'text' or lesson_type == 'video':
-        context_to_return[f'{lesson_type}_title'] = self.request.POST.get('text_title')
-        context_to_return[f'{lesson_type}_description'] = self.request.POST.get('text_description')
+        context_to_return[f'{lesson_type}_title'] = self.request.POST.get(f'{lesson_type}_title')
+        context_to_return[f'{lesson_type}_description'] = self.request.POST.get(f'{lesson_type}_description')
         if lesson_type == 'text':
             context_to_return['content'] = self.request.POST.get('content')
             context_to_return['type_text'] = True
         elif lesson_type == 'video':
-            context_to_return['video_file'] = self.request.POST.get('video_file')
+            context_to_return['video_file'] = self.request.FILES.get('video_file')
             context_to_return['type_video'] = True
     elif lesson_type == 'test':
         question_blocks_count = int(self.request.POST.get('question_blocks_count'))
@@ -108,4 +113,5 @@ def get_returning_context(self):
                 context_to_return[f'answer_{i}_{j}'] = answer_text
                 context_to_return[f'is_correct_{i}_{j}'] = self.request.POST.get(f'is_correct_{i}_{j}')
                 context_to_return['type_test'] = True
+    print(context_to_return)
     return context_to_return

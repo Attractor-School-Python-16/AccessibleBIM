@@ -67,15 +67,22 @@ class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
             error_messages = text_validate(self)
             if error_messages:
                 returned = get_returning_context(self)
-                print(returned)
                 return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages,
                                                                  'returned': returned})
             self.handle_text_lesson(form)
         elif lesson_type == 'video':
-            video_validate(self, form)
+            error_messages = video_validate(self)
+            if error_messages:
+                returned = get_returning_context(self)
+                return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages,
+                                                                 'returned': returned})
             self.handle_video_lesson(form)
         elif lesson_type == 'test':
-            quiz_validate(self, form)
+            error_messages = quiz_validate(self)
+            if error_messages:
+                returned = get_returning_context(self)
+                return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages,
+                                                                 'returned': returned})
             self.handle_quiz_lesson(form)
         form.instance.save()
         return super().form_valid(form)
