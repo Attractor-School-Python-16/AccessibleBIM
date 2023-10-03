@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 
-def text_validate(self, form):
+def text_validate(self):
     text_title = self.request.POST.get('text_title')
     text_description = self.request.POST.get('text_description')
     content = self.request.POST.get('content')
@@ -19,7 +19,7 @@ def text_validate(self, form):
     elif len(content) < 50:
         error_messages.append("Содержимое текста должно быть длиной более 50 символов")
     if error_messages:
-        return render_error(self, form, ", ".join(error_messages))
+        return (error_messages)
     return None
 
 
@@ -92,8 +92,10 @@ def get_returning_context(self):
         context_to_return[f'{lesson_type}_description'] = self.request.POST.get('text_description')
         if lesson_type == 'text':
             context_to_return['content'] = self.request.POST.get('content')
+            context_to_return['type_text'] = True
         elif lesson_type == 'video':
             context_to_return['video_file'] = self.request.POST.get('video_file')
+            context_to_return['type_video'] = True
     elif lesson_type == 'test':
         question_blocks_count = int(self.request.POST.get('question_blocks_count'))
         for i in range(1, question_blocks_count + 1):
@@ -105,4 +107,5 @@ def get_returning_context(self):
                     answers_qty += 1
                 context_to_return[f'answer_{i}_{j}'] = answer_text
                 context_to_return[f'is_correct_{i}_{j}'] = self.request.POST.get(f'is_correct_{i}_{j}')
+                context_to_return['type_test'] = True
     return context_to_return
