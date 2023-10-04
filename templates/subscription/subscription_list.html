@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load view_breadcrumbs %}
+{% load static view_breadcrumbs %}
 {% block title %}Подписки{% endblock %}
 {% block content %}
     {% include 'partials/main_block.html' %}
@@ -15,8 +15,7 @@
                 {% endblock %}
                 <h3>Подписки на курсы:</h3>
                 {% for subscription in subscriptions %}
-                    <a href="{% url 'subscription:subscriptionmodel_detail' subscription.pk %}"
-                       class="card mb-3 mt-3 link-underline link-underline-opacity-0">
+                    <div class="card mb-3 mt-3 link-underline link-underline-opacity-0">
                         <div class="row g-0">
                             <div class="col-md-3">
                                 <div class="card-body border-bottom">
@@ -29,12 +28,16 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
+                                    <div class="card-body">
+                                        <a href="{% url 'subscription:subscriptionmodel_buy' subscription.pk %}" class="btn btn-success">Купить</a>
+                                    </div>
                                 <div class="card-body">
-                                    <button href="#" class="btn btn-success">Купить</button>
+                                    <a href="{% url 'subscription:subscriptionmodel_detail' subscription.pk %}"
+                                       class="btn btn-success">Детально</a>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
