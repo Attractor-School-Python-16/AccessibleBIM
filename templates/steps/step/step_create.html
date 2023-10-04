@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div id="video_content"
-                    {% if returned.type_video == True %}
+                            {% if returned.type_video == True %}
                          style="display: block"
                             {% else %}
                          style="display: none"
@@ -97,13 +97,18 @@
                                     {% endif %}>
                             <label for="file_video">Загрузите видео-файл</label>
                             <input type="file" name="video_file" class="form-control" id="file_video"
-{#                                    {% if returned %}#}
-{#                                   value="{{ returned.video_file }}"#}
-{#                                    {% endif %}#}
+                                    {#                                    {% if returned %}#}
+                                    {#                                   value="{{ returned.video_file }}"#}
+                                    {#                                    {% endif %}#}
                             >
                         </div>
                     </div>
-                    <div id="test_content" style="display: none;">
+                    <div id="test_content"
+                            {% if returned.type_test == True %}
+                         style="display: block"
+                            {% else %}
+                         style="display: none"
+                            {% endif %}>
                         <div class="form-group">
                             <label for="id_test">Выберите тест</label>
                             {{ form.test }}
@@ -111,13 +116,22 @@
                         <div id="test-form" class="content-test">
                             <p class="my-2">или</p>
                             <label for="title_test">Введите наименование теста</label>
-                            <input type="text" name="test_title" class="form-control" id="title_test">
+                            <input type="text" name="test_title" class="form-control" id="title_test"
+                                    {% if returned %}
+                                   value="{{ returned.test_title }}"
+                                    {% endif %}>
                             <label for="questions_qty_test">Введите количество вопросов в тесте</label>
                             <input type="number" name="test_questions_qty" id="questions_qty_test"
-                                   class="form-control">
+                                   class="form-control"
+                                    {% if returned %}
+                                   value="{{ returned.test_questions_qty }}"
+                                    {% endif %}>
                             <label for="questions_qty_to_create">Введите количество создаваемых вопросов</label>
                             <input type="number" name="questions_forms_qty" id="questions_qty_to_create"
-                                   class="form-control">
+                                   class="form-control"
+                                    {% if returned %}
+                                   value="{{ returned.questions_forms_qty }}"
+                                    {% endif %}>
                             <button id="confirmQuestions" class="btn btn-primary my-3" type="button">Подтвердить
                             </button>
                             <div id="question-form" class="content-test"></div>
@@ -127,7 +141,7 @@
                                     </ul>
                                 </nav>
                             </div>
-                            <input type="hidden" id="questionBlocksCount" name="question_blocks_count" value="0">
+                            <input type="hidden" id="questionBlocksCount" name="question_blocks_count" value=0>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary my-3" id="submit_button">Создать занятие</button>
@@ -135,5 +149,6 @@
             </div>
         </div>
     </div>
+        {{ returned|json_script:"returned-data" }}
     <script src="{% static 'js/step_create.js' %}"></script>
 {% endblock %}
