@@ -54,13 +54,13 @@ def video_validate(self):
 def quiz_validate(self):
     error_messages = []
     questions_qty = self.request.POST.get("test_questions_qty")
+    questions_created = int(self.request.POST.get("question_blocks_count"))
     if questions_qty.isdigit() and len(questions_qty) >= 1:
         questions_qty = int(questions_qty)
+        if questions_created < questions_qty:
+            error_messages.append("Количество создаваемых вопросов не может быть меньше вопросов в тесте")
     else:
         error_messages.append("Количество вопросов в тесте должно быть указано и должно быть числом")
-    questions_created = int(self.request.POST.get("question_blocks_count"))
-    if questions_created < questions_qty:
-        error_messages.append("Количество создаваемых вопросов не может быть меньше вопросов в тесте")
     test_title = self.request.POST.get('test_title')
     if len(test_title) < 1:
         error_messages.append("Название теста не должно быть пустым")
@@ -82,6 +82,9 @@ def quiz_validate(self):
             error_messages.append(f"Не может быть более одного правильного ответа (Вопрос {i})")
         if correct_answer_count == 0:
             error_messages.append(f"Должен быть хотя бы один правильный ответ (Вопрос {i})")
+    if error_messages:
+        return error_messages
+    return None
 
 
 def render_error(self, form, error_message):
@@ -102,16 +105,17 @@ def get_returning_context(self):
             context_to_return['video_file'] = self.request.FILES.get('video_file')
             context_to_return['type_video'] = True
     elif lesson_type == 'test':
+        context_to_return['test_title'] = self.request.POST.get('test_title')
         question_blocks_count = int(self.request.POST.get('question_blocks_count'))
         for i in range(1, question_blocks_count + 1):
             context_to_return[f'question_title_{i}'] = self.request.POST.get(f'question_title_{i}')
-            answers_qty = 0
             for j in range(1, 11):
                 answer_text = self.request.POST.get(f'answer_{i}_{j}')
                 if answer_text:
-                    answers_qty += 1
-                context_to_return[f'answer_{i}_{j}'] = answer_text
-                context_to_return[f'is_correct_{i}_{j}'] = self.request.POST.get(f'is_correct_{i}_{j}')
-                context_to_return['type_test'] = True
+                    context_to_return[f'answer_{i}_{j}'] = answer_text
+                    context_to_return[f'is_correct_{i}_{j}'] = self.request.POST.get(f'is_correct_{i}_{j}')
+        context_to_return['type_test'] = True
+        context_to_return['test_questions_qty'] = self.request.POST.get('test_questions_qty')
+        context_to_return['questions_forms_qty'] = question_blocks_count
     print(context_to_return)
     return context_to_return
