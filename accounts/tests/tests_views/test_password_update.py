@@ -38,13 +38,13 @@ class TestRegisterView(TestCase):
         response = self.client.post(reverse('accounts:change_password'), data=data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
-    def test_login_after_changing_password(self):
+    def test_login_after_changing_password_fail(self):
         data = self.change_password()
         self.client.post(reverse('accounts:change_password'), data=data)
         self.client.logout()
         self.assertFalse(self.client.login(email='my_user@bimtest.com', password='123'))
 
-    def test_login_after_changing_password_fail(self):
+    def test_login_after_changing_password(self):
         data = self.change_password()
         self.client.post(reverse('accounts:change_password'), data=data)
         self.client.logout()
