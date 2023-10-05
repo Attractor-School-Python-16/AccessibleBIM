@@ -10,6 +10,8 @@ from accounts.tokens import account_activation_token
 class TestRegisterView(TestCase):
     def setUp(self) -> None:
         self.user = UserFactory.create()
+        self.user.set_password('123')
+        self.user.save()
         # методы, применяемые в функции activate_email для генерации ссылки
         self.uidb = urlsafe_base64_encode(force_bytes(self.user.pk))
         self.token = account_activation_token.make_token(self.user)
