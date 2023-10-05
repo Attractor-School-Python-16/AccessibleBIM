@@ -205,7 +205,7 @@ class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin,
                  reverse("subscription:subscriptionmodel_user_delete", kwargs={'pk': self.object.pk}))]
 
 
-class SubscriptionBuyView(View):
+class SubscriptionBuyView(LoginRequiredMixin, View):
     user = get_user_model()
 
     def get(self, request, *args, **kwargs):
