@@ -9,6 +9,8 @@ const textForm = document.getElementById("text-form");
 const videoForm = document.getElementById("video-form");
 const testForm = document.getElementById("test-form");
 
+
+
 function handleSelectChange(select, form) {
     if (select.value) {
         form.style.display = "none";
@@ -17,7 +19,6 @@ function handleSelectChange(select, form) {
         form.style.display = "block";
     }
 }
-
 
 function clearInputsInDiv(div) {
     const inputElements = div.getElementsByTagName('input');
