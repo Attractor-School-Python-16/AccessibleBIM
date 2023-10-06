@@ -19,7 +19,7 @@ class TestQuestionBimDetailView(TestCase):
     @login_superuser_test
     def test_detail_view(self):
         question = QuestionBimFactory.create()
-        response = self.client.get(reverse("quiz_bim:question_detail", kwargs={"pk": question.pk}))
+        response = self.client.get(reverse("quiz_bim:questionbim_detail", kwargs={"pk": question.pk}))
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(response.context['question'], question)
         self.assertTemplateUsed(response, 'quiz_bim/question_bim/question_bim_detail.html')
@@ -27,7 +27,7 @@ class TestQuestionBimDetailView(TestCase):
 
     @login_superuser_test
     def test_not_found(self):
-        response = self.client.get(reverse("quiz_bim:question_detail", kwargs={"pk": 999}))
+        response = self.client.get(reverse("quiz_bim:questionbim_detail", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
 
@@ -38,7 +38,7 @@ class TestQuestionBimCreateView(TestCase):
             "title": "Question"
         }
         quiz = QuizBimFactory.create()
-        cls.url = reverse("quiz_bim:question_create", kwargs={"pk": quiz.pk})
+        cls.url = reverse("quiz_bim:questionbim_create", kwargs={"pk": quiz.pk})
         cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
         super().setUpClass()
 
@@ -49,7 +49,7 @@ class TestQuestionBimCreateView(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(QuestionBim.objects.count() - previous_count, 1)
         question = QuestionBim.objects.latest('create_at')
-        self.assertRedirects(response, reverse("quiz_bim:test_detail", kwargs={"pk": question.test_bim.pk}))
+        self.assertRedirects(response, reverse("quiz_bim:quizbim_detail", kwargs={"pk": question.test_bim.pk}))
 
     @login_superuser_test
     def test_invalid_data(self):
@@ -72,7 +72,7 @@ class TestQuestionBimUpdateView(TestCase):
 
     def setUp(self) -> None:
         self.question = QuestionBimFactory.create()
-        self.url = reverse("quiz_bim:question_update", kwargs={"pk": self.question.pk})
+        self.url = reverse("quiz_bim:questionbim_update", kwargs={"pk": self.question.pk})
 
     @login_superuser_test
     def test_update_view(self):
@@ -95,7 +95,7 @@ class TestQuestionBimUpdateView(TestCase):
 
     @login_superuser_test
     def test_not_found(self):
-        response = self.client.get(reverse("quiz_bim:question_update", kwargs={"pk": 999}))
+        response = self.client.get(reverse("quiz_bim:questionbim_update", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
 
@@ -107,7 +107,7 @@ class TestQuestionBimDeleteView(TestCase):
 
     def setUp(self) -> None:
         self.question = QuestionBimFactory.create()
-        self.url = reverse("quiz_bim:question_delete", kwargs={"pk": self.question.pk})
+        self.url = reverse("quiz_bim:questionbim_delete", kwargs={"pk": self.question.pk})
 
     @login_superuser_test
     def test_delete_view(self):
@@ -120,6 +120,6 @@ class TestQuestionBimDeleteView(TestCase):
     @login_superuser_test
     def test_not_found(self):
         previous_count = QuestionBim.objects.count()
-        response = self.client.post(reverse("quiz_bim:question_delete", kwargs={"pk": 999}))
+        response = self.client.post(reverse("quiz_bim:questionbim_delete", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
         self.assertEqual(previous_count, QuestionBim.objects.count())
