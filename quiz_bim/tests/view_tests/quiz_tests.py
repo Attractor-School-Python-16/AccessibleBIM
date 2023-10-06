@@ -1,21 +1,17 @@
 from http import HTTPStatus
 
-from django.contrib.auth import get_user_model
-from django.test import *
 from django.urls import reverse
 
 from quiz_bim.models import QuizBim
 from quiz_bim.tests.factories import QuizBimFactory
-from quiz_bim.tests.urils import login_superuser_test
+from quiz_bim.tests.utils import login_superuser_test, CustomTestCase
 
 
-class TestQuizBimListView(TestCase):
+class TestQuizBimListView(CustomTestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUpTestData(cls):
         cls.url = reverse("quiz_bim:quizbim_list")
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin",
-                                                                  is_superuser=True)
-        super().setUpClass()
+        super().setUpTestData()
 
     @login_superuser_test
     def test_list_view(self):
@@ -27,12 +23,7 @@ class TestQuizBimListView(TestCase):
         self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
 
 
-class TestQuizBimDetailView(TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
-        super().setUpClass()
+class TestQuizBimDetailView(CustomTestCase):
 
     @login_superuser_test
     def test_detail_view(self):
@@ -49,16 +40,15 @@ class TestQuizBimDetailView(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
 
-class TestQuizBimCreateView(TestCase):
+class TestQuizBimCreateView(CustomTestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUpTestData(cls):
         cls.correct_form_data = {
             "title": "Quiz",
             "questions_qty": 5,
         }
         cls.url = reverse("quiz_bim:quizbim_create")
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
-        super().setUpClass()
+        super().setUpTestData()
 
     @login_superuser_test
     def test_create_view(self):
@@ -81,13 +71,8 @@ class TestQuizBimCreateView(TestCase):
         self.assertEqual(previous_count, QuizBim.objects.count())
 
 
-class TestQuizBimUpdateView(TestCase):
+class TestQuizBimUpdateView(CustomTestCase):
     quiz = None
-
-    @classmethod
-    def setUpClass(cls):
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
-        super().setUpClass()
 
     def setUp(self) -> None:
         self.quiz = QuizBimFactory.create()
@@ -121,11 +106,7 @@ class TestQuizBimUpdateView(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
 
-class TestQuizBimDeleteView(TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
-        super().setUpClass()
+class TestQuizBimDeleteView(CustomTestCase):
 
     def setUp(self) -> None:
         self.quiz = QuizBimFactory.create()
