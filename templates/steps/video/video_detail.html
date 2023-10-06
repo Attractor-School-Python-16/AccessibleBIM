@@ -16,13 +16,35 @@
                     {% endblock %}
                     <h1>{{ video.video_title }}</h1>
                     <p>{{ video.video_description }}</p>
-                    <video width="640" height="360" controls>
-                        <source src="{{ video.video_file.url }}" type="video/mp4">
-                    </video>
+{#                    <video width="640" height="360" controls>#}
+{#                        <source src="{{ video.video_file.url }}" type="video/mp4" oncontextmenu="return false;">#}
+{#                    </video>#}
                     </br>
                     <a href="{% url 'step:videomodel_list' %}">Вернуться к списку видео</a>
                 </div>
             </div>
         </div>
+
+
+        <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="640"
+            height="264"
+            poster=""
+            data-setup="{}"
+        >
+            <source src="{{ video.video_file.url }}" type="video/mp4" oncontextmenu="return false;"/>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+              web browser that
+              <a href="https://videojs.com/html5-video-support/" target="_blank"
+                >supports HTML5 video</a
+              >
+            </p>
+        </video>
+
     {% endif %}
 {% endblock %}
