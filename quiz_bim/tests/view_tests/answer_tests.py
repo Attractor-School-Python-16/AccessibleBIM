@@ -1,26 +1,23 @@
 from http import HTTPStatus
 
-from django.contrib.auth import get_user_model
-from django.test import TestCase
 from django.urls import reverse
 
 from quiz_bim.models import AnswerBim
 from quiz_bim.tests.factories import QuestionBimFactory, AnswerBimFactory
-from quiz_bim.tests.urils import login_superuser_test
+from quiz_bim.tests.utils import login_superuser_test, CustomTestCase
 
 
-class TestAnswerBimCreateView(TestCase):
+class TestAnswerBimCreateView(CustomTestCase):
 
     @classmethod
-    def setUpClass(cls):
+    def setUpTestData(cls):
         cls.correct_form_data = {
             "answer": "Answer",
             "is_correct": True
         }
         question = QuestionBimFactory.create()
         cls.url = reverse("quiz_bim:answerbim_create", kwargs={"pk": question.pk})
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
-        super().setUpClass()
+        super().setUpTestData()
 
     @login_superuser_test
     def test_create_view(self):
@@ -43,13 +40,8 @@ class TestAnswerBimCreateView(TestCase):
         self.assertEqual(previous_count, AnswerBim.objects.count())
 
 
-class TestAnswerBimUpdateView(TestCase):
+class TestAnswerBimUpdateView(CustomTestCase):
     answer = None
-
-    @classmethod
-    def setUpClass(cls):
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
-        super().setUpClass()
 
     def setUp(self) -> None:
         self.answer = AnswerBimFactory.create()
@@ -83,11 +75,7 @@ class TestAnswerBimUpdateView(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
 
-class TestAnswerBimDeleteView(TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.superuser, _ = get_user_model().objects.get_or_create(email="admin@admin.com", password="admin", is_superuser=True)
-        super().setUpClass()
+class TestAnswerBimDeleteView(CustomTestCase):
 
     def setUp(self) -> None:
         self.answer = AnswerBimFactory.create()
