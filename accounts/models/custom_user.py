@@ -66,6 +66,9 @@ class CustomUser(AbstractUser):
         app_label = 'accounts'
         permissions = (
             ("can_view_admin_panel ", "Can view admin panel"),
+            ("can_view_user_statistics", "Can view user statistics"),
+            ("can_view_course_statistics", "Can view course statistics"),
+            ("can_view_sales_statistics", "Can view sales statistics"),
         )
 
     def is_moderator(self):
