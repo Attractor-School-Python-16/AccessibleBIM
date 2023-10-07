@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from quiz_bim.models import AnswerBim
 from quiz_bim.tests.factories import QuestionBimFactory, AnswerBimFactory
-from quiz_bim.tests.utils import login_superuser_test, CustomTestCase
+from quiz_bim.tests.utils import login_superuser, CustomTestCase
 
 
 class TestAnswerBimCreateView(CustomTestCase):
@@ -19,7 +19,7 @@ class TestAnswerBimCreateView(CustomTestCase):
         cls.url = reverse("quiz_bim:answerbim_create", kwargs={"pk": question.pk})
         super().setUpTestData()
 
-    @login_superuser_test
+    @login_superuser
     def test_create_view(self):
         previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url, data=self.correct_form_data)
@@ -28,7 +28,7 @@ class TestAnswerBimCreateView(CustomTestCase):
         answer = AnswerBim.objects.latest('create_at')
         self.assertRedirects(response, reverse("quiz_bim:questionbim_detail", kwargs={"pk": answer.question_bim.pk}))
 
-    @login_superuser_test
+    @login_superuser
     def test_invalid_data(self):
         invalid_data = {
             "answer": "",
@@ -47,7 +47,7 @@ class TestAnswerBimUpdateView(CustomTestCase):
         self.answer = AnswerBimFactory.create()
         self.url = reverse("quiz_bim:answerbim_update", kwargs={"pk": self.answer.pk})
 
-    @login_superuser_test
+    @login_superuser
     def test_update_view(self):
         new_data = {
             "answer": "New title",
@@ -60,7 +60,7 @@ class TestAnswerBimUpdateView(CustomTestCase):
         self.assertEqual(self.answer.is_correct, False)
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
-    @login_superuser_test
+    @login_superuser
     def test_invalid_data(self):
         invalid_data = {
             "title": "",
@@ -69,7 +69,7 @@ class TestAnswerBimUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
-    @login_superuser_test
+    @login_superuser
     def test_not_found(self):
         response = self.client.get(reverse("quiz_bim:answerbim_update", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
@@ -81,7 +81,7 @@ class TestAnswerBimDeleteView(CustomTestCase):
         self.answer = AnswerBimFactory.create()
         self.url = reverse("quiz_bim:answerbim_delete", kwargs={"pk": self.answer.pk})
 
-    @login_superuser_test
+    @login_superuser
     def test_delete_view(self):
         previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url)
@@ -89,7 +89,7 @@ class TestAnswerBimDeleteView(CustomTestCase):
         self.assertEqual(previous_count - AnswerBim.objects.count(), 1)
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
-    @login_superuser_test
+    @login_superuser
     def test_not_found(self):
         previous_count = AnswerBim.objects.count()
         response = self.client.post(reverse("quiz_bim:answerbim_delete", kwargs={"pk": 999}))
