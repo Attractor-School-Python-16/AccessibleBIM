@@ -28,6 +28,15 @@ class TestAnswerBimCreateView(CustomTestCase):
         answer = AnswerBim.objects.latest('create_at')
         self.assertRedirects(response, reverse("quiz_bim:questionbim_detail", kwargs={"pk": answer.question_bim.pk}))
 
+    def test_anonymous(self):
+        response = self.client.post(self.url, data=self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        response = self.client.post(self.url, data=self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
     @login_superuser
     def test_invalid_data(self):
         invalid_data = {
@@ -60,6 +69,23 @@ class TestAnswerBimUpdateView(CustomTestCase):
         self.assertEqual(self.answer.is_correct, False)
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
+    def test_anonymous(self):
+        new_data = {
+            "answer": "New title",
+            "is_correct": False
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        new_data = {
+            "answer": "New title",
+            "is_correct": False
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
     @login_superuser
     def test_invalid_data(self):
         invalid_data = {
@@ -88,6 +114,15 @@ class TestAnswerBimDeleteView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(previous_count - AnswerBim.objects.count(), 1)
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
+
+    def test_anonymous(self):
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
     @login_superuser
     def test_not_found(self):

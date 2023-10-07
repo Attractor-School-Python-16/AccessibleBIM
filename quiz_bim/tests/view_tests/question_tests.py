@@ -18,6 +18,17 @@ class TestQuestionBimDetailView(CustomTestCase):
         self.assertTemplateUsed(response, 'quiz_bim/question_bim/question_bim_detail.html')
         self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
 
+    def test_anonymous(self):
+        question = QuestionBimFactory.create()
+        response = self.client.get(reverse("quiz_bim:questionbim_detail", kwargs={"pk": question.pk}))
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        question = QuestionBimFactory.create()
+        response = self.client.get(reverse("quiz_bim:questionbim_detail", kwargs={"pk": question.pk}))
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
     @login_superuser
     def test_not_found(self):
         response = self.client.get(reverse("quiz_bim:questionbim_detail", kwargs={"pk": 999}))
@@ -42,6 +53,15 @@ class TestQuestionBimCreateView(CustomTestCase):
         self.assertEqual(QuestionBim.objects.count() - previous_count, 1)
         question = QuestionBim.objects.latest('create_at')
         self.assertRedirects(response, reverse("quiz_bim:quizbim_detail", kwargs={"pk": question.test_bim.pk}))
+
+    def test_anonymous(self):
+        response = self.client.post(self.url, data=self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        response = self.client.post(self.url, data=self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
     @login_superuser
     def test_invalid_data(self):
@@ -72,6 +92,21 @@ class TestQuestionBimUpdateView(CustomTestCase):
         self.assertEqual(self.question.title, "New title")
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
+    def test_anonymous(self):
+        new_data = {
+            "title": "New title"
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        new_data = {
+            "title": "New title"
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
     @login_superuser
     def test_invalid_data(self):
         invalid_data = {
@@ -99,6 +134,15 @@ class TestQuestionBimDeleteView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(previous_count - QuestionBim.objects.count(), 1)
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
+
+    def test_anonymous(self):
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
     @login_superuser
     def test_not_found(self):
