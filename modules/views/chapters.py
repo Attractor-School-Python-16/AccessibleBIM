@@ -63,7 +63,6 @@ class ChapterDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVi
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
-            (course._meta.verbose_name_plural, reverse_lazy("modules:coursemodel_list")),
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
         ] + super().crumbs
 
@@ -95,7 +94,6 @@ class ChapterUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVi
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
-            (course._meta.verbose_name_plural, reverse_lazy("modules:coursemodel_list")),
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
         ] + super().crumbs
 
@@ -122,7 +120,6 @@ class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
-            (course._meta.verbose_name_plural, reverse_lazy("modules:coursemodel_list")),
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
         ] + super().crumbs
 

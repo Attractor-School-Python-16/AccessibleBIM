@@ -37,9 +37,7 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
-            (course._meta.verbose_name_plural, reverse_lazy("modules:coursemodel_list")),
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
-            (chapter._meta.verbose_name_plural, reverse_lazy("modules:chaptermodel_list")),
             (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
         ] + super().crumbs
 
@@ -177,9 +175,7 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
-            (course._meta.verbose_name_plural, reverse_lazy("modules:coursemodel_list")),
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
-            (chapter._meta.verbose_name_plural, reverse_lazy("modules:chaptermodel_list")),
             (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
         ] + super().crumbs
 
@@ -260,9 +256,7 @@ class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
-            (course._meta.verbose_name_plural, reverse_lazy("modules:coursemodel_list")),
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
-            (chapter._meta.verbose_name_plural, reverse_lazy("modules:chaptermodel_list")),
             (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
         ] + super().crumbs
 
