@@ -2,7 +2,7 @@ from django.urls import path
 
 from subscription.views.subscription import SubscriptionListView, SubscriptionCreateView, SubscriptionDeleteView, \
     SubscriptionDetailView, SubscriptionUpdateView, SubscriptionUserListView, SubscriptionUserAddView, \
-    SubscriptionUserDeleteView
+    SubscriptionUserDeleteView, SubscriptionBuyView, SubscriptionErrorView
 
 app_name = 'subscription'
 
@@ -16,4 +16,7 @@ urlpatterns = [
     path('subscription/user_add/<int:pk>/', SubscriptionUserAddView.as_view(), name='subscriptionmodel_user_add'),
     path('subscription/user_delete/<int:pk>/', SubscriptionUserDeleteView.as_view(),
          name='subscriptionmodel_user_delete'),
+    path('subscription/buy/<int:pk>/', SubscriptionBuyView.as_view(), name='subscriptionmodel_buy'),
+    path('subscription/error/', SubscriptionErrorView.as_view(), name='subscriptionmodel_error'),
+    # path('subscription/succses/', SubscriptionSuccsesView.as_view(), name='subscriptionmodel_succses'),
 ]
