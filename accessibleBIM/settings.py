@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
+    'betterforms',
     'django_celery_beat',
     'django_countries',
     "view_breadcrumbs",

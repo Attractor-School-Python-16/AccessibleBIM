@@ -1,16 +1,13 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView, FormView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
-from step.forms.step_form import StepForm
-from step.models import VideoModel, TextModel, FileModel, video_upload_to
+from step.models import FileModel
 from step.models.step import StepModel
-from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
-from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
-    UpdateBreadcrumbMixin
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, DeleteBreadcrumbMixin
 
-from step.step_validators import quiz_validate, text_validate, video_validate, get_returning_context
+from step.forms.step_multi_form import MultiStepVideoForm, MultiStepQuizForm, MultiStepTextForm
 
 
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
@@ -43,115 +40,99 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
         return context
 
 
-class StepCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
-    model = StepModel
-    form_class = StepForm
+class StepCreateView(PermissionRequiredMixin, CreateView):
     template_name = "steps/step/step_create.html"
     chapter = None
     home_path = reverse_lazy('modules:moderator_page')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        url_path = self.request.path.split('/')
+        if url_path[-2] == "quiz":
+            context['create_test'] = True
+        return context
+
+    def get_form_class(self):
+        url_path = self.request.path.split('/')
+        match url_path[-2]:
+            case 'text':
+                return MultiStepTextForm
+            case 'video':
+                return MultiStepVideoForm
+            case "quiz":
+                return MultiStepQuizForm
+
+    def form_valid(self, form):
+        url_path = self.request.path.split('/')
+        match url_path[-2]:
+            case 'text':
+                return self.save_step_text_model(form)
+            case 'video':
+                return self.save_step_video_model(form)
+            case 'quiz':
+                return self.save_step_quiz_model(form)
+
+    def save_step_text_model(self, form):
+        step = form['step'].save(commit=False)
+        step.lesson_type = 'text'
+        step.chapter = get_object_or_404(ChapterModel, pk=self.chapter)
+
+        if form['text'].cleaned_data['text_title']:
+            text = form['text'].save()
+        else:
+            text = form['step'].cleaned_data['text']
+
+        step.text = text
+        return redirect("modules:chaptermodel_detail", self.chapter)
+
+    def save_step_video_model(self, form):
+        step = form['step'].save(commit=False)
+        step.lesson_type = 'video'
+        step.chapter = get_object_or_404(ChapterModel, pk=self.chapter)
+        if form['video'].cleaned_data['video_title']:
+            video = form['video'].save()
+        else:
+            video = form['step'].cleaned_data['video']
+        step.video = video
+        self.work_with_files(step, form)
+        return redirect("modules:chaptermodel_detail", self.chapter)
+
+    def save_step_quiz_model(self, form):
+        step = form['step'].save(commit=False)
+        step.lesson_type = 'test'
+        step.chapter = get_object_or_404(ChapterModel, pk=self.chapter)
+        if form['quiz'].cleaned_data['title']:
+            test = form['quiz'].save()
+        else:
+            test = form['step'].cleaned_data['test']
+
+        step.test = test
+        step.save()
+        return redirect("modules:chaptermodel_detail", self.chapter)
+
+    def work_with_files(self, step, form):
+        step.save()
+        print(step)
+        if form['step'].cleaned_data['file']:
+            file_loaded = form['step'].cleaned_data['file']
+            step.file.set(file_loaded, )
+        if form['file'].cleaned_data['lesson_file']:
+            file_download = form['file'].save()
+            step.file.add(file_download, )
+        return step
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_initial(self):
+        super().get_initial()
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
 
 
-    def form_valid(self, form):
-        print(self.request.POST)
-        form.instance.chapter = ChapterModel.objects.get(id=self.chapter)
-        lesson_type = form.cleaned_data['lesson_type']
-        if lesson_type == 'text':
-            error_messages = text_validate(self)
-            if error_messages:
-                returned = get_returning_context(self)
-                return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages,
-                                                                 'returned': returned})
-            self.handle_text_lesson(form)
-        elif lesson_type == 'video':
-            error_messages = video_validate(self)
-            if error_messages:
-                returned = get_returning_context(self)
-                return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages,
-                                                                 'returned': returned})
-            self.handle_video_lesson(form)
-        elif lesson_type == 'test':
-            error_messages = quiz_validate(self)
-            if error_messages:
-                returned = get_returning_context(self)
-                return render(self.request, self.template_name, {'form': form, 'error_messages': error_messages,
-                                                                 'returned': returned})
-            self.handle_quiz_lesson(form)
-        form.instance.save()
-        return super().form_valid(form)
-
-    def handle_text_lesson(self, form):
-        text = self.request.POST.get('text')
-        if text:
-            form.instance.text = TextModel.objects.get(pk=text)
-            return text
-        text_title = self.request.POST.get('text_title')
-        text_description = self.request.POST.get('text_description')
-        content = self.request.POST.get('content')
-        text_instance = TextModel.objects.create(
-            text_title=text_title,
-            text_description=text_description,
-            content=content
-        )
-        form.instance.text = text_instance
-        return text_instance
-
-    def handle_video_lesson(self, form):
-        video = self.request.POST.get('video')
-        if video:
-            form.instance.video = video
-            return video
-        form.instance.save()
-        video_instance = VideoModel.objects.create(
-            video_title=self.request.POST.get('video_title'),
-            video_description=self.request.POST.get('video_description'),
-            video_file=self.request.FILES.get('video_file'),
-        )
-        video_upload_to(instance=form.instance, filename=self.request.POST.get('video_title'))
-        form.instance.video = video_instance
-        return video_instance
-
-    def handle_quiz_lesson(self, form):
-        print(self.request.POST)
-        test = self.request.POST.get('test')
-        if test:
-            form.instance.test = test
-            return test
-        test_instance = QuizBim.objects.create(
-            title=self.request.POST.get('test_title'),
-            questions_qty=self.request.POST.get('test_questions_qty')
-        )
-        for i in range(1, int(self.request.POST.get('question_blocks_count')) + 1):
-            question_text = self.request.POST.get(f'question_title_{i}')
-            question = QuestionBim.objects.create(title=question_text, test_bim=test_instance)
-            answers_qty = 0
-            for j in range(1, 11):  # Предположим, что не может быть больше 10 вариантов
-                answer_text = self.request.POST.get(f'answer_{i}_{j}')
-                if answer_text:
-                    answers_qty += 1
-            for j in range(1, answers_qty + 1):
-                answer_text = self.request.POST.get(f'answer_{i}_{j}')
-                is_correct = bool(self.request.POST.get(f'is_correct_{i}_{j}'))
-                if answer_text:
-                    AnswerBim.objects.create(answer=answer_text, is_correct=is_correct, question_bim=question)
-        form.instance.test = test_instance
-        return test_instance
-
-    def get_success_url(self):
-        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
-
-
-
-class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
+class StepUpdateView(PermissionRequiredMixin, UpdateView):
     model = StepModel
-    form_class = StepForm
     template_name = 'steps/step/step_update.html'
     home_path = reverse_lazy('modules:moderator_page')
     chapter = None
@@ -160,61 +141,74 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
 
-    def get_success_url(self):
-        return reverse('modules:chaptermodel_detail', kwargs={"pk": self.chapter})
+    def get_form_kwargs(self):
+        kwargs = super(StepUpdateView, self).get_form_kwargs()
+        match self.object.lesson_type:
+            case 'text':
+                kwargs.update(instance={
+                    'step': self.object,
+                    'text': self.object.text,
+                })
+            case 'video':
+                kwargs.update(instance={
+                    'step': self.object,
+                    'text': self.object.text,
+                })
+            case "test":
+                kwargs.update(instance={
+                    'step': self.object,
+                    'text': self.object.text,
+                })
+        return kwargs
+
+    def get_form_class(self):
+        match self.object.lesson_type:
+            case 'text':
+                return MultiStepTextForm
+            case 'video':
+                return MultiStepVideoForm
+            case "quiz":
+                return MultiStepQuizForm
+
+    def form_valid(self, form):
+        step = form['step'].save(commit=False)
+        match self.object.lesson_type:
+            case 'text':
+                return self.update_step_text_model(step, form)
+            case 'video':
+                return self.update_step_video_model(step, form)
+            case 'quiz':
+                return self.update_step_quiz_model(step, form)
+
+    def update_step_text_model(self, step, form):
+        if form['text'].cleaned_data['text_title']:
+            step.text = form['text'].save()
+        self.work_with_files(step, form)
+
+    def update_step_video_model(self, step, form):
+        if form['video'].cleaned_data['video_title']:
+            step.text = form['video'].save()
+        self.work_with_files(step, form)
+
+    def update_step_quiz_model(self, step, form):
+        if form['quiz'].cleaned_data['title']:
+            step.test = form['quiz'].save()
+        step.save()
+        return redirect("modules:chaptermodel_detail", self.chapter)
+
+    def work_with_files(self, step, form):
+        step.save()
+        if form['step'].cleaned_data['file']:
+            file_loaded = form['step'].cleaned_data['file']
+            step.file.set(file_loaded, )
+        if form['file'].cleaned_data['lesson_file']:
+            file_download = form['file'].save()
+            step.file.add(file_download, )
+        return redirect("modules:chaptermodel_detail", self.chapter)
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['text'], context['video'], context['test'] = self.object.text, self.object.video, self.object.test
-        return context
-
-    def form_valid(self, form):
-        lesson_type = form.cleaned_data['lesson_type']
-        if lesson_type == 'text':
-            text = self.request.POST.get('text')
-            if text:
-                form.instance.text = TextModel.objects.get(pk=text)
-                form.instance.video = None
-                form.instance.test = None
-            else:
-                return render(
-                    self.request,
-                    self.template_name,
-                    {'form': form, 'error_message': 'Текст не выбран'}
-                )
-        elif lesson_type == 'video':
-            video = self.request.POST.get('video')
-            if video:
-                form.instance.video = VideoModel.objects.get(pk=video)
-                form.instance.text = None
-                form.instance.test = None
-            else:
-                return render(
-                    self.request,
-                    self.template_name,
-                    {'form': form, 'error_message': 'Видео не выбрано'}
-                )
-        elif lesson_type == 'test':
-            test = self.request.POST.get('test')
-            if test:
-                form.instance.test = QuizBim.objects.get(pk=test)
-                form.instance.video = None
-                form.instance.text = None
-            else:
-                return render(
-                    self.request,
-                    self.template_name,
-                    {'form': form, 'error_message': 'Тест не выбран'}
-                )
-        form.instance.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
 
 
 class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -232,4 +226,4 @@ class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.chapter})
