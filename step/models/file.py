@@ -11,8 +11,8 @@ def file_upload_to(instance, filename):
 
 
 class FileModel(AbstractModel):
-    file_title = models.CharField(max_length=250, blank=False, null=False, verbose_name="Наименование")
-    lesson_file = models.FileField(upload_to=file_upload_to, blank=False, null=False, verbose_name="Файл занятия")
+    file_title = models.CharField(max_length=250, blank=True, null=True, verbose_name="Наименование")
+    lesson_file = models.FileField(upload_to=file_upload_to, blank=True, null=True, verbose_name="Файл занятия")
 
     def get_absolute_url(self):
         return reverse("step:file_list")

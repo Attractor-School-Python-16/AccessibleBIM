@@ -1,8 +1,160 @@
 {% extends "base.html" %}
-{% load view_breadcrumbs %}
+{% load static view_breadcrumbs %}
 {% block title %}
-    Редактировать занятие
+    Добавить занятие
 {% endblock %}
+{#{% block content %}#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-3">#}
+{#                {% include 'partials/sidebar.html' %}#}
+{#            </div>#}
+{#            <div class="col-md-9">#}
+{##}
+{#                {% block breadcrumbs %}#}
+{#                    {% render_breadcrumbs %}#}
+{#                {% endblock %}#}
+{#                <form method="POST" enctype="multipart/form-data">#}
+{#                    {% csrf_token %}#}
+{#                    {% for error in form.non_field_errors %}#}
+{#                        <div class="alert alert-danger">{{ error }}</div>#}
+{#                    {% endfor %}#}
+{#                    {% if error_messages %}#}
+{#                        {% for error_message in error_messages %}#}
+{#                            <div class="alert alert-danger">{{ error_message }}</div>#}
+{#                        {% endfor %}#}
+{#                    {% endif %}#}
+{#                    <div class="form-group">#}
+{#                        <label for="id_title">{{ form.title.label }}</label>#}
+{#                        {{ form.title }}#}
+{#                    </div>#}
+{##}
+{#                    <div class="form-group">#}
+{#                        <label for="id_file">Выберите файлы</label>#}
+{#                        {{ form.file }}#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        <label for="id_learn_time">{{ form.learn_time.label }}</label>#}
+{#                        {{ form.learn_time }}#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        <label for="id_lesson_type">{{ form.lesson_type.label }}</label>#}
+{#                        {{ form.lesson_type }}#}
+{#                    </div>#}
+{#                    <div id="text_content"#}
+{#                            {% if returned.type_text == True %}#}
+{#                         style="display: block"#}
+{#                            {% else %}#}
+{#                         style="display: none"#}
+{#                            {% endif %}#}
+{#                    >#}
+{#                        <div class="form-group">#}
+{#                            <label for="id_text">Выберите текст</label>#}
+{#                            {{ form.text }}#}
+{#                        </div>#}
+{#                        <div id="text-form" class="content-form">#}
+{#                            <p class="my-2">или</p>#}
+{#                            <label for="title_text">Введите наименование текста</label>#}
+{#                            <input type="text" name="text_title" class="form-control" id="title_text"#}
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.text_title }}"#}
+{#                                    {% endif %}#}
+{#                            >#}
+{#                            <label for="description_text">Введите описание текста#}
+{##}
+{#                            </label>#}
+{#                            <input type="text" name="text_description" class="form-control" id="description_text"#}
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.text_description }}"#}
+{#                                    {% endif %}#}
+{#                            >#}
+{#                            <label for="content_text">Заполните текст занятия</label>#}
+{#                            <textarea name="content" class="form-control"#}
+{#                                      id="content_text">{{ returned.content }}</textarea>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div id="video_content"#}
+{#                            {% if returned.type_video == True %}#}
+{#                         style="display: block"#}
+{#                            {% else %}#}
+{#                         style="display: none"#}
+{#                            {% endif %}>#}
+{#                        <div class="form-group">#}
+{#                            <label for="id_video">Выберите видео</label>#}
+{#                            {{ form.video }}#}
+{#                        </div>#}
+{#                        <div id="video-form" class="content-form">#}
+{#                            <p class="my-2">или</p>#}
+{#                            <label for="title_video">Введите наименование видео</label>#}
+{#                            <input type="text" name="video_title" class="form-control" id="title_video"#}
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.video_title }}"#}
+{#                                    {% endif %}>#}
+{#                            <label for="description_video">Введите описание видео</label>#}
+{#                            <input type="text" name="video_description" class="form-control" id="description_video"#}
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.video_description }}"#}
+{#                                    {% endif %}>#}
+{#                            <label for="file_video">Загрузите видео-файл</label>#}
+{#                            <input type="file" name="video_file" class="form-control" id="file_video"#}
+                                    {#                                    {% if returned %}#}
+                                    {#                                   value="{{ returned.video_file }}"#}
+                                    {#                                    {% endif %}#}
+{#                            >#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div id="test_content"#}
+{#                            {% if returned.type_test == True %}#}
+{#                         style="display: block"#}
+{#                            {% else %}#}
+{#                         style="display: none"#}
+{#                            {% endif %}>#}
+{#                        <div class="form-group">#}
+{#                            <label for="id_test">Выберите тест</label>#}
+{#                            {{ form.test }}#}
+{#                        </div>#}
+{#                        <div id="test-form" class="content-test">#}
+{#                            <p class="my-2">или</p>#}
+{#                            <label for="title_test">Введите наименование теста</label>#}
+{#                            <input type="text" name="test_title" class="form-control" id="title_test"#}
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.test_title }}"#}
+{#                                    {% endif %}>#}
+{#                            <label for="questions_qty_test">Введите количество вопросов в тесте</label>#}
+{#                            <input type="number" name="test_questions_qty" id="questions_qty_test"#}
+{#                                   class="form-control"#}
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.test_questions_qty }}"#}
+{#                                    {% endif %}>#}
+{#                            <label for="questions_qty_to_create">Введите количество создаваемых вопросов</label>#}
+{#                            <input type="number" name="questions_forms_qty" id="questions_qty_to_create"#}
+{#                                   class="form-control"#}
+{#                                    {% if returned %}#}
+{#                                   value="{{ returned.questions_forms_qty }}"#}
+{#                                    {% endif %}>#}
+{#                            <button id="confirmQuestions" class="btn btn-primary my-3" type="button">Подтвердить#}
+{#                            </button>#}
+{#                            <div id="question-form" class="content-test"></div>#}
+{#                            <div class="d-flex justify-content-center">#}
+{#                                <nav aria-label="Page navigation example">#}
+{#                                    <ul class="pagination " id="pagination-block">#}
+{#                                    </ul>#}
+{#                                </nav>#}
+{#                            </div>#}
+{#                            <input type="hidden" id="questionBlocksCount" name="question_blocks_count" value=0>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <button type="submit" class="btn btn-primary my-3" id="submit_button">Создать занятие</button>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    {{ returned|json_script:"returned-data" }}#}
+{#    <script src="{% static 'js/step_create.js' %}"></script>#}
+{#{% endblock %}#}
+
+
+
 {% block content %}
     <div class="container">
         <div class="row">
@@ -10,129 +162,18 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% for error in form.non_field_errors %}
-                        <div class="alert alert-danger">{{ error }}</div>
-                    {% endfor %}
 
-                    <div class="form-group">
-                        <label for="id_title">{{ form.chapter.label }}</label>
-                        {{ form.chapter }}
+            {% block breadcrumbs %}
+                {% render_breadcrumbs %}
+            {% endblock %}
+                <h1>Обновление занятия</h1>
+                <div class="container">
+                    <div class="col">
+                        {% include "partials/form.html" with button_text="Сохранить" %}
                     </div>
-
-                    <div class="form-group">
-                        <label for="id_title">{{ form.title.label }}</label>
-                        {{ form.title }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_file">Выберите файл</label>
-                        {{ form.file }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_learn_time">{{ form.learn_time.label }}</label>
-                        {{ form.learn_time }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_lesson_type">{{ form.lesson_type.label }}</label>
-                        {{ form.lesson_type }}
-                    </div>
-
-                    <div id="text_content" style="display: none;">
-                        <div class="form-group">
-                            <label for="id_text">Выберите текст</label>
-                            {{ form.text }}
-                        </div>
-                    </div>
-
-                    <div id="video_content" style="display: none;">
-                        <div class="form-group">
-                            <label for="id_video">Выберите видео</label>
-                            {{ form.video }}
-                        </div>
-                    </div>
-
-                    <div id="test_content" style="display: none;">
-                        <div class="form-group">
-                            <label for="id_test">Выберите тест</label>
-                            {{ form.test }}
-                        </div>
-                    </div>
-                    <a href="
-{#                                {% if text %}#}
-{#                                    {% url 'step:text_update' text.id %}#}
-{#                                {% elif video %}#}
-{#                                    {% url 'step:video_update' video.id %}#}
-{#                                {% elif test %}#}
-{#                                    {% url 'quiz_bim:test_update' test.id %}#}
-{#                                {% endif %}#}
-                            " id="content_update_link" target="_blank">Редактировать связанный контент</a>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Редактировать занятие</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const lessonType = document.getElementById("id_lesson_type");
-            const textContent = document.getElementById("text_content");
-            const videoContent = document.getElementById("video_content");
-            const testContent = document.getElementById("test_content");
-            const textSelect = document.getElementById("id_text");
-            const videoSelect = document.getElementById("id_video");
-            const testSelect = document.getElementById("id_test");
-            const contentUpdateLink = document.getElementById("content_update_link");
-
-            function handleLessonTypeChange() {
-                textContent.style.display = "none";
-                videoContent.style.display = "none";
-                testContent.style.display = "none";
-
-                const selectedType = lessonType.value;
-
-                if (selectedType === "text") {
-                    textContent.style.display = "block";
-                    contentUpdateLink.href = textSelect.value
-                        ? `http://localhost:8000//ru/text/${textSelect.value}/update/`
-                        : "";
-                } else if (selectedType === "video") {
-                    videoContent.style.display = "block";
-                    contentUpdateLink.href = videoSelect.value
-                        ? `http://localhost:8000//ru/video/${videoSelect.value}/update/`
-                        : "";
-                } else if (selectedType === "test") {
-                    testContent.style.display = "block";
-                    contentUpdateLink.href = testSelect.value
-                        ? `http://localhost:8000/ru/quiz_bim/test/${testSelect.value}/update/`
-                        : "";
-                } else {
-                    contentUpdateLink.href = "";
-                }
-            }
-
-            handleLessonTypeChange();
-            lessonType.addEventListener("change", handleLessonTypeChange);
-
-            textSelect.addEventListener("change", function () {
-                handleLessonTypeChange();
-            });
-
-            videoSelect.addEventListener("change", function () {
-                handleLessonTypeChange();
-            });
-
-            testSelect.addEventListener("change", function () {
-                handleLessonTypeChange();
-            });
-
-        });
-
-    </script>
+    <script src="{% static 'js/step_create_new.js' %}"></script>
 {% endblock %}
