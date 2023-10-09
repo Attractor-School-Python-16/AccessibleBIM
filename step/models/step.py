@@ -17,8 +17,8 @@ class StepModel(AbstractModel):
     text = models.ForeignKey('step.TextModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Текст', blank=True, null=True)
     video = models.ForeignKey('step.VideoModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Видео', blank=True, null=True)
     test = models.ForeignKey('quiz_bim.QuizBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест', blank=True, null=True)
-    file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файлы')
-    learn_time = models.PositiveIntegerField(blank=False, null=False)
+    file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файлы', blank=True, null=True)
+    learn_time = models.PositiveIntegerField(blank=False, null=False, verbose_name='Примерное время на прохождение урока')
     serial_number = models.PositiveIntegerField(default=1)
 
     def get_absolute_url(self):

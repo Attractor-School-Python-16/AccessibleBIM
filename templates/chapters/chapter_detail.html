@@ -26,8 +26,12 @@
                     </div>
                 </div>
                 <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
-                <a href="{% url 'step:stepmodel_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
-                my-3">Добавить занятие</a>
+                <a href="{% url 'step:stepmodel_video_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
+                my-3">Добавить видео урок</a>
+                <a href="{% url 'step:stepmodel_text_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
+                my-3">Добавить лекцию</a>
+                <a href="{% url 'step:stepmodel_quiz_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
+                my-3">Добавить тест</a>
                 <a href="{% url 'modules:change_steps_order' chapter.id %}" class="btn btn-secondary
                 my-3">Изменить порядок занятий в главе</a>
                 <table class="table">
@@ -45,9 +49,9 @@
                             <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
                             <td class="text-end">
                                 <div class="btn-group">
-                                    <a href="{% url 'step:stepmodel_update' step.id %}"
+                                    <a href="{% url 'step:stepmodel_update' step.id %}?chapter_pk={{ chapter.id }}"
                                        class="btn btn-info btn-sm mx-3">Изменить</a>
-                                    <a href="{% url 'step:stepmodel_delete' step.id %}"
+                                    <a href="{% url 'step:stepmodel_delete' step.id %}?chapter_pk={{ chapter.id }}"
                                        class="btn btn-danger btn-sm">Удалить</a>
                                 </div>
                             </td>
