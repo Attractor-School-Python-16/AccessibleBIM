@@ -35,8 +35,6 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
         step = context['step']
         files = FileModel.objects.filter(step=step)
         context['files'] = files
-        if self.object.lesson_type == 'test':
-            context['questions'] = self.object.test.question_bim.all()
         return context
 
 
@@ -44,13 +42,6 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
     template_name = "steps/step/step_create.html"
     chapter = None
     home_path = reverse_lazy('modules:moderator_page')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        url_path = self.request.path.split('/')
-        if url_path[-2] == "quiz":
-            context['create_test'] = True
-        return context
 
     def get_form_class(self):
         url_path = self.request.path.split('/')
@@ -108,7 +99,7 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
 
         step.test = test
         step.save()
-        return redirect("modules:chaptermodel_detail", self.chapter)
+        return redirect("quiz_bim:quizbim_detail", test.pk)
 
     def work_with_files(self, step, form):
         step.save()
