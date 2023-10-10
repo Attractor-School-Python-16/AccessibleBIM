@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('captcha/', include('captcha.urls')),
+    path('accounts/', include('allauth.urls')),
 ] + i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
     path('', include('modules.urls')),
