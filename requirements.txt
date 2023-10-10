@@ -12,6 +12,7 @@ click-repl==0.3.0
 crispy-bootstrap5==0.7
 cron-descriptor==1.4.0
 Django==4.1.10
+django-betterforms==2.0.0
 django-celery-beat==2.5.0
 django-countries==7.5.1
 django-crispy-forms==2.0
@@ -43,4 +44,5 @@ urllib3==2.0.6
 vine==5.0.0
 wcwidth==0.2.6
 webencodings==0.5.1
+xmltodict==0.13.0
 zipp==3.17.0
