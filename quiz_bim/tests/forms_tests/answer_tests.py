@@ -6,13 +6,13 @@ from quiz_bim.tests.factories import QuestionBimFactory
 
 class TestQuestionBimForm(TestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUpTestData(cls):
         cls.correct_form_data = {
             "answer": "Answer",
             "is_correct": True,
             "question_bim": QuestionBimFactory.create()
         }
-        super().setUpClass()
+        super().setUpTestData()
 
     def test_answer_form(self):
         form = AnswerBimForm(data=self.correct_form_data)
