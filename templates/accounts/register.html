@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load socialaccount %}
 {% load i18n %}
 
 {% block title %}{% trans 'Registration' %}{% endblock %}
@@ -7,5 +8,8 @@
     <div class="container">
         {% trans 'Register' as register_text %}
         {% include "partials/form.html" with button_text=register_text %}
+        <a href="{% provider_login_url 'google' %}?next=/" class="btn btn-outline-primary mt-3" role="button">
+            <i class="bi bi-google"></i> Sign up with Google
+        </a>
     </div>
 {% endblock %}
