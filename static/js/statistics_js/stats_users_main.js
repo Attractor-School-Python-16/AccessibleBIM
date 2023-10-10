@@ -97,6 +97,7 @@ function createChartOptions(labels, values){
             // colors: [baseColor]
         },
         xaxis: {
+            type: 'datetime',
             categories: labels,
             axisBorder: {
                 show: false,
@@ -105,6 +106,7 @@ function createChartOptions(labels, values){
                 show: false
             },
             labels: {
+                format: 'dd.MM',
                 style: {
                     // colors: labelColor,
                     fontSize: '12px'

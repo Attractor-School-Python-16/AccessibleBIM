@@ -80,3 +80,10 @@ class CustomUser(AbstractUser):
         """
         full_name = "%s %s" % (self.first_name, self.last_name)
         return full_name.strip()
+
+    def get_current_course(self):
+        """
+        Return the active course if user has any
+        """
+        course = self.subscriptions.filter(us_subscriptions__is_active=True)
+        return course[0].course.title if course else '-'
