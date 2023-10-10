@@ -9,6 +9,8 @@ const textForm = document.getElementById("text-form");
 const videoForm = document.getElementById("video-form");
 const testForm = document.getElementById("test-form");
 
+
+
 function handleSelectChange(select, form) {
     if (select.value) {
         form.style.display = "none";
@@ -17,7 +19,6 @@ function handleSelectChange(select, form) {
         form.style.display = "block";
     }
 }
-
 
 function clearInputsInDiv(div) {
     const inputElements = div.getElementsByTagName('input');
@@ -82,7 +83,7 @@ let questionCounter = 1;
 function createQuestionInputs(questionsQty) {
     const questionForm = document.getElementById("question-form");
     const questionBlocksCountInput = document.getElementById("questionBlocksCount");
-    // questionForm.innerHTML = "";
+    questionForm.innerHTML = "";
 
     for (let i = 1; i <= questionsQty; i++) {
         const questionBlock = document.createElement("div");
@@ -96,13 +97,11 @@ function createQuestionInputs(questionsQty) {
         const questionInput = document.createElement("input");
         questionInput.setAttribute("type", "text");
         questionInput.setAttribute("name", `question_title_${i}`);
-        questionInput.setAttribute("id", `question_title_${i}`);
         questionInput.setAttribute("class", "form-control");
         questionInput.setAttribute("required", "required");
 
         const answersContainer = document.createElement("div");
         answersContainer.setAttribute("class", "content-test");
-        answersContainer.setAttribute("id", `question_${i}_answers`);
 
         const answersQtyInput = document.createElement("input");
         answersQtyInput.setAttribute("type", "hidden");
@@ -235,91 +234,3 @@ function handleInputChange() {
 
 questionBlocksCount.addEventListener('change', handleInputChange);
 questionsQty.addEventListener('change', handleInputChange);
-
-
-const returnedData = JSON.parse(document.getElementById('returned-data').textContent);
-console.log(returnedData)
-console.log(returnedData['test_title'])
-
-function populateQuestionsAndAnswers(returnedData) {
-
-    if (returnedData) {
-        const numQuestions = returnedData.questions_forms_qty;
-        const questionForm = document.getElementById("question-form");
-        const questionBlocksCountInput = document.getElementById("questionBlocksCount");
-
-        for (let i = 1; i <= numQuestions; i++) {
-            const questionBlock = document.createElement("div");
-            questionBlock.setAttribute("class", "question-block");
-            questionBlock.setAttribute("display", "none");
-
-            const questionLabel = document.createElement("label");
-            questionLabel.setAttribute("for", `question_title_${i}`);
-            questionLabel.textContent = `Введите вопрос ${i}`;
-
-            const questionInput = document.createElement("input");
-            questionInput.setAttribute("type", "text");
-            questionInput.setAttribute("name", `question_title_${i}`);
-            questionInput.setAttribute("id", `question_title_${i}`);
-            questionInput.setAttribute("class", "form-control");
-            questionInput.setAttribute("required", "required");
-
-            const answersContainer = document.createElement("div");
-            answersContainer.setAttribute("class", "content-test");
-            answersContainer.setAttribute("id", `question_${i}_answers`);
-
-            const answersQtyInput = document.createElement("input");
-            answersQtyInput.setAttribute("type", "hidden");
-            answersQtyInput.setAttribute("name", `answers_qty_${i}`);
-            answersQtyInput.value = 0;
-
-            const addAnswerButton = document.createElement("button");
-            addAnswerButton.setAttribute("type", "button");
-            addAnswerButton.setAttribute("class", "btn btn-primary my-3");
-            addAnswerButton.textContent = "Добавить ответ";
-            addAnswerButton.setAttribute("data-question-number", i);
-
-            addAnswerButton.addEventListener("click", function () {
-                const questionNumber = this.getAttribute("data-question-number");
-                createAnswerInputs(answersContainer, questionNumber);
-            });
-
-            questionBlock.appendChild(questionLabel);
-            questionBlock.appendChild(questionInput);
-            questionBlock.appendChild(answersContainer);
-            questionBlock.appendChild(answersQtyInput);
-            questionBlock.appendChild(addAnswerButton);
-
-            questionForm.appendChild(questionBlock);
-
-            const questionTitleInput = document.getElementById(`question_title_${i}`);
-            questionTitleInput.value = returnedData[`question_title_${i}`]
-            questionCounter++;
-            questionBlocksCountInput.value = parseInt(questionBlocksCountInput.value) + 1;
-            let answersQty = 0;
-            for (let j = 1; j <= 10; j++) {
-                if (returnedData[`answer_${i}_${j}`]) {
-                    answersQty++;
-                } else {
-                    break;
-                }
-            }
-
-            for (let j = 1; j <= answersQty; j++) {
-                console.log('there')
-                createAnswerInputs(document.getElementById(`question_${i}_answers`), i);
-
-                const answerInput = document.querySelector(`input[name="answer_${i}_${j}"]`);
-                answerInput.value = returnedData[`answer_${i}_${j}`];
-
-                const isCorrectSelect = document.querySelector(`select[name="is_correct_${i}_${j}"]`);
-                isCorrectSelect.value = returnedData[`is_correct_${i}_${j}`];
-            }
-        }
-        generatePagination(questionBlocksCountInput.value);
-
-        showQuestionBlock(1);
-    }
-}
-
-populateQuestionsAndAnswers(returnedData);
