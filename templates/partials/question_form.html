@@ -1,0 +1,23 @@
+{% load crispy_forms_filters %}
+<div hx-target="this" hx-swap="outerHTML" class="">
+    <form action="" id="main-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ forms|crispy }}
+        {% if question %}
+            <button type="submit" hx-post="{% url 'quiz_bim:questionbim_htmx_update' question.test_bim.id question.id %}"
+                    class="btn btn-primary">
+                Сохранить
+            </button>
+            <button hx-get="{% url 'quiz_bim:questionbim_htmx_detail' question.test_bim.id question.id %}" type="button"
+                    class="btn btn-primary">
+                Отменить изменение
+            </button>
+        {% else %}
+            <button type="submit" hx-post="."
+                    class="btn btn-primary">
+                Сохранить
+            </button>
+        {% endif %}
+    </form>
+</div>
+
