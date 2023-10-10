@@ -55,12 +55,28 @@ async function updateNewUsersChart(days){
     }
 }
 
-async function newUsersWeekOnClick(){
+async function newUsersWeekOnClick(event){
+    let btn = event.currentTarget;
+    $(btn).addClass( "active" );
+    $('#new-users-chart-month').removeClass("active");
+    $('#new-users-chart-half-year').removeClass("active");
     await updateNewUsersChart(7)
 }
 
-async function newUsersMonthOnClick(){
+async function newUsersMonthOnClick(event){
+    let btn = event.currentTarget;
+    $(btn).addClass( "active" );
+    $('#new-users-chart-week').removeClass("active");
+    $('#new-users-chart-half-year').removeClass("active");
     await updateNewUsersChart(30)
+}
+
+async function newUsersHalfYearOnClick(event){
+    let btn = event.currentTarget;
+    $(btn).addClass( "active" );
+    $('#new-users-chart-week').removeClass("active");
+    $('#new-users-chart-month').removeClass("active");
+    await updateNewUsersChart(180)
 }
 
 function createChartOptions(labels, values){
@@ -190,3 +206,4 @@ let newUsersChartDiv = document.getElementById('new-users-chart');
 renderChart()
 $('#new-users-chart-week').on('click', newUsersWeekOnClick);
 $('#new-users-chart-month').on('click', newUsersMonthOnClick);
+$('#new-users-chart-half-year').on('click', newUsersHalfYearOnClick);
