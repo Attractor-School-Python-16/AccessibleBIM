@@ -56,46 +56,48 @@
                 </div>
             </div>
 
-            <!--Users table-->
-                <div class="table-responsive">
-                    <table class="table border mb-0">
-                      <thead class="table-light fw-semibold">
-                        <tr class="align-middle">
-                          <th>User</th>
-                          <th>Email</th>
-                          <th>Country</th>
-                          <th>Course</th>
-                          <th>Activity</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for person in people %}
-                        <tr class="align-middle">
-                          <td>
-                            <div>{{ person.get_full_name }}</div>
-                            <div class="small text-medium-emphasis">Registered: {{ person.date_joined }}</div>
-                          </td>
-                          <td class="text-left">
-                            <div>{{ person.email }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ person.country }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ person.get_current_course }}</div>
-                          </td>
-                          <td>
-                            <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">{{ person.last_login }}</div>
-                          </td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
+                <a href="{% url 'reports:stats_users_list' %}">Список пользователей</a>
 
-            </div>
+{#            <!--Users table-->#}
+{#                <div class="table-responsive">#}
+{#                    <table class="table border mb-0">#}
+{#                      <thead class="table-light fw-semibold">#}
+{#                        <tr class="align-middle">#}
+{#                          <th>User</th>#}
+{#                          <th>Email</th>#}
+{#                          <th>Country</th>#}
+{#                          <th>Course</th>#}
+{#                          <th>Activity</th>#}
+{#                          <th></th>#}
+{#                        </tr>#}
+{#                      </thead>#}
+{#                      <tbody>#}
+{#                        {% for person in people %}#}
+{#                        <tr class="align-middle">#}
+{#                          <td>#}
+{#                            <div>{{ person.get_full_name }}</div>#}
+{#                            <div class="small text-medium-emphasis">Registered: {{ person.date_joined }}</div>#}
+{#                          </td>#}
+{#                          <td class="text-left">#}
+{#                            <div>{{ person.email }}</div>#}
+{#                          </td>#}
+{#                          <td class="text-center">#}
+{#                            <div>{{ person.country }}</div>#}
+{#                          </td>#}
+{#                          <td class="text-center">#}
+{#                            <div>{{ person.get_current_course }}</div>#}
+{#                          </td>#}
+{#                          <td>#}
+{#                            <div class="small text-medium-emphasis">Last login</div>#}
+{#                            <div class="fw-semibold">{{ person.last_login }}</div>#}
+{#                          </td>#}
+{#                        </tr>#}
+{#                        {% endfor %}#}
+{#                      </tbody>#}
+{#                    </table>#}
+{#                  </div>#}
+{##}
+{#            </div>#}
         </div>
     </div>
 
