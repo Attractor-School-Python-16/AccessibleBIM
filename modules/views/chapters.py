@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
+from django.utils.functional import cached_property
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
@@ -54,6 +55,17 @@ class ChapterDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVi
     template_name = 'chapters/chapter_detail.html'
     home_path = reverse_lazy('modules:moderator_page')
 
+    @cached_property
+    def crumbs(self):
+        course = self.get_object().course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+        ] + super().crumbs
+
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
@@ -74,6 +86,17 @@ class ChapterUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVi
     template_name = 'chapters/chapter_update.html'
     home_path = reverse_lazy('modules:moderator_page')
 
+    @cached_property
+    def crumbs(self):
+        course = self.get_object().course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+        ] + super().crumbs
+
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
@@ -88,6 +111,17 @@ class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
     context_object_name = 'chapter'
     success_url = reverse_lazy("modules:chapters_list")
     home_path = reverse_lazy('modules:moderator_page')
+
+    @cached_property
+    def crumbs(self):
+        course = self.get_object().course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+        ] + super().crumbs
 
     def has_permission(self):
         user = self.request.user
