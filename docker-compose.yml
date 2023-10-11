@@ -18,6 +18,8 @@ services:
     container_name: local_backend
     depends_on:
       - db
+      - redis
+      - celery
     env_file:
       - .env
     restart: always
@@ -30,6 +32,22 @@ services:
       done &&
       python manage.py runserver 0.0.0.0:8000"
 
+  redis:
+    image: "redis:alpine"
+    hostname: redis
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    command: celery -A accessibleBIM worker --beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    depends_on:
+      - redis
+      - db
+    env_file:
+      - .env
+    volumes:
+      - .:/code
 
 volumes:
   postgres_data:
