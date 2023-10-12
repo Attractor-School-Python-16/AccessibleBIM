@@ -55,9 +55,18 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="//cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json"></script>
     <script>
-        $(document).ready( function () {
-            $('#UserStatisticsTable').DataTable();
-        } );
+        {% get_current_language as LANGUAGE_CODE %}
+        let lang_url = '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json';
+        let lang = '{{ LANGUAGE_CODE }}';
+        if(lang==='ru'){
+            lang_url = '//cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json';
+        }
+        let table = new DataTable('#UserStatisticsTable', {
+            language: {
+                url: lang_url,
+            },
+        });
     </script>
 {% endblock %}
