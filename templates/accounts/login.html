@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% load i18n %}
 
 {% block title %}{% trans 'Login' %}{% endblock %}
@@ -7,6 +8,9 @@
     <div class="container">
         {% trans 'Login' as login_text %}
         {% include "partials/form.html" with button_text=login_text %}
+        <a href="{% provider_login_url 'google' %}?next=/" class="btn btn-outline-primary mt-3 me-3" role="button">
+            <i class="bi bi-google"></i> Sign in with Google
+        </a>
         <a href="{% url 'accounts:password_reset' %}">{% trans 'Forgot password' %}?</a>
     </div>
 {% endblock %}

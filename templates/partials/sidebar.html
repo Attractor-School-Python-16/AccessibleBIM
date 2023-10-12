@@ -101,5 +101,23 @@
                 <li><a class="dropdown-item" href="{% url 'subscription:subscriptionmodel_list' %}">Список подписок</a></li>
             </ul>
         </li>
+        {% if perms.accounts.can_view_user_statistics or perms.accounts.can_view_course_statistics or perms.accounts.can_view_sales_statistics %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Статистика
+            </a>
+            <ul class="dropdown-menu">
+                {% if perms.accounts.can_view_user_statistics %}
+                    <li><a class="dropdown-item" href="{% url 'reports:stats_users_main' %}">Пользователи</a></li>
+                {% endif %}
+                {% if perms.accounts.can_view_course_statistics %}
+                    <li><a class="dropdown-item" href="#">Курсы</a></li>
+                {% endif %}
+                {% if perms.accounts.can_view_sales_statistics %}
+                    <li><a class="dropdown-item" href="#">Продажи</a></li>
+                {% endif %}
+            </ul>
+        </li>
+        {% endif %}
     </ul>
 </div>
