@@ -66,6 +66,7 @@ class CustomUser(AbstractUser):
         app_label = 'accounts'
         permissions = (
             ("can_view_admin_panel ", "Can view admin panel"),
+            ("can_grant_moderator_role", "Can grant moderator role to other users"),
         )
 
     def is_moderator(self):
