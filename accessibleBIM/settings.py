@@ -131,8 +131,12 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/code/media/'
+
 
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
