@@ -22,7 +22,7 @@
 1. **Клонирование репозитория:**
 
 ```bash
-git clone [https://github.com/Em1rloneum/accessibleBIM.git]
+git clone https://github.com/Em1rloneum/accessibleBIM.git
 
 2. **Перед запуском убедитесь, что у вас установлен Docker.**  Если нет, то для начала работы установите Docker engine (движок докера)
 по инструкции отсюда: https://docs.docker.com/install/linux/docker-ce/ubuntu/ для Ubuntu и Linux Mint или
