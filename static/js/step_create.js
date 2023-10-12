@@ -1,43 +1,33 @@
-const textContent = document.getElementById("text_content");
-const videoContent = document.getElementById("video_content");
-const testContent = document.getElementById("test_content");
-const lessonType = document.getElementById("id_lesson_type");
-const textSelect = document.getElementById("id_text");
-const videoSelect = document.getElementById("id_video");
-const testSelect = document.getElementById("id_test");
-const textForm = document.getElementById("text-form");
-const videoForm = document.getElementById("video-form");
-const testForm = document.getElementById("test-form");
+const fileSelect = document.getElementById("id_step-file");
+const videoSelect = document.getElementById("id_step-video")
+const textSelect = document.getElementById("id_step-text")
+const testSelect = document.getElementById("id_step-test")
 
 
 
-function handleSelectChange(select, form) {
-    if (select.value) {
-        form.style.display = "none";
-        clearInputsInDiv(form);
-    } else {
-        form.style.display = "block";
+
+function handleSelectChange(select, type) {
+    if (type === "text") {
+        let inputTitle = document.getElementById("id_text-text_title");
+        let descriptionDiv = document.getElementById("div_id_text-text_description");
+        let contentDiv = document.getElementById("div_id_text-content");
+        if (select.value) {
+            inputTitle.setAttribute("disabled", "disabled");
+            descriptionDiv.style.pointerEvents = "none"
+            contentDiv.style.pointerEvents = "none"
+        } else {
+            inputTitle.removeAttribute("disabled");
+            descriptionDiv.style.pointerEvents = "auto"
+            contentDiv.style.pointerEvents = "auto"
+
+        }
     }
 }
 
-function clearInputsInDiv(div) {
-    const inputElements = div.getElementsByTagName('input');
-    const textareaElements = div.querySelectorAll('textarea');
-
-
-    for (let i = 0; i < inputElements.length; i++) {
-        inputElements[i].value = '';
-    }
-
-
-    for (let i = 0; i < textareaElements.length; i++) {
-        textareaElements[i].value = '';
-    }
-}
 
 
 textSelect.addEventListener("change", function () {
-    handleSelectChange(textSelect, textForm);
+    handleSelectChange(textSelect, "text");
 });
 
 videoSelect.addEventListener("change", function () {
