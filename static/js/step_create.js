@@ -33,47 +33,58 @@ function handleSelectChange(select, type) {
         }
 
 
+    } else if (type === "test") {
+
+        let inputTitle = document.getElementById("id_quiz-title");
+        let inputQty = document.getElementById("id_quiz-questions_qty");
+        if (select.value) {
+            inputTitle.setAttribute("disabled", "disabled");
+            inputQty.setAttribute("disabled", "disabled");
+        } else {
+            inputTitle.removeAttribute("disabled");
+            inputQty.removeAttribute("disabled");
+        }
     }
 }
 
 
-if (textSelect) {
-    textSelect.addEventListener("change", function () {
-        handleSelectChange(textSelect, "text");
-    });
-}
-
-if (videoSelect) {
-    videoSelect.addEventListener("change", function () {
-        handleSelectChange(videoSelect, "video");
-    });
-}
-
-if (testSelect) {
-    testSelect.addEventListener("change", function () {
-        handleSelectChange(testSelect, testForm);
-    });
-}
-
-
-function generatePagination(numPages) {
-    paginationBlock.innerHTML = "";
-
-    for (let i = 1; i <= numPages; i++) {
-        const pageItem = document.createElement("li");
-        pageItem.classList.add("page-item");
-
-        const pageLink = document.createElement("a");
-        pageLink.classList.add("page-link");
-        pageLink.classList.add("btn");
-        pageLink.textContent = i;
-
-        pageItem.appendChild(pageLink);
-        paginationBlock.appendChild(pageItem);
-
-
-        pageLink.addEventListener("click", function () {
-            showQuestionBlock(i);
+    if (textSelect) {
+        textSelect.addEventListener("change", function () {
+            handleSelectChange(textSelect, "text");
         });
     }
-}
+
+    if (videoSelect) {
+        videoSelect.addEventListener("change", function () {
+            handleSelectChange(videoSelect, "video");
+        });
+    }
+
+    if (testSelect) {
+        testSelect.addEventListener("change", function () {
+            handleSelectChange(testSelect, "test");
+        });
+    }
+
+
+    // function generatePagination(numPages) {
+    //     paginationBlock.innerHTML = "";
+    //
+    //     for (let i = 1; i <= numPages; i++) {
+    //         const pageItem = document.createElement("li");
+    //         pageItem.classList.add("page-item");
+    //
+    //         const pageLink = document.createElement("a");
+    //         pageLink.classList.add("page-link");
+    //         pageLink.classList.add("btn");
+    //         pageLink.textContent = i;
+    //
+    //         pageItem.appendChild(pageLink);
+    //         paginationBlock.appendChild(pageItem);
+    //
+    //
+    //         pageLink.addEventListener("click", function () {
+    //             showQuestionBlock(i);
+    //         });
+    //     }
+    // }
