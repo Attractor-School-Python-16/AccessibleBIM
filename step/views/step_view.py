@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
+from django.utils.functional import cached_property
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
@@ -26,6 +27,19 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
     context_object_name = 'step'
     template_name = "steps/step/step_detail.html"
     home_path = reverse_lazy('modules:moderator_page')
+
+    @cached_property
+    def crumbs(self):
+        chapter = self.get_object().chapter
+        course = chapter.course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
+        ] + super().crumbs
 
     def has_permission(self):
         user = self.request.user
@@ -152,6 +166,19 @@ class StepUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     home_path = reverse_lazy('modules:moderator_page')
     chapter = None
 
+    @cached_property
+    def crumbs(self):
+        chapter = self.get_object().chapter
+        course = chapter.course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
+        ] + super().crumbs
+
 
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
@@ -219,6 +246,19 @@ class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     template_name = 'steps/step/step_delete.html'
     home_path = reverse_lazy('modules:moderator_page')
     chapter = None
+
+    @cached_property
+    def crumbs(self):
+        chapter = self.get_object().chapter
+        course = chapter.course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
+        ] + super().crumbs
 
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')

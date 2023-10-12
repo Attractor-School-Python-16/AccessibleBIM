@@ -31,4 +31,6 @@ class ChapterModel(AbstractModel):
         super(ChapterModel, self).save(*args, **kwargs)
 
     def __str__(self):
+        # FIXME: Из-за того что используется название с полным описанием, возвращаемая строка слишком длинная
+        # Те-же хлебные крошки получаются слишком большими, так как они используют __str__
         return f'{self.title} {self.description}'
