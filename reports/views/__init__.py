@@ -1,1 +1,2 @@
 from reports.views.users_statistics_views import UsersMainStatisticsView
+from reports.views.courses_statistics_views import CoursesMainStatisticsView
