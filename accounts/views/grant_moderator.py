@@ -17,7 +17,10 @@ class GrantModeratorPanelView(PermissionRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['users'] = CustomUser.objects.exclude(id=self.request.user.id)
+        search_query = self.request.GET.get('search') if self.request.GET.get('search') else ''
+        users = CustomUser.objects.exclude(id=self.request.user.id).filter(email__icontains=search_query)
+        context['users'] = users
+        context['search_query'] = search_query
         return context
 
 
@@ -34,6 +37,8 @@ class GrantModerators(PermissionRequiredMixin, View):
                 moder_group.user_set.add(user_id)
         except IntegrityError:
             pass
+        if request.GET.get('next'):
+            return redirect(request.GET.get('next'))
         return redirect('accounts:grant_moderator_panel')
 
 
@@ -50,4 +55,6 @@ class RemoveModerators(PermissionRequiredMixin, View):
                 moder_group.user_set.remove(user_id)
         except IntegrityError:
             pass
+        if request.GET.get('next'):
+            return redirect(request.GET.get('next'))
         return redirect('accounts:grant_moderator_panel')

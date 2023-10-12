@@ -4,8 +4,9 @@
         <h1>Страница выдачи модераторов</h1>
     </div>
     <div class="container">
-        <form class="d-flex mt-4" role="search">
-            <input class="form-control me-2" type="search" placeholder="Поиск по Email адресу" aria-label="Search">
+        <form action="{% url "accounts:grant_moderator_panel" %}" method="get" class="d-flex mt-4" role="search">
+            <input class="form-control me-2" type="search" name="search" placeholder="Поиск по Email адресу"
+                   aria-label="Search">
             <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
         <hr style="margin: 35px 0;">
@@ -33,11 +34,21 @@
                             {% endif %}
                         </td>
                     </tr>
+                {% empty %}
+                    <tr>
+                        <td>Нет пользователей</td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>
-            <input formaction="{% url 'accounts:grant_moderators' %}" type="submit" class="btn btn-primary" value="Выдать">
-            <input formaction="{% url 'accounts:remove_moderators' %}"  type="submit" class="btn btn-primary" value="Убрать">
+            {% if search_query %}
+                <input formaction="{% url 'accounts:grant_moderators' %}?next={{ request.path }}?search={{ search_query }}" type="submit" class="btn btn-primary" value="Выдать">
+                <input formaction="{% url 'accounts:remove_moderators' %}?next={{ request.path }}?search={{ search_query }}" type="submit" class="btn btn-primary" value="Убрать">
+            {% else %}
+                <input formaction="{% url 'accounts:grant_moderators' %}" type="submit" class="btn btn-primary" value="Выдать">
+                <input formaction="{% url 'accounts:remove_moderators' %}" type="submit" class="btn btn-primary" value="Убрать">
+            {% endif %}
+
         </form>
     </div>
 {% endblock %}
