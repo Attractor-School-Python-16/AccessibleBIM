@@ -7,7 +7,7 @@ from modules.models import AbstractModel
 
 def file_upload_to(instance, filename):
     return os.path.join('steps', 'files', filename)
-#пока оставил так, смысла сохранять по id не вижу, можно вместо filename использовать instance.file_title
+
 
 
 class FileModel(AbstractModel):
