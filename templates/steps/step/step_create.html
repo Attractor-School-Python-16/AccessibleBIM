@@ -10,7 +10,6 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
-
                 {% block breadcrumbs %}
                     {% render_breadcrumbs %}
                 {% endblock %}
@@ -19,19 +18,6 @@
                     <div class="col">
                         {% include "partials/form.html" with button_text="Создать" create_quiz_text="Создать вопросы" %}
                     </div>
-
-                {% if create_test %}
-                    <div id="quizforms" class="col"></div>
-
-                    <div class="col">
-                        {% for quiz in quizs %}
-
-                            {% include "partials/step_admin/quiz_detail.html" %}
-
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
                 </div>
             </div>
         </div>
