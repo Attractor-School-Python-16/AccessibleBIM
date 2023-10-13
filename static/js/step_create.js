@@ -65,26 +65,3 @@ function handleSelectChange(select, type) {
             handleSelectChange(testSelect, "test");
         });
     }
-
-
-    // function generatePagination(numPages) {
-    //     paginationBlock.innerHTML = "";
-    //
-    //     for (let i = 1; i <= numPages; i++) {
-    //         const pageItem = document.createElement("li");
-    //         pageItem.classList.add("page-item");
-    //
-    //         const pageLink = document.createElement("a");
-    //         pageLink.classList.add("page-link");
-    //         pageLink.classList.add("btn");
-    //         pageLink.textContent = i;
-    //
-    //         pageItem.appendChild(pageLink);
-    //         paginationBlock.appendChild(pageItem);
-    //
-    //
-    //         pageLink.addEventListener("click", function () {
-    //             showQuestionBlock(i);
-    //         });
-    //     }
-    // }
