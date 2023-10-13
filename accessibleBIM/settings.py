@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
+    'django_ffmpeg',
 
     'accounts',
     'modules',
@@ -127,6 +128,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Ниже определяются пути для видеофайлов для конвертации в HLS с использованием django-ffmpeg
+# предварительная директория, в которой будут находиться все видеофайлы.
+FFMPEG_PRE_DIR = 'steps/videos'
+# директория для оригинальных видеофайлов.
+FFMPEG_ORIG_VIDEO = 'steps/videos/orig'
+# директория для миниатюр (предпросмотра) видео.
+FFMPEG_THUMB_VIDEO = 'steps/videos/thumb'
+# директория для конвертированных видео.
+FFMPEG_CONV_VIDEO = 'steps/videos/conv'
+
+
 
 CELERY_BROKER_URL = 'redis://localhost'
 

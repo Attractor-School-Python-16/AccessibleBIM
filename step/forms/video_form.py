@@ -9,7 +9,7 @@ CONTENTTYPES = ['video/mp4',
 class VideoForm(forms.ModelForm):
     class Meta:
         model = VideoModel
-        fields = '__all__'
+        fields = ['video_title', 'video_description', 'video_file']
         labels = {
             'video_title': 'Введите наименование видео',
             'video_description': 'Введите описание видео',
