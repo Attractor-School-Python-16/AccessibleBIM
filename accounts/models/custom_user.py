@@ -69,6 +69,7 @@ class CustomUser(AbstractUser):
             ("can_view_user_statistics", "Can view user statistics"),
             ("can_view_course_statistics", "Can view course statistics"),
             ("can_view_sales_statistics", "Can view sales statistics"),
+            ("can_grant_moderator_role", "Can grant moderator role to other users"),
         )
 
     def is_moderator(self):
