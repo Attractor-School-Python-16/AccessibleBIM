@@ -34,28 +34,27 @@
                     </div>
 
 
-            <!--New customers chart-->
-{#            <div class="row g-5 g-xl-8">#}
-{#                <div class="col-xl-6">#}
-{#                    <div class="card card-xl-stretch mb-xl-8">#}
-{#                        <div class="card-header border-0 pt-5">#}
-{#                            <h3 class="card-title align-items-start flex-column">#}
-{#                                <span class="card-label fw-bold fs-3 mb-1">Новые пользователи</span>#}
-{#                                    <span class="text-muted fw-semibold fs-7">More than 1000 new records</span>#}
-{#                            </h3>#}
-{#                            <div class="card-toolbar" data-kt-buttons="true">#}
-{#                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="new-users-chart-week">Неделя</a>#}
-{#                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="new-users-chart-month">Месяц</a>#}
-{#                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="new-users-chart-half-year">Пол года</a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="card-body">#}
-{#                            <div id="new-users-chart" style="height: 350px"></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{##}
+            <!--Steps completed chart-->
+            <div class="row g-5 g-xl-8">
+                <div class="col-xl-6">
+                    <div class="card card-xl-stretch mb-xl-8">
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bold fs-3 mb-1">Пройденные уроки</span>
+                            </h3>
+                            <div class="card-toolbar">
+                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="steps-completed-chart-week">Неделя</a>
+                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="steps-completed-chart-month">Месяц</a>
+                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="steps-completed-chart-half-year">Пол года</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="steps-completed-chart" style="height: 350px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                 </div>
             </div>
         </div>
@@ -64,5 +63,5 @@
 {% endblock %}
 
 {% block scripts %}
-{#    <script src="{% static 'js/statistics_js/stats_users_main.js' %}"></script>#}
+    <script src="{% static 'js/statistics_js/stats_courses_main.js' %}"></script>
 {% endblock %}
