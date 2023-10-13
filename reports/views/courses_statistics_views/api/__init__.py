@@ -1,0 +1,1 @@
+from reports.views.courses_statistics_views.api.get_steps_completed_qty_view import get_steps_completed_qty_view
