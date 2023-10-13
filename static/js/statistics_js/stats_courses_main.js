@@ -18,15 +18,18 @@ async function makeRequest(url, method){
 async function getStepsCompletedQty(days){
     let url = '/statistics/get-steps-completed-qty/?days=' + days;
     let response = await makeRequest(url, "GET");
-    console.log('response is ready')
-    console.log(response);
+    return response;
+}
+
+async function getLessonTypesStats(){
+    let url = '/statistics/get-lesson-types/';
+    let response = await makeRequest(url, "GET");
     return response;
 }
 
 async function renderChart(){
     let response = await getStepsCompletedQty(7);
     if (!response.error){
-        console.log('make options')
         let options = createChartOptions(response.labels, response.values);
         window.charts.stepsCompletedChart = new ApexCharts(stepsCompletedChartDiv, options);
         window.charts.stepsCompletedChart.render();
@@ -36,10 +39,21 @@ async function renderChart(){
     }
 }
 
+async function renderPieChart(){
+    let response = await getLessonTypesStats();
+    if (!response.error){
+        let options = createPieChartOptions(response.labels, response.values);
+        window.charts.lessonTypesChart = new ApexCharts(lessonTypesChartDiv, options);
+        window.charts.lessonTypesChart.render();
+    }
+    else{
+        $(lessonTypesChartDiv).text('Error occured while loading data');
+    }
+}
+
 async function updateStepsCompletedChart(days){
     let response = await getStepsCompletedQty(days)
     if (!response.error){
-        // chart.updateSeries();
          window.charts.stepsCompletedChart.updateOptions({
            xaxis: {
               categories: response.labels
@@ -88,7 +102,6 @@ function createChartOptions(labels, values){
         chart: {
             fontFamily: 'inherit',
             type: 'area',
-            // height: 300px,
             toolbar: {
                 show: false
             }
@@ -174,17 +187,6 @@ function createChartOptions(labels, values){
                 }
             }
         },
-        // tooltip: {
-        //     style: {
-        //         fontSize: '12px'
-        //     },
-        //     y: {
-        //         formatter: function (val) {
-        //             return '$' + val + ' thousands'
-        //         }
-        //     }
-        // },
-        // colors: [lightColor],
         grid: {
             // borderColor: borderColor,
             strokeDashArray: 4,
@@ -202,8 +204,22 @@ function createChartOptions(labels, values){
     return options;
 }
 
+function createPieChartOptions(labels, values){
+    let options = {
+        series: values,
+        labels: labels,
+        chart: {
+            fontFamily: 'inherit',
+            type: 'donut',
+        },
+    };
+    return options;
+}
+
 let stepsCompletedChartDiv = document.getElementById('steps-completed-chart');
+let lessonTypesChartDiv = document.getElementById('lesson-types-chart');
 renderChart()
+renderPieChart()
 $('#steps-completed-chart-week').on('click', stepsCompletedWeekOnClick);
 $('#steps-completed-chart-month').on('click', stepsCompletedMonthOnClick);
 $('#steps-completed-chart-half-year').on('click', stepsCompletedHalfYearOnClick);
