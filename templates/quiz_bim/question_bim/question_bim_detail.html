@@ -1,8 +1,8 @@
-<div hx-target="this" class="mt-3">
+<div hx-target="this" class="mt-3" id="question_detail">
     <div class="card">
         <div class="card-body">
             <h3 class="">
-                {{ question.title }}|{{ question.pk }}
+                {{ question.title }}
             </h3>
             <div class="mt-2">
                 <button hx-get="{% url 'quiz_bim:answerbim_htmx_create' question.id %}" hx-swap="beforeend"
@@ -17,7 +17,7 @@
                 </button>
                 <button hx-post="{% url 'quiz_bim:questionbim_htmx_delete' question.test_bim.pk question.id %}"
                         hx-swap="outerHTML swap:1s"
-                        class="btn btn-primary">
+                        class="btn btn-primary" id="delete-question">
                     Удалить
                 </button>
                 <div id="answerforms_{{ question.id }}" class="col"></div>
