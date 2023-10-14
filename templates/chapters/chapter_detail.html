@@ -41,7 +41,7 @@
                     <tbody>
                     {% for step in steps|dictsort:"serial_number" %}
                         <tr>
-                            <td>{{ chapter.serial_number }}</td>
+                            <td>{{ step.serial_number }}</td>
                             <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
                             <td class="text-end">
                                 <div class="btn-group">
