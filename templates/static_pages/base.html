@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Hello, world!</title>
+    <title>{% block title %}{% endblock %}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -25,7 +25,7 @@
     <!-- Navbar Transparent -->
     <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
         <div class="container">
-            <a class="navbar-brand  text-white " href="#">
+            <a class="navbar-brand  text-white " href="{% url "static_pages:accessible_bim" %}">
                 AccessibleBIM
             </a>
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -40,19 +40,37 @@
             <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
                 <ul class="navbar-nav navbar-nav-hover ms-auto">
                     <li class="nav-item mx-2">
-                        <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                        <a href="{% url "accounts:login" %}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                            role="button">
+                            Войти
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="{% url "accounts:register" %}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                            role="button">
+                            Регистрация
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="{% url "modules:coursemodel_user_list" %}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                            role="button">
+                            Курсы
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="{% url "static_pages:about" %}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                             role="button">
                             О нас
                         </a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                        <a href="{% url "static_pages:contacts" %}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                             role="button">
                             Контакты
                         </a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                        <a href="{% url "static_pages:privacy_policy" %}" class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                             role="button">
                             Политика конфиденциальности
                         </a>
@@ -62,58 +80,25 @@
         </div>
     </nav>
     <!-- End Navbar -->
-
-    <div class="page-header min-vh-80" style="background-image: url('{% static "img/bg-building.jpg" %}')">
-        <span class="mask bg-dark-blue-crayol opacity-1"></span>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <div class="text-center">
-                        <h1 class="text-white">AccessibleBIM</h1>
-                        <h3 class="text-white">БИМСТАНДАРД</h3>
+    {% block page_header %}
+        <div class="page-header min-vh-80" style="background-image: url('{% static 'img/page-header-bg1.jpg' %}')">
+            <span class="mask bg-dark-blue-crayol opacity-1"></span>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="text-center">
+                            <h1 class="text-white">AccessibleBIM</h1>
+                            <h3 class="text-white">БИМСТАНДАРД</h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% endblock %}
 
     <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
         <div class="container">
-            <section class="py-7">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 my-auto">
-                            <h1>Welcome!</h1>
-                            <h3>To the educational platform Enhance
-                                Engineering</h3>
-                            <p class="pe-5">Pain is what we go through as we become older. We get insulted by
-                                others, lose trust for those others. We get back stabbed by friends. It becomes
-                                harder for us to give others a hand.</p>
-                            <a href="#" type="button" class="btn btn-outline-info">Info</a>
-                        </div>
-                        <div class="col-lg-5 ms-auto">
-                            <div class="position-relative">
-                                <img class="max-width-50 w-100 position-relative z-index-2"
-                                    src="{% static "img/building.jpg" %}" alt="image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- <section>
-                <h3 class="title">Основная цветовая палитра</h3>
-                <div class="row py-3">
-                    <div class="alert bg-dark-blue-crayol text-white font-weight-bold" role="alert">
-                        Темно-синий Крайола
-                    </div>
-                    <div class="alert bg-azure-crayola text-white font-weight-bold" role="alert">
-                        Лазурный Крайола
-                    </div>
-                    <div class="alert bg-verdepomovy text-white font-weight-bold" role="alert">
-                        Вердепомовый
-                    </div>
-                </div>
-            </section> -->
+            {% block content %}{% endblock %}
         </div>
     </div>
 
@@ -121,23 +106,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-4 mx-auto text-center">
-                    <a href="#" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                        Company
+                    <a href="{% url "accounts:login" %}" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Войти
                     </a>
-                    <a href="#" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                        About Us
+                    <a href="{% url "accounts:register" %}" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Регистрация
                     </a>
-                    <a href="#" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                        Team
+                    <a href="{% url "modules:coursemodel_user_list" %}" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Курсы
                     </a>
-                    <a href="#" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                        Products
+                    <a href="{% url "static_pages:about" %}" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        О нас
                     </a>
-                    <a href="#" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                        Blog
+                    <a href="{% url "static_pages:contacts" %}" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Контакты
                     </a>
-                    <a href="#" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-                        Pricing
+                    <a href="{% url "static_pages:privacy_policy" %}" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        Политика конфиденциальности
                     </a>
                 </div>
             </div>
