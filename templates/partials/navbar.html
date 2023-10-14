@@ -33,6 +33,11 @@
                             <a href="{% url 'modules:moderator_page' %}" class="nav-link active">Админ панель</a>
                         </li>
                     {% endif %}
+                    {% if perms.accounts.can_grant_moderator_role %}
+                    	<li class="nav-item">
+                            <a href="{% url 'accounts:grant_moderator_panel' %}" class="nav-link active">Выдача модераторов</a>
+                        </li>
+                    {% endif %} 
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
