@@ -13,7 +13,8 @@ from modules.forms.chapters_form import ChaptersForm
 from modules.models import ChapterModel, CourseModel
 from step.models import StepModel
 
-
+# ChaptersListView здесь создана только для работы DetailBreadcrumbMixin, т.к. он наследуется от ListBreadcrumbMixin и
+# без него не работают хлебные крошки.
 class ChaptersListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = ChapterModel
     template_name = 'chapters/chapters_list.html'
@@ -57,14 +58,17 @@ class ChapterDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVi
 
     @cached_property
     def crumbs(self):
-        course = self.get_object().course
+        chapter = self.get_object()
+        course = chapter.course
         module = course.module_id
+
 
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
-            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
-        ] + super().crumbs
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": chapter.course.pk})),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk})),
+        ]
 
     def has_permission(self):
         user = self.request.user
