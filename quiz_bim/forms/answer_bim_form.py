@@ -12,3 +12,9 @@ class AnswerBimForm(forms.ModelForm):
             'is_correct': 'Верный ответ',
 
         }
+
+    # def clean(self):
+    #     data = self.cleaned_data
+    #     question = self.instance.question_bim
+    #     print(question)
+    #     return data
