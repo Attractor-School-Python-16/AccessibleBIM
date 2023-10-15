@@ -1,4 +1,5 @@
 from django import forms
+
 from quiz_bim.models.answer_bim import AnswerBim
 
 
@@ -13,8 +14,3 @@ class AnswerBimForm(forms.ModelForm):
 
         }
 
-    # def clean(self):
-    #     data = self.cleaned_data
-    #     question = self.instance.question_bim
-    #     print(question)
-    #     return data
