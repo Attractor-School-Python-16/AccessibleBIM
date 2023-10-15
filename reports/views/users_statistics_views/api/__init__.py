@@ -1,1 +1,1 @@
-from reports.views.users_statistics_views.api.get_new_users_qty_view import get_new_users_gty_view
+from reports.views.users_statistics_views.api.get_new_users_qty_view import get_new_users_qty_view
