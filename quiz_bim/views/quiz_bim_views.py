@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.core.exceptions import ValidationError
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy, reverse
@@ -13,6 +12,8 @@ from quiz_bim.forms.question_bim_form import QuestionBimForm
 from quiz_bim.models import QuestionBim, AnswerBim
 from quiz_bim.models.quiz_bim import QuizBim
 from quiz_bim.forms.quiz_bim_form import QuizBimForm
+
+from quiz_bim.validators import validate_answer
 
 
 class QuizBimListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -47,7 +48,7 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
         if self.request.GET.get('question_pk'):
             htmx_form = form.save(commit=False)
             htmx_form.question_bim = get_object_or_404(QuestionBim, pk=self.question)
-            error_messages = self.correct_answers_count_check(htmx_form, htmx_form.question_bim)
+            error_messages = validate_answer(htmx_form, htmx_form.question_bim)
             if error_messages:
                 return render(self.request, "quiz_bim/answer_bim/answer_bim_form.html", context={
                     "forms": form,
@@ -89,22 +90,6 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-
-    def correct_answers_count_check(self, form, question):
-        error_messages = []
-        answers_count = question.answer_bim.count()
-        correct_answers = question.answer_bim.all().filter(is_correct=True)
-        instance_is_correct = form.is_correct
-        if answers_count >= 3:
-            if not correct_answers and not instance_is_correct:
-                error_messages.append("В вопросе должен быть хотя бы один правильный ответ")
-                return error_messages
-        if answers_count >= 2:
-            if len(correct_answers) == 1 and instance_is_correct:
-                error_messages.append("В вопросе не может быть более двух правильных ответов")
-                return error_messages
-        return None
-
 
 
 
