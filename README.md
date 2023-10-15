@@ -38,7 +38,9 @@ git clone https://github.com/Em1rloneum/accessibleBIM.git
 2) далее, название новых фикстур нужно добавить в файл docker-compose.yml - в сервисе backend:, в строке: command: >
 ```bash
 sh -c "python manage.py migrate &&
-for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_client_secret_532801370309_el6kjnghd31rvgrps9c8i91o4gr0n1kl_apps.json 10_socialaccount.json вот здесь; do ``` - важно все в одной строке писать, иначе выдает ошибку
+for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_client_secret_532801370309_el6kjnghd31rvgrps9c8i91o4gr0n1kl_apps.json 10_socialaccount.json вот здесь; do ```
+
+важно все в одной строке писать, иначе выдает ошибку
 
 Если появляется необходимость **создать миграцию**, (до команды docker-compose up) нужно запустить в терминале следующие команды:
 ```bash
