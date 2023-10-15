@@ -31,7 +31,7 @@ SECRET_KEY = '**REMOVED**'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
 
 
 # Application definition
@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'subscription',
     'quiz_bim',
     'currency',
+    'static_pages',
 ]
 
 MIDDLEWARE = [
