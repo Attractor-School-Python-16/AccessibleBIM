@@ -1,17 +1,21 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
+
+
+class CourseProgressStatusChoices(models.TextChoices):
+    IN_PROGRESS = 0, _("In progress")
+    FINISHED = 1, _("Finished")
 
 
 class UserCourseProgress(models.Model):
-    STATUSES = ['finished', 'in_progress']
-
     user = models.ForeignKey(get_user_model(),
                              on_delete=models.CASCADE,
                              related_name="user_course_progress",
                              verbose_name="Пользователь")
     step = models.ForeignKey('step.StepModel', on_delete=models.CASCADE)
-    status = models.CharField(max_length=55, blank=False, null=False, choices=STATUSES, default='in_progress',
-                              verbose_name='Статус')
+    status = models.IntegerField(blank=False, null=False, choices=CourseProgressStatusChoices.choices,
+                                 default=0, verbose_name='Статус')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Начало шага')
     updated_at = models.DateTimeField(blank=True, null=True, verbose_name='Конец шага')
 

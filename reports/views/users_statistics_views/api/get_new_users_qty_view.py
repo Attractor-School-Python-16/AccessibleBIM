@@ -5,7 +5,7 @@ from django.db.models import Count
 from django.http import JsonResponse
 
 
-def get_new_users_gty_view(request, *args, **kwargs):
+def get_new_users_qty_view(request, *args, **kwargs):
     result = {
         'error': False,
         'error_messages': [],
