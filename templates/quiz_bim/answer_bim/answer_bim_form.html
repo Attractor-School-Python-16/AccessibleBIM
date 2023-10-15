@@ -1,6 +1,13 @@
 {% load crispy_forms_filters %}
 <div hx-target="this" hx-swap="outerHTML" class="">
     <form action="" id="main-form" method="POST" enctype="multipart/form-data">
+        {% if error_messages %}
+            {% for error in error_messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endif %}
         {% csrf_token %}
         {{ forms|crispy }}
         {% if answer %}
