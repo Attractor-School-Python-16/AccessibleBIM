@@ -15,10 +15,12 @@ from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
 from step.utils import custom_upload_to_func
+from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -120,11 +122,15 @@ WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": env.db(),
 }
 
 
@@ -146,10 +152,16 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CELERY_BROKER_URL = 'redis://localhost'
+MEDIA_URL = '/media/'
+# изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/code/media/'
+
+
+# изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
+# CELERY_BROKER_URL = 'redis://localhost'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 with open('accessibleBIM/config.txt') as f:
     EMAIL_APP_PASSWORD = f.read().strip()
