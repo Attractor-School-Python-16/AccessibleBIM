@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import widgets
 from quiz_bim.models.answer_bim import AnswerBim
 
 
