@@ -11,7 +11,8 @@ from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
     UpdateBreadcrumbMixin
 
-
+# StepListView здесь создана только для работы DetailBreadcrumbMixin, т.к. он наследуется от ListBreadcrumbMixin и
+# без него не работают хлебные крошки.
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
 class StepListView(ListBreadcrumbMixin, ListView):
     model = StepModel
@@ -30,7 +31,8 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
 
     @cached_property
     def crumbs(self):
-        chapter = self.get_object().chapter
+        step = self.get_object()
+        chapter = step.chapter
         course = chapter.course
         module = course.module_id
 
@@ -38,8 +40,9 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
-            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
-        ] + super().crumbs
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk})),
+            (step.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": step.chapter.pk})),
+        ]
 
     def has_permission(self):
         user = self.request.user
