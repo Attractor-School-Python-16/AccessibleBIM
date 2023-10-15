@@ -6,3 +6,4 @@ from accounts.views.email_verification import InvalidVerificationLinkView, Verif
     VerificationEmailNotSentView
 from accounts.views.reset_password import ResetPasswordCompleteView, ResetPasswordConfirmView, ResetPasswordDoneView, \
     ResetPasswordView
+from accounts.views.grant_moderator import GrantModeratorPanelView

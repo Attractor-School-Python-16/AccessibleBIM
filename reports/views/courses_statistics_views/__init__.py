@@ -1,0 +1,1 @@
+from reports.views.courses_statistics_views.courses_main_statistics_view import CoursesMainStatisticsView
