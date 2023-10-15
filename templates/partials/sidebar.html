@@ -111,7 +111,7 @@
                     <li><a class="dropdown-item" href="{% url 'reports:stats_users_main' %}">Пользователи</a></li>
                 {% endif %}
                 {% if perms.accounts.can_view_course_statistics %}
-                    <li><a class="dropdown-item" href="#">Курсы</a></li>
+                    <li><a class="dropdown-item" href="{% url 'reports:stats_courses_main' %}">Курсы</a></li>
                 {% endif %}
                 {% if perms.accounts.can_view_sales_statistics %}
                     <li><a class="dropdown-item" href="#">Продажи</a></li>

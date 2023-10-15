@@ -50,3 +50,17 @@
 .p-has-headers > .li_tree:before {
   content: none;
   }
+
+/* Main color scheme */
+
+.bg-dark-blue-crayol {
+    background-color: #1974D2;
+}
+
+.bg-azure-crayola {
+    background-color: #1DACD6;
+}
+
+.bg-verdepomovy {
+    background-color: #34C924;
+}
