@@ -27,6 +27,8 @@ class AnswerBimFormCreateView(PermissionRequiredMixin, View):
 
         return render(request, "quiz_bim/answer_bim/answer_bim_form.html", context)
 
+
+
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
