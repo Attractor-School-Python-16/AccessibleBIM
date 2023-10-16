@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Статистика{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+
+            <div class="col-md-9">
+                <!--Users table-->
+                <div class="table-responsive">
+                    <table class="table border mb-0" id="UserStatisticsTable">
+                      <thead class="table-light fw-semibold">
+                        <tr class="align-middle">
+                          <th>User</th>
+                          <th>Email</th>
+                          <th>Country</th>
+                          <th>Course</th>
+                          <th>Registered at</th>
+                          <th>Last Entry</th>
+                          <th>Email Verified</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="align-middle">
+                          <td>
+                              <div>{{ person.get_full_name }}</div>
+                          </td>
+                          <td class="text-left">
+                            <div>{{ person.email }}</div>
+                          </td>
+                          <td class="text-center">
+                            <div>{{ person.country }}</div>
+                          </td>
+                          <td class="text-center">
+                            <div>{{ person.get_current_course }}</div>
+                          </td>
+                          <td>
+                            <div class="fw-semibold">{{ person.date_joined|date:"j.m.o H:i" }}</div>
+                          </td>
+                          <td>
+                            <div class="fw-semibold">{{ person.last_login|date:"j.m.o H:i" }}</div>
+                          </td>
+                          <td class="text-center">
+                            <div>
+                                <input type="checkbox" {% if person.email_verified %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;">
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+
+            <h4>Текущий курс:</h4>
+            {% if current_course %}
+                <div class="card">
+                     <div class="card-body">
+                         <h5 class="card-title">{{ current_course.title }}</h5>
+                         <p class="card-text">{{ current_course.description }}</p>
+                     </div>
+
+                    <p class="d-inline-flex gap-1">
+                      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#current-course-div" aria-expanded="false" aria-controls="current-course-div">
+                        Статистика по тестам
+                      </button>
+                    </p>
+                    <div class="collapse" id="current-course-div">
+                        <div class="test-progress-chart" id="test-progress-chart-{{ current_course.pk }}"
+                                    data-course="{{ current_course.pk }}" data-user="{{ person.pk }}"></div>
+                    </div>
+
+                </div>
+
+            {% else %}
+                <p>Нет текущих подписок</p>
+            {% endif %}
+
+            <h4>Завершенные курсы:</h4>
+            {% if past_courses %}
+                {% for subscription in past_courses %}
+                    <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title">{{ subscription.course.title }}</h5>
+                             <p class="card-text">{{ subscription.course.description }}</p>
+                         </div>
+
+                    <p class="d-inline-flex gap-1">
+                      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#past-course-div-{{ subscription.course.pk }}" aria-expanded="false" aria-controls="past-course-div-{{ subscription.course.pk }}">
+                        Статистика по тестам
+                      </button>
+                    </p>
+                    <div class="collapse" id="past-course-div-{{ subscription.course.pk }}">
+                        <div class="test-progress-chart" id="test-progress-chart-{{ subscription.course.pk }}"
+                            data-course="{{ subscription.course.pk }}" data-user="{{ person.pk }}" ></div>
+                    </div>
+
+                {% endfor %}
+            {% else %}
+                <p>Нет завершенных курсов</p>
+            {% endif %}
+
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/statistics_js/stats_user_detailed.js' %}"></script>
+{% endblock %}
