@@ -25,11 +25,15 @@
                            class="btn btn-danger btn-sm">Удалить</a>
                     </div>
                 </div>
-                <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
-                <a href="{% url 'step:stepmodel_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
-                my-3">Добавить занятие</a>
-                <a href="{% url 'modules:change_steps_order' chapter.id %}" class="btn btn-secondary
-                my-3">Изменить порядок занятий в главе</a>
+                    <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
+                    <a href="{% url 'step:stepmodel_video_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
+                    my-3">Добавить видео урок</a>
+                    <a href="{% url 'step:stepmodel_text_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
+                    my-3">Добавить лекцию</a>
+                    <a href="{% url 'step:stepmodel_quiz_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
+                    my-3">Добавить тест</a>
+                    <a href="{% url 'modules:change_steps_order' chapter.id %}" class="btn btn-secondary
+                    my-3">Изменить порядок занятий в главе</a>
                 <table class="table">
                     <thead>
                     <tr>
@@ -42,12 +46,9 @@
                     {% for step in steps|dictsort:"serial_number" %}
                         <tr>
                             <td>{{ step.serial_number }}</td>
-                            <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
                             {% if step.test %}
-
                                 <td><a href="{% url 'quiz_bim:quizbim_detail' step.test.id %}">{{ step.title }}</a></td>
                             {% else %}
-
                                 <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
                             {% endif %}
                             <td class="text-end">

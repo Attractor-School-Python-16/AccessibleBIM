@@ -1,12 +1,12 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView, FormView
 from django.shortcuts import render
 from django.utils.functional import cached_property
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
-from step.models import FileModel
+from quiz_bim.models import QuizBim
+from step.models import FileModel, TextModel, VideoModel
 from step.models.step import StepModel
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, DeleteBreadcrumbMixin
 
@@ -114,7 +114,6 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
             test = form['quiz'].save()
         else:
             test = form['step'].cleaned_data['test']
-
         step.test = test
         step.save()
         return redirect("quiz_bim:quizbim_detail", test.pk)
@@ -158,7 +157,6 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
             (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
             (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
         ] + super().crumbs
-
 
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
@@ -311,4 +309,21 @@ class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.chapter})
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.get_object().chapter.id})
+    
+    
+    def form_valid(self, form):
+        step = self.get_object()
+        chapter = step.chapter
+        response = super().form_valid(form)
+        self.update_serial_numbers(chapter)
+        return response
+
+    def update_serial_numbers(self, chapter):
+        steps = StepModel.objects.filter(chapter=chapter).order_by('serial_number')
+        current_serial_number = 1
+        for step in steps:
+            if step.serial_number != current_serial_number:
+                step.serial_number = current_serial_number
+                step.save()
+            current_serial_number += 1
