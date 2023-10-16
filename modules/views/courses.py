@@ -89,12 +89,15 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
 
     @cached_property
     def crumbs(self):
+        course = self.get_object()
         module = self.get_object().module_id
+        chapter = course.ct_course.first()
 
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
-            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk}))
-        ] + super().crumbs
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": course.module_id.pk})),
+        ]
 
     def has_permission(self):
         user = self.request.user
