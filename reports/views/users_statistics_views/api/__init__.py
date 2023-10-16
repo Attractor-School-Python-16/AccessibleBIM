@@ -1,0 +1,3 @@
+from reports.views.users_statistics_views.api.get_new_users_qty_view import get_new_users_qty_view
+from reports.views.users_statistics_views.api.get_test_progress_view import get_test_progress_view
+

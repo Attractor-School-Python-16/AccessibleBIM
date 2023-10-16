@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('captcha/', include('captcha.urls')),
+    path('accounts/', include('allauth.urls')),
 ] + i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
     path('', include('modules.urls')),
@@ -33,4 +34,6 @@ urlpatterns = [
     path('', include('subscription.urls')),
     path('quiz_bim/', include('quiz_bim.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('statistics/', include('reports.urls')),
+    path('', include('static_pages.urls'))
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

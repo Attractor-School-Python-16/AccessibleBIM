@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='customuser',
             name='country',
-            field=django_countries.fields.CountryField(default='Kyrgyzstan', max_length=2),
+            field=django_countries.fields.CountryField(default='Kyrgyzstan', max_length=50),
             preserve_default=False,
         ),
     ]
