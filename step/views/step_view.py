@@ -1,6 +1,9 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView, FormView
+from django.shortcuts import render
+from django.utils.functional import cached_property
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
 from step.models import FileModel
@@ -25,6 +28,21 @@ class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView)
     context_object_name = 'step'
     template_name = "steps/step/step_detail.html"
     home_path = reverse_lazy('modules:moderator_page')
+
+    @cached_property
+    def crumbs(self):
+        step = self.get_object()
+        chapter = step.chapter
+        course = chapter.course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk})),
+            (step.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": step.chapter.pk})),
+        ]
 
     def has_permission(self):
         user = self.request.user
@@ -128,6 +146,20 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
     home_path = reverse_lazy('modules:moderator_page')
     chapter = None
 
+    @cached_property
+    def crumbs(self):
+        chapter = self.get_object().chapter
+        course = chapter.course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
+        ] + super().crumbs
+
+
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')
         return {'chapter': self.chapter}
@@ -201,12 +233,74 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['text'], context['video'], context['test'] = self.object.text, self.object.video, self.object.test
+        return context
+
+    def form_valid(self, form):
+        lesson_type = form.cleaned_data['lesson_type']
+        if lesson_type == 'text':
+            text = self.request.POST.get('text')
+            if text:
+                form.instance.text = TextModel.objects.get(pk=text)
+                form.instance.video = None
+                form.instance.test = None
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'Текст не выбран'}
+                )
+        elif lesson_type == 'video':
+            video = self.request.POST.get('video')
+            if video:
+                form.instance.video = VideoModel.objects.get(pk=video)
+                form.instance.text = None
+                form.instance.test = None
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'Видео не выбрано'}
+                )
+        elif lesson_type == 'test':
+            test = self.request.POST.get('test')
+            if test:
+                form.instance.test = QuizBim.objects.get(pk=test)
+                form.instance.video = None
+                form.instance.text = None
+            else:
+                return render(
+                    self.request,
+                    self.template_name,
+                    {'form': form, 'error_message': 'Тест не выбран'}
+                )
+        form.instance.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
+
 
 class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = StepModel
     template_name = 'steps/step/step_delete.html'
     home_path = reverse_lazy('modules:moderator_page')
     chapter = None
+
+    @cached_property
+    def crumbs(self):
+        chapter = self.get_object().chapter
+        course = chapter.course
+        module = course.module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:coursemodel_detail", kwargs={"pk": course.pk})),
+            (chapter.title, reverse_lazy("modules:chaptermodel_detail", kwargs={"pk": chapter.pk}))
+        ] + super().crumbs
 
     def get_initial(self):
         self.chapter = self.request.GET.get('chapter_pk')

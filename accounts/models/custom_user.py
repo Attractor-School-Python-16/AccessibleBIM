@@ -66,6 +66,10 @@ class CustomUser(AbstractUser):
         app_label = 'accounts'
         permissions = (
             ("can_view_admin_panel ", "Can view admin panel"),
+            ("can_view_user_statistics", "Can view user statistics"),
+            ("can_view_course_statistics", "Can view course statistics"),
+            ("can_view_sales_statistics", "Can view sales statistics"),
+            ("can_grant_moderator_role", "Can grant moderator role to other users"),
         )
 
     def is_moderator(self):
@@ -77,3 +81,17 @@ class CustomUser(AbstractUser):
         """
         full_name = "%s %s" % (self.first_name, self.last_name)
         return full_name.strip()
+
+    def get_current_course(self):
+        """
+        Return the active course if user has any
+        """
+        course = self.subscriptions.filter(us_subscriptions__is_active=True)
+        return course[0].course if course else None
+
+    def get_past_courses(self):
+        """
+        Return inactive course if user has any
+        """
+        courses = self.subscriptions.filter(us_subscriptions__is_active=False)
+        return courses if courses else None

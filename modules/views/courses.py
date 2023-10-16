@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
+from django.utils.functional import cached_property
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
@@ -86,6 +87,18 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
     template_name = 'courses/course_detail.html'
     home_path = reverse_lazy('modules:moderator_page')
 
+    @cached_property
+    def crumbs(self):
+        course = self.get_object()
+        module = self.get_object().module_id
+        chapter = course.ct_course.first()
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
+            (course.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": course.module_id.pk})),
+        ]
+
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
@@ -122,6 +135,15 @@ class CourseUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateVie
     template_name = 'courses/course_update.html'
     home_path = reverse_lazy('modules:moderator_page')
 
+    @cached_property
+    def crumbs(self):
+        module = self.get_object().module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk}))
+        ] + super().crumbs
+
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
@@ -135,6 +157,16 @@ class CourseDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVie
     template_name = "courses/course_delete.html"
     context_object_name = 'course'
     home_path = reverse_lazy('modules:moderator_page')
+
+    @cached_property
+    def crumbs(self):
+        module = self.get_object().module_id
+
+        return [
+            (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
+            (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk}))
+        ] + super().crumbs
+
 
     def has_permission(self):
         user = self.request.user
