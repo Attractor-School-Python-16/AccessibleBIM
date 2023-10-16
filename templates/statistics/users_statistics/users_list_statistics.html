@@ -30,7 +30,7 @@
                         {% for person in people %}
                         <tr class="align-middle">
                           <td>
-                              <a href="#">
+                              <a href="{% url 'reports:stats_user_detailed' pk=person.pk %}">
                                   <div>{{ person.get_full_name }}</div>
                               </a>
                           </td>
@@ -41,7 +41,13 @@
                             <div>{{ person.country }}</div>
                           </td>
                           <td class="text-center">
-                            <div>{{ person.get_current_course }}</div>
+                            <div>
+                                {% if person.get_current_course %}
+                                    {{ person.get_current_course.title }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </div>
                           </td>
                           <td>
                             <div class="fw-semibold">{{ person.date_joined|date:"j.m.o H:i" }}</div>
