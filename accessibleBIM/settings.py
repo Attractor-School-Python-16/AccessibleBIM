@@ -15,10 +15,12 @@ from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
 from step.utils import custom_upload_to_func
+from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,10 +31,12 @@ SECRET_KEY = '**REMOVED**'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
 
 
 # Application definition
+
+SITE_ID = 2
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,9 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
 
     'betterforms',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django_celery_beat',
     'django_countries',
     "view_breadcrumbs",
@@ -61,6 +70,7 @@ INSTALLED_APPS = [
     'subscription',
     'quiz_bim',
     'currency',
+    'static_pages',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +82,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 ROOT_URLCONF = 'accessibleBIM.urls'
 
@@ -101,11 +124,15 @@ WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": env.db(),
 }
 
 
@@ -127,10 +154,16 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CELERY_BROKER_URL = 'redis://localhost'
+MEDIA_URL = '/media/'
+# изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/code/media/'
+
+
+# изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
+# CELERY_BROKER_URL = 'redis://localhost'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 with open('accessibleBIM/config.txt') as f:
     EMAIL_APP_PASSWORD = f.read().strip()
@@ -143,6 +176,13 @@ EMAIL_HOST_PASSWORD = EMAIL_APP_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 PASSWORD_RESET_TIMEOUT = 14400
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+SOCIALACCOUNT_AUTO_SIGNUP = False
+ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -168,7 +208,10 @@ LOCALE_PATHS = [
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'

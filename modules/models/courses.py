@@ -29,7 +29,7 @@ class CourseModel(AbstractModel):
                                         on_delete=models.DO_NOTHING)
     language = models.CharField(max_length=10, choices=TypeChoices.choices, blank=False, null=False,
                                    verbose_name='Язык занятия')
-    learnTime = models.IntegerField(null=False, blank=False, default=0, verbose_name='Время на прохождение курса')
+    learnTime = models.IntegerField(null=False, blank=False, default=0, verbose_name='Время на прохождение курса (часы)')
     teachers = models.ManyToManyField(TeacherModel, related_name='courses', through=CourseTeacherModel,
                                       through_fields=('ct_course', 'ct_teacher'))
 
