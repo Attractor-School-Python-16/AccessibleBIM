@@ -1,16 +1,15 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.functional import cached_property
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
-from quiz_bim.models import QuizBim
-from step.models import FileModel, TextModel, VideoModel
+from step.models import FileModel
 from step.models.step import StepModel
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, DeleteBreadcrumbMixin
 
 from step.forms.step_multi_form import MultiStepVideoForm, MultiStepQuizForm, MultiStepTextForm
+from step.step_validators import validate_empty
 
 
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
@@ -193,6 +192,13 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         step = form['step'].save(commit=False)
+        error_messages = validate_empty(self, form, self.object.lesson_type)
+        print(error_messages)
+        if error_messages:
+            return render(self.request, "steps/step/step_update.html", context={
+                "form": form,
+                "error_messages": error_messages,
+            })
         match self.object.lesson_type:
             case 'text':
                 self.update_step_text_model(step, form)
@@ -217,7 +223,6 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         self.work_with_files(step, form)
 
     def update_step_quiz_model(self, step, form):
-        print(step.chapter.id)
         if form['quiz'].cleaned_data['title']:
             step.test = form['quiz'].save()
         step.save()
@@ -242,47 +247,6 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         context['text'], context['video'], context['test'] = self.object.text, self.object.video, self.object.test
         return context
 
-    # def form_valid(self, form):
-    #     lesson_type = self.object.lesson_type
-    #     print(self.request.POST)
-    #     if lesson_type == 'text':
-    #         text = self.request.POST.get('text')
-    #         if text:
-    #             form.instance.text = TextModel.objects.get(pk=text)
-    #             form.instance.video = None
-    #             form.instance.test = None
-    #         else:
-    #             return render(
-    #                 self.request,
-    #                 self.template_name,
-    #                 {'form': form, 'error_message': 'Текст не выбран'}
-    #             )
-    #     elif lesson_type == 'video':
-    #         video = self.request.POST.get('video')
-    #         if video:
-    #             form.instance.video = VideoModel.objects.get(pk=video)
-    #             form.instance.text = None
-    #             form.instance.test = None
-    #         else:
-    #             return render(
-    #                 self.request,
-    #                 self.template_name,
-    #                 {'form': form, 'error_message': 'Видео не выбрано'}
-    #             )
-    #     elif lesson_type == 'test':
-    #         test = self.request.POST.get('step-test')
-    #         if test:
-    #             form.instance.test = QuizBim.objects.get(pk=test)
-    #             form.instance.video = None
-    #             form.instance.text = None
-    #         else:
-    #             return render(
-    #                 self.request,
-    #                 self.template_name,
-    #                 {'form': form, 'error_message': 'Тест не выбран'}
-    #             )
-    #     form.instance.save()
-    #     return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("modules:chaptermodel_detail", kwargs={"pk": self.get_object().chapter.id})
