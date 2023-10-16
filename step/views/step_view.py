@@ -173,12 +173,12 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
             case 'video':
                 kwargs.update(instance={
                     'step': self.object,
-                    'text': self.object.text,
+                    'video': self.object.video,
                 })
             case "test":
                 kwargs.update(instance={
                     'step': self.object,
-                    'text': self.object.text,
+                    'test': self.object.test,
                 })
         return kwargs
 
@@ -188,18 +188,23 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
                 return MultiStepTextForm
             case 'video':
                 return MultiStepVideoForm
-            case "quiz":
+            case "test":
                 return MultiStepQuizForm
 
     def form_valid(self, form):
         step = form['step'].save(commit=False)
         match self.object.lesson_type:
             case 'text':
-                return self.update_step_text_model(step, form)
+                self.update_step_text_model(step, form)
             case 'video':
-                return self.update_step_video_model(step, form)
-            case 'quiz':
-                return self.update_step_quiz_model(step, form)
+                self.update_step_video_model(step, form)
+            case 'test':
+                self.update_step_quiz_model(step, form)
+        return super().form_valid(form)
+
+    def get_form(self, form_class=None):
+        form_class = self.get_form_class()
+        return form_class(**self.get_form_kwargs())
 
     def update_step_text_model(self, step, form):
         if form['text'].cleaned_data['text_title']:
@@ -212,10 +217,11 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         self.work_with_files(step, form)
 
     def update_step_quiz_model(self, step, form):
+        print(step.chapter.id)
         if form['quiz'].cleaned_data['title']:
             step.test = form['quiz'].save()
         step.save()
-        return redirect("modules:chaptermodel_detail", self.chapter)
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": step.chapter.id})
 
     def work_with_files(self, step, form):
         step.save()
@@ -225,7 +231,7 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         if form['file'].cleaned_data['lesson_file']:
             file_download = form['file'].save()
             step.file.add(file_download, )
-        return redirect("modules:chaptermodel_detail", self.chapter)
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": step.chapter.id})
 
     def has_permission(self):
         user = self.request.user
@@ -236,49 +242,50 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         context['text'], context['video'], context['test'] = self.object.text, self.object.video, self.object.test
         return context
 
-    def form_valid(self, form):
-        lesson_type = form.cleaned_data['lesson_type']
-        if lesson_type == 'text':
-            text = self.request.POST.get('text')
-            if text:
-                form.instance.text = TextModel.objects.get(pk=text)
-                form.instance.video = None
-                form.instance.test = None
-            else:
-                return render(
-                    self.request,
-                    self.template_name,
-                    {'form': form, 'error_message': 'Текст не выбран'}
-                )
-        elif lesson_type == 'video':
-            video = self.request.POST.get('video')
-            if video:
-                form.instance.video = VideoModel.objects.get(pk=video)
-                form.instance.text = None
-                form.instance.test = None
-            else:
-                return render(
-                    self.request,
-                    self.template_name,
-                    {'form': form, 'error_message': 'Видео не выбрано'}
-                )
-        elif lesson_type == 'test':
-            test = self.request.POST.get('test')
-            if test:
-                form.instance.test = QuizBim.objects.get(pk=test)
-                form.instance.video = None
-                form.instance.text = None
-            else:
-                return render(
-                    self.request,
-                    self.template_name,
-                    {'form': form, 'error_message': 'Тест не выбран'}
-                )
-        form.instance.save()
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     lesson_type = self.object.lesson_type
+    #     print(self.request.POST)
+    #     if lesson_type == 'text':
+    #         text = self.request.POST.get('text')
+    #         if text:
+    #             form.instance.text = TextModel.objects.get(pk=text)
+    #             form.instance.video = None
+    #             form.instance.test = None
+    #         else:
+    #             return render(
+    #                 self.request,
+    #                 self.template_name,
+    #                 {'form': form, 'error_message': 'Текст не выбран'}
+    #             )
+    #     elif lesson_type == 'video':
+    #         video = self.request.POST.get('video')
+    #         if video:
+    #             form.instance.video = VideoModel.objects.get(pk=video)
+    #             form.instance.text = None
+    #             form.instance.test = None
+    #         else:
+    #             return render(
+    #                 self.request,
+    #                 self.template_name,
+    #                 {'form': form, 'error_message': 'Видео не выбрано'}
+    #             )
+    #     elif lesson_type == 'test':
+    #         test = self.request.POST.get('step-test')
+    #         if test:
+    #             form.instance.test = QuizBim.objects.get(pk=test)
+    #             form.instance.video = None
+    #             form.instance.text = None
+    #         else:
+    #             return render(
+    #                 self.request,
+    #                 self.template_name,
+    #                 {'form': form, 'error_message': 'Тест не выбран'}
+    #             )
+    #     form.instance.save()
+    #     return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.object.chapter.pk})
+        return reverse("modules:chaptermodel_detail", kwargs={"pk": self.get_object().chapter.id})
 
 
 class StepDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
