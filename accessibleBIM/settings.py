@@ -181,7 +181,6 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 SOCIALACCOUNT_AUTO_SIGNUP = False
 ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'
-SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
