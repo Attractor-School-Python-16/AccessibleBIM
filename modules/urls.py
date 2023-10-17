@@ -1,6 +1,6 @@
 from django.urls import path
 
-from modules.views.modules import HomeView, ModeratorView
+from modules.views.modules import ModeratorView
 
 from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetailView, ModuleDeleteView, \
     ModuleUpdateView
@@ -20,7 +20,6 @@ from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterD
 app_name = 'modules'
 
 urlpatterns = [
-    path('', HomeView.as_view(), name="index"),
     path('moderator/', ModeratorView.as_view(), name='moderator_page'),
     path('modules/', ModulesListView.as_view(), name="modulemodel_list"),
     path('module/create/', ModuleCreateView.as_view(), name="modulemodel_create"),
