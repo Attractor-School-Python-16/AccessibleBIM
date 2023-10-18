@@ -87,4 +87,11 @@ class CustomUser(AbstractUser):
         Return the active course if user has any
         """
         course = self.subscriptions.filter(us_subscriptions__is_active=True)
-        return course[0].course.title if course else '-'
+        return course[0].course if course else None
+
+    def get_past_courses(self):
+        """
+        Return inactive course if user has any
+        """
+        courses = self.subscriptions.filter(us_subscriptions__is_active=False)
+        return courses if courses else None
