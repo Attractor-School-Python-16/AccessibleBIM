@@ -88,7 +88,6 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
                 return self.save_step_quiz_model(form)
 
     def save_step_text_model(self, form):
-        print(self.request.POST)
         step = form['step'].save(commit=False)
         step.lesson_type = 'text'
         step.chapter = get_object_or_404(ChapterModel, pk=self.chapter)
@@ -205,7 +204,7 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         #         "form": form,
         #         "error_messages": error_messages,
         #     })
-        error_messages = validate_empty_for_update()
+        error_messages = validate_empty_for_update(form, self.object.lesson_type)
         if error_messages:
             return render(self.request, "steps/step/step_update.html", context={
                 "form": form,
@@ -226,7 +225,7 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
 
     def update_step_text_model(self, step, form):
         if form['step'].cleaned_data['text']:
-            step.video = form['step'].cleaned_data['text']
+            step.text = form['step'].cleaned_data['text']
         self.work_with_files(step, form)
 
     def update_step_video_model(self, step, form):

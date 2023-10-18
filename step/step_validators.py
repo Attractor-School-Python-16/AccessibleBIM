@@ -56,5 +56,6 @@ def generate_message(keyword, error_type):
 
 
 #Пока в таком виде, при написании тестов может быть расширена
-def validate_empty_for_update():
-    return ["Для редактирования необходимо выбрать связанный контент"]
+def validate_empty_for_update(form, lesson_type):
+    if not form['step'].cleaned_data[lesson_type]:
+        return ["Для редактирования необходимо выбрать связанный контент"]
