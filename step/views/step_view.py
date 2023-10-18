@@ -8,8 +8,9 @@ from step.models import FileModel
 from step.models.step import StepModel
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, DeleteBreadcrumbMixin
 
-from step.forms.step_multi_form import MultiStepVideoForm, MultiStepQuizForm, MultiStepTextForm
-from step.step_validators import validate_empty
+from step.forms.step_multi_form import MultiStepVideoForm, MultiStepQuizForm, MultiStepTextForm,\
+    MultiStepTextUpdateForm, MultiStepVideoUpdateForm
+from step.step_validators import validate_empty, validate_empty_for_update
 
 
 # Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
@@ -189,15 +190,22 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
     def get_form_class(self):
         match self.object.lesson_type:
             case 'text':
-                return MultiStepTextForm
+                return MultiStepTextUpdateForm
             case 'video':
-                return MultiStepVideoForm
+                return MultiStepVideoUpdateForm
             case "test":
                 return MultiStepQuizForm
 
     def form_valid(self, form):
         step = form['step'].save(commit=False)
-        error_messages = validate_empty(self, form, self.object.lesson_type)
+        # error_messages = validate_empty(self, form, self.object.lesson_type, True if self.object.lesson_type ==
+        #                                                                              'video' or 'text' else False)
+        # if error_messages:
+        #     return render(self.request, "steps/step/step_update.html", context={
+        #         "form": form,
+        #         "error_messages": error_messages,
+        #     })
+        error_messages = validate_empty_for_update()
         if error_messages:
             return render(self.request, "steps/step/step_update.html", context={
                 "form": form,
@@ -217,14 +225,13 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         return form_class(**self.get_form_kwargs())
 
     def update_step_text_model(self, step, form):
-
-        if form['text'].cleaned_data['text_title']:
-            step.text = form['text'].save()
+        if form['step'].cleaned_data['text']:
+            step.video = form['step'].cleaned_data['text']
         self.work_with_files(step, form)
 
     def update_step_video_model(self, step, form):
-        if form['video'].cleaned_data['video_title']:
-            step.video = form['video'].save()
+        if form['step'].cleaned_data['video']:
+            step.video = form['step'].cleaned_data['video']
         self.work_with_files(step, form)
 
     def update_step_quiz_model(self, step, form):

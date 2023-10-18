@@ -16,7 +16,7 @@
                 {% endblock %}
                 <h1>Обновление занятия</h1>
                 <div class="container">
-                    <div class="col">
+                    <div class="col" id="form-div">
                         {% for error in error_messages %}
                             <div class="alert alert-danger my-2" role="alert">
                                 {{ error }}
@@ -28,5 +28,5 @@
             </div>
         </div>
     </div>
-    <script src="{% static 'js/step_update' %}"></script>
+    <script src="{% static 'js/step_update.js' %}"></script>
 {% endblock %}
