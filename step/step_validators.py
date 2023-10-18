@@ -26,6 +26,7 @@ def validate_empty(self, form, lesson_type):
         }
         keyword = 'видео'
     elif lesson_type == 'quiz' or lesson_type == 'test':
+        lesson_type = 'quiz'
         fields = {
             'title': 'title',
             'questions_qty': 'questions_qty',
@@ -42,9 +43,8 @@ def validate_empty(self, form, lesson_type):
 
     if not is_entity_selected(fields['selected']) and True in check_for_empty():
         error_messages.append(generate_message(keyword, 'empty_all'))
-    elif is_entity_selected(fields['selected']) and not any(check_for_empty()):
+    elif is_entity_selected(fields['selected']) and False in check_for_empty():
         error_messages.append(generate_message(keyword, 'chosen_and_filled'))
-
     return error_messages
 
 def generate_message(keyword, error_type):
@@ -53,3 +53,8 @@ def generate_message(keyword, error_type):
     elif error_type == 'chosen_and_filled':
         return (f"Необходимо либо выбрать существующ{'ее' if keyword == 'видео' else 'ий'} {keyword}, либо создать "
                 f"нов{'ое' if keyword == 'видео' else 'ый'}")
+
+
+#Пока в таком виде, при написании тестов может быть расширена
+def validate_empty_for_update():
+    return ["Для редактирования необходимо выбрать связанный контент"]

@@ -27,3 +27,15 @@ class MultiStepQuizForm(MultiModelForm):
         'step': StepQuizForm,
         'quiz': QuizBimForm,
     }
+
+class MultiStepVideoUpdateForm(MultiModelForm):
+    form_classes = {
+        'step': StepVideoForm,
+        'file': FileForm,
+    }
+
+class MultiStepTextUpdateForm(MultiModelForm):
+    form_classes = {
+        'step': StepTextForm,
+        'file': FileForm,
+    }
