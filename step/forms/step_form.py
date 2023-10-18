@@ -6,7 +6,7 @@ class StepTextForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['file'].choices = [('', 'Пусто')] + list(self.fields['file'].choices)
+        self.fields['file'].choices = list(self.fields['file'].choices)
 
     class Meta:
         model = StepModel
@@ -17,7 +17,7 @@ class StepVideoForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['file'].choices = [('', 'Пусто')] + list(self.fields['file'].choices)
+        self.fields['file'].choices = list(self.fields['file'].choices)
 
     class Meta:
         model = StepModel
