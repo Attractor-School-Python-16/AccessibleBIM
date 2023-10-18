@@ -15,32 +15,28 @@ async function makeRequest(url, method){
     }
 }
 
-async function getNewSubscriptionsQty(days){
-    console.log('getNewSubscriptionsQty start')
-    let url = '/statistics/get-new-subscriptions-qty/?days=' + days;
-    let response = await makeRequest(url, "GET");
-    console.log('getNewSubscriptionsQty response', response)
-    return response;
+async function getDataByDay(url, days){
+    url = url + days;
+    return await makeRequest(url, "GET");
 }
 
-async function renderChart(){
-    console.log('renderChart start')
-    let response = await getNewSubscriptionsQty(7);
-    console.log('renderChart response', response)
+async function renderChart(name){
+    chartUrlsByDays[name].url
+    let response = await getDataByDay(chartUrlsByDays[name].url, 7);
     if (!response.error){
         let options = createChartOptions(response.labels, response.values);
-        window.charts.newSubscriptionsChart = new ApexCharts(newSubscriptionsChartDiv, options);
-        window.charts.newSubscriptionsChart.render();
+        window.charts[name] = new ApexCharts(chartUrlsByDays[name].div, options);
+        window.charts[name].render();
     }
     else{
-        $(stepsCompletedChartDiv).text('Error occured while loading data');
+        $(chartUrlsByDays[name].div).text('Error occured while loading data');
     }
 }
 
-async function updateNewSubscriptionsChart(days){
-    let response = await getNewSubscriptionsQty(days)
+async function updateChart(name, days){
+    let response = await getDataByDay(chartUrlsByDays[name].url, days)
     if (!response.error){
-         window.charts.newSubscriptionsChart.updateOptions({
+         window.charts[name].updateOptions({
            xaxis: {
               categories: response.labels
            },
@@ -51,32 +47,16 @@ async function updateNewSubscriptionsChart(days){
 
     }
     else{
-        $(newSubscriptionsChartDiv).text('Error occured while loading data')
+        $(chartUrlsByDays[name].div).text('Error occured while loading data')
     }
 }
 
-async function newSubscriptionsWeekOnClick(event){
+async function changeDaysOnChart(event){
     let btn = event.currentTarget;
+    $(btn).siblings().removeClass("active");
     $(btn).addClass( "active" );
-    $('#new-subscriptions-chart-month').removeClass("active");
-    $('#new-subscriptions-chart-half-year').removeClass("active");
-    await updateNewSubscriptionsChart(7)
-}
-
-async function newSubscriptionsMonthOnClick(event){
-    let btn = event.currentTarget;
-    $(btn).addClass( "active" );
-    $('#new-subscriptions-chart-week').removeClass("active");
-    $('#new-subscriptions-chart-half-year').removeClass("active");
-    await updateNewSubscriptionsChart(30)
-}
-
-async function newSubscriptionsHalfYearOnClick(event){
-    let btn = event.currentTarget;
-    $(btn).addClass( "active" );
-    $('#new-subscriptions-chart-week').removeClass("active");
-    $('#new-subscriptions-chart-month').removeClass("active");
-    await updateNewSubscriptionsChart(180)
+    let days = $(btn).data('days')
+    await updateChart('newSubscriptionsChart', days)
 }
 
 function createChartOptions(labels, values){
@@ -191,7 +171,20 @@ function createChartOptions(labels, values){
 }
 
 let newSubscriptionsChartDiv = document.getElementById('new-subscriptions-chart');
-renderChart()
-$('#new-subscriptions-chart-week').on('click', newSubscriptionsWeekOnClick);
-$('#new-subscriptions-chart-month').on('click', newSubscriptionsMonthOnClick);
-$('#new-subscriptions-chart-half-year').on('click', newSubscriptionsHalfYearOnClick);
+let popularCoursesChartDiv = document.getElementById('popular-courses-chart');
+
+let chartUrlsByDays = {
+    'newSubscriptionsChart': {
+        url: '/statistics/get-new-subscriptions-qty/?days=',
+        div: newSubscriptionsChartDiv,
+    },
+    'popularCoursesChart': {
+        url: '/statistics/get-popular-courses/?days=',
+        div: popularCoursesChartDiv,
+    }
+}
+
+
+renderChart('newSubscriptionsChart');
+let newSubscriptionButtons = $('.new-subscriptions-chart-btn')
+newSubscriptionButtons.click(changeDaysOnChart)
