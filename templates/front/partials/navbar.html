@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
@@ -31,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="{% url "modules:coursemodel_user_list" %}"
+                    <a href="{% url "static_pages:course_user_list" %}"
                        class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                        role="button">
                         Курсы
@@ -59,6 +60,21 @@
                     </a>
                 </li>
             </ul>
+            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <select name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                selected{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm icon icon-shape"><i class="bi bi-arrow-right"></i></i></button>
+            </form>
         </div>
     </div>
 </nav>

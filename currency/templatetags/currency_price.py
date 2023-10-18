@@ -16,6 +16,7 @@ def currency_price(price, lang):
 
 
 def change_currency(price, currency_rate):
+    print(price)
     exact_price = price * currency_rate
     if exact_price % 1 != 0:
         rounded_price = exact_price // 1 + 1
