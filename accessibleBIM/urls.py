@@ -27,7 +27,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 ] + i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
-    path('', include('static_pages.urls')),
+    path('', include('front.urls')),
     path('', include('modules.urls')),
     path('', include('progress.urls')),
     path('', include('accounts.urls')),
