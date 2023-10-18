@@ -80,7 +80,7 @@
     "type_corp": 7,
     "groups": [],
     "user_permissions": []
-  }
+  },
 
     "model": "accounts.customuser",
     "pk": 7,
