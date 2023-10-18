@@ -26,38 +26,6 @@ class CoursesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
-class CoursesUserListView(ListView):
-    model = CourseModel
-    template_name = 'courses/courses_user_list.html'
-    context_object_name = 'courses'
-    ordering = "-create_at"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['selected_modules'] = self.request.GET.getlist('modules', [])
-        context['selected_languages'] = self.request.GET.getlist('languages', [])
-        context['selected_targets'] = self.request.GET.getlist('targets', [])
-        context['course_targets'] = CourseTargetModel.objects.all()
-        context['modules'] = ModuleModel.objects.all()
-        return context
-
-    def get_queryset(self):
-        queryset = CourseModel.objects.all()
-        modules = self.request.GET.getlist('modules', [])
-        languages = self.request.GET.getlist('languages', [])
-        targets = self.request.GET.getlist('targets', [])
-
-        if modules:
-            queryset = queryset.filter(module_id__title__in=modules)
-
-        if languages:
-            queryset = queryset.filter(language__in=languages)
-
-        if targets:
-            queryset = queryset.filter(courseTarget_id__title__in=targets)
-        return queryset
-
-
 class CourseCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     template_name = "courses/course_create.html"
     model = CourseModel
@@ -109,25 +77,6 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
         return context
 
 
-class CourseUserDetailView(DetailView):
-    model = CourseModel
-    context_object_name = 'course'
-    template_name = 'courses/course_user_detail.html'
-    home_path = reverse_lazy('modules:moderator_page')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
-        if self.request.user.is_authenticated:
-            subscription = SubscriptionModel.objects.filter(course=self.object)
-            if subscription:
-                context['subscription'] = subscription[0]
-                user_subscription = UsersSubscription.objects.filter(user=self.request.user, subscription=subscription[0])
-                if user_subscription:
-                    context['user_subscription'] = user_subscription[0].is_active
-        return context
-
-
 class CourseUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = CourseModel
     form_class = CoursesForm
@@ -166,7 +115,6 @@ class CourseDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVie
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk}))
         ] + super().crumbs
-
 
     def has_permission(self):
         user = self.request.user
