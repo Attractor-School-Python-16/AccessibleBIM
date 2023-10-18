@@ -72,6 +72,12 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         url_path = self.request.path.split('/')
+        error_messages = validate_empty(self, form, url_path[-2])
+        if error_messages:
+            return render(self.request, "steps/step/step_create.html", context={
+                "form": form,
+                "error_messages": error_messages,
+            })
         match url_path[-2]:
             case 'text':
                 return self.save_step_text_model(form)
