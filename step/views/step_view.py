@@ -81,16 +81,16 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
                 return self.save_step_quiz_model(form)
 
     def save_step_text_model(self, form):
+        print(self.request.POST)
         step = form['step'].save(commit=False)
         step.lesson_type = 'text'
         step.chapter = get_object_or_404(ChapterModel, pk=self.chapter)
-
         if form['text'].cleaned_data['text_title']:
             text = form['text'].save()
         else:
             text = form['step'].cleaned_data['text']
-
         step.text = text
+        self.work_with_files(step, form)
         return redirect("modules:chaptermodel_detail", self.chapter)
 
     def save_step_video_model(self, form):
@@ -119,7 +119,6 @@ class StepCreateView(PermissionRequiredMixin, CreateView):
 
     def work_with_files(self, step, form):
         step.save()
-        print(step)
         if form['step'].cleaned_data['file']:
             file_loaded = form['step'].cleaned_data['file']
             step.file.set(file_loaded, )
@@ -193,7 +192,6 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
     def form_valid(self, form):
         step = form['step'].save(commit=False)
         error_messages = validate_empty(self, form, self.object.lesson_type)
-        print(error_messages)
         if error_messages:
             return render(self.request, "steps/step/step_update.html", context={
                 "form": form,
@@ -213,13 +211,14 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
         return form_class(**self.get_form_kwargs())
 
     def update_step_text_model(self, step, form):
+
         if form['text'].cleaned_data['text_title']:
             step.text = form['text'].save()
         self.work_with_files(step, form)
 
     def update_step_video_model(self, step, form):
         if form['video'].cleaned_data['video_title']:
-            step.text = form['video'].save()
+            step.video = form['video'].save()
         self.work_with_files(step, form)
 
     def update_step_quiz_model(self, step, form):

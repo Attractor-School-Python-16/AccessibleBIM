@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models.fields.files import FieldFile
 
 from step.models import VideoModel
 
@@ -13,7 +14,7 @@ class VideoForm(forms.ModelForm):
 
     def clean_video_file(self):
         current_file = self.cleaned_data.get("video_file", False)
-        if current_file:
+        if not isinstance(current_file, FieldFile) and current_file:
             if current_file.content_type in CONTENTTYPES:
                 if current_file.size <= 2097152000:
                     return current_file
