@@ -20,11 +20,11 @@ async function getDataByDay(url, days){
     return await makeRequest(url, "GET");
 }
 
-async function renderChart(name){
+async function renderChart(type, name){
     chartUrlsByDays[name].url
     let response = await getDataByDay(chartUrlsByDays[name].url, 7);
     if (!response.error){
-        let options = createChartOptions(response.labels, response.values);
+        let options = createChartOptions(type, response.labels, response.values);
         window.charts[name] = new ApexCharts(chartUrlsByDays[name].div, options);
         window.charts[name].render();
     }
@@ -59,7 +59,17 @@ async function changeDaysOnChart(event){
     await updateChart('newSubscriptionsChart', days)
 }
 
-function createChartOptions(labels, values){
+
+function createChartOptions(type, labels, values){
+    if (type === 'area'){
+        return createAreaChartOptions(labels, values)
+    }
+    else if (type === 'bar'){
+        return createBarChartOptions(labels, values)
+    }
+}
+
+function createAreaChartOptions(labels, values){
     let options = {
         series: [{
             name: 'Новых пользователей',
@@ -68,104 +78,30 @@ function createChartOptions(labels, values){
         chart: {
             fontFamily: 'inherit',
             type: 'area',
-            toolbar: {
-                show: false
-            }
-        },
-        plotOptions: {
-
-        },
-        legend: {
-            show: false
-        },
-        dataLabels: {
-            enabled: false
-        },
-        fill: {
-            type: 'solid',
-            opacity: 1
-        },
-        stroke: {
-            curve: 'smooth',
-            show: true,
-            width: 3,
-            // colors: [baseColor]
         },
         xaxis: {
             type: 'datetime',
             categories: labels,
-            axisBorder: {
-                show: false,
-            },
-            axisTicks: {
-                show: false
-            },
             labels: {
                 format: 'dd.MM',
-                style: {
-                    // colors: labelColor,
-                    fontSize: '12px'
-                }
             },
-            crosshairs: {
-                position: 'front',
-                stroke: {
-                    // color: baseColor,
-                    width: 1,
-                    dashArray: 3
-                }
-            },
-            tooltip: {
-                enabled: true,
-                formatter: undefined,
-                offsetY: 0,
-                style: {
-                    fontSize: '12px'
-                }
-            }
         },
-        yaxis: {
-            labels: {
-                style: {
-                    // colors: labelColor,
-                    fontSize: '12px'
-                }
-            }
+    };
+    return options;
+}
+
+function createBarChartOptions(labels, values){
+    let options = {
+        series: [{
+            data: values
+        }],
+        chart: {
+            fontFamily: 'inherit',
+            type: 'bar',
         },
-        states: {
-            normal: {
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            },
-            hover: {
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            },
-            active: {
-                allowMultipleDataPointsSelection: false,
-                filter: {
-                    type: 'none',
-                    value: 0
-                }
-            }
+        xaxis: {
+            categories: labels
         },
-        grid: {
-            // borderColor: borderColor,
-            strokeDashArray: 4,
-            yaxis: {
-                lines: {
-                    show: true
-                }
-            }
-        },
-        markers: {
-            // strokeColor: baseColor,
-            strokeWidth: 3
-        }
     };
     return options;
 }
@@ -185,6 +121,10 @@ let chartUrlsByDays = {
 }
 
 
-renderChart('newSubscriptionsChart');
+renderChart('area', 'newSubscriptionsChart');
 let newSubscriptionButtons = $('.new-subscriptions-chart-btn')
 newSubscriptionButtons.click(changeDaysOnChart)
+
+renderChart('bar', 'popularCoursesChart');
+let popularCoursesButtons = $('.popular-courses-chart-btn')
+popularCoursesButtons.click(changeDaysOnChart)

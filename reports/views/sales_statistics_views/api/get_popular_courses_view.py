@@ -8,7 +8,7 @@ from subscription.models.user_subscription import UsersSubscription
 
 
 @permission_required('accounts.can_view_sales_statistics')
-def get_new_subscriptions_qty_view(request, *args, **kwargs):
+def get_popular_courses_view(request, *args, **kwargs):
     result = {
         'error': False,
         'error_messages': [],
@@ -25,9 +25,10 @@ def get_new_subscriptions_qty_view(request, *args, **kwargs):
 
     first_day = date.today() - timedelta(days=days - 1)
     results_from_db = UsersSubscription.objects.filter(create_at__date__gte=first_day).values(
-        'create_at__date').annotate(count=Count('pk')).order_by('create_at__date')
-    result['labels'] = [first_day + timedelta(days=day) for day in range(days)]
-    result['values'] = [0 for _ in range(days)]
+        'subscription__course__title').annotate(count=Count('pk')).order_by('count')[:5]
+
     for record in results_from_db:
-        result['values'][result['labels'].index(record['create_at__date'])] = record['count']
+        result['labels'].append(record.get('subscription__course__title'))
+        result['values'].append(record.get('count'))
+
     return JsonResponse(result)
