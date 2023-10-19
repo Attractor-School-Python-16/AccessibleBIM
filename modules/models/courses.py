@@ -40,3 +40,10 @@ class CourseModel(AbstractModel):
 
     def __str__(self):
         return f'{self.title}'
+
+    def get_chapters_qty(self):
+        return len(self.ct_course.all())
+
+    def get_lessons_qty(self):
+        result = self.ct_course.aggregate(models.Count('step__pk'))
+        return result['step__pk__count']
