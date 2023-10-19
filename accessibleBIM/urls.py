@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from allauth.urls import provider_urlpatterns
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
@@ -24,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('captcha/', include('captcha.urls')),
-    path('accounts/', include('allauth.urls')),
+    path('accounts/social/', include('allauth.socialaccount.urls')),
+    path('accounts/', include(provider_urlpatterns)),
 ] + i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
     path('', include('modules.urls')),
