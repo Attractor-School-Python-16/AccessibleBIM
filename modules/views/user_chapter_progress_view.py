@@ -12,7 +12,7 @@ from modules.views.user_course_progress_view import create_user_course_progress
 class ChapterUserDetailView(DetailView):
     model = ChapterModel
     context_object_name = 'chapter'
-    template_name = 'partials/chapters/chapter_user_detail_view.html'
+    template_name = 'chapters/chapter_user_detail_view.html'
     pk_url_kwarg = 'chapter_pk'
 
     # Проверка, что в главе сданы все тесты.
