@@ -20,7 +20,7 @@ from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterD
 app_name = 'modules'
 
 urlpatterns = [
-    path('moderator/', ModeratorView.as_view(), name='moderator_page'),
+    path('', ModeratorView.as_view(), name='moderator_page'),
     path('modules/', ModulesListView.as_view(), name="modulemodel_list"),
     path('module/create/', ModuleCreateView.as_view(), name="modulemodel_create"),
     path('module/<int:pk>/', ModuleDetailView.as_view(), name="modulemodel_detail"),

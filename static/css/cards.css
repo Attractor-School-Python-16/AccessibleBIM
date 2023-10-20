@@ -127,7 +127,7 @@ a:hover {
     transition: transform 0.3s ease;
   }
   .postcard .postcard__text {
-    padding: 3rem;
+    padding: 3rem 3.2rem;
     width: 100%;
   }
   .postcard .media.postcard__text:before {
