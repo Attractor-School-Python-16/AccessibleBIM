@@ -56,3 +56,4 @@ docker-compose exec backend ./manage.py makemigrations
 docker-compose exec backend ./manage.py migrate
 ```
 
+**Тест, проверка CI**
