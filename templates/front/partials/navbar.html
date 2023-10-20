@@ -61,19 +61,20 @@
                 </li>
             </ul>
             <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+
                 <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select name="language">
+
+                <select class="form-control text-white" name="language" onchange="this.form.submit();">
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for language in languages %}
-                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                        <option class="form-control text-black" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
                                 selected{% endif %}>
                             {{ language.name_local }} ({{ language.code }})
                         </option>
                     {% endfor %}
                 </select>
-                <button type="submit" class="btn btn-primary btn-sm icon icon-shape"><i class="bi bi-arrow-right"></i></i></button>
             </form>
         </div>
     </div>
