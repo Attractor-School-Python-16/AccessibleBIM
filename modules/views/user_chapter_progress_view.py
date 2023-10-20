@@ -52,7 +52,7 @@ class ChapterUserDetailView(DetailView):
         # Последняя глава прогресса
         last_progress_chapter = last_progress_object.step.chapter
         # Проверка текущего прогресса (на какой главе остановился пользователь). Проверка осуществляется с помощью
-        # фильтрации Шагов со статусом in_progress. Однако, при окончании главы, все шаги имеют статус finished.
+        # фильтрации Шагов со статусом in_progress(0). Однако, при окончании главы, все шаги имеют статус finished(1).
         # Необходимо открыть следующую главу.
 
         # Проверка будет проходить по серийным номерам и page пагинации. Нужно убедиться, что текущая
@@ -78,7 +78,7 @@ class ChapterUserDetailView(DetailView):
                                                                                is_passed=True)
                             # Если Тест не пройден, то пользователь может перейти на другой шаг, однако статус шага теста
                             # останется неизменным. (В таблице прогресса могут быть как минимум два занчения со статусом
-                            # in_progress - непройденный тест и следующий шаг, на который перешел пользователь)
+                            # in_progress(0) - непройденный тест и следующий шаг, на который перешел пользователь)
                             if not progress_test_passed:
                                 next_step = \
                                     last_progress_chapter.step.filter(serial_number=int(request.GET.get('page')))[0]
@@ -87,9 +87,9 @@ class ChapterUserDetailView(DetailView):
                                 # и возвращаем get.
                                 create_user_course_progress(user=current_user, step=next_step)
                                 return super().get(request, *args, **kwargs)
-                        # Обновляем статус последнего объекта прогресса на finished
-                        if last_progress_object.status == 'in_progress':
-                            last_progress_object.status = 'finished'
+                        # Обновляем статус последнего объекта прогресса на finished(1)
+                        if last_progress_object.status == 0:
+                            last_progress_object.status = 1
                             last_progress_object.save()
 
                         next_step = \
@@ -100,12 +100,12 @@ class ChapterUserDetailView(DetailView):
 
                     finished_steps = UserCourseProgress.objects.filter(user=current_user,
                                                                        step__chapter=last_progress_chapter,
-                                                                       status='finished')
+                                                                       status=1)
 
                     # Завершенные главы.
                     finished_chapters = ChapterModel.objects.filter(
                         course=current_user_subscription.subscription.course,
-                        step__step_course_progress__status='finished').distinct()
+                        step__step_course_progress__status=1).distinct()
 
                     # Если количество завершенных шагов главы совпадает с общим количеством шагов данной главы,
                     # то создаем объект прогресса первым шагом следующей главы
@@ -122,8 +122,8 @@ class ChapterUserDetailView(DetailView):
                 return HttpResponseNotFound("Not found")
         # Если пользователь пытается перейти на одну главу вперед
         elif last_progress_chapter.serial_number + 1 == self.get_object().serial_number and request.GET.get('page'):
-            # Проверяем, что последний объект прогресса является последним шагом главы и имеет статус in_progress
-            if last_progress_object.status == 'in_progress' and last_progress_object.step == last_progress_chapter.step.order_by(
+            # Проверяем, что последний объект прогресса является последним шагом главы и имеет статус in_progress(0)
+            if last_progress_object.status == 0 and last_progress_object.step == last_progress_chapter.step.order_by(
                     '-serial_number').first():
                 # Проверяем, что если шаг является тестом, то он должен быть пройден
                 if last_progress_object.step.test:
@@ -134,17 +134,17 @@ class ChapterUserDetailView(DetailView):
                         # Пока возвращает 404, но потом можно будет перекидывать на непройденный тест
                         return HttpResponseNotFound("Not found")
                 # Меняем статус шага.
-                last_progress_object.status = 'finished'
+                last_progress_object.status = 1
                 last_progress_object.save()
 
                 # Проверим, что все шаги главы завершены
                 finished_steps = UserCourseProgress.objects.filter(user=current_user,
                                                                    step__chapter=last_progress_chapter,
-                                                                   status='finished')
+                                                                   status=1)
                 # Завершенные главы.
                 finished_chapters = ChapterModel.objects.filter(
                     course=current_user_subscription.subscription.course,
-                    step__step_course_progress__status='finished').distinct()
+                    step__step_course_progress__status=1).distinct()
 
                 # Если количество завершенных шагов главы совпадает с общим количеством шагов данной главы,
                 # то создаем объект прогресса первым шагом следующей главы
@@ -189,13 +189,13 @@ class ChapterUserDetailView(DetailView):
                                                       serial_number__gt=last_progress_step.step.chapter.serial_number)
 
         finished_steps = StepModel.objects.filter(chapter=self.object,
-                                                  step_course_progress__status='finished').order_by('serial_number')
+                                                  step_course_progress__status=1).order_by('serial_number')
 
         context['opened_chapters'] = opened_chapters
         context['closed_chapters'] = closed_chapters
         context['finished_steps'] = finished_steps
 
-        chapter_progress = UserCourseProgress.objects.filter(user=self.request.user, status='in_progress',
+        chapter_progress = UserCourseProgress.objects.filter(user=self.request.user, status=0,
                                                              step__chapter=self.get_object())
         if not chapter_progress:
             context['chapter_end'] = True
