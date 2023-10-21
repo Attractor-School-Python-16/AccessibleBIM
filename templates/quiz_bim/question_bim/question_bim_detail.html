@@ -15,11 +15,14 @@
                         class="btn btn-primary">
                     Изменить
                 </button>
-                <button hx-post="{% url 'quiz_bim:questionbim_htmx_delete' question.test_bim.pk question.id %}"
-                        hx-swap="outerHTML swap:1s"
-                        class="btn btn-primary" id="delete-question">
-                    Удалить
-                </button>
+                <form action="" class="d-inline">
+                    {% csrf_token %}
+                    <button hx-post="{% url 'quiz_bim:questionbim_htmx_delete' question.test_bim.pk question.id %}"
+                            hx-swap="outerHTML swap:1s"
+                            class="btn btn-primary" id="delete-question">
+                        Удалить
+                    </button>
+                </form>
                 <div id="answerforms_{{ question.id }}" class="col"></div>
 
                 <div class="mt-5 py-5 border-t border-gray-100">
