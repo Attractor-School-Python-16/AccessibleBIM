@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic.edit import FormMixin
 
 from quiz_bim.forms.question_bim_form import QuestionBimForm
-from quiz_bim.models import QuestionBim, AnswerBim
+from quiz_bim.models import QuestionBim, AnswerBim, QuizBim
 
 
 class QuestionBimFormCreateView(PermissionRequiredMixin, View):
@@ -79,7 +79,11 @@ class QuestionBimFormDeleteView(View):
     def post(self, request, *args, **kwargs):
         question = QuestionBim.objects.get(id=kwargs['qpk'])
         if request.method == "POST":
-            quiz = question.quiz
+            quiz = QuizBim.objects.get(id=kwargs['tpk'])
+            questions_quantity = quiz.questions_qty
+            questions_quantity -= 1
+            quiz.questions_qty = questions_quantity
+            quiz.save()
             question.delete()
             return HttpResponse("")
 
