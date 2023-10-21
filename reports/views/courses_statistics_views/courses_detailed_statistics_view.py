@@ -1,15 +1,18 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Count
-from django.views.generic import TemplateView
+from django.views.generic import DetailView
 
+from modules.models import CourseModel
 from modules.models.user_course_progress import UserCourseProgress
 from step.models import StepModel
 from subscription.models.user_subscription import UsersSubscription
 
 
-class CoursesDetailedStatisticsView(PermissionRequiredMixin, TemplateView):
+class CoursesDetailedStatisticsView(PermissionRequiredMixin, DetailView):
     template_name = 'statistics/courses_statistics/courses_statistics_detailed.html'
     permission_required = 'accounts.can_view_course_statistics'
+    model = CourseModel
+    context_object_name = 'course'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
