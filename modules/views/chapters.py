@@ -135,8 +135,8 @@ class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
         return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
     def form_valid(self, form):
-        step = self.get_object()
-        course = step.course
+        chapter = self.get_object()
+        course = chapter.course
         response = super().form_valid(form)
         self.update_serial_numbers(course)
         return response

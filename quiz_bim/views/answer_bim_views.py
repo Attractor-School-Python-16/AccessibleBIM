@@ -71,17 +71,15 @@ class AnswerBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
             return HttpResponseForbidden()
         form.save(commit=False)
         form.question_bim = get_object_or_404(QuestionBim, pk=kwargs["qpk"])
-        answer_content = self.request.POST.get("answer")
-        try:
-            is_correct = bool(self.request.POST.get("is_correct"))
-        except:
-            is_correct = self.request.POST.get("is_correct")
+        answer_content = form.cleaned_data["answer"]
+        is_correct = form.cleaned_data["is_correct"]
         error_messages = validate_answer(form.question_bim, answer_content, is_correct)
         if error_messages:
             return render(self.request, "quiz_bim/answer_bim/answer_bim_form.html", context={
                 "forms": form,
                 "error_messages": error_messages,
-                "question": form.question_bim
+                "question": form.question_bim,
+                "answer": answer
             })
         form.save()
         return redirect("quiz_bim:answerbim_htmx_detail", qpk=kwargs['qpk'], apk=kwargs['apk'])
