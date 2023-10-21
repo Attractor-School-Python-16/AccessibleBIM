@@ -32,9 +32,10 @@ class QuestionsCompletionView(UserPassesTestMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
-        pk = self.kwargs.get("pk")
-        context["progress_test_id"] = pk
-        context["user_answers_id"] = ProgressTest.objects.get(id=pk).user_progress.values_list("answer_id", flat=True)
+        progress = ProgressTest.objects.get(id=self.kwargs.get("pk"))
+        context["progress_test_id"] = progress.pk
+        context["quiz_title"] = progress.test.title
+        context["user_answers_id"] = progress.user_progress.values_list("answer_id", flat=True)
         return context
 
     def get_queryset(self):
@@ -84,11 +85,16 @@ class QuizResultView(UserPassesTestMixin, DetailView):
         progress = self.get_object()
         if progress.user_progress.count() == progress.test.question_bim.count():
             progress.end_time = datetime.now()
-            progress.is_passed = (progress.accuracy() > 0.75)
+            progress.is_passed = (progress.accuracy() >= 0.75)
             progress.save()
             return redirect("quiz_bim:test_result", pk=progress.pk)
         return redirect("quiz_bim:test_completion", pk=pk)
 
     def test_func(self):
-        progress_test = get_object_or_404(ProgressTest, pk=self.kwargs.get("pk"))
-        return self.request.user == progress_test.user
+        return self.request.user == self.get_object().user
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user_answers_id"] = self.get_object().user_progress.values_list("answer_id", flat=True)
+        context["questions"] = QuestionBim.objects.filter(test_bim_id=self.get_object().test.pk)
+        return context

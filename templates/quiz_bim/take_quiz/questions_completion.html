@@ -3,6 +3,7 @@
 {% block title %}Тест{% endblock %}
 {% block content %}
     <div class="container mt-5">
+        <h2>{{ quiz_title }}</h2>
         {% for question in questions|shuffle %}
             <div class="card mb-3">
             <div class="card-body">
