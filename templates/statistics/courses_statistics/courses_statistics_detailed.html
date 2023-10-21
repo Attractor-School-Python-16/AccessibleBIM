@@ -11,28 +11,38 @@
                 {% include 'partials/sidebar.html' %}
             </div>
 
-{#            <div class="col-md-9">#}
-{#                <div class="row g-5 g-xl-8">#}
-{#                    <div class="col-xl-6">#}
-{#                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">#}
-{#                            <div class="card-body">#}
-{#                                <i class="fa-solid fa-users text-gray-100 fs-2 ms-n1"></i>#}
-{#                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ courses_ttl_qty }}</div>#}
-{#                                <div class="fw-semibold text-gray-100">Количество созданных курсов</div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                    <div class="col-xl-6">#}
-{#                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">#}
-{#                            <div class="card-body">#}
-{#                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>#}
-{#                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ published_courses_qty }}</div>#}
-{#                                <div class="fw-semibold text-gray-100">Количество опубликованных курсов</div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
+            <div class="col-md-9">
+                <div class="row g-5 g-xl-8">
+                    <div class="col-xl-4">
+                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
+                            <div class="card-body">
+                                <i class="fa-solid fa-users text-gray-100 fs-2 ms-n1"></i>
+                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ subscriptions_qty }}</div>
+                                <div class="fw-semibold text-gray-100">Пользователей купили данный курс</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
+                            <div class="card-body">
+                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>
+                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ completions_qty }}</div>
+                                <div class="fw-semibold text-gray-100">Пользователей закончили данный курс</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
+                            <div class="card-body">
+                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>
+                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ avg_completion_time }}</div>
+                                <div class="fw-semibold text-gray-100">Среднее время прохождения</div>
+                            </div>
+                        </div>
+                    </div>
+
 {#                    <!--Lesson types pie chart-->#}
 {#                    <div class="row g-5 g-xl-8">#}
 {#                        <div class="col-xl-6">#}
@@ -70,11 +80,8 @@
 {#                            </div>#}
 {#                        </div>#}
 {#                    </div>#}
-{#                </div>#}
-{##}
-{#                <a href="{% url 'reports:stats_courses_list' %}" class="btn btn-primary">Список курсов</a>#}
-{##}
-{#            </div>#}
+                </div>
+            </div>
         </div>
     </div>
 
