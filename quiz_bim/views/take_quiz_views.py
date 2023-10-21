@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.views import View
@@ -15,7 +15,7 @@ from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 
 class TakeQuizView(LoginRequiredMixin, DetailView):
     queryset = QuizBim.objects.all()
-    template_name = "quiz_bim/take_test/take_test.html"
+    template_name = "quiz_bim/take_quiz/take_test.html"
     context_object_name = 'test'
 
     def post(self, request, pk, *args, **kwargs):
@@ -26,10 +26,9 @@ class TakeQuizView(LoginRequiredMixin, DetailView):
         return redirect("quiz_bim:test_completion", pk=progress_test.pk)
 
 
-class QuestionsCompletionView(LoginRequiredMixin, ListView):
-    paginate_by = 1
-    context_object_name = "question"
-    template_name = "quiz_bim/take_test/questions_completion.html"
+class QuestionsCompletionView(UserPassesTestMixin, ListView):
+    context_object_name = "questions"
+    template_name = "quiz_bim/take_quiz/questions_completion.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
@@ -41,6 +40,10 @@ class QuestionsCompletionView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         progress_test = get_object_or_404(ProgressTest, pk=self.kwargs.get("pk"))
         return QuestionBim.objects.filter(test_bim_id=progress_test.test.pk)
+
+    def test_func(self):
+        progress_test = get_object_or_404(ProgressTest, pk=self.kwargs.get("pk"))
+        return self.request.user == progress_test.user
 
 
 # TODO: Желательно переместить API представления в соответствующее приложение
@@ -64,9 +67,9 @@ class UserAnswerAPIView(LoginRequiredMixin, View):
         return HttpResponse(status=200)
 
 
-class QuizResultView(LoginRequiredMixin, DetailView):
+class QuizResultView(UserPassesTestMixin, DetailView):
     queryset = ProgressTest.objects.all()
-    template_name = "quiz_bim/take_test/test_result.html"
+    template_name = "quiz_bim/take_quiz/test_result.html"
     context_object_name = 'progress'
 
     def get(self, request, *args, **kwargs):
@@ -85,3 +88,7 @@ class QuizResultView(LoginRequiredMixin, DetailView):
             progress.save()
             return redirect("quiz_bim:test_result", pk=progress.pk)
         return redirect("quiz_bim:test_completion", pk=pk)
+
+    def test_func(self):
+        progress_test = get_object_or_404(ProgressTest, pk=self.kwargs.get("pk"))
+        return self.request.user == progress_test.user

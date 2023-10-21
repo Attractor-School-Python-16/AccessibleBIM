@@ -22,8 +22,8 @@ urlpatterns = [
     path('question_bim/<int:pk>/answer_bim/create/', AnswerBimCreateView.as_view(), name='answerbim_create'),
     path('answer_bim/<int:pk>/update/', AnswerBimUpdateView.as_view(), name='answerbim_update'),
     path('answer_bim/<int:pk>/delete/', AnswerBimDeleteView.as_view(), name='answerbim_delete'),
-    path('take-test/<int:pk>/', TakeQuizView.as_view(), name='take_test'),
+    path('take-test/<int:pk>/', TakeQuizView.as_view(), name='take_quiz'),
     path('test-completion/<int:pk>/', QuestionsCompletionView.as_view(), name='test_completion'),
-    path('api/answer/<int:pk>', UserAnswerAPIView.as_view(), name='user_answer'),
-    path('test-result/<int:pk>', QuizResultView.as_view(), name='test_result'),
+    path('api/answer/<int:pk>/', UserAnswerAPIView.as_view(), name='user_answer'),
+    path('test-result/<int:pk>/', QuizResultView.as_view(), name='test_result'),
 ]
