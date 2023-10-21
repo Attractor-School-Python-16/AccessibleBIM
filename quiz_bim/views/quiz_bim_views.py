@@ -40,12 +40,12 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         questions = self.object.question_bim.all()
+        self.object.questions_qty = questions.count()
         kwargs['answers'] = AnswerBim.objects.all()
         kwargs['questions'] = questions
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        print(self.request)
         if self.request.GET.get('question_pk'):
             htmx_form = form.save(commit=False)
             htmx_form.question_bim = get_object_or_404(QuestionBim, pk=self.question)
@@ -61,6 +61,11 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
         else:
             htmx_form = form.save(commit=False)
             htmx_form.test_bim = self.object
+            quiz = self.object
+            questions_quantity = quiz.questions_qty
+            questions_quantity += 1
+            quiz.questions_qty = questions_quantity
+            quiz.save()
             htmx_form.save()
             return redirect("quiz_bim:questionbim_htmx_detail", tpk=self.object.pk, qpk=htmx_form.id)
 
