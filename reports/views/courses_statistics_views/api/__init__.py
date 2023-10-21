@@ -1,3 +1,4 @@
 from reports.views.courses_statistics_views.api.get_steps_completed_qty_view import get_steps_completed_qty_view
 from reports.views.courses_statistics_views.api.get_lesson_types_view import get_lesson_types_view
 from reports.views.courses_statistics_views.api.get_lessons_types_in_course_view import get_lesson_types_in_course_view
+from reports.views.courses_statistics_views.api.get_steps_completion_time_view import get_steps_completion_time_view

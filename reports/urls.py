@@ -4,7 +4,7 @@ from reports.views import UsersMainStatisticsView, UsersListStatisticsView, User
     CoursesMainStatisticsView, CoursesListStatisticsView, CoursesDetailedStatisticsView
 from reports.views.users_statistics_views.api import get_new_users_qty_view, get_test_progress_view
 from reports.views.courses_statistics_views.api import get_steps_completed_qty_view, get_lesson_types_view, \
-    get_lesson_types_in_course_view
+    get_lesson_types_in_course_view, get_steps_completion_time_view
 
 app_name = 'reports'
 
@@ -21,4 +21,5 @@ urlpatterns = [
     path('get-lesson-types/', get_lesson_types_view, name='get_lesson_types'),
     path('get-test-progress/', get_test_progress_view, name='get_test_progress'),
     path('get-lesson-types-in-course/', get_lesson_types_in_course_view, name='get_lesson_types_in_course'),
+    path('get-steps-completion-time/', get_steps_completion_time_view, name='get_steps_completion_time'),
 ]
