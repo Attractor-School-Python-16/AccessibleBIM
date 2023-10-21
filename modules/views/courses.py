@@ -115,9 +115,12 @@ class CourseUserDetailView(DetailView):
     template_name = 'courses/course_user_detail.html'
     home_path = reverse_lazy('modules:moderator_page')
 
+    # Необходимо добавить проверку при просмотре купленного курса, если есть прогресс прохождения, то добавить ссылку
+    # перехода на последний шаг.
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
+        context['first_chapter'] = ChapterModel.objects.filter(course=self.object.id, serial_number=1)
         if self.request.user.is_authenticated:
             subscription = SubscriptionModel.objects.filter(course=self.object)
             if subscription:
