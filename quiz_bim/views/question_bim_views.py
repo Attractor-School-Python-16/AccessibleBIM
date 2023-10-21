@@ -79,6 +79,7 @@ class QuestionBimFormDeleteView(View):
     def post(self, request, *args, **kwargs):
         question = QuestionBim.objects.get(id=kwargs['qpk'])
         if request.method == "POST":
+            quiz = question.quiz
             question.delete()
             return HttpResponse("")
 

@@ -45,6 +45,7 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
+        print(self.request)
         if self.request.GET.get('question_pk'):
             htmx_form = form.save(commit=False)
             htmx_form.question_bim = get_object_or_404(QuestionBim, pk=self.question)
