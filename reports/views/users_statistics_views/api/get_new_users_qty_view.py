@@ -21,7 +21,8 @@ def get_new_users_qty_view(request, *args, **kwargs):
         return JsonResponse(result)
 
     first_day = date.today() - timedelta(days=days-1)
-    results_from_db = get_user_model().objects.filter(date_joined__date__gte=first_day).values('date_joined__date').annotate(count=Count('pk')).order_by('date_joined__date')
+    results_from_db = get_user_model().objects.filter(date_joined__date__gte=first_day).values('date_joined__date'
+                                                    ).annotate(count=Count('pk')).order_by('date_joined__date')
     result['labels'] = [first_day + timedelta(days=day) for day in range(days)]
     result['values'] = [0 for _ in range(days)]
     for record in results_from_db:

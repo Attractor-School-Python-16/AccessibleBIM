@@ -107,7 +107,17 @@ function createBarChartOptions(labels, values){
             type: 'bar',
         },
         xaxis: {
-            categories: labels
+            categories: labels,
+        },
+        yaxis: {
+            labels: {
+                formatter: function (value){
+                    let days =  Math.floor(Math.floor(value / 60) / 24);
+                    let hours = Math.floor((value - days * 60 * 24)  / 60);
+                    let minutes = value % 60;
+                    return `${days}d. ${hours}:${minutes}`
+                }
+            }
         },
     };
     return options;
@@ -126,13 +136,20 @@ function createPieChartOptions(labels, values){
 }
 
 let lessonsTypesInCourseChartDiv = document.getElementById('lesson-types-in-course-chart');
+let stepCompletionTimeChartDiv = document.getElementById('step-completion-time-chart');
+
 
 let chartUrlsByDays = {
     'lessonsTypesInCourseChart': {
         url: '/statistics/get-lesson-types-in-course/?course=',
         div: lessonsTypesInCourseChartDiv,
     },
+    'stepCompletionTimeChart': {
+        url: '/statistics/get-steps-completion-time/?course=',
+        div: stepCompletionTimeChartDiv,
+    },
 };
 
 let course_id = $(lessonsTypesInCourseChartDiv).data('course');
 renderChart('pie', 'lessonsTypesInCourseChart', param=course_id);
+renderChart('bar', 'stepCompletionTimeChart', param=course_id);
