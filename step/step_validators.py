@@ -29,7 +29,6 @@ def validate_empty(self, form, lesson_type):
         lesson_type = 'quiz'
         fields = {
             'title': 'title',
-            'questions_qty': 'questions_qty',
             'selected': 'step-test'
         }
         keyword = 'тест'
