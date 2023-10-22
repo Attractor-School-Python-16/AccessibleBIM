@@ -33,7 +33,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
 
-
 # Application definition
 
 SITE_ID = 2
@@ -60,7 +59,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
-
+    'widget_tweaks',
     'accounts',
     'modules',
     'step',
@@ -118,7 +117,6 @@ BREADCRUMBS_TEMPLATE = "partials/breadcrumbs.html"
 BREADCRUMBS_HOME_LABEL = "Home"
 WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -132,7 +130,6 @@ WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 DATABASES = {
     "default": env.db(),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -152,12 +149,10 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
 MEDIA_URL = '/media/'
 # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = '/media/'
-
 
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
@@ -215,12 +210,11 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static/')
+    os.path.join(BASE_DIR, 'static/')
 ]
 STATIC_URL = 'static/'
 
@@ -269,7 +263,6 @@ SUMMERNOTE_CONFIG = {
             ['insert', ['link', 'picture']],
             ['view', ['fullscreen']],
         ],
-
 
         'fontNames': ['Arial', 'Arial Nova Light', 'Arial Nova'],
         'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],

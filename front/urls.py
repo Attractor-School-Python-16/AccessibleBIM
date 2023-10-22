@@ -3,7 +3,7 @@ from django.urls import path
 from front.views.static_view import AccessibleBIM, About, Contacts, PrivacyPolicy
 from front.views.courses_view import CoursesUserListView, CourseUserDetailView
 
-app_name = 'static_pages'
+app_name = 'front'
 
 urlpatterns = [
     path("", AccessibleBIM.as_view(), name="accessible_bim"),
