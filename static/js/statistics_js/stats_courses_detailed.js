@@ -32,38 +32,6 @@ async function renderChart(type, name, param=7){
     }
 }
 
-// async function updateChart(name, param){
-//     let response = await getDataByQueryParam(chartUrlsByDays[name].url, param);
-//     if (!response.error){
-//          window.charts[name].updateOptions({
-//            xaxis: {
-//               categories: response.labels
-//            },
-//            series: [{
-//               data: response.values
-//            }],
-//         });
-//
-//     }
-//     else{
-//         $(chartUrlsByDays[name].div).text('Error occured while loading data');
-//     }
-// }
-
-// async function changeDaysOnChart(event){
-//     let btn = event.currentTarget;
-//     $(btn).siblings().removeClass("active");
-//     $(btn).addClass( "active" );
-//     let days = $(btn).data('days');
-//     $.each(chartUrlsByDays, function (index){
-//         if ($(btn).hasClass(this.btn_cls)){
-//             chart = index;
-//         }
-//     })
-//     await updateChart(chart, days);
-// }
-
-
 function createChartOptions(type, labels, values){
     if (type === 'area'){
         return createAreaChartOptions(labels, values);
@@ -73,6 +41,9 @@ function createChartOptions(type, labels, values){
     }
     else if (type === 'pie'){
         return createPieChartOptions(labels, values);
+    }
+    else if (type === 'column'){
+        return createColumnChartOptions(labels, values);
     }
 }
 
@@ -123,6 +94,22 @@ function createBarChartOptions(labels, values){
     return options;
 }
 
+function createColumnChartOptions(labels, values){
+    let options = {
+        series: [{
+            data: values
+        }],
+        chart: {
+            fontFamily: 'inherit',
+            type: 'bar',
+        },
+        xaxis: {
+            categories: labels,
+        },
+    };
+    return options;
+}
+
 function createPieChartOptions(labels, values){
     let options = {
         series: values,
@@ -137,6 +124,7 @@ function createPieChartOptions(labels, values){
 
 let lessonsTypesInCourseChartDiv = document.getElementById('lesson-types-in-course-chart');
 let stepCompletionTimeChartDiv = document.getElementById('step-completion-time-chart');
+let testResultsInCourseChartDiv = document.getElementById('test-results-in-course-chart');
 
 
 let chartUrlsByDays = {
@@ -148,8 +136,13 @@ let chartUrlsByDays = {
         url: '/statistics/get-steps-completion-time/?course=',
         div: stepCompletionTimeChartDiv,
     },
+    'testResultsInCourseChart': {
+        url: '/statistics/get-test-progress-in-course/?course=',
+        div: testResultsInCourseChartDiv,
+    },
 };
 
 let course_id = $(lessonsTypesInCourseChartDiv).data('course');
 renderChart('pie', 'lessonsTypesInCourseChart', param=course_id);
 renderChart('bar', 'stepCompletionTimeChart', param=course_id);
+renderChart('column', 'testResultsInCourseChart', param=course_id);
