@@ -40,7 +40,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ subscription.course.title }}</h5>
                         <p class="card-text">{{ subscription.course.description }}</p>
-                        <a href="#" class="btn btn-primary">{% trans 'Start' %}</a>
+                        {% with first_chapter=subscription.course.ct_course.all|dictsort:"serial_number"|first %}
+                            <a href="{% url 'modules:chaptermodel_user_detail' first_chapter.pk %}?page=1" class="btn btn-primary my-3">{% trans 'Start' %}</a>
+                        {% endwith %}
                     </div>
                 </div>
             {% empty %}
