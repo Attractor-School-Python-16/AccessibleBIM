@@ -168,13 +168,13 @@ class ChapterUserDetailView(DetailView):
 
         # Определение открытых глав пользователя и передача их в контекст
         current_user_subscription = UsersSubscription.objects.filter(user=self.request.user, is_active=True)[0]
-        chapter_progress = UserCourseProgress.objects.filter(user=self.request.user, status=0,
-                                                             step__chapter=self.get_object())
         next_chapter = ChapterModel.objects.filter(course=self.get_object().course,
                                                    serial_number=self.get_object().serial_number + 1)
-
+        # Проверяем, что следующая глава есть и в ней присутствуют уроки
         if next_chapter:
             context['next_chapter'] = next_chapter[0]
+            chapter_progress = UserCourseProgress.objects.filter(user=self.request.user, status=0,
+                                                                 step__chapter=self.get_object())
             if not chapter_progress and next_chapter[0].step.all():
                 context['chapter_end'] = True
 
