@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load view_breadcrumbs %}
+{% load static %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -10,30 +11,35 @@
                 {% block breadcrumbs %}
                     {% render_breadcrumbs %}
                 {% endblock %}
-                <h3>Тест "{{ test.test_title }}"</h3>
-                <h4>Количестов вопросов: {{ test.questions_qty }}</h4>
-                <a class="btn btn-primary" href="{% url "quiz_bim:questionbim_create" pk=test.pk %}" role="button">Добавить
-                    новый вопрос</a>
-                <a class="btn btn-primary" href="{% url 'quiz_bim:take_test' pk=test.pk %}" role="button">Прохождение
+                <h3>Тест "{{ test.title }}"</h3>
+                <h4 id = "questions_qty" >Количестов вопросов: {{ test.questions_qty }}</h4>
+
+                <a class="btn btn-primary mx-2" hx-get="{% url 'quiz_bim:questionbim_htmx_create' %}"
+                   hx-target="#questionforms" hx-swap="beforeend" role="button" id="create_question">Добавить новый
+                    вопрос</a>
+                <a class="btn btn-primary mx-2" href="{% url 'quiz_bim:take_test' pk=test.pk %}"
+                   role="button">Прохождение
                     теста</a>
-                <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}" role="button">Редактировать</a>
-                <a class="btn btn-danger" href="{% url 'quiz_bim:quizbim_delete' pk=test.pk %}" role="button">Удалить</a>
-                {% for question in questions %}
-                    <div class="row justify-content-center mt-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ question.title }}</h5>
-                                <a class="btn btn-primary" href="{% url 'quiz_bim:questionbim_detail' pk=question.pk %}"
-                                   role="button">Подробнее</a>
-                                <a class="btn btn-primary" href="{% url 'quiz_bim:questionbim_update' pk=question.pk %}"
-                                   role="button">Редактировать</a>
-                                <a class="btn btn-danger" href="{% url 'quiz_bim:questionbim_delete' pk=question.pk %}"
-                                   role="button">Удалить</a>
-                            </div>
+                <a class="btn btn-primary mx-2" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}"
+                   role="button">Редактировать</a>
+
+                <div id="questionforms" class="col"></div>
+
+                <div class="questions-container">
+                    {% for question in questions %}
+                        <div id="question_block_{{ forloop.counter }}" class="question-block">
+                            {% include "quiz_bim/question_bim/question_bim_detail.html" %}
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+                <div class="d-flex justify-content-center my-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" id="pagination-block">
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
+    <script src="{% static "js/questions_pagination.js" %}"></script>
 {% endblock %}

@@ -1,90 +1,94 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
-from view_breadcrumbs import DetailBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
-    UpdateBreadcrumbMixin
-from quiz_bim.models import QuizBim
-from quiz_bim.models.question_bim import QuestionBim
+from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseForbidden
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
+from django.views.generic.edit import FormMixin
+
 from quiz_bim.forms.question_bim_form import QuestionBimForm
-from django.urls import reverse, reverse_lazy
-from django.utils.functional import cached_property
+from quiz_bim.models import QuestionBim, AnswerBim, QuizBim
 
 
-class QuestionBimDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
-    model = QuestionBim
-    queryset = QuestionBim.objects.all()
-    template_name = "quiz_bim/question_bim/question_bim_detail.html"
-    context_object_name = 'question'
-    home_path = reverse_lazy('modules:moderator_page')
-
-    def has_permission(self):
-        user = self.request.user
-        return user.groups.filter(name='moderators').exists() or user.is_superuser
-
-    def get_context_data(self, **kwargs):
-        answers = self.object.answer_bim.all()
-        kwargs['answers'] = answers
-        return super().get_context_data(**kwargs)
-
-    @cached_property
-    def crumbs(self):
-        return [("Детальный просмотр вопроса", reverse("quiz_bim:questionbim_update", kwargs={'pk': self.object.pk}))]
-
-
-class QuestionBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
-    model = QuestionBim
-    form_class = QuestionBimForm
-    template_name = "quiz_bim/question_bim/question_bim_create.html"
-    home_path = reverse_lazy('modules:moderator_page')
+class QuestionBimFormCreateView(PermissionRequiredMixin, View):
+    def get(self, request, pk=None, *args, **kwargs):
+        forms = QuestionBimForm()
+        # Пока не реализовано (идея такова что приходит pk и данное кол-во форм создается)
+        # if not pk:
+        #    forms = QuestionBimForm()
+        # else:
+        #    forms = []
+        #    for i in range(0, int(pk)):
+        #        forms.append(QuestionBimForm())
+        context = {
+            'forms': forms
+        }
+        return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
-    def form_valid(self, form):
-        quiz = get_object_or_404(QuizBim, pk=self.kwargs.get("pk"))
-        question = form.save(commit=False)
-        question.test_bim = quiz
-        question.save()
-        return redirect("quiz_bim:quizbim_detail", pk=quiz.pk)
 
-    @cached_property
-    def crumbs(self):
-        return [("Создание вопроса", reverse("quiz_bim:questionbim_create", kwargs={'pk': self.kwargs.get("pk")}))]
-
-
-class QuestionBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
-    model = QuestionBim
-    form_class = QuestionBimForm
-    template_name = 'quiz_bim/question_bim/question_bim_update.html'
-    context_object_name = 'question'
-    home_path = reverse_lazy('modules:moderator_page')
+class QuestionBimFormDetailView(PermissionRequiredMixin, View):
+    def get(self, request, tpk, qpk, *args, **kwargs):
+        question = get_object_or_404(QuestionBim, id=qpk)
+        answers = AnswerBim.objects.all()
+        context = {
+            'question': question,
+            'answers': answers
+        }
+        return render(request, "quiz_bim/question_bim/question_bim_detail.html", context)
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
-    def get_success_url(self):
-        return reverse("quiz_bim:quizbim_detail", kwargs={"pk": self.object.test_bim.pk})
 
-    @cached_property
-    def crumbs(self):
-        return [("Изменение вопроса", reverse("quiz_bim:questionbim_update", kwargs={'pk': self.object.pk}))]
+class QuestionBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
+    form = None
 
-
-class QuestionBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
-    model = QuestionBim
-    context_object_name = 'question'
-    template_name = 'quiz_bim/question_bim/question_bim_delete.html'
-    home_path = reverse_lazy('modules:moderator_page')
+    def get(self, request, tpk, qpk, *args, **kwargs):
+        question = QuestionBim.objects.get(id=qpk)
+        form = QuestionBimForm(request.POST or None, instance=question)
+        context = {
+            "forms": form,
+            "question": question
+        }
+        return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
 
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
-    def get_success_url(self):
-        return reverse("quiz_bim:quizbim_detail", kwargs={"pk": self.object.test_bim.pk})
+    def post(self, request, *args, **kwargs):
+        question = QuestionBim.objects.get(id=kwargs['qpk'])
+        form = QuestionBimForm(request.POST or None, instance=question)
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        if form.is_valid():
+            form.save()
+            return redirect("quiz_bim:questionbim_htmx_detail", tpk=kwargs['tpk'], qpk=kwargs['qpk'])
+        else:
+            context = {
+                "forms": form,
+                "question": question
+            }
+            return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
 
-    @cached_property
-    def crumbs(self):
-        return [("Удаления вопроса", reverse("quiz_bim:questionbim_delete", kwargs={'pk': self.object.pk}))]
+
+class QuestionBimFormDeleteView(View):
+    def post(self, request, *args, **kwargs):
+        question = QuestionBim.objects.get(id=kwargs['qpk'])
+        if request.method == "POST":
+            quiz = QuizBim.objects.get(id=kwargs['tpk'])
+            questions_quantity = 0 if quiz.questions_qty == None else quiz.questions_qty
+            questions_quantity -= 1
+            quiz.questions_qty = questions_quantity
+            quiz.save()
+            question.delete()
+            return HttpResponse("")
+
+        return HttpResponseNotAllowed(
+            [
+                "POST",
+            ]
+        )
