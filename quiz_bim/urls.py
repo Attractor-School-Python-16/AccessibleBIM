@@ -12,17 +12,17 @@ app_name = 'quiz_bim'
 
 urlpatterns = [
     path('', QuizBimListView.as_view(), name='quizbim_list'),
-    path('test/create/', QuizBimCreateView.as_view(), name='quizbim_create'),
-    path('test/<int:pk>/', QuizBimDetailView.as_view(), name='quizbim_detail'),
-    path('test/<int:pk>/update/', QuizBimUpdateView.as_view(), name='quizbim_update'),
-    path('test/<int:pk>/delete/', QuizBimDeleteView.as_view(), name='quizbim_delete'),
+    path('quiz/create/', QuizBimCreateView.as_view(), name='quizbim_create'),
+    path('quiz/<int:pk>/', QuizBimDetailView.as_view(), name='quizbim_detail'),
+    path('quiz/<int:pk>/update/', QuizBimUpdateView.as_view(), name='quizbim_update'),
+    path('quiz/<int:pk>/delete/', QuizBimDeleteView.as_view(), name='quizbim_delete'),
 
-    path('test/<int:tpk>/question_bim/detail/<int:qpk>/', QuestionBimFormDetailView.as_view(),
+    path('quiz/<int:tpk>/question_bim/detail/<int:qpk>/', QuestionBimFormDetailView.as_view(),
          name='questionbim_htmx_detail'),
-    path('test/question_bim/create/', QuestionBimFormCreateView.as_view(), name='questionbim_htmx_create'),
-    path('test/<int:tpk>/question_bim/update/<int:qpk>/', QuestionBimFormUpdateView.as_view(),
+    path('quiz/question_bim/create/', QuestionBimFormCreateView.as_view(), name='questionbim_htmx_create'),
+    path('quiz/<int:tpk>/question_bim/update/<int:qpk>/', QuestionBimFormUpdateView.as_view(),
          name='questionbim_htmx_update'),
-    path('test/<int:tpk>/question_bim/delete/<int:qpk>/', QuestionBimFormDeleteView.as_view(),
+    path('quiz/<int:tpk>/question_bim/delete/<int:qpk>/', QuestionBimFormDeleteView.as_view(),
          name='questionbim_htmx_delete'),
 
     path('question_bim/<int:qpk>/answer_bim/detail/<int:apk>/', AnswerBimFormDetailView.as_view(),
@@ -33,8 +33,8 @@ urlpatterns = [
     path('question_bim/<int:qpk>/answer_bim/delete/<int:apk>/', AnswerBimFormDeleteView.as_view(),
          name='answerbim_htmx_delete'),
 
-    path('take-test/<int:pk>/', TakeQuizView.as_view(), name='take_test'),
-    path('test-completion/<int:pk>/', QuestionsCompletionView.as_view(), name='test_completion'),
+    path('take-quiz/<int:pk>/', TakeQuizView.as_view(), name='take_quiz'),
+    path('quiz-completion/<int:pk>/', QuestionsCompletionView.as_view(), name='test_completion'),
     path('api/answer/<int:pk>', UserAnswerAPIView.as_view(), name='user_answer'),
-    path('test-result/<int:pk>', QuizResultView.as_view(), name='test_result'),
+    path('quiz-result/<int:pk>', QuizResultView.as_view(), name='test_result'),
 ]
