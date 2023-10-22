@@ -6,7 +6,7 @@ from progress.models import ProgressTest
 from step.models import StepModel
 
 
-@permission_required('accounts.can_view_user_statistics')
+@permission_required('accounts.can_view_course_statistics')
 def get_test_progress_in_course_view(request, *args, **kwargs):
     if request.method == "GET":
         result = {
