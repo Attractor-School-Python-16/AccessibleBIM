@@ -114,10 +114,7 @@ class ChapterUserDetailView(DetailView):
                             StepModel.objects.filter(chapter__serial_number=last_progress_chapter.serial_number + 1,
                                                      serial_number=1)[0]
                         create_user_course_progress(user=current_user, step=next_step)
-                        # if not UserCourseProgress.objects.filter(user=current_user,
-                        #                                          step=next_step):
-                        #     UserCourseProgress.objects.create(user=current_user,
-                        #                                       step=next_step)
+
             else:
                 return HttpResponseNotFound("Not found")
         # Если пользователь пытается перейти на одну главу вперед
@@ -197,6 +194,7 @@ class ChapterUserDetailView(DetailView):
 
         chapter_progress = UserCourseProgress.objects.filter(user=self.request.user, status=0,
                                                              step__chapter=self.get_object())
-        if not chapter_progress:
+
+        if not chapter_progress and next_chapter[0].step.all():
             context['chapter_end'] = True
         return context
