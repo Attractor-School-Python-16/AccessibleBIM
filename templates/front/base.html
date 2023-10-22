@@ -21,7 +21,7 @@
           rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Material Kit CSS -->
-    <link href="{% static "css/material-kit.css" %}" rel="stylesheet"/>
+    <link href="{% static "css/material-kit.min.css" %}" rel="stylesheet"/>
     <!-- Custom BIM CSS -->
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <link href="{% static "css/cards.css" %}" rel="stylesheet"/>
@@ -32,7 +32,7 @@
 <body>
 <!-- Navbar Transparent -->
 {% block page_nav %}
-    {% include 'front/partials/navbar.html' %}
+    {% include 'front/partials/navbar.html' with nav='position-absolute top-0 navbar-transparent' text='text-white' %}
 {% endblock %}
 <!-- End Navbar -->
 
@@ -40,12 +40,13 @@
     {% include 'front/partials/header.html' %}
 {% endblock %}
 
-
+{% block card-container %}
 <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
     <div class="container">
         {% block content %}{% endblock %}
     </div>
 </div>
+{% endblock %}
 
 {% block page_footer %}
     {% include 'front/partials/footer.html' %}

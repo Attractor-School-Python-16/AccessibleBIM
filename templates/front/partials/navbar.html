@@ -1,9 +1,9 @@
 {% load i18n %}
 {% load static %}
 
-<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
+<nav class="navbar navbar-expand-lg z-index-3 w-100 shadow-none my-3 {{ nav }}">
     <div class="container">
-        <a class="navbar-brand  text-white " href="{% url "static_pages:accessible_bim" %}">
+        <a class="navbar-brand {{ text }}" href="{% url "front:accessible_bim" %}">
             AccessibleBIM
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -18,64 +18,101 @@
         <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
             <ul class="navbar-nav navbar-nav-hover ms-auto">
                 <li class="nav-item mx-2">
-                    <a href="{% url "accounts:login" %}"
-                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                       role="button">
-                        Войти
-                    </a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="{% url "accounts:register" %}"
-                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                       role="button">
-                        Регистрация
-                    </a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="{% url "static_pages:course_user_list" %}"
+                    <a href="{% url "front:course_user_list" %}"
                        class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                        role="button">
                         Курсы
                     </a>
                 </li>
-                <li class="nav-item mx-2">
-                    <a href="{% url "static_pages:about" %}"
-                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                       role="button">
-                        О нас
+                <div class="dropdown">
+                    <a href="#" class="btn {% if text %} {{ text }} {% else %} text-white {% endif  %} bg-transparent dropdown-toggle " data-bs-toggle="dropdown"
+                       id="navbarDropdownMenuLink2">
+                        О компании
                     </a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="{% url "static_pages:contacts" %}"
-                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                       role="button">
-                        Контакты
-                    </a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="{% url "static_pages:privacy_policy" %}"
-                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                       role="button">
-                        Политика конфиденциальности
-                    </a>
-                </li>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <li>
+                            <a class="dropdown-item" href="{% url "front:about" %}">
+                                О нас
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url "front:contacts" %}">
+                                Контакты
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url "front:privacy_policy" %}">
+                                Политика конфиденциальности
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {% if request.user.is_authenticated %}
+                    {% if user.is_moderator %}
+                        <li class="nav-item mx-2">
+                            <a href="{% url "modules:moderator_page" %}"
+                               class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                               role="button">
+                                Админ панель
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if perms.accounts.can_grant_moderator_role %}
+                        <li class="nav-item mx-2">
+                            <a href="{% url "accounts:grant_moderator_panel" %}"
+                               class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                               role="button">
+                                Выдача прав
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item mx-2">
+                        <a href="{% url "accounts:profile" %}"
+                           class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                           role="button">
+                            Профиль
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="{% url "accounts:logout" %}"
+                           class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                           role="button">
+                            Выйти
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item mx-2">
+                        <a href="{% url "accounts:login" %}"
+                           class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                           role="button">
+                            Войти
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="{% url "accounts:register" %}"
+                           class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                           role="button">
+                            Регистрация
+                        </a>
+                    </li>
+                {% endif %}
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <select class="form-control {{ text }}" name="language" onchange="this.form.submit();">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option class="form-control text-black dropdown-item" value="{{ language.code }}"
+                                    {% if language.code == LANGUAGE_CODE %}
+                                    selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
             </ul>
-            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-
-                <input name="next" type="hidden" value="{{ redirect_to }}">
-
-                <select class="form-control text-white" name="language" onchange="this.form.submit();">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                        <option class="form-control text-black" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                selected{% endif %}>
-                            {{ language.name_local }} ({{ language.code }})
-                        </option>
-                    {% endfor %}
-                </select>
-            </form>
         </div>
     </div>
 </nav>
