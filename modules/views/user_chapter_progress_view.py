@@ -112,8 +112,10 @@ class ChapterUserDetailView(DetailView):
                     if finished_steps.count() == last_progress_chapter.step.count() and finished_chapters.count() < current_user_subscription.subscription.course.ct_course.count():
                         next_step = \
                             StepModel.objects.filter(chapter__serial_number=last_progress_chapter.serial_number + 1,
-                                                     serial_number=1)[0]
-                        create_user_course_progress(user=current_user, step=next_step)
+                                                     serial_number=1)
+                        if next_step:
+                            create_user_course_progress(user=current_user, step=next_step[0])
+
 
             else:
                 return HttpResponseNotFound("Not found")
@@ -146,9 +148,9 @@ class ChapterUserDetailView(DetailView):
                 # Если количество завершенных шагов главы совпадает с общим количеством шагов данной главы,
                 # то создаем объект прогресса первым шагом следующей главы
                 if finished_steps.count() == last_progress_chapter.step.count() and finished_chapters.count() < current_user_subscription.subscription.course.ct_course.count():
-                    next_step = StepModel.objects.filter(chapter=self.get_object(), serial_number=1)[0]
-
-                    create_user_course_progress(user=current_user, step=next_step)
+                    next_step = StepModel.objects.filter(chapter=self.get_object(), serial_number=1)
+                    if next_step:
+                        create_user_course_progress(user=current_user, step=next_step)
                 else:
                     return HttpResponseNotFound("Not found")
         return super().get(request, *args, **kwargs)
@@ -166,10 +168,16 @@ class ChapterUserDetailView(DetailView):
 
         # Определение открытых глав пользователя и передача их в контекст
         current_user_subscription = UsersSubscription.objects.filter(user=self.request.user, is_active=True)[0]
+        chapter_progress = UserCourseProgress.objects.filter(user=self.request.user, status=0,
+                                                             step__chapter=self.get_object())
         next_chapter = ChapterModel.objects.filter(course=self.get_object().course,
                                                    serial_number=self.get_object().serial_number + 1)
+
         if next_chapter:
             context['next_chapter'] = next_chapter[0]
+            if not chapter_progress and next_chapter[0].step.all():
+                context['chapter_end'] = True
+
         previous_chapter = ChapterModel.objects.filter(course=self.get_object().course,
                                                        serial_number=self.get_object().serial_number - 1)
         if previous_chapter:
@@ -192,9 +200,4 @@ class ChapterUserDetailView(DetailView):
         context['closed_chapters'] = closed_chapters
         context['finished_steps'] = finished_steps
 
-        chapter_progress = UserCourseProgress.objects.filter(user=self.request.user, status=0,
-                                                             step__chapter=self.get_object())
-
-        if not chapter_progress and next_chapter[0].step.all():
-            context['chapter_end'] = True
         return context
