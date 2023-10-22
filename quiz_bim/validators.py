@@ -1,6 +1,5 @@
 
 def validate_answer(question, answer, is_correct):
-    print(type(is_correct))
     return check_for_errors(question,  answer, is_correct)
 
 def check_for_errors(question, answer, is_correct):
@@ -18,8 +17,8 @@ def check_correct_answers_count(question, is_correct):
         if not correct_answers and is_correct == False:
             error_message = ("В вопросе должен быть хотя бы один правильный ответ")
             return error_message
-    if answers_count >= 2:
-        if len(correct_answers) == 1 and is_correct == True:
+    if answers_count >= 1:
+        if correct_answers and is_correct:
             error_message = ("В вопросе не может быть более двух правильных ответов")
             return error_message
     return None
