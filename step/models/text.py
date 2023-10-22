@@ -5,9 +5,9 @@ from modules.models import AbstractModel
 
 
 class TextModel(AbstractModel):
-    text_title = models.CharField(max_length=250, blank=False, null=False, verbose_name="Наименование")
-    text_description = models.CharField(max_length=1500, verbose_name="Описание")
-    content = models.TextField(max_length=100000, blank=False, null=False, verbose_name="Содержимое")
+    text_title = models.CharField(max_length=250, blank=True, null=True, verbose_name="Оглавление")
+    text_description = models.CharField(max_length=1500, blank=True, null=True, verbose_name="Описание")
+    content = models.TextField(max_length=100000, blank=True, null=True, verbose_name="Содержимое")
 
     def get_absolute_url(self):
         return reverse("step:text_list")
