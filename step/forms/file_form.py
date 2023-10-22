@@ -34,18 +34,30 @@ CONTENTTYPES = ['text/plain',
 class FileForm(forms.ModelForm):
     class Meta:
         model = FileModel
-        fields = '__all__'
+        fields = ['file_title', 'lesson_file']
         labels = {
             'file_title': 'Введите наименование файла',
             'lesson_file': 'Загрузите файл',
         }
 
     def clean_lesson_file(self):
-        current_file = self.cleaned_data.get("lesson_file", False)
-        if current_file.content_type in CONTENTTYPES:
-            if current_file.size <= 20971520:
-                return current_file
+        lesson_file = self.cleaned_data.get("lesson_file", False)
+        if lesson_file:
+            if lesson_file.content_type in CONTENTTYPES:
+                if lesson_file.size <= 20971520:
+                    return lesson_file
+                else:
+                    raise forms.ValidationError("Размер загружаемого файла не должен превышать 20 МБ")
             else:
-                raise forms.ValidationError("Размер загружаемого файла не должен превышать 20 МБ")
+                raise forms.ValidationError("Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX")
         else:
-            raise forms.ValidationError("Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX")
+            return lesson_file
+
+    def clean(self):
+        data = self.cleaned_data
+        file_title = self.cleaned_data.get("file_title")
+        lesson_file = self.cleaned_data.get("lesson_file", False)
+        if (file_title and lesson_file) or (not file_title and not lesson_file):
+            return data
+        else:
+            raise forms.ValidationError("При загрузке документа требуется обязательно указать название")

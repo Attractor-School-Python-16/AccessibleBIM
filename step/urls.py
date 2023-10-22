@@ -10,7 +10,9 @@ app_name = 'step'
 urlpatterns = [
     path('steps/', StepListView.as_view(), name='stepmodel_list'),
     path('step/<int:pk>/', StepDetailView.as_view(), name='stepmodel_detail'),
-    path('step/create/', StepCreateView.as_view(), name='stepmodel_create'),
+    path('step/create/text/', StepCreateView.as_view(), name='stepmodel_text_create'),
+    path('step/create/video/', StepCreateView.as_view(), name='stepmodel_video_create'),
+    path('step/create/quiz/', StepCreateView.as_view(), name='stepmodel_quiz_create'),
     path('step/<int:pk>/update/', StepUpdateView.as_view(), name='stepmodel_update'),
     path('step/<int:pk>/delete/', StepDeleteView.as_view(), name='stepmodel_delete'),
 

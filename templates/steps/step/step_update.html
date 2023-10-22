@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load view_breadcrumbs %}
+{% load static view_breadcrumbs %}
 {% block title %}
     Редактировать занятие
 {% endblock %}
@@ -10,129 +10,23 @@
                 {% include 'partials/sidebar.html' %}
             </div>
             <div class="col-md-9">
+
                 {% block breadcrumbs %}
                     {% render_breadcrumbs %}
                 {% endblock %}
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% for error in form.non_field_errors %}
-                        <div class="alert alert-danger">{{ error }}</div>
-                    {% endfor %}
-
-                    <div class="form-group">
-                        <label for="id_title">{{ form.chapter.label }}</label>
-                        {{ form.chapter }}
+                <h1>Обновление занятия</h1>
+                <div class="container">
+                    <div class="col" id="form-div">
+                        {% for error in error_messages %}
+                            <div class="alert alert-danger my-2" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        {% include "partials/form.html" with button_text="Сохранить" %}
                     </div>
-
-                    <div class="form-group">
-                        <label for="id_title">{{ form.title.label }}</label>
-                        {{ form.title }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_file">Выберите файл</label>
-                        {{ form.file }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_learn_time">{{ form.learn_time.label }}</label>
-                        {{ form.learn_time }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_lesson_type">{{ form.lesson_type.label }}</label>
-                        {{ form.lesson_type }}
-                    </div>
-
-                    <div id="text_content" style="display: none;">
-                        <div class="form-group">
-                            <label for="id_text">Выберите текст</label>
-                            {{ form.text }}
-                        </div>
-                    </div>
-
-                    <div id="video_content" style="display: none;">
-                        <div class="form-group">
-                            <label for="id_video">Выберите видео</label>
-                            {{ form.video }}
-                        </div>
-                    </div>
-
-                    <div id="test_content" style="display: none;">
-                        <div class="form-group">
-                            <label for="id_test">Выберите тест</label>
-                            {{ form.test }}
-                        </div>
-                    </div>
-                    <a href="
-{#                                {% if text %}#}
-{#                                    {% url 'step:text_update' text.id %}#}
-{#                                {% elif video %}#}
-{#                                    {% url 'step:video_update' video.id %}#}
-{#                                {% elif test %}#}
-{#                                    {% url 'quiz_bim:test_update' test.id %}#}
-{#                                {% endif %}#}
-                            " id="content_update_link" target="_blank">Редактировать связанный контент</a>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Редактировать занятие</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const lessonType = document.getElementById("id_lesson_type");
-            const textContent = document.getElementById("text_content");
-            const videoContent = document.getElementById("video_content");
-            const testContent = document.getElementById("test_content");
-            const textSelect = document.getElementById("id_text");
-            const videoSelect = document.getElementById("id_video");
-            const testSelect = document.getElementById("id_test");
-            const contentUpdateLink = document.getElementById("content_update_link");
-
-            function handleLessonTypeChange() {
-                textContent.style.display = "none";
-                videoContent.style.display = "none";
-                testContent.style.display = "none";
-
-                const selectedType = lessonType.value;
-
-                if (selectedType === "text") {
-                    textContent.style.display = "block";
-                    contentUpdateLink.href = textSelect.value
-                        ? `http://localhost:8000//ru/text/${textSelect.value}/update/`
-                        : "";
-                } else if (selectedType === "video") {
-                    videoContent.style.display = "block";
-                    contentUpdateLink.href = videoSelect.value
-                        ? `http://localhost:8000//ru/video/${videoSelect.value}/update/`
-                        : "";
-                } else if (selectedType === "test") {
-                    testContent.style.display = "block";
-                    contentUpdateLink.href = testSelect.value
-                        ? `http://localhost:8000/ru/quiz_bim/test/${testSelect.value}/update/`
-                        : "";
-                } else {
-                    contentUpdateLink.href = "";
-                }
-            }
-
-            handleLessonTypeChange();
-            lessonType.addEventListener("change", handleLessonTypeChange);
-
-            textSelect.addEventListener("change", function () {
-                handleLessonTypeChange();
-            });
-
-            videoSelect.addEventListener("change", function () {
-                handleLessonTypeChange();
-            });
-
-            testSelect.addEventListener("change", function () {
-                handleLessonTypeChange();
-            });
-
-        });
-
-    </script>
+    <script src="{% static 'js/step_update.js' %}"></script>
 {% endblock %}

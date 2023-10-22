@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import widgets
+
 from quiz_bim.models.answer_bim import AnswerBim
 
 
@@ -13,3 +13,4 @@ class AnswerBimForm(forms.ModelForm):
             'is_correct': 'Верный ответ',
 
         }
+
