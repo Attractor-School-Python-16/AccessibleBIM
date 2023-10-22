@@ -32,8 +32,8 @@
                         {% else %}
                             <input disabled class="form-check-input answer-radio" type="radio" id="answer-{{ answer.id }}" name="question-{{ question.id }}" value="{{ answer.id }}">
                             {% if answer.is_correct %}
-                                <label class="form-check-label text-primary" for="answer-{{ answer.id }}">
-                                    {{ answer.answer }}
+                                <label class="form-check-label text-success" for="answer-{{ answer.id }}">
+                                    <u>{{ answer.answer }}</u>
                                 </label>
                             {% else %}
                                 <label class="form-check-label" for="answer-{{ answer.id }}">
