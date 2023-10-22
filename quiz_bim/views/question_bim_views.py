@@ -80,7 +80,7 @@ class QuestionBimFormDeleteView(View):
         question = QuestionBim.objects.get(id=kwargs['qpk'])
         if request.method == "POST":
             quiz = QuizBim.objects.get(id=kwargs['tpk'])
-            questions_quantity = quiz.questions_qty
+            questions_quantity = 0 if quiz.questions_qty == None else quiz.questions_qty
             questions_quantity -= 1
             quiz.questions_qty = questions_quantity
             quiz.save()
