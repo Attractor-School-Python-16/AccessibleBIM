@@ -134,6 +134,22 @@ class ChapterDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
     def get_success_url(self):
         return reverse("modules:coursemodel_detail", kwargs={"pk": self.object.course.pk})
 
+    def form_valid(self, form):
+        chapter = self.get_object()
+        course = chapter.course
+        response = super().form_valid(form)
+        self.update_serial_numbers(course)
+        return response
+
+    def update_serial_numbers(self, course):
+        chapters = ChapterModel.objects.filter(course=course).order_by('serial_number')
+        current_serial_number = 1
+        for chapter in chapters:
+            if chapter.serial_number != current_serial_number:
+                chapter.serial_number = current_serial_number
+                chapter.save()
+            current_serial_number += 1
+
 
 class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
     template_name = 'chapters/change_steps_order.html'
@@ -170,4 +186,4 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
                 step.serial_number = new_number
                 step.save()
 
-        return redirect('modules:chaptermodel_detail', pk=chapter.course.pk)
+        return redirect('modules:chaptermodel_detail', pk=kwargs['pk'])
