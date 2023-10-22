@@ -22,13 +22,16 @@ async function getDataByQueryParam(url, param){
 
 async function renderChart(type, name, param=7){
     let response = await getDataByQueryParam(chartUrlsByDays[name].url, param);
-    if (!response.error){
+    if (response.error){
+        $(chartUrlsByDays[name].div).text('Error occured while loading data');
+    }
+    else if (response.values.length===0){
+        $(chartUrlsByDays[name].div).text('No data to display');
+    }
+    else{
         let options = createChartOptions(type, response.labels, response.values);
         window.charts[name] = new ApexCharts(chartUrlsByDays[name].div, options);
         window.charts[name].render();
-    }
-    else{
-        $(chartUrlsByDays[name].div).text('Error occured while loading data');
     }
 }
 
