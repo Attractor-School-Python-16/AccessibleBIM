@@ -120,7 +120,7 @@ class CourseUserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
-        context['first_chapter'] = ChapterModel.objects.filter(course=self.object.id, serial_number=1)
+        context['first_chapter'] = ChapterModel.objects.get(course=self.object.id, serial_number=1)
         if self.request.user.is_authenticated:
             subscription = SubscriptionModel.objects.filter(course=self.object)
             if subscription:
