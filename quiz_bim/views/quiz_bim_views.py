@@ -62,7 +62,7 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
             htmx_form = form.save(commit=False)
             htmx_form.test_bim = self.object
             quiz = self.object
-            questions_quantity = quiz.questions_qty
+            questions_quantity =  0 if quiz.questions_qty == None else quiz.questions_qty
             questions_quantity += 1
             quiz.questions_qty = questions_quantity
             quiz.save()
