@@ -7,8 +7,7 @@ class QuizBimForm(forms.ModelForm):
 
     class Meta:
         model = QuizBim
-        fields = '__all__'
-        labels = {
-            'title': 'Тема тестирования',
-            'questions_qty': 'Количество вопросов в тесте',
+        fields = ['title']
+        widgets = {
+            'questions_qty': forms.NumberInput(attrs={'value': 0}),
         }

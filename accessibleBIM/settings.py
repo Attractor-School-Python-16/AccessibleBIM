@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+
+    'betterforms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

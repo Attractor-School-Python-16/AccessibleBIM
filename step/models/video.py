@@ -12,9 +12,9 @@ def video_upload_to(instance, filename):
 
 
 class VideoModel(AbstractModel):
-    video_title = models.CharField(max_length=250, blank=False, null=False, verbose_name="Наименование видео")
-    video_description = models.CharField(max_length=500, verbose_name="Описание видео")
-    video_file = models.FileField(upload_to=video_upload_to, blank=False, null=False, verbose_name="Файл видео")
+    video_title = models.CharField(max_length=250, blank=True, null=True, verbose_name="Наименование видео")
+    video_description = models.CharField(max_length=500, blank=True, null=True, verbose_name="Описание видео")
+    video_file = models.FileField(upload_to=video_upload_to, blank=True, null=True, verbose_name="Файл видео")
 
 
     def get_absolute_url(self):
