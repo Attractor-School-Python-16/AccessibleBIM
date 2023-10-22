@@ -6,7 +6,7 @@
     <div class="container">
         <form action="{% url "accounts:grant_moderator_panel" %}" method="get" class="d-flex mt-4" role="search">
             <input class="form-control me-2" type="search" name="search" placeholder="Поиск по Email адресу"
-                   aria-label="Search">
+                   aria-label="Search" value="{{ search_query }}">
             <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
         <hr style="margin: 35px 0;">
