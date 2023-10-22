@@ -18,7 +18,7 @@
                             </a>
                             <div class="postcard__text t-dark">
                                 <h1 class="postcard__title blue"><a
-                                        href="{% url 'static_pages:course_user_detail' course.id %}">{{ course.title }} </a>
+                                        href="{% url 'front:course_user_detail' course.id %}">{{ course.title }} </a>
                                 </h1>
                                 <div class="postcard__subtitle small">
                                     <time datetime="{{ course.update_at }}">
@@ -38,7 +38,7 @@
                                     <li class="tag__item"><i class="fas fa-clock mr-2"></i> {{ course.learnTime }} часов
                                     </li>
                                     <li class="tag__item play blue">
-                                        <a href="{% url 'static_pages:course_user_detail' course.id %}"><i
+                                        <a href="{% url 'front:course_user_detail' course.id %}"><i
                                                 class="fas fa-play mr-2"></i> Начать обучение</a>
                                     </li>
                                 </ul>

@@ -30,6 +30,7 @@ django-simple-captcha==0.5.18
 django-summernote==0.8.20.0
 django-timezone-field==6.0.1
 django-view-breadcrumbs==2.4.1
+django-widget-tweaks==1.5.0
 factory-boy==3.3.0
 Faker==19.3.1
 idna==3.4

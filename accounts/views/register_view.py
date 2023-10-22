@@ -17,7 +17,7 @@ from accounts.models import CustomUser
 
 def activate_email(request, user, to_email):
     mail_subject = _('Activate your user account')
-    message = render_to_string('accounts/email/verification_email.html', {
+    message = render_to_string('front/accounts/email/verification_email.html', {
         'user': user.get_full_name(),
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -49,7 +49,7 @@ def activate(request, uidb64, token):
 
 
 class RegisterView(CreateView):
-    template_name = 'accounts/register.html'
+    template_name = 'front/accounts/register.html'
     model = CustomUser
     form_class = RegisterForm
 
