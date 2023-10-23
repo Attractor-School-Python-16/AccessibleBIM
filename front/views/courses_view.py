@@ -39,15 +39,18 @@ class CoursesUserListView(ListView):
         return queryset
 
 
-class CourseUserDetailView(PermissionRequiredMixin, DetailView):
+class CourseUserDetailView(DetailView):
     model = CourseModel
     context_object_name = 'course'
     template_name = 'front/courses/course_detail.html'
     home_path = reverse_lazy('modules:moderator_page')
 
+    # Необходимо добавить проверку при просмотре купленного курса, если есть прогресс прохождения, то добавить ссылку
+    # перехода на последний шаг.
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
+        context['first_chapter'] = ChapterModel.objects.get(course=self.object.id, serial_number=1)
         if self.request.user.is_authenticated:
             subscription = SubscriptionModel.objects.filter(course=self.object)
             if subscription:
@@ -58,6 +61,6 @@ class CourseUserDetailView(PermissionRequiredMixin, DetailView):
                     context['user_subscription'] = user_subscription[0].is_active
         return context
 
-    def has_permission(self):
-        course = self.get_object()
-        return course.subscription.all()
+    # def has_permission(self):
+    #     course = self.get_object()
+    #     return course.subscription.all()

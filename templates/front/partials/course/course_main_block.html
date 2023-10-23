@@ -1,0 +1,17 @@
+<div class="col-md-6 d-flex align-items-center justify-content-center">
+    <div>
+        <h2>{{ data.title }}</h2>
+        <div>
+            <p>{{ data.description }}</p>
+            <p>Целевая аудитория курса: {{ data.courseTarget_id.title }}</p>
+            <p>Язык обучения: {{ data.language }}</p>
+            <p>Время обучения: {{ data.learnTime }} ч.</p>
+            <p>Преподаватели:</p>
+            {% for teacher in data.teachers.all %}
+                <p>{{ teacher.job_title }}, {{ teacher.corp }}</p>
+                <p>{{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
