@@ -49,12 +49,13 @@
                                                 <p class="text-medium-emphasis">Sign In to your account</p>
                                             {% endif %}
 
-                                            <label class="form-label">{{ form.username.label }}</label>
+
+                                            <label class="form-label">{{ form.username.label }}*</label>
                                             <div class="input-group input-group-outline">
                                                 {{ form.username }}
                                             </div>
 
-                                            <label class="form-label">{{ form.password.label }}</label>
+                                            <label class="form-label">{{ form.password.label }}*</label>
                                             <div class="input-group input-group-outline">
                                                 {{ form.password }}
                                             </div>
@@ -65,8 +66,10 @@
                                             </div>
                                         </form>
                                         <div class="text-center">
-                                            <a href="{% url 'accounts:password_reset' %}" class="btn btn-outline-info w-45">{% trans 'Forgot password' %}</a>
-                                            <a href="{% url 'accounts:register' %}" class="btn btn-outline-warning w-45">Register Now</a>
+                                            <a href="{% url 'accounts:password_reset' %}"
+                                               class="btn btn-outline-info w-45">{% trans 'Forgot password' %}</a>
+                                            <a href="{% url 'accounts:register' %}"
+                                               class="btn btn-outline-warning w-45">Register Now</a>
                                         </div>
                                     </div>
                                 </div>

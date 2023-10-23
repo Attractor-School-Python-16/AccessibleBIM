@@ -1,6 +1,5 @@
 {% extends "front/base.html" %}
-{% load widget_tweaks %}
-{% load i18n %}
+{% load widget_tweaks i18n %}
 
 {% block title %}{% trans 'Sign Up' %}{% endblock %}
 {% block page_nav %}
@@ -35,16 +34,20 @@
 
 
                                     {% for field in form %}
-                                        <label class="form-label mt-2">{{ field.label }}</label>
+                                        {% if field.field.required %}
+                                            <label class="form-label">{{ field.label }}*</label>
+                                        {% else %}
+                                            <label class="form-label">{{ field.label }}</label>
+                                        {% endif %}
                                         <div class="input-group input-group-outline">
                                             {{ field|attr:"class:form-control" }}
                                         </div>
                                         {% for error in field.errors %}
-                                            <div class="alert alert-danger" role="alert">
+                                            <div class="alert alert-danger text-white" role="alert">
                                                 {{ error }}
                                             </div>
                                             {% if form.non_field_errors %}
-                                                <div class="alert alert-danger" role="alert">
+                                                <div class="alert alert-danger text-white" role="alert">
                                                     {{ form.non_field_errors }}
                                                 </div>
                                             {% endif %}
@@ -55,7 +58,7 @@
                                                value="{{ redirect_field_value }}"/>
                                     {% endif %}
 
-                                    <button class="btn btn-block btn-success mt-3"
+                                    <button class="btn btn-block btn-success mt-4"
                                             type="submit">{% trans 'Sign Up' %}</button>
                                 </form>
                             </div>
