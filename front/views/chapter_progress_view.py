@@ -1,18 +1,18 @@
 from django.core.paginator import Paginator
-from django.http import Http404, HttpResponseNotFound
+from django.http import HttpResponseNotFound
 from django.views.generic import DetailView
 from modules.models import ChapterModel
 from modules.models.user_course_progress import UserCourseProgress
 from progress.models import ProgressTest
 from step.models import StepModel
 from subscription.models.user_subscription import UsersSubscription
-from modules.views.user_course_progress_view import create_user_course_progress
+from front.views.course_progress_view import create_user_course_progress
 
 
 class ChapterUserDetailView(DetailView):
     model = ChapterModel
     context_object_name = 'chapter'
-    template_name = 'chapters/chapter_user_detail_view.html'
+    template_name = 'front/chapter/chapter_user_detail_view.html'
     pk_url_kwarg = 'chapter_pk'
 
     # Проверка, что в главе сданы все тесты.

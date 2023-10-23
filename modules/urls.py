@@ -16,7 +16,6 @@ from modules.views.courses import CoursesListView, CourseCreateView, CourseDetai
 
 from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterDetailView, ChapterDeleteView, \
     ChapterUpdateView, ChapterChangeStepsOrderView
-from modules.views.user_chapter_progress_view import ChapterUserDetailView
 
 app_name = 'modules'
 
@@ -57,5 +56,4 @@ urlpatterns = [
     path('chapter/<int:pk>/delete/', ChapterDeleteView.as_view(), name="chaptermodel_delete"),
     path('chapter/<int:pk>/change_steps_order', ChapterChangeStepsOrderView.as_view(),
          name="change_steps_order"),
-    path('user_chapter/<int:chapter_pk>/', ChapterUserDetailView.as_view(), name="chaptermodel_user_detail")
 ]

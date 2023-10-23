@@ -4,27 +4,36 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-
-                <div class="d-inline-block ms-5">
-                    {% include 'partials/course/course_main_block.html' with data=course %}
-                    {% if request.user.is_authenticated %}
-                        {% if user_subscription %}
-                            <a href="{% url 'modules:chaptermodel_user_detail' first_chapter.pk %}?page=1" class="btn btn-primary my-3">Начать курс</a>
+            <!-- Card image -->
+            <div class="card-header p-0 position-relative z-index-2">
+                <img class="border-radius-lg w-100"
+                     src="https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+                     alt="Image placeholder">
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row g-0">
+                        {% include 'front/partials/course/course_main_block.html' with data=course %}
+                        {% include 'front/partials/course/chapter_accordion.html' with data=course %}
+                        {% if request.user.is_authenticated %}
+                            {% if user_subscription %}
+                                <a href="{% url 'front:chaptermodel_user_detail' first_chapter.pk %}?page=1"
+                                   class="btn btn-primary my-3">Начать курс</a>
+                            {% else %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
+                                <br>
+                                <a href="#" class="btn btn-primary my-3">Купить курс</a>
+                            {% endif %}
                         {% else %}
                             {% get_current_language as LANGUAGE_CODE %}
                             Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
                             <br>
-                            <a href="#" class="btn btn-primary my-3">Купить курс</a>
+                            <a href="{% url "accounts:login" %}" class="btn btn-primary my-3">Купить курс</a>
                         {% endif %}
-                    {% else %}
-                        {% get_current_language as LANGUAGE_CODE %}
-                        Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
-                        <br>
-                        <a href="{% url "accounts:login" %}" class="btn btn-primary my-3">Купить курс</a>
-                    {% endif %}
+                    </div>
                 </div>
-                {% include 'partials/course/chapter_accordion.html' with data=course %}
             </div>
         </div>
     </div>

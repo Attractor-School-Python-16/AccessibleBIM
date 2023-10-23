@@ -1,0 +1,23 @@
+<div class="col-md-6 d-flex justify-content-center">
+    <div class="accordion" id="accordionExample">
+        <h2>Содержание курса {{ chapter.serial_number }}: {{ chapter.title }}</h2>
+        {% for chapter in chapters|dictsort:"serial_number" %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapse{{ chapter.pk }}" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapse{{ chapter.pk }}">
+                        <h4>Раздел {{ chapter.serial_number }}: {{ chapter.title }}</h4>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapse{{ chapter.pk }}" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        {% for step in chapter.step.all %}
+                            <h5>{{ step.title }}</h5>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
