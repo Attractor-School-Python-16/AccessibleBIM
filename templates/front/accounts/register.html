@@ -1,11 +1,9 @@
 {% extends "front/base.html" %}
-{% load socialaccount %}
-{% load crispy_forms_filters %}
-{% load i18n %}
+{% load widget_tweaks socialaccount i18n %}
 
 {% block title %}{% trans 'Registration' %}{% endblock %}
 {% block page_nav %}
-    {% include 'front/partials/navbar.html' %}
+    {% include 'front/partials/navbar.html' with text="text-dark" %}
 {% endblock %}
 {% block page_header %}{% endblock %}
 {% block card-container %}
@@ -29,16 +27,28 @@
                                         <p class="text-medium-emphasis">Create your account</p>
                                     {% endif %}
                                     {% for field in form %}
-                                        {{ field|as_crispy_field }}
+                                        {% if field.field.required %}
+                                            <label class="form-label">{{ field.label }}*</label>
+                                        {% else %}
+                                            <label class="form-label">{{ field.label }}</label>
+                                        {% endif %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-danger text-white" role="alert">
+                                                {{ error }}
+                                            </div>
+                                        {% endfor %}
+                                        <div class="input-group input-group-outline">
+                                            {{ field|attr:"class:form-control" }}
+                                        </div>
                                     {% endfor %}
-                                    <button class="btn btn-block btn-success"
+                                    <button class="btn btn-block btn-success mt-2"
                                             type="submit">{% trans 'Register' %}</button>
-                                </form>
-                                <form action="{% provider_login_url 'google' %}" method="post" novalidate>
-                                    {% csrf_token %}
-                                    <button class="btn btn-outline-primary mt-3" role="button">
+                                    <button form="google" class="btn btn-outline-primary mt-2" role="button">
                                         <i class="bi bi-google"></i> Signup with Google
                                     </button>
+                                </form>
+                                <form action="{% provider_login_url 'google' %}" id="google" method="post" novalidate>
+                                    {% csrf_token %}
                                 </form>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 {% extends "front/base.html" %}
-{% load crispy_forms_filters socialaccount i18n static %}
+{% load i18n static %}
 
 {% block title %}{% trans 'Login' %}{% endblock %}
 
@@ -10,29 +10,25 @@
 {% block page_header %}
 {% endblock %}
 {% block page_nav %}
-    {% include 'front/partials/navbar.html' %}
+    {% include 'front/partials/navbar.html' with text="text-dark" %}
 {% endblock %}
-{% block card-container %}
-    <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+{% block content %}
+    <div class="min-vh-50 d-flex flex-row align-items-center">
         <div class="container">
-            {% block content %}
-                <div class="min-vh-50 d-flex flex-row align-items-center">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="card-group d-block d-md-flex row">
-                                    <div class="card col-md-7 p-4 mb-0">
-                                        {% blocktrans with email=email %}
-                                            Email was sent to {{ email }}. Please check your mailbox and verify your
-                                            email address.
-                                        {% endblocktrans %}
-                                    </div>
-                                </div>
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card-group d-block d-md-flex row">
+                        <div class="card col-md-7 p-4 mb-0">
+                            {% blocktrans with email=email %}
+                                Email was sent to {{ email }}. Please check your mailbox and verify your
+                                email address.
+                            {% endblocktrans %}
                         </div>
                     </div>
                 </div>
-            {% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}
+</div>
+</div>
