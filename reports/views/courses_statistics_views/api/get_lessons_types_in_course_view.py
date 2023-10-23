@@ -6,7 +6,7 @@ from step.models import StepModel
 
 
 @permission_required('accounts.can_view_course_statistics')
-def get_lesson_types_view(request, *args, **kwargs):
+def get_lesson_types_in_course_view(request, *args, **kwargs):
     if request.method == "GET":
         result = {
             'error': False,
@@ -15,7 +15,10 @@ def get_lesson_types_view(request, *args, **kwargs):
             'values': []
         }
 
-        results_from_db = StepModel.objects.values('lesson_type').annotate(lessons_qty=Count('lesson_type'))
+        course_pk = request.GET.get('course')
+
+        results_from_db = StepModel.objects.filter(chapter__course__pk=course_pk).values('lesson_type').annotate(
+            lessons_qty=Count('lesson_type'))
         for record in results_from_db:
             result['labels'].append(record['lesson_type'])
             result['values'].append(record['lessons_qty'])
