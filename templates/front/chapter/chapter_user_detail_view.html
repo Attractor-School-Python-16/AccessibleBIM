@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'front/base.html' %}
 {% load view_breadcrumbs %}
 {% load i18n %}
 {% load currency_price %}
@@ -7,10 +7,10 @@
     <div class="container">
     <div class="row">
         <div class="col-md-3">
-                {% include 'partials/../front/partials/chapter/chapter_sidebar_navigation.html' %}
+                {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
         </div>
         <div class="col-md-9">
-            {% include 'partials/../front/partials/chapter/chapter_user_step.html' %}
+            {% include 'front/partials/chapter/chapter_user_step.html' %}
             <h2>Глава {{ chapter.serial_number }}. {{ chapter.title }}</h2>
             <p>{{ chapter.description }}</p>
 
@@ -41,7 +41,7 @@
                   <li><a href="?page={{ page_obj.next_page_number }}">Следующий урок</a></li>
                 {% else %}
                     {% if next_chapter %}
-                        <li><a href="{% url 'modules:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">Следующая глава</a></li>
+                        <li><a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">Следующая глава</a></li>
                     {% endif %}
                 {% endif %}
             {% endif %}

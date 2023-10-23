@@ -31,7 +31,7 @@
                         <div id="panelsStayOpen-collapse{{ opened_chapter.serial_number }}" class="accordion-collapse collapse show">
                           <div class="accordion-body">
                               {% for chapter_step in opened_chapter.step.all|dictsort:"serial_number" %}
-                                  <a class="link-primary link-underline-opacity-0" aria-current="page" href="{% url 'modules:chaptermodel_user_detail' chapter_pk=opened_chapter.pk %}?page={{ chapter_step.serial_number }}">Урок {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
+                                  <a class="link-primary link-underline-opacity-0" aria-current="page" href="{% url 'front:chaptermodel_user_detail' chapter_pk=opened_chapter.pk %}?page={{ chapter_step.serial_number }}">Урок {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
                                   <br>
                               {% endfor %}
                           </div>
