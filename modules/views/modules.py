@@ -13,8 +13,7 @@ class HomeView(TemplateView):
 
 class ModeratorView(PermissionRequiredMixin, TemplateView):
     template_name = 'moderator_page.html'
-    def has_permission(self):
-        return self.request.user.groups.filter(name='moderators').exists()
+    permission_required = 'accounts.can_view_admin_panel'
 
 
 class ModulesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
