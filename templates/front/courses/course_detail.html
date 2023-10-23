@@ -10,7 +10,7 @@
                     {% include 'partials/course/course_main_block.html' with data=course %}
                     {% if request.user.is_authenticated %}
                         {% if user_subscription %}
-                            <a href="#" class="btn btn-primary my-3">Начать курс</a>
+                            <a href="{% url 'modules:chaptermodel_user_detail' first_chapter.pk %}?page=1" class="btn btn-primary my-3">Начать курс</a>
                         {% else %}
                             {% get_current_language as LANGUAGE_CODE %}
                             Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
