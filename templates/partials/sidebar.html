@@ -1,123 +1,135 @@
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-column">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Модули
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:modulemodel_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:modulemodel_list' %}">Список модулей</a></li>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                Модули</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:modulemodel_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:modulemodel_list' %}"><span
+                        class="nav-icon"></span> Список модулей</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Учителя
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:teachermodel_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:teachermodel_list' %}">Список учителей</a></li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                Учителя</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:teachermodel_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:teachermodel_list' %}"><span
+                        class="nav-icon"></span> Список учителей</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                ЦА курса
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'modules:coursetargetmodel_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'modules:coursetargetmodel_list' %}">Список ЦА</a></li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                ЦА курса</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:coursetargetmodel_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:coursetargetmodel_list' %}"><span
+                        class="nav-icon"></span> Список ЦА</a></li>
             </ul>
         </li>
-{#        <li class="nav-item dropdown">#}
-{#            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                Курсы#}
-{#            </a>#}
-{#            <ul class="dropdown-menu">#}
-{#                <li><a class="dropdown-item" href="{% url 'modules:course_create' %}">Создать</a></li>#}
-{#                <li><a class="dropdown-item" href="{% url 'modules:courses_list' %}">Список курсов</a></li>#}
-{#            </ul>#}
-{#        </li>#}
-{#        <li class="nav-item dropdown">#}
-{#            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                Главы#}
-{#            </a>#}
-{#            <ul class="dropdown-menu">#}
-{#                <li><a class="dropdown-item" href="{% url 'modules:chapter_create' %}">Создать</a></li>#}
-{#                <li><a class="dropdown-item" href="{% url 'modules:chapters_list' %}">Список глав</a></li>#}
-{#            </ul>#}
-{#        </li>#}
-{#        <li class="nav-item dropdown">#}
-{#            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                Занятия#}
-{#            </a>#}
-{#            <ul class="dropdown-menu">#}
-{#                <li><a class="dropdown-item" href="{% url 'step:step_create' %}">Создать</a></li>#}
-{#                <li><a class="dropdown-item" href="{% url 'step:step_list' %}">Список занятий</a></li>#}
-{#            </ul>#}
-{#        </li>#}
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Файлы
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'step:filemodel_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'step:filemodel_list' %}">Список файлов</a></li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                Файлы</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_list' %}"><span
+                        class="nav-icon"></span> Список файлов</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Видео
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'step:videomodel_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'step:videomodel_list' %}">Список видео</a></li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                Видео</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_list' %}"><span
+                        class="nav-icon"></span> Список видео</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Тексты
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'step:textmodel_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'step:textmodel_list' %}">Список текстов</a></li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                Тексты</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_list' %}"><span
+                        class="nav-icon"></span> Список текстов</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Тесты
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'quiz_bim:quizbim_list' %}">Список тестов</a></li>
-                <li><a class="dropdown-item" href="{% url 'quiz_bim:quizbim_create' %}">Создать</a></li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                Тесты</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}"><span
+                        class="nav-icon"></span> Список тестов</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Подписки
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'subscription:subscriptionmodel_create' %}">Создать</a></li>
-                <li><a class="dropdown-item" href="{% url 'subscription:subscriptionmodel_user_list' %}">Выдача подписки
-                    юзеру</a></li>
-                <li><a class="dropdown-item" href="{% url 'subscription:subscriptionmodel_list' %}">Список подписок</a></li>
+        <li class="nav-group">
+            <a class="nav-link nav-group-toggle" href="#">
+                <svg class="nav-icon">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                </svg>
+                Подписки</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_create' %}"><span
+                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="{% url 'subscription:subscriptionmodel_user_list' %}"><span
+                        class="nav-icon"></span> Выдача подписки
+                    пользователю</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_list' %}"><span
+                        class="nav-icon"></span> Список подписок</a></li>
             </ul>
         </li>
         {% if perms.accounts.can_view_user_statistics or perms.accounts.can_view_course_statistics or perms.accounts.can_view_sales_statistics %}
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Статистика
-            </a>
-            <ul class="dropdown-menu">
-                {% if perms.accounts.can_view_user_statistics %}
-                    <li><a class="dropdown-item" href="{% url 'reports:stats_users_main' %}">Пользователи</a></li>
-                {% endif %}
-                {% if perms.accounts.can_view_course_statistics %}
-                    <li><a class="dropdown-item" href="{% url 'reports:stats_courses_main' %}">Курсы</a></li>
-                {% endif %}
-                {% if perms.accounts.can_view_sales_statistics %}
-                    <li><a class="dropdown-item" href="{% url 'reports:stats_sales_main' %}">Продажи</a></li>
-                {% endif %}
-            </ul>
-        </li>
+            <li class="nav-group">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+                    </svg>
+                    Статистика</a>
+                <ul class="nav-group-items">
+                    {% if perms.accounts.can_view_user_statistics %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}"><span
+                                class="nav-icon"></span> Пользователи</a></li>
+                    {% endif %}
+                    {% if perms.accounts.can_view_course_statistics %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}"><span
+                                class="nav-icon"></span>Курсы</a></li>
+                    {% endif %}
+                    {% if perms.accounts.can_view_sales_statistics %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}"><span
+                                class="nav-icon"></span> Продажи</a></li>
+                    {% endif %}
+                </ul>
+            </li>
         {% endif %}
     </ul>
 </div>
