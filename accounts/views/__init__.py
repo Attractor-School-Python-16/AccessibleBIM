@@ -1,4 +1,4 @@
-from accounts.views.register_view import RegisterView
+from accounts.views.register_view import RegisterView, MySocialAccountAdapter
 from accounts.views.profile_view import ProfileView
 from accounts.views.password_update_view import PasswordUpdateView
 from accounts.views.password_update_done_view import PasswordUpdateDoneView
