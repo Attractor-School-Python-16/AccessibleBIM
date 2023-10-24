@@ -42,7 +42,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.email_verified = True
         user.save()
-        login(request, user)
+        login(request, user, backend='accounts.backends.EmailBackend')
         return redirect('accounts:profile')
     else:
         return redirect('accounts:invalid_verification_link')
