@@ -1,132 +1,161 @@
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+    <div class="sidebar-brand d-none d-md-flex">
+        <a href="{% url 'modules:moderator_page' %}" class="link-secondary" style="text-decoration: none">
+            <h3>AccessibleBIM</h3>
+        </a>
+    </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-brands fa-bimobject"></i>
                 Модули</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'modules:modulemodel_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'modules:modulemodel_list' %}"><span
-                        class="nav-icon"></span> Список модулей</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:modulemodel_create' %}">
+                        <span class="nav-icon"></span>
+                        Создать</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:modulemodel_list' %}">
+                    <span class="nav-icon"></span>
+                    Список модулей</a>
+                </li>
             </ul>
         </li>
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-solid fa-chalkboard-user"></i>
                 Учителя</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'modules:teachermodel_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'modules:teachermodel_list' %}"><span
-                        class="nav-icon"></span> Список учителей</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:teachermodel_create' %}">
+                        <span class="nav-icon"></span>
+                        Создать</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:teachermodel_list' %}">
+                        <span class="nav-icon"></span>
+                        Список учителей</a>
+                </li>
             </ul>
         </li>
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-solid fa-graduation-cap"></i>
                 ЦА курса</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'modules:coursetargetmodel_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'modules:coursetargetmodel_list' %}"><span
-                        class="nav-icon"></span> Список ЦА</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:coursetargetmodel_create' %}">
+                        <span class="nav-icon"></span>
+                        Создать</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:coursetargetmodel_list' %}">
+                        <span class="nav-icon"></span>
+                        Список ЦА</a>
+                </li>
             </ul>
         </li>
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-regular fa-file"></i>
                 Файлы</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_list' %}"><span
-                        class="nav-icon"></span> Список файлов</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_create' %}">
+                    <span class="nav-icon"></span>
+                    Создать</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_list' %}">
+                    <span class="nav-icon"></span>
+                    Список файлов</a><
+                    </li>
             </ul>
         </li>
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-brands fa-youtube"></i>
                 Видео</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_list' %}"><span
-                        class="nav-icon"></span> Список видео</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_create' %}">
+                    <span class="nav-icon"></span>
+                    Создать</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_list' %}">
+                    <span class="nav-icon"></span>
+                    Список видео</a>
+                </li>
             </ul>
         </li>
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-regular fa-pen-to-square"></i>
                 Тексты</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_list' %}"><span
-                        class="nav-icon"></span> Список текстов</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_create' %}">
+                    <span class="nav-icon"></span>
+                    Создать</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_list' %}">
+                    <span class="nav-icon"></span>
+                    Список текстов</a>
+                </li>
             </ul>
         </li>
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-regular fa-square-check"></i>
                 Тесты</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}">
+                    <span class="nav-icon"></span>
+                    Создать</a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}"><span
                         class="nav-icon"></span> Список тестов</a></li>
             </ul>
         </li>
-        <li class="nav-group">
+        <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
-                <svg class="nav-icon">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                </svg>
+                <i class="nav-icon fa-solid fa-person-circle-check"></i>
                 Подписки</a>
             <ul class="nav-group-items">
-                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_create' %}"><span
-                        class="nav-icon"></span> Создать</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_create' %}">
+                    <span class="nav-icon"></span>
+                    Создать</a>
+                </li>
                 <li class="nav-item"><a class="nav-link"
-                                        href="{% url 'subscription:subscriptionmodel_user_list' %}"><span
-                        class="nav-icon"></span> Выдача подписки
-                    пользователю</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_list' %}"><span
-                        class="nav-icon"></span> Список подписок</a></li>
+                                        href="{% url 'subscription:subscriptionmodel_user_list' %}">
+                    <span class="nav-icon"></span>
+                    Выдача подписки</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_list' %}">
+                    <span class="nav-icon"></span>
+                    Список подписок</a>
+                </li>
             </ul>
         </li>
         {% if perms.accounts.can_view_user_statistics or perms.accounts.can_view_course_statistics or perms.accounts.can_view_sales_statistics %}
-            <li class="nav-group">
+            <li class="nav-group my-2">
                 <a class="nav-link nav-group-toggle" href="#">
-                    <svg class="nav-icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-                    </svg>
+                    <i class="nav-icon fa-solid fa-chart-simple"></i>
                     Статистика</a>
                 <ul class="nav-group-items">
                     {% if perms.accounts.can_view_user_statistics %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}"><span
-                                class="nav-icon"></span> Пользователи</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}">
+                            <span class="nav-icon"></span>
+                            Пользователи</a>
+                        </li>
                     {% endif %}
                     {% if perms.accounts.can_view_course_statistics %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}"><span
-                                class="nav-icon"></span>Курсы</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}">
+                            <span class="nav-icon"></span>
+                            Курсы</a>
+                        </li>
                     {% endif %}
                     {% if perms.accounts.can_view_sales_statistics %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}"><span
-                                class="nav-icon"></span> Продажи</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}">
+                            <span class="nav-icon"></span>
+                            Продажи</a>
+                        </li>
                     {% endif %}
                 </ul>
             </li>
