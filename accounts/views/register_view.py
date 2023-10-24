@@ -64,7 +64,7 @@ class RegisterView(CreateView):
 
 class MySocialAccountAdapter(DefaultSocialAccountAdapter):
     def pre_social_login(self, request, sociallogin):
-        user = CustomUser.objects.get(email=sociallogin.user.email)
+        user = CustomUser.objects.filter(email=sociallogin.user.email).first()
         if user and not sociallogin.is_existing:
             sociallogin.connect(request, user)
             user.email_verified = True
