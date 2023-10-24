@@ -1,3 +1,4 @@
+from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.contrib.auth import login, get_user_model
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -59,3 +60,10 @@ class RegisterView(CreateView):
         user.email_verified = False
         user.save()
         return activate_email(self.request, user, form.cleaned_data.get('email'))
+
+
+class MySocialAccountAdapter(DefaultSocialAccountAdapter):
+    def pre_social_login(self, request, sociallogin):
+        user = CustomUser.objects.get(email=sociallogin.user.email)
+        if user and not sociallogin.is_existing:
+            sociallogin.connect(request, user)
