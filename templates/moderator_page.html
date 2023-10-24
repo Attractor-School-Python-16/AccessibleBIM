@@ -6,14 +6,16 @@
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
         <header class="header header-sticky mb-4">
             <div class="container-fluid">
-{#                <button class="header-toggler px-md-0 me-md-3" type="button"#}
-{#                        onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">#}
-{#                </button>#}
+                <button class="header-toggler px-md-0 me-md-3" type="button"
+                        onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                    <i class="icon icon-lg fa-solid fa-bars"></i>
+                </button>
                 <ul class="header-nav d-none d-md-flex">
                     <li class="nav-item"><a class="nav-link" href="{% url 'modules:index' %}">На главную</a></li>
                     {% if perms.accounts.can_grant_moderator_role %}
-                    	<li class="nav-item">
-                            <a href="{% url 'accounts:grant_moderator_panel' %}" class="nav-link active">Выдача модераторов</a>
+                        <li class="nav-item">
+                            <a href="{% url 'accounts:grant_moderator_panel' %}" class="nav-link active">Выдача
+                                модераторов</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -55,11 +57,10 @@
             <div class="header-divider"></div>
         </header>
         <div class="body flex-grow-1 px-3">
-            <h1>Инструкция по редактированию контента</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet architecto autem blanditiis cum
-                distinctio dolor ducimus eius ex fuga hic illum incidunt laborum, magni maiores maxime mollitia
-                nihil nulla officia, possimus quam ratione recusandae sint tempore veritatis voluptates. Adipisci
-                atque distinctio dolorem fuga, id iusto molestias omnis quibusdam soluta tenetur.</p>
+            <div class="container-lg">
+                {% block moderator_interface %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}
