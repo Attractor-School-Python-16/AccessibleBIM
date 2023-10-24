@@ -67,3 +67,5 @@ class MySocialAccountAdapter(DefaultSocialAccountAdapter):
         user = CustomUser.objects.get(email=sociallogin.user.email)
         if user and not sociallogin.is_existing:
             sociallogin.connect(request, user)
+            user.email_verified = True
+            user.save()
