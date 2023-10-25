@@ -82,6 +82,7 @@ function createAreaChartOptions(labels, values){
         chart: {
             fontFamily: 'inherit',
             type: 'area',
+            height: '100%'
         },
         xaxis: {
             type: 'datetime',
@@ -102,6 +103,7 @@ function createBarChartOptions(labels, values){
         chart: {
             fontFamily: 'inherit',
             type: 'bar',
+            height: '100%'
         },
         xaxis: {
             categories: labels

@@ -31,57 +31,14 @@
                     </div>
                 </div>
 
-                    <!--New subscriptions chart-->
-                    <div class="row g-5 g-xl-8">
-                        <div class="col-xl-6">
-                            <div class="card card-xl-stretch mb-xl-8">
-                                <div class="card-header border-0 pt-5">
-                                    <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold fs-3 mb-1">Новые подписки</span>
-                                    </h3>
-                                    <div class="card-toolbar">
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4
-                                        me-1 new-subscriptions-chart-btn" data-days="7">Неделя</a>
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1
-                                        new-subscriptions-chart-btn" data-days="30">Месяц</a>
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4
-                                        new-subscriptions-chart-btn" data-days="180">Пол года</a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="new-subscriptions-chart" style="height: 350px"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!--New subscriptions chart-->
+                {% include 'partials/statistics/chart_by_period.html' with title='Новые подписки' btn_class='new-subscriptions-chart-btn' chart_id='new-subscriptions-chart' %}
 
-                    <!--Popular courses chart-->
-                    <div class="row g-5 g-xl-8">
-                        <div class="col-xl-6">
-                            <div class="card card-xl-stretch mb-xl-8">
-                                <div class="card-header border-0 pt-5">
-                                    <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold fs-3 mb-1">Популярные курсы</span>
-                                    </h3>
-                                    <div class="card-toolbar">
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4
-                                        me-1 popular-courses-chart-btn" data-days="7">Неделя</a>
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1
-                                        popular-courses-chart-btn" data-days="30">Месяц</a>
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4
-                                        popular-courses-chart-btn" data-days="180">Пол года</a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="popular-courses-chart" style="height: 350px"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                <!--Popular courses chart-->
+                {% include 'partials/statistics/chart_by_period.html' with title='Популярные курсы' btn_class='popular-courses-chart-btn' chart_id='popular-courses-chart' %}
 
             </div>
+
         </div>
     </div>
 
