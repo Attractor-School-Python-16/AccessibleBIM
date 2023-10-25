@@ -1,27 +1,20 @@
-{% extends 'base.html' %}
-{% load static view_breadcrumbs %}
-{% block title %}Удаление ЦА{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <p class="card-text">Вы точно хотите удалить ЦА:<span
-                        class="text-danger"> {{ course_target.title }}</span>
-                </p>
+{% extends 'moderator_page.html' %}
+{% load view_breadcrumbs %}
+{% block title %}Удалить ЦА{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+                <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Вы точно хотите удалить целевую аудиторию:<span
+                            class="text-danger"> {{ course_target.title }}</span>?
+                    </p>
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="btn-group" role="group">
-                        <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
-                    </div>
-                    <a class="btn btn-primary" href="{% url "modules:coursetargetmodel_list" %}">Нет</a>
+                        <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                    <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}">Нет</a>
                 </form>
             </div>
-        </div>
-    </div>
+                </div>
 {% endblock %}
