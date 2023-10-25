@@ -9,9 +9,9 @@
         <div class="card-body">
             {% include 'partials/main_block.html' with data=course %}
             <div class="d-flex justify-content-end">
-                <a href="{% url 'modules:modulemodel_update' course.id %}"
+                <a href="{% url 'modules:coursemodel_update' course.id %}"
                    class="btn btn-info btn-sm mx-3">Изменить</a>
-                <a href="{% url 'modules:modulemodel_delete' course.id %}"
+                <a href="{% url 'modules:coursemodel_delete' course.id %}"
                    class="btn btn-danger btn-sm" style="margin-right: 0.8rem">Удалить</a>
             </div>
         </div>
