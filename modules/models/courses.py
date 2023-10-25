@@ -26,12 +26,12 @@ class CourseModel(AbstractModel):
     image = models.ImageField(null=False, blank=False, upload_to=courses_upload_to, verbose_name='Фото для курса')
     module_id = models.ForeignKey('modules.ModuleModel', related_name='courses', on_delete=models.CASCADE)
     courseTarget_id = models.ForeignKey('modules.CourseTargetModel', related_name='courses',
-                                        on_delete=models.DO_NOTHING)
+                                        on_delete=models.DO_NOTHING, verbose_name='Целевая аудитория курса')
     language = models.CharField(max_length=10, choices=TypeChoices.choices, blank=False, null=False,
                                    verbose_name='Язык занятия')
     learnTime = models.IntegerField(null=False, blank=False, default=0, verbose_name='Время на прохождение курса (часы)')
     teachers = models.ManyToManyField(TeacherModel, related_name='courses', through=CourseTeacherModel,
-                                      through_fields=('ct_course', 'ct_teacher'))
+                                      through_fields=('ct_course', 'ct_teacher'), verbose_name='Преподаватели курса')
 
     class Meta:
         db_table = 'course'
