@@ -1,43 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}Список ЦА{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
+{% block title %}Модули{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header">
                 <h1>Список целевых аудиторий</h1>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Название</th>
-                        <th>Действия</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for course_target in course_targets %}
-                        <tr>
-                            <td>{{ course_target.id }}</td>
-                            <td>
-                                <a href="{% url 'modules:coursetargetmodel_detail' course_target.id %}">{{ course_target.title }}
-                                </a></td>
-                            <td>
-                                <a href="{% url 'modules:coursetargetmodel_update' course_target.id %}" class="btn btn-info
-                                btn-sm">Изменить</a>
-                                <a href="{% url 'modules:coursetargetmodel_delete' course_target.id %}" class="btn btn-danger
-                                btn-sm">Удалить</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
             </div>
+        <a href="{% url 'modules:coursetargetmodel_create' %}" class="btn btn-primary my-3">Добавить целевую
+            аудиторию</a>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th class="text-end">Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for course_target in course_targets %}
+                    <tr>
+                        <td>{{ course_target.id }}</td>
+                        <td>
+                            <a href="{% url 'modules:coursetargetmodel_detail' course_target.id %}">{{ course_target.title }}
+                            </a></td>
+                        <td class="text-end">
+                            <a href="{% url 'modules:coursetargetmodel_update' course_target.id %}" class="btn btn-info
+                                btn-sm">Изменить</a>
+                            <a href="{% url 'modules:coursetargetmodel_delete' course_target.id %}" class="btn btn-danger
+                                btn-sm">Удалить</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}
