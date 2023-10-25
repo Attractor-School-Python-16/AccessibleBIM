@@ -12,56 +12,24 @@
             </div>
 
             <div class="col-md-9">
+
                 <div class="row g-5 g-xl-8">
                     <div class="col-xl-6">
-                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
-                            <div class="card-body">
-                                <i class="fa-solid fa-users text-gray-100 fs-2 ms-n1"></i>
-                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ subscriptions_ttl_qty }}</div>
-                                <div class="fw-semibold text-gray-100">Количество подписок</div>
-                            </div>
-                        </div>
+                        {% include 'partials/statistics/statistics_card.html' with score=subscriptions_ttl_qty title='Количество подписок' icon='<i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>' %}
                     </div>
-
                     <div class="col-xl-6">
-                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
-                            <div class="card-body">
-                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>
-                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ active_subscriptions_qty }}</div>
-                                <div class="fw-semibold text-gray-100">Количество активных подписок</div>
-                            </div>
-                        </div>
+                        {% include 'partials/statistics/statistics_card.html' with score=active_subscriptions_qty title='Количество активных подписок' icon='<i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>' %}
                     </div>
-
                     <div class="col-xl-4">
-                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
-                            <div class="card-body">
-                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>
-                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ min_course_price|floatformat:2 }} USD</div>
-                                <div class="fw-semibold text-gray-100">Минимальная стоимость курса</div>
-                            </div>
-                        </div>
+                        {% include 'partials/statistics/statistics_card.html' with score=min_course_price|floatformat:2 title='Минимальная стоимость курса' icon='<i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>' %}
                     </div>
-
                     <div class="col-xl-4">
-                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
-                            <div class="card-body">
-                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>
-                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ avg_course_price|floatformat:2 }} USD</div>
-                                <div class="fw-semibold text-gray-100">Средняя стоимость курса</div>
-                            </div>
-                        </div>
+                        {% include 'partials/statistics/statistics_card.html' with score=avg_course_price|floatformat:2 title='Средняя стоимость курса' icon='<i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>' %}
                     </div>
-
                     <div class="col-xl-4">
-                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
-                            <div class="card-body">
-                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>
-                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ max_course_price|floatformat:2 }} USD</div>
-                                <div class="fw-semibold text-gray-100">Максимальная стоимость курса</div>
-                            </div>
-                        </div>
+                        {% include 'partials/statistics/statistics_card.html' with score=max_course_price|floatformat:2 title='Максимальная стоимость курса' icon='<i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>' %}
                     </div>
+                </div>
 
                     <!--New subscriptions chart-->
                     <div class="row g-5 g-xl-8">
