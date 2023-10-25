@@ -1,23 +1,15 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}Создание модуля{% endblock %}
-{% block content %}
+{% block title %}Создать модуль{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-
-            {% block breadcrumbs %}
-                {% render_breadcrumbs %}
-            {% endblock %}
+        <div class="card">
+            <div class="card-body">
                 <h1>Создание модуля</h1>
-                <div class="container">
-                    <div class="col">
-                        {% include "partials/form.html" with button_text="Создать" %}
-                    </div>
-                </div>
+                {% include "partials/form.html" with button_text="Создать" %}
             </div>
         </div>
     </div>
