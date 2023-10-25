@@ -1,6 +1,6 @@
 {% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}Удалить модуль{% endblock %}
+{% block title %}{{ module.title }}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -12,7 +12,7 @@
                 <a href="{% url 'modules:modulemodel_update' module.id %}"
                    class="btn btn-info btn-sm mx-3">Изменить</a>
                 <a href="{% url 'modules:modulemodel_delete' module.id %}"
-                   class="btn btn-danger btn-sm">Удалить</a>
+                   class="btn btn-danger btn-sm " style="margin-right: 0.8rem">Удалить</a>
             </div>
         </div>
     </div>
