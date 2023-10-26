@@ -1,24 +1,35 @@
-{% extends 'base.html' %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <h3>Вы уверены, что хотите удалить тест "{{ test.title }}"?</h3>
-                <form action="" method="post">
+{% block title %}Удалить тест{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+                <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Вы точно хотите удалить тест:<span
+                            class="text-danger"> {{ test.title }}</span>?
+                    </p>
+                <form method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger mt-3">Да</button>
+                        <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                    <a href="#" class="btn btn-secondary
+                    mx-3"  id="cancel-button">Нет</a>
                 </form>
-                <a href="{% url "quiz_bim:quizbim_list" %}">
-                    <button type="submit" class="btn btn-primary mt-3">Нет</button>
-                </a>
             </div>
-        </div>
-    </div>
+                </div>
+    <script>
+        document.getElementById("cancel-button").addEventListener("click", function (e) {
+            e.preventDefault();
+            {#Получаем URL предыдущей страницы#}
+            let previousUrl = document.referrer;
+            {#Если URL предыдущей страницы существует, идет редирект на нее#}
+            if (previousUrl) {
+                window.location.href = previousUrl;
+            } else {
+                {#В противном случае, редирект на индекс#}
+                window.location.href = "{% url 'modules:moderator_page' %}";
+            }
+        });
+    </script>
 {% endblock %}
