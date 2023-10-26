@@ -1,23 +1,18 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}
-    Просмотр файла
-{% endblock %}
-{% block content %}
+{% block title %}Просмотр текста{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
     {% if request.user.is_authenticated %}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    {% include 'partials/sidebar.html' %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <h2>Файл: {{ file.file_title }}</h2>
                 </div>
-                <div class="col-md-9">
-                    {% block breadcrumbs %}
-                        {% render_breadcrumbs %}
-                    {% endblock %}
-                    <h1>{{ file.file_title }}</h1>
-                    <a href="{{ file.lesson_file.url }}" download=>Скачать файл</a>
-                    <a href="{% url 'step:filemodel_list' %}">Вернуться к списку файлов</a>
-                </div>
+                <a href="{{ file.lesson_file.url }}" download class="btn btn-primary my-3 mx-3">Скачать файл</a>
+                <a href="{% url 'step:filemodel_list' %}" class="btn btn-secondary">Вернуться к списку файлов</a>
             </div>
         </div>
     {% endif %}
