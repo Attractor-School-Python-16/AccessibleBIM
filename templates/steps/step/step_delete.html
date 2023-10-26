@@ -1,29 +1,23 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}
-    Удаление занятия
-{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <h3 class="mt-4">Вы уверены, что хотите удалить это занятие?</h3>
-                <form action="" method="post" id="delete-form">
+{% block title %}Удалить занятие{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+                <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Вы точно хотите удалить занятие:<span
+                            class="text-danger"> {{ stepmodel.title }}</span>?
+                    </p>
+                <form method="POST">
                     {% csrf_token %}
-                    <button class="btn btn-primary mt-3" style="width: 100px">Да</button>
+                        <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
                     <a href="{% url "modules:chaptermodel_detail" stepmodel.chapter.pk %}" class="btn btn-secondary
-                    mt-3 ms-5" style="width: 100px" id="cancel-button">Нет</a>
+                    mx-3"  id="cancel-button">Нет</a>
                 </form>
             </div>
-        </div>
-    </div>
-
+                </div>
     <script>
         document.getElementById("cancel-button").addEventListener("click", function (e) {
             e.preventDefault();
