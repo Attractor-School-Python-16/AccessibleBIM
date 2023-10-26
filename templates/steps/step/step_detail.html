@@ -5,13 +5,13 @@
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
     {% endblock %}
-    <div class="card">
+    <div class="card mb-5">
         <div class="card-body">
             <div class="card-header">
                 <h1>{{ step.title }}</h1>
             </div>
             {% if step.video %}
-                <h1>Видео</h1>
+                <h1>Видео:</h1>
                 {% include 'steps/partial/video_partial.html' %}
             {% elif step.text %}
                 <h1>Лекция:</h1>

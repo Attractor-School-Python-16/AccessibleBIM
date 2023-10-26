@@ -6,12 +6,11 @@
         {% render_breadcrumbs %}
     {% endblock %}
     {% if request.user.is_authenticated %}
-        <div class="card">
+        <div class="card mb-5">
             <div class="card-body">
                 <div class="card-header">
                     <h1>{{{ text.text_title }}</h1>
                 </div>
-
                 <ul class="list-group">
                     <li class="list-group-item">
                         <h3>{{ text.text_title }}</h3>
