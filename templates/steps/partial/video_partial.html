@@ -1,3 +1,7 @@
-<video width="640" height="360" controls>
-    <source src="{{ step.video.video_file.url }}" type="video/mp4">
-</video>
+<h2>{{ step.video.video_title }}</h2>
+<p>{{ step.video.video_description }}</p>
+<div class="d-flex justify-content-center">
+    <video width="640" height="360" controls>
+        <source src="{{ step.video.video_file.url }}" type="video/mp4">
+    </video>
+</div>
