@@ -1,38 +1,31 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
+{% block title %}Список тестов{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
                 <h2>Список тестов</h2>
-                <a class="col link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                   href="{% url "quiz_bim:quizbim_create" %}">
-                    <button type="submit" class="btn btn-primary">Добавить новый тест</button>
-                </a>
-                {% for test in tests %}
-                    <div class="row justify-content-center mt-1">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ test.title }}</h5>
-                                <a class="btn btn-primary" href="{% url 'quiz_bim:take_quiz' pk=test.pk %}"
-                                   role="button">Прохождение теста</a>
-                                <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_detail' pk=test.pk %}"
-                                   role="button">Подробнее</a>
-                                <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}"
-                                   role="button">Редактировать</a>
-                                <a class="btn btn-danger" href="{% url 'quiz_bim:quizbim_delete' pk=test.pk %}"
-                                   role="button">Удалить</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
             </div>
+            <a class="btn btn-primary my-3" href="{% url "quiz_bim:quizbim_create" %}">Добавить тест</a>
+            <ul class="list-group">
+                {% for test in tests %}
+                    <li class="list-group-item my-3">
+                        <h5 class="card-title">{{ test.title }}</h5>
+                        <a class="btn btn-primary" href="{% url 'quiz_bim:take_quiz' pk=test.pk %}"
+                           role="button">Прохождение теста</a>
+                        <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_detail' pk=test.pk %}"
+                           role="button">Подробнее</a>
+                        <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}"
+                           role="button">Редактировать</a>
+                        <a class="btn btn-danger" href="{% url 'quiz_bim:quizbim_delete' pk=test.pk %}"
+                           role="button">Удалить</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}
