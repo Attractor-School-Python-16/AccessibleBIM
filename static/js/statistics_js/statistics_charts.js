@@ -97,6 +97,18 @@ function modifyOptions(options, chartSettings){
             format: 'dd.MM'
         }
     }
+    if (chartSettings.yaxis==='percentage'){
+        options.yaxis = {
+            labels: {
+                formatter: function (value) {
+                    return `${value}%`;
+                }
+            },
+            min: 0,
+            max: 100,
+        }
+    }
+    return options;
     return options;
 }
 
@@ -104,15 +116,28 @@ function createStandardChartOptions(labels, values, type, title){
     let options = {
         series: [{
             name: title,
-            data: values
+            data: values,
         }],
         chart: {
             fontFamily: 'inherit',
             type: type,
-            height: '100%'
+            height: '100%',
         },
+        colors:['#1974D2', '#1DACD6', '#34C924'],
         xaxis: {
             categories: labels,
+        },
+        dataLabels: {
+            enabled: false
+        },
+        grid: {
+            borderColor: '#e5dede',
+            strokeDashArray: 1,
+            yaxis: {
+                lines: {
+                    show: true
+                }
+            }
         },
     };
     return options;
@@ -127,6 +152,7 @@ function createPieChartOptions(labels, values){
             type: 'donut',
             height: '100%'
         },
+        colors:['#1974D2', '#1DACD6', '#34C924'],
     };
     return options;
 }
