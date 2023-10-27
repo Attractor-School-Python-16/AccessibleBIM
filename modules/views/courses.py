@@ -197,16 +197,14 @@ class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         course = get_object_or_404(CourseModel, pk=kwargs['pk'])
-
+        data = self.request.POST
         new_serial_numbers = {}
-        for key, value in request.POST.items():
-            if key.startswith('new_serial_number_'):
-                chapter_id = int(re.search(r'\d+', key).group())
-                new_serial_numbers[chapter_id] = int(re.search(r'\d+', value).group())
-
+        for i in data:
+            if "pk" in i:
+                chapter_id = i.split("_")[1]
+                new_serial_numbers[chapter_id] = data[i]
         chapters = ChapterModel.objects.filter(course=course)
         unique_numbers = set(new_serial_numbers.values())
-
         if len(unique_numbers) < len(new_serial_numbers):
             messages.error(request, 'Выберите разные порядковые номера для глав.')
         else:
@@ -214,5 +212,4 @@ class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
                 chapter = chapters.get(id=chapter_id)
                 chapter.serial_number = new_number
                 chapter.save()
-
         return redirect('modules:coursemodel_detail', pk=course.pk)

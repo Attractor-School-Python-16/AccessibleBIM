@@ -169,12 +169,12 @@ class ChapterChangeStepsOrderView(PermissionRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         chapter = get_object_or_404(ChapterModel, pk=kwargs['pk'])
+        data = self.request.POST
         new_serial_numbers = {}
-        for key, value in request.POST.items():
-            if key.startswith('new_serial_number_'):
-                step_id = int(re.search(r'\d+', key).group())
-                new_serial_numbers[step_id] = int(re.search(r'\d+', value).group())
-
+        for i in data:
+            if "pk" in i:
+                step_id = i.split("_")[1]
+                new_serial_numbers[step_id] = data[i]
         steps = StepModel.objects.filter(chapter=chapter)
         unique_numbers = set(new_serial_numbers.values())
 
