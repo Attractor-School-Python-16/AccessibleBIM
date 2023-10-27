@@ -30,7 +30,7 @@
                         {% for course in courses %}
                         <tr class="align-middle">
                           <td>
-                              <a href="#">
+                              <a href="{% url 'reports:stats_course_detailed' pk=course.pk %}">
                                   <div>{{ course.title }}</div>
                               </a>
                           </td>

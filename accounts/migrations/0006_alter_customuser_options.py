@@ -12,6 +12,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='customuser',
-            options={'permissions': (('can_view_admin_panel ', 'Can view admin panel'), ('can_view_user_statistics', 'Can view user statistics'), ('can_view_course_statistics', 'Can view course statistics'), ('can_view_sales_statistics', 'Can view sales statistics'), ('can_grant_moderator_role', 'Can grant moderator role to other users'))},
+            options={'permissions': (('can_view_admin_panel', 'Can view admin panel'), ('can_view_user_statistics', 'Can view user statistics'), ('can_view_course_statistics', 'Can view course statistics'), ('can_view_sales_statistics', 'Can view sales statistics'), ('can_grant_moderator_role', 'Can grant moderator role to other users'))},
         ),
     ]
