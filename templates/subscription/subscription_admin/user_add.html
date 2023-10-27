@@ -1,69 +1,70 @@
-{% extends 'base.html' %}
-{% load view_breadcrumbs %}
-{% block title %}Подписки{% endblock %}
-{% block content %}
-    {% include 'partials/main_block.html' %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
+{{% extends 'moderator_page.html' %}
+{% load custom_tags view_breadcrumbs %}
+{% block title %}Выдача подписки пользователям{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h2>Выдача подписки пользователю:</h2>
             </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <h3>Выдача подписки пользователю:</h3>
-                <table class="table">
-                    <thead>
+            <table class="table table-striped table-hover mb-5">
+                <thead>
+                <tr>
+                    <th scope="col">Пользователь</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Подписки</th>
+                </tr>
+                <tr>
+                    <td>{{ user.last_name }} {{ user.first_name }}
+                        {% if user.father_name %}
+                            {{ user.father_name }}
+                        {% endif %}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% if user_subscriptions %}
+                            {% for user_subcription in user_subscriptions %}
+                                {% if user_subcription.is_active %}
+                                    {{ user_subcription.subscription }}
+                                {% else %}
+                                    Активных подписок нет
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}</td>
+                </tr>
+                </thead>
+            </table>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Курс</th>
+                    <th scope="col">Модуль</th>
+                    <th scope="col">Доступ</th>
+                </tr>
+                </thead>
+                {% for subscription in subscriptions %}
+                    <form id="my_form_{{ subscription.id }}" class="d-flex" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="button" form="my_form_{{ subscription.id }}"
+                               value="{{ subscription.id }}">
+                    </form>
+                    <tbody>
                     <tr>
-
-                        <th scope="col">{{ user.last_name }} {{ user.first_name }} {{ user.father_name }}</th>
-                        <th scope="col">{{ user.email }}</th>
-                        <th scope="col">
-                            {% if user.subscriptions.all %}{% for subscription in user.subscriptions.all %}
-                                {{ subscription }}
-                                {% if forloop.first and not forloop.last %},
-                                {% endif %}{% endfor %}{% else %}
-                                Активных подписок нет{% endif %}</th>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ subscription.course }}</td>
+                        <td>{{ subscription.course.module_id }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-success" form="my_form_{{ subscription.id }}">
+                                Предоставить доступ
+                            </button>
+                        </td>
                     </tr>
-                    </thead>
-                </table>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Курс</th>
-                        <th scope="col">Описание</th>
-                        <th scope="col">Модуль</th>
-                        <th scope="col">ЦА</th>
-                        <th scope="col">Доступ</th>
-                    </tr>
-                    </thead>
-                    {% for subscription in subscriptions %}
-                        <form id="my_form_{{ subscription.id }}" class="d-flex" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="button" form="my_form_{{ subscription.id }}"
-                                   value="{{ subscription.id }}">
-                        </form>
-                        <tbody>
-                        <tr>
-                            <th scope="row">{{ forloop.counter }}</th>
-                            <td>{{ subscription.course }}</td>
-                            <td>{{ subscription.course.description }}</td>
-                            <td>{{ subscription.course.module_id }}</td>
-                            <td>{{ subscription.course.courseTarget_id }}</td>
-                            <td>
-
-                                <button type="submit" class="btn btn-success" form="my_form_{{ subscription.id }}">
-                                    Предоставить доступ
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    {% endfor %}
-                </table>
-            </div>
+                    </tbody>
+                {% endfor %}
+            </table>
         </div>
     </div>
 {% endblock %}
