@@ -22,6 +22,7 @@ let chartUrlsByDays = {
         url: '/statistics/get-test-progress-in-course/?course=',
         div: testResultsInCourseChartDiv,
         type: 'bar',
+        yaxis: 'percentage'
     },
 };
 

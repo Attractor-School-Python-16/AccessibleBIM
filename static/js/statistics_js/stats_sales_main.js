@@ -10,10 +10,11 @@ let chartUrlsByDays = {
         url: '/statistics/get-new-subscriptions-qty/?days=',
         div: newSubscriptionsChartDiv,
         type: 'area',
-        btn_cls: 'new-subscriptions-chart-btn'
+        btn_cls: 'new-subscriptions-chart-btn',
+        xaxis: 'datetime',
     },
     'popularCoursesChart': {
-        title: 'Популярные курсы',
+        title: 'Курсов куплено',
         url: '/statistics/get-popular-courses/?days=',
         div: popularCoursesChartDiv,
         type: 'bar',
