@@ -20,7 +20,7 @@ async function getDataByQueryParam(url, param=''){
     return await makeRequest(url, "GET");
 }
 
-async function renderChart(type, name, param){
+async function renderChart(name, param){
     let response = await getDataByQueryParam(chartUrlsByDays[name].url, param);
     if (response.error){
         $(chartUrlsByDays[name].div).text('Error occured while loading data');
@@ -29,7 +29,9 @@ async function renderChart(type, name, param){
         $(chartUrlsByDays[name].div).text('No data to display');
     }
     else{
-        let options = createChartOptions(type, response.labels, response.values);
+        let options = createChartOptions(chartUrlsByDays[name].type, response.labels, response.values,
+            chartUrlsByDays[name].title);
+        options = modifyOptions(options, chartUrlsByDays[name]);
         window.charts[name] = new ApexCharts(chartUrlsByDays[name].div, options);
         window.charts[name].render();
     }
@@ -67,68 +69,46 @@ async function changeDaysOnChart(event){
 }
 
 
-function createChartOptions(type, labels, values){
-    if (type === 'area'){
-        return createAreaChartOptions(labels, values);
-    }
-    else if (type === 'bar'){
-        return createBarChartOptions(labels, values);
+function createChartOptions(type, labels, values, title){
+    if (type === 'area' || type === 'bar'){
+        return createStandardChartOptions(labels, values, type, title);
     }
     else if (type === 'pie'){
         return createPieChartOptions(labels, values);
     }
-    else if (type === 'column'){
-        return createColumnChartOptions(labels, values);
-    }
 }
 
-function createAreaChartOptions(labels, values){
-    let options = {
-        series: [{
-            name: 'Новых пользователей',
-            data: values
-        }],
-        chart: {
-            fontFamily: 'inherit',
-            type: 'area',
-            height: '100%'
-        },
-        xaxis: {
-            type: 'datetime',
-            categories: labels,
+function modifyOptions(options, chartSettings){
+    if (chartSettings.yaxis==='datetime'){
+        options.yaxis = {
             labels: {
-                format: 'dd.MM',
-            },
-        },
-    };
+                formatter: function (value){
+                    let days =  Math.floor(Math.floor(value / 60) / 24);
+                    let hours = Math.floor((value - days * 60 * 24)  / 60);
+                    let minutes = value % 60;
+                    return `${days}d. ${hours}:${minutes}`;
+                }
+            }
+        }
+    }
+    if (chartSettings.xaxis==='datetime'){
+        options.xaxis.type = 'datetime'
+        options.xaxis.labels = {
+            format: 'dd.MM'
+        }
+    }
     return options;
 }
 
-function createBarChartOptions(labels, values){
+function createStandardChartOptions(labels, values, type, title){
     let options = {
         series: [{
+            name: title,
             data: values
         }],
         chart: {
             fontFamily: 'inherit',
-            type: 'bar',
-            height: '100%'
-        },
-        xaxis: {
-            categories: labels
-        },
-    };
-    return options;
-}
-
-function createColumnChartOptions(labels, values){
-    let options = {
-        series: [{
-            data: values
-        }],
-        chart: {
-            fontFamily: 'inherit',
-            type: 'bar',
+            type: type,
             height: '100%'
         },
         xaxis: {
