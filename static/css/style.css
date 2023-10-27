@@ -1,30 +1,30 @@
-/*ul_tree {*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  list-style: none;*/
-/*  }*/
+ul_tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  }
 
-/*!* Base for lists & headers*/
-/*--------------------------- *!*/
-/*.ul_tree {*/
-/*  overflow: hidden;*/
-/*  }*/
-/*.li_tree,*/
-/*.header {*/
-/*  position: relative;*/
-/*  padding-left: 1.2em;*/
-/*  }*/
-/*.header + .ul_tree {*/
-/*  margin-left: 30px;*/
-/*  padding-top: 10px;*/
-/*  }*/
-/*.li_tree {*/
-/*  margin-bottom: .8em;*/
-/*  }*/
+/* Base for lists & headers
+--------------------------- */
+.ul_tree {
+  overflow: hidden;
+  }
+.li_tree,
+.header {
+  position: relative;
+  padding-left: 1.2em;
+  }
+.header + .ul_tree {
+  margin-left: 30px;
+  padding-top: 10px;
+  }
+.li_tree {
+  margin-bottom: .8em;
+  }
 
-/*!* Stripes*/
-/*--------------------------- *!*/
-/*.li_tree:before,*/
+/* Stripes
+--------------------------- */
+.li_tree:before,
 /*.header:before {*/
 /*  content: "";*/
 /*  display: block;*/
@@ -35,32 +35,32 @@
 /*  height: 0;*/
 /*  border-bottom: 1px solid #333;*/
 /*  }*/
-/*  .li_tree:last-child:before,*/
-/*  .header:last-of-type:before {*/
-/*    height: 1000px;*/
-/*    border: 1px solid #333;*/
-/*    border-width: 0 0 1px 1px*/
-/*    }*/
+  .li_tree:last-child:before,
+  .header:last-of-type:before {
+    height: 1000px;
+    border: 1px solid #333;
+    border-width: 0 0 1px 1px
+    }
 
-/*!* If .ul_tree Has Headers Inside*/
-/*--------------------------- *!*/
-/*.p-has-headers > .li_tree {*/
-/*  margin: 10px 0*/
-/*  }*/
-/*.p-has-headers > .li_tree:before {*/
-/*  content: none;*/
-/*  }*/
+/* If .ul_tree Has Headers Inside
+--------------------------- */
+.p-has-headers > .li_tree {
+  margin: 10px 0
+  }
+.p-has-headers > .li_tree:before {
+  content: none;
+  }
 
-/*!* Main color scheme *!*/
+/* Main color scheme */
 
-/*.bg-dark-blue-crayol {*/
-/*    background-color: #1974D2;*/
-/*}*/
+.bg-dark-blue-crayol {
+    background-color: #1974D2;
+}
 
-/*.bg-azure-crayola {*/
-/*    background-color: #1DACD6;*/
-/*}*/
+.bg-azure-crayola {
+    background-color: #1DACD6;
+}
 
-/*.bg-verdepomovy {*/
-/*    background-color: #34C924;*/
-/*}*/
+.bg-verdepomovy {
+    background-color: #34C924;
+}
