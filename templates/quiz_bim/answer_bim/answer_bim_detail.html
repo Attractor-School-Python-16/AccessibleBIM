@@ -1,21 +1,25 @@
 <div hx-target="this" class="mt-3">
     <div class="card">
         <div class="card-body">
-            <h3 class="">
-                {{ answer.answer }}
-                {{ answer.is_correct }}
-            </h3>
+            <h4 class="">
+                Ответ: {{ answer.answer }}
+                {% if answer.is_correct %}
+                    <h5>Верный</h5>
+                {% else %}
+                    <h5>Неверный</h5>
+                {% endif %}
+            </h4>
             <div class="mt-2">
                 <button hx-get="{% url 'quiz_bim:answerbim_htmx_update' answer.question_bim_id answer.id %}"
                         hx-swap="outerHTML"
-                        class="btn btn-primary">
+                        class="btn btn-primary me-3 my-2">
                     Изменить
                 </button>
                 <form action="" class="d-inline">
                     {% csrf_token %}
                     <button hx-post="{% url 'quiz_bim:answerbim_htmx_delete' answer.question_bim_id answer.id %}"
                             hx-swap="outerHTML swap:1s"
-                            class="btn btn-primary">
+                            class="btn btn-danger">
                         Удалить
                     </button>
                 </form>
