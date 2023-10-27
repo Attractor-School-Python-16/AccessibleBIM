@@ -1,21 +1,22 @@
 {% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
+{% load static %}
 {% block title %}Удалить курс{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
     {% endblock %}
-                <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Вы точно хотите удалить модуль:<span
-                            class="text-danger"> {{ course.title }}</span>?
-                    </p>
-
-                <form method="POST">
-                    {% csrf_token %}
-                        <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
-                    <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}">Нет</a>
-                </form>
-            </div>
-                </div>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Вы точно хотите удалить модуль:<span
+                    class="text-danger"> {{ course.title }}</span>?
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}" id="cancel-button">Нет</a>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/delete_button_func.js' %}"></script>
 {% endblock %}

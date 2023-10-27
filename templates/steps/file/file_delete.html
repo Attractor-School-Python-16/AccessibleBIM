@@ -1,35 +1,23 @@
 {% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
+{% load static %}
 {% block title %}Удалить файл{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
     {% endblock %}
-                <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Вы точно хотите удалить файл:<span
-                            class="text-danger"> {{ filemodel.file_title }}</span>?
-                    </p>
-                <form method="POST">
-                    {% csrf_token %}
-                        <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
-                    <a href="#" class="btn btn-secondary
-                    mx-3"  id="cancel-button">Нет</a>
-                </form>
-            </div>
-                </div>
-    <script>
-        document.getElementById("cancel-button").addEventListener("click", function (e) {
-            e.preventDefault();
-            {#Получаем URL предыдущей страницы#}
-            let previousUrl = document.referrer;
-            {#Если URL предыдущей страницы существует, идет редирект на нее#}
-            if (previousUrl) {
-                window.location.href = previousUrl;
-            } else {
-                {#В противном случае, редирект на индекс#}
-                window.location.href = "{% url 'modules:moderator_page' %}";
-            }
-        });
-    </script>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Вы точно хотите удалить файл:<span
+                    class="text-danger"> {{ filemodel.file_title }}</span>?
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                <a href="#" class="btn btn-secondary
+                    mx-3" id="cancel-button">Нет</a>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/delete_button_func.js' %}"></script>
 {% endblock %}
