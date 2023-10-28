@@ -83,8 +83,12 @@ class AnswerBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
         return redirect("quiz_bim:answerbim_htmx_detail", qpk=kwargs['qpk'], apk=kwargs['apk'])
 
 
-class AnswerBimFormDeleteView(View):
+class AnswerBimFormDeleteView(PermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         answer = get_object_or_404(AnswerBim, id=kwargs['apk'])
         answer.delete()
         return HttpResponse("")
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
