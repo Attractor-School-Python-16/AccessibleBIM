@@ -117,6 +117,7 @@ class TestQuizBimUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.quiz.refresh_from_db()
         self.assertEqual(self.quiz.title, "New title")
+        self.assertEqual(list(self.quiz.question_bim.all()), [])
         self.assertEqual(self.quiz.questions_qty, 1)
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
