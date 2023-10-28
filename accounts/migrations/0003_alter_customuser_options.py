@@ -12,6 +12,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='customuser',
-            options={'permissions': (('can_view_admin_panel ', 'Can view admin panel'),)},
+            options={'permissions': (('can_view_admin_panel', 'Can view admin panel'),)},
         ),
     ]
