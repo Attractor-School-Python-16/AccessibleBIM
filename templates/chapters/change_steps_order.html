@@ -22,7 +22,7 @@
                 <div class="draggable-area">
                     <ul class="list-group m-3">
                         {% for step in steps|dictsort:"serial_number" %}
-                            <li class="list-group-item row my-2" id ="pk_{{ step.id }}">
+                            <li class="list-group-item row my-2 draggable" id ="pk_{{ step.id }}">
                                 <div class="col-4 d-inline-block">Занятие: {{ step.title }}</div>
                                 <div class="col-3 d-inline-block">Текущий номер: {{ step.serial_number }}</div>
                                 <div class="col-3 d-inline-block" id="new-number">Новый номер:</div>
