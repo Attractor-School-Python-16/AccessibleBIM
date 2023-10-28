@@ -75,7 +75,7 @@ class QuestionBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
             return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
 
 
-class QuestionBimFormDeleteView(View):
+class QuestionBimFormDeleteView(PermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         question = get_object_or_404(QuestionBim, id=kwargs['qpk'])
         quiz = get_object_or_404(QuizBim, id=kwargs['tpk'])
@@ -85,3 +85,7 @@ class QuestionBimFormDeleteView(View):
         quiz.save()
         question.delete()
         return HttpResponse("")
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser

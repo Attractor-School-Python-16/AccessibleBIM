@@ -111,7 +111,7 @@ class TestAnswerBimDeleteView(CustomTestCase):
     def test_delete_view(self):
         previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url)
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(previous_count - AnswerBim.objects.count(), 1)
         # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
 
