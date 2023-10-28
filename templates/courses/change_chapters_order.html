@@ -22,7 +22,7 @@
                 <div class="draggable-area">
                     <ul class="list-group m-3">
                         {% for chapter in chapters|dictsort:"serial_number" %}
-                            <li class="list-group-item row my-2" id ="pk_{{ chapter.id }}">
+                            <li class="list-group-item row my-2 draggable" id ="pk_{{ chapter.id }}">
                                 <div class="col-4 d-inline-block">Глава: {{ chapter.title }}</div>
                                 <div class="col-3 d-inline-block">Текущий номер: {{ chapter.serial_number }}</div>
                                 <div class="col-3 d-inline-block" id="new-number">Новый номер:</div>
