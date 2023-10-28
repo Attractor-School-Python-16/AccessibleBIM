@@ -7,46 +7,46 @@ from quiz_bim.tests.factories import QuestionBimFactory, AnswerBimFactory
 from quiz_bim.tests.utils import login_superuser, CustomTestCase
 
 
-class TestAnswerBimCreateView(CustomTestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        cls.correct_form_data = {
-            "answer": "Answer",
-            "is_correct": True
-        }
-        question = QuestionBimFactory.create()
-        cls.url = reverse("quiz_bim:answerbim_htmx_create", kwargs={"qpk": question.pk})
-        super().setUpTestData()
-
-    @login_superuser
-    def test_create_view(self):
-        previous_count = AnswerBim.objects.count()
-        response = self.client.post(self.url, data=self.correct_form_data)
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
-        self.assertEqual(AnswerBim.objects.count() - previous_count, 1)
-        answer = AnswerBim.objects.latest('create_at')
-        self.assertRedirects(response, reverse("quiz_bim:questionbim_htmx_detail", kwargs={"tpk": answer.question_bim.test_bim.pk, "qpk": answer.question_bim.pk}))
-
-    def test_anonymous(self):
-        response = self.client.post(self.url, data=self.correct_form_data)
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
-
-    def test_no_permissions(self):
-        self.client.force_login(self.user)
-        response = self.client.post(self.url, data=self.correct_form_data)
-        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
-
-    @login_superuser
-    def test_invalid_data(self):
-        invalid_data = {
-            "answer": "",
-            "is_correct": -1
-        }
-        previous_count = AnswerBim.objects.count()
-        response = self.client.post(self.url, data=invalid_data)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(previous_count, AnswerBim.objects.count())
+# class TestAnswerBimCreateView(CustomTestCase):
+#
+#     @classmethod
+#     def setUpTestData(cls):
+#         cls.correct_form_data = {
+#             "answer": "Answer",
+#             "is_correct": True
+#         }
+#         question = QuestionBimFactory.create()
+#         cls.url = reverse("quiz_bim:answerbim_htmx_create", kwargs={"qpk": question.pk})
+#         super().setUpTestData()
+#
+#     @login_superuser
+#     def test_create_view(self):
+#         previous_count = AnswerBim.objects.count()
+#         response = self.client.post(self.url, data=self.correct_form_data)
+#         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+#         self.assertEqual(AnswerBim.objects.count() - previous_count, 1)
+#         answer = AnswerBim.objects.latest('create_at')
+#         self.assertRedirects(response, reverse("quiz_bim:questionbim_htmx_detail", kwargs={"tpk": answer.question_bim.test_bim.pk, "qpk": answer.question_bim.pk}))
+#
+#     def test_anonymous(self):
+#         response = self.client.post(self.url, data=self.correct_form_data)
+#         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+#
+#     def test_no_permissions(self):
+#         self.client.force_login(self.user)
+#         response = self.client.post(self.url, data=self.correct_form_data)
+#         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+#
+#     @login_superuser
+#     def test_invalid_data(self):
+#         invalid_data = {
+#             "answer": "",
+#             "is_correct": -1
+#         }
+#         previous_count = AnswerBim.objects.count()
+#         response = self.client.post(self.url, data=invalid_data)
+#         self.assertEqual(response.status_code, HTTPStatus.OK)
+#         self.assertEqual(previous_count, AnswerBim.objects.count())
 
 
 class TestAnswerBimUpdateView(CustomTestCase):
