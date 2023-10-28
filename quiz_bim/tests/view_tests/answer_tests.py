@@ -16,7 +16,7 @@ class TestAnswerBimCreateView(CustomTestCase):
             "is_correct": True
         }
         question = QuestionBimFactory.create()
-        cls.url = reverse("quiz_bim:answerbim_create", kwargs={"pk": question.pk})
+        cls.url = reverse("quiz_bim:answerbim_htmx_create", kwargs={"qpk": question.pk})
         super().setUpTestData()
 
     @login_superuser
@@ -26,7 +26,7 @@ class TestAnswerBimCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(AnswerBim.objects.count() - previous_count, 1)
         answer = AnswerBim.objects.latest('create_at')
-        self.assertRedirects(response, reverse("quiz_bim:questionbim_detail", kwargs={"pk": answer.question_bim.pk}))
+        self.assertRedirects(response, reverse("quiz_bim:questionbim_htmx_detail", kwargs={"tpk": answer.question_bim.test_bim.pk, "qpk": answer.question_bim.pk}))
 
     def test_anonymous(self):
         response = self.client.post(self.url, data=self.correct_form_data)
@@ -54,7 +54,7 @@ class TestAnswerBimUpdateView(CustomTestCase):
 
     def setUp(self) -> None:
         self.answer = AnswerBimFactory.create()
-        self.url = reverse("quiz_bim:answerbim_update", kwargs={"pk": self.answer.pk})
+        self.url = reverse("quiz_bim:answerbim_htmx_update", kwargs={"qpk": self.answer.question_bim.pk, "apk": self.answer.pk})
 
     @login_superuser
     def test_update_view(self):
@@ -97,7 +97,7 @@ class TestAnswerBimUpdateView(CustomTestCase):
 
     @login_superuser
     def test_not_found(self):
-        response = self.client.get(reverse("quiz_bim:answerbim_update", kwargs={"pk": 999}))
+        response = self.client.get(reverse("quiz_bim:answerbim_htmx_update", kwargs={"qpk": 999, "apk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
 
@@ -105,7 +105,7 @@ class TestAnswerBimDeleteView(CustomTestCase):
 
     def setUp(self) -> None:
         self.answer = AnswerBimFactory.create()
-        self.url = reverse("quiz_bim:answerbim_delete", kwargs={"pk": self.answer.pk})
+        self.url = reverse("quiz_bim:answerbim_htmx_delete", kwargs={"qpk": self.answer.question_bim.pk, "apk": self.answer.pk})
 
     @login_superuser
     def test_delete_view(self):
@@ -127,6 +127,6 @@ class TestAnswerBimDeleteView(CustomTestCase):
     @login_superuser
     def test_not_found(self):
         previous_count = AnswerBim.objects.count()
-        response = self.client.post(reverse("quiz_bim:answerbim_delete", kwargs={"pk": 999}))
+        response = self.client.post(reverse("quiz_bim:answerbim_htmx_delete", kwargs={"qpk": 999, "apk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
         self.assertEqual(previous_count, AnswerBim.objects.count())
