@@ -205,8 +205,12 @@ class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin,
                  reverse("subscription:subscriptionmodel_user_delete", kwargs={'pk': self.object.pk}))]
 
 
-class SubscriptionBuyView(LoginRequiredMixin, View):
+class SubscriptionBuyView(PermissionRequiredMixin, View):
     user = get_user_model()
+
+    def has_permission(self):
+        current_user = self.user
+        return current_user.email_verified
 
     def get(self, request, *args, **kwargs):
         url = "https://api.freedompay.money/init_payment.php"
