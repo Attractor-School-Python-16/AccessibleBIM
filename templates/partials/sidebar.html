@@ -140,19 +140,19 @@
                     Статистика</a>
                 <ul class="nav-group-items">
                     {% if perms.accounts.can_view_user_statistics %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_users_main' %}">
                             <span class="nav-icon"></span>
                             Пользователи</a>
                         </li>
                     {% endif %}
                     {% if perms.accounts.can_view_course_statistics %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_courses_main' %}">
                             <span class="nav-icon"></span>
                             Курсы</a>
                         </li>
                     {% endif %}
                     {% if perms.accounts.can_view_sales_statistics %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_sales_main' %}">
                             <span class="nav-icon"></span>
                             Продажи</a>
                         </li>
