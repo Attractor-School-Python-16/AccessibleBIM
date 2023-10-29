@@ -47,7 +47,7 @@ class QuestionBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
     form = None
 
     def get(self, request, tpk, qpk, *args, **kwargs):
-        question = QuestionBim.objects.get(id=qpk)
+        question = get_object_or_404(QuestionBim, id=qpk)
         form = QuestionBimForm(request.POST or None, instance=question)
         context = {
             "forms": form,
@@ -75,20 +75,17 @@ class QuestionBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
             return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
 
 
-class QuestionBimFormDeleteView(View):
+class QuestionBimFormDeleteView(PermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        question = QuestionBim.objects.get(id=kwargs['qpk'])
-        if request.method == "POST":
-            quiz = QuizBim.objects.get(id=kwargs['tpk'])
-            questions_quantity = 0 if quiz.questions_qty == None else quiz.questions_qty
-            questions_quantity -= 1
-            quiz.questions_qty = questions_quantity
-            quiz.save()
-            question.delete()
-            return HttpResponse("")
+        question = get_object_or_404(QuestionBim, id=kwargs['qpk'])
+        quiz = get_object_or_404(QuizBim, id=kwargs['tpk'])
+        questions_quantity = 0 if quiz.questions_qty == None else quiz.questions_qty
+        questions_quantity -= 1
+        quiz.questions_qty = questions_quantity
+        quiz.save()
+        question.delete()
+        return HttpResponse("")
 
-        return HttpResponseNotAllowed(
-            [
-                "POST",
-            ]
-        )
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
