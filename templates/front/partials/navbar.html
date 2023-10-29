@@ -45,6 +45,11 @@
                                 Политика конфиденциальности
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url "front:terms_of_use" %}">
+                                Пользовательское соглашение
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 {% if request.user.is_authenticated %}
