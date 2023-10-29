@@ -1,53 +1,51 @@
-{% extends 'base.html' %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
 {% block title %}{{ module.title }}{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card my-4">
+        <div class="card-body">
+            {% include 'partials/main_block.html' with data=module %}
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'modules:modulemodel_update' module.id %}"
+                   class="btn btn-info btn-sm mx-3">Изменить</a>
+                <a href="{% url 'modules:modulemodel_delete' module.id %}"
+                   class="btn btn-danger btn-sm " style="margin-right: 0.8rem">Удалить</a>
             </div>
-            <div class="col-md-9">
-            {% block breadcrumbs %}
-                {% render_breadcrumbs %}
-            {% endblock %}
-                <div class="d-inline-block ms-5">
-                    {% include 'partials/main_block.html' with data=module %}
-                    <div class="btn-group">
-                        <a href="{% url 'modules:modulemodel_update' module.id %}"
-                           class="btn btn-info btn-sm mx-3">Изменить</a>
-                        <a href="{% url 'modules:modulemodel_delete' module.id %}"
-                           class="btn btn-danger btn-sm">Удалить</a>
-                    </div>
-                </div>
-                <h1 class="my-3">Список курсов модуля {{ module.title }}</h1>
-                <a href="{% url 'modules:coursemodel_create' %}?module_pk={{ module.pk }}" class="btn btn-primary my-3">Добавить курс</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Название</th>
-                            <th class="text-end">Действия</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for course in courses %}
-                            <tr>
-                                <td>{{ course.id }}</td>
-                                <td><a href="{% url 'modules:coursemodel_detail' course.id %}">{{ course.title }}</a></td>
-                                <td class="text-end">
-                                    <div class="btn-group">
-                                        <a href="{% url 'modules:coursemodel_update' course.id %}"
-                                           class="btn btn-info btn-sm mx-3">Изменить</a>
-                                        <a href="{% url 'modules:coursemodel_delete' course.id %}"
-                                           class="btn btn-danger btn-sm">Удалить</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="my-3">Список курсов модуля {{ module.title }}</h2>
+            <a href="{% url 'modules:coursemodel_create' %}?module_pk={{ module.pk }}" class="btn btn-primary my-3">Добавить
+                курс</a>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th class="text-end">Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for course in courses %}
+                    <tr>
+                        <td>{{ course.id }}</td>
+                        <td><a href="{% url 'modules:coursemodel_detail' course.id %}">{{ course.title }}</a></td>
+                        <td class="text-end">
+                            <div class="btn-group">
+                                <a href="{% url 'modules:coursemodel_update' course.id %}"
+                                   class="btn btn-info btn-sm mx-3">Изменить</a>
+                                <a href="{% url 'modules:coursemodel_delete' course.id %}"
+                                   class="btn btn-danger btn-sm">Удалить</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}
