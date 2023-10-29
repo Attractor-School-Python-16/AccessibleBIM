@@ -1,37 +1,35 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}
-    Просмотр занятия
-{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
+{% block title %}Просмотр занятия{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
                 <h1>{{ step.title }}</h1>
-                {% if step.video %}
-                    <h1>Видео</h1>
-                    {% include 'steps/partial/video_partial.html' %}
-                {% elif step.text %}
-                    <h1>Текст</h1>
-                    {% include 'steps/partial/text_partial.html' %}
-                {% elif step.test %}
-                    <h1>Тест</h1>
-                    {% include 'steps/partial/test_partial.html' %}
-                {% endif %}
-                {% if files %}
-                    {% for file in files %}
-                        <p>Файл {{ file.file_title }}</p>
-                        <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
-                    {% endfor %}
-                {% endif %}
-                <a href="{% url 'modules:chaptermodel_detail' step.chapter.pk %}">Вернуться к списку занятий</a>
             </div>
+            {% if step.video %}
+                <h1>Видео:</h1>
+                {% include 'steps/partial/video_partial.html' %}
+            {% elif step.text %}
+                <h1>Лекция:</h1>
+                {% include 'steps/partial/text_partial.html' %}
+            {% elif step.test %}
+                <h1>Тест</h1>
+                {% include 'steps/partial/test_partial.html' %}
+            {% endif %}
+            {% if files %}
+                {% for file in files %}
+                    <p>Файл {{ file.file_title }}</p>
+                    <a href="{{ file.lesson_file.url }}" download class="btn btn-primary">Скачать Файл</a>
+                {% endfor %}
+            {% endif %}
+            <div>
+            <a href="{% url 'modules:chaptermodel_detail' step.chapter.pk %}" class="btn btn-secondary my-3">Вернуться к
+                списку занятий</a>
+                </div>
         </div>
     </div>
 {% endblock %}

@@ -1,45 +1,51 @@
-{% extends 'base.html' %}
-{% load static view_breadcrumbs %}
-{% block title %}Подписки{% endblock %}
-{% block content %}
-    {% include 'partials/main_block.html' %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
+{% extends 'moderator_page.html' %}
+{% load view_breadcrumbs %}
+{% block title %}Список подписок{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h1>Список подписок</h1>
             </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <h3>Подписки на курсы:</h3>
+            {% if perms.step.add_textmodel %}
+                <a href="{% url 'subscription:subscriptionmodel_create' %}" class="btn btn-primary my-3">Добавить</a>
+            {% endif %}
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Курс</th>
+                    <th>Цена</th>
+                    <th>Опубликовано</th>
+                    <th class="text-end">Действия</th>
+                </tr>
+                </thead>
+                <tbody>
                 {% for subscription in subscriptions %}
-                    <div class="card mb-3 mt-3 link-underline link-underline-opacity-0">
-                        <div class="row g-0">
-                            <div class="col-md-3">
-                                <div class="card-body border-bottom">
-                                    <h5 class="card-text">{{ subscription.course }}</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card-body border-bottom">
-                                    <p class="card-text">Цена на курс:{{ subscription.price }}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                    <div class="card-body">
-                                        <a href="{% url 'subscription:subscriptionmodel_buy' subscription.pk %}" class="btn btn-success">Купить</a>
-                                    </div>
-                                <div class="card-body">
-                                    <a href="{% url 'subscription:subscriptionmodel_detail' subscription.pk %}"
-                                       class="btn btn-success">Детально</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <tr>
+                        <td>{{ subscription.id }}</td>
+                        <td>{{ subscription.course }}</td>
+                        <td>{{ subscription.price }}</td>
+                        <td>
+                            {% if subscription.is_published %}
+                                Опубликовано
+                            {% else %}
+                                Не опубликовано
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            <a href="{% url 'subscription:subscriptionmodel_update' subscription.pk %}"
+                               class="btn btn-info btn-sm mx-2">Изменить</a>
+                            <a href="{% url 'subscription:subscriptionmodel_delete' subscription.pk %}"
+                               class="btn btn-danger btn-sm">Удалить</a>
+                        </td>
+                    </tr>
                 {% endfor %}
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}
