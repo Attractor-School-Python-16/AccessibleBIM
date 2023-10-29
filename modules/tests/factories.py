@@ -31,6 +31,18 @@ class CourseFactory(factory.django.DjangoModelFactory):
     learnTime = factory.Faker('random_int', min=0, max=100)
 
 
+class TeacherFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'modules.TeacherModel'
+
+    first_name = factory.Faker('first_name')
+    last_name = factory.Faker('last_name')
+    father_name = factory.Faker('last_name')
+    job_title = factory.Faker('job')
+    corp = factory.Faker('company')
+    description = factory.Faker('sentence', nb_words=10)
+
+
 class ChapterFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'modules.ChapterModel'
