@@ -77,7 +77,7 @@ class TestQuizBimCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(QuizBim.objects.count() - previous_count, 1)
         quiz = QuizBim.objects.latest('create_at')
-        self.assertRedirects(response, reverse("quiz_bim:quizbim_list"))
+        self.assertRedirects(response, reverse("quiz_bim:quizbim_detail", kwargs={"pk": quiz.pk}))
 
     def test_anonymous(self):
         response = self.client.post(self.url, data=self.correct_form_data)
