@@ -1,54 +1,115 @@
-{% extends 'base.html' %}
-{% load i18n %}
+{% extends 'front/base.html' %}
+{% load static i18n custom_test %}
+{% block title %}{% translate 'Profile' %}{% endblock %}
+{% block card-container %}
+    {% block content %}
+        <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+            <section class="py-sm-7 py-5 position-relative">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                            <div class="row py-5">
+                                <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h3 class="mb-0">{{ user.get_full_name }}
+                                            {% if perms.accounts.can_grant_moderator_role %}
+                                                <span class="text-warning">Модератор</span>
+                                            {% elif user.is_moderator %}
+                                                <span class="text-danger">Админ</span>
+                                            {% endif %}
 
-{% block title %}{% trans 'Profile' %}{% endblock %}
+                                        </h3>
+                                    </div>
 
-{% block content %}
+                                    <a href="{% url 'accounts:change_password' %}" class="nav-link">
+                                        {% trans 'Change password' %}
+                                    </a>
+                                    <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+                                        <h5 class="mb-0">{{ user.email }}</h5>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        {% if user.company %}
+                                            <h5 class="mb-0">{{ user.phone_number }}</h5>
+                                        {% endif %}
 
-    <div class="col">
-        <nav class="navbar navbar-expand-lg bg-dark">
-            <div class="container-fluid justify-content-center">
-                <div class="ps-5">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <span class="nav-link text-light">{% trans 'email address' %}: {{ user.email }}</span>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <span class="nav-link text-light">{% trans 'Name' %}: {{ request.user.get_full_name }}</span>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{% url 'accounts:change_password' %}" class="nav-link text-light">
-                                {% trans 'Change password' %}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <h3>{% trans 'My courses' %}:</h3>
-        {% if user.is_moderators %}
-            <a href="{% url 'modules:moderator_page' %}" class="btn btn-primary my-3">Редактировать контент</a>
-        {% endif %}
-            {% for subscription in user.subscriptions.all %}
-                <div class="card">
-                    <h5 class="card-header">{% trans 'Course' %}</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ subscription.course.title }}</h5>
-                        <p class="card-text">{{ subscription.course.description }}</p>
-                        {% with first_chapter=subscription.course.ct_course.all|dictsort:"serial_number"|first %}
-                            <a href="{% url 'modules:chaptermodel_user_detail' first_chapter.pk %}?page=1" class="btn btn-primary my-3">{% trans 'Start' %}</a>
-                        {% endwith %}
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-auto">
+                                            {% if user.email_verified %}
+                                                <span class="h6">Email:</span>
+                                                <span class="text-success"> Верифицирован</span>
+                                            {% else %}
+                                                <span class="h6">Email:</span>
+                                                <span class="text-danger"> Не Верифицирован</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-auto">
+                                            {% if user.company %}
+                                                <span class="h6">Компания:</span>
+                                                <span> {{ user.company }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-auto">
+                                            {% if user.job_title %}
+                                                <span class="h6">Дожность:</span>
+                                                <span> {{ user.job_title }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        {% if courses %}
+                            <h3 class="mb-0 text-center">{% trans 'My courses' %}:</h3>
+                        {% endif %}
+
+                        {% for course in courses %}
+                            <article
+                                    class="postcard light mt-5 blue">
+                                <a class="postcard__img_link" href="#">
+                                    <img class="postcard__img" src="https://picsum.photos/1000/1000"
+                                         alt="Image Title"/>
+                                </a>
+                                <div class="postcard__text t-dark">
+                                    <h1 class="postcard__title blue"><a
+                                            href="{% url 'front:course_user_detail' course.id %}">{{ course.title }} </a>
+                                    </h1>
+                                    <div class="postcard__subtitle small">
+                                        <time datetime="{{ course.update_at }}">
+                                            Последнее обновление: <i
+                                                class="fas fa-calendar-alt mr-2"></i> {{ course.update_at }}
+                                        </time>
+                                    </div>
+                                    <div class="postcard__bar"></div>
+                                    <div class="postcard__preview-txt">{{ course.description }}</div>
+                                    <ul class="postcard__tagbox text-white">
+                                        <li class="tag__item"><i
+                                                class="fas fa-tag mr-2"></i> {{ course.courseTarget_id }}
+                                        </li>
+                                        <li class="tag__item"><i
+                                                class="fas fa-tag mr-2"></i> {{ course.get_total_tests|make_text_for_text }}
+                                        </li>
+                                        <li class="tag__item"><i
+                                                class="fas fa-tag mr-2"></i> {{ course.get_total_lessons|make_text_for_lessons }}
+                                        </li>
+                                        <li class="tag__item"><i
+                                                class="fas fa-clock mr-2"></i> {{ course.learnTime|make_hour_for_lessons }}
+                                        </li>
+                                        <li class="tag__item play blue">
+                                            <a href="{% url 'front:course_user_detail' course.id %}"><i
+                                                    class="fas fa-play mr-2"></i> Начать
+                                                обучение</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        {% endfor %}
                     </div>
                 </div>
-            {% empty %}
-                <p>{% trans "You don't have any purchased cources" %}</p>
-            {% endfor %}
+            </section>
         </div>
-    </div>
-
+    {% endblock %}
 {% endblock %}

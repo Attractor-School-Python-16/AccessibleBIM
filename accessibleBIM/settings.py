@@ -159,7 +159,7 @@ MEDIA_ROOT = '/media/'
 
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
-CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6380/0'
 
 with open('accessibleBIM/config.txt') as f:
     EMAIL_APP_PASSWORD = f.read().strip()

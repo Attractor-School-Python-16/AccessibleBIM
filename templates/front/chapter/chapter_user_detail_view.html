@@ -1,54 +1,55 @@
 {% extends 'front/base.html' %}
-{% load view_breadcrumbs %}
-{% load i18n %}
-{% load currency_price %}
+{% load view_breadcrumbs static currency_price i18n %}
 {% block title %}{{ chapter.title }}{% endblock %}
 {% block content %}
     <div class="container">
     <div class="row">
         <div class="col-md-3">
-                {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
+            {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
         </div>
         <div class="col-md-9">
             {% include 'front/partials/chapter/chapter_user_step.html' %}
             <h2>Глава {{ chapter.serial_number }}. {{ chapter.title }}</h2>
             <p>{{ chapter.description }}</p>
 
-            {% for step in steps %}
-                {% if step %}
-                {{ step.title }}
-                {% endif %}
-                <h3>Урок {{ step.serial_number }}. {{ step.title }}</h3>
-                {% if step.video %}
-                    {% include 'steps/partial/video_partial.html' %}
-                {% elif step.text %}
-                    {% include 'steps/partial/text_partial.html' %}
-{#                    {% elif step.test %}#}
-{#                        {% include 'steps/partial/test_partial.html' %}#}
-                {% endif %}
-                {% if step.files.all %}
-                    {% for file in step.files.all %}
-                        <p>Файл {{ file.file_title }}</p>
-                        <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-            {% if is_paginated %}
-                {% if page_obj.has_previous %}
-                  <li><a href="?page={{ page_obj.previous_page_number }}">Предыдущий урок</a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                  <li><a href="?page={{ page_obj.next_page_number }}">Следующий урок</a></li>
-                {% else %}
-                    {% if next_chapter %}
-                        <li><a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">Следующая глава</a></li>
+                {% for step in steps %}
+                    {% if step %}
+                        {{ step.title }}
+                    {% endif %}
+                    <h3>Урок {{ step.serial_number }}. {{ step.title }}</h3>
+                    {% if step.video %}
+                        {% include 'steps/partial/video_partial.html' %}
+                    {% elif step.text %}
+                        {% include 'steps/partial/text_partial.html' %}
+                        {#                    {% elif step.test %}#}
+                        {#                        {% include 'steps/partial/test_partial.html' %}#}
+                    {% endif %}
+                    {% if step.files.all %}
+                        {% for file in step.files.all %}
+                            <p>Файл {{ file.file_title }}</p>
+                            <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                {% if is_paginated %}
+                    {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">Предыдущий урок</a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">Следующий урок</a></li>
+                    {% else %}
+                        {% if next_chapter %}
+                            <li><a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">Следующая
+                                глава</a></li>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
-            {% endif %}
 
 
+            </div>
         </div>
     </div>
-    </div>
+{% endblock %}
+{% block page_script %}
 
 {% endblock %}

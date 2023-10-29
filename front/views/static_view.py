@@ -17,8 +17,6 @@ class About(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['title'] = 'O нас'
-        context['sub_title'] = ('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi error '
-                                'eum ex excepturi, odit recusandae voluptatum. Ducimus laborum maiores tenetur.')
         return context
 
 
@@ -28,9 +26,6 @@ class Contacts(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['title'] = 'Свяжитесь с нами'
-        context[
-            'sub_title'] = ('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi error eum ex excepturi,'
-                            ' odit recusandae voluptatum. Ducimus laborum maiores tenetur.')
         return context
 
 

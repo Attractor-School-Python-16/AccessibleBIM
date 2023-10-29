@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "front/base.html" %}
 {% block content %}
     <div class="container-fluid bg-dark text-white text-center py-5">
-        <h1>Страница выдачи модераторов</h1>
+        <h1>Страница выдачи прав модератора</h1>
     </div>
     <div class="container">
         <form action="{% url "accounts:grant_moderator_panel" %}" method="get" class="d-flex mt-4" role="search">
             <input class="form-control me-2" type="search" name="search" placeholder="Поиск по Email адресу"
                    aria-label="Search" value="{{ search_query }}">
-            <button class="btn btn-outline-primary" type="submit">Search</button>
+            <button class="btn btn-outline-info" type="submit">Найти</button>
         </form>
         <hr style="margin: 35px 0;">
         <form method="post">
@@ -42,11 +42,11 @@
                 </tbody>
             </table>
             {% if search_query %}
-                <input formaction="{% url 'accounts:grant_moderators' %}?next={{ request.path }}?search={{ search_query }}" type="submit" class="btn btn-primary" value="Выдать">
-                <input formaction="{% url 'accounts:remove_moderators' %}?next={{ request.path }}?search={{ search_query }}" type="submit" class="btn btn-primary" value="Убрать">
+                <input formaction="{% url 'accounts:grant_moderators' %}?next={{ request.path }}?search={{ search_query }}" type="submit" class="btn btn-dark-blue" value="Выдать">
+                <input formaction="{% url 'accounts:remove_moderators' %}?next={{ request.path }}?search={{ search_query }}" type="submit" class="btn btn-warning" value="Убрать">
             {% else %}
-                <input formaction="{% url 'accounts:grant_moderators' %}" type="submit" class="btn btn-primary" value="Выдать">
-                <input formaction="{% url 'accounts:remove_moderators' %}" type="submit" class="btn btn-primary" value="Убрать">
+                <input formaction="{% url 'accounts:grant_moderators' %}" type="submit" class="btn btn-dark-blue" value="Выдать">
+                <input formaction="{% url 'accounts:remove_moderators' %}" type="submit" class="btn btn-warning" value="Убрать">
             {% endif %}
 
         </form>

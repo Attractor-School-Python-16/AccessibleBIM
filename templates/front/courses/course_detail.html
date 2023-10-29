@@ -19,18 +19,18 @@
                         {% if request.user.is_authenticated %}
                             {% if user_subscription %}
                                 <a href="{% url 'front:chaptermodel_user_detail' first_chapter.pk %}?page=1"
-                                   class="btn btn-primary my-3">Начать курс</a>
+                                   class="btn btn-info my-3">Начать курс</a>
                             {% else %}
                                 {% get_current_language as LANGUAGE_CODE %}
-                                Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
+                                <strong>Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}</strong>
                                 <br>
-                                <a href="#" class="btn btn-primary my-3">Купить курс</a>
+                                <a href="#" class="btn btn-info my-3">Купить курс</a>
                             {% endif %}
                         {% else %}
                             {% get_current_language as LANGUAGE_CODE %}
-                            Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
+                                <strong>Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}</strong>
                             <br>
-                            <a href="{% url "accounts:login" %}" class="btn btn-primary my-3">Купить курс</a>
+                            <a href="{% url "accounts:login" %}" class="btn btn-info my-3">Купить курс</a>
                         {% endif %}
                     </div>
                 </div>
