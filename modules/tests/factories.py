@@ -29,3 +29,12 @@ class CourseFactory(factory.django.DjangoModelFactory):
     courseTarget_id = factory.SubFactory(CourseTargetFactory)
     language = factory.Faker('random_element', elements=['RU', 'EN', 'KG'])
     learnTime = factory.Faker('random_int', min=0, max=100)
+
+
+class ChapterFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'modules.ChapterModel'
+
+    course = factory.SubFactory(CourseFactory)
+    title = factory.sequence(lambda n: f"Chapter {n}")
+    description = factory.Faker('sentence', nb_words=10)
