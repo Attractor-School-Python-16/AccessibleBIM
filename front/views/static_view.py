@@ -36,3 +36,11 @@ class PrivacyPolicy(TemplateView):
         context = super().get_context_data()
         context['title'] = 'Политика конфиденциальности'
         return context
+
+
+class TermsOfUse(TemplateView):
+    template_name = "front/terms_of_use.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        return context
