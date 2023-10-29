@@ -72,7 +72,7 @@ class SubscriptionUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upd
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def get_success_url(self):
-        return reverse("subscription:subscriptionmodel_detail", kwargs={"pk": self.object.pk})
+        return reverse("subscription:subscriptionmodel_list")
 
 
 class SubscriptionDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -121,6 +121,7 @@ class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, De
 
     def get_context_data(self, **kwargs):
         kwargs['subscriptions'] = SubscriptionModel.objects.all()
+        kwargs['user_subscriptions'] = UsersSubscription.objects.all().filter(user=kwargs['object'].id)
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form, *args, **kwargs):
