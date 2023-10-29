@@ -16,3 +16,16 @@ class CourseTargetFactory(factory.django.DjangoModelFactory):
 
     title = factory.sequence(lambda n: f"Target {n}")
     description = factory.Faker('sentence', nb_words=10)
+
+
+class CourseFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'modules.CourseModel'
+
+    title = factory.sequence(lambda n: f"Course {n}")
+    description = factory.Faker('sentence', nb_words=10)
+    image = factory.django.ImageField(filename='image.jpg')
+    module_id = factory.SubFactory(ModuleFactory)
+    courseTarget_id = factory.SubFactory(CourseTargetFactory)
+    language = factory.Faker('random_element', elements=['RU', 'EN', 'KG'])
+    learnTime = factory.Faker('random_int', min=0, max=100)
