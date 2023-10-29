@@ -1,9 +1,9 @@
 {% load i18n %}
 {% load static %}
 
-<nav class="navbar navbar-expand-lg z-index-3 w-100 shadow-none my-3 {{ nav }}">
+<nav class="navbar position-fixed navbar-expand-lg bg-info navbar-transparent text-white z-index-3 w-100 shadow-none">
     <div class="container">
-        <a class="navbar-brand {{ text }}" href="{% url "front:accessible_bim" %}">
+        <a class="navbar-brand text-white fs-4" href="{% url "front:accessible_bim" %}">
             AccessibleBIM
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <div class="dropdown">
-                    <a href="#" class="btn {% if text %} {{ text }} {% else %} text-white {% endif  %} bg-transparent dropdown-toggle " data-bs-toggle="dropdown"
+                    <a href="#" class="btn text-white bg-transparent dropdown-toggle m-0" data-bs-toggle="dropdown"
                        id="navbarDropdownMenuLink2">
                         О компании
                     </a>
@@ -99,15 +99,20 @@
                 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
 
                     <input name="next" type="hidden" value="{{ redirect_to }}">
-                    <select class="form-control {{ text }}" name="language" onchange="this.form.submit();">
+                    <select class="form-control text-white" name="language" onchange="this.form.submit();">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
-                            <option class="form-control text-black dropdown-item" value="{{ language.code }}"
+                            <option class="form-control text-dark dropdown-item" value="{{ language.code }}"
                                     {% if language.code == LANGUAGE_CODE %}
                                     selected{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
+                                {{ language.name_local }}
+                                {% if language.code == 'ru' %}
+                                    &#127479&#127482
+                                {% elif language.code == 'en' %}
+                                    &#127482&#127480
+                                {% endif %}
                             </option>
                         {% endfor %}
                     </select>

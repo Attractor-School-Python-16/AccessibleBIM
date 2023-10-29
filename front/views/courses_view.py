@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 
@@ -20,6 +21,10 @@ class CoursesUserListView(ListView):
         context['selected_targets'] = self.request.GET.getlist('targets', [])
         context['course_targets'] = CourseTargetModel.objects.all()
         context['modules'] = ModuleModel.objects.all()
+        try:
+            context['user_subscription'] = UsersSubscription.objects.get(Q(user=self.request.user) & Q(is_active=True))
+        except UsersSubscription.DoesNotExist:
+            context['user_subscription'] = None
         return context
 
     def get_queryset(self):

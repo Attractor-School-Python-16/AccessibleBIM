@@ -2,14 +2,21 @@
     <div>
         <h2>{{ data.title }}</h2>
         <div>
-            <p>{{ data.description }}</p>
-            <p>Целевая аудитория курса: {{ data.courseTarget_id.title }}</p>
-            <p>Язык обучения: {{ data.language }}</p>
-            <p>Время обучения: {{ data.learnTime }} ч.</p>
-            <p>Преподаватели:</p>
+            <div>
+                <p>{{ data.description }}</p>
+            </div>
+            <br>
+            <p><strong>Целевая аудитория курса:</strong> {{ data.courseTarget_id.title }}</p>
+            <p><strong>Язык обучения:</strong> {{ data.language }}</p>
+            <p><strong>Время обучения:</strong> {{ data.learnTime }} ч.</p>
+            <p><strong>Преподаватели:</strong></p>
+
             {% for teacher in data.teachers.all %}
-                <p>{{ teacher.job_title }}, {{ teacher.corp }}</p>
-                <p>{{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</p>
+                <ol style="list-style-type: none">
+                    <li><strong>ФИО:</strong>{{ teacher.get_full_name }}</li>
+                    <li><strong>Должность:</strong>{{ teacher.job_title }}</li>
+                    <li><strong>Место работы:</strong>{{ teacher.corp }}</li>
+                </ol>
             {% endfor %}
 
         </div>
