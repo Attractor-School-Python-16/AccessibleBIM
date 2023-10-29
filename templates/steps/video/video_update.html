@@ -1,29 +1,24 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}
-    Редактировать видео
-{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                {% if perms.step.change_videomodel %}
-                    <div class="d-flex justify-content-center">
-                        <div class="container my-5 text-center">
-                            <h2>Отредактируйте видео:</h2>
-                            <div class="d-flex justify-content-center">
-                                {% include "partials/form.html" with button_text="Редактировать видео" %}
-                            </div>
+{% block title %}Редактировать видео{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    {% if perms.step.add_videomodel %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="d-flex justify-content-center">
+                    <div class="container my-5 text-center">
+                        <div class="card-header">
+                            <h2>Редактирование видео:</h2>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            {% include "partials/form.html" with button_text="Редактировать видео" %}
                         </div>
                     </div>
-                {% endif %}
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

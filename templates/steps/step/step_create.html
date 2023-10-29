@@ -1,31 +1,28 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load static view_breadcrumbs %}
-{% block title %}
-    Добавить занятие
-{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
+{% block title %}Создать занятие{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h1>Создание занятия</h1>
             </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <h1>Создание задания</h1>
-                <div class="container">
-                    <div class="col">
-                         {% for error in error_messages %}
-                            <div class="alert alert-danger my-2" role="alert">
-                                {{ error }}
-                            </div>
-                        {% endfor %}
-                        {% include "partials/form.html" with button_text="Создать" create_quiz_text="Создать вопросы" %}
-                    </div>
+            <div class="container">
+                <div class="col">
+                    {% for error in error_messages %}
+                        <div class="alert alert-danger my-2" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                    {% include "partials/form.html" with button_text="Создать" create_quiz_text="Создать вопросы" %}
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+{% block scripts %}
     <script src={% static "js/step_create.js" %}></script>
 {% endblock %}

@@ -112,6 +112,10 @@ class QuizBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVi
     def get_success_url(self):
         return reverse("quiz_bim:quizbim_list")
 
+    def form_valid(self, form):
+        test = form.save()
+        return redirect("quiz_bim:quizbim_detail", test.pk)
+
 
 class QuizBimUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = QuizBim

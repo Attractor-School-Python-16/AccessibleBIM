@@ -12,8 +12,10 @@ class HomeView(TemplateView):
 
 
 class ModeratorView(PermissionRequiredMixin, TemplateView):
-    template_name = 'moderator_page.html'
+    template_name = 'partials/moderator_main.html'
     permission_required = 'accounts.can_view_admin_panel'
+
+
 
 
 class ModulesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
