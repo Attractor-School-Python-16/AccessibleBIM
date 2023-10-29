@@ -4,7 +4,6 @@ const testSelect = document.getElementById("id_step-test")
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("here")
     let deselectButton = document.createElement("button");
     deselectButton.textContent = "Снять выбор";
     deselectButton.className = "btn btn-primary"
@@ -21,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function clearTextAreas() {
-
     const descFrame = document.getElementById("id_text-text_description_iframe");
     const contentFrame = document.getElementById("id_text-content_iframe");
     const descDocument = descFrame.contentDocument || descFrame.contentWindow.document;

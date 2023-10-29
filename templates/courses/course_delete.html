@@ -1,28 +1,21 @@
-{% extends 'base.html' %}
-{% load static view_breadcrumbs%}
-{% block title %}Удаление курса{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <div class="d-block">
-                    <p class="card-text">Вы точно хотите удалить курс:<span class="text-danger"> {{ course.title }}</span>
-                    </p>
-                </div>
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="btn-group" role="group">
-                        <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
-                    </div>
-                    <a class="btn btn-primary" href="{% url 'modules:modulemodel_detail' course.module_id.pk %}">Нет</a>
-                </form>
-            </div>
+{% extends 'moderator_page.html' %}
+{% load static view_breadcrumbs %}
+{% block title %}Удалить курс{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Вы точно хотите удалить модуль:<span
+                    class="text-danger"> {{ course.title }}</span>?
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}" id="cancel-button">Нет</a>
+            </form>
         </div>
     </div>
+    <script src="{% static 'js/delete_button_func.js' %}"></script>
 {% endblock %}
