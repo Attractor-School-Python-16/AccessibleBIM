@@ -25,6 +25,8 @@ class CoursesUserListView(ListView):
             context['user_subscription'] = UsersSubscription.objects.get(Q(user=self.request.user) & Q(is_active=True))
         except UsersSubscription.DoesNotExist:
             context['user_subscription'] = None
+        except TypeError:
+            context['user_subscription'] = None
         return context
 
     def get_queryset(self):
