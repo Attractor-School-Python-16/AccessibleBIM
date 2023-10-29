@@ -1,29 +1,21 @@
-{% extends 'base.html' %}
-{% load static view_breadcrumbs%}
-{% block title %}Удаление учителя{% endblock %}
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <div class="d-block">
-                    <p class="card-text">Вы точно хотите удалить учителя:<span
-                            class="text-danger"> {{ teacher.first_name }}</span>
-                    </p>
-                </div>
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="btn-group" role="group">
-                        <button type="submit" name="delete" class="btn btn-danger" value="yes">Да</button>
-                    </div>
-                    <a class="btn btn-primary" href="{% url "modules:teachermodel_list" %}">Нет</a>
-                </form>
-            </div>
+{% extends 'moderator_page.html' %}
+{% load static view_breadcrumbs %}
+{% block title %}Удалить учителя{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Вы точно хотите удалить учителя:<span
+                    class="text-danger"> {{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</span>?
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}">Нет</a>
+            </form>
         </div>
     </div>
+    <script src="{% static 'js/delete_button_func.js' %}"></script>
 {% endblock %}
