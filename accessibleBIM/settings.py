@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
-    'widget_tweaks',
 
     'accounts',
     'modules',
@@ -134,6 +133,20 @@ DATABASES = {
     "default": env.db(),
 }
 
+# DATABASES = {
+#
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'test_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': 5432,
+#     }
+#
+# }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -155,11 +168,12 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_URL = '/media/'
 # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = '/code/media/'
+
 
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
-CELERY_BROKER_URL = 'redis://redis:6380/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 with open('accessibleBIM/config.txt') as f:
     EMAIL_APP_PASSWORD = f.read().strip()
@@ -178,6 +192,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_ADAPTER = 'accounts.views.MySocialAccountAdapter'
 ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'
 
 # Internationalization
@@ -217,7 +232,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/')
+   os.path.join(BASE_DIR, 'static/')
 ]
 STATIC_URL = 'static/'
 

@@ -7,5 +7,5 @@ Dear {{ name }},
 Please click on the link below to confirm your registration:
 {% endblocktrans %}
 
-http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}
+{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}
 {% endautoescape %}

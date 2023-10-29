@@ -1,3 +1,4 @@
+from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.contrib.auth import login, get_user_model
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -42,7 +43,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.email_verified = True
         user.save()
-        login(request, user)
+        login(request, user, backend='accounts.backends.EmailBackend')
         return redirect('accounts:profile')
     else:
         return redirect('accounts:invalid_verification_link')
@@ -59,3 +60,12 @@ class RegisterView(CreateView):
         user.email_verified = False
         user.save()
         return activate_email(self.request, user, form.cleaned_data.get('email'))
+
+
+class MySocialAccountAdapter(DefaultSocialAccountAdapter):
+    def pre_social_login(self, request, sociallogin):
+        user = CustomUser.objects.filter(email=sociallogin.user.email).first()
+        if user and not sociallogin.is_existing:
+            sociallogin.connect(request, user)
+            user.email_verified = True
+            user.save()

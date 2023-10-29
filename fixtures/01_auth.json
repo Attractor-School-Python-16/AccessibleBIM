@@ -6,7 +6,7 @@
     "name": "moderators",
     "permissions": [
       [
-        "can_view_admin_panel ",
+        "can_view_admin_panel",
         "accounts",
         "customuser"
       ],
@@ -349,6 +349,11 @@
   "fields": {
     "name": "Statistics manager",
     "permissions": [
+      [
+        "can_view_admin_panel",
+        "accounts",
+        "customuser"
+      ],
       [
         "can_view_course_statistics",
         "accounts",
