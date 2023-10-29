@@ -98,7 +98,6 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
             return self.form_invalid(form)
 
 
-
 class QuizBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     model = QuizBim
     form_class = QuizBimForm
