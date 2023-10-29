@@ -67,6 +67,10 @@ class AnswerBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
         form = AnswerBimForm(request.POST or None, instance=answer)
         if not request.user.is_authenticated:
             return HttpResponseForbidden()
+        if not form.is_valid():
+            return render(self.request, "quiz_bim/answer_bim/answer_bim_form.html", context={
+                "forms": [form],
+            })
         form.save(commit=False)
         form.question_bim = get_object_or_404(QuestionBim, pk=kwargs["qpk"])
         answer_content = form.cleaned_data["answer"]

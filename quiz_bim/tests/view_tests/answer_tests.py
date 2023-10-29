@@ -47,7 +47,7 @@ class TestAnswerBimCreateView(CustomTestCase):
     def test_invalid_data(self):
         invalid_data = {
             "answer": "",
-            "is_correct": -1
+            "is_correct": "string"
         }
         previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url, data=invalid_data)
