@@ -1,27 +1,24 @@
-{% extends "base.html" %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}
-    {{ video.video_title }}
-{% endblock %}
-{% block content %}
+{% block title %}Просмотр видео{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
     {% if request.user.is_authenticated %}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    {% include 'partials/sidebar.html' %}
-                </div>
-                <div class="col-md-9">
-                    {% block breadcrumbs %}
-                        {% render_breadcrumbs %}
-                    {% endblock %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="card-header">
                     <h1>{{ video.video_title }}</h1>
-                    <p>{{ video.video_description }}</p>
+                </div>
+                <h4 class="my-2">{{ video.video_description }}</h4>
+                <div class="d-flex justify-content-center">
                     <video width="640" height="360" controls>
                         <source src="{{ video.video_file.url }}" type="video/mp4">
                     </video>
-                    </br>
-                    <a href="{% url 'step:videomodel_list' %}">Вернуться к списку видео</a>
                 </div>
+                </br>
+                <a href="{% url 'step:videomodel_list' %}" class="btn btn-secondary">Вернуться к списку видео</a>
             </div>
         </div>
     {% endif %}
