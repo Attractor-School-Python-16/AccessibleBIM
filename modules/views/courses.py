@@ -9,9 +9,7 @@ from django.views.generic import ListView, CreateView, DetailView, DeleteView, U
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
     UpdateBreadcrumbMixin
 from modules.forms.courses_form import CoursesForm
-from modules.models import CourseModel, ModuleModel, ChapterModel, CourseTargetModel
-from subscription.models import SubscriptionModel
-from subscription.models.user_subscription import UsersSubscription
+from modules.models import CourseModel, ModuleModel, ChapterModel
 
 
 class CoursesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -60,7 +58,6 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
         course = self.get_object()
         module = self.get_object().module_id
         chapter = course.ct_course.first()
-
         return [
             (module._meta.verbose_name_plural, reverse_lazy("modules:modulemodel_list")),
             (module.title, reverse_lazy("modules:modulemodel_detail", kwargs={"pk": module.pk})),
@@ -74,29 +71,6 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
-        return context
-
-
-class CourseUserDetailView(DetailView):
-    model = CourseModel
-    context_object_name = 'course'
-    template_name = 'courses/course_user_detail.html'
-    home_path = reverse_lazy('modules:moderator_page')
-
-    # Необходимо добавить проверку при просмотре купленного курса, если есть прогресс прохождения, то добавить ссылку
-    # перехода на последний шаг.
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
-        context['first_chapter'] = ChapterModel.objects.get(course=self.object.id, serial_number=1)
-        if self.request.user.is_authenticated:
-            subscription = SubscriptionModel.objects.filter(course=self.object)
-            if subscription:
-                context['subscription'] = subscription[0]
-                user_subscription = UsersSubscription.objects.filter(user=self.request.user,
-                                                                     subscription=subscription[0])
-                if user_subscription:
-                    context['user_subscription'] = user_subscription[0].is_active
         return context
 
 

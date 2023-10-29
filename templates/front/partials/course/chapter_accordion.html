@@ -2,22 +2,27 @@
     <div class="accordion" id="accordionExample">
         <h2>Содержание курса {{ chapter.serial_number }}: {{ chapter.title }}</h2>
         {% for chapter in chapters|dictsort:"serial_number" %}
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapse{{ chapter.pk }}" aria-expanded="true"
-                            aria-controls="panelsStayOpen-collapse{{ chapter.pk }}">
-                        <h4>Раздел {{ chapter.serial_number }}: {{ chapter.title }}</h4>
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapse{{ chapter.pk }}" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        {% for step in chapter.step.all %}
-                            <h5>{{ step.title }}</h5>
-                        {% endfor %}
+            {% if chapter.step.all %}
+                <div class="accordion-item">
+                    <p class="accordion-header">
+                        <button class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse{{ chapter.pk }}" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapse{{ chapter.pk }}">
+                            <strong class="fs-5 text-dark">Глава {{ chapter.serial_number }}: {{ chapter.title }}</strong>
+                        </button>
+                    </p>
+
+                    <div id="panelsStayOpen-collapse{{ chapter.pk }}" class="accordion-collapse collapse">
+                        <div class="accordion-body p-0">
+                            <ol class="text-dark bold">
+                                {% for step in chapter.step.all %}
+                                    <li><strong class="fs-6 text-dark">{{ step.title }}</strong></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>

@@ -79,8 +79,12 @@ class CustomUser(AbstractUser):
         """
         Return the first_name plus the last_name, with a space in between.
         """
-        full_name = "%s %s" % (self.first_name, self.last_name)
-        return full_name.strip()
+        if self.father_name:
+            full_name = "%s %s %s" % (self.first_name, self.last_name, self.father_name)
+            return full_name.strip()
+        else:
+            full_name = "%s %s" % (self.first_name, self.last_name)
+            return full_name.strip()
 
     def get_current_course(self):
         """

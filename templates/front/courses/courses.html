@@ -1,5 +1,5 @@
 {% extends "front/base.html" %}
-{% load custom_test static i18n %}
+{% load static i18n %}
 {% block title %}Список курсов{% endblock %}
 
 {% block content %}
@@ -12,38 +12,11 @@
             <div class="col-md-12">
                 {% for course in courses %}
                     {% if course.subscription.all %}
-                        <article class="postcard light {% cycle 'yellow' 'blue' 'red' 'green' %}">
-                            <a class="postcard__img_link" href="#">
-                                <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title"/>
-                            </a>
-                            <div class="postcard__text t-dark">
-                                <h1 class="postcard__title blue"><a
-                                        href="{% url 'front:course_user_detail' course.id %}">{{ course.title }} </a>
-                                </h1>
-                                <div class="postcard__subtitle small">
-                                    <time datetime="{{ course.update_at }}">
-                                        Последнее обновление: <i
-                                            class="fas fa-calendar-alt mr-2"></i> {{ course.update_at }}
-                                    </time>
-                                </div>
-                                <div class="postcard__bar"></div>
-                                <div class="postcard__preview-txt">{{ course.description }}</div>
-                                <ul class="postcard__tagbox">
-                                    <li class="tag__item"><i class="fas fa-tag mr-2"></i> {{ course.courseTarget_id }}
-                                    </li>
-                                    <li class="tag__item"><i class="fas fa-tag mr-2"></i> {{ course.get_total_tests|make_text_for_text }}
-                                    </li>
-                                    <li class="tag__item"><i class="fas fa-tag mr-2"></i> {{ course.get_total_lessons|make_text_for_lessons }}
-                                    </li>
-                                    <li class="tag__item"><i class="fas fa-clock mr-2"></i> {{ course.learnTime }} часов
-                                    </li>
-                                    <li class="tag__item play blue">
-                                        <a href="{% url 'front:course_user_detail' course.id %}"><i
-                                                class="fas fa-play mr-2"></i> Начать обучение</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
+                        {% if course == user_subscription.subscription.course%}
+                            {% include "front/partials/course/course_card.html" with my_course=True %}
+                            {% else %}
+                            {% include "front/partials/course/course_card.html" %}
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </div>
