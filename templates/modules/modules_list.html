@@ -1,19 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
 {% block title %}Модули{% endblock %}
-{% block content %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-                {% block breadcrumbs %}
-                    {% render_breadcrumbs %}
-                {% endblock %}
-                <h1>Список модулей</h1><a href="{% url 'modules:modulemodel_create' %}" class="btn btn-primary my-3">Добавить
-                модуль</a>
-                <table class="table">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <h2>Список модулей</h2>
+                </div>
+                <a href="{% url 'modules:modulemodel_create' %}" class="btn btn-primary my-3">Добавить модуль</a>
+                <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th>ID</th>
