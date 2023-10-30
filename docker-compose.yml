@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:14.3
     ports:
-      - "5432:5432"
+      - "5433:5432"
     env_file:
       - .env
     container_name: test_db
@@ -36,7 +36,7 @@ services:
     image: "redis:alpine"
     hostname: redis
     ports:
-      - "6379:6379"
+      - "6380:6379"
 
   celery:
     build: .

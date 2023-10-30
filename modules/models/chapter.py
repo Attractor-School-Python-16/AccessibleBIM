@@ -15,6 +15,8 @@ class ChapterModel(AbstractModel):
         verbose_name = 'Главы'
         verbose_name_plural = 'Главы'
 
+
+
     def save(self, *args, **kwargs):
         # Это означает, что модель еще не сохранена в базе данных
         if self._state.adding:
