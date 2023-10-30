@@ -1,6 +1,7 @@
 import os
 
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 from modules.models.teacher import TeacherModel
@@ -28,10 +29,22 @@ class CourseModel(AbstractModel):
     courseTarget_id = models.ForeignKey('modules.CourseTargetModel', related_name='courses',
                                         on_delete=models.DO_NOTHING, verbose_name='Целевая аудитория курса')
     language = models.CharField(max_length=10, choices=TypeChoices.choices, blank=False, null=False,
-                                   verbose_name='Язык занятия')
-    learnTime = models.IntegerField(null=False, blank=False, default=0, verbose_name='Время на прохождение курса (часы)')
+                                verbose_name='Язык занятия')
+    learnTime = models.IntegerField(null=False, blank=False, default=0,
+                                    verbose_name='Время на прохождение курса (часы)')
     teachers = models.ManyToManyField(TeacherModel, related_name='courses', through=CourseTeacherModel,
                                       through_fields=('ct_course', 'ct_teacher'), verbose_name='Преподаватели курса')
+
+    def get_total_tests(self):
+        for course in self.ct_course.all():
+            if course.pk == self.pk:
+                return len(course.step.all().filter(test__isnull=False))
+
+    def get_total_lessons(self):
+        for course in self.ct_course.all():
+            if course.pk == self.pk:
+                return len(
+                    course.step.all().filter(Q(test__isnull=True)))
 
     class Meta:
         db_table = 'course'

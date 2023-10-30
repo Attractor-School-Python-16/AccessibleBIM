@@ -33,7 +33,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
 
-
 # Application definition
 
 SITE_ID = 2
@@ -70,7 +69,7 @@ INSTALLED_APPS = [
     'subscription',
     'quiz_bim',
     'currency',
-    'static_pages',
+    'front',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +119,6 @@ BREADCRUMBS_TEMPLATE = "partials/breadcrumbs.html"
 BREADCRUMBS_HOME_LABEL = "Home"
 WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -166,7 +164,6 @@ AUTH_PASSWORD_VALIDATORS = [
     #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     # },
 ]
-
 
 MEDIA_URL = '/media/'
 # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
@@ -231,7 +228,6 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
@@ -285,7 +281,6 @@ SUMMERNOTE_CONFIG = {
             ['insert', ['link', 'picture']],
             ['view', ['fullscreen']],
         ],
-
 
         'fontNames': ['Arial', 'Arial Nova Light', 'Arial Nova'],
         'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
