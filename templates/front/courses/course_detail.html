@@ -15,17 +15,18 @@
                 <div class="container-fluid">
                     <div class="row g-0">
                         {% include 'front/partials/course/course_main_block.html' with data=course %}
+
                         {% include 'front/partials/course/chapter_accordion.html' with data=course %}
                         {% if request.user.is_authenticated %}
                             {% if user_subscription %}
-                                <a href="{% url 'modules:chaptermodel_user_detail' first_chapter.pk %}?page=1"
-                                   class="btn btn-primary my-3">Начать курс</a>
+                                <a href="{% url 'front:chaptermodel_user_detail' first_chapter.pk %}?page=1"
+                                   class="btn btn-info my-3">Начать курс</a>
                             {% else %}
                                 {% get_current_language as LANGUAGE_CODE %}
                                 Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
                                 <br>
                                 {% if request.user.email_verified %}
-                                    <a href="#" class="btn btn-primary my-3">Купить курс</a>
+                                    <a href="#" class="btn btn-info my-3">Купить курс</a>
                                 {% else %}
                                     <div class="alert alert-warning" role="alert">
                                         Для приобретения курса подтвердите свой Email.
@@ -36,7 +37,7 @@
                             {% get_current_language as LANGUAGE_CODE %}
                             Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
                             <br>
-                            <a href="{% url "accounts:login" %}" class="btn btn-primary my-3">Купить курс</a>
+                            <a href="{% url "accounts:login" %}" class="btn btn-info my-3">Купить курс</a>
                         {% endif %}
                     </div>
                 </div>
