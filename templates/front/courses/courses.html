@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 {% for course in courses %}
                     {% if course.subscription.all %}
-                        {% if course == user_subscription.subscription.course%}
+                        {% if course == user_subscription.subscription.course %}
                             {% include "front/partials/course/course_card.html" with my_course=True %}
                             {% else %}
                             {% include "front/partials/course/course_card.html" %}
