@@ -144,3 +144,67 @@ class TestModuleCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'image', 'Это поле обязательно для заполнения.')
         self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
+
+
+class TestModuleUpdateView(CustomTestCase):
+
+    def setUp(self):
+        self.module = ModuleFactory.create()
+        self.url = reverse("modules:modulemodel_update", kwargs={"pk": self.module.pk})
+
+    @login_superuser
+    def test_update_view(self):
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.module.refresh_from_db()
+        self.assertEqual(self.module.title, new_data['title'])
+        self.assertEqual(self.module.description, new_data['description'])
+        self.assertRedirects(response, reverse("modules:modulemodel_list"))
+
+    def test_anonymous(self):
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+        }
+        self.client.force_login(self.user)
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+    @login_superuser
+    def test_empty_title(self):
+        invalid_data = {
+            "title": "",
+            "description": "Description",
+            "image": get_image_file(),
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.assertNotEquals(self.module.title, invalid_data['title'])
+
+    @login_superuser
+    def test_empty_description(self):
+        invalid_data = {
+            "title": "Module",
+            "description": "",
+            "image": get_image_file(),
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+        self.assertNotEquals(self.module.description, invalid_data['description'])
