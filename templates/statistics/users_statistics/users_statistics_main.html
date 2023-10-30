@@ -1,38 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'moderator_page.html' %}
 {% load i18n %}
 {% load static %}
 
 {% block title %}Статистика{% endblock %}
 
-{% block content %}
+{% block moderator_interface %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
+        <!--Cards-->
+        <div class="row g-5 g-xl-8 mb-4">
+            <div class="col-sm-12 col-md-6">
+                {% include 'partials/statistics/statistics_card.html' with score=registered_users_qty title='Количество зарегистрированных пользователей' icon='<i class="fa-solid fa-user-group fs-2"></i>' %}
             </div>
-
-            <div class="col-md-9">
-
-                <!--Cards-->
-                <div class="row g-5 g-xl-8 mt-1 mb-4">
-                    <div class="col-sm-12 col-md-6">
-                        {% include 'partials/statistics/statistics_card.html' with score=registered_users_qty title='Количество зарегистрированных пользователей' icon='<i class="fa-solid fa-user-group fs-2"></i>' %}
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        {% include 'partials/statistics/statistics_card.html' with score=active_subscribers_qty title='Количество пользователей с действующей подпиской' icon='<i class="fa-solid fa-user-graduate fs-2"></i>' %}
-                    </div>
-                </div>
-
-                <div class="p-1">
-                    <!--New customers chart-->
-                    {% include 'partials/statistics/chart_by_period.html' with title='Новые пользователи' btn_class='new-users-chart-btn' chart_id='new-users-chart' %}
-                </div>
-
-                <a href="{% url 'reports:stats_users_list' %}" class="btn btn-primary">Список пользователей</a>
+            <div class="col-sm-12 col-md-6">
+                {% include 'partials/statistics/statistics_card.html' with score=active_subscribers_qty title='Количество пользователей с действующей подпиской' icon='<i class="fa-solid fa-user-graduate fs-2"></i>' %}
             </div>
         </div>
-    </div>
 
+        <div class="p-1">
+            <!--New customers chart-->
+            {% include 'partials/statistics/chart_by_period.html' with title='Новые пользователи' btn_class='new-users-chart-btn' chart_id='new-users-chart' %}
+        </div>
+
+        <a href="{% url 'reports:stats_users_list' %}" class="btn btn-primary my-3 p-3">Список пользователей</a>
+    </div>
 {% endblock %}
 
 {% block scripts %}
