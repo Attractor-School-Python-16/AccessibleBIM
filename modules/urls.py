@@ -1,6 +1,6 @@
 from django.urls import path
 
-from modules.views.modules import HomeView, ModeratorView
+from modules.views.modules import ModeratorView
 
 from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetailView, ModuleDeleteView, \
     ModuleUpdateView
@@ -12,17 +12,15 @@ from modules.views.course_target import CourseTargetsListView, CourseTargetCreat
     CourseTargetDeleteView, CourseTargetUpdateView
 
 from modules.views.courses import CoursesListView, CourseCreateView, CourseDetailView, CourseDeleteView, \
-    CourseUpdateView, CourseChangeChaptersOrderView, CoursesUserListView, CourseUserDetailView
+    CourseUpdateView, CourseChangeChaptersOrderView
 
 from modules.views.chapters import ChaptersListView, ChapterCreateView, ChapterDetailView, ChapterDeleteView, \
     ChapterUpdateView, ChapterChangeStepsOrderView
-from modules.views.user_chapter_progress_view import ChapterUserDetailView
 
 app_name = 'modules'
 
 urlpatterns = [
-    path('', HomeView.as_view(), name="index"),
-    path('moderator/', ModeratorView.as_view(), name='moderator_page'),
+    path('', ModeratorView.as_view(), name='moderator_page'),
     path('modules/', ModulesListView.as_view(), name="modulemodel_list"),
     path('module/create/', ModuleCreateView.as_view(), name="modulemodel_create"),
     path('module/<int:pk>/', ModuleDetailView.as_view(), name="modulemodel_detail"),
@@ -45,8 +43,6 @@ urlpatterns = [
 
     path('courses/', CoursesListView.as_view(), name="coursemodel_list"),
     path('course/create/', CourseCreateView.as_view(), name="coursemodel_create"),
-    path('user_courses/', CoursesUserListView.as_view(), name="coursemodel_user_list"),
-    path('user_course/<int:pk>/detail/', CourseUserDetailView.as_view(), name="coursemodel_user_detail"),
     path('course/<int:pk>/detail/', CourseDetailView.as_view(), name="coursemodel_detail"),
     path('course/<int:pk>/update/', CourseUpdateView.as_view(), name="coursemodel_update"),
     path('course/<int:pk>/delete/', CourseDeleteView.as_view(), name="coursemodel_delete"),
@@ -60,5 +56,4 @@ urlpatterns = [
     path('chapter/<int:pk>/delete/', ChapterDeleteView.as_view(), name="chaptermodel_delete"),
     path('chapter/<int:pk>/change_steps_order', ChapterChangeStepsOrderView.as_view(),
          name="change_steps_order"),
-    path('user_chapter/<int:chapter_pk>/', ChapterUserDetailView.as_view(), name="chaptermodel_user_detail")
 ]

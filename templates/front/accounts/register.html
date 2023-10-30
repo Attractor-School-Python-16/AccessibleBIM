@@ -1,0 +1,54 @@
+{% extends "front/base.html" %}
+{% load widget_tweaks socialaccount i18n %}
+
+{% block title %}{% trans 'Registration' %}{% endblock %}
+{% block content %}
+    <div class="min-vh-100 d-flex flex-row align-items-center">
+        <div class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card mb-4 mx-4">
+                        <div class="card-body p-4">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h1>{% trans 'Register' %}</h1>
+                                {% if form.non_field_errors %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-danger text-white">{{ error }}</div>
+                                    {% endfor %}
+                                {% else %}
+                                    <p class="text-medium-emphasis">Create your account</p>
+                                {% endif %}
+                                {% for field in form %}
+                                    {% if field.field.required %}
+                                        <label class="form-label">{{ field.label }}*</label>
+                                    {% else %}
+                                        <label class="form-label">{{ field.label }}</label>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <div class="alert alert-danger text-white" role="alert">
+                                            {{ error }}
+                                        </div>
+                                    {% endfor %}
+                                    <div class="input-group input-group-outline">
+                                        {{ field|attr:"class:form-control" }}
+                                    </div>
+                                {% endfor %}
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-block btn-success mx-2"
+                                            type="submit">{% trans 'Register' %}</button>
+                                    <button form="google" class="btn btn-outline-info mx-2" role="button">
+                                        <i class="bi bi-google"></i> Signup with Google
+                                    </button>
+                                </div>
+                            </form>
+                            <form action="{% provider_login_url 'google' %}" id="google" method="post" novalidate>
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
