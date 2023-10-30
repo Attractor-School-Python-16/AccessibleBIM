@@ -1,9 +1,9 @@
-<h4>Фильтры:</h4>
+<h4 class="text-center">Фильтры:</h4>
 
 
 <form method="get">
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row justify-content-around mt-4">
+        <div class="col-md-3">
             <h5>Модуль</h5>
             {% for module in modules %}
                 <input type="checkbox" id="module{{ module.pk }}" name="modules" value="{{ module.title }}"
@@ -11,7 +11,7 @@
                 <label for="module{{ module.pk }}">{{ module.title }}</label><br>
             {% endfor %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h5>Целевая аудитория</h5>
             {% for target in course_targets %}
                 <input type="checkbox" id="target{{ target.pk }}" name="targets" value="{{ target.title }}"
@@ -19,7 +19,7 @@
                 <label for="target{{ target.pk }}">{{ target.title }}</label><br>
             {% endfor %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <h5>Язык обучения</h5>
             <input type="checkbox" id="language1" name="languages" value="RU"
                    {% if "RU" in selected_languages %}checked{% endif %}>
