@@ -3,4 +3,4 @@ from django.contrib.auth.views import PasswordChangeDoneView
 
 
 class PasswordUpdateDoneView(LoginRequiredMixin, PasswordChangeDoneView):
-    template_name = "accounts/change_password_done.html"
+    template_name = "front/accounts/change_password_done.html"
