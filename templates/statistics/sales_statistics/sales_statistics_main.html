@@ -14,20 +14,20 @@
             <div class="col-md-9">
 
                 <!--Cards-->
-                <div class="row g-5 g-xl-8">
-                    <div class="col-xl-6">
+                <div class="row g-5 g-xl-8 my-3">
+                    <div class="col-sm-12 col-md-6">
                         {% include 'partials/statistics/statistics_card.html' with score=subscriptions_ttl_qty title='Количество подписок' icon='<i class="fa-solid fa-bag-shopping fs-2"></i>' %}
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-sm-12 col-md-6">
                         {% include 'partials/statistics/statistics_card.html' with score=active_subscriptions_qty title='Количество активных подписок' icon='<i class="fa-solid fa-pen-nib fs-2"></i>' %}
                     </div>
-                    <div class="col-xl-4">
+                    <div class="col-sm-12 col-md-6">
                         {% include 'partials/statistics/statistics_card.html' with score=min_course_price|floatformat:2 title='Минимальная стоимость курса' icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
                     </div>
-                    <div class="col-xl-4">
+                    <div class="col-sm-12 col-md-6">
                         {% include 'partials/statistics/statistics_card.html' with score=avg_course_price|floatformat:2 title='Средняя стоимость курса' icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
                     </div>
-                    <div class="col-xl-4">
+                    <div class="col-sm-12 col-md-6">
                         {% include 'partials/statistics/statistics_card.html' with score=max_course_price|floatformat:2 title='Максимальная стоимость курса' icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
                     </div>
                 </div>

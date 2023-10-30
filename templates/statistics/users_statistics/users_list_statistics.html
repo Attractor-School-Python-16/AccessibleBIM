@@ -14,57 +14,43 @@
             <div class="col-md-9">
                 <!--Users table-->
                 <div class="table-responsive my-3">
-                    <table class="table border mb-0" id="UserStatisticsTable">
-                      <thead class="table-light fw-semibold">
-                        <tr class="align-middle">
-                          <th>User</th>
-                          <th>Email</th>
-                          <th>Country</th>
-                          <th>Course</th>
-                          <th>Registered at</th>
-                          <th>Last Entry</th>
-                          <th>Email Verified</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for person in people %}
-                        <tr class="align-middle">
-                          <td>
-                              <a href="{% url 'reports:stats_user_detailed' pk=person.pk %}">
-                                  <div>{{ person.get_full_name }}</div>
-                              </a>
-                          </td>
-                          <td class="text-left">
-                            <div>{{ person.email }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ person.country }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>
-                                {% if person.get_current_course %}
-                                    {{ person.get_current_course.title }}
-                                {% else %}
-                                    -
-                                {% endif %}
-                            </div>
-                          </td>
-                          <td>
-                            <div class="fw-semibold">{{ person.date_joined|date:"j.m.o H:i" }}</div>
-                          </td>
-                          <td>
-                            <div class="fw-semibold">{{ person.last_login|date:"j.m.o H:i" }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>
-                                <input type="checkbox" {% if person.email_verified %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;">
-                            </div>
-                          </td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
+                    <table class="table responsive border mb-0 nowrap" id="UserStatisticsTable">
+                        <thead class="table-light fw-semibold">
+                            <tr class="align-middle">
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>Course</th>
+                                <th>Registered at</th>
+                                <th>Last Entry</th>
+                                <th>Email Verified</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for person in people %}
+                                <tr class="align-middle">
+                                    <td>
+                                        <a href="{% url 'reports:stats_user_detailed' pk=person.pk %}">
+                                            {{ person.get_full_name }}
+                                        </a>
+                                    </td>
+                                    <td class="text-left">{{ person.email }}</td>
+                                    <td class="text-center">{{ person.country }}</td>
+                                    <td class="text-center">
+                                        {% if person.get_current_course %}
+                                            {{ person.get_current_course.title }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ person.date_joined|date:"j.m.o H:i" }}</td>
+                                    <td>{{ person.last_login|date:"j.m.o H:i" }}</td>
+                                    <td class="text-center"><input type="checkbox" {% if person.email_verified %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;"></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
-                  </div>
+                </div>
             </div>
         </div>
     </div>

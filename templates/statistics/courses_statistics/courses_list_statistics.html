@@ -14,51 +14,38 @@
             <div class="col-md-9">
                 <!--Users table-->
                 <div class="table-responsive my-3">
-                    <table class="table border mb-0" id="CoursesStatisticsTable">
-                      <thead class="table-light fw-semibold">
-                        <tr class="align-middle">
-                          <th>Course</th>
-                          <th>#Chapters</th>
-                          <th>#Lessons</th>
-                          <th>Module</th>
-                          <th>Target</th>
-                          <th>Language</th>
-                          <th>Published</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for course in courses %}
-                        <tr class="align-middle">
-                          <td>
-                              <a href="{% url 'reports:stats_course_detailed' pk=course.pk %}">
-                                  <div>{{ course.title }}</div>
-                              </a>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ course.get_chapters_qty }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ course.get_lessons_qty }}</div>
-                          </td>
-                          <td class="text-left">
-                            <div>{{ course.module_id.title }}</div>
-                          </td>
-                          <td class="text-left">
-                            <div>{{ course.courseTarget_id.title }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ course.language }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>
-                                <input type="checkbox" {% if course.subscription.first.is_published %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;">
-                            </div>
-                          </td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
+                    <table class="table border mb-0 nowrap" id="CoursesStatisticsTable">
+                        <thead class="table-light fw-semibold">
+                            <tr class="align-middle">
+                                <th>Course</th>
+                                <th>#Chapters</th>
+                                <th>#Lessons</th>
+                                <th>Module</th>
+                                <th>Target</th>
+                                <th>Language</th>
+                                <th>Published</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for course in courses %}
+                                <tr class="align-middle">
+                                    <td>
+                                        <a href="{% url 'reports:stats_course_detailed' pk=course.pk %}">
+                                            {{ course.title }}
+                                        </a>
+                                    </td>
+                                    <td class="text-center">{{ course.get_chapters_qty }}</td>
+                                    <td class="text-center">{{ course.get_lessons_qty }}</td>
+                                    <td class="text-left">{{ course.module_id.title }}</td>
+                                    <td class="text-left">{{ course.courseTarget_id.title }}</td>
+                                    <td class="text-center">{{ course.language }}</td>
+                                    <td class="text-center"><input type="checkbox" {% if course.subscription.first.is_published %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;">
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
-                  </div>
+                </div>
             </div>
         </div>
     </div>

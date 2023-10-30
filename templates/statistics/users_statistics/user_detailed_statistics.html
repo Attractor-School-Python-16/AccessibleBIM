@@ -14,47 +14,30 @@
             <div class="col-md-9">
                 <!--Users table-->
                 <div class="table-responsive my-3">
-                    <table class="table border mb-0" id="UserStatisticsTable">
-                      <thead class="table-light fw-semibold">
-                        <tr class="align-middle">
-                          <th>User</th>
-                          <th>Email</th>
-                          <th>Country</th>
-                          <th>Course</th>
-                          <th>Registered at</th>
-                          <th>Last Entry</th>
-                          <th>Email Verified</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="align-middle">
-                          <td>
-                              <div>{{ person.get_full_name }}</div>
-                          </td>
-                          <td class="text-left">
-                            <div>{{ person.email }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ person.country }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>{{ person.get_current_course }}</div>
-                          </td>
-                          <td>
-                            <div class="fw-semibold">{{ person.date_joined|date:"j.m.o H:i" }}</div>
-                          </td>
-                          <td>
-                            <div class="fw-semibold">{{ person.last_login|date:"j.m.o H:i" }}</div>
-                          </td>
-                          <td class="text-center">
-                            <div>
-                                <input type="checkbox" {% if person.email_verified %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;">
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
+                    <table class="table border mb-0 nowrap">
+                        <thead class="table-light fw-semibold">
+                            <tr class="align-middle">
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>Course</th><th>Registered at</th>
+                                <th>Last Entry</th>
+                                <th>Email Verified</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle">
+                              <td>{{ person.get_full_name }}</td>
+                              <td class="text-left">{{ person.email }}</td>
+                              <td class="text-center">{{ person.country }}</td>
+                              <td class="text-center">{{ person.get_current_course }}</td>
+                              <td>{{ person.date_joined|date:"j.m.o H:i" }}</td>
+                              <td>{{ person.last_login|date:"j.m.o H:i" }}</td>
+                              <td class="text-center"><input type="checkbox" {% if person.email_verified %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;"></td>
+                            </tr>
+                        </tbody>
                     </table>
-                  </div>
+                </div>
 
 
             <h4 class="my-3">Текущий курс:</h4>
