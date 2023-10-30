@@ -13,14 +13,14 @@
 
             <div class="col-md-9">
 
-                <div class="row g-5 g-xl-8">
-                    <div class="col-xl-4">
+                <div class="row g-5 g-xl-8 my-3">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
                         {% include 'partials/statistics/statistics_card.html' with score=subscriptions_qty title='Пользователей купили данный курс' icon='<i class="fa-solid fa-user-plus fs-2"></i>' %}
                     </div>
-                    <div class="col-xl-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
                         {% include 'partials/statistics/statistics_card.html' with score=completions_qty title='Пользователей закончили данный курс' icon='<i class="fa-solid fa-user-check fs-2"></i>' %}
                     </div>
-                    <div class="col-xl-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
                         {% include 'partials/statistics/statistics_card.html' with score=avg_completion_time title='Среднее время прохождения' icon='<i class="fa-solid fa-clock fs-2"></i>' %}
                     </div>
                 </div>
