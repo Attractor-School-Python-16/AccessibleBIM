@@ -54,5 +54,5 @@ class CoursesDetailedStatisticsView(PermissionRequiredMixin, DetailView):
         timedelta_list = []
         for pair in zip(end_times_list, start_times_list):
             timedelta_list.append((pair[0] - pair[1]).total_seconds())
-        avg_completion_time = sum(timedelta_list) / len(timedelta_list) if timedelta_list else 0
+        avg_completion_time = sum(timedelta_list) // len(timedelta_list) if timedelta_list else 0
         return datetime.timedelta(seconds=avg_completion_time)
