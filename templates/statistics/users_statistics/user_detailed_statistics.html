@@ -13,7 +13,7 @@
 
             <div class="col-md-9">
                 <!--Users table-->
-                <div class="table-responsive">
+                <div class="table-responsive my-3">
                     <table class="table border mb-0" id="UserStatisticsTable">
                       <thead class="table-light fw-semibold">
                         <tr class="align-middle">
@@ -57,23 +57,23 @@
                   </div>
 
 
-            <h4>Текущий курс:</h4>
+            <h4 class="my-3">Текущий курс:</h4>
             {% if current_course %}
                 <div class="card">
                      <div class="card-body">
                          <h5 class="card-title">{{ current_course.title }}</h5>
                          <p class="card-text">{{ current_course.description }}</p>
-                     </div>
 
-                    <p class="d-inline-flex gap-1">
-                      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#current-course-div" aria-expanded="false" aria-controls="current-course-div">
-                        Статистика по тестам
-                      </button>
-                    </p>
-                    <div class="collapse" id="current-course-div">
-                        <div class="test-progress-chart" id="test-progress-chart-{{ current_course.pk }}"
-                                    data-course="{{ current_course.pk }}" data-user="{{ person.pk }}"></div>
-                    </div>
+                         <p class="d-inline-flex gap-1">
+                             <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                   data-bs-target="#current-course-div" aria-expanded="false"
+                                   aria-controls="current-course-div">Статистика по тестам</button>
+                        </p>
+                        <div class="collapse" id="current-course-div">
+                            <div class="test-progress-chart" id="test-progress-chart-{{ current_course.pk }}"
+                                        data-course="{{ current_course.pk }}" data-user="{{ person.pk }}"></div>
+                        </div>
+                     </div>
 
                 </div>
 
@@ -81,24 +81,26 @@
                 <p>Нет текущих подписок</p>
             {% endif %}
 
-            <h4>Завершенные курсы:</h4>
+            <h4 class="my-3">Завершенные курсы:</h4>
             {% if past_courses %}
                 {% for subscription in past_courses %}
                     <div class="card">
                          <div class="card-body">
                              <h5 class="card-title">{{ subscription.course.title }}</h5>
                              <p class="card-text">{{ subscription.course.description }}</p>
-                         </div>
 
-                    <p class="d-inline-flex gap-1">
-                      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#past-course-div-{{ subscription.course.pk }}" aria-expanded="false" aria-controls="past-course-div-{{ subscription.course.pk }}">
-                        Статистика по тестам
-                      </button>
-                    </p>
-                    <div class="collapse" id="past-course-div-{{ subscription.course.pk }}">
-                        <div class="test-progress-chart" id="test-progress-chart-{{ subscription.course.pk }}"
-                            data-course="{{ subscription.course.pk }}" data-user="{{ person.pk }}" ></div>
-                    </div>
+                             <p class="d-inline-flex gap-1">
+                                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                         data-bs-target="#past-course-div-{{ subscription.course.pk }}"
+                                         aria-expanded="false" aria-controls="past-course-div-{{ subscription.course.pk }}">
+                                     Статистика по тестам
+                                 </button>
+                             </p>
+                             <div class="collapse" id="past-course-div-{{ subscription.course.pk }}">
+                                <div class="test-progress-chart" id="test-progress-chart-{{ subscription.course.pk }}"
+                                    data-course="{{ subscription.course.pk }}" data-user="{{ person.pk }}" ></div>
+                             </div>
+                         </div>
 
                 {% endfor %}
             {% else %}
