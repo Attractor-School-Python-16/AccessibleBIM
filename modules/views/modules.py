@@ -7,10 +7,6 @@ from modules.forms.modules_form import ModulesForm
 from modules.models import ModuleModel, CourseModel
 
 
-class HomeView(TemplateView):
-    template_name = 'index.html'
-
-
 class ModeratorView(PermissionRequiredMixin, TemplateView):
     template_name = 'partials/moderator_main.html'
     permission_required = 'accounts.can_view_admin_panel'

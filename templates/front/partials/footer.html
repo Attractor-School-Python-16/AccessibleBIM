@@ -1,0 +1,37 @@
+<footer class="footer bg-info navbar-transparent py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-4 mx-auto text-center">
+                <a href="{% url "accounts:login" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
+                    Войти
+                </a>
+                <a href="{% url "accounts:register" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
+                    Регистрация
+                </a>
+                <a href="{% url "front:course_user_list" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
+                    Курсы
+                </a>
+                <a href="{% url "front:about" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
+                    О нас
+                </a>
+                <a href="{% url "front:contacts" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
+                    Контакты
+                </a>
+                <a href="{% url "front:privacy_policy" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
+                    Политика конфиденциальности
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 mx-auto text-center mt-1">
+                <p class="mb-0 text-white">
+                    Copyright ©
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    2023 Material by Creative Tim.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
