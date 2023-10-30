@@ -63,10 +63,7 @@ class TestQuizBimDetailView(CustomTestCase):
 class TestQuizBimCreateView(CustomTestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.correct_form_data = {
-            "title": "Quiz",
-            "questions_qty": 5,
-        }
+        cls.correct_form_data = {"title": "Quiz"}
         cls.url = reverse("quiz_bim:quizbim_create")
         super().setUpTestData()
 
@@ -77,7 +74,8 @@ class TestQuizBimCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(QuizBim.objects.count() - previous_count, 1)
         quiz = QuizBim.objects.latest('create_at')
-        self.assertRedirects(response, reverse("quiz_bim:quizbim_list"))
+        self.assertRedirects(response, reverse("quiz_bim:quizbim_detail", kwargs={"pk": quiz.pk}))
+        self.assertEqual(quiz.title, self.correct_form_data['title'])
 
     def test_anonymous(self):
         response = self.client.post(self.url, data=self.correct_form_data)
@@ -89,15 +87,14 @@ class TestQuizBimCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
     @login_superuser
-    def test_invalid_data(self):
-        invalid_data = {
-            "title": "",
-            "questions_qty": "string",
-        }
+    def test_invalid_empty_title_field(self):
+        invalid_data = {"title": ""}
         previous_count = QuizBim.objects.count()
         response = self.client.post(self.url, data=invalid_data)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(previous_count, QuizBim.objects.count())
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(QuizBim.objects.count() - previous_count, 1)
+        quiz = QuizBim.objects.latest('create_at')
+        self.assertEqual(quiz.title, None)
 
 
 class TestQuizBimUpdateView(CustomTestCase):
@@ -109,42 +106,32 @@ class TestQuizBimUpdateView(CustomTestCase):
 
     @login_superuser
     def test_update_view(self):
-        new_data = {
-            "title": "New title",
-            "questions_qty": 1,
-        }
+        new_data = {"title": "New title"}
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.quiz.refresh_from_db()
-        self.assertEqual(self.quiz.title, "New title")
-        self.assertEqual(self.quiz.questions_qty, 1)
-        # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
+        self.assertEqual(self.quiz.title, new_data['title'])
+        self.assertEqual(list(self.quiz.question_bim.all()), [])
+        self.assertRedirects(response, reverse("quiz_bim:quizbim_list"))
 
     def test_anonymous(self):
-        new_data = {
-            "title": "New title",
-            "questions_qty": 1,
-        }
+        new_data = {"title": "New title"}
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
     def test_no_permissions(self):
-        new_data = {
-            "title": "New title",
-            "questions_qty": 1,
-        }
+        new_data = {"title": "New title"}
         self.client.force_login(self.user)
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
     @login_superuser
-    def test_invalid_data(self):
-        invalid_data = {
-            "title": "",
-            "questions_qty": "string"
-        }
+    def test_invalid_empty_title_field(self):
+        invalid_data = {"title": ""}
         response = self.client.post(self.url, data=invalid_data)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.quiz.refresh_from_db()
+        self.assertEqual(self.quiz.title, None)
 
     @login_superuser
     def test_not_found(self):
