@@ -3,7 +3,8 @@ from http import HTTPStatus
 from django.urls import reverse
 
 from modules.models import ModuleModel
-from quiz_bim.tests.utils import CustomTestCase, login_superuser
+from modules.tests import ModuleFactory
+from quiz_bim.tests.utils import CustomTestCase, login_superuser, get_image_file
 
 
 class TestAccessibleBIMView(CustomTestCase):
@@ -50,3 +51,96 @@ class TestModuleListView(CustomTestCase):
         self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+
+class TestModuleDetailView(CustomTestCase):
+    def setUp(self):
+        self.module = ModuleFactory.create()
+        self.url = reverse("modules:modulemodel_detail", kwargs={"pk": self.module.pk})
+
+    @login_superuser
+    def test_detail_view(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(response.context['module'], self.module)
+        self.assertTemplateUsed(response, 'modules/module_detail.html')
+        self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+
+class TestModuleCreateView(CustomTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.correct_form_data = {
+            "title": "Module",
+            "description": "Description",
+            "image": get_image_file(),
+        }
+        cls.url = reverse("modules:modulemodel_create")
+        super().setUpTestData()
+
+    @login_superuser
+    def test_create_view(self):
+        previous_count = ModuleModel.objects.count()
+        response = self.client.post(self.url, data=self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 1)
+        module = ModuleModel.objects.latest('create_at')
+        self.assertRedirects(response, reverse("modules:modulemodel_list"))
+        self.assertEqual(module.title, self.correct_form_data['title'])
+        self.assertEqual(module.description, self.correct_form_data['description'])
+
+    def test_anonymous(self):
+        response = self.client.post(self.url, data=self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        response = self.client.post(self.url, data=self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+    @login_superuser
+    def test_empty_title(self):
+        invalid_data = {
+            "title": "",
+            "description": "Description",
+            "image": get_image_file(),
+        }
+        previous_count = ModuleModel.objects.count()
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_description(self):
+        invalid_data = {
+            "title": "Module",
+            "description": "",
+            "image": get_image_file(),
+        }
+        previous_count = ModuleModel.objects.count()
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_no_image(self):
+        invalid_data = {
+            "title": "Module",
+            "description": "Description",
+        }
+        previous_count = ModuleModel.objects.count()
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'image', 'Это поле обязательно для заполнения.')
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
