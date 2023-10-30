@@ -4,7 +4,7 @@ from quiz_bim.forms.answer_bim_form import AnswerBimForm
 from quiz_bim.tests.factories import QuestionBimFactory
 
 
-class TestQuestionBimForm(TestCase):
+class TestAnswerBimForm(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.correct_form_data = {
@@ -23,6 +23,24 @@ class TestQuestionBimForm(TestCase):
             "answer": "",
             "is_correct": None,
             "question_bim": "string"
+        }
+        form = AnswerBimForm(data=invalid_data)
+        self.assertFalse(form.is_valid())
+
+    def test_invalid_answer_field(self):
+        invalid_data = {
+            "answer": "",
+            "is_correct": True,
+            "question_bim": QuestionBimFactory.create()
+        }
+        form = AnswerBimForm(data=invalid_data)
+        self.assertFalse(form.is_valid())
+
+    def test_invalid_is_correct_field(self):
+        invalid_data = {
+            "answer": "Answer",
+            "is_correct": None,
+            "question_bim": QuestionBimFactory.create()
         }
         form = AnswerBimForm(data=invalid_data)
         self.assertFalse(form.is_valid())

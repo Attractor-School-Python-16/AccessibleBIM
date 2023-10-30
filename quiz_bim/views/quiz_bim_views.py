@@ -46,7 +46,7 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        if self.request.GET.get('question_pk'):
+        if self.question:
             htmx_form = form.save(commit=False)
             htmx_form.question_bim = get_object_or_404(QuestionBim, pk=self.question)
             error_messages = validate_answer(htmx_form.question_bim, htmx_form.answer, htmx_form.is_correct)
@@ -62,7 +62,7 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
             htmx_form = form.save(commit=False)
             htmx_form.test_bim = self.object
             quiz = self.object
-            questions_quantity =  0 if quiz.questions_qty == None else quiz.questions_qty
+            questions_quantity = 0 if quiz.questions_qty is None else quiz.questions_qty
             questions_quantity += 1
             quiz.questions_qty = questions_quantity
             quiz.save()
@@ -96,7 +96,6 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-
 
 
 class QuizBimCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):

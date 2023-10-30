@@ -24,3 +24,11 @@ class TestQuestionBimForm(TestCase):
         }
         form = QuestionBimForm(data=invalid_data)
         self.assertFalse(form.is_valid())
+
+    def test_invalid_title_field(self):
+        invalid_data = {
+            "title": "",
+            "test_bim": QuizBimFactory.create()
+        }
+        form = QuestionBimForm(data=invalid_data)
+        self.assertFalse(form.is_valid())
