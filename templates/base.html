@@ -29,7 +29,6 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-{% include 'partials/navbar.html' %}
 
 {% block content %}
 {% endblock %}
@@ -56,6 +55,7 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/r-2.5.0/datatables.min.js"></script>
+<script src="{% static 'js/coreui.min.js' %}"></script>
 
 {% block scripts %}{% endblock %}
 </body>
