@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Модули{% endblock %}
+{% block title %}Главная модератора{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
-            </div>
-            <div class="col-md-9">
-            <h1>Инструкция по редактированию контента</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet architecto autem blanditiis cum
-                    distinctio dolor ducimus eius ex fuga hic illum incidunt laborum, magni maiores maxime mollitia
-                    nihil nulla officia, possimus quam ratione recusandae sint tempore veritatis voluptates. Adipisci
-                    atque distinctio dolorem fuga, id iusto molestias omnis quibusdam soluta tenetur.</p>
+    {% include 'partials/sidebar.html' %}
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        {% include 'partials/moderator_header.html' %}
+        <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                {% block moderator_interface %}
+                {% endblock %}
             </div>
         </div>
     </div>

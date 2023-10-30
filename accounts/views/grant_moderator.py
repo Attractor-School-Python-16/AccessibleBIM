@@ -9,7 +9,7 @@ from accounts.models import CustomUser
 
 
 class GrantModeratorPanelView(PermissionRequiredMixin, TemplateView):
-    template_name = 'accounts/grant_moderator.html'
+    template_name = 'front/accounts/grant_moderator.html'
 
     def has_permission(self):
         user = self.request.user

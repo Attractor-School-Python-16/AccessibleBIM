@@ -145,3 +145,4 @@ GitHub.sublime-settings
 !.vscode/extensions.json
 .history
 config.txt
+.yml
