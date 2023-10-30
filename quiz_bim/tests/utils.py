@@ -1,9 +1,11 @@
+import base64
 from functools import wraps
 from io import BytesIO
 
 from PIL import Image
 from django.contrib.auth import get_user_model
 from django.core.files import File
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
 
@@ -49,9 +51,8 @@ def login_superuser(test_func):
     return wrapper
 
 
-def get_image_file(name='test.png', ext='png', size=(50, 50), color=(256, 0, 0)):
-    file_obj = BytesIO()
-    image = Image.new("RGB", size=size, color=color)
-    image.save(file_obj, ext)
-    file_obj.seek(0)
-    return File(file_obj, name=name)
+def get_image_file():
+    image_content = base64.b64decode(
+        "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO" + "9TXL0Y4OHwAAAABJRU5ErkJggg==")
+    image = SimpleUploadedFile("image.jpg", image_content, content_type="image/jpeg")
+    return image
