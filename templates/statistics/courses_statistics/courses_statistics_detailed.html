@@ -1,44 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'moderator_page.html' %}
 {% load i18n %}
 {% load static %}
 
 {% block title %}Статистика{% endblock %}
 
-{% block content %}
+{% block moderator_interface %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                {% include 'partials/sidebar.html' %}
+        <div class="row g-5 g-xl-8 mb-3">
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                {% include 'partials/statistics/statistics_card.html' with score=subscriptions_qty title='Пользователей купили данный курс' icon='<i class="fa-solid fa-user-plus fs-2"></i>' %}
             </div>
-
-            <div class="col-md-9">
-
-                <div class="row g-5 g-xl-8 my-3">
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        {% include 'partials/statistics/statistics_card.html' with score=subscriptions_qty title='Пользователей купили данный курс' icon='<i class="fa-solid fa-user-plus fs-2"></i>' %}
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        {% include 'partials/statistics/statistics_card.html' with score=completions_qty title='Пользователей закончили данный курс' icon='<i class="fa-solid fa-user-check fs-2"></i>' %}
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        {% include 'partials/statistics/statistics_card.html' with score=avg_completion_time title='Среднее время прохождения' icon='<i class="fa-solid fa-clock fs-2"></i>' %}
-                    </div>
-                </div>
-
-                <!--Lesson types pie chart-->
-                {% include 'partials/statistics/chart_card.html' with title='Типы уроков' chart_id='lesson-types-in-course-chart' data_course=course.pk %}
-
-                <!--Step completion time chart-->
-                {% include 'partials/statistics/chart_card.html' with title='Среднее время прохождения уроков' chart_id='step-completion-time-chart' data_course=course.pk %}
-
-                <!--Test results chart-->
-                {% include 'partials/statistics/chart_card.html' with title='Результаты тестов' chart_id='test-results-in-course-chart' data_course=course.pk %}
-
-                </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                {% include 'partials/statistics/statistics_card.html' with score=completions_qty title='Пользователей закончили данный курс' icon='<i class="fa-solid fa-user-check fs-2"></i>' %}
+            </div>
+            <div class="col-sm-12 col-md-12 col-xl-4">
+                {% include 'partials/statistics/statistics_card.html' with score=avg_completion_time title='Среднее время прохождения' icon='<i class="fa-solid fa-clock fs-2"></i>' %}
             </div>
         </div>
-    </div>
 
+        <!--Lesson types pie chart-->
+        {% include 'partials/statistics/chart_card.html' with title='Типы уроков' chart_id='lesson-types-in-course-chart' data_course=course.pk %}
+
+        <!--Step completion time chart-->
+        {% include 'partials/statistics/chart_card.html' with title='Среднее время прохождения уроков' chart_id='step-completion-time-chart' data_course=course.pk %}
+
+        <!--Test results chart-->
+        {% include 'partials/statistics/chart_card.html' with title='Результаты тестов' chart_id='test-results-in-course-chart' data_course=course.pk %}
+    </div>
 {% endblock %}
 
 {% block scripts %}
