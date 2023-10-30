@@ -10,7 +10,7 @@ from quiz_bim.tests.utils import CustomTestCase, login_superuser, get_image_file
 class TestAccessibleBIMView(CustomTestCase):
 
     def test_home_page(self):
-        response = self.client.get(reverse("modules:index"))
+        response = self.client.get(reverse("front:accessible_bim"))
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     @login_superuser
@@ -208,3 +208,27 @@ class TestModuleUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
         self.assertNotEquals(self.module.description, invalid_data['description'])
+
+
+class TestModuleDeleteView(CustomTestCase):
+
+    def setUp(self):
+        self.module = ModuleFactory.create()
+        self.url = reverse("modules:modulemodel_delete", kwargs={"pk": self.module.pk})
+
+    @login_superuser
+    def test_delete_view(self):
+        previous_count = ModuleModel.objects.count()
+        response = self.client.post(reverse("modules:modulemodel_delete", kwargs={"pk": self.module.pk}))
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response, reverse("modules:modulemodel_list"))
+        self.assertEqual(previous_count - ModuleModel.objects.count(), 1)
+
+    def test_anonymous(self):
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_no_permissions(self):
+        self.client.force_login(self.user)
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
