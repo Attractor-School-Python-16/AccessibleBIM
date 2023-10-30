@@ -25,17 +25,18 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('captcha/', include('captcha.urls')),
+    path('accounts/', include('allauth.urls')),
     path('accounts/social/', include('allauth.socialaccount.urls')),
     path('accounts/', include(provider_urlpatterns)),
 ] + i18n_patterns(
     path("i18n/", include("django.conf.urls.i18n")),
-    path('', include('modules.urls')),
-    path('', include('progress.urls')),
+    path('', include('front.urls')),
     path('', include('accounts.urls')),
-    path('', include('step.urls')),
-    path('', include('subscription.urls')),
+    path('moderator/', include('modules.urls')),
+    path('moderator/', include('progress.urls')),
+    path('moderator/', include('step.urls')),
+    path('moderator/', include('subscription.urls')),
     path('quiz_bim/', include('quiz_bim.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('statistics/', include('reports.urls')),
-    path('', include('static_pages.urls'))
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
