@@ -28,8 +28,6 @@ class AnswerBimFormCreateView(PermissionRequiredMixin, View):
 
         return render(request, "quiz_bim/answer_bim/answer_bim_form.html", context)
 
-
-
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
@@ -52,7 +50,7 @@ class AnswerBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
     form = None
 
     def get(self, request, qpk, apk, *args, **kwargs):
-        answer = AnswerBim.objects.get(id=apk)
+        answer = get_object_or_404(AnswerBim, id=apk)
         form = AnswerBimForm(request.POST or None, instance=answer)
         context = {
             "forms": form,
@@ -65,10 +63,14 @@ class AnswerBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
         return user.groups.filter(name='moderators').exists() or user.is_superuser
 
     def post(self, request, *args, **kwargs):
-        answer = AnswerBim.objects.get(id=kwargs['apk'])
+        answer = get_object_or_404(AnswerBim, id=kwargs["apk"])
         form = AnswerBimForm(request.POST or None, instance=answer)
         if not request.user.is_authenticated:
             return HttpResponseForbidden()
+        if not form.is_valid():
+            return render(self.request, "quiz_bim/answer_bim/answer_bim_form.html", context={
+                "forms": [form],
+            })
         form.save(commit=False)
         form.question_bim = get_object_or_404(QuestionBim, pk=kwargs["qpk"])
         answer_content = form.cleaned_data["answer"]
@@ -85,15 +87,12 @@ class AnswerBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
         return redirect("quiz_bim:answerbim_htmx_detail", qpk=kwargs['qpk'], apk=kwargs['apk'])
 
 
-class AnswerBimFormDeleteView(View):
+class AnswerBimFormDeleteView(PermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        answer = AnswerBim.objects.get(id=kwargs['apk'])
-        if request.method == "POST":
-            answer.delete()
-            return HttpResponse("")
+        answer = get_object_or_404(AnswerBim, id=kwargs['apk'])
+        answer.delete()
+        return HttpResponse("")
 
-        return HttpResponseNotAllowed(
-            [
-                "POST",
-            ]
-        )
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser

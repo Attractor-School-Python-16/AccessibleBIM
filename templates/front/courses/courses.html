@@ -1,0 +1,25 @@
+{% extends "front/base.html" %}
+{% load static i18n %}
+{% block title %}Список курсов{% endblock %}
+
+{% block content %}
+    <section class="light">
+        <div class="row">
+            <div class="h1 text-center text-dark" id="pageHeaderTitle">Список доступных курсов</div>
+            <div class="col-md-12">
+                {% include 'front/partials/filter.html' %}
+            </div>
+            <div class="col-md-12">
+                {% for course in courses %}
+                    {% if course.subscription.all %}
+                        {% if course == user_subscription.subscription.course%}
+                            {% include "front/partials/course/course_card.html" with my_course=True %}
+                            {% else %}
+                            {% include "front/partials/course/course_card.html" %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
