@@ -17,6 +17,9 @@
         <div class="postcard__preview-txt">{{ course.description }}</div>
         <ul class="postcard__tagbox text-white">
             <li class="tag__item"><i
+                    class="fas fa-tag mr-2"></i> {{ course.language|get_language_name }}
+            </li>
+            <li class="tag__item"><i
                     class="fas fa-tag mr-2"></i> {{ course.module_id }}
             </li>
             <li class="tag__item"><i

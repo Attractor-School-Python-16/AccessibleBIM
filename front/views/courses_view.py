@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
-
+from django.utils.html import urlencode
 from modules.models import CourseModel, CourseTargetModel, ModuleModel, ChapterModel
 from subscription.models import SubscriptionModel
 from subscription.models.user_subscription import UsersSubscription
@@ -12,15 +12,32 @@ class CoursesUserListView(ListView):
     model = CourseModel
     template_name = 'front/courses/courses.html'
     context_object_name = 'courses'
-    ordering = "-create_at"
+    paginate_by = 5
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
         context['selected_modules'] = self.request.GET.getlist('modules', [])
         context['selected_languages'] = self.request.GET.getlist('languages', [])
         context['selected_targets'] = self.request.GET.getlist('targets', [])
         context['course_targets'] = CourseTargetModel.objects.all()
         context['modules'] = ModuleModel.objects.all()
+        modules = self.request.GET.getlist('modules', [])
+        languages = self.request.GET.getlist('languages', [])
+        targets = self.request.GET.getlist('targets', [])
+        query = ''
+        if modules:
+            for module in modules:
+                query += f"modules={module}&"
+
+        if languages:
+            for language in languages:
+                query += f"languages={language}&"
+
+        if targets:
+            for target in targets:
+                query += f"targets={target}&"
+
+        context["query"] = query
         try:
             context['user_subscription'] = UsersSubscription.objects.get(Q(user=self.request.user) & Q(is_active=True))
         except UsersSubscription.DoesNotExist:
@@ -30,7 +47,7 @@ class CoursesUserListView(ListView):
         return context
 
     def get_queryset(self):
-        queryset = CourseModel.objects.all()
+        queryset = CourseModel.objects.all().filter(subscription__is_published=True).order_by('-update_at')
         modules = self.request.GET.getlist('modules', [])
         languages = self.request.GET.getlist('languages', [])
         targets = self.request.GET.getlist('targets', [])

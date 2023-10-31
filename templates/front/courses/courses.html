@@ -12,14 +12,21 @@
             <div class="col-md-12">
                 {% for course in courses %}
                     {% if course.subscription.all %}
-                        {% if course == user_subscription.subscription.course%}
+                        {% if course == user_subscription.subscription.course %}
                             {% include "front/partials/course/course_card.html" with my_course=True %}
-                            {% else %}
+                        {% else %}
                             {% include "front/partials/course/course_card.html" %}
                         {% endif %}
+
                     {% endif %}
+                    {% empty %}
+                    <h2 class="text-center mt-5 min-vh-25">Курсы не найдены</h2>
                 {% endfor %}
             </div>
         </div>
+        {% if is_paginated %}
+            {% include 'front/partials/pagination.html' %}
+        {% endif %}
     </section>
+
 {% endblock %}
