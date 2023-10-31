@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from modules.models import ModuleModel
 from modules.tests import ModuleFactory
-from quiz_bim.tests.utils import CustomTestCase, login_superuser, get_image_file
+from quiz_bim.tests.utils import CustomTestCase, login_superuser, get_image_file, login_user
 
 
 class TestAccessibleBIMView(CustomTestCase):
@@ -47,8 +47,8 @@ class TestModuleListView(CustomTestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -75,8 +75,8 @@ class TestModuleDetailView(CustomTestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -107,8 +107,8 @@ class TestModuleCreateView(CustomTestCase):
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -180,13 +180,13 @@ class TestModuleUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
         new_data = {
             "title": "New title",
             "description": "New description",
             "image": get_image_file(),
         }
-        self.client.force_login(self.user)
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -233,7 +233,7 @@ class TestModuleDeleteView(CustomTestCase):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)

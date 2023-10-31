@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from quiz_bim.models import AnswerBim
 from quiz_bim.tests.factories import QuestionBimFactory, AnswerBimFactory
-from quiz_bim.tests.utils import login_superuser, CustomTestCase
+from quiz_bim.tests.utils import login_superuser, CustomTestCase, login_user
 
 
 class TestAnswerBimCreateView(CustomTestCase):
@@ -38,8 +38,8 @@ class TestAnswerBimCreateView(CustomTestCase):
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -83,8 +83,8 @@ class TestAnswerBimUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         new_data = {
             "answer": "New title",
             "is_correct": False
@@ -124,8 +124,8 @@ class TestAnswerBimDeleteView(CustomTestCase):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 

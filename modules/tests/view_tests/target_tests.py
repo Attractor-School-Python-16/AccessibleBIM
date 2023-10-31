@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from modules.models import CourseTargetModel
 from modules.tests.factories import CourseTargetFactory
-from quiz_bim.tests.utils import CustomTestCase, login_superuser
+from quiz_bim.tests.utils import CustomTestCase, login_superuser, login_user
 
 
 class TestCourseTargetListView(CustomTestCase):
@@ -26,8 +26,8 @@ class TestCourseTargetListView(CustomTestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -54,8 +54,8 @@ class TestCourseTargetDetailView(CustomTestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -85,8 +85,8 @@ class TestCourseTargetCreateView(CustomTestCase):
         response = self.client.post(self.url, self.correct_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url, self.correct_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -141,12 +141,12 @@ class TestCourseTargetUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
         new_data = {
             "title": "New title",
             "description": "New description"
         }
-        self.client.force_login(self.user)
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -192,7 +192,7 @@ class TestCourseTargetDeleteView(CustomTestCase):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)

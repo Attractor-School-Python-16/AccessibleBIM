@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from quiz_bim.models import QuizBim
 from quiz_bim.tests.factories import QuizBimFactory
-from quiz_bim.tests.utils import login_superuser, CustomTestCase
+from quiz_bim.tests.utils import login_superuser, CustomTestCase, login_user
 
 
 class TestQuizBimListView(CustomTestCase):
@@ -26,8 +26,8 @@ class TestQuizBimListView(CustomTestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -53,8 +53,8 @@ class TestQuizBimDetailView(CustomTestCase):
         response = self.client.get(reverse("quiz_bim:quizbim_detail", kwargs={"pk": quiz.pk}))
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         quiz = QuizBimFactory.create()
         response = self.client.get(reverse("quiz_bim:quizbim_detail", kwargs={"pk": quiz.pk}))
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
@@ -81,8 +81,8 @@ class TestQuizBimCreateView(CustomTestCase):
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -119,9 +119,9 @@ class TestQuizBimUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
         new_data = {"title": "New title"}
-        self.client.force_login(self.user)
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -157,8 +157,8 @@ class TestQuizBimDeleteView(CustomTestCase):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 

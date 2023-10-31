@@ -51,6 +51,26 @@ def login_superuser(test_func):
     return wrapper
 
 
+def login_user(test_func: object) -> object:
+    """
+    Декоратор для функций тестов, который логинит клиент как обычного пользователя
+    """
+
+    @wraps(test_func)
+    def wrapper(self, *args, **kwargs):
+        # Log the client in
+        self.client.force_login(self.user)
+
+        try:
+            # Execute the test function
+            test_func(self, *args, **kwargs)
+        finally:
+            # Log the client out
+            self.client.logout()
+
+    return wrapper
+
+
 def get_image_file():
     image_content = base64.b64decode(
         "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO" + "9TXL0Y4OHwAAAABJRU5ErkJggg==")
