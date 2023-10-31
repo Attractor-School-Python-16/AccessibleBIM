@@ -47,7 +47,7 @@ class CoursesUserListView(ListView):
         return context
 
     def get_queryset(self):
-        queryset = CourseModel.objects.filter(subscription__price__isnull=False, subscription__is_published=True).order_by('-update_at')
+        queryset = CourseModel.objects.filter(subscription__is_published=True).order_by('-update_at')
         modules = self.request.GET.getlist('modules', [])
         languages = self.request.GET.getlist('languages', [])
         targets = self.request.GET.getlist('targets', [])
