@@ -7,7 +7,7 @@
     {% endfor %}
     {% for field in form %}
         <div class="mb-3" id="{{ field.name }}">
-            <div class="input-group input-group-outline my-3">
+            <div class="my-3">
                 {{ field|as_crispy_field }}
             </div>
             {% for error in field.errors %}
