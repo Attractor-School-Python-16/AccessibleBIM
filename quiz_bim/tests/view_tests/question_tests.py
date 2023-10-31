@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from quiz_bim.models import QuestionBim
 from quiz_bim.tests.factories import QuestionBimFactory, QuizBimFactory
-from quiz_bim.tests.utils import login_superuser, CustomTestCase
+from quiz_bim.tests.utils import login_superuser, CustomTestCase, login_user
 
 
 class TestQuestionBimDetailView(CustomTestCase):
@@ -25,8 +25,8 @@ class TestQuestionBimDetailView(CustomTestCase):
             reverse("quiz_bim:questionbim_htmx_detail", kwargs={"tpk": question.test_bim.pk, "qpk": question.pk}))
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         question = QuestionBimFactory.create()
         response = self.client.get(
             reverse("quiz_bim:questionbim_htmx_detail", kwargs={"tpk": question.test_bim.pk, "qpk": question.pk}))
@@ -68,8 +68,8 @@ class TestQuestionBimCreateView(CustomTestCase):
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
         self.client.logout()
@@ -110,8 +110,8 @@ class TestQuestionBimUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         new_data = {
             "title": "New title"
         }
@@ -150,8 +150,8 @@ class TestQuestionBimDeleteView(CustomTestCase):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
