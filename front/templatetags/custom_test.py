@@ -28,6 +28,7 @@ def make_text_for_lessons(count):
     except TypeError:
         return 'ошибка'
 
+
 @register.filter(name='make_hour_for_lessons')
 def make_hour_for_lessons(count):
     try:
@@ -39,3 +40,16 @@ def make_hour_for_lessons(count):
             return f'{count} часов'
     except TypeError:
         return 'ошибка'
+
+
+@register.filter(name='get_language_name')
+def get_langauge_name(language):
+    if language == 'RU':
+        language = "Русский"
+    elif language == 'EN':
+        language = "Английский"
+    elif language == 'KG':
+        language = "Кыргызский"
+    else:
+        return language
+    return language
