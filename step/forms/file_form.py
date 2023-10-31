@@ -36,7 +36,7 @@ class FileForm(forms.ModelForm):
         model = FileModel
         fields = ['file_title', 'lesson_file']
         labels = {
-            'file_title': 'Введите наименование файла',
+            'file_title': 'Введите наименование загружаемого файла',
             'lesson_file': 'Загрузите файл',
         }
 
