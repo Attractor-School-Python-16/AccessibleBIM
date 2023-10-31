@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from modules.models import CourseModel
 from modules.tests import CourseFactory
-from quiz_bim.tests.utils import login_superuser, CustomTestCase
+from quiz_bim.tests.utils import login_superuser, CustomTestCase, login_user
 
 
 class TestCourseListView(CustomTestCase):
@@ -27,8 +27,8 @@ class TestCourseListView(CustomTestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -56,7 +56,7 @@ class TestCourseDetailView(CustomTestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
