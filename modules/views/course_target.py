@@ -63,7 +63,7 @@ class CourseTargetDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, Del
     model = CourseTargetModel
     template_name = "course_target/course_target_delete.html"
     context_object_name = 'course_target'
-    success_url = reverse_lazy("modules:course_targets_list")
+    success_url = reverse_lazy("modules:coursetargetmodel_list")
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
