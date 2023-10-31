@@ -66,6 +66,11 @@ class TestModuleDetailView(CustomTestCase):
         self.assertTemplateUsed(response, 'modules/module_detail.html')
         self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
 
+    @login_superuser
+    def test_not_found(self):
+        response = self.client.get(reverse("modules:modulemodel_detail", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
     def test_anonymous(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)

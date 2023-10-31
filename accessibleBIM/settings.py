@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
+    'widget_tweaks',
 
     'accounts',
     'modules',
