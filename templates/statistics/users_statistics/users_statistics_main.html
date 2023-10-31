@@ -9,7 +9,9 @@
         <!--Cards-->
         <div class="row g-5 g-xl-8 mb-4">
             <div class="col-sm-12 col-md-6">
-                {% include 'partials/statistics/statistics_card.html' with score=registered_users_qty title='Количество зарегистрированных пользователей' icon='<i class="fa-solid fa-user-group fs-2"></i>' %}
+                <a href="{% url 'reports:stats_users_list' %}" class="link-underline link-underline-opacity-0">
+                    {% include 'partials/statistics/statistics_card.html' with score=registered_users_qty title='Количество зарегистрированных пользователей' icon='<i class="fa-solid fa-user-group fs-2"></i>' %}
+                </a>
             </div>
             <div class="col-sm-12 col-md-6">
                 {% include 'partials/statistics/statistics_card.html' with score=active_subscribers_qty title='Количество пользователей с действующей подпиской' icon='<i class="fa-solid fa-user-graduate fs-2"></i>' %}
@@ -21,7 +23,6 @@
             {% include 'partials/statistics/chart_by_period.html' with title='Новые пользователи' btn_class='new-users-chart-btn' chart_id='new-users-chart' %}
         </div>
 
-        <a href="{% url 'reports:stats_users_list' %}" class="btn btn-primary my-3 p-3">Список пользователей</a>
     </div>
 {% endblock %}
 
