@@ -12,6 +12,11 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model = VideoModel
         fields = ['video_title', 'video_description', 'video_file']
+        labels = {
+            'title': 'Введите наименование видео',
+            'video_description': 'Укажите описание видео',
+            'video_file': 'Загрузите видео файл',
+        }
 
     def clean_video_file(self):
         current_file = self.cleaned_data.get("video_file", False)
