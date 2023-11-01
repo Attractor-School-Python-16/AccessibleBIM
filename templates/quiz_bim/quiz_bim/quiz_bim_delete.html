@@ -7,6 +7,15 @@
     {% endblock %}
     <div class="card">
         <div class="card-body">
+            {% if steps %}
+                <h5 class="card-text">Данный тест используется в следующих занятиях:</h5>
+                {% for step in steps %}
+                    {{ step.title }}
+                    </br>
+                {% endfor %}
+                <h5 class="card-text my-2">Для удаления данного теста необходимо в указанных выше занятиях выбрать
+                    другой тест.</h5>
+            {% endif %}
             <p class="card-text">Вы точно хотите удалить тест:<span
                     class="text-danger"> {{ test.title }}</span>?
             </p>
