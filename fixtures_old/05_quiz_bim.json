@@ -1,0 +1,163 @@
+[
+{
+    "model": "quiz_bim.quizbim",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:52:21.850Z",
+        "update_at": "2023-09-22T13:17:12.024Z",
+        "title": "test_quiz",
+        "questions_qty": 3
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:53:48.882Z",
+        "update_at": "2023-09-20T19:53:48.882Z",
+        "answer": "test_answer1",
+        "is_correct": false,
+        "question_bim": 1
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-20T19:53:57.270Z",
+        "update_at": "2023-09-20T19:53:57.270Z",
+        "answer": "test_answer2",
+        "is_correct": false,
+        "question_bim": 1
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 3,
+    "fields": {
+        "create_at": "2023-09-20T19:54:03.521Z",
+        "update_at": "2023-09-20T19:54:03.521Z",
+        "answer": "test_answer3",
+        "is_correct": true,
+        "question_bim": 1
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 4,
+    "fields": {
+        "create_at": "2023-09-20T19:54:08.689Z",
+        "update_at": "2023-09-20T19:54:08.689Z",
+        "answer": "test_answer4",
+        "is_correct": false,
+        "question_bim": 1
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 5,
+    "fields": {
+        "create_at": "2023-09-22T10:56:53.403Z",
+        "update_at": "2023-09-22T10:56:53.403Z",
+        "answer": "Верный",
+        "is_correct": true,
+        "question_bim": 2
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 6,
+    "fields": {
+        "create_at": "2023-09-22T10:57:00.000Z",
+        "update_at": "2023-09-22T10:57:00.000Z",
+        "answer": "Неверный 1",
+        "is_correct": false,
+        "question_bim": 2
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 7,
+    "fields": {
+        "create_at": "2023-09-22T10:57:04.827Z",
+        "update_at": "2023-09-22T10:57:04.827Z",
+        "answer": "Неверный 2",
+        "is_correct": false,
+        "question_bim": 2
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 8,
+    "fields": {
+        "create_at": "2023-09-22T10:57:12.527Z",
+        "update_at": "2023-09-22T10:57:12.527Z",
+        "answer": "Неверный 3",
+        "is_correct": false,
+        "question_bim": 2
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 9,
+    "fields": {
+        "create_at": "2023-09-22T13:15:58.414Z",
+        "update_at": "2023-09-22T13:15:58.414Z",
+        "answer": "Верный",
+        "is_correct": true,
+        "question_bim": 3
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 10,
+    "fields": {
+        "create_at": "2023-09-22T13:16:03.320Z",
+        "update_at": "2023-09-22T13:16:03.320Z",
+        "answer": "Неверный 1",
+        "is_correct": false,
+        "question_bim": 3
+    }
+},
+{
+    "model": "quiz_bim.answerbim",
+    "pk": 11,
+    "fields": {
+        "create_at": "2023-09-22T13:16:09.141Z",
+        "update_at": "2023-09-22T13:16:09.141Z",
+        "answer": "Неверный 2",
+        "is_correct": false,
+        "question_bim": 3
+    }
+},
+{
+    "model": "quiz_bim.questionbim",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:53:01.744Z",
+        "update_at": "2023-09-20T19:53:01.744Z",
+        "title": "test_question",
+        "test_bim": 1
+    }
+},
+{
+    "model": "quiz_bim.questionbim",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-22T10:55:44.512Z",
+        "update_at": "2023-09-22T10:56:40.491Z",
+        "title": "Вопрос 2",
+        "test_bim": 1
+    }
+},
+{
+    "model": "quiz_bim.questionbim",
+    "pk": 3,
+    "fields": {
+        "create_at": "2023-09-22T13:15:43.163Z",
+        "update_at": "2023-09-22T13:15:43.163Z",
+        "title": "Вопрос 3",
+        "test_bim": 1
+    }
+}
+]

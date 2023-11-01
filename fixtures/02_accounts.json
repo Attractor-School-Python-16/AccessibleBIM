@@ -1,115 +1,140 @@
 [
-    {
-        "model": "accounts.customuser",
-        "pk": 5,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$4QXSY5YWqKPeVOktyy8Bha$YiQV39eucvU7r6WBypQQteYvvV8uGcqyE6kEw4jzXdU=",
-            "last_login": "2023-10-06T08:31:03.233Z",
-            "is_superuser": true,
-            "username": "admin@admin.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2023-09-18T13:45:52.393Z",
-            "first_name": "admin",
-            "last_name": "admin",
-            "father_name": null,
-            "email": "admin@admin.com",
-            "email_verified": true,
-            "phone_number": "",
-            "job_title": null,
-            "country": "KG",
-            "company": null,
-            "type_corp": 7,
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "accounts.customuser",
-        "pk": 6,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$jvcZTSA373raiCcKq2dDTB$4aLq6Dx9gCirVlthyh6ndk5m58b8l9kSvOMGkBC1JhA=",
-            "last_login": "2023-10-06T08:34:29.839Z",
-            "is_superuser": false,
-            "username": "moder",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-09-18T13:46:45Z",
-            "first_name": "moder",
-            "last_name": "moder",
-            "father_name": null,
-            "email": "moder@moder.com",
-            "email_verified": false,
-            "phone_number": "+996555555555",
-            "job_title": null,
-            "country": "KG",
-            "company": null,
-            "type_corp": 7,
-            "groups": [
-                [
-                    "moderators"
-                ],
-                [
-                    "Statistics manager"
-                ]
-            ],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "accounts.customuser",
-        "pk": 7,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$dCcSH4uaX4Mpa1AYDXMPUC$r4Nv8S08YULVWRB+Y12ZpBqCJcHY9IINlktXX6/er8I=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "test@test.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-09-18T13:57:14Z",
-            "first_name": "test",
-            "last_name": "test",
-            "father_name": null,
-            "email": "test@test.com",
-            "email_verified": false,
-            "phone_number": "+996700622792",
-            "job_title": null,
-            "country": "KG",
-            "company": null,
-            "type_corp": 7,
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "accounts.customuser",
-        "pk": 8,
-        "fields": {
-            "password": "pbkdf2_sha256$390000$GlHjcxDw6F3yakJ8zmmn60$4PLJZG9xCdxHyg3bvp9OUzt5L8Zh6sjWMR26S6MuIM8=",
-            "last_login": "2023-10-12T06:12:36.095Z",
-            "is_superuser": false,
-            "username": "granter",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-10-12T06:09:32.625Z",
-            "first_name": "granter",
-            "last_name": "",
-            "father_name": null,
-            "email": "granter@granter.com",
-            "email_verified": true,
-            "phone_number": "",
-            "job_title": null,
-            "country": "KG",
-            "company": null,
-            "type_corp": 7,
-            "groups": [],
-            "user_permissions": [
-                [
-                    "can_grant_moderator_role",
-                    "accounts",
-                    "customuser"
-                ]
-            ]
-        }
-    }
+{
+  "model": "accounts.customuser",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$4QXSY5YWqKPeVOktyy8Bha$YiQV39eucvU7r6WBypQQteYvvV8uGcqyE6kEw4jzXdU=",
+    "last_login": "2023-10-06T08:31:03.233Z",
+    "is_superuser": true,
+    "username": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-09-18T13:45:52.393Z",
+    "first_name": "admin",
+    "last_name": "admin",
+    "father_name": null,
+    "email": "admin@admin.com",
+    "email_verified": true,
+    "phone_number": "",
+    "job_title": null,
+    "country": "KG",
+    "company": null,
+    "type_corp": 7,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$jvcZTSA373raiCcKq2dDTB$4aLq6Dx9gCirVlthyh6ndk5m58b8l9kSvOMGkBC1JhA=",
+    "last_login": "2023-11-01T14:06:48.964Z",
+    "is_superuser": false,
+    "username": "moder",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-18T13:46:45Z",
+    "first_name": "moder",
+    "last_name": "moder",
+    "father_name": null,
+    "email": "moder@moder.com",
+    "email_verified": false,
+    "phone_number": "+996555555555",
+    "job_title": null,
+    "country": "KG",
+    "company": null,
+    "type_corp": 7,
+    "groups": [
+      [
+        "moderators"
+      ],
+      [
+        "Statistics manager"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$dCcSH4uaX4Mpa1AYDXMPUC$r4Nv8S08YULVWRB+Y12ZpBqCJcHY9IINlktXX6/er8I=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-18T13:57:14Z",
+    "first_name": "test",
+    "last_name": "test",
+    "father_name": null,
+    "email": "test@test.com",
+    "email_verified": false,
+    "phone_number": "+996700622792",
+    "job_title": null,
+    "country": "KG",
+    "company": null,
+    "type_corp": 7,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$GlHjcxDw6F3yakJ8zmmn60$4PLJZG9xCdxHyg3bvp9OUzt5L8Zh6sjWMR26S6MuIM8=",
+    "last_login": "2023-10-12T06:12:36.095Z",
+    "is_superuser": false,
+    "username": "granter",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-12T06:09:32.625Z",
+    "first_name": "granter",
+    "last_name": "",
+    "father_name": null,
+    "email": "granter@granter.com",
+    "email_verified": true,
+    "phone_number": "",
+    "job_title": null,
+    "country": "KG",
+    "company": null,
+    "type_corp": 7,
+    "groups": [],
+    "user_permissions": [
+      [
+        "can_grant_moderator_role",
+        "accounts",
+        "customuser"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$4EE7TA5Rn0nnsz0CkvCanG$ggmQ974VUezyo8jb50ryPZ7YqXO4Nuh2TCl5S4vODio=",
+    "last_login": "2023-11-01T15:01:02.124Z",
+    "is_superuser": false,
+    "username": "user@user.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-11-01T13:57:53.723Z",
+    "first_name": "Имя User",
+    "last_name": "Фамилия User",
+    "father_name": "Отчество User",
+    "email": "user@user.com",
+    "email_verified": true,
+    "phone_number": "+996555123123",
+    "job_title": "Должность User",
+    "country": "KG",
+    "company": "Компания User",
+    "type_corp": 3,
+    "groups": [],
+    "user_permissions": []
+  }
+}
 ]
