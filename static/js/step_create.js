@@ -1,9 +1,20 @@
 const videoSelect = document.getElementById("id_step-video")
 const textSelect = document.getElementById("id_step-text")
 const testSelect = document.getElementById("id_step-test")
+const videoSelectDiv = document.getElementById("video")
+const textSelectDiv = document.getElementById("text")
+const form = document.getElementById("main-form")
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    if (videoSelectDiv){
+        let videoTitle = document.getElementById("video_title")
+        form.insertBefore(videoSelectDiv, videoTitle)
+    }
+    if (textSelectDiv){
+        let textTitle = document.getElementById("text_title")
+        form.insertBefore(textSelectDiv, textTitle)
+    }
     let deselectButton = document.createElement("button");
     deselectButton.textContent = "Снять выбор";
     deselectButton.className = "btn btn-primary"
