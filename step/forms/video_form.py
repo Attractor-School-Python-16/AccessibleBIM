@@ -4,7 +4,8 @@ from django.db.models.fields.files import FieldFile
 from step.models import VideoModel
 
 CONTENTTYPES = ['video/mp4',
-                'video/x-msvideo']
+                'video/webm',
+                'audio/ogg']
 
 
 class VideoForm(forms.ModelForm):
@@ -21,6 +22,6 @@ class VideoForm(forms.ModelForm):
                 else:
                     raise forms.ValidationError("Размер загружаемого файла не должен превышать 2ГБ")
             else:
-                raise forms.ValidationError("Необходимо загрузить видео в формате MP4 или AVI")
+                raise forms.ValidationError("Необходимо загрузить видео в формате MP4, WebM или Ogg")
         else:
             return current_file
