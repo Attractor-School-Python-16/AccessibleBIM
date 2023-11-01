@@ -1,14 +1,13 @@
 from django.urls import path
 
 from step.views.file_view import FileListView, FileDetailView, FileCreateView, FileUpdateView, FileDeleteView
-from step.views.step_view import StepListView, StepDetailView, StepUpdateView, StepDeleteView, StepCreateView
+from step.views.step_view import StepDetailView, StepUpdateView, StepDeleteView, StepCreateView
 from step.views.text_view import TextListView, TextDetailView, TextCreateView, TextUpdateView, TextDeleteView
 from step.views.video_view import VideoListView, VideoDetailView, VideoCreateView, VideoUpdateView, VideoDeleteView
 
 app_name = 'step'
 
 urlpatterns = [
-    path('steps/', StepListView.as_view(), name='stepmodel_list'),
     path('step/<int:pk>/', StepDetailView.as_view(), name='stepmodel_detail'),
     path('step/create/text/', StepCreateView.as_view(), name='stepmodel_text_create'),
     path('step/create/video/', StepCreateView.as_view(), name='stepmodel_video_create'),
