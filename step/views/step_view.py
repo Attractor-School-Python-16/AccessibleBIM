@@ -1,16 +1,25 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.functional import cached_property
-from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse, reverse_lazy
 from modules.models import ChapterModel
 from step.models import FileModel
 from step.models.step import StepModel
-from view_breadcrumbs import DetailBreadcrumbMixin, DeleteBreadcrumbMixin
+from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, DeleteBreadcrumbMixin
 
 from step.forms.step_multi_form import MultiStepVideoForm, MultiStepQuizForm, MultiStepTextForm,\
     MultiStepTextUpdateForm, MultiStepVideoUpdateForm
 from step.step_validators import validate_empty, validate_empty_for_update
+
+
+# Представление StepListView в текущем состоянии не актуально. Добавлять проверку на разрешения в него не стал.
+class StepListView(ListBreadcrumbMixin, ListView):
+    model = StepModel
+    template_name = 'steps/step/step_list.html'
+    context_object_name = 'steps'
+    success_url = reverse_lazy('modules:index')
+    home_path = reverse_lazy('modules:moderator_page')
 
 
 class StepDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):

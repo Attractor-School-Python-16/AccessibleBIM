@@ -14,6 +14,7 @@ from quiz_bim.models.quiz_bim import QuizBim
 from quiz_bim.forms.quiz_bim_form import QuizBimForm
 
 from quiz_bim.validators import validate_answer
+from step.models import StepModel
 
 
 class QuizBimListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -135,6 +136,17 @@ class QuizBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
     template_name = 'quiz_bim/quiz_bim/quiz_bim_delete.html'
     success_url = reverse_lazy('quiz_bim:quizbim_list')
     home_path = reverse_lazy('modules:moderator_page')
+
+
+    def form_valid(self, form):
+        steps = StepModel.objects.all().filter(test=self.object)
+        if steps:
+            return render(self.request, 'quiz_bim/quiz_bim/quiz_bim_delete.html', context={
+                "form": form,
+                "steps": steps,
+                "test": self.object
+            })
+        return super().form_valid(form)
 
     def has_permission(self):
         user = self.request.user
