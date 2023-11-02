@@ -22,6 +22,7 @@ async function getTestProgress(user_pk, course_pk){
 function createBarChartOptions(labels, values){
     let options = {
         series: [{
+            name: 'Результат теста',
             data: values
         }],
         chart: {
