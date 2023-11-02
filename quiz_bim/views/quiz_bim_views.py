@@ -137,6 +137,12 @@ class QuizBimDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteVi
     success_url = reverse_lazy('quiz_bim:quizbim_list')
     home_path = reverse_lazy('modules:moderator_page')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        steps = StepModel.objects.all().filter(video=self.object)
+        if steps:
+            context["steps"] = steps
+        return context
 
     def form_valid(self, form):
         steps = StepModel.objects.all().filter(test=self.object)
