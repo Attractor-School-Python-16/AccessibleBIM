@@ -52,6 +52,13 @@ class TextDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     home_path = reverse_lazy('modules:moderator_page')
     context_object_name = "text"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        steps = StepModel.objects.all().filter(video=self.object)
+        if steps:
+            context["steps"] = steps
+        return context
+
     def form_valid(self, form):
         steps = StepModel.objects.all().filter(text=self.object)
         if steps:

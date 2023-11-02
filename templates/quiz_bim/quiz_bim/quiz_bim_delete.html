@@ -10,21 +10,22 @@
             {% if steps %}
                 <h5 class="card-text">Данный тест используется в следующих занятиях:</h5>
                 {% for step in steps %}
-                    {{ step.title }}
+                    <a href="{% url "step:stepmodel_update" step.id %}">{{ step.title }}</a>
                     </br>
                 {% endfor %}
                 <h5 class="card-text my-2">Для удаления данного теста необходимо в указанных выше занятиях выбрать
                     другой тест.</h5>
-            {% endif %}
-            <p class="card-text">Вы точно хотите удалить тест:<span
-                    class="text-danger"> {{ test.title }}</span>?
-            </p>
-            <form method="POST">
-                {% csrf_token %}
-                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
-                <a href="#" class="btn btn-secondary
+            {% else %}
+                <p class="card-text">Вы точно хотите удалить тест:<span
+                        class="text-danger"> {{ test.title }}</span>?
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                    <a href="#" class="btn btn-secondary
                     mx-3" id="cancel-button">Нет</a>
-            </form>
+                </form>
+            {% endif %}
         </div>
     </div>
     <script src="{% static 'js/delete_button_func.js' %}"></script>
