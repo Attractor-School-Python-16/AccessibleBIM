@@ -3,8 +3,8 @@ from http import HTTPStatus
 from django.urls import reverse
 
 from modules.models import CourseModel
-from modules.tests import CourseFactory
-from quiz_bim.tests.utils import login_superuser, CustomTestCase, login_user
+from modules.tests import CourseFactory, CourseTargetFactory, TeacherFactory, ModuleFactory
+from quiz_bim.tests.utils import login_superuser, CustomTestCase, login_user, get_image_file
 
 
 class TestCourseListView(CustomTestCase):
@@ -60,3 +60,165 @@ class TestCourseDetailView(CustomTestCase):
     def test_no_permissions(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+
+class TestCourseCreateView(CustomTestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.module = ModuleFactory.create()
+        cls.courseTarget_id = CourseTargetFactory.create()
+        cls.teacher = TeacherFactory.create()
+        cls.url = f'{reverse("modules:coursemodel_create")}?module_pk={cls.module.pk}'
+        cls.correct_form_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": cls.courseTarget_id.id,
+            "language": "RU",
+            "teachers": [cls.teacher.id]
+        }
+        super().setUpTestData()
+
+    @login_superuser
+    def test_create_view(self):
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(CourseModel.objects.count() - previous_count, 1)
+        course = CourseModel.objects.latest('create_at')
+        self.assertRedirects(response, reverse("modules:modulemodel_detail", kwargs={"pk": course.module_id.pk}))
+        self.assertEqual(course.title, self.correct_form_data['title'])
+        self.assertEqual(course.description, self.correct_form_data['description'])
+        self.assertEqual(course.learnTime, self.correct_form_data['learnTime'])
+        self.assertEqual(course.courseTarget_id.id, self.correct_form_data['courseTarget_id'])
+        self.assertEqual(course.language, self.correct_form_data['language'])
+
+    def test_anonymous(self):
+        response = self.client.post(self.url, self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    @login_user
+    def test_no_permissions(self):
+        response = self.client.post(self.url, self.correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+    @login_superuser
+    def test_empty_title(self):
+        invalid_data = {
+            "title": "",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "RU",
+            "teachers": [self.teacher.id]
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_description(self):
+        invalid_data = {
+            "title": "Course",
+            "description": "",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "RU",
+            "teachers": [self.teacher.id]
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_image(self):
+        invalid_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": "",
+            "learnTime": 10,
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "RU",
+            "teachers": [self.teacher.id]
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'image', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_learnTime(self):
+        invalid_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": "",
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "RU",
+            "teachers": [self.teacher.id]
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'learnTime', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_courseTarget_id(self):
+        invalid_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": "",
+            "language": "RU",
+            "teachers": [self.teacher.id]
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'courseTarget_id', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_language(self):
+        invalid_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "",
+            "teachers": [self.teacher.id]
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'language', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_no_teachers(self):
+        invalid_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "RU",
+            "teachers": []
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'teachers', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
