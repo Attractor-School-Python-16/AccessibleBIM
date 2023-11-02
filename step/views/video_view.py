@@ -30,7 +30,6 @@ class VideoCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView
     success_url = reverse_lazy('step:videomodel_list')
     home_path = reverse_lazy('modules:moderator_page')
 
-
     def has_permission(self):
         return self.request.user.has_perm('step.add_videomodel')
 
@@ -52,6 +51,13 @@ class VideoDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView
     success_url = reverse_lazy('step:videomodel_list')
     home_path = reverse_lazy('modules:moderator_page')
     context_object_name = "video"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        steps = StepModel.objects.all().filter(video=self.object)
+        if steps:
+            context["steps"] = steps
+        return context
 
     def form_valid(self, form):
         steps = StepModel.objects.all().filter(video=self.object)
