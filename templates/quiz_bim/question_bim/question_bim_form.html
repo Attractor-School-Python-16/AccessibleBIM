@@ -1,4 +1,4 @@
-{% load crispy_forms_filters %}
+{% load static crispy_forms_filters %}
 <div hx-target="this" hx-swap="outerHTML" class="">
     <form action="" id="main-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -20,4 +20,10 @@
         {% endif %}
     </form>
 </div>
+<script>
+    const saveButton = document.getElementById('save_question')
+    saveButton.addEventListener('click', function () {
+            location.reload();
+        });
+</script>
 
