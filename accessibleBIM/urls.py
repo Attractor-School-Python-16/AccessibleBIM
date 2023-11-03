@@ -42,3 +42,5 @@ urlpatterns = [
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "front.views.errors_handler.page_not_found_view"
+handler403 = "front.views.errors_handler.permission_denied_view"
+handler500 = "front.views.errors_handler.server_error_view"

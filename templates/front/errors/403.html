@@ -30,13 +30,12 @@
             <div class="col-md-6">
                 <div class="clearfix">
                     <h1 class="float-start display-3 me-4">403</h1>
-                    <h4 class="pt-3">ОШибка доступа</h4>
+                    <h4 class="pt-3">Ошибка доступа</h4>
                     <p class="text-medium-emphasis">В доступе к запращиваемому ресурсу отказано</p>
                 </div>
-                <div class="input-group">
-                    <a href="{% url "front:accessible_bim" %}">Вернуться на главную страницу</a>
-
-                    <button class="btn btn-info" type="button">Search</button>
+                <div class="input-group d-flex justify-content-center">
+                    <a href="{% url "front:accessible_bim" %}" class="btn btn-info">Вернуться на главную
+                        страницу</a>
                 </div>
             </div>
         </div>
