@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta, timezone
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from modules.models import AbstractModel
@@ -26,6 +28,9 @@ class ProgressTest(AbstractModel):
 
     def accuracy(self):
         return self.correct_answers() / self.user_progress.count()
+
+    def is_overdue(self):
+        return (datetime.now(timezone.utc) - self.start_time) > timedelta(hours=2)
 
     class Meta:
         db_table = 'progress'
