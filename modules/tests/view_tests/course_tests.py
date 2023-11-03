@@ -266,6 +266,7 @@ class TestCourseUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.course.refresh_from_db()
         self.assertNotEqual(self.course.title, new_data['title'])
         self.assertNotEqual(self.course.description, new_data['description'])
 
@@ -284,6 +285,7 @@ class TestCourseUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.course.refresh_from_db()
         self.assertNotEqual(self.course.title, new_data['title'])
         self.assertNotEqual(self.course.description, new_data['description'])
 
@@ -319,6 +321,7 @@ class TestCourseUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.course.refresh_from_db()
         self.assertNotEquals(self.course.title, invalid_data['title'])
 
     @login_superuser
@@ -337,6 +340,7 @@ class TestCourseUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+        self.course.refresh_from_db()
         self.assertNotEquals(self.course.description, invalid_data['description'])
 
     @login_superuser
@@ -354,6 +358,7 @@ class TestCourseUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'courseTarget_id', 'Это поле обязательно для заполнения.')
+        self.course.refresh_from_db()
         self.assertNotEquals(self.course.courseTarget_id.id, invalid_data['courseTarget_id'])
 
     @login_superuser
@@ -372,6 +377,7 @@ class TestCourseUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'language', 'Это поле обязательно для заполнения.')
+        self.course.refresh_from_db()
         self.assertNotEquals(self.course.language, invalid_data['language'])
 
 

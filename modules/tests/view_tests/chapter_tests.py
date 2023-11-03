@@ -118,6 +118,7 @@ class TestChapterUpdateView(CustomTestCase):
             "description": "New description",
         }
         response = self.client.post(self.url, data=new_data)
+        self.chapter.refresh_from_db()
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertNotEqual(self.chapter.title, new_data['title'])
         self.assertNotEqual(self.chapter.description, new_data['description'])
@@ -130,6 +131,7 @@ class TestChapterUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.chapter.refresh_from_db()
         self.assertNotEqual(self.chapter.title, new_data['title'])
         self.assertNotEqual(self.chapter.description, new_data['description'])
 
@@ -151,6 +153,7 @@ class TestChapterUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.chapter.refresh_from_db()
         self.assertNotEqual(self.chapter.title, invalid_data['title'])
 
     @login_superuser
@@ -162,3 +165,5 @@ class TestChapterUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+        self.chapter.refresh_from_db()
+        self.assertNotEqual(self.chapter.description, invalid_data['description'])

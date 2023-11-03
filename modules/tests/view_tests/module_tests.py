@@ -210,6 +210,7 @@ class TestModuleUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.module.refresh_from_db()
         self.assertNotEquals(self.module.title, invalid_data['title'])
 
     @login_superuser
@@ -222,6 +223,7 @@ class TestModuleUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+        self.module.refresh_from_db()
         self.assertNotEquals(self.module.description, invalid_data['description'])
 
 
