@@ -373,3 +373,32 @@ class TestCourseUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'language', 'Это поле обязательно для заполнения.')
         self.assertNotEquals(self.course.language, invalid_data['language'])
+
+
+class TestCourseDeleteView(CustomTestCase):
+
+    def setUp(self):
+        self.course = CourseFactory.create()
+        self.url = reverse("modules:coursemodel_delete", kwargs={"pk": self.course.pk})
+
+    @login_superuser
+    def test_delete_view(self):
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count - CourseModel.objects.count(), 1)
+        self.assertRedirects(response, reverse("modules:modulemodel_detail", kwargs={"pk": self.course.module_id.pk}))
+
+    def test_anonymous(self):
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    @login_user
+    def test_no_permissions(self):
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+    @login_superuser
+    def test_not_found(self):
+        response = self.client.get(reverse("modules:coursemodel_delete", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
