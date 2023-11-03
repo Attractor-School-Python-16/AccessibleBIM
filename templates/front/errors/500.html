@@ -7,7 +7,7 @@
 * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
 -->
 <html lang="en">
-  <head>
+<head>
     <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,24 +22,24 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/coreui.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/core-ui.css' %}">
-  </head>
-  <body>
-    <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <div class="container">
+</head>
+<body>
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-6">
-            <div class="clearfix">
-              <h1 class="float-start display-3 me-4">505</h1>
-              <h4 class="pt-3">Ошибка сервера</h4>
-              <p class="text-medium-emphasis">Из-за возникшей ошибки сервер не может обработать ваш запрос</p>
+            <div class="col-md-6">
+                <div class="clearfix">
+                    <h1 class="float-start display-3 me-4">505</h1>
+                    <h4 class="pt-3">Ошибка сервера</h4>
+                    <p class="text-medium-emphasis">Из-за возникшей ошибки сервер не может обработать ваш запрос</p>
+                </div>
+                <div class="input-group d-flex justify-content-center">
+                    <a href="{% url "front:accessible_bim" %}" class="btn btn-info">Вернуться на главную
+                        страницу</a>
+                </div>
             </div>
-            <div class="input-group">
-                <a href="{% url "front:accessible_bim" %}">Вернуться на главную страницу</a>
-              <button class="btn btn-info" type="button">Search</button>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
