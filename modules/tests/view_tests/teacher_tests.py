@@ -3,6 +3,7 @@ from http import HTTPStatus
 from django.urls import reverse
 
 from modules.models import TeacherModel
+from modules.tests import TeacherFactory
 from quiz_bim.tests.utils import CustomTestCase, login_superuser, login_user
 
 
@@ -152,3 +153,137 @@ class TestTeacherCreateView(CustomTestCase):
         response = self.client.post(self.url, data=correct_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertEqual(TeacherModel.objects.count() - previous_count, 1)
+
+
+class TestTeacherUpdateView(CustomTestCase):
+    def setUp(self):
+        self.teacher = TeacherFactory.create()
+        self.url = reverse("modules:teachermodel_update", kwargs={"pk": self.teacher.pk})
+
+    @login_superuser
+    def test_update_view(self):
+        new_data = {
+            "first_name": "First",
+            "last_name": "Last",
+            "father_name": "Father",
+            "job_title": "Job",
+            "corp": "Corp",
+            "experience": "Experience",
+            "description": "Description"
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response, reverse("modules:teachermodel_list"))
+        self.teacher.refresh_from_db()
+        self.assertEqual(self.teacher.first_name, new_data['first_name'])
+        self.assertEqual(self.teacher.last_name, new_data['last_name'])
+        self.assertEqual(self.teacher.father_name, new_data['father_name'])
+        self.assertEqual(self.teacher.job_title, new_data['job_title'])
+        self.assertEqual(self.teacher.corp, new_data['corp'])
+        self.assertEqual(self.teacher.experience, new_data['experience'])
+        self.assertEqual(self.teacher.description, new_data['description'])
+
+    def test_anonymous(self):
+        new_data = {
+            "first_name": "First",
+            "last_name": "Last",
+            "father_name": "Father",
+            "job_title": "Job",
+            "corp": "Corp",
+            "experience": "Experience",
+            "description": "Description"
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.teacher.refresh_from_db()
+        self.assertNotEqual(self.teacher.first_name, new_data['first_name'])
+        self.assertNotEqual(self.teacher.last_name, new_data['last_name'])
+
+    @login_user
+    def test_no_permissions(self):
+        new_data = {
+            "first_name": "First",
+            "last_name": "Last",
+            "father_name": "Father",
+            "job_title": "Job",
+            "corp": "Corp",
+            "experience": "Experience",
+            "description": "Description"
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.teacher.refresh_from_db()
+        self.assertNotEqual(self.teacher.first_name, new_data['first_name'])
+        self.assertNotEqual(self.teacher.last_name, new_data['last_name'])
+
+    @login_superuser
+    def test_not_found(self):
+        new_data = {
+            "first_name": "First",
+            "last_name": "Last",
+            "father_name": "Father",
+            "job_title": "Job",
+            "corp": "Corp",
+            "experience": "Experience",
+            "description": "Description"
+        }
+        response = self.client.post(reverse("modules:teachermodel_update", kwargs={"pk": 999}), data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+    @login_superuser
+    def test_empty_first_name(self):
+        invalid_data = {
+            "first_name": "",
+            "last_name": "Last",
+            "father_name": "Father",
+            "job_title": "Job",
+            "corp": "Corp",
+            "experience": "Experience",
+            "description": "Description"
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'first_name', 'Это поле обязательно для заполнения.')
+        self.teacher.refresh_from_db()
+        self.assertNotEqual(self.teacher.first_name, invalid_data['first_name'])
+
+    @login_superuser
+    def test_empty_last_name(self):
+        invalid_data = {
+            "first_name": "First",
+            "last_name": "",
+            "father_name": "Father",
+            "job_title": "Job",
+            "corp": "Corp",
+            "experience": "Experience",
+            "description": "Description"
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'last_name', 'Это поле обязательно для заполнения.')
+        self.teacher.refresh_from_db()
+        self.assertNotEqual(self.teacher.last_name, invalid_data['last_name'])
+
+    @login_superuser
+    def test_null_fields(self):
+        new_data = {
+            "first_name": "First",
+            "last_name": "Last",
+            "father_name": "",
+            "job_title": "",
+            "corp": "",
+            "experience": "",
+            "description": ""
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertRedirects(response, reverse("modules:teachermodel_list"))
+        self.teacher.refresh_from_db()
+        self.assertEqual(self.teacher.first_name, new_data['first_name'])
+        self.assertEqual(self.teacher.last_name, new_data['last_name'])
+        self.assertIsNone(self.teacher.father_name)
+        self.assertIsNone(self.teacher.job_title)
+        self.assertIsNone(self.teacher.corp)
+        self.assertIsNone(self.teacher.experience)
+        self.assertEqual(self.teacher.description, new_data['description'])
+
