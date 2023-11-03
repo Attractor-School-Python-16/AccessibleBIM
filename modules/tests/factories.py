@@ -40,6 +40,7 @@ class TeacherFactory(factory.django.DjangoModelFactory):
     father_name = factory.Faker('last_name')
     job_title = factory.Faker('job')
     corp = factory.Faker('company')
+    experience = factory.Faker('bothify', text='## Years')
     description = factory.Faker('sentence', nb_words=10)
 
 
