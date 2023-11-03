@@ -175,8 +175,7 @@ MEDIA_ROOT = '/code/media/'
 # CELERY_BROKER_URL = 'redis://localhost'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 
-with open('accessibleBIM/config.txt') as f:
-    EMAIL_APP_PASSWORD = f.read().strip()
+EMAIL_APP_PASSWORD = env.str('GMAIL_KEY')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
