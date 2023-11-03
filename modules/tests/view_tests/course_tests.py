@@ -400,5 +400,5 @@ class TestCourseDeleteView(CustomTestCase):
 
     @login_superuser
     def test_not_found(self):
-        response = self.client.get(reverse("modules:coursemodel_delete", kwargs={"pk": 999}))
+        response = self.client.post(reverse("modules:coursemodel_delete", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)

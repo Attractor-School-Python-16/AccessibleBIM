@@ -91,3 +91,74 @@ class TestChapterCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(ChapterModel.objects.count() - previous_count, 0)
         self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+
+
+class TestChapterUpdateView(CustomTestCase):
+
+    def setUp(self):
+        self.chapter = ChapterFactory.create()
+        self.url = reverse("modules:chaptermodel_update", kwargs={"pk": self.chapter.pk})
+
+    @login_superuser
+    def test_update_view(self):
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.chapter.refresh_from_db()
+        self.assertEqual(self.chapter.title, new_data['title'])
+        self.assertEqual(self.chapter.description, new_data['description'])
+        self.assertRedirects(response, reverse("modules:coursemodel_detail", kwargs={"pk": self.chapter.course.pk}))
+
+    def test_anonymous(self):
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertNotEqual(self.chapter.title, new_data['title'])
+        self.assertNotEqual(self.chapter.description, new_data['description'])
+
+    @login_user
+    def test_no_permissions(self):
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertNotEqual(self.chapter.title, new_data['title'])
+        self.assertNotEqual(self.chapter.description, new_data['description'])
+
+    @login_superuser
+    def test_not_found(self):
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+        }
+        response = self.client.post(reverse("modules:chaptermodel_update", kwargs={"pk": 999}), data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+    @login_superuser
+    def test_empty_title(self):
+        invalid_data = {
+            "title": "",
+            "description": "New description",
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.assertNotEqual(self.chapter.title, invalid_data['title'])
+
+    @login_superuser
+    def test_empty_description(self):
+        invalid_data = {
+            "title": "New title",
+            "description": "",
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
