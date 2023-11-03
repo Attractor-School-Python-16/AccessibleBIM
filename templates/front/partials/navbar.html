@@ -53,7 +53,7 @@
                     </ul>
                 </div>
                 {% if request.user.is_authenticated %}
-                    {% if user.is_moderator or perms.accounts.can_grant_moderator_role %}
+                    {% if perms.accounts.can_view_admin_panel %}
                         <li class="nav-item mx-2">
                             <a href="{% url "modules:moderator_page" %}"
                                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
