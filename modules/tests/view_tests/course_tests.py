@@ -222,3 +222,154 @@ class TestCourseCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'teachers', 'Это поле обязательно для заполнения.')
         self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+
+class TestCourseUpdateView(CustomTestCase):
+
+    def setUp(self):
+        self.course = CourseFactory.create()
+        self.url = reverse("modules:coursemodel_update", kwargs={"pk": self.course.pk})
+
+    @login_superuser
+    def test_update_view(self):
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.course.refresh_from_db()
+        self.assertEqual(self.course.title, new_data['title'])
+        self.assertEqual(self.course.description, new_data['description'])
+        self.assertEqual(self.course.learnTime, new_data['learnTime'])
+        self.assertEqual(self.course.courseTarget_id.id, new_data['courseTarget_id'])
+        self.assertEqual(self.course.language, new_data['language'])
+
+    def test_anonymous(self):
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertNotEqual(self.course.title, new_data['title'])
+        self.assertNotEqual(self.course.description, new_data['description'])
+
+    @login_user
+    def test_no_permissions(self):
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertNotEqual(self.course.title, new_data['title'])
+        self.assertNotEqual(self.course.description, new_data['description'])
+
+    @login_superuser
+    def test_not_found(self):
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        new_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(reverse("modules:coursemodel_update", kwargs={"pk": 999}), data=new_data)
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+    @login_superuser
+    def test_empty_title(self):
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        invalid_data = {
+            "title": "",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
+        self.assertNotEquals(self.course.title, invalid_data['title'])
+
+    @login_superuser
+    def test_empty_description(self):
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        invalid_data = {
+            "title": "Course",
+            "description": "",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
+        self.assertNotEquals(self.course.description, invalid_data['description'])
+
+    @login_superuser
+    def test_invalid_courseTarget_id(self):
+        teacher = TeacherFactory.create()
+        invalid_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": "",
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'courseTarget_id', 'Это поле обязательно для заполнения.')
+        self.assertNotEquals(self.course.courseTarget_id.id, invalid_data['courseTarget_id'])
+
+    @login_superuser
+    def test_invalid_language(self):
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        invalid_data = {
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'language', 'Это поле обязательно для заполнения.')
+        self.assertNotEquals(self.course.language, invalid_data['language'])
