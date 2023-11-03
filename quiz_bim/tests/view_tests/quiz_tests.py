@@ -33,13 +33,15 @@ class TestQuizBimListView(CustomTestCase):
 
 
 class TestQuizBimDetailView(CustomTestCase):
+    def setUp(self):
+        self.quiz = QuizBimFactory.create()
+        self.url = reverse("quiz_bim:quizbim_detail", kwargs={"pk": self.quiz.pk})
 
     @login_superuser
     def test_detail_view(self):
-        quiz = QuizBimFactory.create()
-        response = self.client.get(reverse("quiz_bim:quizbim_detail", kwargs={"pk": quiz.pk}))
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertEqual(response.context['test'], quiz)
+        self.assertEqual(response.context['test'], self.quiz)
         self.assertTemplateUsed(response, 'quiz_bim/quiz_bim/quiz_bim_detail.html')
         self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
 
@@ -49,14 +51,12 @@ class TestQuizBimDetailView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
     def test_anonymous(self):
-        quiz = QuizBimFactory.create()
-        response = self.client.get(reverse("quiz_bim:quizbim_detail", kwargs={"pk": quiz.pk}))
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
 
     @login_user
     def test_no_permissions(self):
-        quiz = QuizBimFactory.create()
-        response = self.client.get(reverse("quiz_bim:quizbim_detail", kwargs={"pk": quiz.pk}))
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
 
@@ -78,13 +78,17 @@ class TestQuizBimCreateView(CustomTestCase):
         self.assertEqual(quiz.title, self.correct_form_data['title'])
 
     def test_anonymous(self):
+        previous_count = QuizBim.objects.count()
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(QuizBim.objects.count() - previous_count, 0)
 
     @login_user
     def test_no_permissions(self):
+        previous_count = QuizBim.objects.count()
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(QuizBim.objects.count() - previous_count, 0)
 
     @login_superuser
     def test_invalid_empty_title_field(self):
@@ -98,7 +102,6 @@ class TestQuizBimCreateView(CustomTestCase):
 
 
 class TestQuizBimUpdateView(CustomTestCase):
-    quiz = None
 
     def setUp(self) -> None:
         self.quiz = QuizBimFactory.create()
@@ -118,12 +121,16 @@ class TestQuizBimUpdateView(CustomTestCase):
         new_data = {"title": "New title"}
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.quiz.refresh_from_db()
+        self.assertNotEqual(self.quiz.title, new_data['title'])
 
     @login_user
     def test_no_permissions(self):
         new_data = {"title": "New title"}
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.quiz.refresh_from_db()
+        self.assertNotEqual(self.quiz.title, new_data['title'])
 
     @login_superuser
     def test_invalid_empty_title_field(self):
@@ -131,7 +138,7 @@ class TestQuizBimUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.quiz.refresh_from_db()
-        self.assertEqual(self.quiz.title, None)
+        self.assertIsNone(self.quiz.title)
 
     @login_superuser
     def test_not_found(self):
@@ -154,13 +161,17 @@ class TestQuizBimDeleteView(CustomTestCase):
         self.assertRedirects(response, reverse("quiz_bim:quizbim_list"))
 
     def test_anonymous(self):
+        previous_count = QuizBim.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count, QuizBim.objects.count())
 
     @login_user
     def test_no_permissions(self):
+        previous_count = QuizBim.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(previous_count, QuizBim.objects.count())
 
     @login_superuser
     def test_not_found(self):

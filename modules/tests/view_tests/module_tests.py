@@ -184,7 +184,7 @@ class TestModuleUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.module.refresh_from_db()
-        self.assertEqual(self.module.title, new_data['title'])
+        self.assertNotEqual(self.module.title, new_data['title'])
 
     @login_user
     def test_no_permissions(self):
