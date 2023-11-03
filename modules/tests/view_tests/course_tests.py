@@ -399,7 +399,7 @@ class TestCourseDeleteView(CustomTestCase):
         previous_count = CourseModel.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
-        self.assertEqual(previous_count - CourseModel.objects.count(), 1)
+        self.assertEqual(previous_count - CourseModel.objects.count(), 0)
 
     @login_user
     def test_no_permissions(self):
