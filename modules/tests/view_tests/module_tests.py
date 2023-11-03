@@ -224,7 +224,7 @@ class TestModuleDeleteView(CustomTestCase):
     @login_superuser
     def test_delete_view(self):
         previous_count = ModuleModel.objects.count()
-        response = self.client.post(reverse("modules:modulemodel_delete", kwargs={"pk": self.module.pk}))
+        response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.assertRedirects(response, reverse("modules:modulemodel_list"))
         self.assertEqual(previous_count - ModuleModel.objects.count(), 1)
@@ -237,3 +237,8 @@ class TestModuleDeleteView(CustomTestCase):
     def test_no_permissions(self):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+    @login_superuser
+    def test_not_found(self):
+        response = self.client.get(reverse("modules:modulemodel_delete", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
