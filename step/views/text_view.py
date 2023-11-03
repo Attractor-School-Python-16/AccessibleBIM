@@ -54,7 +54,7 @@ class TextDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        steps = StepModel.objects.all().filter(video=self.object)
+        steps = StepModel.objects.all().filter(text=self.object)
         if steps:
             context["steps"] = steps
         return context
