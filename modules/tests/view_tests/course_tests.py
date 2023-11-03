@@ -322,7 +322,7 @@ class TestCourseUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
         self.course.refresh_from_db()
-        self.assertNotEquals(self.course.title, invalid_data['title'])
+        self.assertNotEqual(self.course.title, invalid_data['title'])
 
     @login_superuser
     def test_empty_description(self):
@@ -341,7 +341,7 @@ class TestCourseUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
         self.course.refresh_from_db()
-        self.assertNotEquals(self.course.description, invalid_data['description'])
+        self.assertNotEqual(self.course.description, invalid_data['description'])
 
     @login_superuser
     def test_invalid_courseTarget_id(self):
@@ -359,7 +359,7 @@ class TestCourseUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'courseTarget_id', 'Это поле обязательно для заполнения.')
         self.course.refresh_from_db()
-        self.assertNotEquals(self.course.courseTarget_id.id, invalid_data['courseTarget_id'])
+        self.assertNotEqual(self.course.courseTarget_id.id, invalid_data['courseTarget_id'])
 
     @login_superuser
     def test_invalid_language(self):
@@ -378,7 +378,7 @@ class TestCourseUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'language', 'Это поле обязательно для заполнения.')
         self.course.refresh_from_db()
-        self.assertNotEquals(self.course.language, invalid_data['language'])
+        self.assertNotEqual(self.course.language, invalid_data['language'])
 
 
 class TestCourseDeleteView(CustomTestCase):
@@ -396,13 +396,17 @@ class TestCourseDeleteView(CustomTestCase):
         self.assertRedirects(response, reverse("modules:modulemodel_detail", kwargs={"pk": self.course.module_id.pk}))
 
     def test_anonymous(self):
+        previous_count = CourseModel.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count - CourseModel.objects.count(), 1)
 
     @login_user
     def test_no_permissions(self):
+        previous_count = CourseModel.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
 
     @login_superuser
     def test_not_found(self):
