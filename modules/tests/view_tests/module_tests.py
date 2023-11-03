@@ -104,13 +104,17 @@ class TestModuleCreateView(CustomTestCase):
         self.assertEqual(module.description, self.correct_form_data['description'])
 
     def test_anonymous(self):
+        previous_count = ModuleModel.objects.count()
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
 
     @login_user
     def test_no_permissions(self):
+        previous_count = ModuleModel.objects.count()
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
 
     @login_superuser
     def test_empty_title(self):
@@ -179,6 +183,8 @@ class TestModuleUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.module.refresh_from_db()
+        self.assertEqual(self.module.title, new_data['title'])
 
     @login_user
     def test_no_permissions(self):
@@ -189,6 +195,8 @@ class TestModuleUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.module.refresh_from_db()
+        self.assertNotEqual(self.module.title, new_data['title'])
 
     @login_superuser
     def test_not_found(self):
@@ -211,7 +219,7 @@ class TestModuleUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
         self.module.refresh_from_db()
-        self.assertNotEquals(self.module.title, invalid_data['title'])
+        self.assertNotEqual(self.module.title, invalid_data['title'])
 
     @login_superuser
     def test_empty_description(self):
@@ -224,7 +232,7 @@ class TestModuleUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'description', 'Это поле обязательно для заполнения.')
         self.module.refresh_from_db()
-        self.assertNotEquals(self.module.description, invalid_data['description'])
+        self.assertNotEqual(self.module.description, invalid_data['description'])
 
 
 class TestModuleDeleteView(CustomTestCase):
@@ -242,13 +250,17 @@ class TestModuleDeleteView(CustomTestCase):
         self.assertEqual(previous_count - ModuleModel.objects.count(), 1)
 
     def test_anonymous(self):
+        previous_count = ModuleModel.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
 
     @login_user
     def test_no_permissions(self):
+        previous_count = ModuleModel.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(ModuleModel.objects.count() - previous_count, 0)
 
     @login_superuser
     def test_not_found(self):

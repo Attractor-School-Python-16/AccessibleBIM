@@ -82,13 +82,17 @@ class TestCourseTargetCreateView(CustomTestCase):
         self.assertEqual(course_target.description, self.correct_data['description'])
 
     def test_anonymous(self):
+        previous_count = CourseTargetModel.objects.count()
         response = self.client.post(self.url, self.correct_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(CourseTargetModel.objects.count() - previous_count, 0)
 
     @login_user
     def test_no_permissions(self):
+        previous_count = CourseTargetModel.objects.count()
         response = self.client.post(self.url, self.correct_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(CourseTargetModel.objects.count() - previous_count, 0)
 
     @login_superuser
     def test_empty_title(self):
@@ -140,6 +144,8 @@ class TestCourseTargetUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.course_target.refresh_from_db()
+        self.assertNotEqual(self.course_target.title, new_data['title'])
 
     @login_user
     def test_no_permissions(self):
@@ -149,6 +155,8 @@ class TestCourseTargetUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.course_target.refresh_from_db()
+        self.assertNotEqual(self.course_target.title, new_data['title'])
 
     @login_superuser
     def test_empty_title(self):
@@ -160,7 +168,7 @@ class TestCourseTargetUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response, 'form', 'title', 'Это поле обязательно для заполнения.')
         self.course_target.refresh_from_db()
-        self.assertNotEquals(self.course_target.title, invalid_data['title'])
+        self.assertNotEqual(self.course_target.title, invalid_data['title'])
 
     @login_superuser
     def test_empty_description(self):
@@ -189,10 +197,14 @@ class TestCourseTargetDeleteView(CustomTestCase):
         self.assertEqual(previous_count - CourseTargetModel.objects.count(), 1)
 
     def test_anonymous(self):
+        previous_count = CourseTargetModel.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(CourseTargetModel.objects.count() - previous_count, 0)
 
     @login_user
     def test_no_permissions(self):
+        previous_count = CourseTargetModel.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(CourseTargetModel.objects.count() - previous_count, 0)

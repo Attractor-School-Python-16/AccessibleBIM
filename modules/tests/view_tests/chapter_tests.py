@@ -60,13 +60,17 @@ class TestChapterCreateView(CustomTestCase):
         self.assertRedirects(response, reverse("modules:coursemodel_detail", kwargs={"pk": chapter.course.pk}))
 
     def test_anonymous(self):
+        previous_count = ChapterModel.objects.count()
         response = self.client.post(self.url, data=self.correct_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(ChapterModel.objects.count() - previous_count, 0)
 
     @login_user
     def test_no_permissions(self):
+        previous_count = ChapterModel.objects.count()
         response = self.client.post(self.url, data=self.correct_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(ChapterModel.objects.count() - previous_count, 0)
 
     @login_superuser
     def test_empty_title(self):
@@ -120,6 +124,7 @@ class TestChapterUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.chapter.refresh_from_db()
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.chapter.refresh_from_db()
         self.assertNotEqual(self.chapter.title, new_data['title'])
         self.assertNotEqual(self.chapter.description, new_data['description'])
 
