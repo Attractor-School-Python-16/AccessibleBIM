@@ -191,6 +191,16 @@ class TestModuleUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
     @login_superuser
+    def test_not_found(self):
+        invalid_data = {
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+        }
+        response = self.client.post(reverse("modules:modulemodel_update", kwargs={"pk": 999}), data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+    @login_superuser
     def test_empty_title(self):
         invalid_data = {
             "title": "",
@@ -240,5 +250,5 @@ class TestModuleDeleteView(CustomTestCase):
 
     @login_superuser
     def test_not_found(self):
-        response = self.client.get(reverse("modules:modulemodel_delete", kwargs={"pk": 999}))
+        response = self.client.post(reverse("modules:modulemodel_delete", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
