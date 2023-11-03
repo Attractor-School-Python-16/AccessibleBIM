@@ -7,6 +7,8 @@ from accounts.models import CustomUser
 
 
 class TestRegisterView(TestCase):
+    fixtures = ['fixtures/08_sites.json', 'fixtures/09_socialaccount.json']
+
     def setUp(self) -> None:
         self.correct_data = {
             'first_name': 'my_name',
