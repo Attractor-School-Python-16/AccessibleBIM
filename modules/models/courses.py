@@ -42,6 +42,7 @@ class CourseModel(AbstractModel):
 
     def get_total_lessons(self):
         for course in self.ct_course.all():
+            print(course)
             if course.pk == self.pk:
                 return len(
                     course.step.all().filter(Q(test__isnull=True)))
