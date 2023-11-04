@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -129,22 +130,22 @@ WSGI_APPLICATION = 'accessibleBIM.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    "default": env.db(),
-}
-
 # DATABASES = {
-#
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'test_db',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',
-#         'PORT': 5432,
-#     }
-#
+#     "default": env.db(),
 # }
+
+DATABASES = {
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+
+}
 
 
 # Password validation
@@ -175,7 +176,7 @@ MEDIA_ROOT = '/code/media/'
 # CELERY_BROKER_URL = 'redis://localhost'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 
-EMAIL_APP_PASSWORD = env.str('GMAIL_KEY')
+EMAIL_APP_PASSWORD = 'bpcd rxca rufu jbdq'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
