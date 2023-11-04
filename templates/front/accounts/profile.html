@@ -9,14 +9,9 @@
                     <div class="row">
                         <div class="col-12 mx-auto">
                             {% for progress in user.progress.all %}
-                            	{% if progress.is_overdue and not progress.is_passed %}
+                            	{% if progress.is_overdue and progress.is_passed is not True %}
                                     <a href="{% url "quiz_bim:test_completion" progress.pk %}" class="alert alert-info text-white d-block" role="alert">
-                                        У вас есть просроченный <span class="text-decoration-underline">тест</span>.
-                                    </a>
-                            {% elif not progress.is_passed %}
-                                    <a href="{% url "quiz_bim:test_completion" progress.pk %}" class="alert alert-info text-white d-block" role="alert">
-                                        У вас есть не пройденный <span class="text-decoration-underline">тест</span>.
-                                        Пройдите тест, что бы перейти на следующую главу.
+                                        У вас есть просроченный <span class="text-decoration-underline">тест</span>. Пройдите тест.
                                     </a>
                             	{% endif %}
                             {% endfor %}
