@@ -21,20 +21,18 @@ class CoursesUserListView(ListView):
         context['selected_targets'] = self.request.GET.getlist('targets', [])
         context['course_targets'] = CourseTargetModel.objects.all()
         context['modules'] = ModuleModel.objects.all()
-        modules = self.request.GET.getlist('modules', [])
-        languages = self.request.GET.getlist('languages', [])
-        targets = self.request.GET.getlist('targets', [])
+        params = self.get_filter_params()
         query = ''
-        if modules:
-            for module in modules:
+        if params['modules']:
+            for module in params['modules']:
                 query += f"modules={module}&"
 
-        if languages:
-            for language in languages:
+        if params['languages']:
+            for language in params['languages']:
                 query += f"languages={language}&"
 
-        if targets:
-            for target in targets:
+        if params['targets']:
+            for target in params['targets']:
                 query += f"targets={target}&"
 
         context["query"] = query
@@ -46,20 +44,24 @@ class CoursesUserListView(ListView):
             context['user_subscription'] = None
         return context
 
+    def get_filter_params(self):
+        params = {'modules': self.request.GET.getlist('modules', []),
+                  'languages': self.request.GET.getlist('languages', []),
+                  'targets': self.request.GET.getlist('targets', [])}
+        return params
+
     def get_queryset(self):
         queryset = CourseModel.objects.filter(subscription__is_published=True).order_by('-update_at')
-        modules = self.request.GET.getlist('modules', [])
-        languages = self.request.GET.getlist('languages', [])
-        targets = self.request.GET.getlist('targets', [])
+        params = self.get_filter_params()
 
-        if modules:
-            queryset = queryset.filter(module_id__title__in=modules)
+        if params['modules']:
+            queryset = queryset.filter(module_id__title__in=params['modules'])
 
-        if languages:
-            queryset = queryset.filter(language__in=languages)
+        if params['languages']:
+            queryset = queryset.filter(language__in=params['languages'])
 
-        if targets:
-            queryset = queryset.filter(courseTarget_id__title__in=targets)
+        if params['targets']:
+            queryset = queryset.filter(courseTarget_id__title__in=params['targets'])
         return queryset
 
 
@@ -80,7 +82,8 @@ class CourseUserDetailView(DetailView):
         if subscription:
             context['subscription'] = subscription[0]
             if self.request.user.is_authenticated:
-                user_subscription = UsersSubscription.objects.filter(user=self.request.user, subscription=subscription[0])
+                user_subscription = UsersSubscription.objects.filter(user=self.request.user,
+                                                                     subscription=subscription[0])
                 if user_subscription:
                     context['user_subscription'] = user_subscription[0].is_active
         return context
