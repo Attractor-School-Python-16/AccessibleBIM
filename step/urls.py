@@ -8,7 +8,6 @@ from step.views.video_view import VideoListView, VideoDetailView, VideoCreateVie
 app_name = 'step'
 
 urlpatterns = [
-    path('steps/', StepListView.as_view(), name='stepmodel_list'),
     path('step/<int:pk>/', StepDetailView.as_view(), name='stepmodel_detail'),
     path('step/create/text/', StepCreateView.as_view(), name='stepmodel_text_create'),
     path('step/create/video/', StepCreateView.as_view(), name='stepmodel_video_create'),
