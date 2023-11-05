@@ -109,6 +109,11 @@
                        id="navbarDropdownMenuLink2">
                         {% for language in languages %}
                             {% if language.code == LANGUAGE_CODE %}
+                                {% if language.code == "ru" %}
+                                    <span class="flag-icon flag-icon-ru"></span>
+                                {% elif language.code == "en" %}
+                                    <span class="flag-icon flag-icon-gb"></span>
+                                {% endif %}
                                 {{ language.name_local }}
                             {% endif %}
                         {% endfor %}
