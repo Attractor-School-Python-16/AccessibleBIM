@@ -18,6 +18,9 @@
                     </video>
                 </div>
                 </br>
+                <a href="{% url 'step:videomodel_update' video.id %}" class="btn btn-primary me-2">Редактировать
+                    видео</a>
+                <a href="{% url 'step:videomodel_delete' video.id %}" class="btn btn-danger me-2">Удалить видео</a>
                 <a href="{% url 'step:videomodel_list' %}" class="btn btn-secondary">Вернуться к списку видео</a>
             </div>
         </div>
