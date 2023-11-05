@@ -197,13 +197,6 @@ class StepUpdateView(PermissionRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         step = form['step'].save(commit=False)
-        # error_messages = validate_empty(self, form, self.object.lesson_type, True if self.object.lesson_type ==
-        #                                                                              'video' or 'text' else False)
-        # if error_messages:
-        #     return render(self.request, "steps/step/step_update.html", context={
-        #         "form": form,
-        #         "error_messages": error_messages,
-        #     })
         error_messages = validate_empty_for_update(form, self.object.lesson_type)
         if error_messages:
             return render(self.request, "steps/step/step_update.html", context={
