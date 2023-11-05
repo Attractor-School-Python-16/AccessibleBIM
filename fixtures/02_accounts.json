@@ -102,7 +102,11 @@
             "country": "KG",
             "company": null,
             "type_corp": 7,
-            "groups": [],
+            "groups": [
+                [
+                    "moderators"
+                ]
+            ],
             "user_permissions": [
                 [
                     "can_grant_moderator_role",
