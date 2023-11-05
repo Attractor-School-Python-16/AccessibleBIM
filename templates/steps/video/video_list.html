@@ -22,7 +22,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for video in videos %}
+                {% for video in videos|dictsort:"id" %}
                     <tr>
                         <td>{{ video.id }}</td>
                         {% if request.user.is_authenticated %}

@@ -22,7 +22,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for text in texts %}
+                {% for text in texts|dictsort:"id" %}
                     <tr>
                         <td>{{ text.id }}</td>
                         {% if request.user.is_authenticated %}

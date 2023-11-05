@@ -24,7 +24,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for subscription in subscriptions %}
+                {% for subscription in subscriptions|dictsort:"id" %}
                     <tr>
                         <td>{{ subscription.id }}</td>
                         <td>{{ subscription.course }}</td>
