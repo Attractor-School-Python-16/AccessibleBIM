@@ -53,11 +53,11 @@ function extractLessonTypeFromId(elementId) {
 
 function getUpdateUrl(lessonType, baseUrl, selectValue) {
     if (lessonType === "text") {
-        return selectValue ? `${baseUrl}/text/${selectValue}/update/` : "";
+        return selectValue ? `${baseUrl}/moderator/text/${selectValue}/update/` : "";
     } else if (lessonType === "video") {
-        return selectValue ? `${baseUrl}/video/${selectValue}/update/` : "";
+        return selectValue ? `${baseUrl}/moderator/video/${selectValue}/update/` : "";
     } else if (lessonType === "test") {
-        return selectValue ? `${baseUrl}/quiz_bim/test/${selectValue}` : "";
+        return selectValue ? `${baseUrl}/moderator/quiz_bim/test/${selectValue}` : "";
     } else {
         return "";
     }
