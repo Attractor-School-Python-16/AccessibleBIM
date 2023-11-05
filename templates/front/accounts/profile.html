@@ -90,7 +90,8 @@
                                                 class="fas fa-tag mr-2"></i> {{ course.courseTarget_id }}
                                         </li>
                                         <li class="tag__item"><i
-                                                class="fas fa-tag mr-2"></i> {{ course.get_total_tests|make_text_for_text }}
+                                                class="fas fa-tag mr-2"></i>
+                                            {{ course.get_total_tests|make_text_for_test }}
                                         </li>
                                         <li class="tag__item"><i
                                                 class="fas fa-tag mr-2"></i> {{ course.get_total_lessons|make_text_for_lessons }}
