@@ -36,39 +36,17 @@ function createPaginationButtons() {
     });
 }
 
-function updatePageAfterNewQuestionCreated() {
-    let questionForms = document.getElementById('questionforms');
-    let questionDetailBlock = questionForms.querySelector('#question_detail');
-
-    if (questionDetailBlock) {
-        let newQuestionBlock = document.createElement('div');
-        newQuestionBlock.classList.add('question-block');
-        newQuestionBlock.appendChild(questionDetailBlock.cloneNode(true));
-        let questionsContainer = document.querySelector('.questions-container');
-        questionsContainer.appendChild(newQuestionBlock);
-
-        questionDetailBlock.remove();
-
-        createPaginationButtons();
-        showQuestions(currentPage);
-    }
-}
-
-document.body.addEventListener('htmx:afterOnLoad', function (event) {
-    let questionCreated = document.getElementById("questionforms")
-    let questionToProcess = questionCreated.querySelector("#question_detail")
-    if (questionToProcess) {
-        updatePageAfterNewQuestionCreated()
-    }
-});
 
 let deleteButtons = document.querySelectorAll('[id="delete-question"]')
 
 deleteButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        window.location.reload();
+        setTimeout(() => {
+            window.location.reload();
+        }, 200);
     });
 });
+
 
 createPaginationButtons();
 showQuestions(currentPage);
