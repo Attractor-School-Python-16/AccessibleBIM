@@ -13,8 +13,26 @@
                 </div>
                 <h4 class="my-2">{{ video.video_description }}</h4>
                 <div class="d-flex justify-content-center">
-                    <video width="640" height="360" controls>
+                    <video
+                            id="my-video"
+                            class="video-js"
+                            controls
+                            preload="auto"
+                            width="640"
+                            height="360"
+                            data-setup="{'playbackRates': [0.5, 1, 1.5, 2]}"
+                    >
                         <source src="{{ video.video_file.url }}" type="video/mp4">
+                        <source src="{{ video.video_file.url }}" type="video/webm">
+                        <source src="{{ video.video_file.url }}" type="audio/ogg">
+
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a
+                            web browser that / Для просмотра этого видео, пожалуйста, включите JavaScript и
+                            рассмотрите возможность обновления до веб-браузера, который
+                            <a href="https://videojs.com/html5-video-support/" target="_blank"
+                            >supports HTML5 video / поддерживает видео в формате HTML5</a>
+                        </p>
                     </video>
                 </div>
                 </br>

@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
     UpdateBreadcrumbMixin
 from step.forms.text_form import TextForm
-from step.models import TextModel
+from step.models import TextModel, StepModel
 
 
 class TextListView(ListBreadcrumbMixin, LoginRequiredMixin, ListView):
@@ -49,6 +50,24 @@ class TextDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     template_name = 'steps/text/text_delete.html'
     success_url = reverse_lazy('step:textmodel_list')
     home_path = reverse_lazy('modules:moderator_page')
+    context_object_name = "text"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        steps = StepModel.objects.all().filter(text=self.object)
+        if steps:
+            context["steps"] = steps
+        return context
+
+    def form_valid(self, form):
+        steps = StepModel.objects.all().filter(text=self.object)
+        if steps:
+            return render(self.request, 'steps/text/text_delete.html', context={
+                "form": form,
+                "steps": steps,
+                "text": self.object
+            })
+        return super().form_valid(form)
 
     def has_permission(self):
         return self.request.user.has_perm('step.delete_textmodel')
