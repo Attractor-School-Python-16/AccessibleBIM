@@ -23,12 +23,15 @@
                         {#                    {% elif step.test %}#}
                         {#                        {% include 'steps/partial/test_partial.html' %}#}
                     {% endif %}
-                    {% if step.files.all %}
-                        {% for file in step.files.all %}
-                            <p>Файл {{ file.file_title }}</p>
-                            <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
+                    <br>
+                    {% if step.file.all %}
+                        <p>Прикрепленные файлы:</p>
+                        {% for file in step.file.all %}
+                            <a class="link-info link-offset-1" href="{{ file.lesson_file.url }}" download>{{ file.file_title }}</a>
                         {% endfor %}
                     {% endif %}
+
+
                 {% endfor %}
                 {% if is_paginated %}
                     <div class="d-flex justify-content-evenly mt-5">
