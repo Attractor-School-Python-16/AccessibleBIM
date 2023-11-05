@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-7@r@5jk0o)5ah@0lez58eg_lu=w(7bq(!0_-qz)43htnusq5ge
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'relaxing-quagga-normal.ngrok-free.app', '[::1]']
 
 # Application definition
 
@@ -82,6 +82,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://relaxing-quagga-normal.ngrok-free.app'
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -170,12 +174,12 @@ MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = '/code/media/'
 
-
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 
-EMAIL_APP_PASSWORD = env.read_env('GMAIL_KEY')
+with open('accessibleBIM/config.txt') as f:
+    EMAIL_APP_PASSWORD = f.read().strip()
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -199,7 +203,7 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
@@ -231,7 +235,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static/')
+    os.path.join(BASE_DIR, 'static/')
 ]
 STATIC_URL = 'static/'
 

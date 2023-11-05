@@ -10,18 +10,18 @@
             <div class="card-header">
                 <h1>Редактирование занятия</h1>
             </div>
-            <div class="container">
-                <div class="col" id="form-div">
-                    {% for error in error_messages %}
-                        <div class="alert alert-danger my-2" role="alert">
-                            {{ error }}
-                        </div>
-                    {% endfor %}
-                    {% include "partials/step_form.html" with button_text="Сохранить" %}
+                <div class="container">
+                    <div class="col" id="form-div">
+                        {% for error in error_messages %}
+                            <div class="alert alert-danger my-2" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        {% include "partials/form.html" with button_text="Сохранить" %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 {% endblock %}
 {% block scripts %}
     <script src="{% static 'js/step_update.js' %}"></script>

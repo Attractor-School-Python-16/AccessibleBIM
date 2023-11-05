@@ -1,16 +1,4 @@
-const videoSelectDiv = document.getElementById("video")
-const textSelectDiv = document.getElementById("text")
-const form = document.getElementById("main-form")
-
 document.addEventListener("DOMContentLoaded", function () {
-    if (videoSelectDiv) {
-        let submitButton = document.getElementById("submit_button")
-        form.insertBefore(videoSelectDiv, submitButton)
-    }
-    if (textSelectDiv) {
-        let submitButton = document.getElementById("submit_button")
-        form.insertBefore(textSelectDiv, submitButton)
-    }
     let deselectButton = document.createElement("button");
     deselectButton.textContent = "Снять выбор";
     deselectButton.className = "btn btn-primary"

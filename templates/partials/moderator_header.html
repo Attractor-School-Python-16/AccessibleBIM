@@ -5,11 +5,6 @@
                 onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <i class="icon icon-lg fa-solid fa-bars"></i>
         </button>
-        <ul class="header-nav">
-            <li class="nav-item">
-                <a href="{% url "front:accessible_bim" %}" class="nav-link">На главную</a>
-            </li>
-        </ul>
         <ul class="header-nav ms-auto">
             {% if request.user.is_authenticated %}
                 <li class="nav-item">
@@ -23,7 +18,7 @@
                 {% if perms.accounts.can_grant_moderator_role %}
                     <li class="nav-item">
                         <a href="{% url 'accounts:grant_moderator_panel' %}" class="nav-link">Выдача
-                            прав модераторов</a>
+                            модераторов</a>
                     </li>
                 {% endif %}
             {% endif %}

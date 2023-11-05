@@ -53,12 +53,21 @@
                     </ul>
                 </div>
                 {% if request.user.is_authenticated %}
-                    {% if perms.accounts.can_view_admin_panel %}
+                    {% if user.is_moderator %}
                         <li class="nav-item mx-2">
                             <a href="{% url "modules:moderator_page" %}"
                                class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                                role="button">
                                 Админ панель
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if perms.accounts.can_grant_moderator_role %}
+                        <li class="nav-item mx-2">
+                            <a href="{% url "accounts:grant_moderator_panel" %}"
+                               class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                               role="button">
+                                Выдача прав
                             </a>
                         </li>
                     {% endif %}

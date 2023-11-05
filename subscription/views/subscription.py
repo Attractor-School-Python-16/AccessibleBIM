@@ -1,7 +1,7 @@
 import uuid
 import xmltodict
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from datetime import datetime, timedelta
 from django.db.models import Q
 from django.http import HttpResponseForbidden

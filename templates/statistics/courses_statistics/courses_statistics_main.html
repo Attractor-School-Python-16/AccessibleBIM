@@ -1,31 +1,79 @@
-{% extends 'moderator_page.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
 
 {% block title %}Статистика{% endblock %}
 
-{% block moderator_interface %}
+{% block content %}
     <div class="container">
-        <div class="row g-5 g-xl-8 mb-4">
-            <div class="col-s-12 col-md-6">
-                <a href="{% url 'reports:stats_courses_list' %}" class="link-underline link-underline-opacity-0">
-                    {% include 'partials/statistics/statistics_card.html' with score=courses_ttl_qty title='Количество созданных курсов' icon='<i class="fa-solid fa-graduation-cap fs-2"></i>' %}
-                </a>
-            </div>
-            <div class="col-s-12 col-md-6">
-                {% include 'partials/statistics/statistics_card.html' with score=published_courses_qty title='Количество опубликованных курсов' icon='<i class="fa-regular fa-calendar-check fs-2"></i>' %}
-            </div>
-        </div>
-
-        <div class="row g-5 g-xl-8">
-            <!--Lesson types pie chart-->
-            <div class="col-s-12 col-xl-6">
-                {% include 'partials/statistics/chart_card.html' with title='Типы уроков' chart_id='lesson-types-chart' %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
             </div>
 
-            <!--Steps completed chart-->
-            <div class="col-s-12 col-xl-6">
-                {% include 'partials/statistics/chart_by_period.html' with title='Пройденные уроки' btn_class='steps-completed-chart-btn' chart_id='steps-completed-chart' %}
+            <div class="col-md-9">
+                <div class="row g-5 g-xl-8">
+                    <div class="col-xl-6">
+                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
+                            <div class="card-body">
+                                <i class="fa-solid fa-users text-gray-100 fs-2 ms-n1"></i>
+                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ courses_ttl_qty }}</div>
+                                <div class="fw-semibold text-gray-100">Количество созданных курсов</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="card bg-info hoverable card-xl-stretch mb-xl-8">
+                            <div class="card-body">
+                                <i class="fa-solid fa-user-graduate text-gray-100 fs-2 ms-n1"></i>
+                                <div class="text-gray-100 fw-bold fs-2 mb-2 mt-2">{{ published_courses_qty }}</div>
+                                <div class="fw-semibold text-gray-100">Количество опубликованных курсов</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Lesson types pie chart-->
+                    <div class="row g-5 g-xl-8">
+                        <div class="col-xl-6">
+                            <div class="card card-xl-stretch mb-xl-8">
+                                <div class="card-header border-0 pt-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label fw-bold fs-3 mb-1">Типы уроков</span>
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="lesson-types-chart" style="height: 350px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Steps completed chart-->
+                    <div class="row g-5 g-xl-8">
+                        <div class="col-xl-6">
+                            <div class="card card-xl-stretch mb-xl-8">
+                                <div class="card-header border-0 pt-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label fw-bold fs-3 mb-1">Пройденные уроки</span>
+                                    </h3>
+                                    <div class="card-toolbar">
+                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="steps-completed-chart-week">Неделя</a>
+                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="steps-completed-chart-month">Месяц</a>
+                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="steps-completed-chart-half-year">Пол года</a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="steps-completed-chart" style="height: 350px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{% url 'reports:stats_courses_list' %}" class="btn btn-primary">Список курсов</a>
+
             </div>
         </div>
     </div>
@@ -33,6 +81,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/statistics_js/statistics_charts.js' %}"></script>
     <script src="{% static 'js/statistics_js/stats_courses_main.js' %}"></script>
 {% endblock %}

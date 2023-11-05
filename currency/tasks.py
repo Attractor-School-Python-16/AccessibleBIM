@@ -1,16 +1,13 @@
-import requests
-from datetime import date
-
 from celery import shared_task
-from environ import Env
-
+import requests
 from currency.models.currency_rate import CurrencyChoices, CurrencyRateModel
+from datetime import date
 
 
 @shared_task(bind=True, autoretry_for=(Exception,), retry_kwargs={'max_retries': 6, 'countdown': 600})
 def get_currency_rates(self):
     source = 'https://openexchangerates.org/api/latest.json'
-    app_id = Env().str('OPEN_EXCHANGE_RATES_API_KEY')
+    app_id = 'b85deb233e5c4f16837a0a1d282ed999'
     response = requests.get(f'{source}?app_id={app_id}')
     response_json = response.json()
     if response_json.get('error'):
