@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from quiz_bim.models import AnswerBim
 from quiz_bim.tests.factories import QuestionBimFactory, AnswerBimFactory
-from quiz_bim.tests.utils import login_superuser, CustomTestCase
+from quiz_bim.tests.utils import login_superuser, CustomTestCase, login_user
 
 
 class TestAnswerBimCreateView(CustomTestCase):
@@ -33,15 +33,21 @@ class TestAnswerBimCreateView(CustomTestCase):
         self.assertEqual(AnswerBim.objects.count() - previous_count, 1)
         answer = AnswerBim.objects.latest('create_at')
         self.assertRedirects(response, reverse("quiz_bim:answerbim_htmx_detail", kwargs={"qpk": answer.question_bim.pk, "apk": answer.pk}))
+        self.assertEqual(answer.answer, self.correct_form_data['answer'])
+        self.assertEqual(answer.is_correct, self.correct_form_data['is_correct'])
 
     def test_anonymous(self):
+        previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(AnswerBim.objects.count() - previous_count, 0)
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
+        previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url, data=self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(AnswerBim.objects.count() - previous_count, 0)
 
     @login_superuser
     def test_invalid_data(self):
@@ -56,7 +62,6 @@ class TestAnswerBimCreateView(CustomTestCase):
 
 
 class TestAnswerBimUpdateView(CustomTestCase):
-    answer = None
 
     def setUp(self) -> None:
         self.answer = AnswerBimFactory.create()
@@ -71,9 +76,8 @@ class TestAnswerBimUpdateView(CustomTestCase):
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.answer.refresh_from_db()
-        self.assertEqual(self.answer.answer, "New title")
-        self.assertEqual(self.answer.is_correct, False)
-        # self.assertRedirects(response, reverse("quiz_bim:tests_list"))
+        self.assertEqual(self.answer.answer, new_data['answer'])
+        self.assertEqual(self.answer.is_correct, new_data['is_correct'])
 
     def test_anonymous(self):
         new_data = {
@@ -82,24 +86,31 @@ class TestAnswerBimUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.answer.refresh_from_db()
+        self.assertNotEqual(self.answer.answer, new_data['answer'])
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
         new_data = {
             "answer": "New title",
             "is_correct": False
         }
         response = self.client.post(self.url, data=new_data)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.answer.refresh_from_db()
+        self.assertNotEqual(self.answer.answer, new_data['answer'])
 
     @login_superuser
     def test_invalid_data(self):
         invalid_data = {
-            "title": "",
+            "answer": "",
             "is_correct": "string"
         }
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.answer.refresh_from_db()
+        self.assertNotEqual(self.answer.answer, invalid_data['answer'])
+        self.assertNotEqual(self.answer.is_correct, invalid_data['is_correct'])
 
     @login_superuser
     def test_not_found(self):
@@ -121,13 +132,17 @@ class TestAnswerBimDeleteView(CustomTestCase):
         self.assertEqual(previous_count - AnswerBim.objects.count(), 1)
 
     def test_anonymous(self):
+        previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count, AnswerBim.objects.count())
 
+    @login_user
     def test_no_permissions(self):
-        self.client.force_login(self.user)
+        previous_count = AnswerBim.objects.count()
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(previous_count, AnswerBim.objects.count())
 
     @login_superuser
     def test_not_found(self):
