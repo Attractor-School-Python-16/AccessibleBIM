@@ -1,7 +1,7 @@
 from django.urls import path
 
 from front.views.chapter_progress_view import ChapterUserDetailView
-from front.views.static_view import AccessibleBIM, About, Contacts, PrivacyPolicy, TermsOfUse
+from front.views.static_view import AccessibleBIM, About, PrivacyPolicy, TermsOfUse
 from front.views.courses_view import CoursesUserListView, CourseUserDetailView
 
 app_name = 'front'

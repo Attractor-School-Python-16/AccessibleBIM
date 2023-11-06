@@ -16,3 +16,30 @@
 .draggable {
   cursor: move;
 }
+
+/* Базовые стили паддингов, которые не меняются */
+.section-padding {
+  padding-top: 40px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+}
+
+/* Медиа-запросы CoreUI/Bootstrap для уточнения при необходимости */
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 40px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-padding {
+    padding-top: 40px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+  }
+}
