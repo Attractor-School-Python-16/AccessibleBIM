@@ -6,9 +6,17 @@ class AccessibleBIM(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['title'] = 'AccessibleBIM'
-        context['sub_title'] = 'БИМСТАНДАРД'
+        context['title'] = 'Bologna Engineering Excellence'
         return context
+
+
+# class Old_About(TemplateView):
+#     template_name = "front/old_about_page.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data()
+#         context['title'] = 'O нас'
+#         return context
 
 
 class About(TemplateView):
@@ -17,15 +25,6 @@ class About(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['title'] = 'O нас'
-        return context
-
-
-class Contacts(TemplateView):
-    template_name = "front/contacts.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['title'] = 'Свяжитесь с нами'
         return context
 
 

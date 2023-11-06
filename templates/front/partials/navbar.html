@@ -4,7 +4,7 @@
 <nav class="navbar position-fixed navbar-expand-lg bg-info navbar-transparent text-white z-index-3 w-100 shadow-none">
     <div class="container">
         <a class="navbar-brand text-white fs-4" href="{% url "front:accessible_bim" %}">
-            AccessibleBIM
+            Bologna Engineering Excellence
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
@@ -17,41 +17,6 @@
         </button>
         <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
             <ul class="navbar-nav navbar-nav-hover ms-auto">
-                <li class="nav-item mx-2">
-                    <a href="{% url "front:course_user_list" %}"
-                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                       role="button">
-                        Курсы
-                    </a>
-                </li>
-                <div class="dropdown">
-                    <a href="#" class="btn text-white bg-transparent dropdown-toggle m-0" data-bs-toggle="dropdown"
-                       id="navbarDropdownMenuLink2">
-                        О компании
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:about" %}">
-                                О нас
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:contacts" %}">
-                                Контакты
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:privacy_policy" %}">
-                                Политика конфиденциальности
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:terms_of_use" %}">
-                                Пользовательское соглашение
-                            </a>
-                        </li>
-                    </ul>
-                </div>
                 {% if request.user.is_authenticated %}
                     {% if perms.accounts.can_view_admin_panel %}
                         <li class="nav-item mx-2">
@@ -92,6 +57,42 @@
                         </a>
                     </li>
                 {% endif %}
+                <li class="nav-item mx-2">
+                    <a href="{% url "front:course_user_list" %}"
+                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                       role="button">
+                        Курсы
+                    </a>
+                </li>
+                <div class="dropdown">
+                    <a href="#" class="btn text-white bg-transparent dropdown-toggle m-0" data-bs-toggle="dropdown"
+                       id="navbarDropdownMenuLink2">
+                        О компании
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <li>
+                            <a class="dropdown-item" href="{% url "front:about" %}">
+                                О нас
+                            </a>
+                        </li>
+{#                        <li>#}
+{#                            <a class="dropdown-item" href="{% url "front:contacts" %}">#}
+{#                                Контакты#}
+{#                            </a>#}
+{#                        </li>#}
+                        <li>
+                            <a class="dropdown-item" href="{% url "front:privacy_policy" %}">
+                                Политика конфиденциальности
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url "front:terms_of_use" %}">
+                                Пользовательское соглашение
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
