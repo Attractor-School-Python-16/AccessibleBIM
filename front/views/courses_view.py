@@ -14,13 +14,17 @@ class CoursesUserListView(ListView):
     context_object_name = 'courses'
     paginate_by = 5
 
+    def get_full_language_name(self):
+        pass
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         context['selected_modules'] = self.request.GET.getlist('modules', [])
         context['selected_languages'] = self.request.GET.getlist('languages', [])
         context['selected_targets'] = self.request.GET.getlist('targets', [])
-        context['course_targets'] = CourseTargetModel.objects.all()
-        context['modules'] = ModuleModel.objects.all()
+        context['course_targets'] = {data.title: data.title for data in CourseTargetModel.objects.all()}
+        context['modules'] = {data.title: data.title for data in ModuleModel.objects.all()}
+        context['languages'] = {str(data[0]): str(data[1]) for data in CourseModel.TypeChoices.choices}
         params = self.get_filter_params()
         query = ''
         if params['modules']:

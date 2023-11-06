@@ -2,35 +2,38 @@
 <form method="get">
     <div class="row justify-content-around mt-4">
         <div class="col-md-3">
-            <h5>Модуль</h5>
-            {% for module in modules %}
-                <input type="checkbox" id="module{{ module.pk }}" name="modules" value="{{ module.title }}"
-                       {% if module.title in selected_modules %}checked{% endif %}>
-                <label for="module{{ module.pk }}">{{ module.title }}</label><br>
-            {% endfor %}
+            <h5>Модуль:</h5>
+            <div id="modules">
+                <multiple-select-modules inline-template>
+                    <select-2 :options="optionsModules" name="modules" v-model="selected"
+                              multiple=true></select-2>
+                </multiple-select-modules>
+            </div>
         </div>
         <div class="col-md-3">
             <h5>Целевая аудитория</h5>
-            {% for target in course_targets %}
-                <input type="checkbox" id="target{{ target.pk }}" name="targets" value="{{ target.title }}"
-                       {% if target.title in selected_targets %}checked{% endif %}>
-                <label for="target{{ target.pk }}">{{ target.title }}</label><br>
-            {% endfor %}
+            <div id="targets">
+                <multiple-select-targets inline-template>
+                    <select-2 :options="optionsTargets" name="targets" v-model="selected" multiple=true></select-2>
+                </multiple-select-targets>
+            </div>
         </div>
         <div class="col-md-3">
             <h5>Язык обучения</h5>
-            <input type="checkbox" id="language1" name="languages" value="RU"
-                   {% if "RU" in selected_languages %}checked{% endif %}>
-            <label for="language1">Русский</label><br>
-            <input type="checkbox" id="language2" name="languages" value="EN"
-                   {% if "EN" in selected_languages %}checked{% endif %}>
-            <label for="language2">Английский</label><br>
-            <input type="checkbox" id="language3" name="languages" value="KG"
-                   {% if "KG" in selected_languages %}checked{% endif %}>
-            <label for="language2">Кыргызский</label><br>
-
-
+            <div id="languages">
+                <multiple-select-language inline-template>
+                    <select-2 :options="optionsLanguage" name="languages" v-model="selected"
+                              multiple=true></select-2>
+                </multiple-select-language>
+            </div>
         </div>
+
+        {{ selected_modules|json_script:"selected_modules" }}
+        {{ selected_targets|json_script:"selected_targets" }}
+        {{ selected_languages|json_script:"selected_languages" }}
+        {{ course_targets|json_script:"course_targets_dict" }}
+        {{ modules|json_script:"modules_dict" }}
+        {{ languages|json_script:"languages_dict" }}
         <button type="submit" class="btn btn-info">Поиск</button>
     </div>
 </form>
