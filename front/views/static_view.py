@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView
 
+from content.models import PartnerModel
+
 
 class AccessibleBIM(TemplateView):
     template_name = "front/index.html"
@@ -8,6 +10,7 @@ class AccessibleBIM(TemplateView):
         context = super().get_context_data()
         context['title'] = 'AccessibleBIM'
         context['sub_title'] = 'БИМСТАНДАРД'
+        context['partners'] = PartnerModel.objects.all()
         return context
 
 

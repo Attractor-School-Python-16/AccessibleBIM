@@ -87,4 +87,22 @@
             </div>
         </div>
     </section>
+
+    <section class="py-sm-5 py-5 position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="text-gradient text-info text-uppercase">Наши партнеры</h2>
+                </div>
+                <div class="owl-carousel owl-theme mt-5">
+                    {% for partner in partners %}
+                        <div class="item bg-black">
+                            <img src="{{ partner.image.url }}" alt="partner">
+                            <h4>{{ partner.title }}</h4>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
