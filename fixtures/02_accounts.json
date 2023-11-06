@@ -1,62 +1,6 @@
 [
   {
     "model": "accounts.customuser",
-    "pk": 8,
-    "fields": {
-      "password": "pbkdf2_sha256$390000$GlHjcxDw6F3yakJ8zmmn60$4PLJZG9xCdxHyg3bvp9OUzt5L8Zh6sjWMR26S6MuIM8=",
-      "last_login": "2023-10-12T06:12:36.095Z",
-      "is_superuser": false,
-      "username": "granter",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2023-10-12T06:09:32.625Z",
-      "first_name": "granter",
-      "last_name": "",
-      "father_name": null,
-      "email": "granter@granter.com",
-      "email_verified": true,
-      "phone_number": "",
-      "job_title": null,
-      "country": "KG",
-      "company": null,
-      "type_corp": 7,
-      "groups": [],
-      "user_permissions": [
-        [
-          "can_grant_moderator_role",
-          "accounts",
-          "customuser"
-        ]
-      ]
-    }
-  },
-  {
-    "model": "accounts.customuser",
-    "pk": 5,
-    "fields": {
-      "password": "pbkdf2_sha256$390000$4QXSY5YWqKPeVOktyy8Bha$YiQV39eucvU7r6WBypQQteYvvV8uGcqyE6kEw4jzXdU=",
-      "last_login": "2023-10-06T08:31:03.233Z",
-      "is_superuser": true,
-      "username": "admin@admin.com",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2023-09-18T13:45:52.393Z",
-      "first_name": "admin",
-      "last_name": "admin",
-      "father_name": null,
-      "email": "admin@admin.com",
-      "email_verified": true,
-      "phone_number": "",
-      "job_title": null,
-      "country": "KG",
-      "company": null,
-      "type_corp": 7,
-      "groups": [],
-      "user_permissions": []
-    }
-  },
-  {
-    "model": "accounts.customuser",
     "pk": 5,
     "fields": {
       "password": "pbkdf2_sha256$390000$4QXSY5YWqKPeVOktyy8Bha$YiQV39eucvU7r6WBypQQteYvvV8uGcqyE6kEw4jzXdU=",
@@ -135,37 +79,6 @@
       "type_corp": 7,
       "groups": [],
       "user_permissions": []
-    }
-  },
-  {
-    "model": "accounts.customuser",
-    "pk": 8,
-    "fields": {
-      "password": "pbkdf2_sha256$390000$GlHjcxDw6F3yakJ8zmmn60$4PLJZG9xCdxHyg3bvp9OUzt5L8Zh6sjWMR26S6MuIM8=",
-      "last_login": "2023-10-12T06:12:36.095Z",
-      "is_superuser": false,
-      "username": "granter",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2023-10-12T06:09:32.625Z",
-      "first_name": "granter",
-      "last_name": "",
-      "father_name": null,
-      "email": "granter@granter.com",
-      "email_verified": true,
-      "phone_number": "",
-      "job_title": null,
-      "country": "KG",
-      "company": null,
-      "type_corp": 7,
-      "groups": [],
-      "user_permissions": [
-        [
-          "can_grant_moderator_role",
-          "accounts",
-          "customuser"
-        ]
-      ]
     }
   },
   {
