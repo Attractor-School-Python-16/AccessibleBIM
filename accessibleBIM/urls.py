@@ -39,4 +39,5 @@ urlpatterns = [
     path('quiz_bim/', include('quiz_bim.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('statistics/', include('reports.urls')),
+    path('moderator/', include('content.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
