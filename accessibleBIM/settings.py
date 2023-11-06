@@ -175,7 +175,7 @@ MEDIA_ROOT = '/code/media/'
 # CELERY_BROKER_URL = 'redis://localhost'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 
-EMAIL_APP_PASSWORD = env.str('GMAIL_KEY')
+EMAIL_APP_PASSWORD = env.read_env('GMAIL_KEY')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -242,6 +242,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if 'test' in sys.argv:
     CAPTCHA_TEST_MODE = True
+    # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
+    # MEDIA_ROOT = os.path.join(BASE_DIR, 'media_test')
+    MEDIA_ROOT = '/code/media_test/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 

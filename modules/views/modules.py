@@ -12,8 +12,6 @@ class ModeratorView(PermissionRequiredMixin, TemplateView):
     permission_required = 'accounts.can_view_admin_panel'
 
 
-
-
 class ModulesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = ModuleModel
     template_name = 'modules/modules_list.html'
