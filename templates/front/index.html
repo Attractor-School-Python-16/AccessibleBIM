@@ -1,20 +1,21 @@
 {% extends "front/base.html" %}
 {% load static %}
 
-{% block title %}AccessibleBIM{% endblock %}
+{% block title %}Bologna Engineering Excellence{% endblock %}
 
 {% block content %}
     <section class="py-7">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 my-auto">
-                    <h1>Welcome!</h1>
-                    <h3>To the educational platform Enhance
-                        Engineering</h3>
-                    <p class="pe-5">Pain is what we go through as we become older. We get insulted by
-                        others, lose trust for those others. We get back stabbed by friends. It becomes
-                        harder for us to give others a hand.</p>
-                    <a href="#" type="button" class="btn btn-outline-dark-blue">Info</a>
+                    <h1>Миссия</h1>
+                    <p class="text-lg text-dark mb-0">
+                        <span class="ms-5">"Наша миссия</span> - обеспечить доступное и качественное образование
+                        в области инженерии для всех, кто желает развивать свои навыки и знания.
+                        Мы стремимся вдохновить и поддержать студентов, специалистов и энтузиастов инженерии,
+                        предоставляя им обширный выбор курсов, обучающих материалов и практических заданий <br>
+                    </p>
+                    <a href="{% url "front:about" %}" type="button" class="btn btn-outline-dark-blue">О компании</a>
                 </div>
                 <div class="col-lg-5 ms-auto">
                     <div class="position-relative">
@@ -26,64 +27,27 @@
         </div>
     </section>
 
-    <section class="py-9">
+
+    <section class="py-sm-5 py-5 position-relative">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 my-auto">
-                    <h3>Read More About Us</h3>
-                    <p class="pe-5">Pain is what we go through as we become older. We get insulted by others, lose trust
-                        for those others. We get back stabbed by friends. It becomes harder for us to give others a
-                        hand.</p>
-                    <a href="{% url "front:course_user_list" %}" type="button btn-outline-dark-blue" class="btn btn-outline-dark-blue">
-                        Перейти к курсам
-                        <i class="fas fa-arrow-right text-sm ms-1"></i>
-                    </a>
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="text-gradient text-info text-uppercase">Наши партнеры</h2>
                 </div>
-                <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
-                    <div class="p-3 info-horizontal">
-                        <div class="icon icon-shape bg-dark-blue shadow-primary text-center">
-                            <i class="fas fa-ship opacity-10"></i>
-                        </div>
-                        <div class="description ps-3">
-                            <p class="mb-0">It becomes harder for us to give others a hand. <br> We get our heart broken
-                                by people we love.</p>
-                        </div>
-                    </div>
-
-                    <div class="p-3 info-horizontal">
-                        <div class="icon icon-shape  bg-dark-blue shadow-primary text-center">
-                            <i class="fas fa-handshake opacity-10"></i>
-                        </div>
-                        <div class="description ps-3">
-                            <p class="mb-0">As we live, our hearts turn colder. <br>Cause pain is what we go through as
-                                we become older.</p>
-                        </div>
-                    </div>
-                    <div class="p-3 info-horizontal">
-                        <div class="icon icon-shape  bg-dark-blue shadow-primary text-center">
-                            <i class="fas fa-hourglass opacity-10"></i>
-                        </div>
-                        <div class="description ps-3">
-                            <p class="mb-0">When we lose family over time. <br> What else could rust the heart more over
-                                time? Blackgold.</p>
-                        </div>
-                    </div>
+                <div class="owl-carousel owl-theme mt-5">
+                    <div class="item bg-black"><h4>1</h4></div>
+                    <div class="item"><h4>2</h4></div>
+                    <div class="item"><h4>3</h4></div>
+                    <div class="item"><h4>4</h4></div>
+                    <div class="item"><h4>5</h4></div>
+                    <div class="item"><h4>6</h4></div>
+                    <div class="item"><h4>7</h4></div>
+                    <div class="item"><h4>8</h4></div>
+                    <div class="item"><h4>9</h4></div>
+                    <div class="item"><h4>10</h4></div>
+                    <div class="item"><h4>11</h4></div>
+                    <div class="item"><h4>12</h4></div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h3 class="title">Основная цветовая палитра</h3>
-        <div class="row py-3">
-            <div class="alert bg-dark-blue-crayol text-white font-weight-bold" role="alert">
-                Темно-синий Крайола
-            </div>
-            <div class="alert bg-azure-crayola text-white font-weight-bold" role="alert">
-                Лазурный Крайола
-            </div>
-            <div class="alert bg-verdepomovy text-white font-weight-bold" role="alert">
-                Вердепомовый
             </div>
         </div>
     </section>
