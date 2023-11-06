@@ -1,9 +1,24 @@
 #modules {
     margin: 20px 0 20px 0;
 }
+
 #targets {
     margin: 20px 0 20px 0;
 }
+
 #languages {
     margin: 20px 0 20px 0;
+}
+
+.select2-selection__choice {
+    font-size: 25px;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+    margin: 5px 0 5px 6px;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
+    height: 48px;
+    font-size: 25px;
 }
