@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from content.forms import PartnerForm
@@ -7,14 +8,9 @@ from content.models import PartnerModel
 
 class ListPartnersView(PermissionRequiredMixin, ListView):
     template_name = 'partners/partners_list.html'
-    model = PartnerModel
     permission_required = 'view_partnermodel'
-
-
-class PartnerDetailView(PermissionRequiredMixin, DetailView):
-    template_name = 'partners/partners_detailed.html'
-    model = PartnerModel
-    permission_required = 'view_partnermodel'
+    queryset = PartnerModel.objects.order_by('pk')
+    context_object_name = 'partners'
 
 
 class AddPartnerView(PermissionRequiredMixin, CreateView):
@@ -22,6 +18,7 @@ class AddPartnerView(PermissionRequiredMixin, CreateView):
     model = PartnerModel
     form_class = PartnerForm
     permission_required = 'add_partnermodel'
+    success_url = reverse_lazy('content:partners_list')
 
 
 class UpdatePartnerView(PermissionRequiredMixin, UpdateView):
