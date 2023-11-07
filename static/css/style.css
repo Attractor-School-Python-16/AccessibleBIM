@@ -84,3 +84,22 @@
     }
 }
 
+/* Стиль для заголовков */
+.heading {
+  font-family: 'Arial Nova Light', Arial, sans-serif;
+  font-size: 48px;
+  font-weight: normal;
+}
+
+/* Стиль для содержания */
+.content {
+  font-family: 'Arial Nova Light', Arial, sans-serif;
+  font-size: 25px;
+  font-weight: normal;
+}
+
+/* Если нужно применить стили для всего текста на странице */
+body {
+  font-family: 'Arial Nova Light', Arial, sans-serif;
+  font-size: 20px;
+}
