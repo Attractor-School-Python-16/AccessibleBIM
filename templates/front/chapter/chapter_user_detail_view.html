@@ -37,13 +37,17 @@
                     <div class="d-flex justify-content-evenly mt-5">
                         {% if page_obj.has_previous %}
                             <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-info">Предыдущий урок</button></a>
+                        {% elif previous_chapter %}
+                            <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=previous_chapter.pk %}?page={{ last_step_serial_number }}">
+                                    <button type="button" class="btn btn-success">Предыдущая глава</button>
+                            </a>
                         {% endif %}
                         {% if page_obj.has_next %}
                            <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-info">Следующий урок</button></a>
                         {% else %}
                             {% if chapter_end %}
                                 <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">
-                                    <button type="button" class="btn btn-info">Следующая глава</button>
+                                    <button type="button" class="btn btn-success">Следующая глава</button>
                                 </a>
                             {% endif %}
                         {% endif %}
