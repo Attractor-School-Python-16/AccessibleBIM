@@ -68,3 +68,19 @@
     display: block;
 }
 
+/* Стиль кнопки О компании для больших экранов */
+@media (min-width: 992px) {
+    .dropdown .btn {
+        color: #ffffff;
+        background-color: transparent;
+    }
+}
+
+/* Стиль кнопки О компании для маленьких экранов (гамбургер-меню) */
+@media (max-width: 991px) {
+    .dropdown .btn {
+        color: #465774;
+        background-color: transparent;
+    }
+}
+
