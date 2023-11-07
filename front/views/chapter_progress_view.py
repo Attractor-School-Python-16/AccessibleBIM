@@ -15,6 +15,18 @@ class ChapterUserDetailView(DetailView):
     template_name = 'front/chapter/chapter_user_detail_view.html'
     pk_url_kwarg = 'chapter_pk'
 
+    def new_progress_obj(self, chapter, new_chapter_progress=False):
+        # Создаем новый объект прогресса
+        if new_chapter_progress:
+            next_step = StepModel.objects.filter(chapter__serial_number=chapter.serial_number + 1,
+                                                 chapter__course=chapter.course,
+                                                 serial_number=1)
+        else:
+            next_step = chapter.step.filter(serial_number=int(self.request.GET.get('page')))
+        if next_step:
+            new_progress_odj = create_user_course_progress(user=self.request.user, step=next_step[0])
+            return new_progress_odj
+
     def chapter_next_step_control(self, user_progress: UserCourseProgress):
         # Проверяем, является ли новый шаг последним. Если да, то сразу завершаем его.
         if not user_progress.step.test:
@@ -80,9 +92,7 @@ class ChapterUserDetailView(DetailView):
                                                                        test__step=last_progress_object.step,
                                                                        is_passed=True)
                     if not progress_test_passed:
-                        next_step = \
-                            last_progress_chapter.step.filter(serial_number=int(request.GET.get('page')))[0]
-                        next_progress_obj = create_user_course_progress(user=current_user, step=next_step)
+                        next_progress_obj = self.new_progress_obj(chapter=last_progress_chapter)
                         if next_progress_obj:
                             self.chapter_next_step_control(next_progress_obj)
                         return super().get(request, *args, **kwargs)
@@ -94,6 +104,7 @@ class ChapterUserDetailView(DetailView):
                     last_progress_chapter.step.filter(serial_number=int(request.GET.get('page')))[0]
 
                 next_progress_obj = create_user_course_progress(user=current_user, step=next_step)
+
                 if next_progress_obj:
                     self.chapter_next_step_control(next_progress_obj)
 
@@ -102,19 +113,14 @@ class ChapterUserDetailView(DetailView):
                                                                status=1)
             finished_chapters = ChapterModel.objects.filter(
                 course=current_user_subscription.subscription.course,
-                step__step_course_progress__status=1).distinct()
-
+                step__step_course_progress__status=1,
+                step__step_course_progress__user=self.request.user).distinct()
             if finished_steps.count() == last_progress_chapter.step.count() and finished_chapters.count() < current_user_subscription.subscription.course.ct_course.count():
-                next_step = \
-                    StepModel.objects.filter(chapter__serial_number=last_progress_chapter.serial_number + 1,
-                                             serial_number=1)
-                if next_step:
-                    create_user_course_progress(user=current_user, step=next_step[0])
+                self.new_progress_obj(chapter=last_progress_chapter, new_chapter_progress=True)
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         chapter_steps = self.object.step.order_by('serial_number')
         paginator = Paginator(chapter_steps, 1)
         page_num = self.request.GET.get('page', 1)
@@ -136,8 +142,10 @@ class ChapterUserDetailView(DetailView):
                 context['chapter_end'] = True
         previous_chapter = ChapterModel.objects.filter(course=self.get_object().course,
                                                        serial_number=self.get_object().serial_number - 1)
-        if previous_chapter:
+        if previous_chapter and self.request.GET.get('page') == '1':
             context['previous_chapter'] = previous_chapter[0]
+            last_step = previous_chapter[0].step.all().order_by('serial_number').last()
+            context['last_step_serial_number'] = last_step.serial_number
         last_progress_step = \
             UserCourseProgress.objects.filter(user=self.request.user,
                                               step__chapter__course=current_user_subscription.subscription.course).order_by(
@@ -147,6 +155,7 @@ class ChapterUserDetailView(DetailView):
         closed_chapters = ChapterModel.objects.filter(course=current_user_subscription.subscription.course,
                                                       serial_number__gt=last_progress_step.step.chapter.serial_number)
         finished_steps = StepModel.objects.filter(chapter=self.object,
+                                                  step_course_progress__user=self.request.user,
                                                   step_course_progress__status=1).order_by('serial_number')
 
         context['opened_chapters'] = opened_chapters
