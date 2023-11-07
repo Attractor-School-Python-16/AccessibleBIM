@@ -9,11 +9,13 @@
                     <div class="row">
                         <div class="col-12 mx-auto">
                             {% for progress in user.progress.all %}
-                            	{% if progress.is_overdue and not progress.is_passed %}
-                                    <a href="{% url "quiz_bim:test_completion" progress.pk %}" class="alert alert-info text-white d-block" role="alert">
-                                        У вас есть просроченный <span class="text-decoration-underline">тест</span>. Пройдите тест.
+                                {% if progress.is_overdue and not progress.is_passed %}
+                                    <a href="{% url "quiz_bim:test_completion" progress.pk %}"
+                                       class="alert alert-info text-white d-block" role="alert">
+                                        У вас есть просроченный <span class="text-decoration-underline">тест</span>.
+                                        Пройдите тест.
                                     </a>
-                            	{% endif %}
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <div class="col-12 mx-auto">
@@ -64,7 +66,18 @@
                                             {% endif %}
                                         </div>
                                     </div>
-
+                                    <div class="row mb-4">
+                                        <div class="col-auto">
+                                            {% if user.subscriptions.all %}
+                                                {% for subscription in user_subscription %}
+                                                    {% if subscription.is_active %}
+                                                        <span class="h6">Действие подписки до:</span>
+                                                        <span> {{ subscription.end_time }}</span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

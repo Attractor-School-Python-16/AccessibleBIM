@@ -18,20 +18,17 @@
                     <th scope="col">Подписки</th>
                 </tr>
                 <tr>
-                    <td>{{ user.last_name }} {{ user.first_name }}
-                        {% if user.father_name %}
-                            {{ user.father_name }}
-                        {% endif %}</td>
+                    <td>{{ user.get_full_name }}</td>
                     <td>{{ user.email }}</td>
                     <td>
                         {% if user_subscriptions %}
                             {% for user_subcription in user_subscriptions %}
                                 {% if user_subcription.is_active %}
                                     {{ user_subcription.subscription }}
-                                {% else %}
-                                    Активных подписок нет
                                 {% endif %}
                             {% endfor %}
+                        {% else %}
+                            Активных подписок нет
                         {% endif %}</td>
                 </tr>
                 </thead>

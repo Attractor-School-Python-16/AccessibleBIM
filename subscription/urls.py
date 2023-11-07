@@ -17,6 +17,6 @@ urlpatterns = [
     path('subscription/user_delete/<int:pk>/', SubscriptionUserDeleteView.as_view(),
          name='subscriptionmodel_user_delete'),
     path('subscription/buy/<int:pk>/', SubscriptionBuyView.as_view(), name='subscriptionmodel_buy'),
-    path('subscription/error/', SubscriptionErrorView.as_view(), name='subscriptionmodel_error'),
+    path('subscription/error/<kwargs>', SubscriptionErrorView.as_view(), name='subscriptionmodel_error'),
     # path('subscription/succses/', SubscriptionSuccsesView.as_view(), name='subscriptionmodel_succses'),
 ]
