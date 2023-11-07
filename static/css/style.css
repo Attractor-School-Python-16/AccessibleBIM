@@ -43,3 +43,28 @@
     padding-bottom: 0px;
   }
 }
+
+/*.nav-item.active .nav-link {*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*.dropdown.active a {*/
+/*    text-decoration: underline;*/
+/*}*/
+
+.nav-item.active .nav-link, .dropdown.active a {
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-item.active .nav-link::after, .dropdown.active a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1px;
+    height: 2px;
+    background-color: #FFFFFF;
+    display: block;
+}
+
