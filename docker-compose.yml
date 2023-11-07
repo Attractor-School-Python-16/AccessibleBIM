@@ -52,7 +52,7 @@ services:
       - .:/code
 
   nginx:
-    image: nginx:1.25.3-alpine-slim
+    image: nginx:1.25.3-alpine
     depends_on:
       - backend
     ports:
