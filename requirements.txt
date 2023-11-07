@@ -33,7 +33,7 @@ django-view-breadcrumbs==2.4.1
 django-widget-tweaks==1.5.0
 factory-boy==3.3.0
 Faker==19.3.1
-gunicorn
+gunicorn==21.2.0
 idna==3.4
 kombu==5.3.2
 oauthlib==3.2.2
