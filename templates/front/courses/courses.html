@@ -5,7 +5,7 @@
 {% block content %}
     <section class="light">
         <div class="row">
-            <div class="h1 text-center text-dark" id="pageHeaderTitle">Список доступных курсов</div>
+            <div class="heading text-center text-dark" id="pageHeaderTitle">Список доступных курсов</div>
             <div class="col-md-12">
                 {% include 'front/partials/filter.html' %}
             </div>
@@ -20,7 +20,7 @@
 
                     {% endif %}
                     {% empty %}
-                    <h2 class="text-center mt-5 min-vh-25">Курсы не найдены</h2>
+                    <h2 class="text-center mt-5 min-vh-25 content">Курсы не найдены</h2>
                 {% endfor %}
             </div>
         </div>
