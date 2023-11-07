@@ -73,21 +73,6 @@
         </div>
     </section>
 
-    <section>
-        <h3 class="title">Основная цветовая палитра</h3>
-        <div class="row py-3">
-            <div class="alert bg-dark-blue-crayol text-white font-weight-bold" role="alert">
-                Темно-синий Крайола
-            </div>
-            <div class="alert bg-azure-crayola text-white font-weight-bold" role="alert">
-                Лазурный Крайола
-            </div>
-            <div class="alert bg-verdepomovy text-white font-weight-bold" role="alert">
-                Вердепомовый
-            </div>
-        </div>
-    </section>
-
     <section class="py-sm-5 py-5 position-relative">
         <div class="container">
             <div class="row">
@@ -96,9 +81,13 @@
                 </div>
                 <div class="owl-carousel owl-theme mt-5">
                     {% for partner in partners %}
-                        <div class="item bg-black">
-                            <img src="{{ partner.image.url }}" alt="partner">
-                            <h4>{{ partner.title }}</h4>
+                        <div>
+                            <div class="item bg-black w-100" style="background-image: url('{{ partner.image.url }}');
+                                                                height: 10em;
+                                                                background-position: center;
+                                                                background-repeat: no-repeat;
+                                                                background-size: contain;"></div>
+                            <h4 class="text-center">{{ partner.title }}</h4>
                         </div>
                     {% endfor %}
                 </div>
