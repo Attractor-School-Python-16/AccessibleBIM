@@ -214,9 +214,7 @@ class SubscriptionBuyView(PermissionRequiredMixin, View):
         return current_user.email_verified
 
     def get(self, request, *args, **kwargs):
-        url = "https://api.freedompay.money/init_payment.php"
         subscription = get_object_or_404(SubscriptionModel, pk=kwargs['pk'])
-        print(self.user)
         url = "https://api.freedompay.money/init_payment.php"
 
         pg_merchant_id = 0
