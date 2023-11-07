@@ -14,7 +14,7 @@ services:
   backend:
     build: .
     ports:
-      - "8002:8002"
+      - "8000:8000"
     container_name: local_backend
     depends_on:
       - db
@@ -30,17 +30,19 @@ services:
       for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json; do
         python manage.py loaddata fixtures/$$fixture
       done &&
-      python manage.py runserver 0.0.0.0:8002"
+      sh -c gunicorn --bind 0.0.0.0:8000 app.wsgi"
 
   redis:
     image: "redis:alpine"
     hostname: redis
+    restart: always
     ports:
       - "6379:6379"
 
   celery:
     build: .
     command: celery -A accessibleBIM worker --beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    restart: always
     depends_on:
       - redis
       - db
@@ -49,5 +51,17 @@ services:
     volumes:
       - .:/code
 
+  nginx:
+    image: nginx:1.25.3-alpine-slim
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    volumes:
+      - static_data:/var/www/html/static
+      - ./nginx-conf.d:/etc/nginx/conf.d
+
+
 volumes:
   postgres_data:
+  static_data:

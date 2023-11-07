@@ -1,5 +1,6 @@
 FROM python:3.11-slim
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED=1\
+    PYTHONDONTWRITEBYTECODE = 1
 RUN mkdir /code
 # Пользователь для celery и права на рабочую директорию, в целях безопасности,
 #чтобы не запускать его от суперюзера
