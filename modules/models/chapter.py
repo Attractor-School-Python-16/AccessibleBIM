@@ -5,7 +5,8 @@ from modules.models.module import AbstractModel
 
 
 class ChapterModel(AbstractModel):
-    course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course')
+    course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course',
+                               verbose_name=_('Course'))
     title = models.CharField(_('Chapter title'), max_length=50, null=False, blank=False)
     description = models.TextField(_('Chapter description'), max_length=150, null=False, blank=False)
     serial_number = models.IntegerField(_('Serial number'), default=1)
