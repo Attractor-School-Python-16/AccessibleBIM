@@ -1,19 +1,23 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load static view_breadcrumbs %}
-{% block title %}Удалить учителя{% endblock %}
+{% block title %}{% trans 'Delete teacher' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
     {% endblock %}
     <div class="card">
         <div class="card-body">
-            <p class="card-text">Вы точно хотите удалить учителя:<span
-                    class="text-danger"> {{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</span>?
+            <p class="card-text">
+                {% blocktrans with title=module.title %}
+                Are you sure you want to delete the teacher
+                <span class="text-danger"> {{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</span>?
+                {% endblocktrans %}
             </p>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
-                <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}">Нет</a>
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans 'Yes' %}</button>
+                <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}">{% trans 'No' %}</a>
             </form>
         </div>
     </div>

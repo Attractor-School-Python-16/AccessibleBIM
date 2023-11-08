@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 00:02+0600\n"
-"PO-Revision-Date: 2023-11-08 18:02+0000\n"
+"POT-Creation-Date: 2023-11-09 00:12+0600\n"
+"PO-Revision-Date: 2023-11-08 18:14+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -254,19 +254,19 @@ msgstr "Last name"
 msgid "Father name"
 msgstr "Father name"
 
-#: modules/models/teacher.py:11
+#: modules/models/teacher.py:11 templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Job title"
 
-#: modules/models/teacher.py:12
+#: modules/models/teacher.py:12 templates/teachers/teacher_detail.html:15
 msgid "Company"
 msgstr "Company"
 
-#: modules/models/teacher.py:13
+#: modules/models/teacher.py:13 templates/teachers/teacher_detail.html:16
 msgid "Experience"
 msgstr "Experience"
 
-#: modules/models/teacher.py:14
+#: modules/models/teacher.py:14 templates/teachers/teacher_detail.html:17
 msgid "About teacher"
 msgstr "About"
 
@@ -361,6 +361,7 @@ msgstr "Add chapter"
 #: templates/course_target/course_target_create.html:13
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
+#: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Add"
 
@@ -384,6 +385,7 @@ msgstr ""
 #: templates/course_target/course_target_delete.html:19
 #: templates/courses/course_delete.html:19
 #: templates/modules/module_delete.html:19
+#: templates/teachers/teacher_delete.html:19
 msgid "Yes"
 msgstr "Yes"
 
@@ -391,6 +393,7 @@ msgstr "Yes"
 #: templates/course_target/course_target_delete.html:20
 #: templates/courses/course_delete.html:20
 #: templates/modules/module_delete.html:20
+#: templates/teachers/teacher_delete.html:20
 msgid "No"
 msgstr "No"
 
@@ -410,6 +413,8 @@ msgstr "Description"
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
 #: templates/modules/modules_list.html:32
+#: templates/teachers/teacher_detail.html:20
+#: templates/teachers/teachers_list.html:33
 msgid "Change"
 msgstr "Change"
 
@@ -424,6 +429,8 @@ msgstr "Change"
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
 #: templates/modules/modules_list.html:34
+#: templates/teachers/teacher_detail.html:22
+#: templates/teachers/teachers_list.html:35
 msgid "Delete"
 msgstr "Delete"
 
@@ -456,6 +463,7 @@ msgstr "Title"
 #: templates/courses/courses_list.html:22
 #: templates/modules/module_detail.html:30
 #: templates/modules/modules_list.html:21
+#: templates/teachers/teachers_list.html:21
 msgid "Actions"
 msgstr "Actions"
 
@@ -468,6 +476,7 @@ msgstr "Edit chapter"
 #: templates/course_target/course_target_update.html:13
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
+#: templates/teachers/teacher_update.html:13
 msgid "Edit"
 msgstr "Edit"
 
@@ -503,7 +512,6 @@ msgstr "Target audience list"
 
 #: templates/course_target/course_target_update.html:4
 #: templates/course_target/course_target_update.html:12
-#| msgid "Add target audience"
 msgid "Edit target audience"
 msgstr "Edit target audience"
 
@@ -778,6 +786,53 @@ msgid ""
 "                                                form:"
 msgstr ""
 
+#: templates/teachers/teacher_create.html:4
+#: templates/teachers/teacher_create.html:12
+#: templates/teachers/teachers_list.html:15
+msgid "Add teacher"
+msgstr "Add teacher"
+
+#: templates/teachers/teacher_delete.html:4
+#| msgid "Delete chapter"
+msgid "Delete teacher"
+msgstr "Delete teacher"
+
+#: templates/teachers/teacher_delete.html:12
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                Are you sure you want to delete the chapter\n"
+#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                "
+msgid ""
+"\n"
+"                Are you sure you want to delete the teacher\n"
+"                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the teacher\n"
+"<span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
+
+#: templates/teachers/teacher_detail.html:4
+msgid "Teacher info"
+msgstr "Teacher info"
+
+#: templates/teachers/teacher_update.html:4
+#: templates/teachers/teacher_update.html:12
+#| msgid "Add teacher"
+msgid "Edit teacher"
+msgstr "Edit teacher"
+
+#: templates/teachers/teachers_list.html:4
+#: templates/teachers/teachers_list.html:13
+msgid "Teachers list"
+msgstr "Teachers list"
+
+#: templates/teachers/teachers_list.html:20
+msgid "Name"
+msgstr "Name"
+
 #, fuzzy, python-format
 #~ msgid ""
 #~ "\n"
@@ -797,9 +852,6 @@ msgstr ""
 
 #~ msgid "Email sent"
 #~ msgstr "Email sent"
-
-#~ msgid "Name"
-#~ msgstr "Name"
 
 #~ msgid "You don't have any purchased cources"
 #~ msgstr "You don't have any purchased cources"
