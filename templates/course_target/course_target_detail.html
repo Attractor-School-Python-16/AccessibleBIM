@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Целевая аудитория{% endblock %}
+{% block title %}{% trans 'Target audience' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -13,9 +14,9 @@
             <p>{{ course_target.description }}<</p>
             <div class="d-flex justify-content-end">
                 <a href="{% url 'modules:coursetargetmodel_update' course_target.id %}"
-                   class="btn btn-primary mx-3">Изменить</a>
+                   class="btn btn-primary mx-3">{% trans 'Change' %}</a>
                 <a href="{% url 'modules:coursetargetmodel_delete' course_target.id %}"
-                   class="btn btn-danger">Удалить</a>
+                   class="btn btn-danger">{% trans 'Delete' %}</a>
             </div>
         </div>
     </div>
