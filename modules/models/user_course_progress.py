@@ -14,12 +14,12 @@ class UserCourseProgress(models.Model):
                              related_name="user_course_progress",
                              verbose_name="Пользователь")
     step = models.ForeignKey('step.StepModel', related_name='step_course_progress', on_delete=models.CASCADE)
-    status = models.IntegerField(blank=False, null=False, choices=CourseProgressStatusChoices.choices,
-                                 default=0, verbose_name='Статус')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Начало шага')
-    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name='Конец шага')
+    status = models.IntegerField(_("Status"), blank=False, null=False, choices=CourseProgressStatusChoices.choices,
+                                 default=0)
+    created_at = models.DateTimeField(_("Step start"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("Step finish"), auto_now=True, blank=True, null=True)
 
     class Meta:
         db_table = 'user_course_progress'
-        verbose_name = 'Прогресс по курсу'
-        verbose_name_plural = 'Прогрессы по курсу'
+        verbose_name = _("Course progress")
+        verbose_name_plural = _("Course progress")

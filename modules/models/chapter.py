@@ -1,19 +1,19 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from modules.models.module import AbstractModel
 
 
 class ChapterModel(AbstractModel):
-    course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course',
-                               verbose_name='Курсы')
-    title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название главы')
-    description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание главы')
-    serial_number = models.IntegerField(default=1)
+    course = models.ForeignKey('modules.CourseModel', on_delete=models.CASCADE, related_name='ct_course')
+    title = models.CharField(_('Chapter title'), max_length=50, null=False, blank=False)
+    description = models.TextField(_('Chapter description'), max_length=150, null=False, blank=False)
+    serial_number = models.IntegerField(_('Serial number'), default=1)
 
     class Meta:
         db_table = 'chapter'
-        verbose_name = 'Главы'
-        verbose_name_plural = 'Главы'
+        verbose_name = _('Chapter')
+        verbose_name_plural = _('Chapters')
 
 
 
