@@ -48,8 +48,8 @@ class CourseModel(AbstractModel):
 
     class Meta:
         db_table = 'course'
-        verbose_name = 'Курс'
-        verbose_name_plural = 'Курсы'
+        verbose_name = _('Course')
+        verbose_name_plural = _('Courses')
 
     def __str__(self):
         return f'{self.title}'

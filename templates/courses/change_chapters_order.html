@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load static view_breadcrumbs %}
-{% block title %}Изменение порядка глав{% endblock %}
+{% block title %}{% trans 'Change chapters ordering' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <div class="card-header">
-                <h1 class="my-3">Список глав курса {{ course.title }}</h1>
+                <h1 class="my-3">{% blocktrans with title=course.title %}List of {{ title }} course's chapters{% endblocktrans %}</h1>
             </div>
             {% if messages %}
                 <ul class="messages">
@@ -23,16 +24,16 @@
                     <ul class="list-group m-3">
                         {% for chapter in chapters|dictsort:"serial_number" %}
                             <li class="list-group-item row my-2 draggable" id ="pk_{{ chapter.id }}">
-                                <div class="col-4 d-inline-block">Глава: {{ chapter.title }}</div>
-                                <div class="col-3 d-inline-block">Текущий номер: {{ chapter.serial_number }}</div>
-                                <div class="col-3 d-inline-block" id="new-number">Новый номер:</div>
+                                <div class="col-4 d-inline-block">{% trans 'Chapter' %}: {{ chapter.title }}</div>
+                                <div class="col-3 d-inline-block">{% trans 'Current number' %}: {{ chapter.serial_number }}</div>
+                                <div class="col-3 d-inline-block" id="new-number">{% trans 'New number' %}:</div>
                                 <input type="hidden" class="number-value">
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
-                <button type="submit" class="btn btn-primary my-3">Изменить порядок глав</button>
-                <a href="{% url 'modules:coursemodel_detail' course.id %}" class="btn btn-secondary mx-3">Назад</a>
+                <button type="submit" class="btn btn-primary my-3">{% trans 'Change' %}</button>
+                <a href="{% url 'modules:coursemodel_detail' course.id %}" class="btn btn-secondary mx-3">{% trans 'Back' %}</a>
             </form>
         </div>
     </div>

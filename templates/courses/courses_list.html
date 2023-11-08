@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Курсы{% endblock %}
+{% block title %}{% trans 'Courses' %}{% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -11,14 +12,14 @@
                 {% block breadcrumbs %}
                     {% render_breadcrumbs %}
                 {% endblock %}
-                <h1>Список курсов</h1><a href="{% url 'modules:coursemodel_create' %}" class="btn btn-primary my-3">Добавить
-                курс</a>
+                <h1>{% trans 'Courses list' %}</h1><a href="{% url 'modules:coursemodel_create' %}" class="btn btn-primary my-3">
+                {% trans 'Add course' %}</a>
                 <table class="table">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Название</th>
-                        <th class="text-end">Действия</th>
+                        <th>{% trans 'Title' %}</th>
+                        <th class="text-end">{% trans 'Actions' %}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,9 +30,9 @@
                             <td class="text-end">
                                 <div class="btn-group">
                                     <a href="{% url 'modules:coursemodel_update' course.id %}"
-                                       class="btn btn-info btn-sm mx-3">Изменить</a>
+                                       class="btn btn-info btn-sm mx-3">{% trans 'Change' %}</a>
                                     <a href="{% url 'modules:coursemodel_delete' course.id %}"
-                                       class="btn btn-danger btn-sm">Удалить</a>
+                                       class="btn btn-danger btn-sm">{% trans 'Delete' %}</a>
                                 </div>
                             </td>
                         </tr>
