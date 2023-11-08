@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 23:47+0600\n"
-"PO-Revision-Date: 2023-11-08 17:47+0000\n"
+"POT-Creation-Date: 2023-11-09 00:02+0600\n"
+"PO-Revision-Date: 2023-11-08 18:02+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -205,6 +205,8 @@ msgid "Module"
 msgstr "Модуль"
 
 #: modules/models/courses.py:31
+#: templates/course_target/course_target_detail.html:4
+#: templates/course_target/course_target_list.html:4
 msgid "Target audience"
 msgstr "Для кого предназначен курс"
 
@@ -356,6 +358,7 @@ msgid "Add chapter"
 msgstr "Добавить главу"
 
 #: templates/chapters/chapter_create.html:13
+#: templates/course_target/course_target_create.html:13
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
 msgid "Add"
@@ -377,12 +380,14 @@ msgstr ""
 "Вы точно хотите удалить главу <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/chapters/chapter_delete.html:19
+#: templates/course_target/course_target_delete.html:19
 #: templates/courses/course_delete.html:19
 #: templates/modules/module_delete.html:19
 msgid "Yes"
 msgstr "Да"
 
 #: templates/chapters/chapter_delete.html:20
+#: templates/course_target/course_target_delete.html:20
 #: templates/courses/course_delete.html:20
 #: templates/modules/module_delete.html:20
 msgid "No"
@@ -395,6 +400,8 @@ msgstr "Описание"
 #: templates/chapters/chapter_detail.html:21
 #: templates/chapters/chapter_detail.html:60
 #: templates/chapters/chapters_list.html:33
+#: templates/course_target/course_target_detail.html:17
+#: templates/course_target/course_target_list.html:33
 #: templates/courses/change_chapters_order.html:35
 #: templates/courses/course_detail.html:14
 #: templates/courses/course_detail.html:46
@@ -408,6 +415,8 @@ msgstr "Изменить"
 #: templates/chapters/chapter_detail.html:23
 #: templates/chapters/chapter_detail.html:62
 #: templates/chapters/chapters_list.html:35
+#: templates/course_target/course_target_detail.html:19
+#: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
 #: templates/courses/course_detail.html:48
 #: templates/courses/courses_list.html:35
@@ -431,6 +440,7 @@ msgstr "Добавить тест"
 
 #: templates/chapters/chapter_detail.html:44
 #: templates/chapters/chapters_list.html:21
+#: templates/course_target/course_target_list.html:20
 #: templates/courses/course_detail.html:33
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:29
@@ -440,6 +450,7 @@ msgstr "Название"
 
 #: templates/chapters/chapter_detail.html:45
 #: templates/chapters/chapters_list.html:22
+#: templates/course_target/course_target_list.html:21
 #: templates/courses/course_detail.html:34
 #: templates/courses/courses_list.html:22
 #: templates/modules/module_detail.html:30
@@ -453,6 +464,7 @@ msgid "Edit chapter"
 msgstr "Редактировать главу"
 
 #: templates/chapters/chapter_update.html:13
+#: templates/course_target/course_target_update.html:13
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
 msgid "Edit"
@@ -461,6 +473,37 @@ msgstr "Редактировать"
 #: templates/chapters/chapters_list.html:15
 msgid "Chapters list"
 msgstr "Список глав"
+
+#: templates/course_target/course_target_create.html:4
+#: templates/course_target/course_target_create.html:12
+#: templates/course_target/course_target_list.html:15
+msgid "Add target audience"
+msgstr "Добавить целевую аудиторию"
+
+#: templates/course_target/course_target_delete.html:4
+msgid "Delete target audience"
+msgstr "Удалить целевую аудиторию"
+
+#: templates/course_target/course_target_delete.html:12
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete the target audience\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Вы точно хотите удалить целевуб аудиторию <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/course_target/course_target_list.html:12
+msgid "Target audience list"
+msgstr "Список целевых аудиторий"
+
+#: templates/course_target/course_target_update.html:4
+#: templates/course_target/course_target_update.html:12
+#| msgid "Add target audience"
+msgid "Edit target audience"
+msgstr "Редактирование целевой аудитории"
 
 #: templates/courses/change_chapters_order.html:4
 #: templates/courses/course_detail.html:28

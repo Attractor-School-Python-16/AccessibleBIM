@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 23:47+0600\n"
-"PO-Revision-Date: 2023-11-08 17:42+0000\n"
+"POT-Creation-Date: 2023-11-09 00:02+0600\n"
+"PO-Revision-Date: 2023-11-08 18:02+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -205,6 +205,8 @@ msgid "Module"
 msgstr "Module"
 
 #: modules/models/courses.py:31
+#: templates/course_target/course_target_detail.html:4
+#: templates/course_target/course_target_list.html:4
 msgid "Target audience"
 msgstr "Course's target audience"
 
@@ -331,7 +333,7 @@ msgstr "List of %(title)s chapter's lessons"
 
 #: templates/chapters/change_steps_order.html:27
 msgid "Lesson"
-msgstr ""
+msgstr "Lesson"
 
 #: templates/chapters/change_steps_order.html:28
 #: templates/courses/change_chapters_order.html:28
@@ -356,6 +358,7 @@ msgid "Add chapter"
 msgstr "Add chapter"
 
 #: templates/chapters/chapter_create.html:13
+#: templates/course_target/course_target_create.html:13
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
 msgid "Add"
@@ -378,12 +381,14 @@ msgstr ""
 "<span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/chapters/chapter_delete.html:19
+#: templates/course_target/course_target_delete.html:19
 #: templates/courses/course_delete.html:19
 #: templates/modules/module_delete.html:19
 msgid "Yes"
 msgstr "Yes"
 
 #: templates/chapters/chapter_delete.html:20
+#: templates/course_target/course_target_delete.html:20
 #: templates/courses/course_delete.html:20
 #: templates/modules/module_delete.html:20
 msgid "No"
@@ -396,6 +401,8 @@ msgstr "Description"
 #: templates/chapters/chapter_detail.html:21
 #: templates/chapters/chapter_detail.html:60
 #: templates/chapters/chapters_list.html:33
+#: templates/course_target/course_target_detail.html:17
+#: templates/course_target/course_target_list.html:33
 #: templates/courses/change_chapters_order.html:35
 #: templates/courses/course_detail.html:14
 #: templates/courses/course_detail.html:46
@@ -409,6 +416,8 @@ msgstr "Change"
 #: templates/chapters/chapter_detail.html:23
 #: templates/chapters/chapter_detail.html:62
 #: templates/chapters/chapters_list.html:35
+#: templates/course_target/course_target_detail.html:19
+#: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
 #: templates/courses/course_detail.html:48
 #: templates/courses/courses_list.html:35
@@ -432,6 +441,7 @@ msgstr "Add test"
 
 #: templates/chapters/chapter_detail.html:44
 #: templates/chapters/chapters_list.html:21
+#: templates/course_target/course_target_list.html:20
 #: templates/courses/course_detail.html:33
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:29
@@ -441,6 +451,7 @@ msgstr "Title"
 
 #: templates/chapters/chapter_detail.html:45
 #: templates/chapters/chapters_list.html:22
+#: templates/course_target/course_target_list.html:21
 #: templates/courses/course_detail.html:34
 #: templates/courses/courses_list.html:22
 #: templates/modules/module_detail.html:30
@@ -454,6 +465,7 @@ msgid "Edit chapter"
 msgstr "Edit chapter"
 
 #: templates/chapters/chapter_update.html:13
+#: templates/course_target/course_target_update.html:13
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
 msgid "Edit"
@@ -462,6 +474,38 @@ msgstr "Edit"
 #: templates/chapters/chapters_list.html:15
 msgid "Chapters list"
 msgstr "Chapters list"
+
+#: templates/course_target/course_target_create.html:4
+#: templates/course_target/course_target_create.html:12
+#: templates/course_target/course_target_list.html:15
+msgid "Add target audience"
+msgstr "Add target audience"
+
+#: templates/course_target/course_target_delete.html:4
+msgid "Delete target audience"
+msgstr "Delete target audience"
+
+#: templates/course_target/course_target_delete.html:12
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete the target audience\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the target audience\n"
+"<span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/course_target/course_target_list.html:12
+msgid "Target audience list"
+msgstr "Target audience list"
+
+#: templates/course_target/course_target_update.html:4
+#: templates/course_target/course_target_update.html:12
+#| msgid "Add target audience"
+msgid "Edit target audience"
+msgstr "Edit target audience"
 
 #: templates/courses/change_chapters_order.html:4
 #: templates/courses/course_detail.html:28
@@ -525,7 +569,8 @@ msgstr "Password successfully changed"
 #: templates/front/accounts/email/invalid_verification_link.html:4
 #: templates/front/accounts/email/verification-email-not-sent.html:4
 #: templates/front/accounts/email/verification-email-sent.html:4
-#: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
+#: templates/front/accounts/login.html:4
+#: templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
 msgid "Login"
 msgstr "Login"
@@ -543,14 +588,12 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                Email was sent to %(email)s. Please check "
-"your mailbox and verify your\n"
+"                                Email was sent to %(email)s. Please check your mailbox and verify your\n"
 "                                email address.\n"
 "                            "
 msgstr ""
 "\n"
-"Email was sent to %(email)s. Please check your mailbox and verify your email "
-"address."
+"Email was sent to %(email)s. Please check your mailbox and verify your email address."
 
 #: templates/front/accounts/email/verification_email.html:4
 #, python-format
@@ -720,7 +763,8 @@ msgid ""
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
 
-#: templates/socialaccount/signup.html:4 templates/socialaccount/signup.html:21
+#: templates/socialaccount/signup.html:4
+#: templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
 msgstr ""
@@ -729,10 +773,8 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                                You are about to use your "
-"%(provider_name)s account to login to\n"
-"                                                %(site_name)s. As a final "
-"step, please complete the following\n"
+"                                                You are about to use your %(provider_name)s account to login to\n"
+"                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
 
