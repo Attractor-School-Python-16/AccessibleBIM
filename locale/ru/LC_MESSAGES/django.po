@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 23:20+0600\n"
-"PO-Revision-Date: 2023-11-08 17:21+0000\n"
+"POT-Creation-Date: 2023-11-08 23:47+0600\n"
+"PO-Revision-Date: 2023-11-08 17:47+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -132,6 +132,7 @@ msgid "RUB"
 msgstr "руб."
 
 #: modules/models/chapter.py:9 modules/models/courses.py:52
+#: templates/chapters/chapter_detail.html:16
 msgid "Course"
 msgstr "Курс"
 
@@ -143,16 +144,18 @@ msgstr "Название главы"
 msgid "Chapter description"
 msgstr "Описание главы"
 
-#: modules/models/chapter.py:12 templates/courses/course_detail.html:32
+#: modules/models/chapter.py:12 templates/chapters/chapter_detail.html:17
+#: templates/chapters/chapter_detail.html:43
+#: templates/courses/course_detail.html:32
 msgid "Serial number"
 msgstr "#"
 
-#: modules/models/chapter.py:16
+#: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:12
 #: templates/courses/change_chapters_order.html:27
 msgid "Chapter"
 msgstr "Глава"
 
-#: modules/models/chapter.py:17
+#: modules/models/chapter.py:17 templates/chapters/chapters_list.html:4
 msgid "Chapters"
 msgstr "Главы"
 
@@ -314,6 +317,151 @@ msgstr ""
 msgid "Тест"
 msgstr ""
 
+#: templates/chapters/change_steps_order.html:4
+#: templates/chapters/change_steps_order.html:35
+#: templates/chapters/chapter_detail.html:39
+msgid "Change lessons ordering"
+msgstr "Изменение порядка занятий"
+
+#: templates/chapters/change_steps_order.html:12
+#: templates/chapters/chapter_detail.html:30
+#, python-format
+msgid "List of %(title)s chapter's lessons"
+msgstr "Список занятий главы %(title)s"
+
+#: templates/chapters/change_steps_order.html:27
+msgid "Lesson"
+msgstr "Занятие"
+
+#: templates/chapters/change_steps_order.html:28
+#: templates/courses/change_chapters_order.html:28
+msgid "Current number"
+msgstr "Текущий номер"
+
+#: templates/chapters/change_steps_order.html:29
+#: templates/courses/change_chapters_order.html:29
+msgid "New number"
+msgstr "Новый номер"
+
+#: templates/chapters/change_steps_order.html:36
+#: templates/courses/change_chapters_order.html:36
+msgid "Back"
+msgstr "Назад"
+
+#: templates/chapters/chapter_create.html:4
+#: templates/chapters/chapter_create.html:12
+#: templates/chapters/chapters_list.html:16
+#: templates/courses/course_detail.html:26
+msgid "Add chapter"
+msgstr "Добавить главу"
+
+#: templates/chapters/chapter_create.html:13
+#: templates/courses/course_create.html:13
+#: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
+msgid "Add"
+msgstr "Создать"
+
+#: templates/chapters/chapter_delete.html:4
+msgid "Delete chapter"
+msgstr "Удалить главу"
+
+#: templates/chapters/chapter_delete.html:12
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete the chapter\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Вы точно хотите удалить главу <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/chapters/chapter_delete.html:19
+#: templates/courses/course_delete.html:19
+#: templates/modules/module_delete.html:19
+msgid "Yes"
+msgstr "Да"
+
+#: templates/chapters/chapter_delete.html:20
+#: templates/courses/course_delete.html:20
+#: templates/modules/module_delete.html:20
+msgid "No"
+msgstr "Нет"
+
+#: templates/chapters/chapter_detail.html:15
+msgid "Description"
+msgstr "Описание"
+
+#: templates/chapters/chapter_detail.html:21
+#: templates/chapters/chapter_detail.html:60
+#: templates/chapters/chapters_list.html:33
+#: templates/courses/change_chapters_order.html:35
+#: templates/courses/course_detail.html:14
+#: templates/courses/course_detail.html:46
+#: templates/courses/courses_list.html:33
+#: templates/modules/module_detail.html:14
+#: templates/modules/module_detail.html:41
+#: templates/modules/modules_list.html:32
+msgid "Change"
+msgstr "Изменить"
+
+#: templates/chapters/chapter_detail.html:23
+#: templates/chapters/chapter_detail.html:62
+#: templates/chapters/chapters_list.html:35
+#: templates/courses/course_detail.html:16
+#: templates/courses/course_detail.html:48
+#: templates/courses/courses_list.html:35
+#: templates/modules/module_detail.html:16
+#: templates/modules/module_detail.html:43
+#: templates/modules/modules_list.html:34
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/chapters/chapter_detail.html:33
+msgid "Add video lesson"
+msgstr "Добавить видео урок"
+
+#: templates/chapters/chapter_detail.html:35
+msgid "Add text lesson"
+msgstr "Добавить лекцию"
+
+#: templates/chapters/chapter_detail.html:37
+msgid "Add test"
+msgstr "Добавить тест"
+
+#: templates/chapters/chapter_detail.html:44
+#: templates/chapters/chapters_list.html:21
+#: templates/courses/course_detail.html:33
+#: templates/courses/courses_list.html:21
+#: templates/modules/module_detail.html:29
+#: templates/modules/modules_list.html:20
+msgid "Title"
+msgstr "Название"
+
+#: templates/chapters/chapter_detail.html:45
+#: templates/chapters/chapters_list.html:22
+#: templates/courses/course_detail.html:34
+#: templates/courses/courses_list.html:22
+#: templates/modules/module_detail.html:30
+#: templates/modules/modules_list.html:21
+msgid "Actions"
+msgstr "Действия"
+
+#: templates/chapters/chapter_update.html:4
+#: templates/chapters/chapter_update.html:12
+msgid "Edit chapter"
+msgstr "Редактировать главу"
+
+#: templates/chapters/chapter_update.html:13
+#: templates/courses/course_update.html:13
+#: templates/modules/module_update.html:13
+msgid "Edit"
+msgstr "Редактировать"
+
+#: templates/chapters/chapters_list.html:15
+msgid "Chapters list"
+msgstr "Список глав"
+
 #: templates/courses/change_chapters_order.html:4
 #: templates/courses/course_detail.html:28
 msgid "Change chapters ordering"
@@ -325,39 +473,12 @@ msgstr "Изменение порядка глав"
 msgid "List of %(title)s course's chapters"
 msgstr "Список глав курса %(title)s"
 
-#: templates/courses/change_chapters_order.html:28
-msgid "Current number"
-msgstr "Текущий номер"
-
-#: templates/courses/change_chapters_order.html:29
-msgid "New number"
-msgstr "Новый номер"
-
-#: templates/courses/change_chapters_order.html:35
-#: templates/courses/course_detail.html:14
-#: templates/courses/course_detail.html:46
-#: templates/courses/courses_list.html:33
-#: templates/modules/module_detail.html:14
-#: templates/modules/module_detail.html:41
-#: templates/modules/modules_list.html:32
-msgid "Change"
-msgstr "Изменить"
-
-#: templates/courses/change_chapters_order.html:36
-msgid "Back"
-msgstr "Назад"
-
 #: templates/courses/course_create.html:4
 #: templates/courses/course_create.html:12
 #: templates/courses/courses_list.html:16
 #: templates/modules/module_detail.html:24
 msgid "Add course"
 msgstr "Добавить курс"
-
-#: templates/courses/course_create.html:13
-#: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
-msgid "Add"
-msgstr "Создать"
 
 #: templates/courses/course_delete.html:4
 msgid "Delete course"
@@ -374,52 +495,10 @@ msgstr ""
 "\n"
 "Вы точно хотите удалить курс <span class=\"text-danger\"> %(title)s</span>?"
 
-#: templates/courses/course_delete.html:19
-#: templates/modules/module_delete.html:19
-msgid "Yes"
-msgstr "Да"
-
-#: templates/courses/course_delete.html:20
-#: templates/modules/module_delete.html:20
-msgid "No"
-msgstr "Нет"
-
-#: templates/courses/course_detail.html:16
-#: templates/courses/course_detail.html:48
-#: templates/courses/courses_list.html:35
-#: templates/modules/module_detail.html:16
-#: templates/modules/module_detail.html:43
-#: templates/modules/modules_list.html:34
-msgid "Delete"
-msgstr "Удалить"
-
-#: templates/courses/course_detail.html:26
-msgid "Add chapter"
-msgstr "Добавить главу"
-
-#: templates/courses/course_detail.html:33
-#: templates/courses/courses_list.html:21
-#: templates/modules/module_detail.html:29
-#: templates/modules/modules_list.html:20
-msgid "Title"
-msgstr "Название"
-
-#: templates/courses/course_detail.html:34
-#: templates/courses/courses_list.html:22
-#: templates/modules/module_detail.html:30
-#: templates/modules/modules_list.html:21
-msgid "Actions"
-msgstr "Действия"
-
 #: templates/courses/course_update.html:4
 #: templates/courses/course_update.html:12
 msgid "Edit course"
 msgstr "Редактирование курса"
-
-#: templates/courses/course_update.html:13
-#: templates/modules/module_update.html:13
-msgid "Edit"
-msgstr "Редактировать"
 
 #: templates/courses/courses_list.html:15
 msgid "Courses list"

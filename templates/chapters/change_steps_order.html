@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load static view_breadcrumbs %}
-{% block title %}Изменение порядка занятий{% endblock %}
+{% block title %}{% trans 'Change lessons ordering' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <div class="card-header">
-                <h1 class="my-3">Список занятий главы {{ chapter.title }}</h1>
+                <h1 class="my-3">{% blocktrans with title=chapter.title %}List of {{ title }} chapter's lessons{% endblocktrans %}</h1>
             </div>
             {% if messages %}
                 <ul class="messages">
@@ -23,16 +24,16 @@
                     <ul class="list-group m-3">
                         {% for step in steps|dictsort:"serial_number" %}
                             <li class="list-group-item row my-2 draggable" id ="pk_{{ step.id }}">
-                                <div class="col-4 d-inline-block">Занятие: {{ step.title }}</div>
-                                <div class="col-3 d-inline-block">Текущий номер: {{ step.serial_number }}</div>
-                                <div class="col-3 d-inline-block" id="new-number">Новый номер:</div>
+                                <div class="col-4 d-inline-block">{% trans 'Lesson' %}: {{ step.title }}</div>
+                                <div class="col-3 d-inline-block">{% trans 'Current number' %}: {{ step.serial_number }}</div>
+                                <div class="col-3 d-inline-block" id="new-number">{% trans 'New number' %}:</div>
                                 <input type="hidden" class="number-value">
                             </li>
                         {% endfor %}
                     </ul>
                 </div>
-                <button type="submit" class="btn btn-primary my-3">Изменить порядок занятий</button>
-                <a href="{% url 'modules:chaptermodel_detail' chapter.id %}" class="btn btn-secondary mx-3">Назад</a>
+                <button type="submit" class="btn btn-primary my-3">{% trans 'Change lessons ordering' %}</button>
+                <a href="{% url 'modules:chaptermodel_detail' chapter.id %}" class="btn btn-secondary mx-3">{% trans 'Back' %}</a>
             </form>
         </div>
     </div>
