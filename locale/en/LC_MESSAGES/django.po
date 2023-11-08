@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 23:07+0600\n"
-"PO-Revision-Date: 2023-11-08 17:04+0000\n"
+"POT-Creation-Date: 2023-11-08 23:20+0600\n"
+"PO-Revision-Date: 2023-11-08 17:22+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -131,23 +131,28 @@ msgstr "$"
 msgid "RUB"
 msgstr "RUB"
 
-#: modules/models/chapter.py:9
+#: modules/models/chapter.py:9 modules/models/courses.py:52
+msgid "Course"
+msgstr "Course"
+
+#: modules/models/chapter.py:10
 msgid "Chapter title"
 msgstr "Chapter title"
 
-#: modules/models/chapter.py:10
+#: modules/models/chapter.py:11
 msgid "Chapter description"
 msgstr "Chapter description"
 
-#: modules/models/chapter.py:11 templates/courses/course_detail.html:32
+#: modules/models/chapter.py:12 templates/courses/course_detail.html:32
 msgid "Serial number"
 msgstr "#"
 
-#: modules/models/chapter.py:15 templates/courses/change_chapters_order.html:27
+#: modules/models/chapter.py:16
+#: templates/courses/change_chapters_order.html:27
 msgid "Chapter"
 msgstr "Chapter"
 
-#: modules/models/chapter.py:16
+#: modules/models/chapter.py:17
 msgid "Chapters"
 msgstr "Chapters"
 
@@ -191,19 +196,30 @@ msgstr "Course description"
 msgid "Course image"
 msgstr "Course image"
 
+#: modules/models/courses.py:29 modules/models/module.py:34
+#: templates/front/partials/filter.html:6
+msgid "Module"
+msgstr "Module"
+
 #: modules/models/courses.py:31
+#, fuzzy
+#| msgid "Target title"
+msgid "Target audience"
+msgstr "Course's target audience"
+
+#: modules/models/courses.py:32
 msgid "Course language"
 msgstr "Language"
 
-#: modules/models/courses.py:33
+#: modules/models/courses.py:34
 msgid "Course learn time"
 msgstr "Hours to complete course"
 
-#: modules/models/courses.py:51
-msgid "Course"
-msgstr "Course"
+#: modules/models/courses.py:36 modules/models/teacher.py:19
+msgid "Teachers"
+msgstr "Teachers"
 
-#: modules/models/courses.py:52 templates/courses/courses_list.html:4
+#: modules/models/courses.py:53 templates/courses/courses_list.html:4
 msgid "Courses"
 msgstr "Courses"
 
@@ -218,10 +234,6 @@ msgstr "Module description"
 #: modules/models/module.py:30
 msgid "Module image"
 msgstr "Module image"
-
-#: modules/models/module.py:34 templates/front/partials/filter.html:6
-msgid "Module"
-msgstr "Module"
 
 #: modules/models/module.py:35 templates/partials/sidebar.html:12
 msgid "Modules"
@@ -259,10 +271,6 @@ msgstr "About"
 msgid "Teacher"
 msgstr "Teacher"
 
-#: modules/models/teacher.py:19
-msgid "Teachers"
-msgstr "Teachers"
-
 #: modules/models/user_course_progress.py:7
 msgid "In progress"
 msgstr "In progress"
@@ -271,20 +279,28 @@ msgstr "In progress"
 msgid "Finished"
 msgstr "Finished"
 
+#: modules/models/user_course_progress.py:15
+msgid "User"
+msgstr "User"
+
 #: modules/models/user_course_progress.py:17
+msgid "Step"
+msgstr "Lesson"
+
+#: modules/models/user_course_progress.py:18
 msgid "Status"
 msgstr "Status"
 
-#: modules/models/user_course_progress.py:19
-msgid "Step start"
-msgstr "Step start"
-
 #: modules/models/user_course_progress.py:20
-msgid "Step finish"
-msgstr "Step finish"
+msgid "Step start"
+msgstr "Lesson start"
 
-#: modules/models/user_course_progress.py:24
+#: modules/models/user_course_progress.py:21
+msgid "Step finish"
+msgstr "Lesson finish"
+
 #: modules/models/user_course_progress.py:25
+#: modules/models/user_course_progress.py:26
 msgid "Course progress"
 msgstr "Course progress"
 
@@ -431,7 +447,8 @@ msgstr "Password successfully changed"
 #: templates/front/accounts/email/invalid_verification_link.html:4
 #: templates/front/accounts/email/verification-email-not-sent.html:4
 #: templates/front/accounts/email/verification-email-sent.html:4
-#: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
+#: templates/front/accounts/login.html:4
+#: templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
 msgid "Login"
 msgstr "Login"
@@ -449,14 +466,12 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                Email was sent to %(email)s. Please check "
-"your mailbox and verify your\n"
+"                                Email was sent to %(email)s. Please check your mailbox and verify your\n"
 "                                email address.\n"
 "                            "
 msgstr ""
 "\n"
-"Email was sent to %(email)s. Please check your mailbox and verify your email "
-"address."
+"Email was sent to %(email)s. Please check your mailbox and verify your email address."
 
 #: templates/front/accounts/email/verification_email.html:4
 #, python-format
@@ -626,7 +641,8 @@ msgid ""
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
 
-#: templates/socialaccount/signup.html:4 templates/socialaccount/signup.html:21
+#: templates/socialaccount/signup.html:4
+#: templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
 msgstr ""
@@ -635,10 +651,8 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                                You are about to use your "
-"%(provider_name)s account to login to\n"
-"                                                %(site_name)s. As a final "
-"step, please complete the following\n"
+"                                                You are about to use your %(provider_name)s account to login to\n"
+"                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
 
