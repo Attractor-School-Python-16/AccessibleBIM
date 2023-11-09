@@ -7,14 +7,14 @@
         <h1 class="postcard__title blue"><a
                 href="{% url 'front:course_user_detail' course.id %}">{{ course.title }} </a>
         </h1>
-        <div class="postcard__subtitle small">
+        <div class="postcard__subtitle">
             <time datetime="{{ course.update_at }}">
                 Последнее обновление: <i
                     class="fas fa-calendar-alt mr-2"></i> {{ course.update_at }}
             </time>
         </div>
         <div class="postcard__bar"></div>
-        <div class="postcard__preview-txt">{{ course.description }}</div>
+        <div class="postcard__preview-txt body">{{ course.description }}</div>
         <ul class="postcard__tagbox text-white">
             <li class="tag__item"><i
                     class="fas fa-tag mr-2"></i> {{ course.language|get_language_name }}
