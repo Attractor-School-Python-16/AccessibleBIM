@@ -1,11 +1,11 @@
 {% extends "front/base.html" %}
 {% load static i18n %}
-{% block title %}Список курсов{% endblock %}
+{% block title %}{% trans 'Courses list' %}{% endblock %}
 
 {% block content %}
     <section class="light">
         <div class="row">
-            <div class="h1 text-center text-dark" id="pageHeaderTitle">Список доступных курсов</div>
+            <div class="h1 text-center text-dark" id="pageHeaderTitle">{% trans 'List of available courses' %}</div>
             <div class="col-md-12">
                 {% include 'front/partials/filter.html' %}
             </div>
@@ -20,7 +20,7 @@
 
                     {% endif %}
                     {% empty %}
-                    <h2 class="text-center mt-5 min-vh-25">Курсы не найдены</h2>
+                    <h2 class="text-center mt-5 min-vh-25">{% trans 'No courses found' %}</h2>
                 {% endfor %}
             </div>
         </div>

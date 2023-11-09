@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 00:12+0600\n"
-"PO-Revision-Date: 2023-11-08 18:13+0000\n"
+"POT-Creation-Date: 2023-11-09 22:20+0600\n"
+"PO-Revision-Date: 2023-11-09 16:22+0000\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -152,6 +152,7 @@ msgstr "#"
 
 #: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:12
 #: templates/courses/change_chapters_order.html:27
+#: templates/front/chapter/chapter_user_detail_view.html:13
 msgid "Chapter"
 msgstr "Глава"
 
@@ -207,8 +208,9 @@ msgstr "Модуль"
 #: modules/models/courses.py:31
 #: templates/course_target/course_target_detail.html:4
 #: templates/course_target/course_target_list.html:4
+#: templates/partials/sidebar.html:45
 msgid "Target audience"
-msgstr "Для кого предназначен курс"
+msgstr "Целевая аудитория"
 
 #: modules/models/courses.py:32
 msgid "Course language"
@@ -219,6 +221,7 @@ msgid "Course learn time"
 msgstr "Время на прохождение курса (часы)"
 
 #: modules/models/courses.py:36 modules/models/teacher.py:19
+#: templates/partials/sidebar.html:28
 msgid "Teachers"
 msgstr "Преподаватели"
 
@@ -332,6 +335,7 @@ msgid "List of %(title)s chapter's lessons"
 msgstr "Список занятий главы %(title)s"
 
 #: templates/chapters/change_steps_order.html:27
+#: templates/front/chapter/chapter_user_detail_view.html:20
 msgid "Lesson"
 msgstr "Занятие"
 
@@ -361,6 +365,7 @@ msgstr "Добавить главу"
 #: templates/course_target/course_target_create.html:13
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
+#: templates/partials/sidebar.html:33 templates/partials/sidebar.html:50
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Создать"
@@ -552,6 +557,7 @@ msgid "Edit course"
 msgstr "Редактирование курса"
 
 #: templates/courses/courses_list.html:15
+#: templates/front/courses/courses.html:3
 msgid "Courses list"
 msgstr "Список курсов"
 
@@ -680,6 +686,26 @@ msgstr "Регистрация"
 msgid "Register"
 msgstr "Зарегистрироваться"
 
+#: templates/front/chapter/chapter_user_detail_view.html:37
+msgid "Previous lesson"
+msgstr "Предыдущий урок"
+
+#: templates/front/chapter/chapter_user_detail_view.html:40
+msgid "Next lesson"
+msgstr "Следующий урок"
+
+#: templates/front/chapter/chapter_user_detail_view.html:44
+msgid "Next chapter"
+msgstr "Следующая глава"
+
+#: templates/front/courses/courses.html:8
+msgid "List of available courses"
+msgstr "Список доступных курсов"
+
+#: templates/front/courses/courses.html:23
+msgid "No courses found"
+msgstr "Курсы не найдены"
+
 #: templates/modules/module_create.html:12
 msgid "Add module:"
 msgstr "Добавить модуль:"
@@ -712,7 +738,8 @@ msgstr "Список модулей"
 msgid "Add modules"
 msgstr "Добавить модуль"
 
-#: templates/partials/sidebar.html:21
+#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:38
+#: templates/partials/sidebar.html:55
 msgid "List"
 msgstr "Список"
 
@@ -785,7 +812,6 @@ msgid "Add teacher"
 msgstr "Добавить преподавателя"
 
 #: templates/teachers/teacher_delete.html:4
-#| msgid "Delete chapter"
 msgid "Delete teacher"
 msgstr "Удалить преподавателя"
 
@@ -799,12 +825,11 @@ msgstr "Удалить преподавателя"
 msgid ""
 "\n"
 "                Are you sure you want to delete the teacher\n"
-"                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+"                <span class=\"text-danger\"> %(name)s</span>?\n"
 "                "
 msgstr ""
 "\n"
-"Вы точно хотите удалить преподавателя\n"
-"<span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
+"Вы точно хотите удалить преподавателя <span class=\"text-danger\">%(name)s</span>?"
 
 #: templates/teachers/teacher_detail.html:4
 msgid "Teacher info"
@@ -812,7 +837,6 @@ msgstr "Преподаватель"
 
 #: templates/teachers/teacher_update.html:4
 #: templates/teachers/teacher_update.html:12
-#| msgid "Add teacher"
 msgid "Edit teacher"
 msgstr "Редактировать преподавателя"
 
@@ -824,6 +848,27 @@ msgstr "Список преподавателей"
 #: templates/teachers/teachers_list.html:20
 msgid "Name"
 msgstr "Имя"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "                Are you sure you want to delete the teacher\n"
+#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "Вы точно хотите удалить преподавателя %(teacher.get_full_name)s</span>?"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "                Are you sure you want to delete the teacher\n"
+#~ "                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "Вы точно хотите удалить преподавателя\n"
+#~ "<span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
 
 #, fuzzy, python-format
 #~ msgid ""
