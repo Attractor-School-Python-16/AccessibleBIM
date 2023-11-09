@@ -21,8 +21,8 @@
                         {% include 'steps/partial/video_partial.html' %}
                     {% elif step.text %}
                         {% include 'steps/partial/text_partial.html' %}
-                        {#                    {% elif step.test %}#}
-                        {#                        {% include 'steps/partial/test_partial.html' %}#}
+                    {% elif step.test %}
+                        {% include 'quiz_bim/take_quiz/take_test.html' %}
                     {% endif %}
                     {% if step.files.all %}
                         {% for file in step.files.all %}
