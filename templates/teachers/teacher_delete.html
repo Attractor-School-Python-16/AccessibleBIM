@@ -9,9 +9,9 @@
     <div class="card">
         <div class="card-body">
             <p class="card-text">
-                {% blocktrans with title=module.title %}
+                {% blocktrans with name=teacher.get_full_name %}
                 Are you sure you want to delete the teacher
-                <span class="text-danger"> {{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</span>?
+                <span class="text-danger"> {{ name }}</span>?
                 {% endblocktrans %}
             </p>
             <form method="POST">

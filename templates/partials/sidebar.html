@@ -25,34 +25,34 @@
         <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
                 <i class="nav-icon fa-solid fa-chalkboard-user"></i>
-                Учителя</a>
+                {% trans 'Teachers' %}</a>
             <ul class="nav-group-items">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:teachermodel_create' %}">
                         <span class="nav-icon"></span>
-                        Создать</a>
+                        {% trans 'Add' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:teachermodel_list' %}">
                         <span class="nav-icon"></span>
-                        Список учителей</a>
+                        {% trans 'List' %}</a>
                 </li>
             </ul>
         </li>
         <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
                 <i class="nav-icon fa-solid fa-graduation-cap"></i>
-                ЦА курса</a>
+                {% trans 'Target audience' %}</a>
             <ul class="nav-group-items">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:coursetargetmodel_create' %}">
                         <span class="nav-icon"></span>
-                        Создать</a>
+                        {% trans 'Add' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:coursetargetmodel_list' %}">
                         <span class="nav-icon"></span>
-                        Список ЦА</a>
+                        {% trans 'List' %}</a>
                 </li>
             </ul>
         </li>
