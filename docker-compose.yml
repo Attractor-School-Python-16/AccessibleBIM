@@ -14,7 +14,7 @@ services:
   backend:
     build: .
     ports:
-      - "8002:8002"
+      - "8000:8000"
     container_name: local_backend
     depends_on:
       - db
@@ -30,7 +30,7 @@ services:
       for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json; do
         python manage.py loaddata fixtures/$$fixture
       done &&
-      python manage.py runserver 0.0.0.0:8002"
+      python manage.py runserver 0.0.0.0:8000"
 
   redis:
     image: "redis:alpine"
