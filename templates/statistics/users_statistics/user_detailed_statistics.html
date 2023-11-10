@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Статистика{% endblock %}
+{% block title %}{% trans 'Statistics' %}{% endblock %}
 
 {% block moderator_interface %}
     <div class="container mb-4">
@@ -11,12 +11,13 @@
             <table class="table responsive border mb-0 nowrap bg-white">
                 <thead class="fw-semibold">
                     <tr class="align-middle">
-                        <th>User</th>
-                        <th>Email</th>
-                        <th>Country</th>
-                        <th>Course</th><th>Registered at</th>
-                        <th>Last Entry</th>
-                        <th>Email Verified</th>
+                        <th>{% trans 'User' %}</th>
+                        <th>{% trans 'Email' %}</th>
+                        <th>{% trans 'Country' %}</th>
+                        <th>{% trans 'Course' %}</th>
+                        <th>{% trans 'Registered at' %}</th>
+                        <th>{% trans 'Last Entry' %}</th>
+                        <th>{% trans 'Email Verified' %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +35,7 @@
         </div>
 
 
-        <h4 class="my-3">Текущий курс:</h4>
+        <h4 class="my-3">{% trans 'Active course' %}:</h4>
         {% if current_course %}
             <div class="card">
                  <div class="card-body">
@@ -44,7 +45,7 @@
                      <p class="d-inline-flex gap-1">
                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                data-bs-target="#current-course-div" aria-expanded="false"
-                               aria-controls="current-course-div">Статистика по тестам</button>
+                               aria-controls="current-course-div">{% trans 'Tests statistics' %}</button>
                     </p>
                     <div class="collapse" id="current-course-div">
                         <div class="test-progress-chart" id="test-progress-chart-{{ current_course.pk }}"
@@ -55,10 +56,10 @@
             </div>
 
         {% else %}
-            <p>Нет текущих подписок</p>
+            <p>{% trans 'No active subscriptions' %}</p>
         {% endif %}
 
-        <h4 class="my-3">Завершенные курсы:</h4>
+        <h4 class="my-3">{% trans 'Finished courses' %}:</h4>
         {% if past_courses %}
             {% for subscription in past_courses %}
                 <div class="card my-2">
@@ -70,7 +71,7 @@
                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                      data-bs-target="#past-course-div-{{ subscription.course.pk }}"
                                      aria-expanded="false" aria-controls="past-course-div-{{ subscription.course.pk }}">
-                                 Статистика по тестам
+                                 {% trans 'Tests statistics' %}
                              </button>
                          </p>
                          <div class="collapse" id="past-course-div-{{ subscription.course.pk }}">
@@ -82,7 +83,7 @@
 
             {% endfor %}
         {% else %}
-            <p>Нет завершенных курсов</p>
+            <p>{% trans 'No finished courses' %}</p>
         {% endif %}
 
     </div>
