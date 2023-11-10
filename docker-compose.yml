@@ -11,6 +11,7 @@ services:
       - .:/usr/src/app/
     ports:
       - 8000:8000
+    restart: always
     env_file:
       - ./.env.dev
     depends_on:
