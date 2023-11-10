@@ -1,0 +1,266 @@
+[
+{
+    "model": "modules.modulemodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:39:32.758Z",
+        "update_at": "2023-09-20T19:39:32.758Z",
+        "title": "test_module",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+        "image": "modules/test_module/image/1677439435_bogatyr-club-p-stroika-fon-fon-vkontakte-17.jpg"
+    }
+},
+{
+    "model": "modules.modulemodel",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-22T10:23:01.836Z",
+        "update_at": "2023-09-22T10:23:01.836Z",
+        "title": "Модуль 1",
+        "description": "Тест модуля 1",
+        "image": "modules/Модуль 1/image/1680197788_kartinki-pibig-info-p-kartinki-krasivie-raznie-neobich_DECqNnv.jpg"
+    }
+},
+{
+    "model": "modules.modulemodel",
+    "pk": 3,
+    "fields": {
+        "create_at": "2023-09-22T13:08:46.856Z",
+        "update_at": "2023-09-22T13:08:46.856Z",
+        "title": "Модуль 2",
+        "description": "Описание тестовое",
+        "image": "modules/Модуль 2/image/4caa18be-baa4-4900-a616-686213af23c7.png"
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:41:08.521Z",
+        "update_at": "2023-09-20T19:41:08.521Z",
+        "course": 1,
+        "title": "test_chapter",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+        "serial_number": 1
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-21T15:13:51.666Z",
+        "update_at": "2023-09-21T15:13:51.666Z",
+        "course": 1,
+        "title": "Test2",
+        "description": "test2",
+        "serial_number": 2
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 3,
+    "fields": {
+        "create_at": "2023-09-21T15:14:59.117Z",
+        "update_at": "2023-09-21T15:14:59.117Z",
+        "course": 1,
+        "title": "test3",
+        "description": "test3",
+        "serial_number": 3
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 4,
+    "fields": {
+        "create_at": "2023-09-21T15:18:48.709Z",
+        "update_at": "2023-09-21T15:18:48.709Z",
+        "course": 2,
+        "title": "test 4",
+        "description": "test4",
+        "serial_number": 1
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 5,
+    "fields": {
+        "create_at": "2023-09-21T15:19:53.340Z",
+        "update_at": "2023-09-21T15:19:53.340Z",
+        "course": 2,
+        "title": "123132",
+        "description": "123123",
+        "serial_number": 2
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 6,
+    "fields": {
+        "create_at": "2023-09-21T15:21:11.276Z",
+        "update_at": "2023-09-21T15:21:11.276Z",
+        "course": 2,
+        "title": "123123123",
+        "description": "123123123",
+        "serial_number": 3
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 7,
+    "fields": {
+        "create_at": "2023-09-22T10:25:10.926Z",
+        "update_at": "2023-09-22T10:25:10.926Z",
+        "course": 3,
+        "title": "Тест название главы 1",
+        "description": "Описание теста главы 1",
+        "serial_number": 1
+    }
+},
+{
+    "model": "modules.chaptermodel",
+    "pk": 8,
+    "fields": {
+        "create_at": "2023-09-22T13:11:20.853Z",
+        "update_at": "2023-09-22T13:11:20.853Z",
+        "course": 4,
+        "title": "Тест глава",
+        "description": "Описание главы",
+        "serial_number": 1
+    }
+},
+{
+    "model": "modules.coursetargetmodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:40:18.633Z",
+        "update_at": "2023-09-20T19:40:18.633Z",
+        "title": "test_target",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
+    }
+},
+{
+    "model": "modules.coursetargetmodel",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-22T13:05:18.659Z",
+        "update_at": "2023-09-22T13:05:18.659Z",
+        "title": "Для дизайнера",
+        "description": "описания"
+    }
+},
+{
+    "model": "modules.teachermodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:40:38.583Z",
+        "update_at": "2023-09-20T19:40:38.583Z",
+        "first_name": "test",
+        "last_name": "test",
+        "father_name": null,
+        "job_title": "test",
+        "corp": "test",
+        "experience": "test",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p"
+    }
+},
+{
+    "model": "modules.courseteachermodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:41:01.330Z",
+        "update_at": "2023-09-20T19:41:01.331Z",
+        "ct_course": 1,
+        "ct_teacher": 1
+    }
+},
+{
+    "model": "modules.courseteachermodel",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-21T15:18:07.885Z",
+        "update_at": "2023-09-21T15:18:07.885Z",
+        "ct_course": 2,
+        "ct_teacher": 1
+    }
+},
+{
+    "model": "modules.courseteachermodel",
+    "pk": 3,
+    "fields": {
+        "create_at": "2023-09-22T10:24:25.222Z",
+        "update_at": "2023-09-22T10:24:25.222Z",
+        "ct_course": 3,
+        "ct_teacher": 1
+    }
+},
+{
+    "model": "modules.courseteachermodel",
+    "pk": 4,
+    "fields": {
+        "create_at": "2023-09-22T13:10:42.321Z",
+        "update_at": "2023-09-22T13:10:42.321Z",
+        "ct_course": 4,
+        "ct_teacher": 1
+    }
+},
+{
+    "model": "modules.coursemodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T19:41:01.318Z",
+        "update_at": "2023-09-20T19:41:01.318Z",
+        "title": "test_course",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
+        "image": "courses/test_course/image/614da5855d53b4821412f331_3808949_nhaKGmL.jpg",
+        "module_id": 1,
+        "courseTarget_id": 1,
+        "language": "RU",
+        "learnTime": 2
+    }
+},
+{
+    "model": "modules.coursemodel",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-21T15:18:07.842Z",
+        "update_at": "2023-09-21T15:18:23.485Z",
+        "title": "test 2",
+        "description": "test 2",
+        "image": "courses/test 2/image/1680197788_kartinki-pibig-info-p-kartinki-krasivie-raznie-neobichni_kiZj0rr.jpg",
+        "module_id": 1,
+        "courseTarget_id": 1,
+        "language": "RU",
+        "learnTime": 100
+    }
+},
+{
+    "model": "modules.coursemodel",
+    "pk": 3,
+    "fields": {
+        "create_at": "2023-09-22T10:24:25.210Z",
+        "update_at": "2023-09-22T10:24:25.210Z",
+        "title": "Тест курса",
+        "description": "Описание теста курса",
+        "image": "courses/Тест курса/image/image-rectangle_600_x.jpg",
+        "module_id": 2,
+        "courseTarget_id": 1,
+        "language": "RU",
+        "learnTime": 60
+    }
+},
+{
+    "model": "modules.coursemodel",
+    "pk": 4,
+    "fields": {
+        "create_at": "2023-09-22T13:10:42.300Z",
+        "update_at": "2023-09-22T13:10:42.300Z",
+        "title": "Тест курса",
+        "description": "Описание",
+        "image": "courses/Тест курса/image/4caa18be-baa4-4900-a616-686213af23c7.png",
+        "module_id": 3,
+        "courseTarget_id": 2,
+        "language": "RU",
+        "learnTime": 100
+    }
+}
+]
