@@ -1,0 +1,153 @@
+[
+{
+    "model": "step.filemodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T20:15:04.921Z",
+        "update_at": "2023-09-22T10:41:34.221Z",
+        "file_title": "test_file",
+        "lesson_file": "steps/files/krylatyj_vampir.jpg"
+    }
+},
+{
+    "model": "step.stepmodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T20:21:42.847Z",
+        "update_at": "2023-09-20T20:21:42.854Z",
+        "chapter": 1,
+        "title": "test_step",
+        "lesson_type": "test",
+        "text": null,
+        "video": null,
+        "test": 1,
+        "learn_time": 2,
+        "serial_number": 1,
+        "file": []
+    }
+},
+{
+    "model": "step.stepmodel",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-20T20:24:18.978Z",
+        "update_at": "2023-09-20T20:24:18.983Z",
+        "chapter": 1,
+        "title": "test_step2",
+        "lesson_type": "text",
+        "text": 1,
+        "video": null,
+        "test": null,
+        "learn_time": 2,
+        "serial_number": 2,
+        "file": []
+    }
+},
+{
+    "model": "step.stepmodel",
+    "pk": 3,
+    "fields": {
+        "create_at": "2023-09-22T10:33:56.475Z",
+        "update_at": "2023-09-22T10:33:56.525Z",
+        "chapter": 7,
+        "title": "Тест занятия",
+        "lesson_type": "video",
+        "text": null,
+        "video": 1,
+        "test": null,
+        "learn_time": 10,
+        "serial_number": 1,
+        "file": [
+            1
+        ]
+    }
+},
+{
+    "model": "step.stepmodel",
+    "pk": 4,
+    "fields": {
+        "create_at": "2023-09-22T10:55:25.906Z",
+        "update_at": "2023-09-22T10:55:25.924Z",
+        "chapter": 7,
+        "title": "123123",
+        "lesson_type": "test",
+        "text": null,
+        "video": null,
+        "test": 1,
+        "learn_time": 10,
+        "serial_number": 3,
+        "file": []
+    }
+},
+{
+    "model": "step.stepmodel",
+    "pk": 5,
+    "fields": {
+        "create_at": "2023-09-22T13:13:08.989Z",
+        "update_at": "2023-09-22T13:13:09.025Z",
+        "chapter": 8,
+        "title": "Занятие 1",
+        "lesson_type": "video",
+        "text": null,
+        "video": 2,
+        "test": null,
+        "learn_time": 20,
+        "serial_number": 1,
+        "file": [
+            1
+        ]
+    }
+},
+{
+    "model": "step.stepmodel",
+    "pk": 6,
+    "fields": {
+        "create_at": "2023-09-22T13:15:26.836Z",
+        "update_at": "2023-09-22T13:15:26.867Z",
+        "chapter": 8,
+        "title": "Занятие 1",
+        "lesson_type": "test",
+        "text": null,
+        "video": null,
+        "test": 1,
+        "learn_time": 20,
+        "serial_number": 1,
+        "file": [
+            1
+        ]
+    }
+},
+{
+    "model": "step.textmodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-20T20:02:08.393Z",
+        "update_at": "2023-09-20T20:02:08.393Z",
+        "text_title": "test_text",
+        "text_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }
+},
+{
+    "model": "step.videomodel",
+    "pk": 1,
+    "fields": {
+        "create_at": "2023-09-22T10:33:56.487Z",
+        "update_at": "2023-09-22T10:33:56.487Z",
+        "video_title": "Тест видео",
+        "video_description": "Описание видео",
+        "video_file": "steps/videos/Quintessence_-_by_junk-E-cat_using_Maschine_Jam.mp4"
+    }
+},
+{
+    "model": "step.videomodel",
+    "pk": 2,
+    "fields": {
+        "create_at": "2023-09-22T13:13:08.996Z",
+        "update_at": "2023-09-22T13:13:08.996Z",
+        "video_title": "Тест видео",
+        "video_description": "Описание видео",
+        "video_file": "steps/videos/Quintessence_-_by_junk-E-cat_using_Maschine_Jam_NncnfEX.mp4"
+    }
+}
+]
