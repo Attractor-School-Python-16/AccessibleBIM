@@ -26,12 +26,14 @@ env = Env()
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7@r@5jk0o)5ah@0lez58eg_lu=w(7bq(!0_-qz)43htnusq5ge'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:80"]
 
 # Application definition
 
@@ -168,8 +170,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_URL = '/media/'
 # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = '/code/media/'
-
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
@@ -199,7 +200,7 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
@@ -230,10 +231,14 @@ LOGOUT_REDIRECT_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static/')
-]
-STATIC_URL = 'static/'
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -244,7 +249,7 @@ if 'test' in sys.argv:
     CAPTCHA_TEST_MODE = True
     # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
     # MEDIA_ROOT = os.path.join(BASE_DIR, 'media_test')
-    MEDIA_ROOT = '/code/media_test/'
+    MEDIA_ROOT = BASE_DIR / 'media_test'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
