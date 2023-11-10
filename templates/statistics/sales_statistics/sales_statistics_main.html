@@ -2,34 +2,41 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Статистика{% endblock %}
+{% block title %}{% trans 'Statistics' %}{% endblock %}
 
 {% block moderator_interface %}
     <div class="container">
         <!--Cards-->
         <div class="row g-5 g-xl-8 mb-3">
             <div class="col-sm-12 col-md-6">
-                {% include 'partials/statistics/statistics_card.html' with score=subscriptions_ttl_qty title='Количество подписок' icon='<i class="fa-solid fa-bag-shopping fs-2"></i>' %}
+                {% trans 'Number of subscriptions' as subscriptions_qty_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=subscriptions_ttl_qty title=subscriptions_qty_title icon='<i class="fa-solid fa-bag-shopping fs-2"></i>' %}
             </div>
             <div class="col-sm-12 col-md-6">
-                {% include 'partials/statistics/statistics_card.html' with score=active_subscriptions_qty title='Количество активных подписок' icon='<i class="fa-solid fa-pen-nib fs-2"></i>' %}
+                {% trans 'Number of active subscriptions' as active_subscriptions_qty_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=active_subscriptions_qty title=active_subscriptions_qty_title icon='<i class="fa-solid fa-pen-nib fs-2"></i>' %}
             </div>
             <div class="col-sm-12 col-xl-4">
-                {% include 'partials/statistics/statistics_card.html' with score=min_course_price|floatformat:2 title='Минимальная стоимость курса' icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
+                {% trans 'Lowest course price' as min_course_price_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=min_course_price|floatformat:2 title=min_course_price_title icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
             </div>
             <div class="col-sm-12 col-xl-4">
-                {% include 'partials/statistics/statistics_card.html' with score=avg_course_price|floatformat:2 title='Средняя стоимость курса' icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
+                {% trans 'Average course price' as avg_course_price_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=avg_course_price|floatformat:2 title=avg_course_price_title icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
             </div>
             <div class="col-sm-12 col-xl-4">
-                {% include 'partials/statistics/statistics_card.html' with score=max_course_price|floatformat:2 title='Максимальная стоимость курса' icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
+                {% trans 'Highest course price' as max_course_price_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=max_course_price|floatformat:2 title=max_course_price_title icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
             </div>
         </div>
 
         <!--New subscriptions chart-->
-        {% include 'partials/statistics/chart_by_period.html' with title='Новые подписки' btn_class='new-subscriptions-chart-btn' chart_id='new-subscriptions-chart' %}
+        {% trans 'New subscriptions' as new_subscriptions_title %}
+        {% include 'partials/statistics/chart_by_period.html' with title=new_subscriptions_title btn_class='new-subscriptions-chart-btn' chart_id='new-subscriptions-chart' %}
 
         <!--Popular courses chart-->
-        {% include 'partials/statistics/chart_by_period.html' with title='Популярные курсы' btn_class='popular-courses-chart-btn' chart_id='popular-courses-chart' %}
+        {% trans 'Popular courses' as popular_courses_title %}
+        {% include 'partials/statistics/chart_by_period.html' with title=popular_courses_title btn_class='popular-courses-chart-btn' chart_id='popular-courses-chart' %}
     </div>
 {% endblock %}
 
