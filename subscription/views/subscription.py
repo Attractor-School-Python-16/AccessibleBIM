@@ -23,6 +23,7 @@ from subscription.models.user_subscription import UsersSubscription
 from django.utils.functional import cached_property
 import requests
 import hashlib
+from django.utils import timezone
 
 
 class SubscriptionListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -138,14 +139,14 @@ class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, De
                 user_subscription = get_object_or_404(UsersSubscription,
                                                       (Q(user_id=self.object.pk) & Q(
                                                           subscription_id=self.button_value)))
-                user_subscription.end_time = datetime.now() + timedelta(days=30)
+                user_subscription.end_time = timezone.now() + timedelta(days=30)
                 user_subscription.subscription_id = self.button_value
                 user_subscription.is_active = True
                 user_subscription.save()
                 return redirect('subscription:subscriptionmodel_user_list')
             else:
                 UsersSubscription.objects.create(subscription=subscription, user=user,
-                                                 end_time=datetime.now() + timedelta(days=30))
+                                                 end_time=timezone.now() + timedelta(days=30))
                 return redirect('subscription:subscriptionmodel_user_list')
         except ValidationError:
             context = {
@@ -226,9 +227,7 @@ class SubscriptionBuyView(PermissionRequiredMixin, View):
         return current_user.email_verified
 
     def get(self, request, *args, **kwargs):
-        url = "https://api.freedompay.money/init_payment.php"
         subscription = get_object_or_404(SubscriptionModel, pk=kwargs['pk'])
-        print(self.user)
         url = "https://api.freedompay.money/init_payment.php"
 
         pg_merchant_id = 0
