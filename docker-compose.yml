@@ -23,6 +23,8 @@ services:
     env_file:
       - .env.dev
     restart: always
+    environment:
+      TZ: 'Asia/Bishkek'
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
@@ -30,6 +32,8 @@ services:
     image: "redis:alpine"
     hostname: redis
     restart: always
+    environment:
+      TZ: 'Asia/Bishkek'
     ports:
       - "6379:6379"
 
@@ -42,6 +46,8 @@ services:
     env_file:
       - .env.dev
     restart: always
+    environment:
+      TZ: 'Asia/Bishkek'
     volumes:
       - .:/usr/src/app/
 
