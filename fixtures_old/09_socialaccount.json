@@ -1,0 +1,18 @@
+[
+{
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+        "provider": "google",
+        "provider_id": "",
+        "name": "Google",
+        "client_id": "532801370309-el6kjnghd31rvgrps9c8i91o4gr0n1kl.apps.googleusercontent.com",
+        "secret": "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",
+        "key": "",
+        "settings": {},
+        "sites": [
+            2
+        ]
+    }
+}
+]
