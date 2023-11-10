@@ -22,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -199,7 +200,7 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
@@ -242,6 +243,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if 'test' in sys.argv:
     CAPTCHA_TEST_MODE = True
+    # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
+    # MEDIA_ROOT = os.path.join(BASE_DIR, 'media_test')
+    MEDIA_ROOT = '/code/media_test/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
