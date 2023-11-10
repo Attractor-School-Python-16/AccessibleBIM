@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.prod
     command: >
       sh -c "python manage.py migrate &&
-      for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json; do
+      for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json 10_subscription.json; do
         python manage.py loaddata fixtures/$$fixture
       done &&
       gunicorn accessibleBIM.wsgi:application --bind 0.0.0.0:8000"
