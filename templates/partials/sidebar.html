@@ -179,14 +179,14 @@
             <li class="nav-group my-2">
                 <a class="nav-link nav-group-toggle" href="#">
                     <i class="nav-icon fa-regular fa-handshake"></i>
-                    Партнеры</a>
+                    {% trans 'Partners' %}</a>
                 <ul class="nav-group-items">
                     <li class="nav-item"><a class="nav-link" href="{% url 'content:add_partner' %}">
                         <span class="nav-icon"></span>
-                        Создать</a>
+                        {% trans 'Add' %}</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'content:partners_list' %}"><span
-                            class="nav-icon"></span> Список партнеров</a></li>
+                            class="nav-icon"></span>{% trans 'List' %}</a></li>
                 </ul>
             </li>
         </li>

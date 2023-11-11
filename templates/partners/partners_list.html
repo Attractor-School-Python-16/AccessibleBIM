@@ -2,20 +2,20 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Партнеры{% endblock %}
+{% block title %}{% trans 'Partners' %}{% endblock %}
 
 {% block moderator_interface %}
     <div class="card">
         <div class="card-body">
-            <h1>Список партнеров</h1><a href="{% url 'content:add_partner' %}" class="btn btn-primary my-3">Добавить
-            партнера</a>
+            <h1>{% trans 'Partners list' %}</h1>
+            <a href="{% url 'content:add_partner' %}" class="btn btn-primary my-3">{% trans 'Add partner' %}</a>
             <table class="table">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Изображение</th>
-                    <th>Название</th>
-                    <th class="text-end">Действия</th>
+                    <th>{% trans 'Image' %}</th>
+                    <th>{% trans 'Title' %}</th>
+                    <th class="text-end">{% trans 'Actions' %}</th>
                 </tr>
                 </thead>
                 <tbody style="vertical-align: middle">
@@ -27,9 +27,9 @@
                         <td class="text-end">
                             <div class="btn-group">
                                 <a href="{% url 'content:update_partner' pk=partner.pk %}"
-                                   class="btn btn-info btn-sm mx-3">Изменить</a>
+                                   class="btn btn-info btn-sm mx-3">{% trans 'Change' %}</a>
                                 <a href="{% url 'content:delete_partner' pk=partner.pk %}"
-                                   class="btn btn-danger btn-sm">Удалить</a>
+                                   class="btn btn-danger btn-sm">{% trans 'Delete' %}</a>
                             </div>
                         </td>
                     </tr>
