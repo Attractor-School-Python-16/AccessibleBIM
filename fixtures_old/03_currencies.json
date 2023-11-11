@@ -1,0 +1,14 @@
+[
+{
+  "model": "currency.currencyratemodel",
+  "pk": 2,
+  "fields": {
+    "base_currency": "USD",
+    "goal_currency": "RUB",
+    "rate": "96.64999000",
+    "created_at": "2023-09-28T17:39:26.893Z",
+    "source": "https://openexchangerates.org/api/latest.json",
+    "timestamp": "2023-09-28T00:00:00Z"
+  }
+}
+]
