@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <h2>Файл: {{ file.file_title }}</h2>
                 </div>
-                <a href="{{ file.lesson_file.url }}" download class="btn btn-primary my-3 mx-3">Скачать файл</a>
+                <a href="{{ file.lesson_file.url }}" download class="btn btn-primary my-3 me-3">Скачать файл</a>
                 <a href="{% url 'step:filemodel_list' %}" class="btn btn-secondary">Вернуться к списку файлов</a>
             </div>
         </div>
