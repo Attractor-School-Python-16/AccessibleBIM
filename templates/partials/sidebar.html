@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
         <a href="{% url 'modules:moderator_page' %}" class="link-secondary" style="text-decoration: none">
@@ -8,16 +9,16 @@
         <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
                 <i class="nav-icon fa-brands fa-bimobject"></i>
-                Модули</a>
+                {% trans 'Modules' %}</a>
             <ul class="nav-group-items">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:modulemodel_create' %}">
                         <span class="nav-icon"></span>
-                        Создать</a>
+                        {% trans 'Add' %}</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'modules:modulemodel_list' %}">
                     <span class="nav-icon"></span>
-                    Список модулей</a>
+                    {% trans 'List' %}</a>
                 </li>
             </ul>
         </li>
@@ -40,34 +41,34 @@
         <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
                 <i class="nav-icon fa-solid fa-chalkboard-user"></i>
-                Учителя</a>
+                {% trans 'Teachers' %}</a>
             <ul class="nav-group-items">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:teachermodel_create' %}">
                         <span class="nav-icon"></span>
-                        Создать</a>
+                        {% trans 'Add' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:teachermodel_list' %}">
                         <span class="nav-icon"></span>
-                        Список учителей</a>
+                        {% trans 'List' %}</a>
                 </li>
             </ul>
         </li>
         <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
                 <i class="nav-icon fa-solid fa-graduation-cap"></i>
-                ЦА курса</a>
+                {% trans 'Target audience' %}</a>
             <ul class="nav-group-items">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:coursetargetmodel_create' %}">
                         <span class="nav-icon"></span>
-                        Создать</a>
+                        {% trans 'Add' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modules:coursetargetmodel_list' %}">
                         <span class="nav-icon"></span>
-                        Список ЦА</a>
+                        {% trans 'List' %}</a>
                 </li>
             </ul>
         </li>
