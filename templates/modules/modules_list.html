@@ -21,7 +21,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for module in modules %}
+                    {% for module in modules|dictsort:"id" %}
                         <tr>
                             <td>{{ module.id }}</td>
                             <td><a href="{% url 'modules:modulemodel_detail' module.id %}">{{ module.title }}</a></td>
