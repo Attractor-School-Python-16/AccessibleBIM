@@ -1,0 +1,10 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Партнеры{% endblock %}
+
+{% block moderator_interface %}
+    <h1>Редактировать партнера:</h1>
+    {% include "partials/form.html" with button_text="Редактировать" %}
+{% endblock %}
