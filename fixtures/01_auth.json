@@ -11,6 +11,26 @@
         "customuser"
       ],
       [
+        "add_partnermodel",
+        "content",
+        "partnermodel"
+      ],
+      [
+        "change_partnermodel",
+        "content",
+        "partnermodel"
+      ],
+      [
+        "delete_partnermodel",
+        "content",
+        "partnermodel"
+      ],
+      [
+        "view_partnermodel",
+        "content",
+        "partnermodel"
+      ],
+      [
         "add_chaptermodel",
         "modules",
         "chaptermodel"

@@ -1,14 +1,18 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load static view_breadcrumbs %}
-{% block title %}Удалить курс{% endblock %}
+{% block title %}{% trans 'Delete course' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
     {% endblock %}
     <div class="card">
         <div class="card-body">
-            <p class="card-text">Вы точно хотите удалить курс:<span
-                    class="text-danger"> {{ course.title }}</span>?
+            <p class="card-text">
+                {% blocktrans with title=course.title %}
+                Are you sure you want to delete the course
+                <span class="text-danger"> {{ title }}</span>?
+                {% endblocktrans %}
             </p>
             <form method="POST">
                 {% csrf_token %}
