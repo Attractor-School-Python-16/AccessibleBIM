@@ -13,6 +13,7 @@ import os
 import sys
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from celery.signals import setup_logging
 
 from step.utils import custom_upload_to_func
 from environ import Env
@@ -170,7 +171,6 @@ MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = '/code/media/'
 
-
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
@@ -231,7 +231,7 @@ LOGOUT_REDIRECT_URL = '/login/'
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static/')
+    os.path.join(BASE_DIR, 'static/')
 ]
 STATIC_URL = 'static/'
 
@@ -308,3 +308,53 @@ SUMMERNOTE_CONFIG = {
 
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 CAPTCHA_LETTER_ROTATION = None
+
+
+@setup_logging.connect
+def configure_logging(sender=None, **kwargs):
+    import logging
+    import logging.config
+    logging.config.dictConfig(LOGGING)
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "file": {
+            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "debug.log",
+        },
+        "celery_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "celery.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "celery.task": {
+            "handlers": ["celery_file", "console"],
+            "level": "DEBUG",
+        },
+        "django.request": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+        },
+    },
+}
