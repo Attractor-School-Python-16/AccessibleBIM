@@ -30,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for course in courses %}
+                {% for course in courses|dictsort:"id" %}
                     <tr>
                         <td>{{ course.id }}</td>
                         <td><a href="{% url 'modules:coursemodel_detail' course.id %}">{{ course.title }}</a></td>

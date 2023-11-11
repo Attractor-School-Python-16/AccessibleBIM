@@ -25,7 +25,8 @@ class CourseModel(AbstractModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название курса')
     description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание курса')
     image = models.ImageField(null=False, blank=False, upload_to=courses_upload_to, verbose_name='Фото для курса')
-    module_id = models.ForeignKey('modules.ModuleModel', related_name='courses', on_delete=models.CASCADE)
+    module_id = models.ForeignKey('modules.ModuleModel', related_name='courses', on_delete=models.CASCADE,
+                                  verbose_name='Модуль')
     courseTarget_id = models.ForeignKey('modules.CourseTargetModel', related_name='courses',
                                         on_delete=models.DO_NOTHING, verbose_name='Целевая аудитория курса')
     language = models.CharField(max_length=10, choices=TypeChoices.choices, blank=False, null=False,
