@@ -38,15 +38,11 @@ class CourseModel(AbstractModel):
 
     def get_total_tests(self):
         for course in self.ct_course.all():
-            if course.pk == self.pk:
-                return len(course.step.all().filter(test__isnull=False))
+            return len(course.step.all().filter(test__isnull=False))
 
     def get_total_lessons(self):
         for course in self.ct_course.all():
-            print(course)
-            if course.pk == self.pk:
-                return len(
-                    course.step.all().filter(Q(test__isnull=True)))
+            return len(course.step.all().filter(Q(test__isnull=True)))
 
     class Meta:
         db_table = 'course'

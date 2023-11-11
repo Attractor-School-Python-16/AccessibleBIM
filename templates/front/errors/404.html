@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html><!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v4.2.2
+* @link https://coreui.io/product/free-bootstrap-admin-template/
+* Copyright (c) 2023 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
+-->
+<html lang="en">
+<head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>Ошибка 404</title>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="{% static 'css/simplebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/coreui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core-ui.css' %}">
+</head>
+<body>
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="clearfix">
+                    <h1 class="float-start display-3 me-4">404</h1>
+                    <h4 class="pt-3">Страница не найдена</h4>
+                    <p class="text-medium-emphasis">Запрашиваемая вами страница не найдена, или указан неверный
+                        адрес</p>
+                </div>
+                <div class="input-group d-flex justify-content-center">
+                    <a href="{% url "front:accessible_bim" %}" class="btn btn-info">Вернуться на главную
+                        страницу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
