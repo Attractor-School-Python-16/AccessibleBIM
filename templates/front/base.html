@@ -31,7 +31,7 @@
     {% endblock %}
 </head>
 
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 <!-- Navbar Transparent -->
 {% block page_nav %}
     {% include 'front/partials/navbar.html' %}
