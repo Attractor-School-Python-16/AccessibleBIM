@@ -21,7 +21,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for teacher in teachers %}
+                    {% for teacher in teachers|dictsort:"id" %}
                         <tr>
                             <td>{{ teacher.id }}</td>
                             <td><a href="{% url 'modules:teachermodel_detail' teacher.id %}">{{ teacher.first_name }}
