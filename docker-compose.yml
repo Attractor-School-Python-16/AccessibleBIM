@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:14.3
     ports:
-      - "5432:5432"
+      - "5433:5432"
     env_file:
       - .env
     container_name: test_db
@@ -27,7 +27,7 @@ services:
       - .:/code
     command: >
       sh -c "python manage.py migrate &&
-      for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json; do
+      for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json 10_subscription; do
         python manage.py loaddata fixtures/$$fixture
       done &&
       python manage.py runserver 0.0.0.0:8000"
@@ -35,6 +35,7 @@ services:
   redis:
     image: "redis:alpine"
     hostname: redis
+    restart: always
     ports:
       - "6379:6379"
 
@@ -48,6 +49,7 @@ services:
       - .env
     volumes:
       - .:/code
+    restart: always
 
 volumes:
   postgres_data:

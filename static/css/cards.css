@@ -211,7 +211,7 @@ a:hover {
         background: #e1e5ea;
     }
 
-    .postcard.green .postcard__text:before {
+    .postcard.bg_blue .postcard__text:before {
         background: #1DACD6;
     }
 }

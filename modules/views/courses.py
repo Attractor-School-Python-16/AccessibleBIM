@@ -8,7 +8,7 @@ from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
     UpdateBreadcrumbMixin
-from modules.forms.courses_form import CoursesForm
+from modules.forms.courses_form import CoursesByModuleForm, CoursesStandAloneForm
 from modules.models import CourseModel, ModuleModel, ChapterModel
 
 
@@ -27,7 +27,6 @@ class CoursesListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
 class CourseCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
     template_name = "courses/course_create.html"
     model = CourseModel
-    form_class = CoursesForm
     module_pk = None
     home_path = reverse_lazy('modules:moderator_page')
 
@@ -39,8 +38,16 @@ class CourseCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateVie
         self.module_pk = self.request.GET.get('module_pk')
         return {'module_id': self.module_pk}
 
+    def get_form_class(self):
+        self.get_initial()
+        if self.module_pk:
+            return CoursesByModuleForm
+        else:
+            return CoursesStandAloneForm
+
     def form_valid(self, form):
-        form.instance.module_id = ModuleModel.objects.get(id=self.module_pk)
+        if self.module_pk:
+            form.instance.module_id = ModuleModel.objects.get(id=self.module_pk)
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -76,7 +83,7 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
 
 class CourseUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = CourseModel
-    form_class = CoursesForm
+    form_class = CoursesStandAloneForm
     context_object_name = 'course'
     template_name = 'courses/course_update.html'
     home_path = reverse_lazy('modules:moderator_page')
