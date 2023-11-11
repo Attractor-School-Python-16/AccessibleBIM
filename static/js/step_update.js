@@ -69,7 +69,7 @@ function getUpdateUrl(lessonType, baseUrl, selectValue) {
     } else if (lessonType === "video") {
         return selectValue ? `${baseUrl}/moderator/video/${selectValue}/update/` : "";
     } else if (lessonType === "test") {
-        return selectValue ? `${baseUrl}/moderator/quiz_bim/test/${selectValue}` : "";
+        return selectValue ? `${baseUrl}/quiz_bim/quiz/${selectValue}/update` : "";
     } else {
         return "";
     }

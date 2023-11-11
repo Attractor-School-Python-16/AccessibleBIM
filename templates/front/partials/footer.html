@@ -1,13 +1,7 @@
 <footer class="footer bg-info navbar-transparent py-5">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mb-4 mx-auto text-center">
-                <a href="{% url "accounts:login" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
-                    Войти
-                </a>
-                <a href="{% url "accounts:register" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
-                    Регистрация
-                </a>
+            <div class="col-lg-12 mb-4 mx-auto text-center">
                 <a href="{% url "front:course_user_list" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
                     Курсы
                 </a>
@@ -21,6 +15,9 @@
                 <br>
                 <a href="{% url "front:privacy_policy" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
                     Политика конфиденциальности
+                </a>
+                <a class="text-white me-xl-5 me-3 mb-sm-0 mb-2" href="{% url "front:terms_of_use" %}">
+                    Пользовательское соглашение
                 </a>
             </div>
         </div>

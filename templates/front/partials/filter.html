@@ -1,6 +1,7 @@
 <h4 class="text-center heading">Фильтры:</h4>
 <form method="get">
     <div class="row justify-content-around mt-4">
+
         <div class="col-md-3">
             <h5 class="content">Модуль</h5>
             {% for module in modules %}
@@ -30,7 +31,41 @@
             <label for="language2">Кыргызский</label><br>
 
 
+
+        <div class="col-md-4">
+            <h5>Модуль:</h5>
+            <div id="modules">
+                <multiple-select-modules inline-template>
+                    <select-2 :options="optionsModules" name="modules" v-model="selected"
+                              multiple=true></select-2>
+                </multiple-select-modules>
+            </div>
         </div>
+        <div class="col-md-4">
+            <h5>Целевая аудитория</h5>
+            <div id="targets">
+                <multiple-select-targets inline-template>
+                    <select-2 :options="optionsTargets" name="targets" v-model="selected" multiple=true></select-2>
+                </multiple-select-targets>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h5>Язык обучения</h5>
+            <div id="languages">
+                <multiple-select-language inline-template>
+                    <select-2 :options="optionsLanguage" name="languages" v-model="selected"
+                              multiple=true></select-2>
+                </multiple-select-language>
+            </div>
+
+        </div>
+
+        {{ selected_modules|json_script:"selected_modules" }}
+        {{ selected_targets|json_script:"selected_targets" }}
+        {{ selected_languages|json_script:"selected_languages" }}
+        {{ course_targets|json_script:"course_targets_dict" }}
+        {{ modules|json_script:"modules_dict" }}
+        {{ languages|json_script:"languages_dict" }}
         <button type="submit" class="btn btn-info">Поиск</button>
     </div>
 </form>

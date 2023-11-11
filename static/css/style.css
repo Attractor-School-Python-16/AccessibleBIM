@@ -9,11 +9,13 @@
 .bg-verdepomovy {
     background-color: #34C924;
 }
-.text-v-white{
-  color: white;
+
+.text-v-white {
+    color: white;
 }
 
 .draggable {
+
   cursor: move;
 }
 
@@ -98,8 +100,10 @@
   font-weight: normal;
 }
 
-/* Если нужно применить стили для всего текста на странице */
+
 body {
   font-family: 'Arial Nova Light', Arial, sans-serif;
   font-size: 20px;
 }
+
+
