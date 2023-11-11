@@ -11,6 +11,8 @@ from progress.models import ProgressTest, ProgressTestAnswers
 from progress.views.progress_test_answers_view import create_progress_tests_answers
 from progress.views.progress_test_view import create_progress_test
 from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
+from modules.models.user_course_progress import UserCourseProgress
+from django.utils import timezone
 
 
 class TakeQuizView(LoginRequiredMixin, DetailView):
@@ -23,6 +25,10 @@ class TakeQuizView(LoginRequiredMixin, DetailView):
             progress_test = create_progress_test(user=request.user, test=self.get_object())
         else:
             progress_test = ProgressTest.objects.get(test_id=pk, user_id=request.user.pk)
+        if progress_test.is_passed:
+            return redirect("quiz_bim:test_result", pk=progress_test.pk)
+        if not progress_test.is_passed and progress_test.test.questions_qty == progress_test.user_progress.count():
+            progress_test.user_progress.all().delete()
         return redirect("quiz_bim:test_completion", pk=progress_test.pk)
 
 
@@ -51,9 +57,9 @@ class QuestionsCompletionView(UserPassesTestMixin, ListView):
 class UserAnswerAPIView(LoginRequiredMixin, View):
 
     def post(self, request, pk, *args, **kwargs):
-        body = json.loads(request.body)
+        answer_id = list(request.POST.values())[0]
         test = get_object_or_404(ProgressTest, pk=pk)
-        answer = get_object_or_404(AnswerBim, pk=body.get("answer_id"))
+        answer = get_object_or_404(AnswerBim, pk=answer_id)
         question = answer.question_bim
 
         # Если еще не отвечал
@@ -83,10 +89,16 @@ class QuizResultView(UserPassesTestMixin, DetailView):
         # TODO: Нужно будет явно уточнить пользователю что он еще не ответил на все вопросы
         # Если пользователь еще не ответил на все вопросы то его перекидывает в начало теста
         progress = self.get_object()
-        if progress.user_progress.count() == progress.test.question_bim.count():
-            progress.end_time = datetime.now()
+        if not progress.is_passed and progress.user_progress.count() == progress.test.question_bim.count():
+            progress.end_time = timezone.now()
             progress.is_passed = (progress.accuracy() >= 0.75)
             progress.save()
+            progress_chapter = UserCourseProgress.objects.filter(user=self.request.user,
+                                                                 status=0,
+                                                                 step__test__progress=self.get_object())
+            if progress_chapter:
+                progress_chapter[0].status = 1
+                progress_chapter[0].save()
             return redirect("quiz_bim:test_result", pk=progress.pk)
         return redirect("quiz_bim:test_completion", pk=pk)
 
