@@ -50,7 +50,7 @@ class QuizBimDetailView(PermissionRequiredMixin, DetailView, FormMixin):
         if self.question:
             htmx_form = form.save(commit=False)
             htmx_form.question_bim = get_object_or_404(QuestionBim, pk=self.question)
-            error_messages = validate_answer(htmx_form.question_bim, htmx_form.answer, htmx_form.is_correct)
+            error_messages = validate_answer(htmx_form, htmx_form.question_bim, htmx_form.answer, htmx_form.is_correct)
             if error_messages:
                 return render(self.request, "quiz_bim/answer_bim/answer_bim_form.html", context={
                     "forms": form,

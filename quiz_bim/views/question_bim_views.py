@@ -10,16 +10,9 @@ from quiz_bim.models import QuestionBim, AnswerBim, QuizBim
 
 class QuestionBimFormCreateView(PermissionRequiredMixin, View):
     def get(self, request, pk=None, *args, **kwargs):
-        forms = QuestionBimForm()
-        # Пока не реализовано (идея такова что приходит pk и данное кол-во форм создается)
-        # if not pk:
-        #    forms = QuestionBimForm()
-        # else:
-        #    forms = []
-        #    for i in range(0, int(pk)):
-        #        forms.append(QuestionBimForm())
+        form = QuestionBimForm()
         context = {
-            'forms': forms
+            'form': form
         }
         return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
 
