@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 23:39+0600\n"
-"PO-Revision-Date: 2023-11-11 23:55+0600\n"
+"POT-Creation-Date: 2023-11-12 00:16+0600\n"
+"PO-Revision-Date: 2023-11-12 00:08+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -124,16 +124,12 @@ msgid "Activate your user account"
 msgstr "Activate your user account"
 
 #: content/models/partner.py:8
-#, fuzzy
-#| msgid "Chapter title"
 msgid "partner title"
 msgstr "Title"
 
 #: content/models/partner.py:9
-#, fuzzy
-#| msgid "Course image"
 msgid "partner image"
-msgstr "Course image"
+msgstr "Image"
 
 #: content/models/partner.py:16
 msgid "Partner"
@@ -608,8 +604,7 @@ msgstr "Password successfully changed"
 #: templates/front/accounts/email/invalid_verification_link.html:4
 #: templates/front/accounts/email/verification-email-not-sent.html:4
 #: templates/front/accounts/email/verification-email-sent.html:4
-#: templates/front/accounts/login.html:4
-#: templates/front/accounts/login.html:20
+#: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
 msgid "Login"
 msgstr "Login"
@@ -627,12 +622,14 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                Email was sent to %(email)s. Please check your mailbox and verify your\n"
+"                                Email was sent to %(email)s. Please check "
+"your mailbox and verify your\n"
 "                                email address.\n"
 "                            "
 msgstr ""
 "\n"
-"Email was sent to %(email)s. Please check your mailbox and verify your email address."
+"Email was sent to %(email)s. Please check your mailbox and verify your email "
+"address."
 
 #: templates/front/accounts/email/verification_email.html:4
 #, python-format
@@ -646,9 +643,6 @@ msgstr ""
 "Dear %(name)s,\n"
 "\n"
 "Please click on the link below to confirm your registration:\n"
-"\tDear %(user.get_full_name)s,\n"
-"\n"
-"Please click on the link below to confirm your registration\n"
 
 #: templates/front/accounts/login.html:64
 msgid "Forgot password"
@@ -764,6 +758,18 @@ msgstr "Add modules"
 msgid "List"
 msgstr "List"
 
+#: templates/partials/statistics/chart_by_period.html:9
+msgid "7 days"
+msgstr "7 days"
+
+#: templates/partials/statistics/chart_by_period.html:10
+msgid "30 days"
+msgstr "30 days"
+
+#: templates/partials/statistics/chart_by_period.html:11
+msgid "180 days"
+msgstr "180 days"
+
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
@@ -811,8 +817,7 @@ msgid ""
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
 
-#: templates/socialaccount/signup.html:4
-#: templates/socialaccount/signup.html:21
+#: templates/socialaccount/signup.html:4 templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
 msgstr ""
@@ -821,8 +826,10 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                                You are about to use your %(provider_name)s account to login to\n"
-"                                                %(site_name)s. As a final step, please complete the following\n"
+"                                                You are about to use your "
+"%(provider_name)s account to login to\n"
+"                                                %(site_name)s. As a final "
+"step, please complete the following\n"
 "                                                form:"
 msgstr ""
 
@@ -833,17 +840,14 @@ msgstr ""
 #: templates/statistics/users_statistics/user_detailed_statistics.html:5
 #: templates/statistics/users_statistics/users_list_statistics.html:5
 #: templates/statistics/users_statistics/users_statistics_main.html:5
-#| msgid "Status"
 msgid "Statistics"
 msgstr "Statistics"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:16
-#| msgid "Lesson"
 msgid "Lessons"
 msgstr "Lessons"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:19
-#| msgid "Course language"
 msgid "Language"
 msgstr "Language"
 
@@ -856,7 +860,6 @@ msgid "Users purchased the course"
 msgstr "Users purchased the course"
 
 #: templates/statistics/courses_statistics/courses_statistics_detailed.html:15
-#| msgid "Delete course"
 msgid "Users completed the course"
 msgstr "Users completed the course"
 
@@ -866,7 +869,6 @@ msgstr "Average course completion time"
 
 #: templates/statistics/courses_statistics/courses_statistics_detailed.html:25
 #: templates/statistics/courses_statistics/courses_statistics_main.html:25
-#| msgid "Lesson"
 msgid "Lesson types"
 msgstr "Lesson types"
 
@@ -887,7 +889,6 @@ msgid "Number of published courses"
 msgstr "Number of published courses"
 
 #: templates/statistics/courses_statistics/courses_statistics_main.html:31
-#| msgid "Next lesson"
 msgid "Completed lessons"
 msgstr "Completed lessons"
 
@@ -912,55 +913,41 @@ msgid "Highest course price"
 msgstr "Highest course price"
 
 #: templates/statistics/sales_statistics/sales_statistics_main.html:34
-#| msgid "Description"
 msgid "New subscriptions"
 msgstr "New subscriptions"
 
 #: templates/statistics/sales_statistics/sales_statistics_main.html:38
-#| msgid "My courses"
 msgid "Popular courses"
 msgstr "Popular courses"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:15
 #: templates/statistics/users_statistics/users_list_statistics.html:15
-#, fuzzy
-#| msgid "Email sent"
 msgid "Email"
-msgstr "Email sent"
+msgstr "Email"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:16
 #: templates/statistics/users_statistics/users_list_statistics.html:16
-#, fuzzy
-#| msgid "country"
 msgid "Country"
 msgstr "Country"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:18
 #: templates/statistics/users_statistics/users_list_statistics.html:18
-#, fuzzy
-#| msgid "Register"
 msgid "Registered at"
-msgstr "Register"
+msgstr "Registered at"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:19
 #: templates/statistics/users_statistics/users_list_statistics.html:19
-#, fuzzy
-#| msgid "Last name"
 msgid "Last Entry"
-msgstr "Last name"
+msgstr "Last Entry"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:20
 #: templates/statistics/users_statistics/users_list_statistics.html:20
-#, fuzzy
-#| msgid "email_verified"
 msgid "Email Verified"
-msgstr "Email verified"
+msgstr "Email Verified"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:38
-#, fuzzy
-#| msgid "Add course"
 msgid "Active course"
-msgstr "Add course"
+msgstr "Active course"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:48
 #: templates/statistics/users_statistics/user_detailed_statistics.html:74
@@ -968,13 +955,10 @@ msgid "Tests statistics"
 msgstr "Tests statistics"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:59
-#, fuzzy
-#| msgid "Chapter description"
 msgid "No active subscriptions"
-msgstr "Chapter description"
+msgstr "No active subscriptions"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:62
-#| msgid "Finished"
 msgid "Finished courses"
 msgstr "Completed courses"
 
@@ -991,7 +975,6 @@ msgid "Number of users with active subscriptions"
 msgstr "Number of users with active subscriptions"
 
 #: templates/statistics/users_statistics/users_statistics_main.html:25
-#| msgid "New number"
 msgid "New users"
 msgstr "New users"
 
@@ -1014,7 +997,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Are you sure you want to delete the teacher <span class=\"text-danger\"> %(name)s</span>?"
+"Are you sure you want to delete the teacher <span class=\"text-danger\"> "
+"%(name)s</span>?"
 
 #: templates/teachers/teacher_detail.html:4
 msgid "Teacher info"
@@ -1044,21 +1028,26 @@ msgstr "Name"
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</"
+#~ "span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?"
+#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> "
+#~ "%(teacher.get_full_name)s</span>?"
 
 #, python-format
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.last_name)s "
+#~ "%(teacher.first_name)s %(teacher.father_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
+#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> "
+#~ "%(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</"
+#~ "span>?"
 
 #, fuzzy, python-format
 #~ msgid ""
