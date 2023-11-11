@@ -18,7 +18,6 @@ def make_text_for_test(count):
 
 @register.filter(name='make_text_for_lessons')
 def make_text_for_lessons(count):
-    print(count)
     try:
         if count == 1:
             return f'{count} практический материал'

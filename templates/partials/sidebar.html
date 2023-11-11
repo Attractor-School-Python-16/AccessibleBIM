@@ -24,6 +24,22 @@
         </li>
         <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-solid fa-book"></i>
+                Курсы</a>
+            <ul class="nav-group-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:coursemodel_create' %}">
+                        <span class="nav-icon"></span>
+                        Создать</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:coursemodel_list' %}">
+                    <span class="nav-icon"></span>
+                    Список курсов</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
                 <i class="nav-icon fa-solid fa-chalkboard-user"></i>
                 {% trans 'Teachers' %}</a>
             <ul class="nav-group-items">
@@ -68,7 +84,7 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_list' %}">
                     <span class="nav-icon"></span>
                     Список файлов</a>
-                    </li>
+                </li>
             </ul>
         </li>
         <li class="nav-group my-2">
@@ -160,6 +176,20 @@
                     {% endif %}
                 </ul>
             </li>
+            <li class="nav-group my-2">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-regular fa-handshake"></i>
+                    Партнеры</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:add_partner' %}">
+                        <span class="nav-icon"></span>
+                        Создать</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:partners_list' %}"><span
+                            class="nav-icon"></span> Список партнеров</a></li>
+                </ul>
+            </li>
+        </li>
         {% endif %}
     </ul>
 </div>

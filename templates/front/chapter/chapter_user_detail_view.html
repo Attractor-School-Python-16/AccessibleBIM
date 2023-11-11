@@ -9,14 +9,13 @@
             {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
         </div>
         <div class="col-md-9">
-            {% include 'front/partials/chapter/chapter_user_step.html' %}
             <h2>{% trans 'Chapter' %} {{ chapter.serial_number }}. {{ chapter.title }}</h2>
             <p>{{ chapter.description }}</p>
+            <div class="d-flex justify-content-center">
+                {% include 'front/partials/chapter/chapter_user_step.html' %}
+            </div>
 
                 {% for step in steps %}
-                    {% if step %}
-                        {{ step.title }}
-                    {% endif %}
                     <h3>{% trans 'Lesson' %} {{ step.serial_number }}. {{ step.title }}</h3>
                     {% if step.video %}
                         {% include 'steps/partial/video_partial.html' %}
@@ -25,25 +24,35 @@
                         {#                    {% elif step.test %}#}
                         {#                        {% include 'steps/partial/test_partial.html' %}#}
                     {% endif %}
-                    {% if step.files.all %}
-                        {% for file in step.files.all %}
-                            <p>Файл {{ file.file_title }}</p>
-                            <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
+                    <br>
+                    {% if step.file.all %}
+                        <p>Прикрепленные файлы:</p>
+                        {% for file in step.file.all %}
+                            <a class="link-info link-offset-1" href="{{ file.lesson_file.url }}" download>{{ file.file_title }}</a>
                         {% endfor %}
                     {% endif %}
+
+
                 {% endfor %}
                 {% if is_paginated %}
-                    {% if page_obj.has_previous %}
-                        <li><a href="?page={{ page_obj.previous_page_number }}">{% trans 'Previous lesson' %}</a></li>
-                    {% endif %}
-                    {% if page_obj.has_next %}
-                        <li><a href="?page={{ page_obj.next_page_number }}">{% trans 'Next lesson' %}</a></li>
-                    {% else %}
-                        {% if next_chapter %}
-                            <li><a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">
-                                {% trans 'Next chapter' %}</a></li>
+                    <div class="d-flex justify-content-evenly mt-5">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-info">Предыдущий урок</button></a>
+                        {% elif previous_chapter %}
+                            <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=previous_chapter.pk %}?page={{ last_step_serial_number }}">
+                                    <button type="button" class="btn btn-success">Предыдущая глава</button>
+                            </a>
                         {% endif %}
-                    {% endif %}
+                        {% if page_obj.has_next %}
+                           <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-info">Следующий урок</button></a>
+                        {% else %}
+                            {% if chapter_end %}
+                                <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">
+                                    <button type="button" class="btn btn-success">Следующая глава</button>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 {% endif %}
 
 
