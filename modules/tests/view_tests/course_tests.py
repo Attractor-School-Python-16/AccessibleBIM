@@ -232,9 +232,11 @@ class TestCourseUpdateView(CustomTestCase):
 
     @login_superuser
     def test_update_view(self):
+        module = ModuleFactory.create()
         course_target = CourseTargetFactory.create()
         teacher = TeacherFactory.create()
         new_data = {
+            "module_id": module.id,
             "title": "New title",
             "description": "New description",
             "image": get_image_file(),
@@ -253,9 +255,11 @@ class TestCourseUpdateView(CustomTestCase):
         self.assertEqual(self.course.language, new_data['language'])
 
     def test_anonymous(self):
+        module = ModuleFactory.create()
         course_target = CourseTargetFactory.create()
         teacher = TeacherFactory.create()
         new_data = {
+            "module_id": module.id,
             "title": "New title",
             "description": "New description",
             "image": get_image_file(),
@@ -272,9 +276,11 @@ class TestCourseUpdateView(CustomTestCase):
 
     @login_user
     def test_no_permissions(self):
+        module = ModuleFactory.create()
         course_target = CourseTargetFactory.create()
         teacher = TeacherFactory.create()
         new_data = {
+            "module_id": module.id,
             "title": "New title",
             "description": "New description",
             "image": get_image_file(),
@@ -291,9 +297,11 @@ class TestCourseUpdateView(CustomTestCase):
 
     @login_superuser
     def test_not_found(self):
+        module = ModuleFactory.create()
         course_target = CourseTargetFactory.create()
         teacher = TeacherFactory.create()
         new_data = {
+            "module_id": module.id,
             "title": "New title",
             "description": "New description",
             "image": get_image_file(),
@@ -306,10 +314,32 @@ class TestCourseUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
 
     @login_superuser
-    def test_empty_title(self):
+    def test_invalid_module_id(self):
         course_target = CourseTargetFactory.create()
         teacher = TeacherFactory.create()
         invalid_data = {
+            "module_id": "",
+            "title": "New title",
+            "description": "New description",
+            "image": get_image_file(),
+            "learnTime": 15,
+            "courseTarget_id": course_target.id,
+            "language": "RU",
+            "teachers": [teacher.id]
+        }
+        response = self.client.post(self.url, data=invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'module_id', 'Это поле обязательно для заполнения.')
+        self.course.refresh_from_db()
+        self.assertNotEqual(self.course.module_id.id, invalid_data['module_id'])
+
+    @login_superuser
+    def test_empty_title(self):
+        module = ModuleFactory.create()
+        course_target = CourseTargetFactory.create()
+        teacher = TeacherFactory.create()
+        invalid_data = {
+            "module_id": module.id,
             "title": "",
             "description": "Description",
             "image": get_image_file(),
@@ -326,9 +356,11 @@ class TestCourseUpdateView(CustomTestCase):
 
     @login_superuser
     def test_empty_description(self):
+        module = ModuleFactory.create()
         course_target = CourseTargetFactory.create()
         teacher = TeacherFactory.create()
         invalid_data = {
+            "module_id": module.id,
             "title": "Course",
             "description": "",
             "image": get_image_file(),
@@ -345,8 +377,10 @@ class TestCourseUpdateView(CustomTestCase):
 
     @login_superuser
     def test_invalid_courseTarget_id(self):
+        module = ModuleFactory.create()
         teacher = TeacherFactory.create()
         invalid_data = {
+            "module_id": module.id,
             "title": "Course",
             "description": "Description",
             "image": get_image_file(),
@@ -363,9 +397,11 @@ class TestCourseUpdateView(CustomTestCase):
 
     @login_superuser
     def test_invalid_language(self):
+        module = ModuleFactory.create()
         course_target = CourseTargetFactory.create()
         teacher = TeacherFactory.create()
         invalid_data = {
+            "module_id": module.id,
             "title": "Course",
             "description": "Description",
             "image": get_image_file(),
