@@ -82,7 +82,7 @@ class TestCourseCreateView(CustomTestCase):
         super().setUpTestData()
 
     @login_superuser
-    def test_create_view(self):
+    def test_create_by_module_view(self):
         previous_count = CourseModel.objects.count()
         response = self.client.post(self.url, self.correct_form_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
@@ -94,6 +94,31 @@ class TestCourseCreateView(CustomTestCase):
         self.assertEqual(course.learnTime, self.correct_form_data['learnTime'])
         self.assertEqual(course.courseTarget_id.id, self.correct_form_data['courseTarget_id'])
         self.assertEqual(course.language, self.correct_form_data['language'])
+
+    @login_superuser
+    def test_create_view(self):
+        previous_count = CourseModel.objects.count()
+        correct_form_data = {
+            "module_id": self.module.id,
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "RU",
+            "teachers": [self.teacher.id]
+        }
+        response = self.client.post(reverse("modules:coursemodel_create"), correct_form_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(CourseModel.objects.count() - previous_count, 1)
+        course = CourseModel.objects.latest('create_at')
+        self.assertRedirects(response, reverse("modules:modulemodel_detail", kwargs={"pk": course.module_id.pk}))
+        self.assertEqual(course.module_id.id, correct_form_data['module_id'])
+        self.assertEqual(course.title, correct_form_data['title'])
+        self.assertEqual(course.description, correct_form_data['description'])
+        self.assertEqual(course.learnTime, correct_form_data['learnTime'])
+        self.assertEqual(course.courseTarget_id.id, correct_form_data['courseTarget_id'])
+        self.assertEqual(course.language, correct_form_data['language'])
 
     def test_anonymous(self):
         response = self.client.post(self.url, self.correct_form_data)
