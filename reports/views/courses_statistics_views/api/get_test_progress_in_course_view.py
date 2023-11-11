@@ -25,13 +25,12 @@ def get_test_progress_in_course_view(request, *args, **kwargs):
 
         step_test = StepModel.objects.filter(chapter__course__pk=course_pk, test__isnull=False).values('test_id')
         test_progress = ProgressTest.objects.filter(test__pk__in=step_test, is_passed=True).values('test__pk',
-                        'test__title').annotate(total=Count(F('pk'), filter=Q(user_progress__answer__is_correct=True)
+                                                                                                   'test__title').annotate(
+            total=Count(F('pk'), filter=Q(user_progress__answer__is_correct=True)
                         ) * 100 / Count(F('test__question_bim__pk')))
 
         for t in test_progress:
             result['labels'].append(t['test__title'])
             result['values'].append(t['total'])
-
-        print('test_progress', test_progress)
 
         return JsonResponse(result)

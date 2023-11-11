@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Создать главу{% endblock %}
+{% block title %}{% trans 'Add chapter' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,8 +9,9 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1>Добавить главу:</h1>
-                {% include "partials/form.html" with button_text="Создать" %}
+                <h1>{% trans 'Add chapter' %}:</h1>
+                {% trans 'Add' as button_text_add %}
+                {% include "partials/form.html" with button_text=button_text_add %}
             </div>
         </div>
     </div>
