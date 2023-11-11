@@ -7,16 +7,16 @@
         <div class="col-md-3">
             {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 content">
             {% include 'front/partials/chapter/chapter_user_step.html' %}
-            <h2>Глава {{ chapter.serial_number }}. {{ chapter.title }}</h2>
-            <p>{{ chapter.description }}</p>
+            <h2 class="heading">Глава {{ chapter.serial_number }}. {{ chapter.title }}</h2>
+            <p class="content">{{ chapter.description }}</p>
 
                 {% for step in steps %}
                     {% if step %}
                         {{ step.title }}
                     {% endif %}
-                    <h3>Урок {{ step.serial_number }}. {{ step.title }}</h3>
+                    <h3 class="content mt-4 mb-4">Урок {{ step.serial_number }}. {{ step.title }}</h3>
                     {% if step.video %}
                         {% include 'steps/partial/video_partial.html' %}
                     {% elif step.text %}
@@ -26,20 +26,20 @@
                     {% endif %}
                     {% if step.files.all %}
                         {% for file in step.files.all %}
-                            <p>Файл {{ file.file_title }}</p>
-                            <a href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
+                            <p class="content">Файл {{ file.file_title }}</p>
+                            <a class="content" href="{{ file.lesson_file.url }}" download>Скачать Файл</a>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
                 {% if is_paginated %}
                     {% if page_obj.has_previous %}
-                        <li><a href="?page={{ page_obj.previous_page_number }}">Предыдущий урок</a></li>
+                        <li><a class="content" href="?page={{ page_obj.previous_page_number }}">Предыдущий урок</a></li>
                     {% endif %}
                     {% if page_obj.has_next %}
-                        <li><a href="?page={{ page_obj.next_page_number }}">Следующий урок</a></li>
+                        <li><a class="content" href="?page={{ page_obj.next_page_number }}">Следующий урок</a></li>
                     {% else %}
                         {% if next_chapter %}
-                            <li><a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">Следующая
+                            <li><a class="content" href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">Следующая
                                 глава</a></li>
                         {% endif %}
                     {% endif %}
