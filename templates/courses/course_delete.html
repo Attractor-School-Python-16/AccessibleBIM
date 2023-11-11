@@ -16,8 +16,8 @@
             </p>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans 'Yes' %}</button>
-                <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}" id="cancel-button">{% trans 'No' %}</a>
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                <a class="btn btn-primary" href="{% url "modules:modulemodel_list" %}" id="cancel-button">Нет</a>
             </form>
         </div>
     </div>

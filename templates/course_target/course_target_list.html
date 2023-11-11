@@ -22,7 +22,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for course_target in course_targets %}
+                {% for course_target in course_targets|dictsort:"id" %}
                     <tr>
                         <td>{{ course_target.id }}</td>
                         <td>
