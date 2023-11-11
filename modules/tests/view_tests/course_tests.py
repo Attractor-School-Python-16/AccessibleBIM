@@ -130,6 +130,24 @@ class TestCourseCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
 
     @login_superuser
+    def test_standalone_empty_module_id(self):
+        invalid_data = {
+            "module_id": "",
+            "title": "Course",
+            "description": "Description",
+            "image": get_image_file(),
+            "learnTime": 10,
+            "courseTarget_id": self.courseTarget_id.id,
+            "language": "RU",
+            "teachers": [self.teacher.id]
+        }
+        previous_count = CourseModel.objects.count()
+        response = self.client.post(reverse("modules:coursemodel_create"), invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response, 'form', 'module_id', 'Это поле обязательно для заполнения.')
+        self.assertEqual(CourseModel.objects.count() - previous_count, 0)
+
+    @login_superuser
     def test_empty_title(self):
         invalid_data = {
             "title": "",
