@@ -2,69 +2,75 @@
 {% load view_breadcrumbs %}
 {% block title %}{{ chapter.title }}{% endblock %}
 {% block moderator_interface %}
-{% block breadcrumbs %}
-    {% render_breadcrumbs %}
-{% endblock %}
-<div class="card my-4">
-    <div class="card-body">
-        <div class="card-header">
-            <h2>Глава: {{ chapter.title }}</h2>
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="container my-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <h2>Глава: {{ chapter.title }}</h2>
+                </div>
+                <div>
+                    <h3>Описание: {{ chapter.description }}</h3>
+                    <p>Курс: {{ chapter.course }}</p>
+                    <p>Порядковый номер: {{ chapter.serial_number }}</p>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'modules:chaptermodel_update' chapter.id %}" class="btn btn-info btn-sm mx-2">Изменить</a>
+                    <a href="{% url 'modules:chaptermodel_delete' chapter.id %}"
+                       class="btn btn-danger btn-sm">Удалить</a>
+                </div>
+            </div>
         </div>
-        <div>
-            <h3>Описание: {{ chapter.description }}</h3>
-            <p>Курс: {{ chapter.course }}</p>
-            <p>Порядковый номер: {{ chapter.serial_number }}</p>
-        </div>
-        <div class="d-flex justify-content-end">
-            <a href="{% url 'modules:chaptermodel_update' chapter.id %}"
-               class="btn btn-info btn-sm mx-3">Изменить</a>
-            <a href="{% url 'modules:chaptermodel_delete' chapter.id %}"
-               class="btn btn-danger btn-sm" style="margin-right: 0.8rem">Удалить</a>
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="card-header">
+                    <h2 class="my-3">Список занятий главы {{ chapter.title }}</h2>
+                </div>
+                <div class="d-flex flex-wrap my-3">
+                    <a href="{% url 'step:stepmodel_video_create' %}?chapter_pk={{ chapter.id }}"
+                       class="btn btn-primary my-2 mx-2">Добавить видео урок</a>
+                    <a href="{% url 'step:stepmodel_text_create' %}?chapter_pk={{ chapter.id }}"
+                       class="btn btn-primary my-2 mx-2">Добавить лекцию</a>
+                    <a href="{% url 'step:stepmodel_quiz_create' %}?chapter_pk={{ chapter.id }}"
+                       class="btn btn-primary my-2 mx-2">Добавить тест</a>
+                    <a href="{% url 'modules:change_steps_order' chapter.id %}" class="btn btn-secondary my-2 mx-2">Изменить
+                        порядок занятий в главе</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Порядковый номер</th>
+                            <th>Название</th>
+                            <th class="text-end">Действия</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for step in steps|dictsort:"serial_number" %}
+                            <tr>
+                                <td>{{ step.serial_number }}</td>
+                                {% if step.test %}
+                                    <td><a href="{% url 'quiz_bim:quizbim_detail' step.test.id %}">{{ step.title }}</a>
+                                    </td>
+                                {% else %}
+                                    <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
+                                {% endif %}
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a href="{% url 'step:stepmodel_update' step.id %}"
+                                           class="btn btn-info btn-sm mx-2">Изменить</a>
+                                        <a href="{% url 'step:stepmodel_delete' step.id %}"
+                                           class="btn btn-danger btn-sm">Удалить</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="card">
-    <div class="card-body">
-        <div class="card-header">
-            <h2 class="my-3">Список занятий главы {{ chapter.title }}</h2>
-        </div>
-        <a href="{% url 'step:stepmodel_video_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
-                    my-3 mx-2">Добавить видео урок</a>
-        <a href="{% url 'step:stepmodel_text_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
-                    my-3 mx-2">Добавить лекцию</a>
-        <a href="{% url 'step:stepmodel_quiz_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
-                    my-3 mx-2">Добавить тест</a>
-        <a href="{% url 'modules:change_steps_order' chapter.id %}" class="btn btn-secondary
-                    my-3 mx-2">Изменить порядок занятий в главе</a>
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Порядковый номер</th>
-                <th>Название</th>
-                <th class="text-end">Действия</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for step in steps|dictsort:"serial_number" %}
-                <tr>
-                    <td>{{ step.serial_number }}</td>
-                    {% if step.test %}
-                        <td><a href="{% url 'quiz_bim:quizbim_detail' step.test.id %}">{{ step.title }}</a></td>
-                    {% else %}
-                        <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
-                    {% endif %}
-                    <td class="text-end">
-                        <div class="btn-group">
-                            <a href="{% url 'step:stepmodel_update' step.id %}"
-                               class="btn btn-info btn-sm mx-3">Изменить</a>
-                            <a href="{% url 'step:stepmodel_delete' step.id %}"
-                               class="btn btn-danger btn-sm">Удалить</a>
-                        </div>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
 {% endblock %}
