@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 00:40+0600\n"
-"PO-Revision-Date: 2023-11-12 00:41+0600\n"
+"POT-Creation-Date: 2023-11-12 00:52+0600\n"
+"PO-Revision-Date: 2023-11-12 00:58+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -135,7 +135,11 @@ msgstr "Image"
 msgid "Partner"
 msgstr "Partner"
 
-#: content/models/partner.py:17
+#: content/models/partner.py:17 templates/partials/sidebar.html:182
+#: templates/partners/partners_create.html:5
+#: templates/partners/partners_delete.html:5
+#: templates/partners/partners_list.html:5
+#: templates/partners/partners_update.html:5
 msgid "Partners"
 msgstr "Partners"
 
@@ -198,15 +202,15 @@ msgstr "Target audience"
 
 #: modules/models/courses.py:21
 msgid "Русский"
-msgstr ""
+msgstr "Russian"
 
 #: modules/models/courses.py:22
 msgid "Английский"
-msgstr ""
+msgstr "English"
 
 #: modules/models/courses.py:23
 msgid "Кыргызский"
-msgstr ""
+msgstr "Kyrgyz"
 
 #: modules/models/courses.py:25
 msgid "Course title"
@@ -336,15 +340,15 @@ msgstr "Course progress"
 
 #: step/models/step.py:10
 msgid "Видео"
-msgstr ""
+msgstr "Video"
 
 #: step/models/step.py:11
 msgid "Текст"
-msgstr ""
+msgstr "Text"
 
 #: step/models/step.py:12
 msgid "Тест"
-msgstr ""
+msgstr "Test"
 
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:35
@@ -390,6 +394,8 @@ msgstr "Add chapter"
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
 #: templates/partials/sidebar.html:49 templates/partials/sidebar.html:66
+#: templates/partials/sidebar.html:186
+#: templates/partners/partners_create.html:11
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Add"
@@ -413,6 +419,7 @@ msgstr ""
 #: templates/chapters/chapter_delete.html:19
 #: templates/course_target/course_target_delete.html:19
 #: templates/modules/module_delete.html:19
+#: templates/partners/partners_delete.html:18
 #: templates/teachers/teacher_delete.html:19
 msgid "Yes"
 msgstr "Yes"
@@ -420,6 +427,7 @@ msgstr "Yes"
 #: templates/chapters/chapter_delete.html:20
 #: templates/course_target/course_target_delete.html:20
 #: templates/modules/module_delete.html:20
+#: templates/partners/partners_delete.html:19
 #: templates/teachers/teacher_delete.html:20
 msgid "No"
 msgstr "No"
@@ -440,6 +448,7 @@ msgstr "Description"
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
 #: templates/modules/modules_list.html:32
+#: templates/partners/partners_list.html:30
 #: templates/teachers/teacher_detail.html:20
 #: templates/teachers/teachers_list.html:33
 msgid "Change"
@@ -456,6 +465,7 @@ msgstr "Change"
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
 #: templates/modules/modules_list.html:34
+#: templates/partners/partners_list.html:32
 #: templates/teachers/teacher_detail.html:22
 #: templates/teachers/teachers_list.html:35
 msgid "Delete"
@@ -480,6 +490,7 @@ msgstr "Add test"
 #: templates/courses/courses_list.html:20
 #: templates/modules/module_detail.html:29
 #: templates/modules/modules_list.html:20
+#: templates/partners/partners_list.html:17
 msgid "Title"
 msgstr "Title"
 
@@ -490,6 +501,7 @@ msgstr "Title"
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:30
 #: templates/modules/modules_list.html:21
+#: templates/partners/partners_list.html:18
 #: templates/teachers/teachers_list.html:21
 msgid "Actions"
 msgstr "Actions"
@@ -503,6 +515,7 @@ msgstr "Edit chapter"
 #: templates/course_target/course_target_update.html:13
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
+#: templates/partners/partners_update.html:9
 #: templates/teachers/teacher_update.html:13
 msgid "Edit"
 msgstr "Edit"
@@ -754,7 +767,7 @@ msgid "Add modules"
 msgstr "Add modules"
 
 #: templates/partials/sidebar.html:21 templates/partials/sidebar.html:54
-#: templates/partials/sidebar.html:71
+#: templates/partials/sidebar.html:71 templates/partials/sidebar.html:189
 msgid "List"
 msgstr "List"
 
@@ -770,7 +783,6 @@ msgid "Statistics"
 msgstr "Statistics"
 
 #: templates/partials/sidebar.html:162
-#| msgid "User"
 msgid "Users"
 msgstr "Users"
 
@@ -789,6 +801,42 @@ msgstr "30 days"
 #: templates/partials/statistics/chart_by_period.html:11
 msgid "180 days"
 msgstr "180 days"
+
+#: templates/partners/partners_create.html:10
+#: templates/partners/partners_list.html:11
+#| msgid "Add chapter"
+msgid "Add partner"
+msgstr "Add partner"
+
+#: templates/partners/partners_delete.html:11
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                Are you sure you want to delete the chapter\n"
+#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                "
+msgid ""
+"\n"
+"                    Are you sure you want to delete the partner\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the partner <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/partners/partners_list.html:10
+#| msgid "Chapters list"
+msgid "Partners list"
+msgstr "Partners list"
+
+#: templates/partners/partners_list.html:16
+msgid "Image"
+msgstr "Image"
+
+#: templates/partners/partners_update.html:8
+#| msgid "Edit chapter"
+msgid "Edit partner"
+msgstr "Edit partner"
 
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
@@ -841,7 +889,7 @@ msgstr ""
 #: templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
-msgstr ""
+msgstr "Sign Up"
 
 #: templates/socialaccount/signup.html:28
 #, python-format
