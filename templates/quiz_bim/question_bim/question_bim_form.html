@@ -2,7 +2,7 @@
 <div hx-target="this" hx-swap="outerHTML" class="">
     <form action="" id="main-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ forms|crispy }}
+        {{ form|crispy }}
         {% if question %}
             <button type="submit" hx-post="{% url 'quiz_bim:questionbim_htmx_update' question.test_bim.id question.id %}"
                     class="btn btn-primary">
@@ -23,7 +23,7 @@
 <script>
     const saveButton = document.getElementById('save_question')
     saveButton.addEventListener('click', function () {
-            location.reload();
-        });
+        window.location.reload();
+    });
 </script>
 
