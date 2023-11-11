@@ -29,11 +29,11 @@
                         <td class="text-end">
                             {% if perms.step.change_textmodel %}
                                 <a href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}"
-                                   class="btn btn-info btn-sm mx-2">Изменить</a>
+                                   class="btn btn-info btn-sm mb-2">Изменить</a>
                             {% endif %}
                             {% if perms.step.delete_textmodel %}
                                 <a href="{% url 'quiz_bim:quizbim_delete' pk=test.pk %}"
-                                   class="btn btn-danger btn-sm">Удалить</a>
+                                   class="btn btn-danger btn-sm mb-2 ms-2">Удалить</a>
                             {% endif %}
                         </td>
                     </tr>
