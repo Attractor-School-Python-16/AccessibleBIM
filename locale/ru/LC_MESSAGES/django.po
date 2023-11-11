@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 00:07+0600\n"
-"PO-Revision-Date: 2023-11-12 00:09+0600\n"
+"POT-Creation-Date: 2023-11-12 00:40+0600\n"
+"PO-Revision-Date: 2023-11-12 00:41+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -251,6 +251,7 @@ msgid "Teachers"
 msgstr "Преподаватели"
 
 #: modules/models/courses.py:49 templates/courses/courses_list.html:4
+#: templates/partials/sidebar.html:168
 msgid "Courses"
 msgstr "Курсы"
 
@@ -756,6 +757,26 @@ msgstr "Добавить модуль"
 msgid "List"
 msgstr "Список"
 
+#: templates/partials/sidebar.html:157
+#: templates/statistics/courses_statistics/courses_list_statistics.html:5
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:5
+#: templates/statistics/courses_statistics/courses_statistics_main.html:5
+#: templates/statistics/sales_statistics/sales_statistics_main.html:5
+#: templates/statistics/users_statistics/user_detailed_statistics.html:5
+#: templates/statistics/users_statistics/users_list_statistics.html:5
+#: templates/statistics/users_statistics/users_statistics_main.html:5
+msgid "Statistics"
+msgstr "Статистика"
+
+#: templates/partials/sidebar.html:162
+#| msgid "User"
+msgid "Users"
+msgstr "Пользователи"
+
+#: templates/partials/sidebar.html:174
+msgid "Sales"
+msgstr "Продажи"
+
 #: templates/partials/statistics/chart_by_period.html:9
 msgid "7 days"
 msgstr "7 дней"
@@ -829,16 +850,6 @@ msgid ""
 "                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
-
-#: templates/statistics/courses_statistics/courses_list_statistics.html:5
-#: templates/statistics/courses_statistics/courses_statistics_detailed.html:5
-#: templates/statistics/courses_statistics/courses_statistics_main.html:5
-#: templates/statistics/sales_statistics/sales_statistics_main.html:5
-#: templates/statistics/users_statistics/user_detailed_statistics.html:5
-#: templates/statistics/users_statistics/users_list_statistics.html:5
-#: templates/statistics/users_statistics/users_statistics_main.html:5
-msgid "Statistics"
-msgstr "Статистика"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:16
 msgid "Lessons"

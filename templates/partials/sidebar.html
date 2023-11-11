@@ -154,24 +154,24 @@
             <li class="nav-group my-2">
                 <a class="nav-link nav-group-toggle" href="#">
                     <i class="nav-icon fa-solid fa-chart-simple"></i>
-                    Статистика</a>
+                    {% trans 'Statistics' %}</a>
                 <ul class="nav-group-items">
                     {% if perms.accounts.can_view_user_statistics %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_users_main' %}">
                             <span class="nav-icon"></span>
-                            Пользователи</a>
+                            {% trans 'Users' %}</a>
                         </li>
                     {% endif %}
                     {% if perms.accounts.can_view_course_statistics %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_courses_main' %}">
                             <span class="nav-icon"></span>
-                            Курсы</a>
+                            {% trans 'Courses' %}</a>
                         </li>
                     {% endif %}
                     {% if perms.accounts.can_view_sales_statistics %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_sales_main' %}">
                             <span class="nav-icon"></span>
-                            Продажи</a>
+                            {% trans 'Sales' %}</a>
                         </li>
                     {% endif %}
                 </ul>
