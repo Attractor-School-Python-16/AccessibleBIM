@@ -20,10 +20,10 @@ def check_correct_answers_count(form, question, is_correct, update):
     error_message = None
     answers_count = question.answer_bim.count()
     correct_answers = question.answer_bim.all().filter(is_correct=True)
-    if answers_count >= 3:
-        if not correct_answers and not is_correct or instance_is_correct and not is_correct:
-            error_message = ("В вопросе должен быть хотя бы один правильный ответ")
-            return error_message
+    # if answers_count >= 3:
+    #     if not correct_answers and not is_correct or instance_is_correct and not is_correct:
+    #         error_message = ("В вопросе должен быть хотя бы один правильный ответ")
+    #         return error_message
     if answers_count >= 1:
         if correct_answers and is_correct:
             if not instance_is_correct:
