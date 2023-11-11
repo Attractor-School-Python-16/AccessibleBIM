@@ -22,18 +22,20 @@ function createPaginationButtons() {
         let button = document.createElement('li');
         button.classList.add('page-item');
         let buttonLink = document.createElement('a');
-        buttonLink.classList.add('page-link');
-        buttonLink.classList.add('mx-1');
-        buttonLink.type = "button";
+        buttonLink.classList.add('page-link', 'mx-1', 'my-1', 'button');
+        buttonLink.href = "#";  // Установите нужный href
         buttonLink.textContent = index + 1;
 
-        buttonLink.addEventListener('click', () => {
+        buttonLink.addEventListener('click', (event) => {
+            event.preventDefault();
             showQuestions(index);
         });
 
         button.appendChild(buttonLink);
         paginationContainer.appendChild(button);
     });
+
+    paginationContainer.classList.add('d-flex', 'flex-wrap', 'justify-content-center');
 }
 
 
