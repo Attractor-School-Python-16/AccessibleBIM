@@ -27,6 +27,9 @@
                     </li>
                 </ul>
                 </br>
+                <a href="{% url 'step:textmodel_update' text.id %}" class="btn btn-primary me-2">Редактировать
+                    текст</a>
+                <a href="{% url 'step:textmodel_delete' text.id %}" class="btn btn-danger me-2">Удалить текст</a>
                 <a href="{% url 'step:textmodel_list' %}" class="btn btn-secondary">Вернуться к списку текстов</a>
             </div>
         </div>
