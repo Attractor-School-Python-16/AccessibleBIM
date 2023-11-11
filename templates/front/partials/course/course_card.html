@@ -1,5 +1,5 @@
 {% load custom_test static i18n %}
-<article class="postcard {% if my_course %}blue{% else %}light{% endif %} blue">
+<article class="postcard {% if my_course %}bg_blue{% else %}light{% endif %} blue">
     <a class="postcard__img_link" href="#">
         <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title"/>
     </a>
@@ -17,13 +17,16 @@
         <div class="postcard__preview-txt">{{ course.description }}</div>
         <ul class="postcard__tagbox text-white">
             <li class="tag__item"><i
+                    class="fas fa-tag mr-2"></i> {{ course.language|get_language_name }}
+            </li>
+            <li class="tag__item"><i
                     class="fas fa-tag mr-2"></i> {{ course.module_id }}
             </li>
             <li class="tag__item"><i
                     class="fas fa-tag mr-2"></i> {{ course.courseTarget_id }}
             </li>
             <li class="tag__item"><i
-                    class="fas fa-tag mr-2"></i> {{ course.get_total_tests|make_text_for_text }}
+                    class="fas fa-tag mr-2"></i> {{ course.get_total_tests|make_text_for_test }}
             </li>
             <li class="tag__item"><i
                     class="fas fa-tag mr-2"></i> {{ course.get_total_lessons|make_text_for_lessons }}

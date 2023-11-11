@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <link href="{% static "css/cards.css" %}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    {#для видеоплейера#}
+    <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
     {% block page_style %}
     {% endblock %}
 </head>
@@ -48,6 +50,11 @@
 {% block page_footer %}
     {% include 'front/partials/footer.html' %}
 {% endblock %}
+
+{#для видеоплейера#}
+<script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+<script src="{% static 'js/user_video.js'%}"></script>
+
 <!--   Core JS Files   -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="

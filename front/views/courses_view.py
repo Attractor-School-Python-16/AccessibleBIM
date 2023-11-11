@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
@@ -11,38 +12,60 @@ class CoursesUserListView(ListView):
     model = CourseModel
     template_name = 'front/courses/courses.html'
     context_object_name = 'courses'
-    ordering = "-create_at"
+    paginate_by = 5
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_full_language_name(self):
+        pass
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
         context['selected_modules'] = self.request.GET.getlist('modules', [])
         context['selected_languages'] = self.request.GET.getlist('languages', [])
         context['selected_targets'] = self.request.GET.getlist('targets', [])
-        context['course_targets'] = CourseTargetModel.objects.all()
-        context['modules'] = ModuleModel.objects.all()
+        context['course_targets'] = {data.title: data.title for data in CourseTargetModel.objects.all()}
+        context['modules'] = {data.title: data.title for data in ModuleModel.objects.all()}
+        context['languages'] = {str(data[0]): str(data[1]) for data in CourseModel.TypeChoices.choices}
+        params = self.get_filter_params()
+        query = ''
+        if params['modules']:
+            for module in params['modules']:
+                query += f"modules={module}&"
+
+        if params['languages']:
+            for language in params['languages']:
+                query += f"languages={language}&"
+
+        if params['targets']:
+            for target in params['targets']:
+                query += f"targets={target}&"
+
+        context["query"] = query
         try:
             context['user_subscription'] = UsersSubscription.objects.get(Q(user=self.request.user) & Q(is_active=True))
-            print(context['user_subscription'])
         except UsersSubscription.DoesNotExist:
             context['user_subscription'] = None
         except TypeError:
             context['user_subscription'] = None
         return context
 
+    def get_filter_params(self):
+        params = {'modules': self.request.GET.getlist('modules', []),
+                  'languages': self.request.GET.getlist('languages', []),
+                  'targets': self.request.GET.getlist('targets', [])}
+        return params
+
     def get_queryset(self):
-        queryset = CourseModel.objects.filter(subscription__price__isnull=False, subscription__is_published=True)
-        modules = self.request.GET.getlist('modules', [])
-        languages = self.request.GET.getlist('languages', [])
-        targets = self.request.GET.getlist('targets', [])
+        queryset = CourseModel.objects.filter(subscription__is_published=True).order_by('-update_at')
+        params = self.get_filter_params()
 
-        if modules:
-            queryset = queryset.filter(module_id__title__in=modules)
+        if params['modules']:
+            queryset = queryset.filter(module_id__title__in=params['modules'])
 
-        if languages:
-            queryset = queryset.filter(language__in=languages)
+        if params['languages']:
+            queryset = queryset.filter(language__in=params['languages'])
 
-        if targets:
-            queryset = queryset.filter(courseTarget_id__title__in=targets)
+        if params['targets']:
+            queryset = queryset.filter(courseTarget_id__title__in=params['targets'])
         return queryset
 
 
@@ -63,7 +86,8 @@ class CourseUserDetailView(DetailView):
         if subscription:
             context['subscription'] = subscription[0]
             if self.request.user.is_authenticated:
-                user_subscription = UsersSubscription.objects.filter(user=self.request.user, subscription=subscription[0])
+                user_subscription = UsersSubscription.objects.filter(user=self.request.user,
+                                                                     subscription=subscription[0])
                 if user_subscription:
                     context['user_subscription'] = user_subscription[0].is_active
         return context
