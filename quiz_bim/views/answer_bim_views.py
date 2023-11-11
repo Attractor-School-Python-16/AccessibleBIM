@@ -75,7 +75,7 @@ class AnswerBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
         form.question_bim = get_object_or_404(QuestionBim, pk=kwargs["qpk"])
         answer_content = form.cleaned_data["answer"]
         is_correct = form.cleaned_data["is_correct"]
-        error_messages = validate_answer(form.question_bim, answer_content, is_correct)
+        error_messages = validate_answer(form, form.question_bim, answer_content, is_correct, update=True)
         if error_messages:
             return render(self.request, "quiz_bim/answer_bim/answer_bim_form.html", context={
                 "forms": form,
