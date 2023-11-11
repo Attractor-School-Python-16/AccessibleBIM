@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 00:16+0600\n"
-"PO-Revision-Date: 2023-11-12 00:08+0600\n"
+"POT-Creation-Date: 2023-11-12 00:40+0600\n"
+"PO-Revision-Date: 2023-11-12 00:41+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -247,6 +247,7 @@ msgid "Teachers"
 msgstr "Teachers"
 
 #: modules/models/courses.py:49 templates/courses/courses_list.html:4
+#: templates/partials/sidebar.html:168
 msgid "Courses"
 msgstr "Courses"
 
@@ -604,7 +605,8 @@ msgstr "Password successfully changed"
 #: templates/front/accounts/email/invalid_verification_link.html:4
 #: templates/front/accounts/email/verification-email-not-sent.html:4
 #: templates/front/accounts/email/verification-email-sent.html:4
-#: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
+#: templates/front/accounts/login.html:4
+#: templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
 msgid "Login"
 msgstr "Login"
@@ -622,14 +624,12 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                Email was sent to %(email)s. Please check "
-"your mailbox and verify your\n"
+"                                Email was sent to %(email)s. Please check your mailbox and verify your\n"
 "                                email address.\n"
 "                            "
 msgstr ""
 "\n"
-"Email was sent to %(email)s. Please check your mailbox and verify your email "
-"address."
+"Email was sent to %(email)s. Please check your mailbox and verify your email address."
 
 #: templates/front/accounts/email/verification_email.html:4
 #, python-format
@@ -758,6 +758,26 @@ msgstr "Add modules"
 msgid "List"
 msgstr "List"
 
+#: templates/partials/sidebar.html:157
+#: templates/statistics/courses_statistics/courses_list_statistics.html:5
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:5
+#: templates/statistics/courses_statistics/courses_statistics_main.html:5
+#: templates/statistics/sales_statistics/sales_statistics_main.html:5
+#: templates/statistics/users_statistics/user_detailed_statistics.html:5
+#: templates/statistics/users_statistics/users_list_statistics.html:5
+#: templates/statistics/users_statistics/users_statistics_main.html:5
+msgid "Statistics"
+msgstr "Statistics"
+
+#: templates/partials/sidebar.html:162
+#| msgid "User"
+msgid "Users"
+msgstr "Users"
+
+#: templates/partials/sidebar.html:174
+msgid "Sales"
+msgstr "Sales"
+
 #: templates/partials/statistics/chart_by_period.html:9
 msgid "7 days"
 msgstr "7 days"
@@ -817,7 +837,8 @@ msgid ""
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
 
-#: templates/socialaccount/signup.html:4 templates/socialaccount/signup.html:21
+#: templates/socialaccount/signup.html:4
+#: templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
 msgstr ""
@@ -826,22 +847,10 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                                You are about to use your "
-"%(provider_name)s account to login to\n"
-"                                                %(site_name)s. As a final "
-"step, please complete the following\n"
+"                                                You are about to use your %(provider_name)s account to login to\n"
+"                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
-
-#: templates/statistics/courses_statistics/courses_list_statistics.html:5
-#: templates/statistics/courses_statistics/courses_statistics_detailed.html:5
-#: templates/statistics/courses_statistics/courses_statistics_main.html:5
-#: templates/statistics/sales_statistics/sales_statistics_main.html:5
-#: templates/statistics/users_statistics/user_detailed_statistics.html:5
-#: templates/statistics/users_statistics/users_list_statistics.html:5
-#: templates/statistics/users_statistics/users_statistics_main.html:5
-msgid "Statistics"
-msgstr "Statistics"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:16
 msgid "Lessons"
@@ -997,8 +1006,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Are you sure you want to delete the teacher <span class=\"text-danger\"> "
-"%(name)s</span>?"
+"Are you sure you want to delete the teacher <span class=\"text-danger\"> %(name)s</span>?"
 
 #: templates/teachers/teacher_detail.html:4
 msgid "Teacher info"
@@ -1028,26 +1036,21 @@ msgstr "Name"
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</"
-#~ "span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> "
-#~ "%(teacher.get_full_name)s</span>?"
+#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?"
 
 #, python-format
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.last_name)s "
-#~ "%(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> "
-#~ "%(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</"
-#~ "span>?"
+#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
 
 #, fuzzy, python-format
 #~ msgid ""
