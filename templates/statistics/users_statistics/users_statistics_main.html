@@ -30,6 +30,7 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/statistics_js/statistics_charts.js' %}"></script>
     <script src="{% static 'js/statistics_js/stats_users_main.js' %}"></script>
 {% endblock %}

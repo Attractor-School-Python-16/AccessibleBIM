@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 23:39+0600\n"
-"PO-Revision-Date: 2023-11-11 23:52+0600\n"
+"POT-Creation-Date: 2023-11-12 00:07+0600\n"
+"PO-Revision-Date: 2023-11-12 00:09+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -756,6 +756,18 @@ msgstr "Добавить модуль"
 msgid "List"
 msgstr "Список"
 
+#: templates/partials/statistics/chart_by_period.html:9
+msgid "7 days"
+msgstr "7 дней"
+
+#: templates/partials/statistics/chart_by_period.html:10
+msgid "30 days"
+msgstr "30 дней"
+
+#: templates/partials/statistics/chart_by_period.html:11
+msgid "180 days"
+msgstr "180 дней"
+
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
@@ -825,17 +837,14 @@ msgstr ""
 #: templates/statistics/users_statistics/user_detailed_statistics.html:5
 #: templates/statistics/users_statistics/users_list_statistics.html:5
 #: templates/statistics/users_statistics/users_statistics_main.html:5
-#| msgid "Status"
 msgid "Statistics"
 msgstr "Статистика"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:16
-#| msgid "Lesson"
 msgid "Lessons"
 msgstr "Занятие"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:19
-#| msgid "Course language"
 msgid "Language"
 msgstr "Язык занятия"
 
@@ -848,7 +857,6 @@ msgid "Users purchased the course"
 msgstr "Пользователей купили данный курс"
 
 #: templates/statistics/courses_statistics/courses_statistics_detailed.html:15
-#| msgid "Delete course"
 msgid "Users completed the course"
 msgstr "Пользователей закончили данный курс"
 
@@ -858,7 +866,6 @@ msgstr "Среднее время прохождения"
 
 #: templates/statistics/courses_statistics/courses_statistics_detailed.html:25
 #: templates/statistics/courses_statistics/courses_statistics_main.html:25
-#| msgid "Lesson"
 msgid "Lesson types"
 msgstr "Типы уроков"
 
@@ -879,7 +886,6 @@ msgid "Number of published courses"
 msgstr "Количество опубликованных курсов"
 
 #: templates/statistics/courses_statistics/courses_statistics_main.html:31
-#| msgid "Next lesson"
 msgid "Completed lessons"
 msgstr "Пройденные уроки"
 
@@ -904,12 +910,10 @@ msgid "Highest course price"
 msgstr "Максимальная стоимость курса"
 
 #: templates/statistics/sales_statistics/sales_statistics_main.html:34
-#| msgid "Description"
 msgid "New subscriptions"
 msgstr "Новые подписки"
 
 #: templates/statistics/sales_statistics/sales_statistics_main.html:38
-#| msgid "My courses"
 msgid "Popular courses"
 msgstr "Популярные курсы"
 
@@ -960,12 +964,10 @@ msgid "Tests statistics"
 msgstr "Статистика по тестам"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:59
-#| msgid "Chapter description"
 msgid "No active subscriptions"
 msgstr "Нет текущих подписок"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:62
-#| msgid "Finished"
 msgid "Finished courses"
 msgstr "Завершенные курсы"
 
@@ -982,7 +984,6 @@ msgid "Number of users with active subscriptions"
 msgstr "Количество пользователей с действующей подпиской"
 
 #: templates/statistics/users_statistics/users_statistics_main.html:25
-#| msgid "New number"
 msgid "New users"
 msgstr "Новые пользователи"
 
