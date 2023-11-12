@@ -100,8 +100,8 @@ class QuizResultView(UserPassesTestMixin, DetailView):
                 if progress.is_passed:
                     progress_chapter[0].status = 1
                     progress_chapter[0].save()
-                # return redirect(f"{reverse('front:chaptermodel_user_detail', args=[chapter.pk])}?page={step_serial_number}")
-            return redirect("quiz_bim:test_result", pk=progress.pk)
+            # return redirect("quiz_bim:test_result", pk=progress.pk)
+            return HttpResponse(status=200)
         return redirect("quiz_bim:test_completion", pk=pk)
 
     def test_func(self):
