@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Список учителей{% endblock %}
+{% block title %}{% trans 'Teachers list' %}Список учителей{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -9,19 +10,19 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-header">
-                    <h1>Список учителей</h1>
+                    <h1>{% trans 'Teachers list' %}</h1>
                 </div>
-                <a href="{% url 'modules:teachermodel_create' %}" class="btn btn-primary my-3">Добавить учителя</a>
+                <a href="{% url 'modules:teachermodel_create' %}" class="btn btn-primary my-3">{% trans 'Add teacher' %}</a>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>ФИО</th>
-                        <th class="text-end">Действия</th>
+                        <th>{% trans 'Name' %}</th>
+                        <th class="text-end">{% trans 'Actions' %}</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for teacher in teachers %}
+                    {% for teacher in teachers|dictsort:"id" %}
                         <tr>
                             <td>{{ teacher.id }}</td>
                             <td><a href="{% url 'modules:teachermodel_detail' teacher.id %}">{{ teacher.first_name }}
@@ -29,9 +30,9 @@
                             </a></td>
                             <td class="text-end">
                                 <a href="{% url 'modules:teachermodel_update' teacher.id %}"
-                                   class="btn btn-info btn-sm">Изменить</a>
+                                   class="btn btn-info btn-sm">{% trans 'Change' %}</a>
                                 <a href="{% url 'modules:teachermodel_delete' teacher.id %}" class="btn btn-danger
-                                btn-sm">Удалить</a>
+                                btn-sm">{% trans 'Delete' %}</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'quiz_bim',
     'currency',
     'front',
+    'content',
 ]
 
 MIDDLEWARE = [
@@ -200,7 +201,7 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 

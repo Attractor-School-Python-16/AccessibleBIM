@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for test in tests %}
+                {% for test in tests|dictsort:"id" %}
                     <tr>
                         <td>{{ test.id }}</td>
                         {% if request.user.is_authenticated %}

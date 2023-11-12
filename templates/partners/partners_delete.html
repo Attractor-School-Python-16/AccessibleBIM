@@ -1,0 +1,20 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Партнеры{% endblock %}
+
+{% block moderator_interface %}
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Вы точно хотите удалить партнера<span
+                    class="text-danger"> {{ partner.title }}</span>?
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                <a class="btn btn-primary" href="{% url "content:partners_list" %}" id="cancel-button">Нет</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
