@@ -6,7 +6,6 @@ services:
       for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json 10_subscription.json; do
         python manage.py loaddata fixtures/$$fixture
       done &&
-      RUN python manage.py collectstatic --noinput &&
       python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app/
@@ -37,6 +36,8 @@ services:
       TZ: 'Asia/Bishkek'
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
 
   celery:
     build: .
@@ -54,3 +55,4 @@ services:
 
 volumes:
   postgres_data:
+  redis_data:
