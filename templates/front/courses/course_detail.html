@@ -36,9 +36,10 @@
                                 {% endif %}
                             {% endif %}
                         {% else %}
+                            <p class="content">
                             {% get_current_language as LANGUAGE_CODE %}
                             Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
-                            <br>
+                            </p><br>
                             <a href="{% url "accounts:login" %}" class="btn btn-info my-3 content">Купить курс</a>
                         {% endif %}
                     </div>

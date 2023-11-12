@@ -1,13 +1,6 @@
 {% if is_paginated %}
     {% for step in chapter.step.all|dictsort:"serial_number" %}
         {% if step.serial_number == page_obj.number %}
-
-            <a class="mt-4 fs-1 text-success link-underline-opacity-0" href="?page={{ step.serial_number }}"><i class="bi bi-bookmark"></i></a>
-        {% elif step in finished_steps.all %}
-             <a class="mt-4 fs-1 text-success-emphasis link-underline-opacity-0" href="?page={{ step.serial_number }}"><i class="bi bi-bookmark-check-fill"></i></a>
-        {% else %}
-            <a class="mt-4 fs-1 text-secondary link-underline-opacity-0" href="?page={{ step.serial_number }}"><i class="bi bi-bookmark-dash-fill"></i></a>
-
             {% if step in finished_steps.all %}
                 <a class="fs-2 ms-1 text-success link-underline-opacity-0" href="?page={{ step.serial_number }}"><i class="bi bi-check-square"></i></a>
             {% else %}
@@ -17,7 +10,6 @@
              <a class="fs-2 ms-1 text-success link-underline-opacity-0" href="?page={{ step.serial_number }}"><i class="bi bi-check-square-fill"></i></a>
         {% else %}
             <a class="fs-2 ms-1 text-secondary link-underline-opacity-0" href="?page={{ step.serial_number }}"><i class="bi bi-square-fill"></i></a>
-
         {% endif %}
     {% endfor %}
 {% endif %}
