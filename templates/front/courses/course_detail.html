@@ -16,7 +16,7 @@
             <!-- Card body -->
             <div class="card-body">
                 <div class="container-fluid">
-                    <div class="row g-0">
+                    <div class="row g-0 ">
                         {% include 'front/partials/course/course_main_block.html' with data=course %}
                         {% include 'front/partials/course/chapter_accordion.html' with data=course %}
                         {% if request.user.is_authenticated %}
@@ -25,7 +25,7 @@
                                    class="btn btn-info my-3 content">Начать курс</a>
                             {% else %}
                                 {% get_current_language as LANGUAGE_CODE %}
-                                Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
+                                <p class="content ms-0"> Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %} </p>
                                 <br>
                                 {% if request.user.email_verified %}
                                     <a href="#" class="btn btn-info my-3">Купить курс</a>
@@ -39,7 +39,7 @@
                             {% get_current_language as LANGUAGE_CODE %}
                             Стоимость курса: {% currency_price subscription.price LANGUAGE_CODE %}
                             <br>
-                            <a href="{% url "accounts:login" %}" class="btn btn-info my-3">Купить курс</a>
+                            <a href="{% url "accounts:login" %}" class="btn btn-info my-3 content">Купить курс</a>
                         {% endif %}
                     </div>
                 </div>
