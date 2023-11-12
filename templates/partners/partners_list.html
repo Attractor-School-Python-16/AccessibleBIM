@@ -21,7 +21,7 @@
                 <tbody style="vertical-align: middle">
                 {% for partner in partners %}
                     <tr>
-                        <td>{{ partner.id }}</td>
+                        <td>{{ forloop.counter }}</td>
                         <td><img src="{{ partner.image.url }}" alt="partner image" style="height: 4em; width: auto;"></td>
                         <td>{{ partner.title }}</td>
                         <td class="text-end">
