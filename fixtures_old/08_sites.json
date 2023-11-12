@@ -1,0 +1,10 @@
+[
+{
+    "model": "sites.site",
+    "pk": 2,
+    "fields": {
+        "domain": "http://127.0.0.1:8000",
+        "name": "http://127.0.0.1:8000"
+    }
+}
+]
