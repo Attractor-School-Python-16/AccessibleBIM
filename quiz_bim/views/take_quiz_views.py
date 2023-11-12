@@ -1,6 +1,3 @@
-import json
-from datetime import datetime
-
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
@@ -13,6 +10,7 @@ from progress.views.progress_test_view import create_progress_test
 from quiz_bim.models import QuizBim, QuestionBim, AnswerBim
 from modules.models.user_course_progress import UserCourseProgress
 from django.utils import timezone
+from django.urls import reverse
 
 
 class TakeQuizView(LoginRequiredMixin, DetailView):
@@ -97,8 +95,12 @@ class QuizResultView(UserPassesTestMixin, DetailView):
                                                                  status=0,
                                                                  step__test__progress=self.get_object())
             if progress_chapter:
-                progress_chapter[0].status = 1
-                progress_chapter[0].save()
+                step_serial_number = progress_chapter[0].step.serial_number
+                chapter = progress_chapter[0].step.chapter
+                if progress.is_passed:
+                    progress_chapter[0].status = 1
+                    progress_chapter[0].save()
+                # return redirect(f"{reverse('front:chaptermodel_user_detail', args=[chapter.pk])}?page={step_serial_number}")
             return redirect("quiz_bim:test_result", pk=progress.pk)
         return redirect("quiz_bim:test_completion", pk=pk)
 

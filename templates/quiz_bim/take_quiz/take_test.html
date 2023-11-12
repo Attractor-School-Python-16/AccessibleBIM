@@ -2,17 +2,10 @@
     <div class="col" id="quiz_content">
         <h3>Тест "{{ step.test.title }}"</h3>
         <h4>Количество вопросов: {{ step.test.question_bim.count }}</h4>
-        {% if progress_quiz %}
-            <a hx-get="{% url 'quiz_bim:test_result' pk=progress_quiz.pk %}"
-               hx-target="#quiz_content">
-                <button type="button" class="btn btn-success">Результаты теста</button>
-            </a>
-        {% else %}
         <form hx-post="{% url 'quiz_bim:take_quiz' pk=step.test.pk %}"
               hx-target="#quiz_content">
             {% csrf_token %}
             <button class="btn btn-success">Пройти тест</button>
         </form>
-        {% endif %}
     </div>
 </div>

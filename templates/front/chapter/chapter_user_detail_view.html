@@ -21,7 +21,14 @@
                     {% elif step.text %}
                         {% include 'steps/partial/text_partial.html' %}
                     {% elif step.test %}
-                        {% include 'quiz_bim/take_quiz/take_test.html' %}
+                        {% if progress_quiz %}
+                            <div class="col"
+                                 hx-get="{% url 'quiz_bim:test_result' pk=progress_quiz.pk %}"
+                                 hx-trigger="load">
+                            </div>
+                        {% else %}
+                            {% include 'quiz_bim/take_quiz/take_test.html' %}
+                        {% endif %}
                     {% endif %}
                     <br>
                     {% if step.file.all %}
