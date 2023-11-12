@@ -1,33 +1,46 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
     command: >
       sh -c "python manage.py migrate &&
       for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json 10_subscription.json; do
         python manage.py loaddata fixtures/$$fixture
       done &&
-      RUN python manage.py collectstatic --noinput &&
-      python manage.py runserver 0.0.0.0:8000"
+      gunicorn accessibleBIM.wsgi:application --bind 0.0.0.0:8000"
     volumes:
-      - .:/usr/src/app/
-    ports:
-      - 8000:8000
-    restart: always
+      - static_volume:/home/app/web/static
+      - media_volume:/home/app/web/media
+    expose:
+      - 8000
     env_file:
-      - ./.env.dev
+      - ./.env.prod
+    restart: always
     depends_on:
       - db
   db:
     image: postgres:15
-    ports:
-      - "5432:5432"
     env_file:
-      - .env.dev
+      - ./.env.prod
     restart: always
     environment:
       TZ: 'Asia/Bishkek'
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+
+  nginx:
+    build: ./nginx
+    restart: always
+    volumes:
+      - static_volume:/home/app/web/static
+      - media_volume:/home/app/web/media
+    environment:
+      TZ: 'Asia/Bishkek'
+    ports:
+      - 80:80
+    depends_on:
+      - web
 
   redis:
     image: "redis:alpine"
@@ -45,7 +58,7 @@ services:
       - redis
       - db
     env_file:
-      - .env.dev
+      - .env.prod
     restart: always
     environment:
       TZ: 'Asia/Bishkek'
@@ -54,3 +67,5 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:
