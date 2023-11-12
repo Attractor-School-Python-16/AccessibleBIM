@@ -138,7 +138,7 @@ class ChapterUserDetailView(DetailView):
         if current_step:
             current_step = StepModel.objects.filter(chapter=self.object, serial_number=self.request.GET.get('page'))[0]
             if current_step.test:
-                progress_quiz = ProgressTest.objects.filter(test=current_step.test, user=self.request.user, is_passed=True)
+                progress_quiz = ProgressTest.objects.filter(test=current_step.test, user=self.request.user)
                 if progress_quiz:
                     context['progress_quiz'] = progress_quiz[0]
 

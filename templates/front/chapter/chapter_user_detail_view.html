@@ -22,7 +22,7 @@
                         {% include 'steps/partial/text_partial.html' %}
                     {% elif step.test %}
                         {% if progress_quiz %}
-                            <div class="col"
+                            <div class="col" id="quiz_content"
                                  hx-get="{% url 'quiz_bim:test_result' pk=progress_quiz.pk %}"
                                  hx-trigger="load">
                             </div>
