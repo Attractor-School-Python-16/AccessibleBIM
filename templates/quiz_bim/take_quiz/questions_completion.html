@@ -31,8 +31,7 @@
             </div>
         {% endfor %}
 
-        <form id="form-test-result" hx-post="{% url "quiz_bim:test_result" progress_test_id %}"
-                                    hx-target="#quiz_content">
+        <form id="form-test-result" hx-post="{% url "quiz_bim:test_result" progress_test_id %}" hx-target="#quiz_content">
             {% csrf_token %}
             <button class="btn btn-primary" form="form-test-result">Завершить тест</button>
         </form>
