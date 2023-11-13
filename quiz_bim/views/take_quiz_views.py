@@ -25,7 +25,10 @@ class TakeQuizView(LoginRequiredMixin, DetailView):
             progress_test = ProgressTest.objects.get(test_id=pk, user_id=request.user.pk)
         if progress_test.is_passed:
             return redirect("quiz_bim:test_result", pk=progress_test.pk)
-        if not progress_test.is_passed and progress_test.test.questions_qty == progress_test.user_progress.count():
+        if not progress_test.is_passed and progress_test.test.questions_qty == progress_test.user_progress.count() and \
+                not progress_test.in_progress:
+            progress_test.in_progress = True
+            progress_test.save()
             progress_test.user_progress.all().delete()
         return redirect("quiz_bim:test_completion", pk=progress_test.pk)
 
@@ -91,15 +94,14 @@ class QuizResultView(UserPassesTestMixin, DetailView):
             progress.end_time = timezone.now()
             progress.is_passed = (progress.accuracy() >= 0.75)
             progress.save()
+            progress.in_progress = False
+            progress.save()
             progress_chapter = UserCourseProgress.objects.filter(user=self.request.user,
                                                                  status=0,
                                                                  step__test__progress=self.get_object())
-            if progress_chapter:
-                step_serial_number = progress_chapter[0].step.serial_number
-                chapter = progress_chapter[0].step.chapter
-                if progress.is_passed:
-                    progress_chapter[0].status = 1
-                    progress_chapter[0].save()
+            if progress_chapter and progress.is_passed:
+                progress_chapter[0].status = 1
+                progress_chapter[0].save()
             # return redirect("quiz_bim:test_result", pk=progress.pk)
             return HttpResponse(status=200)
         return redirect("quiz_bim:test_completion", pk=pk)
