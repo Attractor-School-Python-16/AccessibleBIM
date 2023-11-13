@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Просмотр занятия{% endblock %}
+{% block title %}{% trans 'View lesson' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -11,27 +12,26 @@
                 <h1>{{ step.title }}</h1>
             </div>
             {% if step.video %}
-                <h1>Видео:</h1>
+                <h1>{% trans 'Video' %}:</h1>
                 {% include 'steps/partial/video_partial.html' %}
             {% elif step.text %}
-                <h1>Лекция:</h1>
+                <h1>{% trans 'Reading' %}:</h1>
                 {% include 'steps/partial/text_partial.html' %}
             {% elif step.test %}
-                <h1>Тест</h1>
+                <h1>{% trans 'Test' %}</h1>
                 {% include 'steps/partial/test_partial.html' %}
             {% endif %}
             {% if files %}
                 {% for file in files %}
-                    <p>Файл {{ file.file_title }}</p>
-                    <a href="{{ file.lesson_file.url }}" download class="btn btn-primary">Скачать Файл</a>
+                    <p>{% trans 'File' %} {{ file.file_title }}</p>
+                    <a href="{{ file.lesson_file.url }}" download class="btn btn-primary">{% trans 'Download file' %}</a>
                 {% endfor %}
             {% endif %}
             <div>
-                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-primary">Редактировать
-                    занятие</a>
-                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger">Удалить занятие</a>
-                <a href="{% url 'modules:chaptermodel_detail' step.chapter.pk %}" class="btn btn-secondary my-3">Вернуться
-                    к списку занятий</a>
+                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-primary my-2 me-3">{% trans 'Edit' %}</a>
+                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger my-2 me-3">{% trans 'Delete' %}</a>
+                <a href="{% url 'modules:chaptermodel_detail' step.chapter.pk %}" class="btn btn-secondary">
+                    {% trans 'Back to lessons list' %}</a>
             </div>
         </div>
     </div>
