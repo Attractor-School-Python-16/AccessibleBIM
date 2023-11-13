@@ -21,11 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     # Add in environment variables for the entire "build" job
     env:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST: localhost # default host value for the database
-      POSTGRES_DB: djtesting
-      POSTGRES_PORT: '5432'
+      POSTGRES_USER: ${{ secret.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secret.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secret.POSTGRES_DB }}
+      POSTGRES_PORT: 5432
       DJANGO_ALLOWED_HOSTS: localhost 127.0.0.1 [::1]
       DATABASE_URL: psql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${POSTGRES_PORT}/${POSTGRES_DB}
       DJANGO_SECRET_KEY: 0dog&f7cf3d$vyyh58%2g$j#!9@pj38!vj!2*%@$p9+3r579w&
