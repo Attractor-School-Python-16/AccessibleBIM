@@ -27,7 +27,7 @@ jobs:
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-      DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@db:${{ secrets.POSTGRES_PORT }}/${{ secrets.POSTGRES_DB }}
+      POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
       DJANGO_ALLOWED_HOSTS: localhost 127.0.0.1 [::1]
       DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
     services:
