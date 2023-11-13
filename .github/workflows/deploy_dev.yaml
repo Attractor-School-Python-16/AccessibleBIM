@@ -24,7 +24,7 @@ jobs:
 
           script: |
             rm -Rfv AccessibleBIM
-            git clone -b #319_CI-CD --single-branch git@github.com:Attractor-School-Python-16/AccessibleBIM.git
+            git clone --branch #319_CI-CD --single-branch git@github.com:Attractor-School-Python-16/AccessibleBIM.git
             echo ‘Deployment successful to digital ocean’
             cd AccessibleBIM
             docker compose -f docker-compose.prod.yml up -d --build
