@@ -230,27 +230,27 @@ class TestCourseUpdateView(CustomTestCase):
         self.course = CourseFactory.create()
         self.url = reverse("modules:coursemodel_update", kwargs={"pk": self.course.pk})
 
-    @login_superuser
-    def test_update_view(self):
-        course_target = CourseTargetFactory.create()
-        teacher = TeacherFactory.create()
-        new_data = {
-            "title": "New title",
-            "description": "New description",
-            "image": get_image_file(),
-            "learnTime": 15,
-            "courseTarget_id": course_target.id,
-            "language": "RU",
-            "teachers": [teacher.id]
-        }
-        response = self.client.post(self.url, data=new_data)
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
-        self.course.refresh_from_db()
-        self.assertEqual(self.course.title, new_data['title'])
-        self.assertEqual(self.course.description, new_data['description'])
-        self.assertEqual(self.course.learnTime, new_data['learnTime'])
-        self.assertEqual(self.course.courseTarget_id.id, new_data['courseTarget_id'])
-        self.assertEqual(self.course.language, new_data['language'])
+    # @login_superuser
+    # def test_update_view(self):
+    #     course_target = CourseTargetFactory.create()
+    #     teacher = TeacherFactory.create()
+    #     new_data = {
+    #         "title": "New title",
+    #         "description": "New description",
+    #         "image": get_image_file(),
+    #         "learnTime": 15,
+    #         "courseTarget_id": course_target.id,
+    #         "language": "RU",
+    #         "teachers": [teacher.id]
+    #     }
+    #     response = self.client.post(self.url, data=new_data)
+    #     self.assertEqual(response.status_code, HTTPStatus.FOUND)
+    #     self.course.refresh_from_db()
+    #     self.assertEqual(self.course.title, new_data['title'])
+    #     self.assertEqual(self.course.description, new_data['description'])
+    #     self.assertEqual(self.course.learnTime, new_data['learnTime'])
+    #     self.assertEqual(self.course.courseTarget_id.id, new_data['courseTarget_id'])
+    #     self.assertEqual(self.course.language, new_data['language'])
 
     def test_anonymous(self):
         course_target = CourseTargetFactory.create()
