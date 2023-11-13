@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from modules.forms.courses_form import CoursesForm
+from modules.forms.courses_form import CoursesByModuleForm
 from modules.tests.factories import CourseTargetFactory, TeacherFactory
 from quiz_bim.tests.utils import get_image_file
 
@@ -16,7 +16,7 @@ class TestCourseForm(TestCase):
             "teachers": [TeacherFactory.create()]
         }
         files = {"image": get_image_file()}
-        form = CoursesForm(correct_data, files)
+        form = CoursesByModuleForm(correct_data, files)
         self.assertTrue(form.is_valid())
 
     def test_empty_title(self):
@@ -29,7 +29,7 @@ class TestCourseForm(TestCase):
             "teachers": [TeacherFactory.create()]
         }
         files = {"image": get_image_file()}
-        form = CoursesForm(invalid_data, files)
+        form = CoursesByModuleForm(invalid_data, files)
         self.assertFalse(form.is_valid())
 
     def test_empty_description(self):
@@ -42,7 +42,7 @@ class TestCourseForm(TestCase):
             "teachers": [TeacherFactory.create()]
         }
         files = {"image": get_image_file()}
-        form = CoursesForm(invalid_data, files)
+        form = CoursesByModuleForm(invalid_data, files)
         self.assertFalse(form.is_valid())
 
     def test_invalid_learnTime(self):
@@ -55,7 +55,7 @@ class TestCourseForm(TestCase):
             "teachers": [TeacherFactory.create()]
         }
         files = {"image": get_image_file()}
-        form = CoursesForm(invalid_data, files)
+        form = CoursesByModuleForm(invalid_data, files)
         self.assertFalse(form.is_valid())
 
     def test_invalid_courseTarget_id(self):
@@ -68,7 +68,7 @@ class TestCourseForm(TestCase):
             "teachers": [TeacherFactory.create()]
         }
         files = {"image": get_image_file()}
-        form = CoursesForm(invalid_data, files)
+        form = CoursesByModuleForm(invalid_data, files)
         self.assertFalse(form.is_valid())
 
     def test_invalid_language(self):
@@ -81,7 +81,7 @@ class TestCourseForm(TestCase):
             "teachers": [TeacherFactory.create()]
         }
         files = {"image": get_image_file()}
-        form = CoursesForm(invalid_data, files)
+        form = CoursesByModuleForm(invalid_data, files)
         self.assertFalse(form.is_valid())
 
     def test_no_teachers(self):
@@ -94,5 +94,5 @@ class TestCourseForm(TestCase):
             "teachers": []
         }
         files = {"image": get_image_file()}
-        form = CoursesForm(invalid_data, files)
+        form = CoursesByModuleForm(invalid_data, files)
         self.assertFalse(form.is_valid())
