@@ -1,10 +1,10 @@
-name: Docker Image CI
+name: Docker Image CI Dev
 
 on:
   push:
-    branches: #319_CI-CD
+    branches: [dev]
   pull_request:
-    branches: #319_CI-CD
+    branches: [dev]
 
 jobs:
 
