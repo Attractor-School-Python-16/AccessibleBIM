@@ -24,9 +24,7 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
 
           SCRIPT_BEFORE: |
-            whoami
-            ls -al
-          SCRIPT_AFTER: |
-            whoami
-            ls -al
-            echo $RSYNC_STDOUT
+            cd AccessibleBIM
+            git pull
+            docker compose prune -af
+            docker-compose -f docker-compose.prod.yml up -d --build
