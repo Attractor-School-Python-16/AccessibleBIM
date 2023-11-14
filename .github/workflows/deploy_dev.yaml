@@ -19,7 +19,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
           script: |
             rm -Rfv AccessibleBIM
