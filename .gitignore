@@ -151,3 +151,4 @@ config.txt
 .yml
 .env.dev
 .env.prod
+.github/workflows/test
