@@ -509,5 +509,335 @@
     "language": "EN",
     "learnTime": 11
   }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 1,
+  "fields": {
+    "user": 10,
+    "step": 7,
+    "status": 1,
+    "created_at": "2023-11-09T12:48:17.096Z",
+    "updated_at": "2023-11-10T12:48:20.680Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 2,
+  "fields": {
+    "user": 10,
+    "step": 8,
+    "status": 1,
+    "created_at": "2023-11-09T12:48:20.687Z",
+    "updated_at": "2023-11-10T12:48:27.026Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 3,
+  "fields": {
+    "user": 10,
+    "step": 9,
+    "status": 1,
+    "created_at": "2023-11-09T12:48:27.043Z",
+    "updated_at": "2023-11-10T12:48:32.406Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 4,
+  "fields": {
+    "user": 10,
+    "step": 10,
+    "status": 1,
+    "created_at": "2023-11-10T12:48:32.417Z",
+    "updated_at": "2023-11-11T12:48:34.255Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 5,
+  "fields": {
+    "user": 10,
+    "step": 11,
+    "status": 1,
+    "created_at": "2023-11-10T12:48:34.267Z",
+    "updated_at": "2023-11-11T12:55:54.027Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 6,
+  "fields": {
+    "user": 10,
+    "step": 17,
+    "status": 1,
+    "created_at": "2023-11-10T12:55:54.051Z",
+    "updated_at": "2023-11-11T12:56:01.934Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 7,
+  "fields": {
+    "user": 10,
+    "step": 18,
+    "status": 1,
+    "created_at": "2023-11-10T12:56:01.945Z",
+    "updated_at": "2023-11-11T12:56:03.704Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 8,
+  "fields": {
+    "user": 10,
+    "step": 19,
+    "status": 1,
+    "created_at": "2023-11-10T12:56:03.712Z",
+    "updated_at": "2023-11-11T12:56:05.695Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 9,
+  "fields": {
+    "user": 10,
+    "step": 110,
+    "status": 1,
+    "created_at": "2023-11-10T12:56:05.703Z",
+    "updated_at": "2023-11-11T12:56:07.761Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 10,
+  "fields": {
+    "user": 10,
+    "step": 111,
+    "status": 1,
+    "created_at": "2023-11-10T12:56:07.772Z",
+    "updated_at": "2023-11-11T12:56:19.264Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 11,
+  "fields": {
+    "user": 11,
+    "step": 27,
+    "status": 1,
+    "created_at": "2023-11-11T12:58:53.141Z",
+    "updated_at": "2023-11-12T12:58:58.697Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 12,
+  "fields": {
+    "user": 11,
+    "step": 28,
+    "status": 1,
+    "created_at": "2023-11-11T12:58:58.706Z",
+    "updated_at": "2023-11-12T12:59:00.963Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 13,
+  "fields": {
+    "user": 11,
+    "step": 29,
+    "status": 1,
+    "created_at": "2023-11-11T12:59:00.972Z",
+    "updated_at": "2023-11-12T12:59:03.081Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 14,
+  "fields": {
+    "user": 11,
+    "step": 210,
+    "status": 1,
+    "created_at": "2023-11-11T12:59:03.091Z",
+    "updated_at": "2023-11-12T12:59:05.579Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 15,
+  "fields": {
+    "user": 11,
+    "step": 211,
+    "status": 1,
+    "created_at": "2023-11-12T12:59:05.587Z",
+    "updated_at": "2023-11-13T12:59:35.821Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 16,
+  "fields": {
+    "user": 11,
+    "step": 37,
+    "status": 1,
+    "created_at": "2023-11-12T12:59:35.850Z",
+    "updated_at": "2023-11-13T12:59:43.695Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 17,
+  "fields": {
+    "user": 11,
+    "step": 38,
+    "status": 1,
+    "created_at": "2023-11-12T12:59:43.707Z",
+    "updated_at": "2023-11-13T12:59:45.099Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 18,
+  "fields": {
+    "user": 11,
+    "step": 39,
+    "status": 1,
+    "created_at": "2023-11-12T12:59:45.108Z",
+    "updated_at": "2023-11-13T12:59:47.175Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 19,
+  "fields": {
+    "user": 11,
+    "step": 310,
+    "status": 1,
+    "created_at": "2023-11-12T12:59:47.191Z",
+    "updated_at": "2023-11-13T12:59:49.495Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 20,
+  "fields": {
+    "user": 11,
+    "step": 311,
+    "status": 1,
+    "created_at": "2023-11-12T12:59:49.504Z",
+    "updated_at": "2023-11-13T12:59:58.982Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 21,
+  "fields": {
+    "user": 12,
+    "step": 47,
+    "status": 1,
+    "created_at": "2023-11-12T13:00:32.936Z",
+    "updated_at": "2023-11-13T13:00:35.696Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 22,
+  "fields": {
+    "user": 12,
+    "step": 48,
+    "status": 1,
+    "created_at": "2023-11-12T13:00:35.706Z",
+    "updated_at": "2023-11-13T13:00:37.294Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 23,
+  "fields": {
+    "user": 12,
+    "step": 49,
+    "status": 1,
+    "created_at": "2023-11-12T13:00:37.303Z",
+    "updated_at": "2023-11-13T13:00:38.779Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 24,
+  "fields": {
+    "user": 12,
+    "step": 410,
+    "status": 1,
+    "created_at": "2023-11-12T13:00:38.791Z",
+    "updated_at": "2023-11-13T13:00:41.847Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 25,
+  "fields": {
+    "user": 12,
+    "step": 411,
+    "status": 1,
+    "created_at": "2023-11-12T13:00:41.858Z",
+    "updated_at": "2023-11-13T13:01:02.667Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 26,
+  "fields": {
+    "user": 12,
+    "step": 57,
+    "status": 1,
+    "created_at": "2023-11-13T13:01:02.702Z",
+    "updated_at": "2023-11-14T13:01:09.506Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 27,
+  "fields": {
+    "user": 12,
+    "step": 58,
+    "status": 1,
+    "created_at": "2023-11-13T13:01:09.515Z",
+    "updated_at": "2023-11-14T13:01:10.904Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 28,
+  "fields": {
+    "user": 12,
+    "step": 59,
+    "status": 1,
+    "created_at": "2023-11-13T13:01:10.912Z",
+    "updated_at": "2023-11-14T13:01:12.336Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 29,
+  "fields": {
+    "user": 12,
+    "step": 510,
+    "status": 1,
+    "created_at": "2023-11-13T13:01:12.347Z",
+    "updated_at": "2023-11-14T13:01:13.586Z"
+  }
+},
+{
+  "model": "modules.usercourseprogress",
+  "pk": 30,
+  "fields": {
+    "user": 12,
+    "step": 511,
+    "status": 1,
+    "created_at": "2023-11-13T13:01:13.595Z",
+    "updated_at": "2023-11-14T13:01:15.668Z"
+  }
 }
 ]
