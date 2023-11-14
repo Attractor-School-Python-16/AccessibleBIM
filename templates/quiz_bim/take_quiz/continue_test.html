@@ -5,7 +5,7 @@
         <form hx-post="{% url 'quiz_bim:take_quiz' pk=step.test.pk %}"
               hx-target="#quiz_content">
             {% csrf_token %}
-            <button class="btn btn-success">Пройти тест</button>
+            <button class="btn btn-success">Продолжить тест</button>
         </form>
     </div>
 </div>
