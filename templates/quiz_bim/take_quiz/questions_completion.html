@@ -39,12 +39,15 @@
 {% endblock %}
 {% block page_script %}
     <script>
+        let language = window.location.pathname.split("/")[1];
+        let baseUrl = window.location.protocol + '//' + window.location.host + '/' + language;
         document.body.addEventListener('htmx:afterRequest', function(evt) {
-            let htmx_url = 'http://127.0.0.1:8000/ru/quiz_bim/quiz-result/' + {{ progress_test_id }}
+            let htmx_url = baseUrl + '/quiz_bim/quiz-result/' + {{ progress_test_id }};
             if(evt.detail.xhr.status === 200 && evt.detail.xhr.responseURL === htmx_url){
-                let url = location.href;
-                window.location.href = url;
+                window.location.reload()
             }
         });
+
+
     </script>
 {% endblock %}
