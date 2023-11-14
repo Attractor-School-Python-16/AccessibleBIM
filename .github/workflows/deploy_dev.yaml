@@ -23,8 +23,8 @@ jobs:
           REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
 
-          SCRIPT_BEFORE: |
+          SCRIPT_AFTER: |
             cd AccessibleBIM
             git pull
-            docker compose prune -af
-            docker-compose -f docker-compose.prod.yml up -d --build
+            docker system prune -af
+            docker compose -f docker-compose.prod.yml up -d --build
