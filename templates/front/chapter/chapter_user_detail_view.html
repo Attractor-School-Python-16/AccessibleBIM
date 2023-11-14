@@ -21,8 +21,19 @@
                         {% include 'steps/partial/video_partial.html' %}
                     {% elif step.text %}
                         {% include 'steps/partial/text_partial.html' %}
-                        {#                    {% elif step.test %}#}
-                        {#                        {% include 'steps/partial/test_partial.html' %}#}
+                    {% elif step.test %}
+                        {% if progress_quiz %}
+                            {% if progress_quiz.in_progress %}
+                                {% include 'quiz_bim/take_quiz/continue_test.html' %}
+                            {% else %}
+                                <div class="col" id="quiz_content"
+                                     hx-get="{% url 'quiz_bim:test_result' pk=progress_quiz.pk %}"
+                                     hx-trigger="load">
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            {% include 'quiz_bim/take_quiz/take_test.html' %}
+                        {% endif %}
                     {% endif %}
                     <br>
                     {% if step.file.all %}
@@ -59,7 +70,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-{% block page_script %}
-
 {% endblock %}
