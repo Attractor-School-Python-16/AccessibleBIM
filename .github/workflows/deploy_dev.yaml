@@ -7,22 +7,21 @@ on:
     branches: #319_CI-CD
 
 
-
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.PORT }}
+  build:
 
-          script: |
-            rm -Rfv AccessibleBIM
-            git clone git@github.com:Attractor-School-Python-16/AccessibleBIM.git
-            echo ‘Deployment successful to digital ocean’
-            cd AccessibleBIM
-            docker compose -f docker-compose.prod.yml up -d --build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
