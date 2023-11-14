@@ -5,8 +5,10 @@
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
         {% include 'partials/moderator_header.html' %}
         <div class="body flex-grow-1 px-md-3 px-sm-0">
+        <div class="container">
                 {% block moderator_interface %}
                 {% endblock %}
+        </div>
         </div>
     </div>
 {% endblock %}
