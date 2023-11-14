@@ -21,7 +21,6 @@ jobs:
           port: ${{ secrets.PORT }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
 
-
           script: |
             rm -Rfv AccessibleBIM
             git clone git@github.com:Attractor-School-Python-16/AccessibleBIM.git
