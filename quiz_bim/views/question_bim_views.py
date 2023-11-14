@@ -72,11 +72,8 @@ class QuestionBimFormDeleteView(PermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         question = get_object_or_404(QuestionBim, id=kwargs['qpk'])
         quiz = get_object_or_404(QuizBim, id=kwargs['tpk'])
-        questions_quantity = 0 if quiz.questions_qty == None else quiz.questions_qty
-        questions_quantity -= 1
-        quiz.questions_qty = questions_quantity
-        quiz.save()
         question.delete()
+        quiz.save()
         return HttpResponse("")
 
     def has_permission(self):
