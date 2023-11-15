@@ -15,6 +15,7 @@ from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
 from django.utils.translation import gettext_lazy as _
+from celery.signals import setup_logging
 
 from step.utils import custom_upload_to_func
 from environ import Env
@@ -274,8 +275,8 @@ SUMMERNOTE_CONFIG = {
         'airMode': False,
 
         # Change editor size
-        # 'width': '100%',
-        # 'height': '480',
+        'width': '100%',
+        'height': '480',
 
         # Use proper language setting automatically (default)
         'lang': None,
@@ -317,3 +318,53 @@ SUMMERNOTE_CONFIG = {
 
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 CAPTCHA_LETTER_ROTATION = None
+
+
+@setup_logging.connect
+def configure_logging(sender=None, **kwargs):
+    import logging
+    import logging.config
+    logging.config.dictConfig(LOGGING)
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "file": {
+            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "debug.log",
+        },
+        "celery_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "celery.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "celery.task": {
+            "handlers": ["celery_file", "console"],
+            "level": "DEBUG",
+        },
+        "django.request": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+        },
+    },
+}
