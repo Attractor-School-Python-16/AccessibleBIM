@@ -1,9 +1,12 @@
 {% extends 'moderator_page.html' %}
+{% load static %}
 {% block moderator_interface %}
-    <h1>Инструкция по редактированию контента</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet architecto autem blanditiis cum
-        distinctio dolor ducimus eius ex fuga hic illum incidunt laborum, magni maiores maxime mollitia
-        nihil nulla officia, possimus quam ratione recusandae sint tempore veritatis voluptates.
-        Adipisci
-        atque distinctio dolorem fuga, id iusto molestias omnis quibusdam soluta tenetur.</p>
+    <div class="card">
+        <div class="card-header">
+            <h1>Инструкция по редактированию контента</h1>
+        </div>
+        <div class="card-body">
+            <a href="{% static "files/Инструкция.pdf" %}">Скачать инструкцию</a>
+        </div>
+    </div>
 {% endblock %}
