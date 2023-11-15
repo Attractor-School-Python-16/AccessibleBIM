@@ -10,16 +10,9 @@ from quiz_bim.models import QuestionBim, AnswerBim, QuizBim
 
 class QuestionBimFormCreateView(PermissionRequiredMixin, View):
     def get(self, request, pk=None, *args, **kwargs):
-        forms = QuestionBimForm()
-        # Пока не реализовано (идея такова что приходит pk и данное кол-во форм создается)
-        # if not pk:
-        #    forms = QuestionBimForm()
-        # else:
-        #    forms = []
-        #    for i in range(0, int(pk)):
-        #        forms.append(QuestionBimForm())
+        form = QuestionBimForm()
         context = {
-            'forms': forms
+            'form': form
         }
         return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
 
@@ -79,11 +72,11 @@ class QuestionBimFormDeleteView(PermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         question = get_object_or_404(QuestionBim, id=kwargs['qpk'])
         quiz = get_object_or_404(QuizBim, id=kwargs['tpk'])
-        questions_quantity = 0 if quiz.questions_qty == None else quiz.questions_qty
-        questions_quantity -= 1
-        quiz.questions_qty = questions_quantity
-        quiz.save()
+        questions_qty = QuestionBim.objects.filter(test_bim=quiz).count()
+        questions_qty -= 1
+        quiz.questions_qty = questions_qty
         question.delete()
+        quiz.save()
         return HttpResponse("")
 
     def has_permission(self):

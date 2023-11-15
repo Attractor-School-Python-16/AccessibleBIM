@@ -1,4 +1,5 @@
 {% extends 'front/base.html' %}
+{% load i18n %}
 {% load view_breadcrumbs static currency_price i18n %}
 {% block title %}{{ chapter.title }}{% endblock %}
 {% block content %}
@@ -7,27 +8,38 @@
         <div class="col-md-3">
             {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
         </div>
-        <div class="col-md-9">
-            <h2>Глава {{ chapter.serial_number }}. {{ chapter.title }}</h2>
-            <p>{{ chapter.description }}</p>
+        <div class="col-md-8 ms-6">
+            <h2 class="heading mt-4">{% trans 'Chapter' %} {{ chapter.serial_number }}. {{ chapter.title }}</h2>
+            <p class="content mt-3">{{ chapter.description }}</p>
             <div class="d-flex justify-content-center">
                 {% include 'front/partials/chapter/chapter_user_step.html' %}
             </div>
 
                 {% for step in steps %}
-                    <h3>Урок {{ step.serial_number }}. {{ step.title }}</h3>
+                    <h3 class="heading mt-3">{% trans 'Lesson' %} {{ step.serial_number }}. {{ step.title }}</h3>
                     {% if step.video %}
                         {% include 'steps/partial/video_partial.html' %}
                     {% elif step.text %}
                         {% include 'steps/partial/text_partial.html' %}
-                        {#                    {% elif step.test %}#}
-                        {#                        {% include 'steps/partial/test_partial.html' %}#}
+                    {% elif step.test %}
+                        {% if progress_quiz %}
+                            {% if progress_quiz.in_progress %}
+                                {% include 'quiz_bim/take_quiz/continue_test.html' %}
+                            {% else %}
+                                <div class="col" id="quiz_content"
+                                     hx-get="{% url 'quiz_bim:test_result' pk=progress_quiz.pk %}"
+                                     hx-trigger="load">
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            {% include 'quiz_bim/take_quiz/take_test.html' %}
+                        {% endif %}
                     {% endif %}
                     <br>
                     {% if step.file.all %}
-                        <p>Прикрепленные файлы:</p>
+                        <p class="content mt-4">Прикрепленные файлы:</p>
                         {% for file in step.file.all %}
-                            <a class="link-info link-offset-1" href="{{ file.lesson_file.url }}" download>{{ file.file_title }}</a>
+                            <a class="link-info link-offset-1 content text-decoration-underline" href="{{ file.lesson_file.url }}" download>{{ file.file_title }}</a>
                         {% endfor %}
                     {% endif %}
 
@@ -36,18 +48,18 @@
                 {% if is_paginated %}
                     <div class="d-flex justify-content-evenly mt-5">
                         {% if page_obj.has_previous %}
-                            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-info">Предыдущий урок</button></a>
+                            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-info fs-6">Предыдущий урок</button></a>
                         {% elif previous_chapter %}
                             <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=previous_chapter.pk %}?page={{ last_step_serial_number }}">
-                                    <button type="button" class="btn btn-success">Предыдущая глава</button>
+                                    <button type="button" class="btn btn-success fs-6">Предыдущая глава</button>
                             </a>
                         {% endif %}
                         {% if page_obj.has_next %}
-                           <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-info">Следующий урок</button></a>
+                           <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-info fs-6">Следующий урок</button></a>
                         {% else %}
                             {% if chapter_end %}
                                 <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">
-                                    <button type="button" class="btn btn-success">Следующая глава</button>
+                                    <button type="button" class="btn btn-success fs-6">Следующая глава</button>
                                 </a>
                             {% endif %}
                         {% endif %}
@@ -58,7 +70,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-{% block page_script %}
-
 {% endblock %}

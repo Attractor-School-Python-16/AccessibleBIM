@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Редактировать учителя{% endblock %}
+{% block title %}{% trans 'Edit teacher' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,8 +9,9 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1>Редактировать учителя:</h1>
-                {% include "partials/form.html" with button_text="Редактировать" %}
+                <h1>{% trans 'Edit teacher' %}:</h1>
+                {% trans 'Edit' as button_text_edit %}
+                {% include "partials/form.html" with button_text=button_text_edit %}
             </div>
         </div>
     </div>

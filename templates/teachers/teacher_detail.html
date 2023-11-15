@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Информация об учителе{% endblock %}
+{% block title %}{% trans 'Teacher info' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -10,15 +11,15 @@
             <h2>{{ teacher.last_name }} {{ teacher.first_name }} {{ teacher.father_name }}</h2>
         </div>
         <div class="card-body">
-            <p>Должность: {{ teacher.job_title }}</p>
-            <p>Место работы: {{ teacher.corp}}</p>
-            <p>Опыт работы: {{ teacher.experience}}</p>
-            <p>О себе: {{ teacher.description }}</p>
+            <p>{% trans 'Job title' %}: {{ teacher.job_title }}</p>
+            <p>{% trans 'Company' %}: {{ teacher.corp}}</p>
+            <p>{% trans 'Experience' %}: {{ teacher.experience}}</p>
+            <p>{% trans 'About teacher' %}: {{ teacher.description }}</p>
             <div class="d-flex justify-content-end">
                 <a href="{% url 'modules:teachermodel_update' teacher.id %}"
-                   class="btn btn-primary mx-3">Изменить</a>
+                   class="btn btn-primary mx-3">{% trans 'Change' %}</a>
                 <a href="{% url 'modules:teachermodel_delete' teacher.id %}"
-                   class="btn btn-danger">Удалить</a>
+                   class="btn btn-danger">{% trans 'Delete' %}</a>
             </div>
         </div>
     </div>
