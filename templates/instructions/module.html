@@ -1,0 +1,50 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Модули
+        </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для того, чтобы создать модуль, необходимо нажать на «Модули» на
+                навигационной панели слева и выбрать «Создать»:
+            </p>
+            <img src="{% static "img/instruction/modules.png" %}" alt="module" class="mx-auto d-block">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                После открытия формы, необходимо заполнить все поля:
+            </p>
+            <img src="{% static "img/instruction/create_module.png" %}" alt="module" class="w-100">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Название модуля будет отображаться на публичной части сайта и служить в
+                качестве фильтра для поиска курсов.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Перейти к созданию модуля можно также из списка модуля (ссылка на панели
+                навигации), нажав на «Добавить модуль»:
+            </p>
+            <img src="{% static "img/instruction/modules_list.png" %}" alt="module" class="w-100">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В данном списке доступны:
+            </p>
+            <ul>
+                <li>Редактирование модуля – где можно изменить все его поля;</li>
+                <li>Удаление модуля – полностью удалит модуль;</li>
+                <li>Просмотр модуля – отобразит информацию о модуле и список курсов,
+                    привязанных к данному модулю
+                </li>
+            </ul>
+            <img src="{% static "img/instruction/module_detail.png" %}" alt="module" class="w-100">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Прежде чем перейти к созданию курса, необходимо добавить Преподавателей
+                и Целевые Аудитории.
+            </p>
+            <button class="btn btn-secondary" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Свернуть
+        </button>
+        </div>
+    </div>
+</div>
