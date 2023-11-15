@@ -146,7 +146,7 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_list' %}">
                     <span class="nav-icon"></span>
-                    Список подписок</a>
+                    Перечень подписок</a>
                 </li>
             </ul>
         </li>
@@ -154,24 +154,24 @@
             <li class="nav-group my-2">
                 <a class="nav-link nav-group-toggle" href="#">
                     <i class="nav-icon fa-solid fa-chart-simple"></i>
-                    Статистика</a>
+                    {% trans 'Statistics' %}</a>
                 <ul class="nav-group-items">
                     {% if perms.accounts.can_view_user_statistics %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_users_main' %}">
                             <span class="nav-icon"></span>
-                            Пользователи</a>
+                            {% trans 'Users' %}</a>
                         </li>
                     {% endif %}
                     {% if perms.accounts.can_view_course_statistics %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_courses_main' %}">
                             <span class="nav-icon"></span>
-                            Курсы</a>
+                            {% trans 'Courses' %}</a>
                         </li>
                     {% endif %}
                     {% if perms.accounts.can_view_sales_statistics %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_sales_main' %}">
                             <span class="nav-icon"></span>
-                            Продажи</a>
+                            {% trans 'Sales' %}</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -179,14 +179,14 @@
             <li class="nav-group my-2">
                 <a class="nav-link nav-group-toggle" href="#">
                     <i class="nav-icon fa-regular fa-handshake"></i>
-                    Партнеры</a>
+                    {% trans 'Partners' %}</a>
                 <ul class="nav-group-items">
                     <li class="nav-item"><a class="nav-link" href="{% url 'content:add_partner' %}">
                         <span class="nav-icon"></span>
-                        Создать</a>
+                        {% trans 'Add' %}</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'content:partners_list' %}"><span
-                            class="nav-icon"></span> Список партнеров</a></li>
+                            class="nav-icon"></span>{% trans 'List' %}</a></li>
                 </ul>
             </li>
         </li>

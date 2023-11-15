@@ -1,6 +1,6 @@
 {% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
-{% block title %}Список подписок{% endblock %}
+{% block title %}Перечень подписок{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,7 +8,7 @@
     <div class="card mb-5">
         <div class="card-body">
             <div class="card-header">
-                <h1 class="mb-3">Список подписок</h1>
+                <h1 class="mb-3">Перечень подписок</h1>
             </div>
             {% if perms.step.add_textmodel %}
                 <a href="{% url 'subscription:subscriptionmodel_create' %}" class="btn btn-primary my-3">Добавить</a>

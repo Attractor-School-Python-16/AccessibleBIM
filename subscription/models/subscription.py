@@ -9,7 +9,6 @@ class SubscriptionModel(AbstractModel):
                                verbose_name='Курс')
     price = models.IntegerField(null=False, blank=False, verbose_name='Цена за курс')
     is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
-    user_subscription = models.ManyToManyField(get_user_model(), through="UsersSubscription")
 
 
     def get_total_price(self):
@@ -21,4 +20,4 @@ class SubscriptionModel(AbstractModel):
         verbose_name_plural = 'Подписки'
 
     def __str__(self):
-        return f'{self.course}'
+        return f'{self.course} {self.price}'
