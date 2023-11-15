@@ -60,16 +60,45 @@
                     </div>
                 {% endif %}
 
-
             </div>
         </div>
+
+        <button type="button" class="btn rounded-circle border border-secondary border-2 p-0" id="btn-back-to-top"
+            style="position: fixed; bottom: 20px; right: 20px; display: none; width: 60px; height: 60px;">
+            <i class="fs-3 fas fa-arrow-up"></i>
+        </button>
     </div>
+
+
 {% endblock %}
 {% block page_footer %}{% endblock %}
 {% block page_script %}
     <script>
         if ($(window).width() > 991) {
            $('#offcanvasScrolling').addClass('show');
+        }
+
+        let topBtn = document.getElementById("btn-back-to-top");
+
+        window.onscroll = function () {
+          scrollFunction();
+        };
+
+        function scrollFunction() {
+          if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+          ) {
+            topBtn.style.display = "block";
+          } else {
+            topBtn.style.display = "none";
+          }
+        }
+        topBtn.addEventListener("click", backToTop);
+
+        function backToTop() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
         }
     </script>
 {% endblock %}
