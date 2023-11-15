@@ -1,7 +1,7 @@
 {% extends 'moderator_page.html' %}
 {% load static %}
 {% block moderator_interface %}
-    <div class="card">
+    <div class="card mb-5">
         <div class="card-header">
             <h1>Инструкция по редактированию контента</h1>
         </div>
@@ -14,6 +14,7 @@
                 {% include "instructions/course_target.html" %}
                 {% include "instructions/course.html" %}
                 {% include "instructions/chapter.html" %}
+                {% include "instructions/step.html" %}
             </div>
             <a href="{% static "files/Инструкция.pdf" %}">Скачать инструкцию</a>
         </div>
