@@ -21,6 +21,7 @@ jobs:
           REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
 
+
           SCRIPT_AFTER: |
             cd AccessibleBIM/
             docker system prune -af
