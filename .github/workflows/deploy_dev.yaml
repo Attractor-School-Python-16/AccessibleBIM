@@ -24,6 +24,7 @@ jobs:
 
           SCRIPT_AFTER: |
             cd AccessibleBIM/
-            
+            git checkout new
+            git pull
             docker system prune -af
             docker compose -f docker-compose.prod.yml up -d --build
