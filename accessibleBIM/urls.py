@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import JavaScriptCatalog
 
 from accessibleBIM import settings
 
@@ -40,6 +41,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('statistics/', include('reports.urls')),
     path('moderator/', include('content.urls')),
+    path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "front.views.errors_handler.page_not_found_view"
