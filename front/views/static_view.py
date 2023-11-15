@@ -8,8 +8,7 @@ class AccessibleBIM(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['title'] = 'AccessibleBIM'
-        context['sub_title'] = 'БИМСТАНДАРД'
+        context['title'] = 'Bologna Engineering Excellence'
         context['partners'] = PartnerModel.objects.all()
         return context
 
@@ -23,13 +22,13 @@ class About(TemplateView):
         return context
 
 
-class Contacts(TemplateView):
-    template_name = "front/contacts.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['title'] = 'Свяжитесь с нами'
-        return context
+# class Contacts(TemplateView):
+#     template_name = "front/contacts.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data()
+#         context['title'] = 'Свяжитесь с нами'
+#         return context
 
 
 class PrivacyPolicy(TemplateView):
