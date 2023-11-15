@@ -10,32 +10,39 @@
             <div class="card-header">
                 <h2>Выдача подписки пользователю:</h2>
             </div>
-            <table class="table table-striped table-hover mb-5">
-                <thead>
-                <tr>
-                    <th scope="col">Пользователь</th>
-                    <th scope="col">email</th>
-                    <th scope="col">Подписки</th>
-                </tr>
-                <tr>
-                    <td>{{ user.last_name }} {{ user.first_name }}
-                        {% if user.father_name %}
-                            {{ user.father_name }}
-                        {% endif %}</td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                        {% if user_subscriptions %}
-                            {% for user_subcription in user_subscriptions %}
-                                {% if user_subcription.is_active %}
-                                    {{ user_subcription.subscription }}
-                                {% else %}
-                                    Активных подписок нет
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}</td>
-                </tr>
-                </thead>
-            </table>
+            <div class="table-responsive mb-5">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Пользователь</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Подписки</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            {{ user.last_name }} {{ user.first_name }}
+                            {% if user.father_name %}
+                                {{ user.father_name }}
+                            {% endif %}
+                        </td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% if user_subscriptions %}
+                                {% for user_subcription in user_subscriptions %}
+                                    {% if user_subcription.is_active %}
+                                        {{ user_subcription.subscription }}
+                                    {% else %}
+                                        Активных подписок нет
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
@@ -50,19 +57,19 @@
                         {% csrf_token %}
                         <input type="hidden" name="button" form="my_form_{{ subscription.id }}"
                                value="{{ subscription.id }}">
+                        <tbody>
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ subscription.course }}</td>
+                            <td>{{ subscription.course.module_id }}</td>
+                            <td>
+                                <button type="submit" class="btn btn-success">
+                                    Предоставить доступ
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
                     </form>
-                    <tbody>
-                    <tr>
-                        <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{ subscription.course }}</td>
-                        <td>{{ subscription.course.module_id }}</td>
-                        <td>
-                            <button type="submit" class="btn btn-success" form="my_form_{{ subscription.id }}">
-                                Предоставить доступ
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
                 {% endfor %}
             </table>
         </div>

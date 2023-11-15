@@ -34,4 +34,5 @@ class DeletePartnerView(PermissionRequiredMixin, DeleteView):
     model = PartnerModel
     permission_required = 'content.delete_partnermodel'
     success_url = reverse_lazy('content:partners_list')
+    context_object_name = 'partner'
 

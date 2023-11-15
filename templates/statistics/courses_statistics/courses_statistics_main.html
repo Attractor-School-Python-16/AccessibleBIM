@@ -2,30 +2,34 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Статистика{% endblock %}
+{% block title %}{% trans 'Statistics' %}{% endblock %}
 
 {% block moderator_interface %}
     <div class="container">
         <div class="row g-5 g-xl-8 mb-4">
             <div class="col-s-12 col-md-6">
                 <a href="{% url 'reports:stats_courses_list' %}" class="link-underline link-underline-opacity-0">
-                    {% include 'partials/statistics/statistics_card.html' with score=courses_ttl_qty title='Количество созданных курсов' icon='<i class="fa-solid fa-graduation-cap fs-2"></i>' %}
+                    {% trans 'Number of existing courses' as existing_courses_title %}
+                    {% include 'partials/statistics/statistics_card.html' with score=courses_ttl_qty title=existing_courses_title icon='<i class="fa-solid fa-graduation-cap fs-2"></i>' %}
                 </a>
             </div>
             <div class="col-s-12 col-md-6">
-                {% include 'partials/statistics/statistics_card.html' with score=published_courses_qty title='Количество опубликованных курсов' icon='<i class="fa-regular fa-calendar-check fs-2"></i>' %}
+                {% trans 'Number of published courses' as published_courses_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=published_courses_qty title=published_courses_title icon='<i class="fa-regular fa-calendar-check fs-2"></i>' %}
             </div>
         </div>
 
         <div class="row g-5 g-xl-8">
             <!--Lesson types pie chart-->
             <div class="col-s-12 col-xl-6">
-                {% include 'partials/statistics/chart_card.html' with title='Типы уроков' chart_id='lesson-types-chart' %}
+                {% trans 'Lesson types' as lesson_types_title %}
+                {% include 'partials/statistics/chart_card.html' with title=lesson_types_title chart_id='lesson-types-chart' %}
             </div>
 
             <!--Steps completed chart-->
             <div class="col-s-12 col-xl-6">
-                {% include 'partials/statistics/chart_by_period.html' with title='Пройденные уроки' btn_class='steps-completed-chart-btn' chart_id='steps-completed-chart' %}
+                {% trans 'Completed lessons' as completed_lessons_title %}
+                {% include 'partials/statistics/chart_by_period.html' with title=completed_lessons_title btn_class='steps-completed-chart-btn' chart_id='steps-completed-chart' %}
             </div>
         </div>
     </div>
@@ -33,6 +37,7 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/statistics_js/statistics_charts.js' %}"></script>
     <script src="{% static 'js/statistics_js/stats_courses_main.js' %}"></script>
 {% endblock %}
