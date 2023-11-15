@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import sys
 from pathlib import Path
+
+from django.core.management.utils import get_random_secret_key
 from django.utils.translation import gettext_lazy as _
+from celery.signals import setup_logging
 
 from step.utils import custom_upload_to_func
 from environ import Env
@@ -27,12 +30,14 @@ env = Env()
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7@r@5jk0o)5ah@0lez58eg_lu=w(7bq(!0_-qz)43htnusq5ge'
+SECRET_KEY = os.environ.get("SECRET_KEY", default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (bool(int(os.environ.get('DEBUG', 1))))
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '[::1]']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:80", 'http://164.90.198.101.nip.io:80']
 
 # Application definition
 
@@ -170,14 +175,13 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_URL = '/media/'
 # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = '/code/media/'
-
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # изменила ссылку, чтобы он указывал на имя службы Redis в docker-compose.yml
 # CELERY_BROKER_URL = 'redis://localhost'
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 
-EMAIL_APP_PASSWORD = env.read_env('GMAIL_KEY')
+EMAIL_APP_PASSWORD = os.environ.get('GMAIL_KEY')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -232,10 +236,14 @@ LOGOUT_REDIRECT_URL = '/login/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static/')
-]
-STATIC_URL = 'static/'
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -246,7 +254,7 @@ if 'test' in sys.argv:
     CAPTCHA_TEST_MODE = True
     # изменила MEDIA_ROOT временно, для докера, пока не подключим сервер
     # MEDIA_ROOT = os.path.join(BASE_DIR, 'media_test')
-    MEDIA_ROOT = '/code/media_test/'
+    MEDIA_ROOT = BASE_DIR / 'media_test'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
@@ -267,8 +275,8 @@ SUMMERNOTE_CONFIG = {
         'airMode': False,
 
         # Change editor size
-        # 'width': '100%',
-        # 'height': '480',
+        'width': '100%',
+        'height': '480',
 
         # Use proper language setting automatically (default)
         'lang': None,
@@ -310,3 +318,53 @@ SUMMERNOTE_CONFIG = {
 
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 CAPTCHA_LETTER_ROTATION = None
+
+
+@setup_logging.connect
+def configure_logging(sender=None, **kwargs):
+    import logging
+    import logging.config
+    logging.config.dictConfig(LOGGING)
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "file": {
+            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "debug.log",
+        },
+        "celery_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "celery.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "celery.task": {
+            "handlers": ["celery_file", "console"],
+            "level": "DEBUG",
+        },
+        "django.request": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+        },
+    },
+}

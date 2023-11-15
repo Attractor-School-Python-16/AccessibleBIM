@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="card-body my-4">
     <div class="d-flex justify-content-between">
         <div>
@@ -5,9 +6,9 @@
         </div>
         <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
             <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
-                <button class="btn btn-outline-dark active {{ btn_class }}" data-days="7">Неделя</button>
-                <button class="btn btn-outline-dark {{ btn_class }}" data-days="30">Месяц</button>
-                <button class="btn btn-outline-dark {{ btn_class }}" data-days="180">Пол года</button>
+                <button class="btn btn-outline-dark active {{ btn_class }}" data-days="7">{% trans '7 days' %}</button>
+                <button class="btn btn-outline-dark {{ btn_class }}" data-days="30">{% trans '30 days' %}</button>
+                <button class="btn btn-outline-dark {{ btn_class }}" data-days="180">{% trans '180 days' %}</button>
             </div>
         </div>
     </div>

@@ -23,10 +23,10 @@ async function getDataByQueryParam(url, param=''){
 async function renderChart(name, param){
     let response = await getDataByQueryParam(chartUrlsByDays[name].url, param);
     if (response.error){
-        $(chartUrlsByDays[name].div).text('Error occured while loading data');
+        $(chartUrlsByDays[name].div).text(gettext('Error occured while loading data'));
     }
     else if (response.values.length===0){
-        $(chartUrlsByDays[name].div).text('No data to display');
+        $(chartUrlsByDays[name].div).text(gettext('No data to display'));
     }
     else{
         let options = createChartOptions(chartUrlsByDays[name].type, response.labels, response.values,
@@ -51,7 +51,7 @@ async function updateChart(name, days){
 
     }
     else{
-        $(chartUrlsByDays[name].div).text('Error occured while loading data');
+        $(chartUrlsByDays[name].div).text(gettext('Error occured while loading data'));
     }
 }
 
