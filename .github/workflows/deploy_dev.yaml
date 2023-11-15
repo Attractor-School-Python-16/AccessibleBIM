@@ -25,10 +25,11 @@ jobs:
 
           SCRIPT_AFTER: |
             cd AccessibleBIM/
-            git checkout new
-            git pull
-            docker rm -f $(docker ps -a -q)
-            docker rmi -f $(docker images -aq)
-            docker volume rm $(docker volume ls)
-            docker system prune -af
-            docker compose -f docker-compose.prod.yml up -d --build
+            mkdir READY
+#            git checkout new
+#            git pull
+#            docker rm -f $(docker ps -a -q)
+#            docker rmi -f $(docker images -aq)
+#            docker volume rm $(docker volume ls)
+#            docker system prune -af
+#            docker compose -f docker-compose.prod.yml up -d --build
