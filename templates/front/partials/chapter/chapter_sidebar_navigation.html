@@ -1,4 +1,9 @@
-<h3>Навигация</h3>
+<div class="pt-4" style="display: flex">
+    <h3>Навигация</h3>
+    <button type="button" class="btn-close text-secondary ms-auto d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="offcanvasScrolling" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+    </button>
+</div>
 {% for opened_chapter in opened_chapters %}
     {% if opened_chapter.pk == chapter.pk %}
         <div class="accordion-item">
