@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'quiz_bim',
     'currency',
     'front',
+    'content',
 ]
 
 MIDDLEWARE = [

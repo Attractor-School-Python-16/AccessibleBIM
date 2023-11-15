@@ -1,6 +1,7 @@
 import os
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 def module_upload_to(instance, filename):
@@ -24,14 +25,14 @@ class AbstractModel(models.Model):
 
 
 class ModuleModel(AbstractModel):
-    title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Название модуля')
-    description = models.TextField(max_length=150, null=False, blank=False, verbose_name='Описание модуля')
-    image = models.ImageField(null=False, blank=False, upload_to=module_upload_to, verbose_name='Фото для модуля')
+    title = models.CharField(_('Module title'), max_length=50, null=False, blank=False)
+    description = models.TextField(_('Module description'), max_length=150, null=False, blank=False)
+    image = models.ImageField(_('Module image'), null=False, blank=False, upload_to=module_upload_to)
 
     class Meta:
         db_table = 'module'
-        verbose_name = 'Модуль'
-        verbose_name_plural = 'Модули'
+        verbose_name = _('Module')
+        verbose_name_plural = _('Modules')
 
     def __str__(self):
         return f'{self.title}'
