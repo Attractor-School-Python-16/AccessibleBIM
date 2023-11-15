@@ -1,8 +1,11 @@
-name: Docker Image CI Prod
+name: Prod Docker Build/Up
 
 on:
-  push:
-    branches: [test_stage]
+  workflow_run:
+      workflows: [Run Test Django]
+      branches: [setup_github]
+      types:
+        - completed
 
 jobs:
 

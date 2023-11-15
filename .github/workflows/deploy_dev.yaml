@@ -1,12 +1,11 @@
 name: SSH Connect to Server /
 
 on:
-  push:
-    branches: #319_CI-CD
-#    branches: [dev]
-  pull_request:
-    branches: #319_CI-CD
-#    branches: [dev]
+  workflow_run:
+      workflows: [Dev Docker Build/Up, Prod Docker Build/Up]
+      branches: [setup_github]
+      types:
+        - completed
 
 
 jobs:

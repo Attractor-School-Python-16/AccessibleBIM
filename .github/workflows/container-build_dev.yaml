@@ -1,10 +1,12 @@
-name: Docker Image CI Dev
+name: Dev Docker Build/Up
+
 
 on:
-  push:
-    branches: [dev]
-  pull_request:
-    branches: [dev]
+  workflow_run:
+      workflows: [Run Test Django]
+      branches: [setup_github]
+      types:
+        - completed
 
 jobs:
 
