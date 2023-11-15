@@ -22,53 +22,33 @@ function createPaginationButtons() {
         let button = document.createElement('li');
         button.classList.add('page-item');
         let buttonLink = document.createElement('a');
-        buttonLink.classList.add('page-link');
-        buttonLink.classList.add('mx-1');
-        buttonLink.type = "button";
+        buttonLink.classList.add('page-link', 'mx-1', 'my-1', 'button');
+        buttonLink.href = "#";  // Установите нужный href
         buttonLink.textContent = index + 1;
 
-        buttonLink.addEventListener('click', () => {
+        buttonLink.addEventListener('click', (event) => {
+            event.preventDefault();
             showQuestions(index);
         });
 
         button.appendChild(buttonLink);
         paginationContainer.appendChild(button);
     });
+
+    paginationContainer.classList.add('d-flex', 'flex-wrap', 'justify-content-center');
 }
 
-function updatePageAfterNewQuestionCreated() {
-    let questionForms = document.getElementById('questionforms');
-    let questionDetailBlock = questionForms.querySelector('#question_detail');
-
-    if (questionDetailBlock) {
-        let newQuestionBlock = document.createElement('div');
-        newQuestionBlock.classList.add('question-block');
-        newQuestionBlock.appendChild(questionDetailBlock.cloneNode(true));
-        let questionsContainer = document.querySelector('.questions-container');
-        questionsContainer.appendChild(newQuestionBlock);
-
-        questionDetailBlock.remove();
-
-        createPaginationButtons();
-        showQuestions(currentPage);
-    }
-}
-
-document.body.addEventListener('htmx:afterOnLoad', function (event) {
-    let questionCreated = document.getElementById("questionforms")
-    let questionToProcess = questionCreated.querySelector("#question_detail")
-    if (questionToProcess) {
-        updatePageAfterNewQuestionCreated()
-    }
-});
 
 let deleteButtons = document.querySelectorAll('[id="delete-question"]')
 
 deleteButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        window.location.reload();
+        setTimeout(() => {
+            window.location.reload();
+        }, 200);
     });
 });
+
 
 createPaginationButtons();
 showQuestions(currentPage);

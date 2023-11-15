@@ -12,6 +12,6 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['user_subscription'] = UsersSubscription.objects.all().filter(user=self.request.user)
         for subs in context['user_subscription']:
-            context['courses'] = CourseModel.objects.all().filter(course=subs.subscription.id)
+            context['courses'] = CourseModel.objects.all().filter(course=subs.subscription.course.id)
         return context
 

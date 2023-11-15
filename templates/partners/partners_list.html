@@ -1,0 +1,41 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Partners' %}{% endblock %}
+
+{% block moderator_interface %}
+    <div class="card">
+        <div class="card-body">
+            <h1>{% trans 'Partners list' %}</h1>
+            <a href="{% url 'content:add_partner' %}" class="btn btn-primary my-3">{% trans 'Add partner' %}</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>{% trans 'Image' %}</th>
+                    <th>{% trans 'Title' %}</th>
+                    <th class="text-end">{% trans 'Actions' %}</th>
+                </tr>
+                </thead>
+                <tbody style="vertical-align: middle">
+                {% for partner in partners %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><img src="{{ partner.image.url }}" alt="partner image" style="height: 4em; width: auto;"></td>
+                        <td>{{ partner.title }}</td>
+                        <td class="text-end">
+                            <div class="btn-group">
+                                <a href="{% url 'content:update_partner' pk=partner.pk %}"
+                                   class="btn btn-info btn-sm mx-3">{% trans 'Change' %}</a>
+                                <a href="{% url 'content:delete_partner' pk=partner.pk %}"
+                                   class="btn btn-danger btn-sm">{% trans 'Delete' %}</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
