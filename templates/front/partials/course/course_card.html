@@ -4,10 +4,10 @@
         <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title"/>
     </a>
     <div class="postcard__text t-dark">
-        <h1 class="postcard__title blue"><a
+        <h1 class="postcard__title blue heading"><a
                 href="{% url 'front:course_user_detail' course.id %}">{{ course.title }} </a>
         </h1>
-        <div class="postcard__subtitle small">
+        <div class="postcard__subtitle">
             <time datetime="{{ course.update_at }}">
                 Последнее обновление: <i
                     class="fas fa-calendar-alt mr-2"></i> {{ course.update_at }}

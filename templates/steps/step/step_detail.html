@@ -27,10 +27,10 @@
                 {% endfor %}
             {% endif %}
             <div>
-                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-primary">Редактировать
+                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-primary my-2 me-3">Редактировать
                     занятие</a>
-                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger">Удалить занятие</a>
-                <a href="{% url 'modules:chaptermodel_detail' step.chapter.pk %}" class="btn btn-secondary my-3">Вернуться
+                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger my-2 me-3">Удалить занятие</a>
+                <a href="{% url 'modules:chaptermodel_detail' step.chapter.pk %}" class="btn btn-secondary">Вернуться
                     к списку занятий</a>
             </div>
         </div>

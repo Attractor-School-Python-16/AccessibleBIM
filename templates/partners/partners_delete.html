@@ -2,18 +2,21 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Партнеры{% endblock %}
+{% block title %}{% trans 'Partners' %}{% endblock %}
 
 {% block moderator_interface %}
     <div class="card">
         <div class="card-body">
-            <p class="card-text">Вы точно хотите удалить партнера<span
-                    class="text-danger"> {{ partner.title }}</span>?
+            <p class="card-text">
+                {% blocktrans with title=partner.title %}
+                    Are you sure you want to delete the partner
+                    <span class="text-danger"> {{ title }}</span>?
+                {% endblocktrans %}
             </p>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
-                <a class="btn btn-primary" href="{% url "content:partners_list" %}" id="cancel-button">Нет</a>
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans 'Yes' %}</button>
+                <a class="btn btn-primary" href="{% url "content:partners_list" %}" id="cancel-button">{% trans 'No' %}</a>
             </form>
         </div>
     </div>
