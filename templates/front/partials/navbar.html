@@ -3,8 +3,8 @@
 
 <nav class="navbar position-fixed top-0 navbar-expand-lg bg-info navbar-transparent text-white w-100 shadow-none" style="z-index: 9999">
     <div class="container">
-        <a class="navbar-brand text-white fs-4" href="{% url "front:accessible_bim" %}">
-            AccessibleBIM
+        <a class="navbar-brand text-white fs-3" href="{% url "front:accessible_bim" %}">
+            Bologna Engineering Excellence
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
@@ -17,41 +17,6 @@
         </button>
         <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
             <ul class="navbar-nav navbar-nav-hover ms-auto">
-                <li class="nav-item mx-2">
-                    <a href="{% url "front:course_user_list" %}"
-                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                       role="button">
-                        Курсы
-                    </a>
-                </li>
-                <div class="dropdown">
-                    <a href="#" class="btn text-white bg-transparent dropdown-toggle m-0" data-bs-toggle="dropdown"
-                       id="navbarDropdownMenuLink2">
-                        О компании
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:about" %}">
-                                О нас
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:contacts" %}">
-                                Контакты
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:privacy_policy" %}">
-                                Политика конфиденциальности
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url "front:terms_of_use" %}">
-                                Пользовательское соглашение
-                            </a>
-                        </li>
-                    </ul>
-                </div>
                 {% if request.user.is_authenticated %}
                     {% if perms.accounts.can_view_admin_panel %}
                         <li class="nav-item mx-2">
@@ -62,14 +27,15 @@
                             </a>
                         </li>
                     {% endif %}
-                    <li class="nav-item mx-2">
+
+                    <li class="nav-item mx-2 {% if request.resolver_match.view_name == 'accounts:profile' %}active{% endif %}">
                         <a href="{% url "accounts:profile" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
                             Профиль
                         </a>
                     </li>
-                    <li class="nav-item mx-2">
+                    <li class="nav-item mx-2 {% if request.resolver_match.view_name == 'accounts:logout' %}active{% endif %}">
                         <a href="{% url "accounts:logout" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
@@ -77,14 +43,14 @@
                         </a>
                     </li>
                 {% else %}
-                    <li class="nav-item mx-2">
+                    <li class="nav-item mx-2 {% if request.resolver_match.view_name == 'accounts:login' %}active{% endif %}">
                         <a href="{% url "accounts:login" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
                             Войти
                         </a>
                     </li>
-                    <li class="nav-item mx-2">
+                    <li class="nav-item mx-2 {% if request.resolver_match.view_name == 'accounts:register' %}active{% endif %}">
                         <a href="{% url "accounts:register" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
@@ -92,6 +58,47 @@
                         </a>
                     </li>
                 {% endif %}
+                <li class="nav-item mx-2 {% if request.resolver_match.view_name == 'front:course_user_list' %}active{% endif %}">
+                    <a href="{% url "front:course_user_list" %}"
+                       class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                       role="button">
+                        Курсы
+                    </a>
+                </li>
+
+
+
+                <div class="dropdown {% if request.resolver_match.view_name == 'front:about' %}active{% elif  request.resolver_match.view_name == 'front:privacy_policy' %}active{% elif  request.resolver_match.view_name == 'front:terms_of_use' %}active{% endif %}">
+                    <a href="#" class="btn bg-transparent dropdown-toggle m-0" data-bs-toggle="dropdown"
+                       id="navbarDropdownMenuLink2">
+                        О компании
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <li>
+                            <a class="dropdown-item {% if request.resolver_match.view_name == 'front:about' %}active{% endif %}" href="{% url "front:about" %}">
+                                О нас
+                            </a>
+                        </li>
+{#                        <li>#}
+{#                            <a class="dropdown-item" href="{% url "front:contacts" %}">#}
+{#                                Контакты#}
+{#                            </a>#}
+{#                        </li>#}
+                        <li>
+                            <a class="dropdown-item {% if request.resolver_match.view_name == 'front:privacy_policy' %}active{% endif %}" href="{% url "front:privacy_policy" %}">
+                                Политика конфиденциальности
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'terms_of_use' %}active{% endif %}" href="{% url "front:terms_of_use" %}">
+                                Пользовательское соглашение
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
