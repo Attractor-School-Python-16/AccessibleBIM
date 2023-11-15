@@ -1,4 +1,4 @@
-name: CI Django + Postgres Tests
+name: CI Django + Postgres Tests + Push on Server
 
 # Controls when the workflows will run
 on:
@@ -70,5 +70,6 @@ jobs:
           DB_HOST: ${{ env.POSTGRES_HOST }}
           DB_DATABASE: ${{ env.POSTGRES_DB }}
           DB_PORT: ${{ env.POSTGRES_PORT }}
+          DATABASE_URL: psql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@db:${{ env.POSTGRES_PORT }}/${{ env.POSTGRES_DB }}
         run: |
           python manage.py test
