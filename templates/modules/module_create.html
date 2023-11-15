@@ -1,4 +1,5 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
 {% block title %}Создать модуль{% endblock %}
 {% block moderator_interface %}
@@ -8,8 +9,9 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1>Добавить модуль:</h1>
-                {% include "partials/form.html" with button_text="Создать" %}
+                <h1>{% trans 'Add module:' %}</h1>
+                {% trans 'Add' as button_text_add %}
+                {% include "partials/form.html" with button_text=button_text_add %}
             </div>
         </div>
     </div>
