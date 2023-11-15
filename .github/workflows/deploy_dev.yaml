@@ -1,4 +1,4 @@
-name: SSH Connect to Server /
+name: SSH Connect to Server
 
 on:
   workflow_run:
