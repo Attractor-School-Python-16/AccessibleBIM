@@ -6,12 +6,16 @@
 {% block content %}
     <div class="container mt-8">
     <div class="row">
-        <div class="col-md-3 position-fixed">
+        <div class="w-md-100 w-lg-20 position-sticky top-10 collapse collapse-horizontal mt-6 d-lg-block h-100"
+             style="background-color: white; z-index: 9999" id="collapseWidthExample">
             {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
         </div>
-        <div class="col-md-8 ms-auto">
+        <div class="col-md-9 col-sm-12 ms-auto">
             <div class="d-flex justify-content-center">
-                {% include 'front/partials/chapter/chapter_user_step.html' %}
+                <button class="navbar-toggler fs-2 ms-0 my-auto d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="mx-auto">{% include 'front/partials/chapter/chapter_user_step.html' %}</div>
             </div>
 
                 {% for step in steps %}
@@ -60,6 +64,5 @@
         </div>
     </div>
 {% endblock %}
-{% block page_script %}
-
-{% endblock %}
+{% block page_footer %}{% endblock %}
+{% block page_script %}{% endblock %}

@@ -128,6 +128,7 @@ class ChapterUserDetailView(DetailView):
         context['page_obj'] = page
         context['steps'] = page.object_list
         context['is_paginated'] = page.has_other_pages()
+        context['title'] = f'{self.object.serial_number}. {self.object.title}'
 
         # Определение открытых глав пользователя и передача их в контекст
         current_user_subscription = UsersSubscription.objects.filter(user=self.request.user, is_active=True)[0]
