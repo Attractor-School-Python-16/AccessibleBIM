@@ -1,0 +1,59 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            Курсы
+        </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Прежде чем создать Курс, необходимо чтобы были уже созданы необходимые
+                Преподаватели и Целевые Аудитории (см. выше).
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для создания Курса можно перейти в просмотр информации о Модуле, к
+                которому должен относиться соответствующий Курс:
+            </p>
+            <img src="{% static "img/instruction/module_course_create.PNG" %}" alt="module_course_create" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Либо можно нажать на курсы на навигационной панели слева, и выбрать
+                «Создать»:
+            </p>
+            <img src="{% static "img/instruction/courses.PNG" %}" alt="courses" class="mx-auto d-block">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В открывшемся окне необходимо заполнить все поля формы.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                При этом, вы перешли на создание курса из модуля – в форме будет
+                отсутствовать возможность выбора модуля и создаваемый курс привяжется к
+                данному модулю автоматически. </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                При создании Курса по ссылке из навигационной панели, соответствующий
+                модуль необходимо будет выбрать вручную. </p>
+            <img src="{% static "img/instruction/course_create.png" %}" alt="course_create" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Список курсов может отображаться как в просмотре информации о модуле (см.
+                изображение выше), так и по ссылке Список вкладки Курсы навигационной панели.
+            </p>
+            <img src="{% static "img/instruction/course_list.png" %}" alt="course_list" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Здесь доступны функции:
+            </p>
+            <ul>
+                <li>Добавления курса;</li>
+                <li>Изменения информации курса;</li>
+                <li>Удаления курса;</li>
+                <li>Просмотра информации о курсе, где также доступны функции редактирования и удаления.</li>
+            </ul>
+            <button class="btn btn-secondary" type="button" data-coreui-toggle="collapse"
+                    data-coreui-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Свернуть
+            </button>
+        </div>
+    </div>
+</div>
