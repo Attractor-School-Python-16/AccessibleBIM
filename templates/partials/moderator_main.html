@@ -6,6 +6,10 @@
             <h1>Инструкция по редактированию контента</h1>
         </div>
         <div class="card-body">
+            {% include "instructions/intro.html" %}
+            <div class="accordion mb-4" id="main-accordion">
+            {% include "instructions/scheme.html" %}
+            </div>
             <a href="{% static "files/Инструкция.pdf" %}">Скачать инструкцию</a>
         </div>
     </div>
