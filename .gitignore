@@ -149,3 +149,5 @@ GitHub.sublime-settings
 .history
 config.txt
 .yml
+.env.dev
+.env.prod

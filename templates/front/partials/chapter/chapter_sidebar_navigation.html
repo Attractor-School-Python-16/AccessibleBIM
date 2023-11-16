@@ -1,4 +1,9 @@
-<h3 class="heading mt-4">Навигация</h3>
+<div class="pt-4" style="display: flex">
+    <h3 class="heading" style="overflow-wrap: anywhere;">Навигация</h3>
+    <button type="button" class="btn-close text-secondary ms-auto d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="offcanvasScrolling" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+    </button>
+</div>
 {% for opened_chapter in opened_chapters %}
     {% if opened_chapter.pk == chapter.pk %}
         <div class="accordion-item content">
@@ -35,7 +40,7 @@
                 </button>
             </h2>
             <div id="panelsStayOpen-collapse{{ opened_chapter.serial_number }}"
-                 class="accordion-collapse collapse show content">
+                 class="accordion-collapse collapse content">
                 <div class="accordion-body content">
                     {% for chapter_step in opened_chapter.step.all|dictsort:"serial_number" %}
                         <a class="link-primary link-underline-opacity-0 content" aria-current="page"
