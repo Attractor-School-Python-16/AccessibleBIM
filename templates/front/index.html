@@ -15,7 +15,8 @@
                         Мы стремимся вдохновить и поддержать студентов, специалистов и энтузиастов инженерии,
                         предоставляя им обширный выбор курсов, обучающих материалов и практических заданий.<br>
                     </p>
-                    <a href="{% url "front:about" %}" type="button" class="btn btn-outline-dark-blue content mt-4">О компании</a>
+                    <a href="{% url "front:about" %}" type="button" class="btn btn-outline-dark-blue content mt-4">О
+                        компании</a>
                 </div>
                 <div class="col-lg-5 ms-auto">
                     <div class="position-relative">
@@ -26,37 +27,26 @@
             </div>
         </div>
     </section>
-
-
-    <section class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto text-center py-5">
-                    <h2 class="text-gradient text-info text-uppercase heading">Наши партнеры</h2>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-sm-5 py-5 position-relative">
+    <section class="section-padding mt-5 mb-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2 class="text-gradient text-info text-uppercase">Наши партнеры</h2>
+                    <h2 class="text-gradient text-info text-uppercase heading">Наши партнеры</h2>
                 </div>
-                <div class="owl-carousel owl-theme mt-5">
+                <div class="owl-carousel owl-theme mt-3">
                     {% for partner in partners %}
                         <div>
                             <div class="item bg-black w-100" style="background-image: url('{{ partner.image.url }}');
-                                                                height: 10em;
-                                                                background-position: center;
-                                                                background-repeat: no-repeat;
-                                                                background-size: contain;"></div>
-                            <h4 class="text-center">{{ partner.title }}</h4>
+                                    height: 10em;
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: contain;"></div>
+                            <h4 class="text-center content mt-2">{{ partner.title }}</h4>
                         </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </section>
+
 {% endblock %}
