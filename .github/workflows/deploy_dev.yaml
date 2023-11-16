@@ -1,6 +1,7 @@
 name: SSH Connect to Server
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: [ProdDockerBuildUp]
     types:
