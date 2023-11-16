@@ -4,7 +4,7 @@ name: Dev Docker Build/Up
 on:
   workflow_run:
       workflows: [Run Test Django]
-      branches: [setup_github]
+      branches: #319_CI-CD
       types:
         - completed
 
