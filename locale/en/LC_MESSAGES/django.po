@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 00:52+0600\n"
-"PO-Revision-Date: 2023-11-12 00:58+0600\n"
+"POT-Creation-Date: 2023-11-16 22:02+0600\n"
+"PO-Revision-Date: 2023-11-16 22:27+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:213
+#: accessibleBIM/settings.py:217
 msgid "Russian"
 msgstr "Russian"
 
-#: accessibleBIM/settings.py:214
+#: accessibleBIM/settings.py:218
 msgid "English"
 msgstr "English"
 
@@ -152,7 +152,7 @@ msgid "RUB"
 msgstr "RUB"
 
 #: modules/models/chapter.py:9 modules/models/courses.py:48
-#: templates/chapters/chapter_detail.html:16
+#: templates/chapters/chapter_detail.html:17
 #: templates/statistics/courses_statistics/courses_list_statistics.html:14
 #: templates/statistics/users_statistics/user_detailed_statistics.html:17
 #: templates/statistics/users_statistics/users_list_statistics.html:17
@@ -167,15 +167,15 @@ msgstr "Chapter title"
 msgid "Chapter description"
 msgstr "Chapter description"
 
-#: modules/models/chapter.py:12 templates/chapters/chapter_detail.html:17
-#: templates/chapters/chapter_detail.html:43
-#: templates/courses/course_detail.html:32
+#: modules/models/chapter.py:12 step/models/step.py:27
+#: templates/chapters/chapter_detail.html:18
+#: templates/chapters/chapter_detail.html:48
+#: templates/courses/course_detail.html:34
 msgid "Serial number"
 msgstr "#"
 
-#: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:12
-#: templates/courses/change_chapters_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:12
+#: modules/models/chapter.py:16 step/models/step.py:15
+#: templates/chapters/chapter_detail.html:13
 msgid "Chapter"
 msgstr "Chapter"
 
@@ -338,54 +338,140 @@ msgstr "Lesson finish"
 msgid "Course progress"
 msgstr "Course progress"
 
-#: step/models/step.py:10
-msgid "Видео"
+#: step/models/file.py:14
+#| msgid "Module title"
+msgid "File title"
+msgstr "Title"
+
+#: step/models/file.py:15
+#| msgid "Lesson"
+msgid "Lesson file"
+msgstr "Lesson file"
+
+#: step/models/file.py:25 templates/steps/step/step_detail.html:26
+msgid "File"
+msgstr "File"
+
+#: step/models/file.py:26 step/models/step.py:25
+msgid "Files"
+msgstr "Files"
+
+#: step/models/step.py:10 step/models/step.py:22 step/models/video.py:27
+#: templates/steps/step/step_detail.html:15
+msgid "Video"
 msgstr "Video"
 
-#: step/models/step.py:11
-msgid "Текст"
-msgstr "Text"
+#: step/models/step.py:11 step/models/step.py:19 step/models/text.py:21
+msgid "Text"
+msgstr "Reading"
 
-#: step/models/step.py:12
-msgid "Тест"
+#: step/models/step.py:12 step/models/step.py:23
+#: templates/steps/step/step_detail.html:21
+msgid "Test"
 msgstr "Test"
 
-#: templates/chapters/change_steps_order.html:4
-#: templates/chapters/change_steps_order.html:35
-#: templates/chapters/chapter_detail.html:39
-msgid "Change lessons ordering"
-msgstr "Change lessons ordering"
+#: step/models/step.py:16 templates/chapters/chapter_detail.html:49
+#: templates/chapters/chapters_list.html:21
+#: templates/course_target/course_target_list.html:20
+#: templates/courses/course_detail.html:35
+#: templates/courses/courses_list.html:20
+#: templates/modules/module_detail.html:29
+#: templates/modules/modules_list.html:21
+#: templates/partners/partners_list.html:17
+#: templates/steps/file/file_list.html:21
+#: templates/steps/step/step_list.html:21
+#: templates/steps/text/text_list.html:21
+#: templates/steps/video/video_list.html:21
+msgid "Title"
+msgstr "Title"
 
-#: templates/chapters/change_steps_order.html:12
-#: templates/chapters/chapter_detail.html:30
-#, python-format
-msgid "List of %(title)s chapter's lessons"
-msgstr "List of %(title)s chapter's lessons"
+#: step/models/step.py:18
+#| msgid "Lesson types"
+msgid "Lesson type"
+msgstr "Lesson type"
 
-#: templates/chapters/change_steps_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:19
+#: step/models/step.py:26
+#| msgid "Course learn time"
+msgid "Lesson learn time"
+msgstr "Lesson learn time"
+
+#: step/models/step.py:45 templates/chapters/change_steps_order.html:28
+#: templates/front/chapter/chapter_user_detail_view.html:24
 msgid "Lesson"
 msgstr "Lesson"
 
-#: templates/chapters/change_steps_order.html:28
-#: templates/courses/change_chapters_order.html:28
+#: step/models/step.py:46
+#: templates/statistics/courses_statistics/courses_list_statistics.html:16
+msgid "Lessons"
+msgstr "Lessons"
+
+#: step/models/text.py:9
+#| msgid "Target title"
+msgid "Text title"
+msgstr "Title"
+
+#: step/models/text.py:10
+#| msgid "Target description"
+msgid "Text description"
+msgstr "Description"
+
+#: step/models/text.py:11
+msgid "Text content"
+msgstr "Reading content"
+
+#: step/models/text.py:22
+msgid "Texts"
+msgstr "Readings"
+
+#: step/models/video.py:15
+#| msgid "Job title"
+msgid "Video title"
+msgstr "Title"
+
+#: step/models/video.py:16
+#| msgid "Module description"
+msgid "Video description"
+msgstr "Description"
+
+#: step/models/video.py:17
+msgid "Video file"
+msgstr "Video file"
+
+#: step/models/video.py:28
+msgid "Videos"
+msgstr "Videos"
+
+#: templates/chapters/change_steps_order.html:4
+#: templates/chapters/change_steps_order.html:36
+#: templates/chapters/chapter_detail.html:42
+msgid "Change lessons ordering"
+msgstr "Change lessons ordering"
+
+#: templates/chapters/change_steps_order.html:13
+#: templates/chapters/chapter_detail.html:31
+#, python-format
+#| msgid "List of %(title)s chapter's lessons"
+msgid ""
+"List of %(title)s chapter's\n"
+"                        lessons"
+msgstr "List of %(title)s chapter's lessons"
+
+#: templates/chapters/change_steps_order.html:29
 msgid "Current number"
 msgstr "Current number"
 
-#: templates/chapters/change_steps_order.html:29
-#: templates/courses/change_chapters_order.html:29
+#: templates/chapters/change_steps_order.html:30
 msgid "New number"
 msgstr "New number"
 
-#: templates/chapters/change_steps_order.html:36
-#: templates/courses/change_chapters_order.html:36
+#: templates/chapters/change_steps_order.html:37
 msgid "Back"
 msgstr "Back"
 
 #: templates/chapters/chapter_create.html:4
 #: templates/chapters/chapter_create.html:12
 #: templates/chapters/chapters_list.html:16
-#: templates/courses/course_detail.html:26
+#: templates/courses/course_detail.html:27
 msgid "Add chapter"
 msgstr "Add chapter"
 
@@ -396,6 +482,14 @@ msgstr "Add chapter"
 #: templates/partials/sidebar.html:49 templates/partials/sidebar.html:66
 #: templates/partials/sidebar.html:186
 #: templates/partners/partners_create.html:11
+#: templates/steps/file/file_create.html:18
+#: templates/steps/file/file_list.html:15
+#: templates/steps/step/step_create.html:22
+#: templates/steps/step/step_list.html:16
+#: templates/steps/text/text_create.html:18
+#: templates/steps/text/text_list.html:15
+#: templates/steps/video/video_create.html:18
+#: templates/steps/video/video_list.html:15
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Add"
@@ -420,6 +514,10 @@ msgstr ""
 #: templates/course_target/course_target_delete.html:19
 #: templates/modules/module_delete.html:19
 #: templates/partners/partners_delete.html:18
+#: templates/steps/file/file_delete.html:19
+#: templates/steps/step/step_delete.html:19
+#: templates/steps/text/text_delete.html:29
+#: templates/steps/video/video_delete.html:29
 #: templates/teachers/teacher_delete.html:19
 msgid "Yes"
 msgstr "Yes"
@@ -428,81 +526,89 @@ msgstr "Yes"
 #: templates/course_target/course_target_delete.html:20
 #: templates/modules/module_delete.html:20
 #: templates/partners/partners_delete.html:19
+#: templates/steps/file/file_delete.html:21
+#: templates/steps/step/step_delete.html:21
+#: templates/steps/text/text_delete.html:31
+#: templates/steps/video/video_delete.html:31
 #: templates/teachers/teacher_delete.html:20
 msgid "No"
 msgstr "No"
 
-#: templates/chapters/chapter_detail.html:15
+#: templates/chapters/chapter_detail.html:16
+#: templates/steps/text/text_detail.html:20
 msgid "Description"
 msgstr "Description"
 
-#: templates/chapters/chapter_detail.html:21
-#: templates/chapters/chapter_detail.html:60
+#: templates/chapters/chapter_detail.html:22
+#: templates/chapters/chapter_detail.html:66
 #: templates/chapters/chapters_list.html:33
 #: templates/course_target/course_target_detail.html:17
 #: templates/course_target/course_target_list.html:33
-#: templates/courses/change_chapters_order.html:35
 #: templates/courses/course_detail.html:14
-#: templates/courses/course_detail.html:46
+#: templates/courses/course_detail.html:48
 #: templates/courses/courses_list.html:32
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
-#: templates/modules/modules_list.html:32
+#: templates/modules/modules_list.html:34
 #: templates/partners/partners_list.html:30
+#: templates/steps/file/file_list.html:37
+#: templates/steps/step/step_list.html:31
+#: templates/steps/text/text_list.html:35
+#: templates/steps/video/video_list.html:35
 #: templates/teachers/teacher_detail.html:20
-#: templates/teachers/teachers_list.html:33
+#: templates/teachers/teachers_list.html:36
 msgid "Change"
 msgstr "Change"
 
-#: templates/chapters/chapter_detail.html:23
-#: templates/chapters/chapter_detail.html:62
+#: templates/chapters/chapter_detail.html:24
+#: templates/chapters/chapter_detail.html:68
 #: templates/chapters/chapters_list.html:35
 #: templates/course_target/course_target_detail.html:19
 #: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
-#: templates/courses/course_detail.html:48
+#: templates/courses/course_detail.html:50
 #: templates/courses/courses_list.html:34
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
-#: templates/modules/modules_list.html:34
+#: templates/modules/modules_list.html:36
 #: templates/partners/partners_list.html:32
+#: templates/steps/file/file_list.html:41
+#: templates/steps/step/step_detail.html:32
+#: templates/steps/step/step_list.html:32
+#: templates/steps/text/text_detail.html:32
+#: templates/steps/text/text_list.html:39
+#: templates/steps/video/video_detail.html:37
+#: templates/steps/video/video_list.html:40
 #: templates/teachers/teacher_detail.html:22
-#: templates/teachers/teachers_list.html:35
+#: templates/teachers/teachers_list.html:38
 msgid "Delete"
 msgstr "Delete"
 
-#: templates/chapters/chapter_detail.html:33
+#: templates/chapters/chapter_detail.html:36
 msgid "Add video lesson"
 msgstr "Add video lesson"
 
-#: templates/chapters/chapter_detail.html:35
+#: templates/chapters/chapter_detail.html:38
 msgid "Add text lesson"
 msgstr "Add text lesson"
 
-#: templates/chapters/chapter_detail.html:37
+#: templates/chapters/chapter_detail.html:40
 msgid "Add test"
 msgstr "Add test"
 
-#: templates/chapters/chapter_detail.html:44
-#: templates/chapters/chapters_list.html:21
-#: templates/course_target/course_target_list.html:20
-#: templates/courses/course_detail.html:33
-#: templates/courses/courses_list.html:20
-#: templates/modules/module_detail.html:29
-#: templates/modules/modules_list.html:20
-#: templates/partners/partners_list.html:17
-msgid "Title"
-msgstr "Title"
-
-#: templates/chapters/chapter_detail.html:45
+#: templates/chapters/chapter_detail.html:50
 #: templates/chapters/chapters_list.html:22
 #: templates/course_target/course_target_list.html:21
-#: templates/courses/course_detail.html:34
+#: templates/courses/course_detail.html:36
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:30
-#: templates/modules/modules_list.html:21
+#: templates/modules/modules_list.html:22
 #: templates/partners/partners_list.html:18
-#: templates/teachers/teachers_list.html:21
+#: templates/steps/file/file_list.html:22
+#: templates/steps/step/step_list.html:22
+#: templates/steps/text/text_list.html:22
+#: templates/steps/video/video_list.html:22
+#: templates/teachers/teachers_list.html:23
 msgid "Actions"
 msgstr "Actions"
 
@@ -516,6 +622,12 @@ msgstr "Edit chapter"
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
 #: templates/partners/partners_update.html:9
+#: templates/steps/file/file_update.html:18
+#: templates/steps/step/step_detail.html:31
+#: templates/steps/text/text_detail.html:31
+#: templates/steps/text/text_update.html:18
+#: templates/steps/video/video_detail.html:36
+#: templates/steps/video/video_update.html:18
 #: templates/teachers/teacher_update.html:13
 msgid "Edit"
 msgstr "Edit"
@@ -555,17 +667,6 @@ msgstr "Target audience list"
 msgid "Edit target audience"
 msgstr "Edit target audience"
 
-#: templates/courses/change_chapters_order.html:4
-#: templates/courses/course_detail.html:28
-msgid "Change chapters ordering"
-msgstr "Change chapters ordering"
-
-#: templates/courses/change_chapters_order.html:12
-#: templates/courses/course_detail.html:23
-#, python-format
-msgid "List of %(title)s course's chapters"
-msgstr "List of %(title)s course's chapters"
-
 #: templates/courses/course_create.html:4
 #: templates/courses/course_create.html:12
 #: templates/courses/courses_list.html:15
@@ -588,6 +689,18 @@ msgstr ""
 "\n"
 "Are you sure you want to delete the course\n"
 "<span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/courses/course_detail.html:23
+#, python-format
+#| msgid "List of %(title)s course's chapters"
+msgid ""
+"List of %(title)s course's\n"
+"                    chapters"
+msgstr "List of %(title)s course's chapters"
+
+#: templates/courses/course_detail.html:29
+msgid "Change chapters ordering"
+msgstr "Change chapters ordering"
 
 #: templates/courses/course_update.html:4
 #: templates/courses/course_update.html:12
@@ -712,7 +825,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Profile"
 
-#: templates/front/accounts/profile.html:74
+#: templates/front/accounts/profile.html:85
 msgid "My courses"
 msgstr "My courses"
 
@@ -736,6 +849,11 @@ msgstr "No courses found"
 #: templates/modules/module_create.html:12
 msgid "Add module:"
 msgstr "Add module:"
+
+#: templates/modules/module_delete.html:4
+#| msgid "Delete course"
+msgid "Delete module"
+msgstr "Delete module"
 
 #: templates/modules/module_delete.html:12
 #, python-format
@@ -804,17 +922,11 @@ msgstr "180 days"
 
 #: templates/partners/partners_create.html:10
 #: templates/partners/partners_list.html:11
-#| msgid "Add chapter"
 msgid "Add partner"
 msgstr "Add partner"
 
 #: templates/partners/partners_delete.html:11
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the chapter\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                    Are you sure you want to delete the partner\n"
@@ -825,7 +937,6 @@ msgstr ""
 "Are you sure you want to delete the partner <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/partners/partners_list.html:10
-#| msgid "Chapters list"
 msgid "Partners list"
 msgstr "Partners list"
 
@@ -834,7 +945,6 @@ msgid "Image"
 msgstr "Image"
 
 #: templates/partners/partners_update.html:8
-#| msgid "Edit chapter"
 msgid "Edit partner"
 msgstr "Edit partner"
 
@@ -899,10 +1009,6 @@ msgid ""
 "                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
-
-#: templates/statistics/courses_statistics/courses_list_statistics.html:16
-msgid "Lessons"
-msgstr "Lessons"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:19
 msgid "Language"
@@ -1035,9 +1141,258 @@ msgstr "Number of users with active subscriptions"
 msgid "New users"
 msgstr "New users"
 
+#: templates/steps/file/file_create.html:4
+#: templates/steps/file/file_create.html:15
+#| msgid "Add module:"
+msgid "Add file"
+msgstr "Add file"
+
+#: templates/steps/file/file_delete.html:4
+#| msgid "Delete"
+msgid "Delete file"
+msgstr "Delete file"
+
+#: templates/steps/file/file_delete.html:12
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                Are you sure you want to delete the module\n"
+#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                "
+msgid ""
+"\n"
+"                Are you sure you want to delete the file\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the file <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/file/file_detail.html:4
+msgid "View file"
+msgstr "View file"
+
+#: templates/steps/file/file_detail.html:15
+#: templates/steps/step/step_detail.html:27
+msgid "Download file"
+msgstr "Download file"
+
+#: templates/steps/file/file_detail.html:16
+#| msgid "Modules list"
+msgid "Back to files list"
+msgstr "Back to files list"
+
+#: templates/steps/file/file_list.html:4
+#: templates/steps/file/file_list.html:12
+#| msgid "Modules list"
+msgid "Files list"
+msgstr "Files list"
+
+#: templates/steps/file/file_update.html:4
+#: templates/steps/file/file_update.html:15
+#| msgid "Edit"
+msgid "Edit file"
+msgstr "Edit file"
+
+#: templates/steps/step/step_create.html:4
+#| msgid "Add text lesson"
+msgid "Add lesson"
+msgstr "Add lesson"
+
+#: templates/steps/step/step_create.html:12
+#| msgid "Add video lesson"
+msgid "Adding lesson"
+msgstr "Adding lesson"
+
+#: templates/steps/step/step_create.html:23
+#| msgid "Add test"
+msgid "Add questions"
+msgstr "Add questions"
+
+#: templates/steps/step/step_delete.html:4
+#| msgid "Completed lessons"
+msgid "Delete lesson"
+msgstr "Delete lesson"
+
+#: templates/steps/step/step_delete.html:12
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                Are you sure you want to delete the module\n"
+#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                "
+msgid ""
+"\n"
+"                Are you sure you want to delete the lesson\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the lesson <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/step/step_detail.html:4
+#| msgid "Add video lesson"
+msgid "View lesson"
+msgstr "View lesson"
+
+#: templates/steps/step/step_detail.html:18
+msgid "Reading"
+msgstr "Reading"
+
+#: templates/steps/step/step_detail.html:34
+msgid "Back to lessons list"
+msgstr "Back to lessons list"
+
+#: templates/steps/step/step_list.html:15
+#| msgid "Lessons"
+msgid "Lessons list"
+msgstr "Lessons list"
+
+#: templates/steps/step/step_update.html:4
+#| msgid "Add text lesson"
+msgid "Edit lesson"
+msgstr "Edit lesson"
+
+#: templates/steps/step/step_update.html:21
+msgid "Save"
+msgstr "Save"
+
+#: templates/steps/text/text_create.html:4
+#: templates/steps/text/text_create.html:15
+#| msgid "Add target audience"
+msgid "Add reading"
+msgstr "Add reading"
+
+#: templates/steps/text/text_delete.html:4
+#| msgid "Delete target audience"
+msgid "Delete reading"
+msgstr "Delete reading"
+
+#: templates/steps/text/text_delete.html:12
+msgid "This reading is ised in the lessons below"
+msgstr "This reading is ised in the lessons below"
+
+#: templates/steps/text/text_delete.html:18
+msgid ""
+"In order to delete this reading you should change related readings in the "
+"lessons above."
+msgstr ""
+"In order to delete this reading you should change related readings in the "
+"lessons above."
+
+#: templates/steps/text/text_delete.html:22
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                    Are you sure you want to delete the partner\n"
+#| "                    <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                "
+msgid ""
+"\n"
+"                    Are you sure you want to delete the reading\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                    "
+msgstr ""
+"\n"
+"Are you sure you want to delete the reading\n"
+"<span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/text/text_detail.html:4
+msgid "View reading"
+msgstr "View reading"
+
+#: templates/steps/text/text_detail.html:25
+msgid "Content"
+msgstr "Content"
+
+#: templates/steps/text/text_detail.html:33
+msgid "Back to readings list"
+msgstr "Back to readings list"
+
+#: templates/steps/text/text_list.html:4
+#: templates/steps/text/text_list.html:12
+#| msgid "Partners list"
+msgid "Readings list"
+msgstr "Readings list"
+
+#: templates/steps/text/text_update.html:4
+#: templates/steps/text/text_update.html:15
+#| msgid "Edit target audience"
+msgid "Edit reading"
+msgstr "Edit reading"
+
+#: templates/steps/video/video_create.html:4
+#: templates/steps/video/video_create.html:15
+#| msgid "Add video lesson"
+msgid "Add video"
+msgstr "Add video"
+
+#: templates/steps/video/video_delete.html:4
+#| msgid "Delete"
+msgid "Delete video"
+msgstr "Delete video"
+
+#: templates/steps/video/video_delete.html:12
+msgid "This video is ised in the lessons below"
+msgstr "This video is ised in the lessons below"
+
+#: templates/steps/video/video_delete.html:18
+msgid ""
+"In order to delete this video you should change related videos in the "
+"lessons above."
+msgstr ""
+"In order to delete this video you should change related videos in the "
+"lessons above."
+
+#: templates/steps/video/video_delete.html:22
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                    Are you sure you want to delete the partner\n"
+#| "                    <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                "
+msgid ""
+"\n"
+"                        Are you sure you want to delete the video\n"
+"                        <span class=\"text-danger\"> %(title)s</span>?\n"
+"                     "
+msgstr ""
+"\n"
+"Are you sure you want to delete the video\n"
+"<span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/video/video_detail.html:4
+msgid "View video"
+msgstr "View video"
+
+#: templates/steps/video/video_detail.html:31
+msgid ""
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"target=\"_blank\">supports HTML5 video</a>"
+msgstr ""
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"target=\"_blank\">supports HTML5 video</a>"
+
+#: templates/steps/video/video_detail.html:39
+msgid "Back to videos list"
+msgstr "Back to videos list"
+
+#: templates/steps/video/video_list.html:4
+#: templates/steps/video/video_list.html:12
+#| msgid "Modules list"
+msgid "Videos list"
+msgstr "Videos list"
+
+#: templates/steps/video/video_update.html:4
+#: templates/steps/video/video_update.html:15
+msgid "Edit video"
+msgstr "Edit video"
+
 #: templates/teachers/teacher_create.html:4
 #: templates/teachers/teacher_create.html:12
-#: templates/teachers/teachers_list.html:15
+#: templates/teachers/teachers_list.html:16
 msgid "Add teacher"
 msgstr "Add teacher"
 
@@ -1070,9 +1425,18 @@ msgstr "Edit teacher"
 msgid "Teachers list"
 msgstr "Teachers list"
 
-#: templates/teachers/teachers_list.html:20
+#: templates/teachers/teachers_list.html:22
 msgid "Name"
 msgstr "Name"
+
+#~ msgid "Видео"
+#~ msgstr "Video"
+
+#~ msgid "Текст"
+#~ msgstr "Text"
+
+#~ msgid "Тест"
+#~ msgstr "Test"
 
 #~ msgid "Previous lesson"
 #~ msgstr "Previous lesson"
