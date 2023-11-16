@@ -98,16 +98,14 @@ class TestSubscriptionCreateView(CustomTestCase):
         self.assertEqual(SubscriptionModel.objects.count() - previous_count, 0)
 
     @login_superuser
-    def test_invalid_empty_title_field(self):
+    def test_invalid_empty_data_field(self):
         invalid_data = {"course": "", "price": ""}
         previous_count = SubscriptionModel.objects.count()
         response = self.client.post(self.url, data=invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(SubscriptionModel.objects.count() - previous_count, 0)
-        subscription = SubscriptionModel.objects.latest('create_at')
-        print(subscription)
-        self.assertEqual(subscription.course, None)
-        self.assertEqual(subscription.price, None)
+        self.assertFormError(response, 'form', 'course', 'Это поле обязательно для заполнения.')
+        self.assertFormError(response, 'form', 'price', 'Это поле обязательно для заполнения.')
 
 
 class TestSubscriptionUpdateView(CustomTestCase):
