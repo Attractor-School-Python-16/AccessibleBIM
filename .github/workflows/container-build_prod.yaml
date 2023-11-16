@@ -2,10 +2,9 @@ name: Prod Docker Build/Up
 
 on:
   workflow_run:
-      workflows:
-        - Run Test Django
-      types:
-        - completed
+    workflows: [ "Run Test Django" ]
+    types:
+      - completed
 
 jobs:
 
