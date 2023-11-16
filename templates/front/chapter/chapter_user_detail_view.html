@@ -4,9 +4,9 @@
 {% block title %}{{ chapter.title }}{% endblock %}
 {% block page_header %}{% endblock %}
 {% block content %}
-    <div class="container mt-8">
+    <div class="container mt-6">
     <div class="row">
-        <div class="w-sm-100 w-md-50 w-lg-25 ps-6 pt-6 offcanvas offcanvas-start" data-bs-scroll="true"
+        <div class="w-sm-100 w-md-50 w-lg-25 ps-6 pt-7 offcanvas offcanvas-start" data-bs-scroll="true"
              data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling"
              style="background-color: white; overflow:scroll;">
             {% include 'front/partials/chapter/chapter_sidebar_navigation.html' %}
@@ -88,18 +88,20 @@
 {% block page_footer %}{% endblock %}
 {% block page_script %}
     <script>
+        let mainContainer = $('#offcanvasScrolling')
+
         {#При открытии страницы на большом экране открывается сайдбар#}
         if ($(window).width() > 991) {
-           $('#offcanvasScrolling').addClass('show');
+           $(mainContainer).addClass('show pt-6').removeClass('pt-7');
         }
 
         {#А эта функция будет открывать/закрывать сайдбар при изменении размера страницы#}
         function toggleSidebar() {
         if ($(window).width() > 991) {
-           $('#offcanvasScrolling').addClass('show');
+           $(mainContainer).addClass('show pt-6').removeClass('pt-7');
         }
         else{
-            $('#offcanvasScrolling').removeClass('show');
+            $(mainContainer).removeClass('show pt-6').addClass('pt-7');
         }}
 
         window.addEventListener("resize", toggleSidebar);
