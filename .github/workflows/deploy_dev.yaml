@@ -5,6 +5,8 @@ on:
     workflows: [ "Dev Docker Build/Up", "Prod Docker Build/Up" ]
     types:
       - completed
+    branches:
+      - #319_CI-CD
 
 
 jobs:

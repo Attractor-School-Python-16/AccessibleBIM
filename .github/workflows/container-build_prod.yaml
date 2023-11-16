@@ -5,6 +5,8 @@ on:
     workflows: [ "Run Test Django" ]
     types:
       - completed
+    branches:
+      - #319_CI-CD
 
 jobs:
 
