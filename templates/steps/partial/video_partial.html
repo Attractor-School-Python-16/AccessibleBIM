@@ -1,9 +1,9 @@
-<h2>{{ step.video.video_title }}</h2>
-<p>{{ step.video.video_description }}</p>
-<div class="d-flex justify-content-center">
+<h2 class="content bold text-center">{{ step.video.video_title }}</h2>
+<p class="content" style="text-align: justify">{{ step.video.video_description }}</p>
+<div class="d-flex justify-content-center mt-4">
     <video
             id="my-video"
-            class="video-js"
+            class="video-js w-100"
             controls
             preload="auto"
             width="640"
@@ -13,7 +13,7 @@
     >
         <source src="{{ step.video.video_file.url }}" type="video/mp4">
 
-        <p class="vjs-no-js">
+        <p class="vjs-no-js content">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that / Для просмотра этого видео, пожалуйста, включите JavaScript и
             рассмотрите возможность обновления до веб-браузера, который

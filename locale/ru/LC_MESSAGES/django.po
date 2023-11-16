@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 22:20+0600\n"
-"PO-Revision-Date: 2023-11-09 16:22+0000\n"
+"POT-Creation-Date: 2023-11-12 00:52+0600\n"
+"PO-Revision-Date: 2023-11-12 00:55+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:211
+#: accessibleBIM/settings.py:213
 msgid "Russian"
 msgstr "Русский"
 
-#: accessibleBIM/settings.py:212
+#: accessibleBIM/settings.py:214
 msgid "English"
 msgstr "Английский"
 
@@ -123,6 +123,28 @@ msgstr "Вид организации"
 msgid "Activate your user account"
 msgstr "Подтвердите ваш аккаунт"
 
+#: content/models/partner.py:8
+#| msgid "Chapter title"
+msgid "partner title"
+msgstr "Название"
+
+#: content/models/partner.py:9
+#| msgid "Course image"
+msgid "partner image"
+msgstr "Изображение"
+
+#: content/models/partner.py:16
+msgid "Partner"
+msgstr "Партнер"
+
+#: content/models/partner.py:17 templates/partials/sidebar.html:182
+#: templates/partners/partners_create.html:5
+#: templates/partners/partners_delete.html:5
+#: templates/partners/partners_list.html:5
+#: templates/partners/partners_update.html:5
+msgid "Partners"
+msgstr "Партнеры"
+
 #: currency/models/currency_rate.py:6
 msgid "USD"
 msgstr "$"
@@ -131,8 +153,11 @@ msgstr "$"
 msgid "RUB"
 msgstr "руб."
 
-#: modules/models/chapter.py:9 modules/models/courses.py:52
+#: modules/models/chapter.py:9 modules/models/courses.py:48
 #: templates/chapters/chapter_detail.html:16
+#: templates/statistics/courses_statistics/courses_list_statistics.html:14
+#: templates/statistics/users_statistics/user_detailed_statistics.html:17
+#: templates/statistics/users_statistics/users_list_statistics.html:17
 msgid "Course"
 msgstr "Курс"
 
@@ -152,11 +177,12 @@ msgstr "#"
 
 #: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:12
 #: templates/courses/change_chapters_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:13
+#: templates/front/chapter/chapter_user_detail_view.html:12
 msgid "Chapter"
 msgstr "Глава"
 
 #: modules/models/chapter.py:17 templates/chapters/chapters_list.html:4
+#: templates/statistics/courses_statistics/courses_list_statistics.html:15
 msgid "Chapters"
 msgstr "Главы"
 
@@ -178,15 +204,15 @@ msgstr "Целевая аудитория"
 
 #: modules/models/courses.py:21
 msgid "Русский"
-msgstr ""
+msgstr "Русский"
 
 #: modules/models/courses.py:22
 msgid "Английский"
-msgstr ""
+msgstr "Английский"
 
 #: modules/models/courses.py:23
 msgid "Кыргызский"
-msgstr ""
+msgstr "Кыргызский"
 
 #: modules/models/courses.py:25
 msgid "Course title"
@@ -201,14 +227,15 @@ msgid "Course image"
 msgstr "Фото для курса"
 
 #: modules/models/courses.py:29 modules/models/module.py:34
-#: templates/front/partials/filter.html:6
+#: templates/statistics/courses_statistics/courses_list_statistics.html:17
 msgid "Module"
 msgstr "Модуль"
 
 #: modules/models/courses.py:31
 #: templates/course_target/course_target_detail.html:4
 #: templates/course_target/course_target_list.html:4
-#: templates/partials/sidebar.html:45
+#: templates/partials/sidebar.html:61
+#: templates/statistics/courses_statistics/courses_list_statistics.html:18
 msgid "Target audience"
 msgstr "Целевая аудитория"
 
@@ -221,11 +248,12 @@ msgid "Course learn time"
 msgstr "Время на прохождение курса (часы)"
 
 #: modules/models/courses.py:36 modules/models/teacher.py:19
-#: templates/partials/sidebar.html:28
+#: templates/partials/sidebar.html:44
 msgid "Teachers"
 msgstr "Преподаватели"
 
-#: modules/models/courses.py:53 templates/courses/courses_list.html:4
+#: modules/models/courses.py:49 templates/courses/courses_list.html:4
+#: templates/partials/sidebar.html:168
 msgid "Courses"
 msgstr "Курсы"
 
@@ -286,6 +314,8 @@ msgid "Finished"
 msgstr "Закончен"
 
 #: modules/models/user_course_progress.py:15
+#: templates/statistics/users_statistics/user_detailed_statistics.html:14
+#: templates/statistics/users_statistics/users_list_statistics.html:14
 msgid "User"
 msgstr "Пользователь"
 
@@ -312,15 +342,15 @@ msgstr "Прогресс по курсу"
 
 #: step/models/step.py:10
 msgid "Видео"
-msgstr ""
+msgstr "Видео"
 
 #: step/models/step.py:11
 msgid "Текст"
-msgstr ""
+msgstr "Текст"
 
 #: step/models/step.py:12
 msgid "Тест"
-msgstr ""
+msgstr "Тест"
 
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:35
@@ -335,7 +365,7 @@ msgid "List of %(title)s chapter's lessons"
 msgstr "Список занятий главы %(title)s"
 
 #: templates/chapters/change_steps_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:20
+#: templates/front/chapter/chapter_user_detail_view.html:19
 msgid "Lesson"
 msgstr "Занятие"
 
@@ -365,7 +395,9 @@ msgstr "Добавить главу"
 #: templates/course_target/course_target_create.html:13
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
-#: templates/partials/sidebar.html:33 templates/partials/sidebar.html:50
+#: templates/partials/sidebar.html:49 templates/partials/sidebar.html:66
+#: templates/partials/sidebar.html:186
+#: templates/partners/partners_create.html:11
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Создать"
@@ -387,16 +419,16 @@ msgstr ""
 
 #: templates/chapters/chapter_delete.html:19
 #: templates/course_target/course_target_delete.html:19
-#: templates/courses/course_delete.html:19
 #: templates/modules/module_delete.html:19
+#: templates/partners/partners_delete.html:18
 #: templates/teachers/teacher_delete.html:19
 msgid "Yes"
 msgstr "Да"
 
 #: templates/chapters/chapter_delete.html:20
 #: templates/course_target/course_target_delete.html:20
-#: templates/courses/course_delete.html:20
 #: templates/modules/module_delete.html:20
+#: templates/partners/partners_delete.html:19
 #: templates/teachers/teacher_delete.html:20
 msgid "No"
 msgstr "Нет"
@@ -413,10 +445,11 @@ msgstr "Описание"
 #: templates/courses/change_chapters_order.html:35
 #: templates/courses/course_detail.html:14
 #: templates/courses/course_detail.html:46
-#: templates/courses/courses_list.html:33
+#: templates/courses/courses_list.html:32
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
 #: templates/modules/modules_list.html:32
+#: templates/partners/partners_list.html:30
 #: templates/teachers/teacher_detail.html:20
 #: templates/teachers/teachers_list.html:33
 msgid "Change"
@@ -429,10 +462,11 @@ msgstr "Изменить"
 #: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
 #: templates/courses/course_detail.html:48
-#: templates/courses/courses_list.html:35
+#: templates/courses/courses_list.html:34
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
 #: templates/modules/modules_list.html:34
+#: templates/partners/partners_list.html:32
 #: templates/teachers/teacher_detail.html:22
 #: templates/teachers/teachers_list.html:35
 msgid "Delete"
@@ -454,9 +488,10 @@ msgstr "Добавить тест"
 #: templates/chapters/chapters_list.html:21
 #: templates/course_target/course_target_list.html:20
 #: templates/courses/course_detail.html:33
-#: templates/courses/courses_list.html:21
+#: templates/courses/courses_list.html:20
 #: templates/modules/module_detail.html:29
 #: templates/modules/modules_list.html:20
+#: templates/partners/partners_list.html:17
 msgid "Title"
 msgstr "Название"
 
@@ -464,9 +499,10 @@ msgstr "Название"
 #: templates/chapters/chapters_list.html:22
 #: templates/course_target/course_target_list.html:21
 #: templates/courses/course_detail.html:34
-#: templates/courses/courses_list.html:22
+#: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:30
 #: templates/modules/modules_list.html:21
+#: templates/partners/partners_list.html:18
 #: templates/teachers/teachers_list.html:21
 msgid "Actions"
 msgstr "Действия"
@@ -480,6 +516,7 @@ msgstr "Редактировать главу"
 #: templates/course_target/course_target_update.html:13
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
+#: templates/partners/partners_update.html:9
 #: templates/teachers/teacher_update.html:13
 msgid "Edit"
 msgstr "Редактировать"
@@ -531,7 +568,7 @@ msgstr "Список глав курса %(title)s"
 
 #: templates/courses/course_create.html:4
 #: templates/courses/course_create.html:12
-#: templates/courses/courses_list.html:16
+#: templates/courses/courses_list.html:15
 #: templates/modules/module_detail.html:24
 msgid "Add course"
 msgstr "Добавить курс"
@@ -556,7 +593,7 @@ msgstr ""
 msgid "Edit course"
 msgstr "Редактирование курса"
 
-#: templates/courses/courses_list.html:15
+#: templates/courses/courses_list.html:13
 #: templates/front/courses/courses.html:3
 msgid "Courses list"
 msgstr "Список курсов"
@@ -686,23 +723,11 @@ msgstr "Регистрация"
 msgid "Register"
 msgstr "Зарегистрироваться"
 
-#: templates/front/chapter/chapter_user_detail_view.html:37
-msgid "Previous lesson"
-msgstr "Предыдущий урок"
-
-#: templates/front/chapter/chapter_user_detail_view.html:40
-msgid "Next lesson"
-msgstr "Следующий урок"
-
-#: templates/front/chapter/chapter_user_detail_view.html:44
-msgid "Next chapter"
-msgstr "Следующая глава"
-
-#: templates/front/courses/courses.html:8
+#: templates/front/courses/courses.html:13
 msgid "List of available courses"
 msgstr "Список доступных курсов"
 
-#: templates/front/courses/courses.html:23
+#: templates/front/courses/courses.html:28
 msgid "No courses found"
 msgstr "Курсы не найдены"
 
@@ -738,10 +763,77 @@ msgstr "Список модулей"
 msgid "Add modules"
 msgstr "Добавить модуль"
 
-#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:38
-#: templates/partials/sidebar.html:55
+#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:54
+#: templates/partials/sidebar.html:71 templates/partials/sidebar.html:189
 msgid "List"
 msgstr "Список"
+
+#: templates/partials/sidebar.html:157
+#: templates/statistics/courses_statistics/courses_list_statistics.html:5
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:5
+#: templates/statistics/courses_statistics/courses_statistics_main.html:5
+#: templates/statistics/sales_statistics/sales_statistics_main.html:5
+#: templates/statistics/users_statistics/user_detailed_statistics.html:5
+#: templates/statistics/users_statistics/users_list_statistics.html:5
+#: templates/statistics/users_statistics/users_statistics_main.html:5
+msgid "Statistics"
+msgstr "Статистика"
+
+#: templates/partials/sidebar.html:162
+msgid "Users"
+msgstr "Пользователи"
+
+#: templates/partials/sidebar.html:174
+msgid "Sales"
+msgstr "Продажи"
+
+#: templates/partials/statistics/chart_by_period.html:9
+msgid "7 days"
+msgstr "7 дней"
+
+#: templates/partials/statistics/chart_by_period.html:10
+msgid "30 days"
+msgstr "30 дней"
+
+#: templates/partials/statistics/chart_by_period.html:11
+msgid "180 days"
+msgstr "180 дней"
+
+#: templates/partners/partners_create.html:10
+#: templates/partners/partners_list.html:11
+#| msgid "Add chapter"
+msgid "Add partner"
+msgstr "Добавить партнера"
+
+#: templates/partners/partners_delete.html:11
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                Are you sure you want to delete the chapter\n"
+#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                "
+msgid ""
+"\n"
+"                    Are you sure you want to delete the partner\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Вы точно хотите удалить партнера <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/partners/partners_list.html:10
+#| msgid "Chapters list"
+msgid "Partners list"
+msgstr "Список партнеров"
+
+#: templates/partners/partners_list.html:16
+msgid "Image"
+msgstr "Изображение"
+
+#: templates/partners/partners_update.html:8
+#| msgid "Edit chapter"
+msgid "Edit partner"
+msgstr "Редактировать партнера"
 
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
@@ -794,7 +886,7 @@ msgstr ""
 #: templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
-msgstr ""
+msgstr "Регистрация"
 
 #: templates/socialaccount/signup.html:28
 #, python-format
@@ -804,6 +896,147 @@ msgid ""
 "                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
+
+#: templates/statistics/courses_statistics/courses_list_statistics.html:16
+msgid "Lessons"
+msgstr "Занятие"
+
+#: templates/statistics/courses_statistics/courses_list_statistics.html:19
+msgid "Language"
+msgstr "Язык занятия"
+
+#: templates/statistics/courses_statistics/courses_list_statistics.html:20
+msgid "Published"
+msgstr "Опубликован"
+
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:11
+msgid "Users purchased the course"
+msgstr "Пользователей купили данный курс"
+
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:15
+msgid "Users completed the course"
+msgstr "Пользователей закончили данный курс"
+
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:19
+msgid "Average course completion time"
+msgstr "Среднее время прохождения"
+
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:25
+#: templates/statistics/courses_statistics/courses_statistics_main.html:25
+msgid "Lesson types"
+msgstr "Типы уроков"
+
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:29
+msgid "Average lesson completion time"
+msgstr "Среднее время прохождения уроков"
+
+#: templates/statistics/courses_statistics/courses_statistics_detailed.html:33
+msgid "Test results"
+msgstr "Результаты тестов"
+
+#: templates/statistics/courses_statistics/courses_statistics_main.html:12
+msgid "Number of existing courses"
+msgstr "Количество созданных курсов"
+
+#: templates/statistics/courses_statistics/courses_statistics_main.html:17
+msgid "Number of published courses"
+msgstr "Количество опубликованных курсов"
+
+#: templates/statistics/courses_statistics/courses_statistics_main.html:31
+msgid "Completed lessons"
+msgstr "Пройденные уроки"
+
+#: templates/statistics/sales_statistics/sales_statistics_main.html:12
+msgid "Number of subscriptions"
+msgstr "Количество подписок"
+
+#: templates/statistics/sales_statistics/sales_statistics_main.html:16
+msgid "Number of active subscriptions"
+msgstr "Количество активных подписок"
+
+#: templates/statistics/sales_statistics/sales_statistics_main.html:20
+msgid "Lowest course price"
+msgstr "Минимальная стоимость курса"
+
+#: templates/statistics/sales_statistics/sales_statistics_main.html:24
+msgid "Average course price"
+msgstr "Средняя стоимость курса"
+
+#: templates/statistics/sales_statistics/sales_statistics_main.html:28
+msgid "Highest course price"
+msgstr "Максимальная стоимость курса"
+
+#: templates/statistics/sales_statistics/sales_statistics_main.html:34
+msgid "New subscriptions"
+msgstr "Новые подписки"
+
+#: templates/statistics/sales_statistics/sales_statistics_main.html:38
+msgid "Popular courses"
+msgstr "Популярные курсы"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:15
+#: templates/statistics/users_statistics/users_list_statistics.html:15
+#| msgid "Email sent"
+msgid "Email"
+msgstr "Email"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:16
+#: templates/statistics/users_statistics/users_list_statistics.html:16
+#| msgid "country"
+msgid "Country"
+msgstr "Страна"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:18
+#: templates/statistics/users_statistics/users_list_statistics.html:18
+#| msgid "Register"
+msgid "Registered at"
+msgstr "Зарегистрирован"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:19
+#: templates/statistics/users_statistics/users_list_statistics.html:19
+#| msgid "Last name"
+msgid "Last Entry"
+msgstr "Последний вход"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:20
+#: templates/statistics/users_statistics/users_list_statistics.html:20
+#| msgid "email_verified"
+msgid "Email Verified"
+msgstr "Email подтвержден"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:38
+#| msgid "Add course"
+msgid "Active course"
+msgstr "Активный курс"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:48
+#: templates/statistics/users_statistics/user_detailed_statistics.html:74
+msgid "Tests statistics"
+msgstr "Статистика по тестам"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:59
+msgid "No active subscriptions"
+msgstr "Нет текущих подписок"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:62
+msgid "Finished courses"
+msgstr "Завершенные курсы"
+
+#: templates/statistics/users_statistics/user_detailed_statistics.html:86
+msgid "No finished courses"
+msgstr "Нет завершенных курсов"
+
+#: templates/statistics/users_statistics/users_statistics_main.html:13
+msgid "Number of registered users"
+msgstr "Количество зарегистрированных пользователей"
+
+#: templates/statistics/users_statistics/users_statistics_main.html:18
+msgid "Number of users with active subscriptions"
+msgstr "Количество пользователей с действующей подпиской"
+
+#: templates/statistics/users_statistics/users_statistics_main.html:25
+msgid "New users"
+msgstr "Новые пользователи"
 
 #: templates/teachers/teacher_create.html:4
 #: templates/teachers/teacher_create.html:12
@@ -817,11 +1050,6 @@ msgstr "Удалить преподавателя"
 
 #: templates/teachers/teacher_delete.html:12
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the chapter\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                Are you sure you want to delete the teacher\n"
@@ -848,6 +1076,12 @@ msgstr "Список преподавателей"
 #: templates/teachers/teachers_list.html:20
 msgid "Name"
 msgstr "Имя"
+
+#~ msgid "Previous lesson"
+#~ msgstr "Предыдущий урок"
+
+#~ msgid "Next chapter"
+#~ msgstr "Следующая глава"
 
 #, python-format
 #~ msgid ""
@@ -885,9 +1119,6 @@ msgstr "Имя"
 
 #~ msgid "Invalid verification"
 #~ msgstr "Ошибка верификации"
-
-#~ msgid "Email sent"
-#~ msgstr "Письмо отправлено"
 
 #~ msgid "You don't have any purchased cources"
 #~ msgstr "У вас нет приобретенных курсов"
