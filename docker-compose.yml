@@ -1,43 +1,43 @@
 services:
-  db:
-    image: postgres:14.3
-    ports:
-      - "5433:5432"
-    env_file:
-      - .env
-    container_name: test_db
-    restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-
-
-  backend:
+  web:
     build: .
-    ports:
-      - "8000:8000"
-    container_name: local_backend
-    depends_on:
-      - db
-      - redis
-      - celery
-    env_file:
-      - .env
-    restart: always
-    volumes:
-      - .:/code
     command: >
       sh -c "python manage.py migrate &&
-      for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json 10_subscription; do
+      for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 05_quiz_bim.json 06_step.json 07_tasks.json 08_sites.json 09_socialaccount.json 10_subscription.json; do
         python manage.py loaddata fixtures/$$fixture
       done &&
       python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8000:8000
+    restart: always
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env.dev
+    restart: always
+    environment:
+      TZ: 'Asia/Bishkek'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 
   redis:
     image: "redis:alpine"
     hostname: redis
     restart: always
+    environment:
+      TZ: 'Asia/Bishkek'
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
 
   celery:
     build: .
@@ -46,10 +46,13 @@ services:
       - redis
       - db
     env_file:
-      - .env
-    volumes:
-      - .:/code
+      - .env.dev
     restart: always
+    environment:
+      TZ: 'Asia/Bishkek'
+    volumes:
+      - .:/usr/src/app/
 
 volumes:
   postgres_data:
+  redis_data:
