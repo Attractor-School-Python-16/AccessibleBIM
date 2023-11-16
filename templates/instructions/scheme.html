@@ -1,0 +1,21 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Общая схема подчиненности моделей
+        </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <img src="{% static "img/instruction/scheme.png" %}" alt="scheme" class="w-100">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">На схеме выше показан пример подчиненности
+                моделей.
+                Каждый
+                курс должен
+                относиться к какому-либо модулю. Это могут быть любые тематические разделы,
+                такие как BIM, CAD, SCADA и т.д. При этом Курс состоит из основных разделов –
+                Глав, которые содержат в себе Занятия.</p>
+        </div>
+    </div>
+</div>
