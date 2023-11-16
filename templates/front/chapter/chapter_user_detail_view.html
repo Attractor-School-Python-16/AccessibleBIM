@@ -76,8 +76,9 @@
             </div>
         </div>
 
-        <button type="button" class="btn rounded-circle border border-secondary border-2 p-0" id="btn-back-to-top"
-            style="position: fixed; bottom: 20px; right: 20px; display: none; width: 60px; height: 60px;">
+        <button type="button" class="btn rounded-circle border border-secondary border-2 p-0 bg-white"
+                id="btn-back-to-top" style="position: fixed; bottom: 20px; right: 20px; display: none;  width: 60px;
+                height: 60px; opacity: 60%;">
             <i class="fs-3 fas fa-arrow-up"></i>
         </button>
     </div>
@@ -87,10 +88,23 @@
 {% block page_footer %}{% endblock %}
 {% block page_script %}
     <script>
+        {#При открытии страницы на большом экране открывается сайдбар#}
         if ($(window).width() > 991) {
            $('#offcanvasScrolling').addClass('show');
         }
 
+        {#А эта функция будет открывать/закрывать сайдбар при изменении размера страницы#}
+        function toggleSidebar() {
+        if ($(window).width() > 991) {
+           $('#offcanvasScrolling').addClass('show');
+        }
+        else{
+            $('#offcanvasScrolling').removeClass('show');
+        }}
+
+        window.addEventListener("resize", toggleSidebar);
+
+        {#Скролл к началу страницы#}
         let topBtn = document.getElementById("btn-back-to-top");
 
         window.onscroll = function () {
