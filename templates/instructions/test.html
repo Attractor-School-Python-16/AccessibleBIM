@@ -1,0 +1,92 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+            Тесты 
+        </button>
+    </h2>
+    <div id="collapseEleven" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В данном разделе можно создавать тесты, для того чтобы в последствии их можно было прикреплять к
+                определенным занятиям.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для того, чтобы добавить тест, необходимо нажать на «Тесты» в навигационной панели слева, и выбрать
+                «Создать»:
+            </p>
+            <img src="{% static "img/instruction/tests.PNG" %}" alt="tests" class="mx-auto d-block">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В открывшемся окне необходимо заполнить поле формы:
+            </p>
+            <img src="{% static "img/instruction/test_create.PNG" %}" alt="text_create" class="w-50 mx-auto d-block
+            border border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                По нажатию кнопки «Добавить тест» вас перенаправит на страницу детального просмотра теста:
+            </p>
+            <img src="{% static "img/instruction/test_detail.PNG" %}" alt="test_detail" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для того, чтобы добавить вопросы теста, необходимо нажать на «Добавить новый вопрос», после чего
+                отобразится форма, в которой надо будет указать вопрос:
+            </p>
+            <img src="{% static "img/instruction/test_question_create.PNG" %}" alt="test_question_create" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+               После создания вопроса он отобразится под тестом и появится панель пагинации. В карточке вопроса можно
+                редактировать или удалить сам вопрос, а также добавить ответы к нему:
+            </p>
+            <img src="{% static "img/instruction/test_question_created.PNG" %}" alt="test_question_created"
+                 class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+               При нажатии на кнопку «Добавить ответ» появится форма, в которой необходимо прописать ответ и отметить
+                его правильность:
+            </p>
+            <img src="{% static "img/instruction/test_answer_add.PNG" %}" alt="test_answer_add"
+                 class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+               После заполнения формы ответ отобразится под вопросом. Данный ответ можно отредактировать или удалить:
+            </p>
+            <img src="{% static "img/instruction/test_answer_created.PNG" %}" alt="test_answer_created"
+                 class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+               После добавления новых вопросов можно перемещаться между ними с помощью панели пагинации:
+            </p>
+            <img src="{% static "img/instruction/test_q1.PNG" %}" alt="test_q1"
+                 class="w-100 border
+            border-secondary rounded">
+            <img src="{% static "img/instruction/test_q2.PNG" %}" alt="test_q2"
+                 class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+               Для отображения списка тестов, необходимо выбрать «Список тестов» из вкладки «Тесты» навигационной
+                панели слева:
+            </p>
+            <img src="{% static "img/instruction/test_list.PNG" %}" alt="test_list"
+                 class="w-100 border
+            border-secondary rounded">
+             <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Здесь доступны функции:
+            </p>
+            <ul>
+                <li>Добавления теста;</li>
+                <li>Редактирования теста;</li>
+                <li>Удаления теста;</li>
+                <li>Просмотра информации о тесте.</li>
+            </ul>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Функция редактирования теста редактирует только название теста. Для того чтобы редактировать вопросы
+                и ответы необходимо выбрать соответствующий тест и перейти на страницу его просмотра.
+            </p>
+            <button class="btn btn-secondary mx-2" type="button" data-coreui-toggle="collapse"
+                    data-coreui-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                Свернуть
+            </button>
+        </div>
+    </div>
+</div>
+
