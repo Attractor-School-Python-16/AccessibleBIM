@@ -1,8 +1,8 @@
-name: Prod Docker Build/Up
+name: ProdDockerBuildUp
 
 on:
   workflow_run:
-    workflows: [Run Test Django Prod]
+    workflows: [RunTestDjangoProd]
     types:
       - completed
 

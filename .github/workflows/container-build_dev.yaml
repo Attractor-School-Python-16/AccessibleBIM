@@ -1,9 +1,9 @@
-name: Dev Docker Build/Up
+name: DevDockerBuildUp
 
 
 on:
   workflow_run:
-    workflows: [Run Test Django Dev]
+    workflows: [RunTestDjangoDev]
     types:
       - completed
 

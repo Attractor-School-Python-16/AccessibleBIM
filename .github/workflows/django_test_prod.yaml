@@ -1,4 +1,4 @@
-name: Run Test Django Prod
+name: RunTestDjangoProd
 
 # Controls when the workflows will run
 on:
