@@ -1,9 +1,12 @@
-name: Run Test Django
+name: Run Test Django Dev
 
 # Controls when the workflows will run
 on:
-  - push
-  - pull_request
+  workflow_dispatch:
+  push:
+    branches: #319_CI-CD
+  pull_request:
+    branches: #319_CI-CD
 
 
 # A workflows run is made up of one or more jobs that can run sequentially or in parallel

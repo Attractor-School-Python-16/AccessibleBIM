@@ -2,11 +2,9 @@ name: Prod Docker Build/Up
 
 on:
   workflow_run:
-    workflows: [ "Run Test Django" ]
+    workflows: ["Run Test Django Prod"]
     types:
       - completed
-    branches:
-      - #319_CI-CD
 
 jobs:
 
