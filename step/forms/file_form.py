@@ -28,6 +28,8 @@ CONTENTTYPES = ['text/plain',
                 'application/octet-stream',
                 'application/x-step',
                 'application/xml',
+                'image/vnd.dwg',
+                'image/vnd.dxf'
                 ]
 
 
@@ -44,12 +46,12 @@ class FileForm(forms.ModelForm):
         lesson_file = self.cleaned_data.get("lesson_file", False)
         if lesson_file:
             if lesson_file.content_type in CONTENTTYPES:
-                if lesson_file.size <= 20971520:
+                if lesson_file.size <= 214958080:
                     return lesson_file
                 else:
-                    raise forms.ValidationError("Размер загружаемого файла не должен превышать 20 МБ")
+                    raise forms.ValidationError("Размер загружаемого файла не должен превышать 250 МБ")
             else:
-                raise forms.ValidationError("Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX")
+                raise forms.ValidationError("Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF")
         else:
             return lesson_file
 

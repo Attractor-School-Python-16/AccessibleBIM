@@ -1,0 +1,64 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+            Статистика
+        </button>
+    </h2>
+    <div id="collapseThirteen" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Данный раздел предназначен для просмотра статистики по сайту, чтобы опираясь на неё можно было
+                провести анализ по необходимости редактирования контента в зависимости от спроса, популярности и
+                прочих факторов.
+            </p>
+            <h5 class="mt-3">Статистика по пользователям</h5>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для просмотра статистики по пользователям перейдите по ссылке «Пользователи» раздела «Статистика» на
+                навигационной панели слева:
+            </p>
+            <img src="{% static "img/instruction/statistics.PNG" %}" alt="statistics" class="mx-auto d-block">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В данном разделе отображается статистика по:
+            </p>
+            <ul>
+                <li>Количеству зарегистрированных пользователей</li>
+                <li>Количеству пользователей с активной подпиской</li>
+                <li>График регистрации новых пользователей (позволит оценить динамику популярности ресурса)</li>
+            </ul>
+            <img src="{% static "img/instruction/stat_user.PNG" %}" alt="stat_user" class="w-100 mx-auto d-block
+            border border-secondary rounded">
+            <h5 class="mt-3">Статистика по курсам</h5>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Данный раздел отображает следующую статистику по контенту:
+            </p>
+            <ul>
+                <li>Количество созданных курсов</li>
+                <li>Количество опубликованных курсов</li>
+                <li>Типы уроков</li>
+                <li>График прохождения уроков за 7/30/180 дней</li>
+            </ul>
+            <img src="{% static "img/instruction/stat_courses.PNG" %}" alt="stat_courses" class="w-100 mx-auto d-block
+            border border-secondary rounded">
+            <h5 class="mt-3">Статистика по продажам</h5>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В данном разделе можно посмотреть статистику по:
+            </p>
+            <ul>
+                <li>Количеству подписок</li>
+                <li>Количеству активных подписок</li>
+                <li>Минимальной, максимальной и средней стоимости курса</li>
+                <li>График приобретения/выдачи подписки за 7/30/180 дней</li>
+                <li>График популярности курсов за 7/30/180 дней</li>
+            </ul>
+            <img src="{% static "img/instruction/stat_sales.PNG" %}" alt="stat_sales" class="w-100 mx-auto d-block
+            border border-secondary rounded">
+            <button class="btn btn-secondary my-3" type="button" data-coreui-toggle="collapse"
+                    data-coreui-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                Свернуть
+            </button>
+        </div>
+    </div>
+</div>
+
