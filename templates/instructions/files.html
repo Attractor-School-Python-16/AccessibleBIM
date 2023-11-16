@@ -1,0 +1,51 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+            Файлы
+        </button>
+    </h2>
+    <div id="collapseEight" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В данном разделе можно создавать файлы, для того чтобы в последствии их можно было прикреплять к
+                определенным занятиям.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для того, чтобы добавить файл, необходимо нажать на «Файлы» в навигационной панели слева, и выбрать
+                «Создать»:
+            </p>
+            <img src="{% static "img/instruction/files.PNG" %}" alt="files" class="mx-auto d-block">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В открывшемся окне необходимо заполнить все поля формы:
+            </p>
+            <img src="{% static "img/instruction/file_create.PNG" %}" alt="file_create" class="w-50 mx-auto d-block
+            border border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для отображения списка файлов, необходимо выбрать «Список» из вкладки «Файлы» навигационной панели
+                слева:
+            </p>
+            <img src="{% static "img/instruction/file_list.PNG" %}" alt="file_list" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Здесь доступны функции:
+            </p>
+            <ul>
+                <li>Добавления файла;</li>
+                <li>Редактирования файла (изменение названия, замена самого файла);</li>
+                <li>Удаления файла;</li>
+                <li>Просмотра информации о файле:</li>
+            </ul>
+            <img src="{% static "img/instruction/file_detail.PNG" %}" alt="file_detail" class="w-50 mx-auto d-block
+            border border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+               На странице просмотра файла можно скачать файл, который был загружен ранее.
+            </p>
+            <button class="btn btn-secondary mx-2" type="button" data-coreui-toggle="collapse"
+                    data-coreui-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                Свернуть
+            </button>
+        </div>
+    </div>
+</div>
