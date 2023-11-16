@@ -17,7 +17,7 @@
                                         <div class="alert alert-danger text-white">{{ error }}</div>
                                     {% endfor %}
                                 {% else %}
-                                    <p class="text-medium-emphasis">Create your account</p>
+                                    <p class="text-medium-emphasis">{% trans "Create your account" %}</p>
                                 {% endif %}
                                 {% for field in form %}
                                     {% if field.field.required %}
@@ -34,11 +34,15 @@
                                         {{ field|attr:"class:form-control" }}
                                     </div>
                                 {% endfor %}
+                                 <div class="text-center mt-4">
+                                    <p>Отправляя данную форму вы соглашаетесь с <a class="text-warning" href="{% url 'front:privacy_policy' %}">Политикой конфиденциальности</a> и
+                                        <a class="text-warning" href="{% url 'front:terms_of_use' %}">Пользовательским соглашением</a></p>
+                                </div>
                                 <div class="text-center mt-4">
                                     <button class="btn btn-block btn-success mx-2"
                                             type="submit">{% trans 'Register' %}</button>
                                     <button form="google" class="btn btn-outline-info mx-2" role="button">
-                                        <i class="bi bi-google"></i> Signup with Google
+                                        <i class="bi bi-google"></i> {% trans "Signup with Google" %}
                                     </button>
                                 </div>
                             </form>

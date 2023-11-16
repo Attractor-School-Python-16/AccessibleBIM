@@ -22,9 +22,8 @@
                                                 <div class="col-12 text-center">
                                                     <form action="{% provider_login_url 'google' %}" method="post">
                                                         {% csrf_token %}
-                                                        <button class="btn btn-link text-white" role="button">
-                                                            <i class="fa fa-google text-lg"></i> Sign in with
-                                                            Google
+                                                        <button class="btn btn-link btn-outline-white text-white" role="button">
+                                                            <i class="fa fa-google text-lg"></i> {% trans "Sign in with Google" %}
                                                         </button>
                                                     </form>
                                                 </div>
@@ -40,7 +39,7 @@
                                                     <div class="alert alert-danger text-white">{{ error }}</div>
                                                 {% endfor %}
                                             {% else %}
-                                                <p class="text-medium-emphasis">Sign In to your account</p>
+                                                <p class="text-medium-emphasis">{% trans "Sign In to your account" %}</p>
                                             {% endif %}
 
 
@@ -55,7 +54,7 @@
                                             </div>
                                             <div class="text-center">
                                                 <button type="submit" class="btn bg-gradient-success w-100 my-4 mb-2">
-                                                    Sign in
+                                                    {% trans 'Sign in' %}
                                                 </button>
                                             </div>
                                         </form>
@@ -63,7 +62,7 @@
                                             <a href="{% url 'accounts:password_reset' %}"
                                                class="btn btn-outline-dark-blue mx-1 w-45">{% trans 'Forgot password' %}</a>
                                             <a href="{% url 'accounts:register' %}"
-                                               class="btn btn-outline-primary mx-1 w-45">Register Now</a>
+                                               class="btn btn-outline-primary mx-1 w-45">{% trans 'Register Now' %}</a>
                                         </div>
                                     </div>
                                 </div>

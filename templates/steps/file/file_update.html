@@ -8,12 +8,12 @@
     {% if perms.step.add_textmodel %}
         <div class="card mb-5">
             <div class="card-body">
-                <div class="d-flex justify-content-center">
-                    <div class="container my-5 text-center">
+                <div>
+                    <div class="container my-5">
                         <div class="card-header">
                             <h2>Редактирование файла:</h2>
                         </div>
-                        <div class="d-flex justify-content-center">
+                        <div>
                             {% include "partials/form.html" with button_text="Редактировать файл" %}
                         </div>
                     </div>
