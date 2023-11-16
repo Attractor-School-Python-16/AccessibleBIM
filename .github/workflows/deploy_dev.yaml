@@ -2,7 +2,7 @@ name: SSH Connect to Server
 
 on:
   workflow_run:
-    workflows: [Prod Docker Build/Up]
+    workflows: [ProdDockerBuildUp]
     types:
       - completed
 
