@@ -1,0 +1,65 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+            Подписки
+        </button>
+    </h2>
+    <div id="collapseTwelve" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Данный раздел отвечает за создания и выдачу подписок пользователям. Для того, чтобы создать подписку,
+                необходимо нажать соответствующую ссылку в панели навигации слева:
+            </p>
+            <img src="{% static "img/instruction/subs.PNG" %}" alt="subs" class="mx-auto d-block">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Сама по себе подписка представляет объект, отвечающий за привязку курса к стоимости в USD, и
+                присвоения курсу статуса опубликован. Данный статус означает, что курс будет доступен на публичной
+                части сайта, и его можно будет проходить. Публиковать курс имеет смысл, когда вы полностью уверены в
+                том, что контент в нем составлен корректно:
+            </p>
+            <img src="{% static "img/instruction/sub_create.PNG" %}" alt="sub_create" class="w-50 mx-auto d-block
+            border border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для отображения перечня подписок, необходимо выбрать «Перечень подписок» из вкладки «Подписки»
+                навигационной панели слева:
+            </p>
+            <img src="{% static "img/instruction/sub_list.PNG" %}" alt="sub_list" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Здесь доступны функции:
+            </p>
+            <ul>
+                <li>Добавления подписки;</li>
+                <li>Редактирования подписки;</li>
+                <li>Удаления подписки;</li>
+            </ul>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для предоставления доступа пользователю к прохождению курса, необходимо перейти по ссылке «Выдача
+                подписки» в навигационной панели слева:
+            </p>
+            <img src="{% static "img/instruction/sub_grant.PNG" %}" alt="sub_grant" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Здесь отобразятся все активные пользователи и информация об их подписке на конкретный курс. При
+                нажатии кнопки «Предоставить доступ», вы будете перенаправлены на форму выбора курса:
+            </p>
+            <img src="{% static "img/instruction/sub_grant_course.PNG" %}" alt="sub_grant_course"
+                 class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Где, нажав на кнопку напротив определенного курса пользователю будет предоставлен на него доступ.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для того, чтобы закрыть пользователю доступ к курсу, необходимо нажать на кнопку «Закрыть доступ» в
+                списке пользователей.
+            </p>
+            <button class="btn btn-secondary mx-2" type="button" data-coreui-toggle="collapse"
+                    data-coreui-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                Свернуть
+            </button>
+        </div>
+    </div>
+</div>
+
