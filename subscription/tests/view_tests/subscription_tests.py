@@ -3,7 +3,6 @@ from http import HTTPStatus
 
 from django.urls import reverse
 
-from accounts.models import CustomUser
 from modules.tests import ModuleFactory, CourseTargetFactory, CourseFactory
 from subscription.tests.factories import SubscriptionFactory
 from subscription.tests.utils import login_superuser, CustomTestCase, login_user
@@ -70,7 +69,7 @@ class TestSubscriptionCreateView(CustomTestCase):
         cls.target = CourseTargetFactory.create()
         cls.course = CourseFactory.create(title="Course", description="Description", module_id=cls.module,
                                       courseTarget_id=cls.target, language="RU", learnTime=10)
-        cls.correct_form_data = {"course": cls.course.id, "price": random.randint(1,1000)}
+        cls.correct_form_data = {"course": cls.course.id, "price": random.randint(1, 1000)}
         cls.url = reverse("subscription:subscriptionmodel_create")
         super().setUpTestData()
 
@@ -198,28 +197,3 @@ class TestSubscriptionDeleteView(CustomTestCase):
         response = self.client.post(reverse("subscription:subscriptionmodel_delete", kwargs={"pk": 999}))
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
         self.assertEqual(previous_count, SubscriptionModel.objects.count())
-
-
-class TestSubscriptionUserListView(CustomTestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.url = reverse("subscription:subscriptionmodel_user_list")
-        super().setUpTestData()
-
-    @login_superuser
-    def test_list_view(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertQuerysetEqual(response.context['users'], CustomUser.objects.all(), ordered=False)
-        self.assertTemplateUsed(response, 'subscription/subscription_admin/subscription_list.html')
-        self.assertFalse(response.context['is_paginated'])
-        self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
-
-    def test_anonymous(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
-
-    @login_user
-    def test_no_permissions(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)

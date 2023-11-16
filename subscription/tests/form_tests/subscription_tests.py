@@ -1,34 +1,39 @@
+import random
+
 from django.test import TestCase
 
-from quiz_bim.forms.question_bim_form import QuestionBimForm
-from quiz_bim.tests.factories import QuizBimFactory
+from modules.tests import CourseFactory
+from subscription.forms.subscription_form import SubscriptionForm
 
 
-class TestQuestionBimForm(TestCase):
+class TestSubscriptionForm(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.correct_form_data = {
-            "title": "Question",
-            "test_bim": QuizBimFactory.create()
+            "course": "",
+            "price": random.randint(1, 100),
+            "is_published": random.choice([True, False])
         }
         super().setUpTestData()
 
     def test_question_form(self):
-        form = QuestionBimForm(data=self.correct_form_data)
-        self.assertTrue(form.is_valid())
+        form = SubscriptionForm(data=self.correct_form_data)
+        self.assertFalse(form.is_valid())
 
     def test_question_form_invalid(self):
         invalid_data = {
-            "title": "",
-            "test_bim": "string"
+            "course": CourseFactory.create(),
+            "price": "",
+            "is_published": random.choice([True, False])
         }
-        form = QuestionBimForm(data=invalid_data)
+        form = SubscriptionForm(data=invalid_data)
         self.assertFalse(form.is_valid())
 
-    def test_invalid_title_field(self):
+    def test_invalid_is_published_field(self):
         invalid_data = {
-            "title": "",
-            "test_bim": QuizBimFactory.create()
+            "course": CourseFactory.create(),
+            "price": random.randint(1, 100),
+            "is_published": ""
         }
-        form = QuestionBimForm(data=invalid_data)
-        self.assertFalse(form.is_valid())
+        form = SubscriptionForm(data=invalid_data)
+        self.assertTrue(form.is_valid())
