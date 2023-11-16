@@ -2,14 +2,14 @@
     <ul class="pagination pagination-info">
         {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}page=1"
+                <a class="page-link content" href="?{% if query %}{{ query }}{% endif %}page=1"
                    aria-label="Start">
                     <span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
                 </a>
             </li>
 
             <li class="page-item">
-                <a class="page-link"
+                <a class="page-link content"
                    href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.previous_page_number }}"
                    aria-label="Previous">
                     <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
@@ -36,13 +36,13 @@
 
         {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.next_page_number }}"
+                <a class="page-link content" href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.next_page_number }}"
                    aria-label="Previous">
                     <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link"
+                <a class="page-link content"
                    href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.paginator.num_pages }}"
                    aria-label="Previous">
                     <span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>

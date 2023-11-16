@@ -128,11 +128,21 @@ class ChapterUserDetailView(DetailView):
         context['page_obj'] = page
         context['steps'] = page.object_list
         context['is_paginated'] = page.has_other_pages()
+        context['title'] = f'{self.object.serial_number}. {self.object.title}'
 
         # Определение открытых глав пользователя и передача их в контекст
         current_user_subscription = UsersSubscription.objects.filter(user=self.request.user, is_active=True)[0]
         next_chapter = ChapterModel.objects.filter(course=self.get_object().course,
                                                    serial_number=self.get_object().serial_number + 1)
+        # Если шаг является тестом, проверяем, пройден ли он
+        current_step = StepModel.objects.filter(chapter=self.object, serial_number=self.request.GET.get('page'))
+        if current_step:
+            current_step = StepModel.objects.filter(chapter=self.object, serial_number=self.request.GET.get('page'))[0]
+            if current_step.test:
+                progress_quiz = ProgressTest.objects.filter(test=current_step.test, user=self.request.user)
+                if progress_quiz:
+                    context['progress_quiz'] = progress_quiz[0]
+
         # Проверяем, что следующая глава есть и в ней присутствуют уроки
         if next_chapter:
             context['next_chapter'] = next_chapter[0]

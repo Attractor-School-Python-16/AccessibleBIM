@@ -3,24 +3,24 @@
 {% block title %}{% translate 'Profile' %}{% endblock %}
 {% block card-container %}
     {% block content %}
-        <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
-            <section class="py-sm-7 py-5 position-relative">
+        <div class="card text-center card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
+            <section class="pt-5 position-relative">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 mx-auto">
                             {% for progress in user.progress.all %}
                             	{% if progress.is_overdue and not progress.is_passed %}
                                     <a href="{% url "quiz_bim:test_completion" progress.pk %}" class="alert alert-info text-white d-block" role="alert">
-                                        У вас есть просроченный <span class="text-decoration-underline">тест</span>. Пройдите тест.
+                                        У вас есть просроченный <span class="text-decoration-underline text-center">тест</span>. Пройдите тест.
                                     </a>
-                            	{% endif %}
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <div class="col-12 mx-auto">
-                            <div class="row py-5">
+                            <div class="row">
                                 <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <h3 class="mb-0">{{ user.get_full_name }}
+                                    <div class="align-items-center mb-2">
+                                        <h3 class="mb-0 heading text-center">{{ user.get_full_name }}
                                             {% if perms.accounts.can_grant_moderator_role %}
                                                 <span class="text-warning">Модератор</span>
                                             {% elif user.is_moderator %}
@@ -33,45 +33,56 @@
                                     <a href="{% url 'accounts:change_password' %}" class="nav-link">
                                         {% trans 'Change password' %}
                                     </a>
-                                    <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
-                                        <h5 class="mb-0">{{ user.email }}</h5>
+                                    <div class="align-items-center mt-2 mb-2">
+                                        <h5 class="mb-0 content text-center">{{ user.email }}</h5>
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div class="align-items-center mb-2">
                                         {% if user.company %}
-                                            <h5 class="mb-0">{{ user.phone_number }}</h5>
+                                            <h5 class="mb-0 content text-center">{{ user.phone_number }}</h5>
                                         {% endif %}
                                     </div>
                                     <div class="row mb-4">
-                                        <div class="col-auto">
+                                        <div class="align-items-center">
                                             {% if user.email_verified %}
-                                                <span class="h6">Email:</span>
-                                                <span class="text-success"> Верифицирован</span>
+                                                <span class="align-items-center content align-items-center">Email:</span>
+                                                <span class="text-success align-items-center text-center content"> Верифицирован</span>
                                             {% else %}
-                                                <span class="h6">Email:</span>
-                                                <span class="text-danger"> Не Верифицирован</span>
+                                                <span class="text-center content">Email:</span>
+                                                <span class="text-danger text-center content"> Не Верифицирован</span>
                                             {% endif %}
                                         </div>
-                                        <div class="col-auto">
+                                        <div>
                                             {% if user.company %}
-                                                <span class="h6">Компания:</span>
+                                                <span class="content text-center">Компания:</span>
                                                 <span> {{ user.company }}</span>
                                             {% endif %}
                                         </div>
-                                        <div class="col-auto">
+                                        <div>
                                             {% if user.job_title %}
-                                                <span class="h6">Дожность:</span>
+                                                <span class="text-center content">Дожность:</span>
                                                 <span> {{ user.job_title }}</span>
                                             {% endif %}
                                         </div>
                                     </div>
-
+                                    <div class="row mb-4">
+                                        <div class="col-auto">
+                                            {% if user.subscriptions.all %}
+                                                {% for subscription in user_subscription %}
+                                                    {% if subscription.is_active %}
+                                                        <span class="h6">Действие подписки до:</span>
+                                                        <span> {{ subscription.end_time }}</span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
                         {% if courses %}
-                            <h3 class="mb-0 text-center">{% trans 'My courses' %}:</h3>
+                            <h3 class="mb-0 text-center content">{% trans 'My courses' %}:</h3>
                         {% endif %}
 
                         {% for course in courses %}
@@ -82,7 +93,7 @@
                                          alt="Image Title"/>
                                 </a>
                                 <div class="postcard__text t-dark">
-                                    <h1 class="postcard__title blue"><a
+                                    <h1 class="heading blue"><a
                                             href="{% url 'front:course_user_detail' course.id %}">{{ course.title }} </a>
                                     </h1>
                                     <div class="postcard__subtitle small">
@@ -98,8 +109,12 @@
                                                 class="fas fa-tag mr-2"></i> {{ course.courseTarget_id }}
                                         </li>
                                         <li class="tag__item"><i
+
+                                                class="fas fa-tag mr-2"></i> {{ course.get_total_tests|make_text_for_test }}
+
                                                 class="fas fa-tag mr-2"></i>
                                             {{ course.get_total_tests|make_text_for_test }}
+
                                         </li>
                                         <li class="tag__item"><i
                                                 class="fas fa-tag mr-2"></i> {{ course.get_total_lessons|make_text_for_lessons }}
