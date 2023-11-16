@@ -3,7 +3,7 @@ name: Dev Docker Build/Up
 
 on:
   workflow_run:
-    workflows: ["Run Test Django Dev"]
+    workflows: [Run Test Django Dev]
     types:
       - completed
 
