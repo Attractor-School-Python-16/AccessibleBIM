@@ -2,10 +2,9 @@ name: SSH Connect to Server
 
 on:
   workflow_run:
-      workflows:
-        - Dev Docker Build/Up, Prod Docker Build/Up
-      types:
-        - completed
+    workflows: [ "Dev Docker Build/Up", "Prod Docker Build/Up" ]
+    types:
+      - completed
 
 
 jobs:
