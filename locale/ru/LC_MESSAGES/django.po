@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 10:17+0600\n"
-"PO-Revision-Date: 2023-11-17 10:17+0600\n"
+"POT-Creation-Date: 2023-11-17 10:32+0600\n"
+"PO-Revision-Date: 2023-11-17 10:33+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -251,7 +251,7 @@ msgid "Teachers"
 msgstr "Преподаватели"
 
 #: modules/models/courses.py:49 templates/courses/courses_list.html:4
-#: templates/partials/sidebar.html:168
+#: templates/partials/sidebar.html:28 templates/partials/sidebar.html:168
 msgid "Courses"
 msgstr "Курсы"
 
@@ -429,11 +429,12 @@ msgid "File"
 msgstr "Файл"
 
 #: step/models/file.py:26 step/models/step.py:25
+#: templates/partials/sidebar.html:78
 msgid "Files"
 msgstr "Файлы"
 
 #: step/models/step.py:10 step/models/step.py:22 step/models/video.py:27
-#: templates/steps/step/step_detail.html:15
+#: templates/partials/sidebar.html:93 templates/steps/step/step_detail.html:15
 msgid "Video"
 msgstr "Видео"
 
@@ -524,9 +525,6 @@ msgid "test"
 msgstr "тест"
 
 #: step/step_validators.py:53
-#| msgid ""
-#| "Empty fields found. You should select {keyword} from the list or create a "
-#| "new one"
 msgid ""
 "Empty fields found. You should select {} from the list or create a new one"
 msgstr ""
@@ -534,7 +532,6 @@ msgstr ""
 "типа {} или создать новый"
 
 #: step/step_validators.py:55
-#| msgid "You should select {keyword} from the list or create a new one"
 msgid "You should select {} from the list or create a new one"
 msgstr ""
 "Необходимо выбрать из списка существующий объект типа {} или создать новый"
@@ -580,8 +577,10 @@ msgstr "Добавить главу"
 #: templates/course_target/course_target_create.html:13
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
-#: templates/partials/sidebar.html:49 templates/partials/sidebar.html:66
-#: templates/partials/sidebar.html:186
+#: templates/partials/sidebar.html:33 templates/partials/sidebar.html:49
+#: templates/partials/sidebar.html:66 templates/partials/sidebar.html:82
+#: templates/partials/sidebar.html:97 templates/partials/sidebar.html:112
+#: templates/partials/sidebar.html:127 templates/partials/sidebar.html:186
 #: templates/partners/partners_create.html:11
 #: templates/steps/file/file_create.html:18
 #: templates/steps/file/file_list.html:15
@@ -918,6 +917,7 @@ msgstr ""
 "\n"
 
 #: templates/front/accounts/profile.html:3
+#: templates/partials/moderator_header.html:20
 msgid "Profile"
 msgstr "Профиль"
 
@@ -978,10 +978,49 @@ msgstr "Список модулей"
 msgid "Add modules"
 msgstr "Добавить модуль"
 
-#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:54
-#: templates/partials/sidebar.html:71 templates/partials/sidebar.html:189
+#: templates/partials/moderator_header.html:11
+msgid "Main page"
+msgstr "Главная"
+
+#: templates/partials/moderator_header.html:17
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/partials/moderator_header.html:25
+msgid "Grant moderator access"
+msgstr "Выдача прав модератора"
+
+#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:37
+#: templates/partials/sidebar.html:54 templates/partials/sidebar.html:71
+#: templates/partials/sidebar.html:86 templates/partials/sidebar.html:101
+#: templates/partials/sidebar.html:116 templates/partials/sidebar.html:130
+#: templates/partials/sidebar.html:189
 msgid "List"
 msgstr "Список"
+
+#: templates/partials/sidebar.html:108
+msgid "Readings"
+msgstr "Лекции"
+
+#: templates/partials/sidebar.html:123
+msgid "Tests"
+msgstr "Тесты"
+
+#: templates/partials/sidebar.html:136
+msgid "Subscriptions"
+msgstr "Подписки"
+
+#: templates/partials/sidebar.html:140
+msgid "Publish courses"
+msgstr "Публикация курсов"
+
+#: templates/partials/sidebar.html:145
+msgid "Grant access"
+msgstr "Выдача подписок"
+
+#: templates/partials/sidebar.html:149
+msgid "List of courses"
+msgstr "Список курсов"
 
 #: templates/partials/sidebar.html:157
 #: templates/statistics/courses_statistics/courses_list_statistics.html:5
@@ -1478,6 +1517,9 @@ msgstr "Список преподавателей"
 #: templates/teachers/teachers_list.html:22
 msgid "Name"
 msgstr "Имя"
+
+#~ msgid "Home"
+#~ msgstr "Главная"
 
 #~ msgid "Видео"
 #~ msgstr "Видео"
