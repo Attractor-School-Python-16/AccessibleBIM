@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 20:41+0600\n"
-"PO-Revision-Date: 2023-11-17 20:42+0600\n"
+"POT-Creation-Date: 2023-11-17 20:53+0600\n"
+"PO-Revision-Date: 2023-11-17 20:55+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -315,6 +315,7 @@ msgid "Finished"
 msgstr "Закончен"
 
 #: modules/models/user_course_progress.py:15
+#: templates/accounts/grant_moderator.html:42
 #: templates/statistics/users_statistics/user_detailed_statistics.html:14
 #: templates/statistics/users_statistics/users_list_statistics.html:14
 #: templates/subscription/subscription_admin/user_add.html:17
@@ -406,6 +407,48 @@ msgstr "Дата завершения подписки"
 #: subscription/models/user_subscription.py:14
 msgid "Subscription enabled"
 msgstr "Подписка активна"
+
+#: templates/accounts/grant_moderator.html:4
+#: templates/partials/moderator_header.html:28
+msgid "Grant moderator's rights"
+msgstr "Выдача прав модератора"
+
+#: templates/accounts/grant_moderator.html:13
+#| msgid "Grant moderator's rights"
+msgid "Grant moderator's rights page"
+msgstr "Страница выдачи прав модератора"
+
+#: templates/accounts/grant_moderator.html:16
+msgid "Search by Email"
+msgstr "Поиск по Email"
+
+#: templates/accounts/grant_moderator.html:18
+msgid "Search"
+msgstr "Найти"
+
+#: templates/accounts/grant_moderator.html:29
+msgid "Role"
+msgstr "Роль"
+
+#: templates/accounts/grant_moderator.html:40
+msgid "Moderator"
+msgstr "Модератор"
+
+#: templates/accounts/grant_moderator.html:48
+#| msgid "New users"
+msgid "No users"
+msgstr "Нет пользователей"
+
+#: templates/accounts/grant_moderator.html:57
+#: templates/accounts/grant_moderator.html:65
+msgid "Grant"
+msgstr "Выдать"
+
+#: templates/accounts/grant_moderator.html:59
+#: templates/accounts/grant_moderator.html:67
+#: templates/socialaccount/connections.html:37
+msgid "Remove"
+msgstr "Убрать"
 
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
@@ -835,10 +878,6 @@ msgstr "На главную"
 msgid "Logout"
 msgstr "Выход"
 
-#: templates/partials/moderator_header.html:28
-msgid "Grant moderator's rights"
-msgstr "Выдача прав модератора"
-
 #: templates/partials/sidebar.html:21 templates/partials/sidebar.html:54
 #: templates/partials/sidebar.html:71 templates/partials/sidebar.html:189
 msgid "List"
@@ -924,10 +963,6 @@ msgstr ""
 msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
-msgstr ""
-
-#: templates/socialaccount/connections.html:37
-msgid "Remove"
 msgstr ""
 
 #: templates/socialaccount/connections.html:45
@@ -1140,12 +1175,10 @@ msgid "Add subscription"
 msgstr "Добавить подписку"
 
 #: templates/subscription/subscription_delete.html:3
-#| msgid "Subscription enabled"
 msgid "Subscription deletion"
 msgstr "Удаление подписки"
 
 #: templates/subscription/subscription_delete.html:10
-#| msgid "Are you sure you want to unsubscribe course"
 msgid "Are you sure you want to delete the subscription for course"
 msgstr "Вы уверены, что хотите удалить подписку на курс"
 
@@ -1163,12 +1196,10 @@ msgstr "Изменить"
 
 #: templates/subscription/subscription_update.html:3
 #: templates/subscription/subscription_update.html:13
-#| msgid "Subscription expire date"
 msgid "Subscription update"
 msgstr "Редактирование подписки"
 
 #: templates/subscription/subscription_update.html:16
-#| msgid "Grant subscription"
 msgid "Update the subscription"
 msgstr "Редактировать подписку"
 
