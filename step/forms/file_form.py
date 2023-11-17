@@ -50,9 +50,9 @@ class FileForm(forms.ModelForm):
                 if lesson_file.size <= 214958080:
                     return lesson_file
                 else:
-                    raise forms.ValidationError(_('Uploaded file has to be no more than 20 MB'))
+                    raise forms.ValidationError(_('Uploaded file has to be no more than 250 MB'))
             else:
-                raise forms.ValidationError(_('Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed'))
+                raise forms.ValidationError(_('Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed'))
         else:
             return lesson_file
 
