@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 10:39+0600\n"
-"PO-Revision-Date: 2023-11-17 10:40+0600\n"
+"POT-Creation-Date: 2023-11-17 21:27+0600\n"
+"PO-Revision-Date: 2023-11-17 21:35+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -152,10 +152,14 @@ msgid "RUB"
 msgstr "руб."
 
 #: modules/models/chapter.py:9 modules/models/courses.py:48
+#: subscription/forms/subscription_form.py:12
+#: subscription/models/subscription.py:10
 #: templates/chapters/chapter_detail.html:17
 #: templates/statistics/courses_statistics/courses_list_statistics.html:14
 #: templates/statistics/users_statistics/user_detailed_statistics.html:17
 #: templates/statistics/users_statistics/users_list_statistics.html:17
+#: templates/subscription/subscription_admin/user_add.html:50
+#: templates/subscription/subscription_list.html:22
 msgid "Course"
 msgstr "Курс"
 
@@ -226,6 +230,7 @@ msgstr "Фото для курса"
 
 #: modules/models/courses.py:29 modules/models/module.py:34
 #: templates/statistics/courses_statistics/courses_list_statistics.html:17
+#: templates/subscription/subscription_admin/user_add.html:51
 msgid "Module"
 msgstr "Модуль"
 
@@ -312,8 +317,11 @@ msgid "Finished"
 msgstr "Закончен"
 
 #: modules/models/user_course_progress.py:15
+#: templates/accounts/grant_moderator.html:42
 #: templates/statistics/users_statistics/user_detailed_statistics.html:14
 #: templates/statistics/users_statistics/users_list_statistics.html:14
+#: templates/subscription/subscription_admin/user_add.html:17
+#: templates/subscription/subscription_admin/user_list.html:18
 msgid "User"
 msgstr "Пользователь"
 
@@ -347,12 +355,10 @@ msgid "Upload a file"
 msgstr "Загрузите файл"
 
 #: step/forms/file_form.py:53
-#| msgid "Uploaded file has to be no more than 20 MB"
 msgid "Uploaded file has to be no more than 250 MB"
 msgstr "Размер загружаемого файла не должен превышать 250 МБ"
 
 #: step/forms/file_form.py:55
-#| msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed"
 msgid ""
 "Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 msgstr ""
@@ -545,6 +551,103 @@ msgstr ""
 msgid "For editing you should select related content"
 msgstr "Для редактирования необходимо выбрать связанный контент"
 
+#: subscription/forms/subscription_form.py:13
+#: subscription/models/subscription.py:11
+#| msgid "Course title"
+msgid "Course price"
+msgstr "Цена"
+
+#: subscription/forms/subscription_form.py:14
+#: subscription/models/subscription.py:12
+#| msgid "Published"
+msgid "Publish"
+msgstr "Опубликовать"
+
+#: subscription/forms/subscription_form.py:25
+#, python-brace-format
+msgid ""
+"The subscription for course {course.title} already exists.\n"
+" Change or "
+msgstr ""
+"Подписка на курс уже существует. Измените или удалите существующую подписку."
+
+#: subscription/forms/subscription_user_add_form.py:5
+#: templates/subscription/subscription_admin/user_add.html:3
+#: templates/subscription/subscription_admin/user_add.html:67
+#: templates/subscription/subscription_admin/user_list.html:45
+#| msgid "New subscriptions"
+msgid "Grant subscription"
+msgstr "Выдать подписку"
+
+#: subscription/forms/subscription_user_delete_form.py:5
+#: templates/subscription/subscription_admin/user_delete.html:3
+#: templates/subscription/subscription_admin/user_list.html:42
+msgid "Unsubscribe"
+msgstr "Отменить подписку"
+
+#: subscription/models/user_subscription.py:10
+#: templates/partials/sidebar.html:136
+#: templates/subscription/subscription_admin/user_add.html:19
+msgid "Subscriptions"
+msgstr "Подписки"
+
+#: subscription/models/user_subscription.py:12
+#: templates/partials/sidebar.html:162
+msgid "Users"
+msgstr "Пользователи"
+
+#: subscription/models/user_subscription.py:13
+#| msgid "Subscriptions"
+msgid "Subscription expire date"
+msgstr "Дата завершения подписки"
+
+#: subscription/models/user_subscription.py:14
+#| msgid "Subscriptions"
+msgid "Subscription enabled"
+msgstr "Подписка активна"
+
+#: templates/accounts/grant_moderator.html:4
+#| msgid "Grant moderator access"
+msgid "Grant moderator's rights"
+msgstr "Выдача прав модератора"
+
+#: templates/accounts/grant_moderator.html:13
+#| msgid "Grant moderator access"
+msgid "Grant moderator's rights page"
+msgstr "Страница выдачи прав модератора"
+
+#: templates/accounts/grant_moderator.html:16
+msgid "Search by Email"
+msgstr "Поиск по Email"
+
+#: templates/accounts/grant_moderator.html:18
+msgid "Search"
+msgstr "Найти"
+
+#: templates/accounts/grant_moderator.html:29
+msgid "Role"
+msgstr "Роль"
+
+#: templates/accounts/grant_moderator.html:40
+msgid "Moderator"
+msgstr "Модератор"
+
+#: templates/accounts/grant_moderator.html:48
+#| msgid "New users"
+msgid "No users"
+msgstr "Нет пользователей"
+
+#: templates/accounts/grant_moderator.html:57
+#: templates/accounts/grant_moderator.html:65
+msgid "Grant"
+msgstr "Выдать"
+
+#: templates/accounts/grant_moderator.html:59
+#: templates/accounts/grant_moderator.html:67
+#: templates/socialaccount/connections.html:37
+msgid "Remove"
+msgstr "Убрать"
+
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
 #: templates/chapters/chapter_detail.html:42
@@ -595,6 +698,8 @@ msgstr "Добавить главу"
 #: templates/steps/text/text_list.html:15
 #: templates/steps/video/video_create.html:18
 #: templates/steps/video/video_list.html:15
+#: templates/subscription/subscription_create.html:17
+#: templates/subscription/subscription_list.html:15
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Создать"
@@ -622,6 +727,8 @@ msgstr ""
 #: templates/steps/step/step_delete.html:19
 #: templates/steps/text/text_delete.html:29
 #: templates/steps/video/video_delete.html:29
+#: templates/subscription/subscription_admin/user_delete.html:18
+#: templates/subscription/subscription_delete.html:15
 #: templates/teachers/teacher_delete.html:19
 msgid "Yes"
 msgstr "Да"
@@ -634,6 +741,8 @@ msgstr "Да"
 #: templates/steps/step/step_delete.html:21
 #: templates/steps/text/text_delete.html:31
 #: templates/steps/video/video_delete.html:31
+#: templates/subscription/subscription_admin/user_delete.html:20
+#: templates/subscription/subscription_delete.html:17
 #: templates/teachers/teacher_delete.html:20
 msgid "No"
 msgstr "Нет"
@@ -683,6 +792,7 @@ msgstr "Изменить"
 #: templates/steps/text/text_list.html:39
 #: templates/steps/video/video_detail.html:37
 #: templates/steps/video/video_list.html:40
+#: templates/subscription/subscription_list.html:45
 #: templates/teachers/teacher_detail.html:22
 #: templates/teachers/teachers_list.html:38
 msgid "Delete"
@@ -712,6 +822,7 @@ msgstr "Добавить тест"
 #: templates/steps/step/step_list.html:22
 #: templates/steps/text/text_list.html:22
 #: templates/steps/video/video_list.html:22
+#: templates/subscription/subscription_list.html:25
 #: templates/teachers/teachers_list.html:23
 msgid "Actions"
 msgstr "Действия"
@@ -1011,10 +1122,6 @@ msgstr "Лекции"
 msgid "Tests"
 msgstr "Тесты"
 
-#: templates/partials/sidebar.html:136
-msgid "Subscriptions"
-msgstr "Подписки"
-
 #: templates/partials/sidebar.html:140
 msgid "Publish courses"
 msgstr "Публикация курсов"
@@ -1037,10 +1144,6 @@ msgstr "Список курсов"
 #: templates/statistics/users_statistics/users_statistics_main.html:5
 msgid "Statistics"
 msgstr "Статистика"
-
-#: templates/partials/sidebar.html:162
-msgid "Users"
-msgstr "Пользователи"
 
 #: templates/partials/sidebar.html:174
 msgid "Sales"
@@ -1107,10 +1210,6 @@ msgid ""
 "            accounts:"
 msgstr ""
 
-#: templates/socialaccount/connections.html:37
-msgid "Remove"
-msgstr ""
-
 #: templates/socialaccount/connections.html:45
 msgid ""
 "You currently have no social network accounts connected to this account."
@@ -1153,6 +1252,8 @@ msgid "Language"
 msgstr "Язык занятия"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
+#: templates/subscription/subscription_list.html:24
+#: templates/subscription/subscription_list.html:36
 msgid "Published"
 msgstr "Опубликован"
 
@@ -1256,6 +1357,8 @@ msgid "Tests statistics"
 msgstr "Статистика по тестам"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:59
+#: templates/subscription/subscription_admin/user_add.html:37
+#: templates/subscription/subscription_admin/user_list.html:35
 msgid "No active subscriptions"
 msgstr "Нет текущих подписок"
 
@@ -1483,6 +1586,83 @@ msgstr "Список видео"
 #: templates/steps/video/video_update.html:15
 msgid "Edit video"
 msgstr "Редактирование видео"
+
+#: templates/subscription/subscription_admin/user_add.html:11
+#: templates/subscription/subscription_admin/user_list.html:11
+#| msgid "No active subscriptions"
+msgid "Grant subscription to user"
+msgstr "Выдать подписку пользователю"
+
+#: templates/subscription/subscription_admin/user_add.html:52
+msgid "Access"
+msgstr "Доступ"
+
+#: templates/subscription/subscription_admin/user_delete.html:11
+msgid "Are you sure you want to unsubscribe course"
+msgstr "Вы уверены, что хотите отменить подписку"
+
+#: templates/subscription/subscription_admin/user_delete.html:12
+msgid "from user"
+msgstr "пользователя"
+
+#: templates/subscription/subscription_admin/user_list.html:3
+#| msgid "No active subscriptions"
+msgid "Grant subscription to users"
+msgstr "Выдать подписку пользователям"
+
+#: templates/subscription/subscription_admin/user_list.html:20
+#| msgid "New subscriptions"
+msgid "Current subscription"
+msgstr "Текущая подписка"
+
+#: templates/subscription/subscription_admin/user_list.html:21
+#| msgid "Subscriptions"
+msgid "Subscription"
+msgstr "Подписка"
+
+#: templates/subscription/subscription_create.html:14
+#| msgid "New subscriptions"
+msgid "Add subscription"
+msgstr "Добавить подписку"
+
+#: templates/subscription/subscription_delete.html:3
+#| msgid "Subscriptions"
+msgid "Subscription deletion"
+msgstr "Удаление подписки"
+
+#: templates/subscription/subscription_delete.html:10
+msgid "Are you sure you want to delete the subscription for course"
+msgstr "Вы уверены, что хотите удалить подписку на курс"
+
+#: templates/subscription/subscription_list.html:3
+#: templates/subscription/subscription_list.html:11
+#| msgid "Subscriptions"
+msgid "Subscriptions list"
+msgstr "Перечень подписок"
+
+#: templates/subscription/subscription_list.html:23
+msgid "Price"
+msgstr "Цена"
+
+#: templates/subscription/subscription_list.html:38
+#| msgid "Published"
+msgid "Unpublished"
+msgstr "Не опубликован"
+
+#: templates/subscription/subscription_list.html:43
+msgid "Update"
+msgstr "Изменить"
+
+#: templates/subscription/subscription_update.html:3
+#: templates/subscription/subscription_update.html:13
+#| msgid "Subscriptions"
+msgid "Subscription update"
+msgstr "Изменение подписки"
+
+#: templates/subscription/subscription_update.html:16
+#| msgid "New subscriptions"
+msgid "Update the subscription"
+msgstr "Редактировать подписку"
 
 #: templates/teachers/teacher_create.html:4
 #: templates/teachers/teacher_create.html:12

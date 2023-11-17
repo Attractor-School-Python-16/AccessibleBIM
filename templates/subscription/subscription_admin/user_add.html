@@ -48,8 +48,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">{% trans "Course" %}</th>
-                    <th scope="col">{% trans "Module" %}</th>
-                    <th scope="col">{% trans "Access" %}</th>
+                    <th scope="col" class="text-center">{% trans "Module" %}</th>
+                    <th scope="col" class="text-end">{% trans "Access" %}</th>
                 </tr>
                 </thead>
                 {% for subscription in subscriptions %}
@@ -61,8 +61,8 @@
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ subscription.course }}</td>
-                            <td>{{ subscription.course.module_id }}</td>
-                            <td>
+                            <td class="text-center">{{ subscription.course.module_id }}</td>
+                            <td class="text-end">
                                 <button type="submit" class="btn btn-success">
                                     {% trans "Grant subscription" %}
                                 </button>
