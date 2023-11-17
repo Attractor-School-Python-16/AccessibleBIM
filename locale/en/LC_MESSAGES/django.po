@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 20:41+0600\n"
-"PO-Revision-Date: 2023-11-17 20:41+0600\n"
+"POT-Creation-Date: 2023-11-17 20:53+0600\n"
+"PO-Revision-Date: 2023-11-17 20:54+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -315,6 +315,7 @@ msgid "Finished"
 msgstr "Finished"
 
 #: modules/models/user_course_progress.py:15
+#: templates/accounts/grant_moderator.html:42
 #: templates/statistics/users_statistics/user_detailed_statistics.html:14
 #: templates/statistics/users_statistics/users_list_statistics.html:14
 #: templates/subscription/subscription_admin/user_add.html:17
@@ -406,6 +407,48 @@ msgstr "Subscription expire date"
 #: subscription/models/user_subscription.py:14
 msgid "Subscription enabled"
 msgstr "Subscription enabled"
+
+#: templates/accounts/grant_moderator.html:4
+#: templates/partials/moderator_header.html:28
+msgid "Grant moderator's rights"
+msgstr "Grant moderator's rights"
+
+#: templates/accounts/grant_moderator.html:13
+#| msgid "Grant moderator's rights"
+msgid "Grant moderator's rights page"
+msgstr "Grant moderator's rights page"
+
+#: templates/accounts/grant_moderator.html:16
+msgid "Search by Email"
+msgstr "Search by Email"
+
+#: templates/accounts/grant_moderator.html:18
+msgid "Search"
+msgstr "Search"
+
+#: templates/accounts/grant_moderator.html:29
+msgid "Role"
+msgstr "Role"
+
+#: templates/accounts/grant_moderator.html:40
+msgid "Moderator"
+msgstr "Moderator"
+
+#: templates/accounts/grant_moderator.html:48
+#| msgid "New users"
+msgid "No users"
+msgstr "No users"
+
+#: templates/accounts/grant_moderator.html:57
+#: templates/accounts/grant_moderator.html:65
+msgid "Grant"
+msgstr "Grant"
+
+#: templates/accounts/grant_moderator.html:59
+#: templates/accounts/grant_moderator.html:67
+#: templates/socialaccount/connections.html:37
+msgid "Remove"
+msgstr "Remove"
 
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
@@ -840,10 +883,6 @@ msgstr "Main"
 msgid "Logout"
 msgstr "Logout"
 
-#: templates/partials/moderator_header.html:28
-msgid "Grant moderator's rights"
-msgstr "Grant moderator's rights"
-
 #: templates/partials/sidebar.html:21 templates/partials/sidebar.html:54
 #: templates/partials/sidebar.html:71 templates/partials/sidebar.html:189
 msgid "List"
@@ -929,10 +968,6 @@ msgstr ""
 msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
-msgstr ""
-
-#: templates/socialaccount/connections.html:37
-msgid "Remove"
 msgstr ""
 
 #: templates/socialaccount/connections.html:45
@@ -1145,12 +1180,10 @@ msgid "Add subscription"
 msgstr "Add subscription"
 
 #: templates/subscription/subscription_delete.html:3
-#| msgid "Subscription enabled"
 msgid "Subscription deletion"
 msgstr "Subscription deletion"
 
 #: templates/subscription/subscription_delete.html:10
-#| msgid "Are you sure you want to unsubscribe course"
 msgid "Are you sure you want to delete the subscription for course"
 msgstr "Are you sure you want to delete the subscription for course"
 
@@ -1168,12 +1201,10 @@ msgstr "Update"
 
 #: templates/subscription/subscription_update.html:3
 #: templates/subscription/subscription_update.html:13
-#| msgid "Subscription expire date"
 msgid "Subscription update"
 msgstr "Subscription update"
 
 #: templates/subscription/subscription_update.html:16
-#| msgid "Grant subscription"
 msgid "Update the subscription"
 msgstr "Update the subscription"
 
