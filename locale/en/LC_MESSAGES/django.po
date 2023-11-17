@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 00:52+0600\n"
-"PO-Revision-Date: 2023-11-12 00:58+0600\n"
+"POT-Creation-Date: 2023-11-17 18:08+0600\n"
+"PO-Revision-Date: 2023-11-17 18:08+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:213
+#: accessibleBIM/settings.py:217
 msgid "Russian"
 msgstr "Russian"
 
-#: accessibleBIM/settings.py:214
+#: accessibleBIM/settings.py:218
 msgid "English"
 msgstr "English"
 
@@ -152,7 +152,9 @@ msgid "RUB"
 msgstr "RUB"
 
 #: modules/models/chapter.py:9 modules/models/courses.py:48
-#: templates/chapters/chapter_detail.html:16
+#: subscription/forms/subscription_form.py:12
+#: subscription/models/subscription.py:10
+#: templates/chapters/chapter_detail.html:17
 #: templates/statistics/courses_statistics/courses_list_statistics.html:14
 #: templates/statistics/users_statistics/user_detailed_statistics.html:17
 #: templates/statistics/users_statistics/users_list_statistics.html:17
@@ -167,15 +169,13 @@ msgstr "Chapter title"
 msgid "Chapter description"
 msgstr "Chapter description"
 
-#: modules/models/chapter.py:12 templates/chapters/chapter_detail.html:17
-#: templates/chapters/chapter_detail.html:43
-#: templates/courses/course_detail.html:32
+#: modules/models/chapter.py:12 templates/chapters/chapter_detail.html:18
+#: templates/chapters/chapter_detail.html:48
+#: templates/courses/course_detail.html:34
 msgid "Serial number"
 msgstr "#"
 
-#: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:12
-#: templates/courses/change_chapters_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:12
+#: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:13
 msgid "Chapter"
 msgstr "Chapter"
 
@@ -350,42 +350,59 @@ msgstr "Text"
 msgid "Тест"
 msgstr "Test"
 
+#: subscription/forms/subscription_form.py:13
+#: subscription/models/subscription.py:11
+msgid "Course price"
+msgstr "Course price"
+
+#: subscription/forms/subscription_form.py:14
+#: subscription/models/subscription.py:12
+msgid "Publish"
+msgstr "Publish"
+
+#: subscription/forms/subscription_form.py:25
+#, python-brace-format
+msgid ""
+"The subscription for course {course.title} already exists.\n"
+" Change or "
+msgstr ""
+
 #: templates/chapters/change_steps_order.html:4
-#: templates/chapters/change_steps_order.html:35
-#: templates/chapters/chapter_detail.html:39
+#: templates/chapters/change_steps_order.html:36
+#: templates/chapters/chapter_detail.html:42
 msgid "Change lessons ordering"
 msgstr "Change lessons ordering"
 
-#: templates/chapters/change_steps_order.html:12
-#: templates/chapters/chapter_detail.html:30
-#, python-format
-msgid "List of %(title)s chapter's lessons"
+#: templates/chapters/change_steps_order.html:13
+#: templates/chapters/chapter_detail.html:31
+#, fuzzy, python-format
+#| msgid "List of %(title)s chapter's lessons"
+msgid ""
+"List of %(title)s chapter's\n"
+"                        lessons"
 msgstr "List of %(title)s chapter's lessons"
 
-#: templates/chapters/change_steps_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:19
+#: templates/chapters/change_steps_order.html:28
+#: templates/front/chapter/chapter_user_detail_view.html:24
 msgid "Lesson"
 msgstr "Lesson"
 
-#: templates/chapters/change_steps_order.html:28
-#: templates/courses/change_chapters_order.html:28
+#: templates/chapters/change_steps_order.html:29
 msgid "Current number"
 msgstr "Current number"
 
-#: templates/chapters/change_steps_order.html:29
-#: templates/courses/change_chapters_order.html:29
+#: templates/chapters/change_steps_order.html:30
 msgid "New number"
 msgstr "New number"
 
-#: templates/chapters/change_steps_order.html:36
-#: templates/courses/change_chapters_order.html:36
+#: templates/chapters/change_steps_order.html:37
 msgid "Back"
 msgstr "Back"
 
 #: templates/chapters/chapter_create.html:4
 #: templates/chapters/chapter_create.html:12
 #: templates/chapters/chapters_list.html:16
-#: templates/courses/course_detail.html:26
+#: templates/courses/course_detail.html:27
 msgid "Add chapter"
 msgstr "Add chapter"
 
@@ -394,8 +411,9 @@ msgstr "Add chapter"
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
 #: templates/partials/sidebar.html:49 templates/partials/sidebar.html:66
-#: templates/partials/sidebar.html:186
+#: templates/partials/sidebar.html:140 templates/partials/sidebar.html:186
 #: templates/partners/partners_create.html:11
+#: templates/subscription/subscription_create.html:17
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Add"
@@ -432,77 +450,76 @@ msgstr "Yes"
 msgid "No"
 msgstr "No"
 
-#: templates/chapters/chapter_detail.html:15
+#: templates/chapters/chapter_detail.html:16
 msgid "Description"
 msgstr "Description"
 
-#: templates/chapters/chapter_detail.html:21
-#: templates/chapters/chapter_detail.html:60
+#: templates/chapters/chapter_detail.html:22
+#: templates/chapters/chapter_detail.html:66
 #: templates/chapters/chapters_list.html:33
 #: templates/course_target/course_target_detail.html:17
 #: templates/course_target/course_target_list.html:33
-#: templates/courses/change_chapters_order.html:35
 #: templates/courses/course_detail.html:14
-#: templates/courses/course_detail.html:46
+#: templates/courses/course_detail.html:48
 #: templates/courses/courses_list.html:32
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
-#: templates/modules/modules_list.html:32
+#: templates/modules/modules_list.html:34
 #: templates/partners/partners_list.html:30
 #: templates/teachers/teacher_detail.html:20
-#: templates/teachers/teachers_list.html:33
+#: templates/teachers/teachers_list.html:36
 msgid "Change"
 msgstr "Change"
 
-#: templates/chapters/chapter_detail.html:23
-#: templates/chapters/chapter_detail.html:62
+#: templates/chapters/chapter_detail.html:24
+#: templates/chapters/chapter_detail.html:68
 #: templates/chapters/chapters_list.html:35
 #: templates/course_target/course_target_detail.html:19
 #: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
-#: templates/courses/course_detail.html:48
+#: templates/courses/course_detail.html:50
 #: templates/courses/courses_list.html:34
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
-#: templates/modules/modules_list.html:34
+#: templates/modules/modules_list.html:36
 #: templates/partners/partners_list.html:32
 #: templates/teachers/teacher_detail.html:22
-#: templates/teachers/teachers_list.html:35
+#: templates/teachers/teachers_list.html:38
 msgid "Delete"
 msgstr "Delete"
 
-#: templates/chapters/chapter_detail.html:33
+#: templates/chapters/chapter_detail.html:36
 msgid "Add video lesson"
 msgstr "Add video lesson"
 
-#: templates/chapters/chapter_detail.html:35
+#: templates/chapters/chapter_detail.html:38
 msgid "Add text lesson"
 msgstr "Add text lesson"
 
-#: templates/chapters/chapter_detail.html:37
+#: templates/chapters/chapter_detail.html:40
 msgid "Add test"
 msgstr "Add test"
 
-#: templates/chapters/chapter_detail.html:44
+#: templates/chapters/chapter_detail.html:49
 #: templates/chapters/chapters_list.html:21
 #: templates/course_target/course_target_list.html:20
-#: templates/courses/course_detail.html:33
+#: templates/courses/course_detail.html:35
 #: templates/courses/courses_list.html:20
 #: templates/modules/module_detail.html:29
-#: templates/modules/modules_list.html:20
+#: templates/modules/modules_list.html:21
 #: templates/partners/partners_list.html:17
 msgid "Title"
 msgstr "Title"
 
-#: templates/chapters/chapter_detail.html:45
+#: templates/chapters/chapter_detail.html:50
 #: templates/chapters/chapters_list.html:22
 #: templates/course_target/course_target_list.html:21
-#: templates/courses/course_detail.html:34
+#: templates/courses/course_detail.html:36
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:30
-#: templates/modules/modules_list.html:21
+#: templates/modules/modules_list.html:22
 #: templates/partners/partners_list.html:18
-#: templates/teachers/teachers_list.html:21
+#: templates/teachers/teachers_list.html:23
 msgid "Actions"
 msgstr "Actions"
 
@@ -555,17 +572,6 @@ msgstr "Target audience list"
 msgid "Edit target audience"
 msgstr "Edit target audience"
 
-#: templates/courses/change_chapters_order.html:4
-#: templates/courses/course_detail.html:28
-msgid "Change chapters ordering"
-msgstr "Change chapters ordering"
-
-#: templates/courses/change_chapters_order.html:12
-#: templates/courses/course_detail.html:23
-#, python-format
-msgid "List of %(title)s course's chapters"
-msgstr "List of %(title)s course's chapters"
-
 #: templates/courses/course_create.html:4
 #: templates/courses/course_create.html:12
 #: templates/courses/courses_list.html:15
@@ -588,6 +594,18 @@ msgstr ""
 "\n"
 "Are you sure you want to delete the course\n"
 "<span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/courses/course_detail.html:23
+#, fuzzy, python-format
+#| msgid "List of %(title)s course's chapters"
+msgid ""
+"List of %(title)s course's\n"
+"                    chapters"
+msgstr "List of %(title)s course's chapters"
+
+#: templates/courses/course_detail.html:29
+msgid "Change chapters ordering"
+msgstr "Change chapters ordering"
 
 #: templates/courses/course_update.html:4
 #: templates/courses/course_update.html:12
@@ -709,10 +727,11 @@ msgstr ""
 "Please click on the link below to reset your password:\n"
 
 #: templates/front/accounts/profile.html:3
+#: templates/partials/moderator_header.html:21
 msgid "Profile"
 msgstr "Profile"
 
-#: templates/front/accounts/profile.html:74
+#: templates/front/accounts/profile.html:85
 msgid "My courses"
 msgstr "My courses"
 
@@ -766,10 +785,34 @@ msgstr "Modules list"
 msgid "Add modules"
 msgstr "Add modules"
 
+#: templates/partials/moderator_header.html:11
+msgid "Main"
+msgstr "Main"
+
+#: templates/partials/moderator_header.html:18
+msgid "Logout"
+msgstr "Logout"
+
+#: templates/partials/moderator_header.html:28
+msgid "Grant moderator's rights"
+msgstr "Grant moderator's rights"
+
 #: templates/partials/sidebar.html:21 templates/partials/sidebar.html:54
 #: templates/partials/sidebar.html:71 templates/partials/sidebar.html:189
 msgid "List"
 msgstr "List"
+
+#: templates/partials/sidebar.html:136
+msgid "Subscriptions"
+msgstr "Subscriptions"
+
+#: templates/partials/sidebar.html:145
+msgid "Grant subscription"
+msgstr "Grant subscription"
+
+#: templates/partials/sidebar.html:149
+msgid "Subscriptions list"
+msgstr "Subscriptions list"
 
 #: templates/partials/sidebar.html:157
 #: templates/statistics/courses_statistics/courses_list_statistics.html:5
@@ -804,17 +847,11 @@ msgstr "180 days"
 
 #: templates/partners/partners_create.html:10
 #: templates/partners/partners_list.html:11
-#| msgid "Add chapter"
 msgid "Add partner"
 msgstr "Add partner"
 
 #: templates/partners/partners_delete.html:11
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the chapter\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                    Are you sure you want to delete the partner\n"
@@ -825,7 +862,6 @@ msgstr ""
 "Are you sure you want to delete the partner <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/partners/partners_list.html:10
-#| msgid "Chapters list"
 msgid "Partners list"
 msgstr "Partners list"
 
@@ -834,7 +870,6 @@ msgid "Image"
 msgstr "Image"
 
 #: templates/partners/partners_update.html:8
-#| msgid "Edit chapter"
 msgid "Edit partner"
 msgstr "Edit partner"
 
@@ -1035,9 +1070,13 @@ msgstr "Number of users with active subscriptions"
 msgid "New users"
 msgstr "New users"
 
+#: templates/subscription/subscription_create.html:14
+msgid "Add subscription"
+msgstr "Add subscription"
+
 #: templates/teachers/teacher_create.html:4
 #: templates/teachers/teacher_create.html:12
-#: templates/teachers/teachers_list.html:15
+#: templates/teachers/teachers_list.html:16
 msgid "Add teacher"
 msgstr "Add teacher"
 
@@ -1070,7 +1109,7 @@ msgstr "Edit teacher"
 msgid "Teachers list"
 msgstr "Teachers list"
 
-#: templates/teachers/teachers_list.html:20
+#: templates/teachers/teachers_list.html:22
 msgid "Name"
 msgstr "Name"
 
