@@ -43,7 +43,7 @@ class QuestionBimFormUpdateView(PermissionRequiredMixin, View, FormMixin):
         question = get_object_or_404(QuestionBim, id=qpk)
         form = QuestionBimForm(request.POST or None, instance=question)
         context = {
-            "forms": form,
+            "form": form,
             "question": question
         }
         return render(request, "quiz_bim/question_bim/question_bim_form.html", context)
