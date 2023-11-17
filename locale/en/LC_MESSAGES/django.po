@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 21:27+0600\n"
-"PO-Revision-Date: 2023-11-17 21:29+0600\n"
+"POT-Creation-Date: 2023-11-17 22:57+0600\n"
+"PO-Revision-Date: 2023-11-17 23:05+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -317,6 +317,7 @@ msgid "Finished"
 msgstr "Finished"
 
 #: modules/models/user_course_progress.py:15
+#: progress/models/progress_test.py:17
 #: templates/accounts/grant_moderator.html:42
 #: templates/statistics/users_statistics/user_detailed_statistics.html:14
 #: templates/statistics/users_statistics/users_list_statistics.html:14
@@ -345,6 +346,114 @@ msgstr "Lesson finish"
 #: modules/models/user_course_progress.py:26
 msgid "Course progress"
 msgstr "Course progress"
+
+#: progress/models/progress_test.py:12
+#| msgid "Tests statistics"
+msgid "Test start time"
+msgstr "Test start time"
+
+#: progress/models/progress_test.py:13
+#| msgid "Lesson learn time"
+msgid "Test end time"
+msgstr "Test end time"
+
+#: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
+#: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12
+#: step/models/step.py:23 templates/steps/step/step_detail.html:21
+msgid "Test"
+msgstr "Test"
+
+#: progress/models/progress_test.py:22
+#| msgid "Tests"
+msgid "Test passed"
+msgstr "Test passed"
+
+#: progress/models/progress_test.py:23
+#| msgid "In progress"
+msgid "Test in progress"
+msgstr "Test in progress"
+
+#: progress/models/progress_test.py:39 progress/models/progress_test.py:40
+#: progress/models/progress_test_answers.py:11
+#| msgid "In progress"
+msgid "Test progress"
+msgstr "Test progress"
+
+#: progress/models/progress_test_answers.py:16
+#: quiz_bim/models/answer_bim.py:14 quiz_bim/models/question_bim.py:7
+#: quiz_bim/models/question_bim.py:16
+#| msgid "Add questions"
+msgid "Question"
+msgstr "Question"
+
+#: progress/models/progress_test_answers.py:20
+#: quiz_bim/forms/answer_bim_form.py:13 quiz_bim/models/answer_bim.py:7
+#: quiz_bim/models/answer_bim.py:21
+msgid "Answer"
+msgstr "Answer"
+
+#: progress/models/progress_test_answers.py:24
+msgid "Question-Answer"
+msgstr "Question-Answer"
+
+#: progress/models/progress_test_answers.py:25
+msgid "Questions-Answers"
+msgstr "Questions-Answers"
+
+#: quiz_bim/forms/answer_bim_form.py:14 quiz_bim/models/answer_bim.py:9
+msgid "Right answer"
+msgstr "Correct answer"
+
+#: quiz_bim/forms/question_bim_form.py:12
+#| msgid "Add questions"
+msgid "Enter question"
+msgstr "Enter question"
+
+#: quiz_bim/models/answer_bim.py:8
+msgid "Answer validation"
+msgstr "Answer validation"
+
+#: quiz_bim/models/answer_bim.py:9
+msgid "Wrong answer"
+msgstr "Incorrect answer"
+
+#: quiz_bim/models/answer_bim.py:22
+msgid "Answers"
+msgstr "Answers"
+
+#: quiz_bim/models/question_bim.py:17
+#| msgid "Add questions"
+msgid "Questions"
+msgstr "Questions"
+
+#: quiz_bim/models/quiz_bim.py:7
+#| msgid "Text title"
+msgid "Test title"
+msgstr "Title"
+
+#: quiz_bim/models/quiz_bim.py:8
+msgid "Questions quantity"
+msgstr "Questions quantity"
+
+#: quiz_bim/models/quiz_bim.py:17 templates/partials/sidebar.html:123
+msgid "Tests"
+msgstr "Tests"
+
+#: quiz_bim/validators.py:33
+msgid "Question cannot have more than 2 right answers"
+msgstr "Question cannot have more than 2 correct answers"
+
+#: quiz_bim/validators.py:44
+msgid "Answer field cannot be empty"
+msgstr "Answer field cannot be empty"
+
+#: quiz_bim/validators.py:46
+msgid "Answer should contain at least 2 symbols"
+msgstr "Answer should contain at least 2 symbols"
+
+#: quiz_bim/validators.py:48
+msgid "Answer correctness field can take only boolean values"
+msgstr "Answer correctness field can take only boolean values"
 
 #: step/forms/file_form.py:42
 msgid "Enter the name of the uploaded file"
@@ -452,11 +561,6 @@ msgstr "Video"
 msgid "Text"
 msgstr "Reading"
 
-#: step/models/step.py:12 step/models/step.py:23
-#: templates/steps/step/step_detail.html:21
-msgid "Test"
-msgstr "Test"
-
 #: step/models/step.py:16 templates/chapters/chapter_detail.html:49
 #: templates/chapters/chapters_list.html:21
 #: templates/course_target/course_target_list.html:20
@@ -550,13 +654,11 @@ msgstr "For editing you should select related content"
 
 #: subscription/forms/subscription_form.py:13
 #: subscription/models/subscription.py:11
-#| msgid "Course title"
 msgid "Course price"
 msgstr "Course price"
 
 #: subscription/forms/subscription_form.py:14
 #: subscription/models/subscription.py:12
-#| msgid "Published"
 msgid "Publish"
 msgstr "Publish"
 
@@ -573,7 +675,6 @@ msgstr ""
 #: templates/subscription/subscription_admin/user_add.html:3
 #: templates/subscription/subscription_admin/user_add.html:67
 #: templates/subscription/subscription_admin/user_list.html:45
-#| msgid "New subscriptions"
 msgid "Grant subscription"
 msgstr "Grant subscription"
 
@@ -581,7 +682,7 @@ msgstr "Grant subscription"
 #: templates/subscription/subscription_admin/user_delete.html:3
 #: templates/subscription/subscription_admin/user_list.html:42
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Unsubscribe"
 
 #: subscription/models/user_subscription.py:10
 #: templates/partials/sidebar.html:136
@@ -595,56 +696,51 @@ msgid "Users"
 msgstr "Users"
 
 #: subscription/models/user_subscription.py:13
-#| msgid "Subscriptions"
 msgid "Subscription expire date"
 msgstr "Subscription expire date"
 
 #: subscription/models/user_subscription.py:14
-#| msgid "Subscriptions"
 msgid "Subscription enabled"
 msgstr "Subscription enabled"
 
 #: templates/accounts/grant_moderator.html:4
-#| msgid "Grant moderator access"
 msgid "Grant moderator's rights"
 msgstr "Grant moderator's rights"
 
 #: templates/accounts/grant_moderator.html:13
-#| msgid "Grant moderator access"
 msgid "Grant moderator's rights page"
 msgstr "Grant moderator's rights page"
 
 #: templates/accounts/grant_moderator.html:16
 msgid "Search by Email"
-msgstr ""
+msgstr "Search by Email"
 
 #: templates/accounts/grant_moderator.html:18
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 #: templates/accounts/grant_moderator.html:29
 msgid "Role"
-msgstr ""
+msgstr "Role"
 
 #: templates/accounts/grant_moderator.html:40
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
 #: templates/accounts/grant_moderator.html:48
-#| msgid "New users"
 msgid "No users"
 msgstr "No users"
 
 #: templates/accounts/grant_moderator.html:57
 #: templates/accounts/grant_moderator.html:65
 msgid "Grant"
-msgstr ""
+msgstr "Grant"
 
 #: templates/accounts/grant_moderator.html:59
 #: templates/accounts/grant_moderator.html:67
 #: templates/socialaccount/connections.html:37
 msgid "Remove"
-msgstr ""
+msgstr "Remove"
 
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
@@ -1121,10 +1217,6 @@ msgstr "List"
 msgid "Readings"
 msgstr "Readings"
 
-#: templates/partials/sidebar.html:123
-msgid "Tests"
-msgstr "Tests"
-
 #: templates/partials/sidebar.html:140
 msgid "Publish courses"
 msgstr "Publish courses"
@@ -1195,37 +1287,41 @@ msgstr "Edit partner"
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
-msgstr ""
+msgstr "Social Network Login Failure"
 
 #: templates/socialaccount/authentication_error.html:9
 msgid ""
 "An error occurred while attempting to login via your social network account."
 msgstr ""
+"An error occurred while attempting to login via your social network account."
 
 #: templates/socialaccount/connections.html:5
 #: templates/socialaccount/connections.html:8
 msgid "Account Connections"
-msgstr ""
+msgstr "Account Connections"
 
 #: templates/socialaccount/connections.html:11
 msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
 msgstr ""
+"You can sign in to your account using any of the following third party\n"
+"accounts:"
 
 #: templates/socialaccount/connections.html:45
 msgid ""
 "You currently have no social network accounts connected to this account."
 msgstr ""
+"You currently have no social network accounts connected to this account."
 
 #: templates/socialaccount/connections.html:48
 msgid "Add a 3rd Party Account"
-msgstr ""
+msgstr "Add a 3rd Party Account"
 
 #: templates/socialaccount/login_cancelled.html:4
 #: templates/socialaccount/login_cancelled.html:8
 msgid "Login Cancelled"
-msgstr ""
+msgstr "Login Cancelled"
 
 #: templates/socialaccount/login_cancelled.html:12
 #, python-format
@@ -1234,6 +1330,9 @@ msgid ""
 "accounts. If this was a mistake, please proceed to <a "
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
+"You decided to cancel logging in to our site using one of your existing "
+"accounts. If this was a mistake, please proceed to <a "
+"href=\"%(login_url)s\">sign in</a>."
 
 #: templates/socialaccount/signup.html:4
 #: templates/socialaccount/signup.html:21
@@ -1249,6 +1348,8 @@ msgid ""
 "                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
+"\n"
+"You are about to use your %(provider_name)s account to login to %(site_name)s. As a final step, please complete the following form:"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:19
 msgid "Language"
@@ -1593,78 +1694,68 @@ msgstr "Edit video"
 
 #: templates/subscription/subscription_admin/user_add.html:11
 #: templates/subscription/subscription_admin/user_list.html:11
-#| msgid "No active subscriptions"
 msgid "Grant subscription to user"
 msgstr "Grant subscription to user"
 
 #: templates/subscription/subscription_admin/user_add.html:52
 msgid "Access"
-msgstr ""
+msgstr "Access"
 
 #: templates/subscription/subscription_admin/user_delete.html:11
 msgid "Are you sure you want to unsubscribe course"
-msgstr ""
+msgstr "Are you sure you want to unsubscribe course"
 
 #: templates/subscription/subscription_admin/user_delete.html:12
 msgid "from user"
-msgstr ""
+msgstr "from user"
 
 #: templates/subscription/subscription_admin/user_list.html:3
-#| msgid "No active subscriptions"
 msgid "Grant subscription to users"
 msgstr "Grant subscription to users"
 
 #: templates/subscription/subscription_admin/user_list.html:20
-#| msgid "New subscriptions"
 msgid "Current subscription"
 msgstr "Current subscription"
 
 #: templates/subscription/subscription_admin/user_list.html:21
-#| msgid "Subscriptions"
 msgid "Subscription"
 msgstr "Subscription"
 
 #: templates/subscription/subscription_create.html:14
-#| msgid "New subscriptions"
 msgid "Add subscription"
 msgstr "Add subscription"
 
 #: templates/subscription/subscription_delete.html:3
-#| msgid "Subscriptions"
 msgid "Subscription deletion"
 msgstr "Subscription deletion"
 
 #: templates/subscription/subscription_delete.html:10
 msgid "Are you sure you want to delete the subscription for course"
-msgstr ""
+msgstr "Are you sure you want to delete the subscription for course"
 
 #: templates/subscription/subscription_list.html:3
 #: templates/subscription/subscription_list.html:11
-#| msgid "Subscriptions"
 msgid "Subscriptions list"
 msgstr "Subscriptions list"
 
 #: templates/subscription/subscription_list.html:23
 msgid "Price"
-msgstr ""
+msgstr "Price"
 
 #: templates/subscription/subscription_list.html:38
-#| msgid "Published"
 msgid "Unpublished"
 msgstr "Unpublished"
 
 #: templates/subscription/subscription_list.html:43
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 #: templates/subscription/subscription_update.html:3
 #: templates/subscription/subscription_update.html:13
-#| msgid "Subscriptions"
 msgid "Subscription update"
 msgstr "Subscription update"
 
 #: templates/subscription/subscription_update.html:16
-#| msgid "New subscriptions"
 msgid "Update the subscription"
 msgstr "Update the subscription"
 

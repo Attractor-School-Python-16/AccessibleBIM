@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 21:27+0600\n"
-"PO-Revision-Date: 2023-11-17 21:35+0600\n"
+"POT-Creation-Date: 2023-11-17 22:57+0600\n"
+"PO-Revision-Date: 2023-11-17 23:04+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -317,6 +317,7 @@ msgid "Finished"
 msgstr "Закончен"
 
 #: modules/models/user_course_progress.py:15
+#: progress/models/progress_test.py:17
 #: templates/accounts/grant_moderator.html:42
 #: templates/statistics/users_statistics/user_detailed_statistics.html:14
 #: templates/statistics/users_statistics/users_list_statistics.html:14
@@ -345,6 +346,114 @@ msgstr "Прогресс по курсу"
 #: modules/models/user_course_progress.py:26
 msgid "Course progress"
 msgstr "Прогресс по курсу"
+
+#: progress/models/progress_test.py:12
+#| msgid "Tests statistics"
+msgid "Test start time"
+msgstr "Начало тестирования"
+
+#: progress/models/progress_test.py:13
+#| msgid "Lesson learn time"
+msgid "Test end time"
+msgstr "Конец тестирования"
+
+#: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
+#: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12
+#: step/models/step.py:23 templates/steps/step/step_detail.html:21
+msgid "Test"
+msgstr "Тест"
+
+#: progress/models/progress_test.py:22
+#| msgid "Tests"
+msgid "Test passed"
+msgstr "Тест пройден"
+
+#: progress/models/progress_test.py:23
+#| msgid "In progress"
+msgid "Test in progress"
+msgstr "Тест в процессе"
+
+#: progress/models/progress_test.py:39 progress/models/progress_test.py:40
+#: progress/models/progress_test_answers.py:11
+#| msgid "In progress"
+msgid "Test progress"
+msgstr "Прогресс теста"
+
+#: progress/models/progress_test_answers.py:16
+#: quiz_bim/models/answer_bim.py:14 quiz_bim/models/question_bim.py:7
+#: quiz_bim/models/question_bim.py:16
+#| msgid "Add questions"
+msgid "Question"
+msgstr "Вопрос"
+
+#: progress/models/progress_test_answers.py:20
+#: quiz_bim/forms/answer_bim_form.py:13 quiz_bim/models/answer_bim.py:7
+#: quiz_bim/models/answer_bim.py:21
+msgid "Answer"
+msgstr "Ответ"
+
+#: progress/models/progress_test_answers.py:24
+msgid "Question-Answer"
+msgstr "Вопрос-ответ"
+
+#: progress/models/progress_test_answers.py:25
+msgid "Questions-Answers"
+msgstr "Вопросы-ответы"
+
+#: quiz_bim/forms/answer_bim_form.py:14 quiz_bim/models/answer_bim.py:9
+msgid "Right answer"
+msgstr "Верный ответ"
+
+#: quiz_bim/forms/question_bim_form.py:12
+#| msgid "Add questions"
+msgid "Enter question"
+msgstr "Введите вопрос"
+
+#: quiz_bim/models/answer_bim.py:8
+msgid "Answer validation"
+msgstr "Валидация ответа"
+
+#: quiz_bim/models/answer_bim.py:9
+msgid "Wrong answer"
+msgstr "Неверный ответ"
+
+#: quiz_bim/models/answer_bim.py:22
+msgid "Answers"
+msgstr "Ответы"
+
+#: quiz_bim/models/question_bim.py:17
+#| msgid "Add questions"
+msgid "Questions"
+msgstr "Вопросы"
+
+#: quiz_bim/models/quiz_bim.py:7
+#| msgid "Text title"
+msgid "Test title"
+msgstr "Тема тестирования"
+
+#: quiz_bim/models/quiz_bim.py:8
+msgid "Questions quantity"
+msgstr "Количество вопросов для прохождения"
+
+#: quiz_bim/models/quiz_bim.py:17 templates/partials/sidebar.html:123
+msgid "Tests"
+msgstr "Тесты"
+
+#: quiz_bim/validators.py:33
+msgid "Question cannot have more than 2 right answers"
+msgstr "В вопросе не может быть более двух правильных ответов"
+
+#: quiz_bim/validators.py:44
+msgid "Answer field cannot be empty"
+msgstr "Поле ответа на может быть пустым"
+
+#: quiz_bim/validators.py:46
+msgid "Answer should contain at least 2 symbols"
+msgstr "Ответ должен быть длиной не менее двух символо"
+
+#: quiz_bim/validators.py:48
+msgid "Answer correctness field can take only boolean values"
+msgstr "Поле верности ответа может принимать только булевые значения"
 
 #: step/forms/file_form.py:42
 msgid "Enter the name of the uploaded file"
@@ -453,11 +562,6 @@ msgstr "Видео"
 msgid "Text"
 msgstr "Лекция"
 
-#: step/models/step.py:12 step/models/step.py:23
-#: templates/steps/step/step_detail.html:21
-msgid "Test"
-msgstr "Тест"
-
 #: step/models/step.py:16 templates/chapters/chapter_detail.html:49
 #: templates/chapters/chapters_list.html:21
 #: templates/course_target/course_target_list.html:20
@@ -553,13 +657,11 @@ msgstr "Для редактирования необходимо выбрать 
 
 #: subscription/forms/subscription_form.py:13
 #: subscription/models/subscription.py:11
-#| msgid "Course title"
 msgid "Course price"
 msgstr "Цена"
 
 #: subscription/forms/subscription_form.py:14
 #: subscription/models/subscription.py:12
-#| msgid "Published"
 msgid "Publish"
 msgstr "Опубликовать"
 
@@ -575,7 +677,6 @@ msgstr ""
 #: templates/subscription/subscription_admin/user_add.html:3
 #: templates/subscription/subscription_admin/user_add.html:67
 #: templates/subscription/subscription_admin/user_list.html:45
-#| msgid "New subscriptions"
 msgid "Grant subscription"
 msgstr "Выдать подписку"
 
@@ -597,22 +698,18 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: subscription/models/user_subscription.py:13
-#| msgid "Subscriptions"
 msgid "Subscription expire date"
 msgstr "Дата завершения подписки"
 
 #: subscription/models/user_subscription.py:14
-#| msgid "Subscriptions"
 msgid "Subscription enabled"
 msgstr "Подписка активна"
 
 #: templates/accounts/grant_moderator.html:4
-#| msgid "Grant moderator access"
 msgid "Grant moderator's rights"
 msgstr "Выдача прав модератора"
 
 #: templates/accounts/grant_moderator.html:13
-#| msgid "Grant moderator access"
 msgid "Grant moderator's rights page"
 msgstr "Страница выдачи прав модератора"
 
@@ -633,7 +730,6 @@ msgid "Moderator"
 msgstr "Модератор"
 
 #: templates/accounts/grant_moderator.html:48
-#| msgid "New users"
 msgid "No users"
 msgstr "Нет пользователей"
 
@@ -1118,10 +1214,6 @@ msgstr "Список"
 msgid "Readings"
 msgstr "Лекции"
 
-#: templates/partials/sidebar.html:123
-msgid "Tests"
-msgstr "Тесты"
-
 #: templates/partials/sidebar.html:140
 msgid "Publish courses"
 msgstr "Публикация курсов"
@@ -1589,7 +1681,6 @@ msgstr "Редактирование видео"
 
 #: templates/subscription/subscription_admin/user_add.html:11
 #: templates/subscription/subscription_admin/user_list.html:11
-#| msgid "No active subscriptions"
 msgid "Grant subscription to user"
 msgstr "Выдать подписку пользователю"
 
@@ -1606,27 +1697,22 @@ msgid "from user"
 msgstr "пользователя"
 
 #: templates/subscription/subscription_admin/user_list.html:3
-#| msgid "No active subscriptions"
 msgid "Grant subscription to users"
 msgstr "Выдать подписку пользователям"
 
 #: templates/subscription/subscription_admin/user_list.html:20
-#| msgid "New subscriptions"
 msgid "Current subscription"
 msgstr "Текущая подписка"
 
 #: templates/subscription/subscription_admin/user_list.html:21
-#| msgid "Subscriptions"
 msgid "Subscription"
 msgstr "Подписка"
 
 #: templates/subscription/subscription_create.html:14
-#| msgid "New subscriptions"
 msgid "Add subscription"
 msgstr "Добавить подписку"
 
 #: templates/subscription/subscription_delete.html:3
-#| msgid "Subscriptions"
 msgid "Subscription deletion"
 msgstr "Удаление подписки"
 
@@ -1636,7 +1722,6 @@ msgstr "Вы уверены, что хотите удалить подписку
 
 #: templates/subscription/subscription_list.html:3
 #: templates/subscription/subscription_list.html:11
-#| msgid "Subscriptions"
 msgid "Subscriptions list"
 msgstr "Перечень подписок"
 
@@ -1645,7 +1730,6 @@ msgid "Price"
 msgstr "Цена"
 
 #: templates/subscription/subscription_list.html:38
-#| msgid "Published"
 msgid "Unpublished"
 msgstr "Не опубликован"
 
@@ -1655,12 +1739,10 @@ msgstr "Изменить"
 
 #: templates/subscription/subscription_update.html:3
 #: templates/subscription/subscription_update.html:13
-#| msgid "Subscriptions"
 msgid "Subscription update"
 msgstr "Изменение подписки"
 
 #: templates/subscription/subscription_update.html:16
-#| msgid "New subscriptions"
 msgid "Update the subscription"
 msgstr "Редактировать подписку"
 
