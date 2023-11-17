@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Просмотр видео{% endblock %}
+{% block title %}{% trans 'View video' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -27,19 +28,15 @@
                         <source src="{{ video.video_file.url }}" type="audio/ogg">
 
                         <p class="vjs-no-js">
-                            To view this video please enable JavaScript, and consider upgrading to a
-                            web browser that / Для просмотра этого видео, пожалуйста, включите JavaScript и
-                            рассмотрите возможность обновления до веб-браузера, который
-                            <a href="https://videojs.com/html5-video-support/" target="_blank"
-                            >supports HTML5 video / поддерживает видео в формате HTML5</a>
+                             {% trans 'To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>' %}
                         </p>
                     </video>
                 </div>
                 </br>
-                <a href="{% url 'step:videomodel_update' video.id %}" class="btn btn-primary me-2">Редактировать
-                    видео</a>
-                <a href="{% url 'step:videomodel_delete' video.id %}" class="btn btn-danger me-2">Удалить видео</a>
-                <a href="{% url 'step:videomodel_list' %}" class="btn btn-secondary">Вернуться к списку видео</a>
+                <a href="{% url 'step:videomodel_update' video.id %}" class="btn btn-primary me-2">{% trans 'Edit' %}</a>
+                <a href="{% url 'step:videomodel_delete' video.id %}" class="btn btn-danger me-2">{% trans 'Delete' %}</a>
+                <a href="{% url 'step:videomodel_list' %}" class="btn btn-secondary">
+                    {% trans 'Back to videos list' %}</a>
             </div>
         </div>
     {% endif %}

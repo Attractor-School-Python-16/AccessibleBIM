@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load view_breadcrumbs %}
 {% block content %}
     <div class="container">
@@ -11,14 +12,14 @@
                 {% block breadcrumbs %}
                     {% render_breadcrumbs %}
                 {% endblock %}
-                <h1>Список шагов</h1>
-                    <a href="{% url 'step:stepmodel_create' %}" class="btn btn-primary">Добавить</a>
+                <h1>{% trans 'Lessons list' %}</h1>
+                    <a href="{% url 'step:stepmodel_create' %}" class="btn btn-primary">{% trans 'Add' %}</a>
                 <table class="table">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Название</th>
-                        <th>Действия</th>
+                        <th>{% trans 'Title' %}</th>
+                        <th>{% trans 'Actions' %}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,8 +28,8 @@
                             <td>{{ step.id }}</td>
                             <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
                             <td>
-                                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-info btn-sm">Изменить</a>
-                                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-info btn-sm">{% trans 'Change' %}</a>
+                                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger btn-sm">{% trans 'Delete' %}</a>
                             </td>
                         </tr>
                     {% endfor %}
