@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 10:32+0600\n"
-"PO-Revision-Date: 2023-11-17 10:33+0600\n"
+"POT-Creation-Date: 2023-11-17 10:39+0600\n"
+"PO-Revision-Date: 2023-11-17 10:40+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -338,23 +338,28 @@ msgstr "Прогресс по курсу"
 msgid "Course progress"
 msgstr "Прогресс по курсу"
 
-#: step/forms/file_form.py:40
+#: step/forms/file_form.py:42
 msgid "Enter the name of the uploaded file"
 msgstr "Введите наименование загружаемого файла"
 
-#: step/forms/file_form.py:41
+#: step/forms/file_form.py:43
 msgid "Upload a file"
 msgstr "Загрузите файл"
 
-#: step/forms/file_form.py:51
-msgid "Uploaded file has to be no more than 20 MB"
-msgstr "Размер загружаемого файла не должен превышать 20 МБ"
-
 #: step/forms/file_form.py:53
-msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed"
-msgstr "Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX"
+#| msgid "Uploaded file has to be no more than 20 MB"
+msgid "Uploaded file has to be no more than 250 MB"
+msgstr "Размер загружаемого файла не должен превышать 250 МБ"
 
-#: step/forms/file_form.py:64
+#: step/forms/file_form.py:55
+#| msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed"
+msgid ""
+"Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
+msgstr ""
+"Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, "
+"RFA, DWG, DXF"
+
+#: step/forms/file_form.py:66
 msgid "Title is mandatory for uploading a file"
 msgstr "При загрузке документа требуется обязательно указать название"
 
