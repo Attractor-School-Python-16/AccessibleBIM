@@ -11,8 +11,7 @@ on:
 
 # A workflows run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflows contains a single job called "build"
-  build:
+  job1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Add in environment variables for the entire "build" job
@@ -70,9 +69,12 @@ jobs:
           DATABASE_URL: psql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@127.0.0.1:${{ env.POSTGRES_PORT }}/${{ env.POSTGRES_DB }}
         run: |
           python manage.py test
-          
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
 
-      - name: Build the Docker Dev image
-        uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image Dev
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
+        

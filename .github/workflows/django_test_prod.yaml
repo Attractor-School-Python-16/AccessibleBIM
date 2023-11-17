@@ -11,8 +11,7 @@ on:
 
 # A workflows run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflows contains a single job called "build"
-  build:
+  job1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Add in environment variables for the entire "build" job
@@ -71,10 +70,22 @@ jobs:
         run: |
           python manage.py test
 
-      - name: Build the Docker Prod image
-        uses: actions/checkout@v3
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+      - name: Build the Docker image Prod
         run: docker build docker-compose.prod.yml --file Dockerfile.prod --tag my-image-name:$(date +%s)
 
+
+  job3:
+    needs: job2
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         with:
@@ -86,10 +97,11 @@ jobs:
 
           SCRIPT_AFTER: |
             cd AccessibleBIM/
-            git checkout stage
-            git pull
-            docker rm -f $(docker ps -a -q)
-            docker rmi -f $(docker images -aq)
-            docker volume rm $(docker volume ls)
-            docker system prune -af
-            docker compose -f docker-compose.prod.yml up -d --build
+            mkdir READY
+#            git checkout new
+#            git pull
+#            docker rm -f $(docker ps -a -q)
+#            docker rmi -f $(docker images -aq)
+#            docker volume rm $(docker volume ls)
+#            docker system prune -af
+#            docker compose -f docker-compose.prod.yml up -d --build
