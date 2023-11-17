@@ -1,4 +1,4 @@
-name: RunTestDjangoDev
+name: CI-CD DEV
 
 # Controls when the workflows will run
 on:
@@ -70,3 +70,8 @@ jobs:
           DATABASE_URL: psql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@127.0.0.1:${{ env.POSTGRES_PORT }}/${{ env.POSTGRES_DB }}
         run: |
           python manage.py test
+          
+
+      - name: Build the Docker Dev image
+        uses: actions/checkout@v3
+        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
