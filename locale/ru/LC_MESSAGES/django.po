@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-16 22:02+0600\n"
-"PO-Revision-Date: 2023-11-16 22:22+0600\n"
+"POT-Creation-Date: 2023-11-17 10:17+0600\n"
+"PO-Revision-Date: 2023-11-17 10:17+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -338,13 +338,89 @@ msgstr "Прогресс по курсу"
 msgid "Course progress"
 msgstr "Прогресс по курсу"
 
+#: step/forms/file_form.py:40
+msgid "Enter the name of the uploaded file"
+msgstr "Введите наименование загружаемого файла"
+
+#: step/forms/file_form.py:41
+msgid "Upload a file"
+msgstr "Загрузите файл"
+
+#: step/forms/file_form.py:51
+msgid "Uploaded file has to be no more than 20 MB"
+msgstr "Размер загружаемого файла не должен превышать 20 МБ"
+
+#: step/forms/file_form.py:53
+msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed"
+msgstr "Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX"
+
+#: step/forms/file_form.py:64
+msgid "Title is mandatory for uploading a file"
+msgstr "При загрузке документа требуется обязательно указать название"
+
+#: step/forms/step_form.py:17 step/forms/step_form.py:34
+#: step/forms/step_form.py:46
+msgid "Enter lesson's title"
+msgstr "Введите наименование занятия"
+
+#: step/forms/step_form.py:18 step/forms/step_form.py:35
+#: step/forms/step_form.py:47
+msgid "Enter lesson's duration"
+msgstr "Укажите продолжительность занятия"
+
+#: step/forms/step_form.py:19 step/forms/step_form.py:36
+msgid "Select files"
+msgstr "Выберите файлы"
+
+#: step/forms/step_form.py:20
+msgid "Select reading"
+msgstr "Выберите лекцию"
+
+#: step/forms/step_form.py:37
+msgid "Select video"
+msgstr "Выберите видео"
+
+#: step/forms/step_form.py:48
+msgid "Select test"
+msgstr "Выберите тест"
+
+#: step/forms/text_form.py:14
+msgid "Enter reading's title"
+msgstr "Введите наименование лекции"
+
+#: step/forms/text_form.py:15
+msgid "Enter reading's description"
+msgstr "Укажите описание лекции"
+
+#: step/forms/text_form.py:16 templates/steps/text/text_detail.html:25
+msgid "Content"
+msgstr "Содержание"
+
+#: step/forms/video_form.py:17
+msgid "Enter video's title"
+msgstr "Введите наименование видео"
+
+#: step/forms/video_form.py:18
+msgid "Enter video's description"
+msgstr "Укажите описание видео"
+
+#: step/forms/video_form.py:19
+msgid "Upload video file"
+msgstr "Загрузите видео файл"
+
+#: step/forms/video_form.py:29
+msgid "Uploaded file has to be no more than 2 GB"
+msgstr "Размер загружаемого файла не должен превышать 2ГБ"
+
+#: step/forms/video_form.py:31
+msgid "Only MP4, WebM and OGG formats allowed"
+msgstr "Необходимо загрузить видео в формате MP4, WebM или OGG"
+
 #: step/models/file.py:14
-#| msgid "Module title"
 msgid "File title"
 msgstr "Название"
 
 #: step/models/file.py:15
-#| msgid "Lesson"
 msgid "Lesson file"
 msgstr "Файл урока"
 
@@ -386,12 +462,10 @@ msgid "Title"
 msgstr "Название"
 
 #: step/models/step.py:18
-#| msgid "Lesson types"
 msgid "Lesson type"
 msgstr "Тип урока"
 
 #: step/models/step.py:26
-#| msgid "Course learn time"
 msgid "Lesson learn time"
 msgstr "Примерное время на прохождение урока"
 
@@ -406,12 +480,10 @@ msgid "Lessons"
 msgstr "Занятие"
 
 #: step/models/text.py:9
-#| msgid "Target title"
 msgid "Text title"
 msgstr "Название"
 
 #: step/models/text.py:10
-#| msgid "Target description"
 msgid "Text description"
 msgstr "Описание"
 
@@ -424,12 +496,10 @@ msgid "Texts"
 msgstr "Лекции"
 
 #: step/models/video.py:15
-#| msgid "Job title"
 msgid "Video title"
 msgstr "Название"
 
 #: step/models/video.py:16
-#| msgid "Module description"
 msgid "Video description"
 msgstr "Описание"
 
@@ -441,6 +511,38 @@ msgstr "Видео файл"
 msgid "Videos"
 msgstr "Видео"
 
+#: step/step_validators.py:20
+msgid "reading"
+msgstr "лекция"
+
+#: step/step_validators.py:28
+msgid "video"
+msgstr "видео"
+
+#: step/step_validators.py:35
+msgid "test"
+msgstr "тест"
+
+#: step/step_validators.py:53
+#| msgid ""
+#| "Empty fields found. You should select {keyword} from the list or create a "
+#| "new one"
+msgid ""
+"Empty fields found. You should select {} from the list or create a new one"
+msgstr ""
+"Обнаружены пустые поля. Необходимо выбрать из списка существующий объект "
+"типа {} или создать новый"
+
+#: step/step_validators.py:55
+#| msgid "You should select {keyword} from the list or create a new one"
+msgid "You should select {} from the list or create a new one"
+msgstr ""
+"Необходимо выбрать из списка существующий объект типа {} или создать новый"
+
+#: step/step_validators.py:61
+msgid "For editing you should select related content"
+msgstr "Для редактирования необходимо выбрать связанный контент"
+
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
 #: templates/chapters/chapter_detail.html:42
@@ -450,7 +552,6 @@ msgstr "Изменение порядка занятий"
 #: templates/chapters/change_steps_order.html:13
 #: templates/chapters/chapter_detail.html:31
 #, python-format
-#| msgid "List of %(title)s chapter's lessons"
 msgid ""
 "List of %(title)s chapter's\n"
 "                        lessons"
@@ -689,7 +790,6 @@ msgstr ""
 
 #: templates/courses/course_detail.html:23
 #, python-format
-#| msgid "List of %(title)s course's chapters"
 msgid ""
 "List of %(title)s course's\n"
 "                    chapters"
@@ -847,7 +947,6 @@ msgid "Add module:"
 msgstr "Добавить модуль:"
 
 #: templates/modules/module_delete.html:4
-#| msgid "Delete course"
 msgid "Delete module"
 msgstr "Удаление модуля"
 
@@ -1138,22 +1237,15 @@ msgstr "Новые пользователи"
 
 #: templates/steps/file/file_create.html:4
 #: templates/steps/file/file_create.html:15
-#| msgid "Add module:"
 msgid "Add file"
 msgstr "Добавление файла"
 
 #: templates/steps/file/file_delete.html:4
-#| msgid "Delete"
 msgid "Delete file"
 msgstr "Удаление файла"
 
 #: templates/steps/file/file_delete.html:12
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the module\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                Are you sure you want to delete the file\n"
@@ -1173,49 +1265,37 @@ msgid "Download file"
 msgstr "Скачать файл"
 
 #: templates/steps/file/file_detail.html:16
-#| msgid "Modules list"
 msgid "Back to files list"
 msgstr "Вернуться к списку файлов"
 
 #: templates/steps/file/file_list.html:4
 #: templates/steps/file/file_list.html:12
-#| msgid "Modules list"
 msgid "Files list"
 msgstr "Список файлов"
 
 #: templates/steps/file/file_update.html:4
 #: templates/steps/file/file_update.html:15
-#| msgid "Edit"
 msgid "Edit file"
 msgstr "Редактирование файл"
 
 #: templates/steps/step/step_create.html:4
-#| msgid "Add text lesson"
 msgid "Add lesson"
 msgstr "Добавить занятие"
 
 #: templates/steps/step/step_create.html:12
-#| msgid "Add video lesson"
 msgid "Adding lesson"
 msgstr "Добавление занятия"
 
 #: templates/steps/step/step_create.html:23
-#| msgid "Add test"
 msgid "Add questions"
 msgstr "Добавление вопросов"
 
 #: templates/steps/step/step_delete.html:4
-#| msgid "Completed lessons"
 msgid "Delete lesson"
 msgstr "Удаление занятия"
 
 #: templates/steps/step/step_delete.html:12
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the module\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                Are you sure you want to delete the lesson\n"
@@ -1226,7 +1306,6 @@ msgstr ""
 "Вы точно хотите удалить урок <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/steps/step/step_detail.html:4
-#| msgid "Add video lesson"
 msgid "View lesson"
 msgstr "Просмотр занятия"
 
@@ -1239,12 +1318,10 @@ msgid "Back to lessons list"
 msgstr "Вернуться к списку уроков"
 
 #: templates/steps/step/step_list.html:15
-#| msgid "Lessons"
 msgid "Lessons list"
 msgstr "Список занятий"
 
 #: templates/steps/step/step_update.html:4
-#| msgid "Add text lesson"
 msgid "Edit lesson"
 msgstr "Редактирование занятия"
 
@@ -1254,12 +1331,10 @@ msgstr "Сохранить"
 
 #: templates/steps/text/text_create.html:4
 #: templates/steps/text/text_create.html:15
-#| msgid "Add target audience"
 msgid "Add reading"
 msgstr "Добавить лекцию"
 
 #: templates/steps/text/text_delete.html:4
-#| msgid "Delete target audience"
 msgid "Delete reading"
 msgstr "Удалить лекцию"
 
@@ -1277,11 +1352,6 @@ msgstr ""
 
 #: templates/steps/text/text_delete.html:22
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                    Are you sure you want to delete the partner\n"
-#| "                    <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                    Are you sure you want to delete the reading\n"
@@ -1295,34 +1365,26 @@ msgstr ""
 msgid "View reading"
 msgstr "Просмотр лекции"
 
-#: templates/steps/text/text_detail.html:25
-msgid "Content"
-msgstr "Содержание"
-
 #: templates/steps/text/text_detail.html:33
 msgid "Back to readings list"
 msgstr "Вернуться к списку лекций"
 
 #: templates/steps/text/text_list.html:4
 #: templates/steps/text/text_list.html:12
-#| msgid "Partners list"
 msgid "Readings list"
 msgstr "Список лекций"
 
 #: templates/steps/text/text_update.html:4
 #: templates/steps/text/text_update.html:15
-#| msgid "Edit target audience"
 msgid "Edit reading"
 msgstr "Редактирование лекции"
 
 #: templates/steps/video/video_create.html:4
 #: templates/steps/video/video_create.html:15
-#| msgid "Add video lesson"
 msgid "Add video"
 msgstr "Добавить видео"
 
 #: templates/steps/video/video_delete.html:4
-#| msgid "Delete"
 msgid "Delete video"
 msgstr "Удалить видео"
 
@@ -1340,11 +1402,6 @@ msgstr ""
 
 #: templates/steps/video/video_delete.html:22
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                    Are you sure you want to delete the partner\n"
-#| "                    <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                        Are you sure you want to delete the video\n"
@@ -1375,7 +1432,6 @@ msgstr "Вернуться к списку видео"
 
 #: templates/steps/video/video_list.html:4
 #: templates/steps/video/video_list.html:12
-#| msgid "Modules list"
 msgid "Videos list"
 msgstr "Список видео"
 
