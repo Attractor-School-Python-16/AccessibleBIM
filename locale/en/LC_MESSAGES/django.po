@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-16 22:02+0600\n"
-"PO-Revision-Date: 2023-11-16 22:27+0600\n"
+"POT-Creation-Date: 2023-11-17 10:17+0600\n"
+"PO-Revision-Date: 2023-11-17 10:18+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -338,13 +338,89 @@ msgstr "Lesson finish"
 msgid "Course progress"
 msgstr "Course progress"
 
+#: step/forms/file_form.py:40
+msgid "Enter the name of the uploaded file"
+msgstr "Enter the name of the uploaded file"
+
+#: step/forms/file_form.py:41
+msgid "Upload a file"
+msgstr "Upload a file"
+
+#: step/forms/file_form.py:51
+msgid "Uploaded file has to be no more than 20 MB"
+msgstr "Uploaded file has to be no more than 20 MB"
+
+#: step/forms/file_form.py:53
+msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed"
+msgstr "Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed"
+
+#: step/forms/file_form.py:64
+msgid "Title is mandatory for uploading a file"
+msgstr "Title is mandatory for uploading a file"
+
+#: step/forms/step_form.py:17 step/forms/step_form.py:34
+#: step/forms/step_form.py:46
+msgid "Enter lesson's title"
+msgstr "Enter lesson's title"
+
+#: step/forms/step_form.py:18 step/forms/step_form.py:35
+#: step/forms/step_form.py:47
+msgid "Enter lesson's duration"
+msgstr "Enter lesson's duration"
+
+#: step/forms/step_form.py:19 step/forms/step_form.py:36
+msgid "Select files"
+msgstr "Select files"
+
+#: step/forms/step_form.py:20
+msgid "Select reading"
+msgstr "Select reading"
+
+#: step/forms/step_form.py:37
+msgid "Select video"
+msgstr "Select video"
+
+#: step/forms/step_form.py:48
+msgid "Select test"
+msgstr "Select test"
+
+#: step/forms/text_form.py:14
+msgid "Enter reading's title"
+msgstr "Enter reading's title"
+
+#: step/forms/text_form.py:15
+msgid "Enter reading's description"
+msgstr "Enter reading's description"
+
+#: step/forms/text_form.py:16 templates/steps/text/text_detail.html:25
+msgid "Content"
+msgstr "Content"
+
+#: step/forms/video_form.py:17
+msgid "Enter video's title"
+msgstr "Enter video's title"
+
+#: step/forms/video_form.py:18
+msgid "Enter video's description"
+msgstr "Enter video's description"
+
+#: step/forms/video_form.py:19
+msgid "Upload video file"
+msgstr "Upload video file"
+
+#: step/forms/video_form.py:29
+msgid "Uploaded file has to be no more than 2 GB"
+msgstr "Uploaded file has to be no more than 2 GB"
+
+#: step/forms/video_form.py:31
+msgid "Only MP4, WebM and OGG formats allowed"
+msgstr "Only MP4, WebM and OGG formats allowed"
+
 #: step/models/file.py:14
-#| msgid "Module title"
 msgid "File title"
 msgstr "Title"
 
 #: step/models/file.py:15
-#| msgid "Lesson"
 msgid "Lesson file"
 msgstr "Lesson file"
 
@@ -386,12 +462,10 @@ msgid "Title"
 msgstr "Title"
 
 #: step/models/step.py:18
-#| msgid "Lesson types"
 msgid "Lesson type"
 msgstr "Lesson type"
 
 #: step/models/step.py:26
-#| msgid "Course learn time"
 msgid "Lesson learn time"
 msgstr "Lesson learn time"
 
@@ -406,12 +480,10 @@ msgid "Lessons"
 msgstr "Lessons"
 
 #: step/models/text.py:9
-#| msgid "Target title"
 msgid "Text title"
 msgstr "Title"
 
 #: step/models/text.py:10
-#| msgid "Target description"
 msgid "Text description"
 msgstr "Description"
 
@@ -424,12 +496,10 @@ msgid "Texts"
 msgstr "Readings"
 
 #: step/models/video.py:15
-#| msgid "Job title"
 msgid "Video title"
 msgstr "Title"
 
 #: step/models/video.py:16
-#| msgid "Module description"
 msgid "Video description"
 msgstr "Description"
 
@@ -441,6 +511,36 @@ msgstr "Video file"
 msgid "Videos"
 msgstr "Videos"
 
+#: step/step_validators.py:20
+msgid "reading"
+msgstr "reading"
+
+#: step/step_validators.py:28
+msgid "video"
+msgstr "video"
+
+#: step/step_validators.py:35
+msgid "test"
+msgstr "test"
+
+#: step/step_validators.py:53
+#| msgid ""
+#| "Empty fields found. You should select {keyword} from the list or create a "
+#| "new one"
+msgid ""
+"Empty fields found. You should select {} from the list or create a new one"
+msgstr ""
+"Empty fields found. You should select {} from the list or create a new one"
+
+#: step/step_validators.py:55
+#| msgid "You should select {keyword} from the list or create a new one"
+msgid "You should select {} from the list or create a new one"
+msgstr "You should select {} from the list or create a new one"
+
+#: step/step_validators.py:61
+msgid "For editing you should select related content"
+msgstr "For editing you should select related content"
+
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
 #: templates/chapters/chapter_detail.html:42
@@ -450,7 +550,6 @@ msgstr "Change lessons ordering"
 #: templates/chapters/change_steps_order.html:13
 #: templates/chapters/chapter_detail.html:31
 #, python-format
-#| msgid "List of %(title)s chapter's lessons"
 msgid ""
 "List of %(title)s chapter's\n"
 "                        lessons"
@@ -692,7 +791,6 @@ msgstr ""
 
 #: templates/courses/course_detail.html:23
 #, python-format
-#| msgid "List of %(title)s course's chapters"
 msgid ""
 "List of %(title)s course's\n"
 "                    chapters"
@@ -851,7 +949,6 @@ msgid "Add module:"
 msgstr "Add module:"
 
 #: templates/modules/module_delete.html:4
-#| msgid "Delete course"
 msgid "Delete module"
 msgstr "Delete module"
 
@@ -1143,22 +1240,15 @@ msgstr "New users"
 
 #: templates/steps/file/file_create.html:4
 #: templates/steps/file/file_create.html:15
-#| msgid "Add module:"
 msgid "Add file"
 msgstr "Add file"
 
 #: templates/steps/file/file_delete.html:4
-#| msgid "Delete"
 msgid "Delete file"
 msgstr "Delete file"
 
 #: templates/steps/file/file_delete.html:12
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the module\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                Are you sure you want to delete the file\n"
@@ -1178,49 +1268,37 @@ msgid "Download file"
 msgstr "Download file"
 
 #: templates/steps/file/file_detail.html:16
-#| msgid "Modules list"
 msgid "Back to files list"
 msgstr "Back to files list"
 
 #: templates/steps/file/file_list.html:4
 #: templates/steps/file/file_list.html:12
-#| msgid "Modules list"
 msgid "Files list"
 msgstr "Files list"
 
 #: templates/steps/file/file_update.html:4
 #: templates/steps/file/file_update.html:15
-#| msgid "Edit"
 msgid "Edit file"
 msgstr "Edit file"
 
 #: templates/steps/step/step_create.html:4
-#| msgid "Add text lesson"
 msgid "Add lesson"
 msgstr "Add lesson"
 
 #: templates/steps/step/step_create.html:12
-#| msgid "Add video lesson"
 msgid "Adding lesson"
 msgstr "Adding lesson"
 
 #: templates/steps/step/step_create.html:23
-#| msgid "Add test"
 msgid "Add questions"
 msgstr "Add questions"
 
 #: templates/steps/step/step_delete.html:4
-#| msgid "Completed lessons"
 msgid "Delete lesson"
 msgstr "Delete lesson"
 
 #: templates/steps/step/step_delete.html:12
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the module\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                Are you sure you want to delete the lesson\n"
@@ -1231,7 +1309,6 @@ msgstr ""
 "Are you sure you want to delete the lesson <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/steps/step/step_detail.html:4
-#| msgid "Add video lesson"
 msgid "View lesson"
 msgstr "View lesson"
 
@@ -1244,12 +1321,10 @@ msgid "Back to lessons list"
 msgstr "Back to lessons list"
 
 #: templates/steps/step/step_list.html:15
-#| msgid "Lessons"
 msgid "Lessons list"
 msgstr "Lessons list"
 
 #: templates/steps/step/step_update.html:4
-#| msgid "Add text lesson"
 msgid "Edit lesson"
 msgstr "Edit lesson"
 
@@ -1259,12 +1334,10 @@ msgstr "Save"
 
 #: templates/steps/text/text_create.html:4
 #: templates/steps/text/text_create.html:15
-#| msgid "Add target audience"
 msgid "Add reading"
 msgstr "Add reading"
 
 #: templates/steps/text/text_delete.html:4
-#| msgid "Delete target audience"
 msgid "Delete reading"
 msgstr "Delete reading"
 
@@ -1282,11 +1355,6 @@ msgstr ""
 
 #: templates/steps/text/text_delete.html:22
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                    Are you sure you want to delete the partner\n"
-#| "                    <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                    Are you sure you want to delete the reading\n"
@@ -1301,34 +1369,26 @@ msgstr ""
 msgid "View reading"
 msgstr "View reading"
 
-#: templates/steps/text/text_detail.html:25
-msgid "Content"
-msgstr "Content"
-
 #: templates/steps/text/text_detail.html:33
 msgid "Back to readings list"
 msgstr "Back to readings list"
 
 #: templates/steps/text/text_list.html:4
 #: templates/steps/text/text_list.html:12
-#| msgid "Partners list"
 msgid "Readings list"
 msgstr "Readings list"
 
 #: templates/steps/text/text_update.html:4
 #: templates/steps/text/text_update.html:15
-#| msgid "Edit target audience"
 msgid "Edit reading"
 msgstr "Edit reading"
 
 #: templates/steps/video/video_create.html:4
 #: templates/steps/video/video_create.html:15
-#| msgid "Add video lesson"
 msgid "Add video"
 msgstr "Add video"
 
 #: templates/steps/video/video_delete.html:4
-#| msgid "Delete"
 msgid "Delete video"
 msgstr "Delete video"
 
@@ -1346,11 +1406,6 @@ msgstr ""
 
 #: templates/steps/video/video_delete.html:22
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                    Are you sure you want to delete the partner\n"
-#| "                    <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                        Are you sure you want to delete the video\n"
@@ -1381,7 +1436,6 @@ msgstr "Back to videos list"
 
 #: templates/steps/video/video_list.html:4
 #: templates/steps/video/video_list.html:12
-#| msgid "Modules list"
 msgid "Videos list"
 msgstr "Videos list"
 

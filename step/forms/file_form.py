@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 from step.models import FileModel
 
@@ -36,8 +37,8 @@ class FileForm(forms.ModelForm):
         model = FileModel
         fields = ['file_title', 'lesson_file']
         labels = {
-            'file_title': 'Введите наименование загружаемого файла',
-            'lesson_file': 'Загрузите файл',
+            'file_title': _('Enter the name of the uploaded file'),
+            'lesson_file': _('Upload a file'),
         }
 
     def clean_lesson_file(self):
@@ -47,9 +48,9 @@ class FileForm(forms.ModelForm):
                 if lesson_file.size <= 20971520:
                     return lesson_file
                 else:
-                    raise forms.ValidationError("Размер загружаемого файла не должен превышать 20 МБ")
+                    raise forms.ValidationError(_('Uploaded file has to be no more than 20 MB'))
             else:
-                raise forms.ValidationError("Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX")
+                raise forms.ValidationError(_('Only PDF, TXT, DOC, DOCX, XLS, XLSX formats allowed'))
         else:
             return lesson_file
 
@@ -60,4 +61,4 @@ class FileForm(forms.ModelForm):
         if (file_title and lesson_file) or (not file_title and not lesson_file):
             return data
         else:
-            raise forms.ValidationError("При загрузке документа требуется обязательно указать название")
+            raise forms.ValidationError(_("Title is mandatory for uploading a file"))
