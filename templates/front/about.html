@@ -28,94 +28,40 @@
             </div>
         </div>
     </section>
+
     <section class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-md-12 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
-                    <h2 class="heading text-gradient text-info text-uppercase text-center">О команде: </h2>
+                    <h2 class="heading text-gradient text-info text-uppercase text-center">О команде:</h2>
                     <p class="content text-dark mb-0 mt-3 text-justify">
                         Мы команда профессиональных инженеров из разных отраслей, объединяет нас комплексный подход BIM.
                         Хотим поделиться своим опытом и собрать единомышленников в области инженерии и инноваций.<br>
                     </p>
                 </div>
             </div>
-            <div class="row mt-5 mb-5">
-                <div class="col-lg-3 col-12 col-md-6 mb-lg-0 mb-5">
-                    <div class="card shadow-lg">
-                        <div class="card-header mt-n4 mx-3 p-0 bg-transparent position-relative z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://images.unsplash.com/photo-1536321115970-5dfa13356211?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80"
-                                     alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
-                            </a>
-                            <div class="colored-shadow"
-                                 style="background-image: url(&quot;https://images.unsplash.com/photo-1536321115970-5dfa13356211?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80&quot;);"></div>
-                        </div>
-                        <div class="card-body text-center bg-white border-radius-lg p-3 pt-0">
-                            <h5 class="mt-3 mb-1 d-md-block d-none content">Miriam Lendra</h5>
-                            <p class="mb-1 d-md-none d-block content font-weight-bold text-dark mt-3">Miriam Lendra</p>
-                            <p class="mb-0 body font-weight-bolder text-info text-gradient text-uppercase">Desktop
-                                Publisher</p>
+            <div class="row mb-5">
+                {% for member in team %}
+                    <div class="col-lg-3 col-12 col-md-6 mb-lg-0 mt-6 mb-5">
+                        <div class="card shadow-lg">
+                            <div class="card-header mt-n4 mx-3 p-0 bg-transparent position-relative z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="{{ member.photo.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
+                                </a>
+                                <div class="colored-shadow" style="background-image: url('{{ member.photo.url }}');"></div>
+                            </div>
+                            <div class="card-body text-center bg-white border-radius-lg p-3 pt-0">
+                                <h5 class="mt-3 mb-1 content">{{ member.name }}</h5>
+                                <p class="body font-weight-bolder text-info text-gradient text-uppercase">{{ member.title }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-12 col-md-6 mb-lg-0 mb-5">
-                    <div class="card shadow-lg">
-                        <div class="card-header mt-n4 mx-3 p-0 bg-transparent position-relative z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80"
-                                     alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
-                            </a>
-                            <div class="colored-shadow"
-                                 style="background-image: url(&quot;https://images.unsplash.com/photo-1544717305-2782549b5136?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80&quot;);"></div>
-                        </div>
-                        <div class="card-body text-center bg-white border-radius-lg p-3 pt-0">
-                            <h5 class="mt-3 mb-1 d-md-block d-none content">Natalie Paisley</h5>
-                            <p class="mb-1 d-md-none d-block font-weight-bold text-dark mt-3 content">Natalie
-                                Paisley</p>
-                            <p class="mb-0 body font-weight-bolder text-info text-gradient text-uppercase">Credit
-                                Analyst</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-12 col-md-6 mb-lg-0 mb-5">
-                    <div class="card shadow-lg">
-                        <div class="card-header mt-n4 mx-3 p-0 bg-transparent position-relative z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://images.unsplash.com/photo-1546215364-12f3fff5d578?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80"
-                                     alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
-                            </a>
-                            <div class="colored-shadow"
-                                 style="background-image: url(&quot;https://images.unsplash.com/photo-1546215364-12f3fff5d578?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80&quot;);"></div>
-                        </div>
-                        <div class="card-body text-center bg-white border-radius-lg p-3 pt-0">
-                            <h5 class="mt-3 mb-1 d-md-block d-none content">Mark Audrey</h5>
-                            <p class="mb-1 d-md-none d-block font-weight-bold text-dark mt-3 content">Bella Audrey</p>
-                            <p class="mb-0 body font-weight-bolder text-info text-gradient text-uppercase">
-                                Economist</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-12 col-md-6 mb-lg-0 mb-5">
-                    <div class="card shadow-lg">
-                        <div class="card-header mt-n4 mx-3 p-0 bg-transparent position-relative z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                <img src="https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80"
-                                     alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
-                            </a>
-                            <div class="colored-shadow"
-                                 style="background-image: url(&quot;https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80&quot;);"></div>
-                        </div>
-                        <div class="card-body text-center bg-white border-radius-lg p-3 pt-0">
-                            <h5 class="mt-3 mb-1 d-md-block d-none content">Wang Skylar</h5>
-                            <p class="mb-1 d-md-none d-block content font-weight-bold text-dark mt-3">Mila Skylar</p>
-                            <p class="mb-0 body font-weight-bolder text-info text-gradient text-uppercase">Aviation
-                                Inspector</p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
+
+
     <section class="section-padding">
         <div class="container mb-4">
             <div class="row">
