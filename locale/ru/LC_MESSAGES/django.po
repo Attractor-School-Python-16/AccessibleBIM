@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 22:57+0600\n"
-"PO-Revision-Date: 2023-11-17 23:04+0600\n"
+"POT-Creation-Date: 2023-11-17 23:27+0600\n"
+"PO-Revision-Date: 2023-11-17 23:30+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -348,47 +348,44 @@ msgid "Course progress"
 msgstr "Прогресс по курсу"
 
 #: progress/models/progress_test.py:12
-#| msgid "Tests statistics"
 msgid "Test start time"
 msgstr "Начало тестирования"
 
 #: progress/models/progress_test.py:13
-#| msgid "Lesson learn time"
 msgid "Test end time"
 msgstr "Конец тестирования"
 
 #: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
 #: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12
-#: step/models/step.py:23 templates/steps/step/step_detail.html:21
+#: step/models/step.py:23 templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
+#: templates/steps/step/step_detail.html:21
 msgid "Test"
 msgstr "Тест"
 
 #: progress/models/progress_test.py:22
-#| msgid "Tests"
 msgid "Test passed"
 msgstr "Тест пройден"
 
 #: progress/models/progress_test.py:23
-#| msgid "In progress"
 msgid "Test in progress"
 msgstr "Тест в процессе"
 
 #: progress/models/progress_test.py:39 progress/models/progress_test.py:40
 #: progress/models/progress_test_answers.py:11
-#| msgid "In progress"
 msgid "Test progress"
 msgstr "Прогресс теста"
 
 #: progress/models/progress_test_answers.py:16
 #: quiz_bim/models/answer_bim.py:14 quiz_bim/models/question_bim.py:7
 #: quiz_bim/models/question_bim.py:16
-#| msgid "Add questions"
+#: templates/quiz_bim/question_bim/question_bim_detail.html:6
 msgid "Question"
 msgstr "Вопрос"
 
 #: progress/models/progress_test_answers.py:20
 #: quiz_bim/forms/answer_bim_form.py:13 quiz_bim/models/answer_bim.py:7
 #: quiz_bim/models/answer_bim.py:21
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:6
 msgid "Answer"
 msgstr "Ответ"
 
@@ -405,7 +402,6 @@ msgid "Right answer"
 msgstr "Верный ответ"
 
 #: quiz_bim/forms/question_bim_form.py:12
-#| msgid "Add questions"
 msgid "Enter question"
 msgstr "Введите вопрос"
 
@@ -422,18 +418,17 @@ msgid "Answers"
 msgstr "Ответы"
 
 #: quiz_bim/models/question_bim.py:17
-#| msgid "Add questions"
 msgid "Questions"
 msgstr "Вопросы"
 
 #: quiz_bim/models/quiz_bim.py:7
-#| msgid "Text title"
 msgid "Test title"
 msgstr "Тема тестирования"
 
 #: quiz_bim/models/quiz_bim.py:8
+#: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:14
 msgid "Questions quantity"
-msgstr "Количество вопросов для прохождения"
+msgstr "Количество вопросов"
 
 #: quiz_bim/models/quiz_bim.py:17 templates/partials/sidebar.html:123
 msgid "Tests"
@@ -570,6 +565,7 @@ msgstr "Лекция"
 #: templates/modules/module_detail.html:29
 #: templates/modules/modules_list.html:21
 #: templates/partners/partners_list.html:17
+#: templates/quiz_bim/quiz_bim/quiz_bim_list.html:18
 #: templates/steps/file/file_list.html:21
 #: templates/steps/step/step_list.html:21
 #: templates/steps/text/text_list.html:21
@@ -786,6 +782,8 @@ msgstr "Добавить главу"
 #: templates/partials/sidebar.html:97 templates/partials/sidebar.html:112
 #: templates/partials/sidebar.html:127 templates/partials/sidebar.html:186
 #: templates/partners/partners_create.html:11
+#: templates/quiz_bim/quiz_bim/quiz_bim_create.html:16
+#: templates/quiz_bim/quiz_bim/quiz_bim_list.html:13
 #: templates/steps/file/file_create.html:18
 #: templates/steps/file/file_list.html:15
 #: templates/steps/step/step_create.html:22
@@ -819,6 +817,7 @@ msgstr ""
 #: templates/course_target/course_target_delete.html:19
 #: templates/modules/module_delete.html:19
 #: templates/partners/partners_delete.html:18
+#: templates/quiz_bim/quiz_bim/quiz_bim_delete.html:28
 #: templates/steps/file/file_delete.html:19
 #: templates/steps/step/step_delete.html:19
 #: templates/steps/text/text_delete.html:29
@@ -833,6 +832,7 @@ msgstr "Да"
 #: templates/course_target/course_target_delete.html:20
 #: templates/modules/module_delete.html:20
 #: templates/partners/partners_delete.html:19
+#: templates/quiz_bim/quiz_bim/quiz_bim_delete.html:30
 #: templates/steps/file/file_delete.html:21
 #: templates/steps/step/step_delete.html:21
 #: templates/steps/text/text_delete.html:31
@@ -860,6 +860,9 @@ msgstr "Описание"
 #: templates/modules/module_detail.html:41
 #: templates/modules/modules_list.html:34
 #: templates/partners/partners_list.html:30
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:15
+#: templates/quiz_bim/question_bim/question_bim_detail.html:17
+#: templates/quiz_bim/quiz_bim/quiz_bim_list.html:32
 #: templates/steps/file/file_list.html:37
 #: templates/steps/step/step_list.html:31
 #: templates/steps/text/text_list.html:35
@@ -881,6 +884,9 @@ msgstr "Изменить"
 #: templates/modules/module_detail.html:43
 #: templates/modules/modules_list.html:36
 #: templates/partners/partners_list.html:32
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:20
+#: templates/quiz_bim/question_bim/question_bim_detail.html:24
+#: templates/quiz_bim/quiz_bim/quiz_bim_list.html:36
 #: templates/steps/file/file_list.html:41
 #: templates/steps/step/step_detail.html:32
 #: templates/steps/step/step_list.html:32
@@ -903,8 +909,10 @@ msgid "Add text lesson"
 msgstr "Добавить лекцию"
 
 #: templates/chapters/chapter_detail.html:40
+#: templates/quiz_bim/quiz_bim/quiz_bim_create.html:3
+#: templates/quiz_bim/quiz_bim/quiz_bim_create.html:13
 msgid "Add test"
-msgstr "Добавить тест"
+msgstr "Добавление теcта"
 
 #: templates/chapters/chapter_detail.html:50
 #: templates/chapters/chapters_list.html:22
@@ -914,6 +922,7 @@ msgstr "Добавить тест"
 #: templates/modules/module_detail.html:30
 #: templates/modules/modules_list.html:22
 #: templates/partners/partners_list.html:18
+#: templates/quiz_bim/quiz_bim/quiz_bim_list.html:19
 #: templates/steps/file/file_list.html:22
 #: templates/steps/step/step_list.html:22
 #: templates/steps/text/text_list.html:22
@@ -933,6 +942,8 @@ msgstr "Редактировать главу"
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
 #: templates/partners/partners_update.html:9
+#: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:21
+#: templates/quiz_bim/quiz_bim/quiz_bim_update.html:16
 #: templates/steps/file/file_update.html:18
 #: templates/steps/step/step_detail.html:31
 #: templates/steps/text/text_detail.html:31
@@ -1281,6 +1292,87 @@ msgstr "Изображение"
 msgid "Edit partner"
 msgstr "Редактировать партнера"
 
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:8
+msgid "Correct"
+msgstr "Верный"
+
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:10
+msgid "Incorrect"
+msgstr "Неверный"
+
+#: templates/quiz_bim/answer_bim/answer_bim_form.html:16
+#: templates/quiz_bim/answer_bim/answer_bim_form.html:25
+#: templates/quiz_bim/question_bim/question_bim_form.html:9
+#: templates/quiz_bim/question_bim/question_bim_form.html:18
+#: templates/steps/step/step_update.html:21
+msgid "Save"
+msgstr "Сохранить"
+
+#: templates/quiz_bim/answer_bim/answer_bim_form.html:20
+#: templates/quiz_bim/question_bim/question_bim_form.html:13
+#| msgid "Save changes"
+msgid "Cancel changes"
+msgstr "Отменить изменение"
+
+#: templates/quiz_bim/question_bim/question_bim_detail.html:12
+#| msgid "Add partner"
+msgid "Add answer"
+msgstr "Добавить ответ"
+
+#: templates/quiz_bim/quiz_bim/quiz_bim_delete.html:3
+#| msgid "Select test"
+msgid "Delete test"
+msgstr "Удалить тест"
+
+#: templates/quiz_bim/quiz_bim/quiz_bim_delete.html:11
+#| msgid "This video is ised in the lessons below"
+msgid "This test is used in the lessons below"
+msgstr "Данный тест используется в следующих занятиях"
+
+#: templates/quiz_bim/quiz_bim/quiz_bim_delete.html:17
+#| msgid ""
+#| "In order to delete this video you should change related videos in the "
+#| "lessons above."
+msgid ""
+"In order to delete this test you should change related tests in the lessons "
+"above."
+msgstr ""
+"Для удаления данного теста необходимо в указанных выше занятиях выбрать "
+"другой тест."
+
+#: templates/quiz_bim/quiz_bim/quiz_bim_delete.html:21
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                    Are you sure you want to delete the reading\n"
+#| "                    <span class=\"text-danger\"> %(title)s</span>?\n"
+#| "                    "
+msgid ""
+"\n"
+"                    Are you sure you want to delete the test\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                    "
+msgstr ""
+"\n"
+"Вы точно хотите удалить тест <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:19
+#| msgid "Add questions"
+msgid "Add new question"
+msgstr "Добавить новый вопрос"
+
+#: templates/quiz_bim/quiz_bim/quiz_bim_list.html:3
+#: templates/quiz_bim/quiz_bim/quiz_bim_list.html:11
+#| msgid "Lessons list"
+msgid "Tests list"
+msgstr "Список тестов"
+
+#: templates/quiz_bim/quiz_bim/quiz_bim_update.html:3
+#: templates/quiz_bim/quiz_bim/quiz_bim_update.html:13
+#| msgid "Add test"
+msgid "Edit test"
+msgstr "Редактирование теcта"
+
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
@@ -1563,10 +1655,6 @@ msgstr "Список занятий"
 #: templates/steps/step/step_update.html:4
 msgid "Edit lesson"
 msgstr "Редактирование занятия"
-
-#: templates/steps/step/step_update.html:21
-msgid "Save"
-msgstr "Сохранить"
 
 #: templates/steps/text/text_create.html:4
 #: templates/steps/text/text_create.html:15
