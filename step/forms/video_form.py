@@ -1,5 +1,6 @@
 from django import forms
 from django.db.models.fields.files import FieldFile
+from django.utils.translation import gettext_lazy as _
 
 from step.models import VideoModel
 
@@ -13,9 +14,9 @@ class VideoForm(forms.ModelForm):
         model = VideoModel
         fields = ['video_title', 'video_description', 'video_file']
         labels = {
-            'title': 'Введите наименование видео',
-            'video_description': 'Укажите описание видео',
-            'video_file': 'Загрузите видео файл',
+            'title': _("Enter video's title"),
+            'video_description': _("Enter video's description"),
+            'video_file': _("Upload video file"),
         }
 
     def clean_video_file(self):
@@ -25,8 +26,8 @@ class VideoForm(forms.ModelForm):
                 if current_file.size <= 2097152000:
                     return current_file
                 else:
-                    raise forms.ValidationError("Размер загружаемого файла не должен превышать 2ГБ")
+                    raise forms.ValidationError(_("Uploaded file has to be no more than 2 GB"))
             else:
-                raise forms.ValidationError("Необходимо загрузить видео в формате MP4, WebM или Ogg")
+                raise forms.ValidationError(_("Only MP4, WebM and OGG formats allowed"))
         else:
             return current_file
