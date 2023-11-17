@@ -9,7 +9,7 @@
         <div class="card-header">
             <div class="d-block my-3">
                 <p class="card-text">{% trans "Are you sure you want to unsubscribe course" %} <span
-                        class="text-danger"> {{ subscription }}</span>{% trans "from user" %}
+                        class="text-danger"> {{ subscription }}</span> {% trans "from user" %}
                     <strong>{{ user.first_name }} {{ user.last_name }}:</strong></p>
             </div>
             <form method="POST">

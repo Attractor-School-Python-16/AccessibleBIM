@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 20:05+0600\n"
-"PO-Revision-Date: 2023-11-17 20:05+0600\n"
+"POT-Creation-Date: 2023-11-17 20:41+0600\n"
+"PO-Revision-Date: 2023-11-17 20:41+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -480,6 +480,7 @@ msgstr ""
 #: templates/modules/module_delete.html:19
 #: templates/partners/partners_delete.html:18
 #: templates/subscription/subscription_admin/user_delete.html:18
+#: templates/subscription/subscription_delete.html:15
 #: templates/teachers/teacher_delete.html:19
 msgid "Yes"
 msgstr "Yes"
@@ -489,6 +490,7 @@ msgstr "Yes"
 #: templates/modules/module_delete.html:20
 #: templates/partners/partners_delete.html:19
 #: templates/subscription/subscription_admin/user_delete.html:20
+#: templates/subscription/subscription_delete.html:17
 #: templates/teachers/teacher_delete.html:20
 msgid "No"
 msgstr "No"
@@ -578,7 +580,6 @@ msgstr "Edit chapter"
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
 #: templates/partners/partners_update.html:9
-#: templates/subscription/subscription_list.html:43
 #: templates/teachers/teacher_update.html:13
 msgid "Edit"
 msgstr "Edit"
@@ -1143,14 +1144,38 @@ msgstr "Subscription"
 msgid "Add subscription"
 msgstr "Add subscription"
 
+#: templates/subscription/subscription_delete.html:3
+#| msgid "Subscription enabled"
+msgid "Subscription deletion"
+msgstr "Subscription deletion"
+
+#: templates/subscription/subscription_delete.html:10
+#| msgid "Are you sure you want to unsubscribe course"
+msgid "Are you sure you want to delete the subscription for course"
+msgstr "Are you sure you want to delete the subscription for course"
+
 #: templates/subscription/subscription_list.html:23
 msgid "Price"
 msgstr "Price"
 
 #: templates/subscription/subscription_list.html:38
-#| msgid "Published"
 msgid "Unpublished"
 msgstr "Unpublished"
+
+#: templates/subscription/subscription_list.html:43
+msgid "Update"
+msgstr "Update"
+
+#: templates/subscription/subscription_update.html:3
+#: templates/subscription/subscription_update.html:13
+#| msgid "Subscription expire date"
+msgid "Subscription update"
+msgstr "Subscription update"
+
+#: templates/subscription/subscription_update.html:16
+#| msgid "Grant subscription"
+msgid "Update the subscription"
+msgstr "Update the subscription"
 
 #: templates/teachers/teacher_create.html:4
 #: templates/teachers/teacher_create.html:12
