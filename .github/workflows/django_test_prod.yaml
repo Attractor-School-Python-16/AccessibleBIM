@@ -1,4 +1,4 @@
-name: RunTestDjangoProd
+name: CI-CD PROD
 
 # Controls when the workflows will run
 on:
@@ -70,3 +70,26 @@ jobs:
           DATABASE_URL: psql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@127.0.0.1:${{ env.POSTGRES_PORT }}/${{ env.POSTGRES_DB }}
         run: |
           python manage.py test
+
+      - name: Build the Docker Prod image
+        uses: actions/checkout@v3
+        run: docker build docker-compose.prod.yml --file Dockerfile.prod --tag my-image-name:$(date +%s)
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+
+
+          SCRIPT_AFTER: |
+            cd AccessibleBIM/
+            git checkout stage
+            git pull
+            docker rm -f $(docker ps -a -q)
+            docker rmi -f $(docker images -aq)
+            docker volume rm $(docker volume ls)
+            docker system prune -af
+            docker compose -f docker-compose.prod.yml up -d --build
