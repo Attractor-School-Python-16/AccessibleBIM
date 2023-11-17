@@ -17,21 +17,22 @@ from step.models import FileModel
 # application/xml  .ifcXML
 
 
-CONTENTTYPES = ['text/plain',
-                'application/vnd.ms-excel',
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'application/pdf',
-                'application/msword',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                'application/zip',
-                'application/x-7z-compressed',
-                'application/vnd.rar',
-                'application/octet-stream',
-                'application/x-step',
-                'application/xml',
-                'image/vnd.dwg',
-                'image/vnd.dxf'
-                ]
+CONTENTTYPES = [
+    'text/plain',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/zip',
+    'application/x-7z-compressed',
+    'application/vnd.rar',
+    'application/octet-stream',
+    'application/x-step',
+    'application/xml',
+    'image/vnd.dwg',
+    'image/vnd.dxf'
+]
 
 
 class FileForm(forms.ModelForm):
