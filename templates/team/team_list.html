@@ -1,0 +1,42 @@
+{% extends 'moderator_page.html' %}
+{% load static %}
+
+{% block title %}Team{% endblock %}
+
+{% block moderator_interface %}
+    <div class="card">
+        <div class="card-body">
+            <h1>Team members</h1>
+            <a href="{% url 'content:add_team' %}" class="btn btn-primary my-3">Add team member</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+                </thead>
+                <tbody style="vertical-align: middle">
+                {% for member in team %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><img src="{{ member.image.url }}" alt="team member image" style="height: 4em; width: auto;"></td>
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.title }}</td>
+                        <td class="text-end">
+                            <div class="btn-group">
+                                <a href="{% url 'content:update_team' pk=member.pk %}"
+                                   class="btn btn-info btn-sm mx-3">Change</a>
+                                <a href="{% url 'content:delete_team' pk=member.pk %}"
+                                   class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
