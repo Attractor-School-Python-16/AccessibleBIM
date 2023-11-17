@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 19:55+0600\n"
-"PO-Revision-Date: 2023-11-17 19:58+0600\n"
+"POT-Creation-Date: 2023-11-17 20:05+0600\n"
+"PO-Revision-Date: 2023-11-17 20:05+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -159,6 +159,7 @@ msgstr "RUB"
 #: templates/statistics/users_statistics/user_detailed_statistics.html:17
 #: templates/statistics/users_statistics/users_list_statistics.html:17
 #: templates/subscription/subscription_admin/user_add.html:50
+#: templates/subscription/subscription_list.html:22
 msgid "Course"
 msgstr "Course"
 
@@ -399,12 +400,10 @@ msgid "Users"
 msgstr "Users"
 
 #: subscription/models/user_subscription.py:13
-#| msgid "Subscriptions list"
 msgid "Subscription expire date"
 msgstr "Subscription expire date"
 
 #: subscription/models/user_subscription.py:14
-#| msgid "Subscriptions list"
 msgid "Subscription enabled"
 msgstr "Subscription enabled"
 
@@ -455,6 +454,7 @@ msgstr "Add chapter"
 #: templates/partials/sidebar.html:140 templates/partials/sidebar.html:186
 #: templates/partners/partners_create.html:11
 #: templates/subscription/subscription_create.html:17
+#: templates/subscription/subscription_list.html:15
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Add"
@@ -526,6 +526,7 @@ msgstr "Change"
 #: templates/modules/module_detail.html:43
 #: templates/modules/modules_list.html:36
 #: templates/partners/partners_list.html:32
+#: templates/subscription/subscription_list.html:45
 #: templates/teachers/teacher_detail.html:22
 #: templates/teachers/teachers_list.html:38
 msgid "Delete"
@@ -562,6 +563,7 @@ msgstr "Title"
 #: templates/modules/module_detail.html:30
 #: templates/modules/modules_list.html:22
 #: templates/partners/partners_list.html:18
+#: templates/subscription/subscription_list.html:25
 #: templates/teachers/teachers_list.html:23
 msgid "Actions"
 msgstr "Actions"
@@ -576,6 +578,7 @@ msgstr "Edit chapter"
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
 #: templates/partners/partners_update.html:9
+#: templates/subscription/subscription_list.html:43
 #: templates/teachers/teacher_update.html:13
 msgid "Edit"
 msgstr "Edit"
@@ -846,6 +849,8 @@ msgid "List"
 msgstr "List"
 
 #: templates/partials/sidebar.html:149
+#: templates/subscription/subscription_list.html:3
+#: templates/subscription/subscription_list.html:11
 msgid "Subscriptions list"
 msgstr "Subscriptions list"
 
@@ -975,6 +980,8 @@ msgid "Language"
 msgstr "Language"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
+#: templates/subscription/subscription_list.html:24
+#: templates/subscription/subscription_list.html:36
 msgid "Published"
 msgstr "Published"
 
@@ -1105,7 +1112,6 @@ msgstr "New users"
 
 #: templates/subscription/subscription_admin/user_add.html:11
 #: templates/subscription/subscription_admin/user_list.html:11
-#| msgid "Grant subscription"
 msgid "Grant subscription to user"
 msgstr "Grant subscription to user"
 
@@ -1122,23 +1128,29 @@ msgid "from user"
 msgstr "from user"
 
 #: templates/subscription/subscription_admin/user_list.html:3
-#| msgid "Grant subscription"
 msgid "Grant subscription to users"
 msgstr "Grant subscription to users"
 
 #: templates/subscription/subscription_admin/user_list.html:20
-#| msgid "Grant subscription"
 msgid "Current subscription"
 msgstr "Current subscription"
 
 #: templates/subscription/subscription_admin/user_list.html:21
-#| msgid "Subscriptions"
 msgid "Subscription"
 msgstr "Subscription"
 
 #: templates/subscription/subscription_create.html:14
 msgid "Add subscription"
 msgstr "Add subscription"
+
+#: templates/subscription/subscription_list.html:23
+msgid "Price"
+msgstr "Price"
+
+#: templates/subscription/subscription_list.html:38
+#| msgid "Published"
+msgid "Unpublished"
+msgstr "Unpublished"
 
 #: templates/teachers/teacher_create.html:4
 #: templates/teachers/teacher_create.html:12

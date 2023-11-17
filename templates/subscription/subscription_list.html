@@ -1,6 +1,6 @@
 {% extends 'moderator_page.html' %}
 {% load view_breadcrumbs i18n %}
-{% block title %}Перечень подписок{% endblock %}
+{% block title %}{% trans "Subscriptions list" %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,20 +8,21 @@
     <div class="card mb-5">
         <div class="card-body">
             <div class="card-header">
-                <h1 class="mb-3">Перечень подписок</h1>
+                <h1 class="mb-3">{% trans "Subscriptions list" %}</h1>
             </div>
             {% if perms.step.add_textmodel %}
-                <a href="{% url 'subscription:subscriptionmodel_create' %}" class="btn btn-primary my-3">Добавить</a>
+                <a href="{% url 'subscription:subscriptionmodel_create' %}" class="btn btn-primary my-3">
+                    {% trans "Add" %}</a>
             {% endif %}
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Курс</th>
-                        <th>Цена</th>
-                        <th>Опубликовано</th>
-                        <th class="text-end">Действия</th>
+                        <th>{% trans "Course" %}</th>
+                        <th>{% trans "Price" %}</th>
+                        <th>{% trans "Published" %}</th>
+                        <th class="text-end">{% trans "Actions" %}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -32,16 +33,16 @@
                             <td>{{ subscription.price }}</td>
                             <td>
                                 {% if subscription.is_published %}
-                                    <span class="badge bg-success">Опубликовано</span>
+                                    <span class="badge bg-success">{% trans "Published" %}</span>
                                 {% else %}
-                                    <span class="badge bg-danger">Не опубликовано</span>
+                                    <span class="badge bg-danger">{% trans "Unpublished" %}</span>
                                 {% endif %}
                             </td>
                             <td class="text-end">
                                 <a href="{% url 'subscription:subscriptionmodel_update' subscription.pk %}"
-                                   class="btn btn-info btn-sm mb-2">Изменить</a>
+                                   class="btn btn-info btn-sm mb-2">{% trans "Edit" %}</a>
                                 <a href="{% url 'subscription:subscriptionmodel_delete' subscription.pk %}"
-                                   class="btn btn-danger btn-sm mb-2 ms-2">Удалить</a>
+                                   class="btn btn-danger btn-sm mb-2 ms-2">{% trans "Delete" %}</a>
                             </td>
                         </tr>
                     {% endfor %}
