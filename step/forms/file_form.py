@@ -29,6 +29,8 @@ CONTENTTYPES = ['text/plain',
                 'application/octet-stream',
                 'application/x-step',
                 'application/xml',
+                'image/vnd.dwg',
+                'image/vnd.dxf'
                 ]
 
 
@@ -45,7 +47,7 @@ class FileForm(forms.ModelForm):
         lesson_file = self.cleaned_data.get("lesson_file", False)
         if lesson_file:
             if lesson_file.content_type in CONTENTTYPES:
-                if lesson_file.size <= 20971520:
+                if lesson_file.size <= 214958080:
                     return lesson_file
                 else:
                     raise forms.ValidationError(_('Uploaded file has to be no more than 20 MB'))
