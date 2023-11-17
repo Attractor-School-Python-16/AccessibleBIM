@@ -34,9 +34,11 @@
                                         {{ field|attr:"class:form-control" }}
                                     </div>
                                 {% endfor %}
-                                 <div class="text-center mt-4">
-                                    <p>Отправляя данную форму вы соглашаетесь с <a class="text-warning" href="{% url 'front:privacy_policy' %}">Политикой конфиденциальности</a> и
-                                        <a class="text-warning" href="{% url 'front:terms_of_use' %}">Пользовательским соглашением</a></p>
+                                <div class="text-center mt-4">
+                                    <p>{% trans "Отправляя данную форму вы соглашаетесь с" %}
+                                        <a class="text-warning" href="{% url 'front:privacy_policy' %}">{% trans "Политикой конфиденциальности" %} </a>
+                                        {% trans "и" %} <a class="text-warning" href="{% url 'front:terms_of_use' %}">{% trans "Пользовательским соглашением" %}</a>
+                                    </p>
                                 </div>
                                 <div class="text-center mt-4">
                                     <button class="btn btn-block btn-success mx-2"
