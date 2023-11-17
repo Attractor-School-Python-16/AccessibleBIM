@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Создать текст{% endblock %}
+{% block title %}{% trans 'Add reading' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -11,10 +12,11 @@
                 <div class="d-flex justify-content-center">
                     <div class="container my-5 text-center">
                         <div class="card-header">
-                            <h2>Добавление текста:</h2>
+                            <h2>{% trans 'Add reading' %}:</h2>
                         </div>
                         <div class="d-flex justify-content-center">
-                            {% include "partials/form.html" with button_text="Добавить текст" %}
+                            {% trans 'Add' as button_text_add %}
+                            {% include "partials/form.html" with button_text=button_text_add %}
                         </div>
                     </div>
                 </div>

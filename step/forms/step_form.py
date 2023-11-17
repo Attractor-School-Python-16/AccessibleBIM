@@ -1,4 +1,6 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
+
 from step.models.step import StepModel
 
 
@@ -12,10 +14,10 @@ class StepTextForm(forms.ModelForm):
         model = StepModel
         fields = ['title', 'learn_time', 'file', 'text']
         labels = {
-            'title': 'Введите наименование занятия',
-            'learn_time': 'Укажите продолжительность занятия',
-            'file': 'Выберите файлы',
-            'text': 'Выберите лекцию',
+            'title': _("Enter lesson's title"),
+            'learn_time': _("Enter lesson's duration"),
+            'file': _("Select files"),
+            'text': _("Select reading"),
         }
 
 
@@ -29,10 +31,10 @@ class StepVideoForm(forms.ModelForm):
         model = StepModel
         fields = ['title', 'learn_time', 'file', 'video']
         labels = {
-            'title': 'Введите наименование занятия',
-            'learn_time': 'Укажите продолжительность занятия',
-            'file': 'Выберите файлы',
-            'video': 'Выберите видео',
+            'title': _("Enter lesson's title"),
+            'learn_time': _("Enter lesson's duration"),
+            'file': _("Select files"),
+            'video': _("Select video"),
         }
 
 
@@ -41,7 +43,7 @@ class StepQuizForm(forms.ModelForm):
         model = StepModel
         fields = ['title', 'learn_time', 'test']
         labels = {
-            'title': 'Введите наименование занятия',
-            'learn_time': 'Укажите продолжительность занятия',
-            'video': 'Выберите тест',
+            'title': _("Enter lesson's title"),
+            'learn_time': _("Enter lesson's duration"),
+            'quiz': _("Select test"),
         }

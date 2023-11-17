@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Просмотр текста{% endblock %}
+{% block title %}{% trans 'View reading' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -16,21 +17,20 @@
                         <h3>{{ text.text_title }}</h3>
                     </li>
                     <li class="list-group-item">
-                        <h4>Описание:</h4>
+                        <h4>{% trans 'Description' %}:</h4>
                         <p class="text-description">{{ text.text_description | safe }}</p>
                     </li>
                     <li class="list-group-item">
                         <div class="text-body">
-                            <h4>Содержание:</h4>
+                            <h4>{% trans 'Content' %}:</h4>
                             {{ text.content | safe }}
                         </div>
                     </li>
                 </ul>
                 </br>
-                <a href="{% url 'step:textmodel_update' text.id %}" class="btn btn-primary me-2">Редактировать
-                    текст</a>
-                <a href="{% url 'step:textmodel_delete' text.id %}" class="btn btn-danger me-2">Удалить текст</a>
-                <a href="{% url 'step:textmodel_list' %}" class="btn btn-secondary">Вернуться к списку текстов</a>
+                <a href="{% url 'step:textmodel_update' text.id %}" class="btn btn-primary me-2">{% trans 'Edit' %}</a>
+                <a href="{% url 'step:textmodel_delete' text.id %}" class="btn btn-danger me-2">{% trans 'Delete' %}</a>
+                <a href="{% url 'step:textmodel_list' %}" class="btn btn-secondary">{% trans 'Back to readings list' %}</a>
             </div>
         </div>
     {% endif %}
