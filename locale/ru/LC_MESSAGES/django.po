@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 00:52+0600\n"
-"PO-Revision-Date: 2023-11-12 00:55+0600\n"
+"POT-Creation-Date: 2023-11-17 21:27+0600\n"
+"PO-Revision-Date: 2023-11-17 21:35+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:213
+#: accessibleBIM/settings.py:217
 msgid "Russian"
 msgstr "Русский"
 
-#: accessibleBIM/settings.py:214
+#: accessibleBIM/settings.py:218
 msgid "English"
 msgstr "Английский"
 
@@ -124,12 +124,10 @@ msgid "Activate your user account"
 msgstr "Подтвердите ваш аккаунт"
 
 #: content/models/partner.py:8
-#| msgid "Chapter title"
 msgid "partner title"
 msgstr "Название"
 
 #: content/models/partner.py:9
-#| msgid "Course image"
 msgid "partner image"
 msgstr "Изображение"
 
@@ -154,10 +152,14 @@ msgid "RUB"
 msgstr "руб."
 
 #: modules/models/chapter.py:9 modules/models/courses.py:48
-#: templates/chapters/chapter_detail.html:16
+#: subscription/forms/subscription_form.py:12
+#: subscription/models/subscription.py:10
+#: templates/chapters/chapter_detail.html:17
 #: templates/statistics/courses_statistics/courses_list_statistics.html:14
 #: templates/statistics/users_statistics/user_detailed_statistics.html:17
 #: templates/statistics/users_statistics/users_list_statistics.html:17
+#: templates/subscription/subscription_admin/user_add.html:50
+#: templates/subscription/subscription_list.html:22
 msgid "Course"
 msgstr "Курс"
 
@@ -169,15 +171,15 @@ msgstr "Название главы"
 msgid "Chapter description"
 msgstr "Описание главы"
 
-#: modules/models/chapter.py:12 templates/chapters/chapter_detail.html:17
-#: templates/chapters/chapter_detail.html:43
-#: templates/courses/course_detail.html:32
+#: modules/models/chapter.py:12 step/models/step.py:27
+#: templates/chapters/chapter_detail.html:18
+#: templates/chapters/chapter_detail.html:48
+#: templates/courses/course_detail.html:34
 msgid "Serial number"
 msgstr "#"
 
-#: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:12
-#: templates/courses/change_chapters_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:12
+#: modules/models/chapter.py:16 step/models/step.py:15
+#: templates/chapters/chapter_detail.html:13
 msgid "Chapter"
 msgstr "Глава"
 
@@ -228,6 +230,7 @@ msgstr "Фото для курса"
 
 #: modules/models/courses.py:29 modules/models/module.py:34
 #: templates/statistics/courses_statistics/courses_list_statistics.html:17
+#: templates/subscription/subscription_admin/user_add.html:51
 msgid "Module"
 msgstr "Модуль"
 
@@ -253,7 +256,7 @@ msgid "Teachers"
 msgstr "Преподаватели"
 
 #: modules/models/courses.py:49 templates/courses/courses_list.html:4
-#: templates/partials/sidebar.html:168
+#: templates/partials/sidebar.html:28 templates/partials/sidebar.html:168
 msgid "Courses"
 msgstr "Курсы"
 
@@ -314,8 +317,11 @@ msgid "Finished"
 msgstr "Закончен"
 
 #: modules/models/user_course_progress.py:15
+#: templates/accounts/grant_moderator.html:42
 #: templates/statistics/users_statistics/user_detailed_statistics.html:14
 #: templates/statistics/users_statistics/users_list_statistics.html:14
+#: templates/subscription/subscription_admin/user_add.html:17
+#: templates/subscription/subscription_admin/user_list.html:18
 msgid "User"
 msgstr "Пользователь"
 
@@ -340,54 +346,338 @@ msgstr "Прогресс по курсу"
 msgid "Course progress"
 msgstr "Прогресс по курсу"
 
-#: step/models/step.py:10
-msgid "Видео"
+#: step/forms/file_form.py:42
+msgid "Enter the name of the uploaded file"
+msgstr "Введите наименование загружаемого файла"
+
+#: step/forms/file_form.py:43
+msgid "Upload a file"
+msgstr "Загрузите файл"
+
+#: step/forms/file_form.py:53
+msgid "Uploaded file has to be no more than 250 MB"
+msgstr "Размер загружаемого файла не должен превышать 250 МБ"
+
+#: step/forms/file_form.py:55
+msgid ""
+"Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
+msgstr ""
+"Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, "
+"RFA, DWG, DXF"
+
+#: step/forms/file_form.py:66
+msgid "Title is mandatory for uploading a file"
+msgstr "При загрузке документа требуется обязательно указать название"
+
+#: step/forms/step_form.py:17 step/forms/step_form.py:34
+#: step/forms/step_form.py:46
+msgid "Enter lesson's title"
+msgstr "Введите наименование занятия"
+
+#: step/forms/step_form.py:18 step/forms/step_form.py:35
+#: step/forms/step_form.py:47
+msgid "Enter lesson's duration"
+msgstr "Укажите продолжительность занятия"
+
+#: step/forms/step_form.py:19 step/forms/step_form.py:36
+msgid "Select files"
+msgstr "Выберите файлы"
+
+#: step/forms/step_form.py:20
+msgid "Select reading"
+msgstr "Выберите лекцию"
+
+#: step/forms/step_form.py:37
+msgid "Select video"
+msgstr "Выберите видео"
+
+#: step/forms/step_form.py:48
+msgid "Select test"
+msgstr "Выберите тест"
+
+#: step/forms/text_form.py:14
+msgid "Enter reading's title"
+msgstr "Введите наименование лекции"
+
+#: step/forms/text_form.py:15
+msgid "Enter reading's description"
+msgstr "Укажите описание лекции"
+
+#: step/forms/text_form.py:16 templates/steps/text/text_detail.html:25
+msgid "Content"
+msgstr "Содержание"
+
+#: step/forms/video_form.py:17
+msgid "Enter video's title"
+msgstr "Введите наименование видео"
+
+#: step/forms/video_form.py:18
+msgid "Enter video's description"
+msgstr "Укажите описание видео"
+
+#: step/forms/video_form.py:19
+msgid "Upload video file"
+msgstr "Загрузите видео файл"
+
+#: step/forms/video_form.py:29
+msgid "Uploaded file has to be no more than 2 GB"
+msgstr "Размер загружаемого файла не должен превышать 2ГБ"
+
+#: step/forms/video_form.py:31
+msgid "Only MP4, WebM and OGG formats allowed"
+msgstr "Необходимо загрузить видео в формате MP4, WebM или OGG"
+
+#: step/models/file.py:14
+msgid "File title"
+msgstr "Название"
+
+#: step/models/file.py:15
+msgid "Lesson file"
+msgstr "Файл урока"
+
+#: step/models/file.py:25 templates/steps/step/step_detail.html:26
+msgid "File"
+msgstr "Файл"
+
+#: step/models/file.py:26 step/models/step.py:25
+#: templates/partials/sidebar.html:78
+msgid "Files"
+msgstr "Файлы"
+
+#: step/models/step.py:10 step/models/step.py:22 step/models/video.py:27
+#: templates/partials/sidebar.html:93 templates/steps/step/step_detail.html:15
+msgid "Video"
 msgstr "Видео"
 
-#: step/models/step.py:11
-msgid "Текст"
-msgstr "Текст"
+#: step/models/step.py:11 step/models/step.py:19 step/models/text.py:21
+msgid "Text"
+msgstr "Лекция"
 
-#: step/models/step.py:12
-msgid "Тест"
+#: step/models/step.py:12 step/models/step.py:23
+#: templates/steps/step/step_detail.html:21
+msgid "Test"
 msgstr "Тест"
 
-#: templates/chapters/change_steps_order.html:4
-#: templates/chapters/change_steps_order.html:35
-#: templates/chapters/chapter_detail.html:39
-msgid "Change lessons ordering"
-msgstr "Изменение порядка занятий"
+#: step/models/step.py:16 templates/chapters/chapter_detail.html:49
+#: templates/chapters/chapters_list.html:21
+#: templates/course_target/course_target_list.html:20
+#: templates/courses/course_detail.html:35
+#: templates/courses/courses_list.html:20
+#: templates/modules/module_detail.html:29
+#: templates/modules/modules_list.html:21
+#: templates/partners/partners_list.html:17
+#: templates/steps/file/file_list.html:21
+#: templates/steps/step/step_list.html:21
+#: templates/steps/text/text_list.html:21
+#: templates/steps/video/video_list.html:21
+msgid "Title"
+msgstr "Название"
 
-#: templates/chapters/change_steps_order.html:12
-#: templates/chapters/chapter_detail.html:30
-#, python-format
-msgid "List of %(title)s chapter's lessons"
-msgstr "Список занятий главы %(title)s"
+#: step/models/step.py:18
+msgid "Lesson type"
+msgstr "Тип урока"
 
-#: templates/chapters/change_steps_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:19
+#: step/models/step.py:26
+msgid "Lesson learn time"
+msgstr "Примерное время на прохождение урока"
+
+#: step/models/step.py:45 templates/chapters/change_steps_order.html:28
+#: templates/front/chapter/chapter_user_detail_view.html:24
 msgid "Lesson"
 msgstr "Занятие"
 
-#: templates/chapters/change_steps_order.html:28
-#: templates/courses/change_chapters_order.html:28
+#: step/models/step.py:46
+#: templates/statistics/courses_statistics/courses_list_statistics.html:16
+msgid "Lessons"
+msgstr "Занятие"
+
+#: step/models/text.py:9
+msgid "Text title"
+msgstr "Название"
+
+#: step/models/text.py:10
+msgid "Text description"
+msgstr "Описание"
+
+#: step/models/text.py:11
+msgid "Text content"
+msgstr "Содержание лекции"
+
+#: step/models/text.py:22
+msgid "Texts"
+msgstr "Лекции"
+
+#: step/models/video.py:15
+msgid "Video title"
+msgstr "Название"
+
+#: step/models/video.py:16
+msgid "Video description"
+msgstr "Описание"
+
+#: step/models/video.py:17
+msgid "Video file"
+msgstr "Видео файл"
+
+#: step/models/video.py:28
+msgid "Videos"
+msgstr "Видео"
+
+#: step/step_validators.py:20
+msgid "reading"
+msgstr "лекция"
+
+#: step/step_validators.py:28
+msgid "video"
+msgstr "видео"
+
+#: step/step_validators.py:35
+msgid "test"
+msgstr "тест"
+
+#: step/step_validators.py:53
+msgid ""
+"Empty fields found. You should select {} from the list or create a new one"
+msgstr ""
+"Обнаружены пустые поля. Необходимо выбрать из списка существующий объект "
+"типа {} или создать новый"
+
+#: step/step_validators.py:55
+msgid "You should select {} from the list or create a new one"
+msgstr ""
+"Необходимо выбрать из списка существующий объект типа {} или создать новый"
+
+#: step/step_validators.py:61
+msgid "For editing you should select related content"
+msgstr "Для редактирования необходимо выбрать связанный контент"
+
+#: subscription/forms/subscription_form.py:13
+#: subscription/models/subscription.py:11
+#| msgid "Course title"
+msgid "Course price"
+msgstr "Цена"
+
+#: subscription/forms/subscription_form.py:14
+#: subscription/models/subscription.py:12
+#| msgid "Published"
+msgid "Publish"
+msgstr "Опубликовать"
+
+#: subscription/forms/subscription_form.py:25
+#, python-brace-format
+msgid ""
+"The subscription for course {course.title} already exists.\n"
+" Change or "
+msgstr ""
+"Подписка на курс уже существует. Измените или удалите существующую подписку."
+
+#: subscription/forms/subscription_user_add_form.py:5
+#: templates/subscription/subscription_admin/user_add.html:3
+#: templates/subscription/subscription_admin/user_add.html:67
+#: templates/subscription/subscription_admin/user_list.html:45
+#| msgid "New subscriptions"
+msgid "Grant subscription"
+msgstr "Выдать подписку"
+
+#: subscription/forms/subscription_user_delete_form.py:5
+#: templates/subscription/subscription_admin/user_delete.html:3
+#: templates/subscription/subscription_admin/user_list.html:42
+msgid "Unsubscribe"
+msgstr "Отменить подписку"
+
+#: subscription/models/user_subscription.py:10
+#: templates/partials/sidebar.html:136
+#: templates/subscription/subscription_admin/user_add.html:19
+msgid "Subscriptions"
+msgstr "Подписки"
+
+#: subscription/models/user_subscription.py:12
+#: templates/partials/sidebar.html:162
+msgid "Users"
+msgstr "Пользователи"
+
+#: subscription/models/user_subscription.py:13
+#| msgid "Subscriptions"
+msgid "Subscription expire date"
+msgstr "Дата завершения подписки"
+
+#: subscription/models/user_subscription.py:14
+#| msgid "Subscriptions"
+msgid "Subscription enabled"
+msgstr "Подписка активна"
+
+#: templates/accounts/grant_moderator.html:4
+#| msgid "Grant moderator access"
+msgid "Grant moderator's rights"
+msgstr "Выдача прав модератора"
+
+#: templates/accounts/grant_moderator.html:13
+#| msgid "Grant moderator access"
+msgid "Grant moderator's rights page"
+msgstr "Страница выдачи прав модератора"
+
+#: templates/accounts/grant_moderator.html:16
+msgid "Search by Email"
+msgstr "Поиск по Email"
+
+#: templates/accounts/grant_moderator.html:18
+msgid "Search"
+msgstr "Найти"
+
+#: templates/accounts/grant_moderator.html:29
+msgid "Role"
+msgstr "Роль"
+
+#: templates/accounts/grant_moderator.html:40
+msgid "Moderator"
+msgstr "Модератор"
+
+#: templates/accounts/grant_moderator.html:48
+#| msgid "New users"
+msgid "No users"
+msgstr "Нет пользователей"
+
+#: templates/accounts/grant_moderator.html:57
+#: templates/accounts/grant_moderator.html:65
+msgid "Grant"
+msgstr "Выдать"
+
+#: templates/accounts/grant_moderator.html:59
+#: templates/accounts/grant_moderator.html:67
+#: templates/socialaccount/connections.html:37
+msgid "Remove"
+msgstr "Убрать"
+
+#: templates/chapters/change_steps_order.html:4
+#: templates/chapters/change_steps_order.html:36
+#: templates/chapters/chapter_detail.html:42
+msgid "Change lessons ordering"
+msgstr "Изменение порядка занятий"
+
+#: templates/chapters/change_steps_order.html:13
+#: templates/chapters/chapter_detail.html:31
+#, python-format
+msgid ""
+"List of %(title)s chapter's\n"
+"                        lessons"
+msgstr "Список уроков главы %(title)s"
+
+#: templates/chapters/change_steps_order.html:29
 msgid "Current number"
 msgstr "Текущий номер"
 
-#: templates/chapters/change_steps_order.html:29
-#: templates/courses/change_chapters_order.html:29
+#: templates/chapters/change_steps_order.html:30
 msgid "New number"
 msgstr "Новый номер"
 
-#: templates/chapters/change_steps_order.html:36
-#: templates/courses/change_chapters_order.html:36
+#: templates/chapters/change_steps_order.html:37
 msgid "Back"
 msgstr "Назад"
 
 #: templates/chapters/chapter_create.html:4
 #: templates/chapters/chapter_create.html:12
 #: templates/chapters/chapters_list.html:16
-#: templates/courses/course_detail.html:26
+#: templates/courses/course_detail.html:27
 msgid "Add chapter"
 msgstr "Добавить главу"
 
@@ -395,9 +685,21 @@ msgstr "Добавить главу"
 #: templates/course_target/course_target_create.html:13
 #: templates/courses/course_create.html:13
 #: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
-#: templates/partials/sidebar.html:49 templates/partials/sidebar.html:66
-#: templates/partials/sidebar.html:186
+#: templates/partials/sidebar.html:33 templates/partials/sidebar.html:49
+#: templates/partials/sidebar.html:66 templates/partials/sidebar.html:82
+#: templates/partials/sidebar.html:97 templates/partials/sidebar.html:112
+#: templates/partials/sidebar.html:127 templates/partials/sidebar.html:186
 #: templates/partners/partners_create.html:11
+#: templates/steps/file/file_create.html:18
+#: templates/steps/file/file_list.html:15
+#: templates/steps/step/step_create.html:22
+#: templates/steps/step/step_list.html:16
+#: templates/steps/text/text_create.html:18
+#: templates/steps/text/text_list.html:15
+#: templates/steps/video/video_create.html:18
+#: templates/steps/video/video_list.html:15
+#: templates/subscription/subscription_create.html:17
+#: templates/subscription/subscription_list.html:15
 #: templates/teachers/teacher_create.html:13
 msgid "Add"
 msgstr "Создать"
@@ -421,6 +723,12 @@ msgstr ""
 #: templates/course_target/course_target_delete.html:19
 #: templates/modules/module_delete.html:19
 #: templates/partners/partners_delete.html:18
+#: templates/steps/file/file_delete.html:19
+#: templates/steps/step/step_delete.html:19
+#: templates/steps/text/text_delete.html:29
+#: templates/steps/video/video_delete.html:29
+#: templates/subscription/subscription_admin/user_delete.html:18
+#: templates/subscription/subscription_delete.html:15
 #: templates/teachers/teacher_delete.html:19
 msgid "Yes"
 msgstr "Да"
@@ -429,81 +737,93 @@ msgstr "Да"
 #: templates/course_target/course_target_delete.html:20
 #: templates/modules/module_delete.html:20
 #: templates/partners/partners_delete.html:19
+#: templates/steps/file/file_delete.html:21
+#: templates/steps/step/step_delete.html:21
+#: templates/steps/text/text_delete.html:31
+#: templates/steps/video/video_delete.html:31
+#: templates/subscription/subscription_admin/user_delete.html:20
+#: templates/subscription/subscription_delete.html:17
 #: templates/teachers/teacher_delete.html:20
 msgid "No"
 msgstr "Нет"
 
-#: templates/chapters/chapter_detail.html:15
+#: templates/chapters/chapter_detail.html:16
+#: templates/steps/text/text_detail.html:20
 msgid "Description"
 msgstr "Описание"
 
-#: templates/chapters/chapter_detail.html:21
-#: templates/chapters/chapter_detail.html:60
+#: templates/chapters/chapter_detail.html:22
+#: templates/chapters/chapter_detail.html:66
 #: templates/chapters/chapters_list.html:33
 #: templates/course_target/course_target_detail.html:17
 #: templates/course_target/course_target_list.html:33
-#: templates/courses/change_chapters_order.html:35
 #: templates/courses/course_detail.html:14
-#: templates/courses/course_detail.html:46
+#: templates/courses/course_detail.html:48
 #: templates/courses/courses_list.html:32
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
-#: templates/modules/modules_list.html:32
+#: templates/modules/modules_list.html:34
 #: templates/partners/partners_list.html:30
+#: templates/steps/file/file_list.html:37
+#: templates/steps/step/step_list.html:31
+#: templates/steps/text/text_list.html:35
+#: templates/steps/video/video_list.html:35
 #: templates/teachers/teacher_detail.html:20
-#: templates/teachers/teachers_list.html:33
+#: templates/teachers/teachers_list.html:36
 msgid "Change"
 msgstr "Изменить"
 
-#: templates/chapters/chapter_detail.html:23
-#: templates/chapters/chapter_detail.html:62
+#: templates/chapters/chapter_detail.html:24
+#: templates/chapters/chapter_detail.html:68
 #: templates/chapters/chapters_list.html:35
 #: templates/course_target/course_target_detail.html:19
 #: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
-#: templates/courses/course_detail.html:48
+#: templates/courses/course_detail.html:50
 #: templates/courses/courses_list.html:34
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
-#: templates/modules/modules_list.html:34
+#: templates/modules/modules_list.html:36
 #: templates/partners/partners_list.html:32
+#: templates/steps/file/file_list.html:41
+#: templates/steps/step/step_detail.html:32
+#: templates/steps/step/step_list.html:32
+#: templates/steps/text/text_detail.html:32
+#: templates/steps/text/text_list.html:39
+#: templates/steps/video/video_detail.html:37
+#: templates/steps/video/video_list.html:40
+#: templates/subscription/subscription_list.html:45
 #: templates/teachers/teacher_detail.html:22
-#: templates/teachers/teachers_list.html:35
+#: templates/teachers/teachers_list.html:38
 msgid "Delete"
 msgstr "Удалить"
 
-#: templates/chapters/chapter_detail.html:33
+#: templates/chapters/chapter_detail.html:36
 msgid "Add video lesson"
 msgstr "Добавить видео урок"
 
-#: templates/chapters/chapter_detail.html:35
+#: templates/chapters/chapter_detail.html:38
 msgid "Add text lesson"
 msgstr "Добавить лекцию"
 
-#: templates/chapters/chapter_detail.html:37
+#: templates/chapters/chapter_detail.html:40
 msgid "Add test"
 msgstr "Добавить тест"
 
-#: templates/chapters/chapter_detail.html:44
-#: templates/chapters/chapters_list.html:21
-#: templates/course_target/course_target_list.html:20
-#: templates/courses/course_detail.html:33
-#: templates/courses/courses_list.html:20
-#: templates/modules/module_detail.html:29
-#: templates/modules/modules_list.html:20
-#: templates/partners/partners_list.html:17
-msgid "Title"
-msgstr "Название"
-
-#: templates/chapters/chapter_detail.html:45
+#: templates/chapters/chapter_detail.html:50
 #: templates/chapters/chapters_list.html:22
 #: templates/course_target/course_target_list.html:21
-#: templates/courses/course_detail.html:34
+#: templates/courses/course_detail.html:36
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:30
-#: templates/modules/modules_list.html:21
+#: templates/modules/modules_list.html:22
 #: templates/partners/partners_list.html:18
-#: templates/teachers/teachers_list.html:21
+#: templates/steps/file/file_list.html:22
+#: templates/steps/step/step_list.html:22
+#: templates/steps/text/text_list.html:22
+#: templates/steps/video/video_list.html:22
+#: templates/subscription/subscription_list.html:25
+#: templates/teachers/teachers_list.html:23
 msgid "Actions"
 msgstr "Действия"
 
@@ -517,6 +837,12 @@ msgstr "Редактировать главу"
 #: templates/courses/course_update.html:13
 #: templates/modules/module_update.html:13
 #: templates/partners/partners_update.html:9
+#: templates/steps/file/file_update.html:18
+#: templates/steps/step/step_detail.html:31
+#: templates/steps/text/text_detail.html:31
+#: templates/steps/text/text_update.html:18
+#: templates/steps/video/video_detail.html:36
+#: templates/steps/video/video_update.html:18
 #: templates/teachers/teacher_update.html:13
 msgid "Edit"
 msgstr "Редактировать"
@@ -555,17 +881,6 @@ msgstr "Список целевых аудиторий"
 msgid "Edit target audience"
 msgstr "Редактирование целевой аудитории"
 
-#: templates/courses/change_chapters_order.html:4
-#: templates/courses/course_detail.html:28
-msgid "Change chapters ordering"
-msgstr "Изменение порядка глав"
-
-#: templates/courses/change_chapters_order.html:12
-#: templates/courses/course_detail.html:23
-#, python-format
-msgid "List of %(title)s course's chapters"
-msgstr "Список глав курса %(title)s"
-
 #: templates/courses/course_create.html:4
 #: templates/courses/course_create.html:12
 #: templates/courses/courses_list.html:15
@@ -587,6 +902,17 @@ msgid ""
 msgstr ""
 "\n"
 "Вы точно хотите удалить курс <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/courses/course_detail.html:23
+#, python-format
+msgid ""
+"List of %(title)s course's\n"
+"                    chapters"
+msgstr "Список глав курса %(title)s"
+
+#: templates/courses/course_detail.html:29
+msgid "Change chapters ordering"
+msgstr "Изменение порядка глав"
 
 #: templates/courses/course_update.html:4
 #: templates/courses/course_update.html:12
@@ -707,10 +1033,11 @@ msgstr ""
 "\n"
 
 #: templates/front/accounts/profile.html:3
+#: templates/partials/moderator_header.html:20
 msgid "Profile"
 msgstr "Профиль"
 
-#: templates/front/accounts/profile.html:74
+#: templates/front/accounts/profile.html:85
 msgid "My courses"
 msgstr "Мои курсы"
 
@@ -734,6 +1061,10 @@ msgstr "Курсы не найдены"
 #: templates/modules/module_create.html:12
 msgid "Add module:"
 msgstr "Добавить модуль:"
+
+#: templates/modules/module_delete.html:4
+msgid "Delete module"
+msgstr "Удаление модуля"
 
 #: templates/modules/module_delete.html:12
 #, python-format
@@ -763,10 +1094,45 @@ msgstr "Список модулей"
 msgid "Add modules"
 msgstr "Добавить модуль"
 
-#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:54
-#: templates/partials/sidebar.html:71 templates/partials/sidebar.html:189
+#: templates/partials/moderator_header.html:11
+msgid "Main page"
+msgstr "Главная"
+
+#: templates/partials/moderator_header.html:17
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/partials/moderator_header.html:25
+msgid "Grant moderator access"
+msgstr "Выдача прав модератора"
+
+#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:37
+#: templates/partials/sidebar.html:54 templates/partials/sidebar.html:71
+#: templates/partials/sidebar.html:86 templates/partials/sidebar.html:101
+#: templates/partials/sidebar.html:116 templates/partials/sidebar.html:130
+#: templates/partials/sidebar.html:189
 msgid "List"
 msgstr "Список"
+
+#: templates/partials/sidebar.html:108
+msgid "Readings"
+msgstr "Лекции"
+
+#: templates/partials/sidebar.html:123
+msgid "Tests"
+msgstr "Тесты"
+
+#: templates/partials/sidebar.html:140
+msgid "Publish courses"
+msgstr "Публикация курсов"
+
+#: templates/partials/sidebar.html:145
+msgid "Grant access"
+msgstr "Выдача подписок"
+
+#: templates/partials/sidebar.html:149
+msgid "List of courses"
+msgstr "Список курсов"
 
 #: templates/partials/sidebar.html:157
 #: templates/statistics/courses_statistics/courses_list_statistics.html:5
@@ -778,10 +1144,6 @@ msgstr "Список"
 #: templates/statistics/users_statistics/users_statistics_main.html:5
 msgid "Statistics"
 msgstr "Статистика"
-
-#: templates/partials/sidebar.html:162
-msgid "Users"
-msgstr "Пользователи"
 
 #: templates/partials/sidebar.html:174
 msgid "Sales"
@@ -801,17 +1163,11 @@ msgstr "180 дней"
 
 #: templates/partners/partners_create.html:10
 #: templates/partners/partners_list.html:11
-#| msgid "Add chapter"
 msgid "Add partner"
 msgstr "Добавить партнера"
 
 #: templates/partners/partners_delete.html:11
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the chapter\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                    Are you sure you want to delete the partner\n"
@@ -822,7 +1178,6 @@ msgstr ""
 "Вы точно хотите удалить партнера <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/partners/partners_list.html:10
-#| msgid "Chapters list"
 msgid "Partners list"
 msgstr "Список партнеров"
 
@@ -831,7 +1186,6 @@ msgid "Image"
 msgstr "Изображение"
 
 #: templates/partners/partners_update.html:8
-#| msgid "Edit chapter"
 msgid "Edit partner"
 msgstr "Редактировать партнера"
 
@@ -854,10 +1208,6 @@ msgstr ""
 msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
-msgstr ""
-
-#: templates/socialaccount/connections.html:37
-msgid "Remove"
 msgstr ""
 
 #: templates/socialaccount/connections.html:45
@@ -897,15 +1247,13 @@ msgid ""
 "                                                form:"
 msgstr ""
 
-#: templates/statistics/courses_statistics/courses_list_statistics.html:16
-msgid "Lessons"
-msgstr "Занятие"
-
 #: templates/statistics/courses_statistics/courses_list_statistics.html:19
 msgid "Language"
 msgstr "Язык занятия"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
+#: templates/subscription/subscription_list.html:24
+#: templates/subscription/subscription_list.html:36
 msgid "Published"
 msgstr "Опубликован"
 
@@ -976,36 +1324,30 @@ msgstr "Популярные курсы"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:15
 #: templates/statistics/users_statistics/users_list_statistics.html:15
-#| msgid "Email sent"
 msgid "Email"
 msgstr "Email"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:16
 #: templates/statistics/users_statistics/users_list_statistics.html:16
-#| msgid "country"
 msgid "Country"
 msgstr "Страна"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:18
 #: templates/statistics/users_statistics/users_list_statistics.html:18
-#| msgid "Register"
 msgid "Registered at"
 msgstr "Зарегистрирован"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:19
 #: templates/statistics/users_statistics/users_list_statistics.html:19
-#| msgid "Last name"
 msgid "Last Entry"
 msgstr "Последний вход"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:20
 #: templates/statistics/users_statistics/users_list_statistics.html:20
-#| msgid "email_verified"
 msgid "Email Verified"
 msgstr "Email подтвержден"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:38
-#| msgid "Add course"
 msgid "Active course"
 msgstr "Активный курс"
 
@@ -1015,6 +1357,8 @@ msgid "Tests statistics"
 msgstr "Статистика по тестам"
 
 #: templates/statistics/users_statistics/user_detailed_statistics.html:59
+#: templates/subscription/subscription_admin/user_add.html:37
+#: templates/subscription/subscription_admin/user_list.html:35
 msgid "No active subscriptions"
 msgstr "Нет текущих подписок"
 
@@ -1038,9 +1382,291 @@ msgstr "Количество пользователей с действующе�
 msgid "New users"
 msgstr "Новые пользователи"
 
+#: templates/steps/file/file_create.html:4
+#: templates/steps/file/file_create.html:15
+msgid "Add file"
+msgstr "Добавление файла"
+
+#: templates/steps/file/file_delete.html:4
+msgid "Delete file"
+msgstr "Удаление файла"
+
+#: templates/steps/file/file_delete.html:12
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete the file\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Вы точно хотите удалить файл <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/file/file_detail.html:4
+msgid "View file"
+msgstr "Просмотр файла"
+
+#: templates/steps/file/file_detail.html:15
+#: templates/steps/step/step_detail.html:27
+msgid "Download file"
+msgstr "Скачать файл"
+
+#: templates/steps/file/file_detail.html:16
+msgid "Back to files list"
+msgstr "Вернуться к списку файлов"
+
+#: templates/steps/file/file_list.html:4
+#: templates/steps/file/file_list.html:12
+msgid "Files list"
+msgstr "Список файлов"
+
+#: templates/steps/file/file_update.html:4
+#: templates/steps/file/file_update.html:15
+msgid "Edit file"
+msgstr "Редактирование файл"
+
+#: templates/steps/step/step_create.html:4
+msgid "Add lesson"
+msgstr "Добавить занятие"
+
+#: templates/steps/step/step_create.html:12
+msgid "Adding lesson"
+msgstr "Добавление занятия"
+
+#: templates/steps/step/step_create.html:23
+msgid "Add questions"
+msgstr "Добавление вопросов"
+
+#: templates/steps/step/step_delete.html:4
+msgid "Delete lesson"
+msgstr "Удаление занятия"
+
+#: templates/steps/step/step_delete.html:12
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete the lesson\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Вы точно хотите удалить урок <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/step/step_detail.html:4
+msgid "View lesson"
+msgstr "Просмотр занятия"
+
+#: templates/steps/step/step_detail.html:18
+msgid "Reading"
+msgstr "Лекция"
+
+#: templates/steps/step/step_detail.html:34
+msgid "Back to lessons list"
+msgstr "Вернуться к списку уроков"
+
+#: templates/steps/step/step_list.html:15
+msgid "Lessons list"
+msgstr "Список занятий"
+
+#: templates/steps/step/step_update.html:4
+msgid "Edit lesson"
+msgstr "Редактирование занятия"
+
+#: templates/steps/step/step_update.html:21
+msgid "Save"
+msgstr "Сохранить"
+
+#: templates/steps/text/text_create.html:4
+#: templates/steps/text/text_create.html:15
+msgid "Add reading"
+msgstr "Добавить лекцию"
+
+#: templates/steps/text/text_delete.html:4
+msgid "Delete reading"
+msgstr "Удалить лекцию"
+
+#: templates/steps/text/text_delete.html:12
+msgid "This reading is ised in the lessons below"
+msgstr "Данная лекция используется в следующих занятиях"
+
+#: templates/steps/text/text_delete.html:18
+msgid ""
+"In order to delete this reading you should change related readings in the "
+"lessons above."
+msgstr ""
+"Для удаления данной лекции необходимо в указанных выше занятиях выбрать "
+"другое видео."
+
+#: templates/steps/text/text_delete.html:22
+#, python-format
+msgid ""
+"\n"
+"                    Are you sure you want to delete the reading\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                    "
+msgstr ""
+"\n"
+"Вы точно хотите удалить лекцию <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/text/text_detail.html:4
+msgid "View reading"
+msgstr "Просмотр лекции"
+
+#: templates/steps/text/text_detail.html:33
+msgid "Back to readings list"
+msgstr "Вернуться к списку лекций"
+
+#: templates/steps/text/text_list.html:4
+#: templates/steps/text/text_list.html:12
+msgid "Readings list"
+msgstr "Список лекций"
+
+#: templates/steps/text/text_update.html:4
+#: templates/steps/text/text_update.html:15
+msgid "Edit reading"
+msgstr "Редактирование лекции"
+
+#: templates/steps/video/video_create.html:4
+#: templates/steps/video/video_create.html:15
+msgid "Add video"
+msgstr "Добавить видео"
+
+#: templates/steps/video/video_delete.html:4
+msgid "Delete video"
+msgstr "Удалить видео"
+
+#: templates/steps/video/video_delete.html:12
+msgid "This video is ised in the lessons below"
+msgstr "Данное видео используется в следующих занятиях"
+
+#: templates/steps/video/video_delete.html:18
+msgid ""
+"In order to delete this video you should change related videos in the "
+"lessons above."
+msgstr ""
+"Для удаления данного видео необходимо в указанных выше занятиях выбрать "
+"другое видео."
+
+#: templates/steps/video/video_delete.html:22
+#, python-format
+msgid ""
+"\n"
+"                        Are you sure you want to delete the video\n"
+"                        <span class=\"text-danger\"> %(title)s</span>?\n"
+"                     "
+msgstr ""
+"\n"
+"Вы точно хотите удалить видео <span class=\"text-danger\"> %(title)s</span>?"
+
+#: templates/steps/video/video_detail.html:4
+msgid "View video"
+msgstr "Просмотр видео"
+
+#: templates/steps/video/video_detail.html:31
+msgid ""
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"target=\"_blank\">supports HTML5 video</a>"
+msgstr ""
+"Для просмотра этого видео, пожалуйста, включите JavaScript и рассмотрите "
+"возможность обновления до веб-браузера, <a "
+"href=\"https://videojs.com/html5-video-support/\" target=\"_blank\">который "
+"поддерживает видео в формате HTML5</a>"
+
+#: templates/steps/video/video_detail.html:39
+msgid "Back to videos list"
+msgstr "Вернуться к списку видео"
+
+#: templates/steps/video/video_list.html:4
+#: templates/steps/video/video_list.html:12
+msgid "Videos list"
+msgstr "Список видео"
+
+#: templates/steps/video/video_update.html:4
+#: templates/steps/video/video_update.html:15
+msgid "Edit video"
+msgstr "Редактирование видео"
+
+#: templates/subscription/subscription_admin/user_add.html:11
+#: templates/subscription/subscription_admin/user_list.html:11
+#| msgid "No active subscriptions"
+msgid "Grant subscription to user"
+msgstr "Выдать подписку пользователю"
+
+#: templates/subscription/subscription_admin/user_add.html:52
+msgid "Access"
+msgstr "Доступ"
+
+#: templates/subscription/subscription_admin/user_delete.html:11
+msgid "Are you sure you want to unsubscribe course"
+msgstr "Вы уверены, что хотите отменить подписку"
+
+#: templates/subscription/subscription_admin/user_delete.html:12
+msgid "from user"
+msgstr "пользователя"
+
+#: templates/subscription/subscription_admin/user_list.html:3
+#| msgid "No active subscriptions"
+msgid "Grant subscription to users"
+msgstr "Выдать подписку пользователям"
+
+#: templates/subscription/subscription_admin/user_list.html:20
+#| msgid "New subscriptions"
+msgid "Current subscription"
+msgstr "Текущая подписка"
+
+#: templates/subscription/subscription_admin/user_list.html:21
+#| msgid "Subscriptions"
+msgid "Subscription"
+msgstr "Подписка"
+
+#: templates/subscription/subscription_create.html:14
+#| msgid "New subscriptions"
+msgid "Add subscription"
+msgstr "Добавить подписку"
+
+#: templates/subscription/subscription_delete.html:3
+#| msgid "Subscriptions"
+msgid "Subscription deletion"
+msgstr "Удаление подписки"
+
+#: templates/subscription/subscription_delete.html:10
+msgid "Are you sure you want to delete the subscription for course"
+msgstr "Вы уверены, что хотите удалить подписку на курс"
+
+#: templates/subscription/subscription_list.html:3
+#: templates/subscription/subscription_list.html:11
+#| msgid "Subscriptions"
+msgid "Subscriptions list"
+msgstr "Перечень подписок"
+
+#: templates/subscription/subscription_list.html:23
+msgid "Price"
+msgstr "Цена"
+
+#: templates/subscription/subscription_list.html:38
+#| msgid "Published"
+msgid "Unpublished"
+msgstr "Не опубликован"
+
+#: templates/subscription/subscription_list.html:43
+msgid "Update"
+msgstr "Изменить"
+
+#: templates/subscription/subscription_update.html:3
+#: templates/subscription/subscription_update.html:13
+#| msgid "Subscriptions"
+msgid "Subscription update"
+msgstr "Изменение подписки"
+
+#: templates/subscription/subscription_update.html:16
+#| msgid "New subscriptions"
+msgid "Update the subscription"
+msgstr "Редактировать подписку"
+
 #: templates/teachers/teacher_create.html:4
 #: templates/teachers/teacher_create.html:12
-#: templates/teachers/teachers_list.html:15
+#: templates/teachers/teachers_list.html:16
 msgid "Add teacher"
 msgstr "Добавить преподавателя"
 
@@ -1073,9 +1699,21 @@ msgstr "Редактировать преподавателя"
 msgid "Teachers list"
 msgstr "Список преподавателей"
 
-#: templates/teachers/teachers_list.html:20
+#: templates/teachers/teachers_list.html:22
 msgid "Name"
 msgstr "Имя"
+
+#~ msgid "Home"
+#~ msgstr "Главная"
+
+#~ msgid "Видео"
+#~ msgstr "Видео"
+
+#~ msgid "Текст"
+#~ msgstr "Текст"
+
+#~ msgid "Тест"
+#~ msgstr "Тест"
 
 #~ msgid "Previous lesson"
 #~ msgstr "Предыдущий урок"

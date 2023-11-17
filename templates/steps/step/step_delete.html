@@ -1,20 +1,24 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load static view_breadcrumbs %}
-{% block title %}Удалить занятие{% endblock %}
+{% block title %}{% trans 'Delete lesson' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
     {% endblock %}
     <div class="card">
         <div class="card-body">
-            <p class="card-text">Вы точно хотите удалить занятие:<span
-                    class="text-danger"> {{ stepmodel.title }}</span>?
+            <p class="card-text">
+                {% blocktrans with title=stepmodel.title %}
+                Are you sure you want to delete the lesson
+                <span class="text-danger"> {{ title }}</span>?
+                {% endblocktrans %}
             </p>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans 'Yes' %}</button>
                 <a href="{% url "modules:chaptermodel_detail" stepmodel.chapter.pk %}" class="btn btn-secondary
-                    mx-3" id="cancel-button">Нет</a>
+                    mx-3" id="cancel-button">{% trans 'No' %}</a>
             </form>
         </div>
     </div>
