@@ -1,6 +1,6 @@
 {{% extends 'moderator_page.html' %}
-{% load static view_breadcrumbs %}
-{% block title %}Отмена подписки{% endblock %}
+{% load static view_breadcrumbs i18n %}
+{% block title %}{% trans "Unsubscribe" %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,16 +8,16 @@
     <div class="card">
         <div class="card-header">
             <div class="d-block my-3">
-                <p class="card-text">Вы точно хотите отменить подписку на курс <span
-                        class="text-danger"> {{ subscription }}</span> у пользователя
+                <p class="card-text">{% trans "Are you sure you want to unsubscribe course" %} <span
+                        class="text-danger"> {{ subscription }}</span>{% trans "from user" %}
                     <strong>{{ user.first_name }} {{ user.last_name }}:</strong></p>
             </div>
             <form method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="delete" class="btn btn-danger" value="{{ subscription.pk }}">
-                <button type="submit" class="btn btn-danger me-3">Да</button>
+                <button type="submit" class="btn btn-danger me-3">{% trans "Yes" %}</button>
                 <a class="btn btn-secondary" href="{% url "subscription:subscriptionmodel_user_list" %}"
-                   id="cancel-button">Нет</a>
+                   id="cancel-button">{% trans "No" %}</a>
             </form>
         </div>
     </div>
