@@ -8,15 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-16 23:31+0600\n"
-"PO-Revision-Date: 2023-11-16 23:31+0600\n"
+"POT-Creation-Date: 2023-11-17 16:14+0600\n"
+"PO-Revision-Date: 2023-11-17 16:13+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
 #: .\accessibleBIM\settings.py:217
@@ -182,7 +184,7 @@ msgid "Serial number"
 msgstr "#"
 
 #: .\modules\models\chapter.py:16 .\templates\chapters\chapter_detail.html:13
-#: .\templates\front\chapter\chapter_user_detail_view.html:12
+#: .\templates\front\chapter\chapter_user_detail_view.html:15
 msgid "Chapter"
 msgstr "Глава"
 
@@ -373,7 +375,7 @@ msgid ""
 msgstr "Список занятий главы %(title)s"
 
 #: .\templates\chapters\change_steps_order.html:28
-#: .\templates\front\chapter\chapter_user_detail_view.html:19
+#: .\templates\front\chapter\chapter_user_detail_view.html:22
 msgid "Lesson"
 msgstr "Занятие"
 
@@ -548,7 +550,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Вы точно хотите удалить целевуб аудиторию <span class=\"text-danger\"> %(title)s</span>?"
+"Вы точно хотите удалить целевуб аудиторию <span class=\"text-danger\"> "
+"%(title)s</span>?"
 
 #: .\templates\course_target\course_target_list.html:12
 msgid "Target audience list"
@@ -607,7 +610,7 @@ msgstr "Список курсов"
 #: .\templates\front\accounts\change_password.html:15
 #: .\templates\front\accounts\change_password_done.html:4
 #: .\templates\front\accounts\password-reset\password_reset_confirm.html:13
-#: .\templates\front\accounts\profile.html:34
+#: .\templates\front\accounts\profile.html:36
 msgid "Change password"
 msgstr "Сменить пароль"
 
@@ -640,12 +643,14 @@ msgstr "При отправке письма возникла ошибка. По
 #, python-format
 msgid ""
 "\n"
-"                                Email was sent to %(email)s. Please check your mailbox and verify your\n"
+"                                Email was sent to %(email)s. Please check "
+"your mailbox and verify your\n"
 "                                email address.\n"
 "                            "
 msgstr ""
 "\n"
-"Письмо было отправлено на %(email)s. Пожалуйста, проверьте почту и подтвердите ваш email."
+"Письмо было отправлено на %(email)s. Пожалуйста, проверьте почту и "
+"подтвердите ваш email."
 
 #: .\templates\front\accounts\email\verification_email.html:4
 #, python-format
@@ -731,7 +736,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Профиль"
 
-#: .\templates\front\accounts\profile.html:85
+#: .\templates\front\accounts\profile.html:86
 msgid "My courses"
 msgstr "Мои курсы"
 
@@ -740,17 +745,31 @@ msgid "Registration"
 msgstr "Регистрация"
 
 #: .\templates\front\accounts\register.html:14
-#: .\templates\front\accounts\register.html:39
+#: .\templates\front\accounts\register.html:45
 msgid "Register"
 msgstr "Зарегистрироваться"
 
 #: .\templates\front\accounts\register.html:20
-#| msgid "Activate your user account"
 msgid "Create your account"
 msgstr "Создание аккаунта"
 
-#: .\templates\front\accounts\register.html:41
-#| msgid "Sign in with Google"
+#: .\templates\front\accounts\register.html:38
+msgid "Отправляя данную форму вы соглашаетесь с"
+msgstr "Отправляя данную форму вы соглашаетесь с"
+
+#: .\templates\front\accounts\register.html:39
+msgid "Политикой конфиденциальности"
+msgstr "Политикой конфиденциальности"
+
+#: .\templates\front\accounts\register.html:40
+msgid "и"
+msgstr ""
+
+#: .\templates\front\accounts\register.html:40
+msgid "Пользовательским соглашением"
+msgstr "Пользовательским соглашением"
+
+#: .\templates\front\accounts\register.html:47
 msgid "Signup with Google"
 msgstr "Вход через Google"
 
@@ -844,7 +863,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Вы точно хотите удалить партнера <span class=\"text-danger\"> %(title)s</span>?"
+"Вы точно хотите удалить партнера <span class=\"text-danger\"> %(title)s</"
+"span>?"
 
 #: .\templates\partners\partners_list.html:10
 msgid "Partners list"
@@ -901,8 +921,8 @@ msgstr ""
 #, python-format
 msgid ""
 "You decided to cancel logging in to our site using one of your existing "
-"accounts. If this was a mistake, please proceed to <a "
-"href=\"%(login_url)s\">sign in</a>."
+"accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
+"\">sign in</a>."
 msgstr ""
 
 #: .\templates\socialaccount\signup.html:4
@@ -915,8 +935,10 @@ msgstr "Регистрация"
 #, python-format
 msgid ""
 "\n"
-"                                                You are about to use your %(provider_name)s account to login to\n"
-"                                                %(site_name)s. As a final step, please complete the following\n"
+"                                                You are about to use your "
+"%(provider_name)s account to login to\n"
+"                                                %(site_name)s. As a final "
+"step, please complete the following\n"
 "                                                form:"
 msgstr ""
 
@@ -1074,7 +1096,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Вы точно хотите удалить преподавателя <span class=\"text-danger\">%(name)s</span>?"
+"Вы точно хотите удалить преподавателя <span class=\"text-danger\">%(name)s</"
+"span>?"
 
 #: .\templates\teachers\teacher_detail.html:4
 msgid "Teacher info"
@@ -1104,7 +1127,8 @@ msgstr "Имя"
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</"
+#~ "span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
@@ -1114,12 +1138,14 @@ msgstr "Имя"
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.last_name)s "
+#~ "%(teacher.first_name)s %(teacher.father_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
 #~ "Вы точно хотите удалить преподавателя\n"
-#~ "<span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
+#~ "<span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s "
+#~ "%(teacher.father_name)s</span>?"
 
 #, fuzzy, python-format
 #~ msgid ""
@@ -1129,7 +1155,8 @@ msgstr "Имя"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Вы точно хотите удалить модуль <span class=\"text-danger\"> %(title)s</span>?"
+#~ "Вы точно хотите удалить модуль <span class=\"text-danger\"> %(title)s</"
+#~ "span>?"
 
 #~ msgid "Make changes"
 #~ msgstr "Редактировать"
