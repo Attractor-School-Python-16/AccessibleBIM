@@ -186,3 +186,35 @@ class TestFileUpdateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
         self.file.refresh_from_db()
         self.assertIsNotNone(self.file.file_title)
+
+
+class TestFileDeleteView(CustomTestCase):
+    def setUp(self):
+        self.file = FileFactory.create()
+        self.url = reverse("step:filemodel_delete", kwargs={"pk": self.file.pk})
+
+    @login_superuser
+    def test_file_delete_view(self):
+        previous_count = FileModel.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count - FileModel.objects.count(), 1)
+        self.assertRedirects(response, reverse("step:filemodel_list"))
+
+    def test_anonymous(self):
+        previous_count = FileModel.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count - FileModel.objects.count(), 0)
+
+    @login_user
+    def test_no_permissions(self):
+        previous_count = FileModel.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(previous_count - FileModel.objects.count(), 0)
+
+    @login_superuser
+    def test_not_found(self):
+        response = self.client.post(reverse("step:filemodel_delete", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
