@@ -43,14 +43,14 @@
             <div class="row mb-5">
                 {% for member in team %}
                     <div class="col-lg-3 col-12 col-md-6 mb-lg-0 mt-6 mb-5">
-                        <div class="card shadow-lg">
-                            <div class="card-header mt-n4 mx-3 p-0 bg-transparent position-relative z-index-2">
+                        <div class="card shadow-lg h-100">
+                            <div class="card-body mt-n4 mx-3 p-0 bg-transparent position-relative z-index-2">
                                 <a class="d-block blur-shadow-image">
                                     <img src="{{ member.photo.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
                                 </a>
                                 <div class="colored-shadow" style="background-image: url('{{ member.photo.url }}');"></div>
                             </div>
-                            <div class="card-body text-center bg-white border-radius-lg p-3 pt-0">
+                            <div class="card-footer text-center bg-white border-radius-lg p-3 pt-0">
                                 <h5 class="mt-3 mb-1 content">{{ member.name }}</h5>
                                 <p class="body font-weight-bolder text-info text-gradient text-uppercase">{{ member.title }}</p>
                             </div>

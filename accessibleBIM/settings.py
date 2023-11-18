@@ -36,6 +36,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", default=get_random_secret_key())
 DEBUG = (bool(int(os.environ.get('DEBUG', 1))))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:80", 'http://164.90.198.101.nip.io:80']
 
