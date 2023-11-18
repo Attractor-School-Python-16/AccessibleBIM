@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Просмотр файла{% endblock %}
+{% block title %}{% trans 'View file' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -9,10 +10,10 @@
         <div class="card mb-5">
             <div class="card-body">
                 <div class="card-header">
-                    <h2>Файл: {{ file.file_title }}</h2>
+                    <h2>File: {{ file.file_title }}</h2>
                 </div>
-                <a href="{{ file.lesson_file.url }}" download class="btn btn-primary my-3 me-3">Скачать файл</a>
-                <a href="{% url 'step:filemodel_list' %}" class="btn btn-secondary">Вернуться к списку файлов</a>
+                <a href="{{ file.lesson_file.url }}" download class="btn btn-primary my-3 me-3">{% trans 'Download file' %}</a>
+                <a href="{% url 'step:filemodel_list' %}" class="btn btn-secondary">{% trans 'Back to files list' %}</a>
             </div>
         </div>
     {% endif %}
