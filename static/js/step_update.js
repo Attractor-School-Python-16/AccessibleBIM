@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         form.insertBefore(textSelectDiv, submitButton)
     }
     let deselectButton = document.createElement("button");
-    deselectButton.textContent = "Снять выбор";
+    deselectButton.textContent = gettext("Unselect");
     deselectButton.className = "btn btn-primary"
     deselectButton.addEventListener("click", function (event) {
         event.preventDefault()
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const stepDiv = document.getElementById(`div_id_step-${lessonType}`);
         if (stepDiv) {
             contentUpdateLink = document.createElement("a");
-            contentUpdateLink.textContent = "Редактировать связанный контент";
+            contentUpdateLink.textContent = gettext("Edit related content");
             contentUpdateLink.className = "content-update-link my-2";
             contentUpdateLink.href = getUpdateUrl(lessonType, baseUrl, selectElement.value);
             stepDiv.appendChild(contentUpdateLink);
