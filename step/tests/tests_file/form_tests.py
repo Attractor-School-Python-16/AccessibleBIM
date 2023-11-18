@@ -7,8 +7,7 @@ from step.forms.file_form import FileForm
 class TestFileForm(TestCase):
     def test_file_form(self):
         correct_data = {
-            "file_title": "File",
-            "lesson_file": get_txt_file()
+            "file_title": "File"
         }
         files = {"lesson_file": get_txt_file()}
         form = FileForm(correct_data, files)
@@ -16,8 +15,7 @@ class TestFileForm(TestCase):
 
     def test_empty_title(self):
         invalid_data = {
-            "file_title": "",
-            "lesson_file": get_txt_file()
+            "file_title": ""
         }
         files = {"lesson_file": get_txt_file()}
         form = FileForm(invalid_data, files)
