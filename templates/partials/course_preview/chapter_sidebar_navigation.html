@@ -1,0 +1,35 @@
+<div class="pt-4" style="display: flex">
+    <h3 class="heading" style="overflow-wrap: anywhere;">Навигация</h3>
+    <button type="button" class="btn-close text-secondary ms-auto d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="offcanvasScrolling" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+    </button>
+</div>
+{% for course_chapter in chapters %}
+        <div class="accordion-item content">
+            <h2 class="accordion-header content">
+                <button class="accordion-button collapsed content" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                    <h5 class="content text-decoration-underline">Глава {{ course_chapter.serial_number }}</h5>
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapse{{ course_chapter.serial_number }}" class="accordion-collapse collapse show">
+                <div class="accordion-body content">
+                {% if course_chapter.step.all%}
+                    {% for chapter_step in course_chapter.step.all|dictsort:"serial_number" %}
+                        {% if chapter_step.serial_number == page_obj.number %}
+                            <a class="link-info link-offset-1" aria-current="page"
+                               href="?page={{ chapter_step.serial_number }}">Урок {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
+                            <br>
+                        {% else %}
+                            <a class="link-info link-underline-opacity-0 content" aria-current="page"
+                               href="{% url 'modules:coursemodel_preview' course_pk=course_chapter.course.pk chapter_pk=course_chapter.pk %}?page={{ chapter_step.serial_number }}">Урок {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+{% endfor %}
+

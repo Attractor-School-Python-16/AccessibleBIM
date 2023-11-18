@@ -28,6 +28,8 @@
                             <td><a href="{% url 'modules:coursemodel_detail' course.id %}">{{ course.title }}</a></td>
                             <td class="text-end">
                                 <div class="btn-group">
+                                    <a href="{% url 'modules:coursemodel_preview' course_pk=course.pk chapter_pk=1 %}?page=1"
+                                       class="btn btn-info btn-sm mx-3">{% trans 'Course Preview' %}</a>
                                     <a href="{% url 'modules:coursemodel_update' course.id %}"
                                        class="btn btn-info btn-sm mx-3">{% trans 'Change' %}</a>
                                     <a href="{% url 'modules:coursemodel_delete' course.id %}"
