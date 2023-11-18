@@ -1,7 +1,7 @@
 import factory
 
 
-class FileModelFactory(factory.django.DjangoModelFactory):
+class FileFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = "step.FileModel"
 
