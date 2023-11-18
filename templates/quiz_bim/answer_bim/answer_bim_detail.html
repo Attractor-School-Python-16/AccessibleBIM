@@ -1,22 +1,23 @@
+{% load i18n %}
 <div hx-target="this" class="mt-3">
     <div class="card">
         <div class="card-body">
             <h4 class="mb-3">
-                Ответ: {{ answer.answer }}
+                {% trans 'Answer' %}: {{ answer.answer }}
                 {% if answer.is_correct %}
-                    <span class="badge bg-success">Верный</span>
+                    <span class="badge bg-success">{% trans 'Correct' %}</span>
                 {% else %}
-                    <span class="badge bg-danger">Неверный</span>
+                    <span class="badge bg-danger">{% trans 'Incorrect' %}</span>
                 {% endif %}
             </h4>
             <div class="d-flex justify-content-start align-items-center">
                 <a href="{% url 'quiz_bim:answerbim_htmx_update' answer.question_bim_id answer.id %}"
-                   class="btn btn-primary me-2">Изменить</a>
+                   class="btn btn-primary me-2">{% trans 'Change' %}</a>
                 <form action="" class="d-inline">
                     {% csrf_token %}
                     <button hx-post="{% url 'quiz_bim:answerbim_htmx_delete' answer.question_bim_id answer.id %}"
                             hx-swap="outerHTML swap:1s"
-                            class="btn btn-danger">Удалить
+                            class="btn btn-danger">{% trans 'Delete' %}
                     </button>
                 </form>
             </div>

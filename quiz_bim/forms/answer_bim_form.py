@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from quiz_bim.models.answer_bim import AnswerBim
 
@@ -9,8 +10,8 @@ class AnswerBimForm(forms.ModelForm):
         model = AnswerBim
         fields = ['answer', 'is_correct']
         labels = {
-            'answer': 'Ответ на вопрос',
-            'is_correct': 'Верный ответ',
+            'answer': _('Answer'),
+            'is_correct': _('Right answer'),
 
         }
 

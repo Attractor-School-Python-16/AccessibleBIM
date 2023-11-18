@@ -1,5 +1,5 @@
 {% extends 'moderator_page.html' %}
-{% load view_breadcrumbs %}
+{% load view_breadcrumbs i18n %}
 {% load static %}
 {% block title %}{{ test.title }}{% endblock %}
 {% block moderator_interface %}
@@ -10,14 +10,15 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-header">
-                    <h3 class="mb-3">Тест "{{ test.title }}"</h3>
-                    <h4 id="questions_qty">Количество вопросов: {{ test.questions_qty }} </h4>
+                    <h3 class="mb-3">{% trans 'Test' %} "{{ test.title }}"</h3>
+                    <h4 id="questions_qty">{% trans 'Questions quantity' %}: {{ test.questions_qty }} </h4>
                 </div>
                 <div class="d-flex flex-column align-items-start my-3">
                     <a class="btn btn-primary mb-2" hx-get="{% url 'quiz_bim:questionbim_htmx_create' %}"
-                       hx-target="#questionforms" hx-swap="beforeend" role="button" id="create_question">Добавить новый
-                        вопрос</a>
-                    <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}" role="button">Редактировать</a>
+                       hx-target="#questionforms" hx-swap="beforeend" role="button" id="create_question">
+                        {% trans 'Add new question' %}</a>
+                    <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}" role="button">
+                        {% trans 'Edit' %}</a>
                 </div>
                 <div class="table-responsive">
                     <div class="d-flex justify-content-center my-3">
