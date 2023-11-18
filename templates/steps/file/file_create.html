@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load view_breadcrumbs %}
-{% block title %}Создать файл{% endblock %}
+{% block title %}{% trans 'Add file' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -11,10 +12,11 @@
                 <div>
                     <div>
                         <div class="card-header">
-                            <h2>Добавление файла:</h2>
+                            <h2>{% trans 'Add file' %}:</h2>
                         </div>
                         <div>
-                            {% include "partials/form.html" with button_text="Добавить файл" %}
+                            {% trans 'Add' as button_text_add %}
+                            {% include "partials/form.html" with button_text=button_text_add %}
                         </div>
                     </div>
                 </div>

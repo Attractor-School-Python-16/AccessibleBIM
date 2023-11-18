@@ -1,26 +1,27 @@
+{% load i18n %}
 <div hx-target="this" class="mt-3" id="question_detail">
     <div class="card">
         <div class="card-body">
             <h3 class="card-title">
-                Вопрос: {{ question.title }}
+                {% trans 'Question' %}: {{ question.title }}
             </h3>
             <div class="mt-2 d-flex flex-wrap">
                 <button hx-get="{% url 'quiz_bim:answerbim_htmx_create' question.id %}" hx-swap="beforeend"
                         hx-target="#answerforms_{{ question.id }}"
                         class="btn btn-primary mb-2">
-                    Добавить ответ
+                    {% trans 'Add answer' %}
                 </button>
                 <button hx-get="{% url 'quiz_bim:questionbim_htmx_update' question.test_bim.pk question.id %}"
                         hx-swap="outerHTML"
                         class="btn btn-primary mx-2 mb-2">
-                    Изменить
+                    {% trans 'Change' %}
                 </button>
                 <form action="" class="d-inline">
                     {% csrf_token %}
                     <button hx-post="{% url 'quiz_bim:questionbim_htmx_delete' question.test_bim.pk question.id %}"
                             hx-swap="outerHTML swap:1s"
                             class="btn btn-danger mb-2" id="delete-question">
-                        Удалить
+                        {% trans 'Delete' %}
                     </button>
                 </form>
                 <div id="answerforms_{{ question.id }}" class="col-12 mb-3"></div>

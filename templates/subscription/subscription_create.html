@@ -1,5 +1,6 @@
 {% extends 'moderator_page.html' %}
 {% load view_breadcrumbs %}
+{% load i18n %}
 {% block title %}Создать подписку{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
@@ -10,10 +11,11 @@
                 <div>
                     <div class="container my-5">
                         <div class="card-header">
-                            <h2>Добавление подписки:</h2>
+                            <h2>{% trans "Add subscription" %}</h2>
                         </div>
                         <div>
-                            {% include "partials/form.html" with button_text="Добавить подписку" %}
+                            {% trans 'Add' as button_text_add %}
+                            {% include "partials/form.html" with button_text=button_text_add %}
                         </div>
                     </div>
                 </div>

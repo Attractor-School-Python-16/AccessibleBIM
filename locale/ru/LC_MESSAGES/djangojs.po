@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 00:32+0600\n"
-"PO-Revision-Date: 2023-11-16 17:33+0600\n"
+"POT-Creation-Date: 2023-11-18 00:59+0600\n"
+"PO-Revision-Date: 2023-11-18 01:00+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -33,3 +33,20 @@ msgstr "Нет данных"
 #: static/js/statistics_js/stats_user_detailed.js:25
 msgid "Test results"
 msgstr "Результаты тестов"
+
+#: static/js/step_create.js:20 static/js/step_update.js:15
+msgid "Unselect"
+msgstr "Снять выбор"
+
+#: static/js/step_create.js:146
+msgid "Fill reading title"
+msgstr "Заполните описание лекции"
+
+#: static/js/step_create.js:153
+#| msgid "Fill reading title"
+msgid "Fill reading content"
+msgstr "Заполните содержание лекции"
+
+#: static/js/step_update.js:41
+msgid "Edit related content"
+msgstr "Редактировать связанный контент"
