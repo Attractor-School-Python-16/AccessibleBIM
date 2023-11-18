@@ -117,3 +117,72 @@ class TestFileCreateView(CustomTestCase):
         # self.assertFormError(response.context['form'], field=None, errors=[_("Title is mandatory for uploading a file")])
         self.assertEqual(FileModel.objects.count() - previous_count, 0)
 
+
+class TestFileUpdateView(CustomTestCase):
+    def setUp(self):
+        self.file = FileFactory.create()
+        self.url = reverse("step:filemodel_update", kwargs={"pk": self.file.pk})
+
+    @login_superuser
+    def test_file_update_view(self):
+        correct_data = {
+            "file_title": "Test file",
+            "lesson_file": get_txt_file()
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.file.refresh_from_db()
+        self.assertEqual(self.file.file_title, correct_data['file_title'])
+        self.assertRedirects(response, reverse("step:filemodel_list"))
+
+    def test_anonymous(self):
+        correct_data = {
+            "file_title": "Test file",
+            "lesson_file": get_txt_file()
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.file.refresh_from_db()
+        self.assertNotEqual(self.file.file_title, correct_data['file_title'])
+
+    @login_user
+    def test_no_permissions(self):
+        correct_data = {
+            "file_title": "Test file",
+            "lesson_file": get_txt_file()
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.file.refresh_from_db()
+        self.assertNotEqual(self.file.file_title, correct_data['file_title'])
+
+    @login_superuser
+    def test_not_found(self):
+        invalid_data = {
+            "file_title": "Test file",
+            "lesson_file": get_txt_file()
+        }
+        response = self.client.post(reverse("step:filemodel_update", kwargs={"pk": 999}), invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+    @login_superuser
+    def test_empty_title(self):
+        invalid_data = {
+            "file_title": "",
+            "lesson_file": get_txt_file()
+        }
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response.context['form'], field=None, errors=[_("Title is mandatory for uploading a file")])
+        self.file.refresh_from_db()
+        self.assertNotEqual(self.file.file_title, invalid_data['file_title'])
+
+    @login_superuser
+    def test_no_file(self):
+        invalid_data = {
+            "file_title": "Test file"
+        }
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.file.refresh_from_db()
+        self.assertIsNotNone(self.file.file_title)

@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.files.uploadedfile import UploadedFile
 from django.utils.translation import gettext_lazy as _
 
 from step.models import FileModel
@@ -46,16 +47,18 @@ class FileForm(forms.ModelForm):
 
     def clean_lesson_file(self):
         lesson_file = self.cleaned_data.get("lesson_file", False)
-        if lesson_file:
-            if lesson_file.content_type in CONTENTTYPES:
-                if lesson_file.size <= 214958080:
-                    return lesson_file
-                else:
-                    raise forms.ValidationError(_('Uploaded file has to be no more than 250 MB'))
-            else:
-                raise forms.ValidationError(_('Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed'))
-        else:
+
+        if not lesson_file:
             return lesson_file
+
+        if isinstance(lesson_file, UploadedFile):
+            if lesson_file.content_type not in CONTENTTYPES:
+                raise forms.ValidationError(_('Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed'))
+
+            if lesson_file.size > 214958080:
+                raise forms.ValidationError(_('Uploaded file has to be no more than 250 MB'))
+
+        return lesson_file
 
     def clean(self):
         data = self.cleaned_data
