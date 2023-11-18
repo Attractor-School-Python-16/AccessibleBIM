@@ -11,8 +11,10 @@
                 {% endif %}
             </h4>
             <div class="d-flex justify-content-start align-items-center">
-                <a href="{% url 'quiz_bim:answerbim_htmx_update' answer.question_bim_id answer.id %}"
-                   class="btn btn-primary me-2">{% trans 'Change' %}</a>
+                <button hx-get="{% url 'quiz_bim:answerbim_htmx_update' answer.question_bim_id answer.id %}"
+                        hx-swap="outerHTML" class="btn btn-primary me-2">
+                    {% trans 'Change' %}
+                </button>
                 <form action="" class="d-inline">
                     {% csrf_token %}
                     <button hx-post="{% url 'quiz_bim:answerbim_htmx_delete' answer.question_bim_id answer.id %}"
