@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-5">
         <div class="card-body">
             <h2 class="my-3">{% blocktrans with title=module.title %}List of {{ title }} module's courses{% endblocktrans %}</h2>
             <a href="{% url 'modules:coursemodel_create' %}?module_pk={{ module.pk }}" class="btn btn-primary my-3">

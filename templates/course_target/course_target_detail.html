@@ -11,7 +11,7 @@
             <h2>{{ course_target.title }}</h2>
         </div>
         <div class="card-body">
-            <p>{{ course_target.description }}<</p>
+            <p>{{ course_target.description }}</p>
             <div class="d-flex justify-content-end">
                 <a href="{% url 'modules:coursetargetmodel_update' course_target.id %}"
                    class="btn btn-primary mx-3">{% trans 'Change' %}</a>

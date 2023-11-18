@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from view_breadcrumbs import DetailBreadcrumbMixin, ListBreadcrumbMixin, CreateBreadcrumbMixin, DeleteBreadcrumbMixin, \
@@ -155,7 +156,7 @@ class CourseChangeChaptersOrderView(PermissionRequiredMixin, View):
         chapters = ChapterModel.objects.filter(course=course)
         unique_numbers = set(new_serial_numbers.values())
         if len(unique_numbers) < len(new_serial_numbers):
-            messages.error(request, 'Выберите разные порядковые номера для глав.')
+            messages.error(request, _('Choose different serial numbers for chapters.'))
         else:
             for chapter_id, new_number in new_serial_numbers.items():
                 chapter = chapters.get(id=chapter_id)
