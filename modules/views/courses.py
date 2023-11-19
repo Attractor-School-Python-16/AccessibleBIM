@@ -78,7 +78,10 @@ class CourseDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailVie
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['chapters'] = ChapterModel.objects.filter(course=self.object.id)
+        course_chapters = ChapterModel.objects.filter(course=self.object.id)
+        context['chapters'] = course_chapters
+        if course_chapters:
+            context['first_chapter'] = course_chapters.order_by('serial_number').first()
         return context
 
 

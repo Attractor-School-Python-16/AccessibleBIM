@@ -38,6 +38,8 @@
                     my-2 mx-2">{% trans 'Add text lesson' %}</a>
                     <a href="{% url 'step:stepmodel_quiz_create' %}?chapter_pk={{ chapter.id }}" class="btn btn-primary
                     my-2 mx-2">{% trans 'Add test' %}</a>
+                    <a href="{% url 'modules:coursemodel_preview' course_pk=chapter.course.pk chapter_pk=chapter.pk %}?page=1"
+                       class="btn btn-success my-2 mx-2">{% trans 'Course Preview' %}</a>
                     <a href="{% url 'modules:change_steps_order' chapter.id %}" class="btn btn-secondary
                     my-2 mx-2">{% trans 'Change lessons ordering' %}</a>
                 </div>
