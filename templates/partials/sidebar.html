@@ -130,6 +130,36 @@
                         class="nav-icon"></span>{% trans 'List' %}</a></li>
             </ul>
         </li>
+
+            <li class="nav-group my-2">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-regular fa-handshake"></i>
+                    {% trans 'Partners' %}</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:add_partner' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'Add' %}</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:partners_list' %}"><span
+                            class="nav-icon"></span>{% trans 'List' %}</a></li>
+                </ul>
+            </li>
+        {% if perms.content.add_teammodel or perms.content.change_teammodel or perms.content.delete_teammodel or perms.content.view_teammodel %}
+            <li class="nav-group my-2">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-regular fa-handshake"></i>
+                    Team</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:add_team' %}">
+                        <span class="nav-icon"></span>
+                        Add</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:team_list' %}"><span
+                            class="nav-icon"></span>List</a></li>
+                </ul>
+            </li>
+        {% endif %}
+
         <li class="nav-group my-2">
             <a class="nav-link nav-group-toggle" href="#">
                 <i class="nav-icon fa-solid fa-person-circle-check"></i>
@@ -176,32 +206,7 @@
                     {% endif %}
                 </ul>
             </li>
-            <li class="nav-group my-2">
-                <a class="nav-link nav-group-toggle" href="#">
-                    <i class="nav-icon fa-regular fa-handshake"></i>
-                    {% trans 'Partners' %}</a>
-                <ul class="nav-group-items">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'content:add_partner' %}">
-                        <span class="nav-icon"></span>
-                        {% trans 'Add' %}</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'content:partners_list' %}"><span
-                            class="nav-icon"></span>{% trans 'List' %}</a></li>
-                </ul>
-            </li>
-            <li class="nav-group my-2">
-                <a class="nav-link nav-group-toggle" href="#">
-                    <i class="nav-icon fa-regular fa-handshake"></i>
-                    Team</a>
-                <ul class="nav-group-items">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'content:add_team' %}">
-                        <span class="nav-icon"></span>
-                        Add</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'content:team_list' %}"><span
-                            class="nav-icon"></span>List</a></li>
-                </ul>
-            </li>
+
         </li>
         {% endif %}
     </ul>
