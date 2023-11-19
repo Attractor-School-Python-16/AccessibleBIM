@@ -16,11 +16,13 @@ class CoursesUserListView(ListView):
     courses_buying = None
 
     def dispatch(self, request, *args, **kwargs):
-        course = CourseModel.objects.filter(Q(subscription__is_published=True) & (
+        try:
+            self.courses_buying = CourseModel.objects.filter(Q(subscription__is_published=True) & (
                 Q(subscription__users=self.request.user) & Q(subscription__us_subscriptions__is_active=True)))
-        if course:
-            self.courses_buying = course
+        except TypeError:
+            return super().dispatch(request, *args, **kwargs)
         return super().dispatch(request, *args, **kwargs)
+
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
@@ -63,8 +65,9 @@ class CoursesUserListView(ListView):
 
     def get_queryset(self):
         if self.courses_buying:
-            queryset = CourseModel.objects.exclude(pk=self.courses_buying[0].pk)
-        queryset = CourseModel.objects.filter(subscription__is_published=True).order_by('-update_at')
+            queryset = CourseModel.objects.exclude(pk=self.courses_buying[0].pk).filter(subscription__is_published=True).order_by('-update_at')
+        else:
+            queryset = CourseModel.objects.filter(subscription__is_published=True).order_by('-update_at')
         params = self.get_filter_params()
 
         if params['modules']:
