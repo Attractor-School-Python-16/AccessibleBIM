@@ -13,9 +13,12 @@ class CoursesUserListView(ListView):
     template_name = 'front/courses/courses.html'
     context_object_name = 'courses'
     paginate_by = 5
+    courses_buying = None
 
-    def get_full_language_name(self):
-        pass
+    def dispatch(self, request, *args, **kwargs):
+        self.courses_buying = CourseModel.objects.filter(Q(subscription__is_published=True) & (
+                Q(subscription__users=self.request.user) & Q(subscription__us_subscriptions__is_active=True)))
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
@@ -25,6 +28,7 @@ class CoursesUserListView(ListView):
         context['course_targets'] = {data.title: data.title for data in CourseTargetModel.objects.all()}
         context['modules'] = {data.title: data.title for data in ModuleModel.objects.all()}
         context['languages'] = {str(data[0]): str(data[1]) for data in CourseModel.TypeChoices.choices}
+        context['courses_buying'] = self.courses_buying
         params = self.get_filter_params()
         query = ''
         if params['modules']:
@@ -55,7 +59,9 @@ class CoursesUserListView(ListView):
         return params
 
     def get_queryset(self):
-        queryset = CourseModel.objects.filter(subscription__is_published=True).order_by('-update_at')
+        queryset = CourseModel.objects.exclude(pk=self.courses_buying[0].pk)
+        print(queryset)
+        print(self.courses_buying)
         params = self.get_filter_params()
 
         if params['modules']:
