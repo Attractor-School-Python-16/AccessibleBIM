@@ -67,28 +67,26 @@
                                         </div>
                                     </div>
                                     <div class="align-items-center content mb-2">
-                                        {% if user.subscriptions.all %}
-                                            {% for subscription in user_subscription %}
-                                                {% if subscription.is_active %}
-                                                    <span class="text-bold">Действие подписки до:</span>
-                                                    <span class="text-bold"> {{ subscription.end_time }}</span>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
+                                        {% for subscription in user_subscription %}
+                                            <span class="text-bold">Действие подписки до:</span>
+                                            <span class="text-bold"> {{ subscription.end_time }}</span>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    {% if courses %}
-                        <h3 class="mb-0 text-center content">{% trans 'My courses' %}:</h3>
-                    {% endif %}
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
+                        {% if courses %}
+                            <h3 class="mb-3 text-center content">{% trans 'My courses' %}:</h3>
+                        {% endif %}
 
-                    {% for course in courses %}
-                        {% include "front/partials/course/course_card.html" %}
-                    {% endfor %}
+                        {% for course in courses %}
+                            {% include "front/partials/course/course_card.html" %}
+                        {% endfor %}
+                    </div>
                 </div>
             </section>
         </div>
