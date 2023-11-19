@@ -102,8 +102,8 @@
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
-                <li class="nav-item mx-2"><div class="dropdown">
-                    <a href="#" class="btn text-white bg-transparent dropdown-toggle m-0 " data-bs-toggle="dropdown"
+                <div class="dropdown">
+                    <a href="#" class="btn bg-transparent dropdown-toggle m-0 " data-bs-toggle="dropdown"
                        id="navbarDropdownMenuLink2">
                         {% for language in languages %}
                             {% if language.code == LANGUAGE_CODE %}
@@ -133,7 +133,7 @@
                             </form>
                         {% endfor %}</li>
                     </ul>
-                </div></li>
+                </div>
             </ul>
         </div>
     </div>
