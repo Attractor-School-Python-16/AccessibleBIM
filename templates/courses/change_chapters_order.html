@@ -1,6 +1,6 @@
 {% extends 'moderator_page.html' %}
-{% load static view_breadcrumbs %}
-{% block title %}Изменение порядка глав{% endblock %}
+{% load static view_breadcrumbs i18n %}
+{% block title %}{% trans 'Change chapters order' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -9,7 +9,10 @@
         <div class="card">
             <div class="card-body p-3">
                 <div class="card-header">
-                    <h1 class="my-3">Список глав курса {{ course.title }}</h1>
+                    <h1 class="my-3">
+                        {% blocktrans with title=course.title %}
+                            {{ title }} course's chapters list
+                        {% endblocktrans %}
                 </div>
                 {% if messages %}
                     <ul class="messages list-unstyled">
@@ -24,16 +27,24 @@
                         <ul class="list-group m-md-3 m-sm-0">
                             {% for chapter in chapters|dictsort:"serial_number" %}
                                 <li class="list-group-item row my-2 draggable" id ="pk_{{ chapter.id }}">
-                                    <div class="col-md-4 col-12 d-inline-block p-2">Глава: {{ chapter.title }}</div>
-                                    <div class="col-md-3 col-12 d-inline-block p-2">Текущий номер: {{ chapter.serial_number }}</div>
-                                    <div class="col-md-3 col-12 d-inline-block p-2 text-end" id="new-number">Новый номер:</div>
+                                    <div class="col-md-4 col-12 d-inline-block p-2">
+                                        {% trans 'Chapter' %}: {{ chapter.title }}
+                                    </div>
+                                    <div class="col-md-3 col-12 d-inline-block p-2">
+                                        {% trans 'Current number' %}: {{ chapter.serial_number }}
+                                    </div>
+                                    <div class="col-md-3 col-12 d-inline-block p-2 text-end" id="new-number">
+                                        {% trans 'New number' %}:
+                                    </div>
                                     <input type="hidden" class="number-value">
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
-                    <button type="submit" class="btn btn-primary my-3">Изменить порядок глав</button>
-                    <a href="{% url 'modules:coursemodel_detail' course.id %}" class="btn btn-secondary mx-3">Назад</a>
+                    <button type="submit" class="btn btn-primary my-3">{% trans 'Change' %}</button>
+                    <a href="{% url 'modules:coursemodel_detail' course.id %}" class="btn btn-secondary mx-3">
+                        {% trans 'Back' %}
+                    </a>
                 </form>
             </div>
         </div>
