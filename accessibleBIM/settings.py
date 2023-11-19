@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
+from django.utils.log import DEFAULT_LOGGING
 from django.utils.translation import gettext_lazy as _
 from celery.signals import setup_logging
 
@@ -256,6 +257,7 @@ if 'test' in sys.argv:
     # MEDIA_ROOT = os.path.join(BASE_DIR, 'media_test')
     MEDIA_ROOT = BASE_DIR / 'media_test'
 
+
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 SUMMERNOTE_THEME = 'bs4'
@@ -370,3 +372,6 @@ LOGGING = {
         },
     },
 }
+
+if "test" in sys.argv:
+    LOGGING = DEFAULT_LOGGING
