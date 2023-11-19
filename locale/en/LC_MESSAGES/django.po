@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-18 01:12+0600\n"
-"PO-Revision-Date: 2023-11-18 01:13+0600\n"
+"POT-Creation-Date: 2023-11-18 13:36+0600\n"
+"PO-Revision-Date: 2023-11-18 13:37+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -678,6 +678,7 @@ msgstr ""
 "existing subscription"
 
 #: subscription/forms/subscription_user_add_form.py:5
+#: subscription/views/subscription.py:197
 #: templates/subscription/subscription_admin/user_add.html:3
 #: templates/subscription/subscription_admin/user_add.html:67
 #: templates/subscription/subscription_admin/user_list.html:45
@@ -685,13 +686,14 @@ msgid "Grant subscription"
 msgstr "Grant subscription"
 
 #: subscription/forms/subscription_user_delete_form.py:5
+#: subscription/views/subscription.py:238
 #: templates/subscription/subscription_admin/user_delete.html:3
 #: templates/subscription/subscription_admin/user_list.html:42
 msgid "Unsubscribe"
 msgstr "Unsubscribe"
 
 #: subscription/models/user_subscription.py:10
-#: templates/partials/sidebar.html:136
+#: subscription/views/subscription.py:125 templates/partials/sidebar.html:136
 #: templates/subscription/subscription_admin/user_add.html:19
 msgid "Subscriptions"
 msgstr "Subscriptions"
@@ -708,6 +710,28 @@ msgstr "Subscription expire date"
 #: subscription/models/user_subscription.py:14
 msgid "Subscription enabled"
 msgstr "Subscription enabled"
+
+#: subscription/views/subscription.py:44
+#: templates/subscription/subscription_list.html:3
+#: templates/subscription/subscription_list.html:11
+msgid "Subscriptions list"
+msgstr "Subscriptions list"
+
+#: subscription/views/subscription.py:62
+#: templates/subscription/subscription_create.html:14
+msgid "Add subscription"
+msgstr "Add subscription"
+
+#: subscription/views/subscription.py:92
+#: templates/subscription/subscription_update.html:3
+#: templates/subscription/subscription_update.html:13
+msgid "Subscription update"
+msgstr "Subscription update"
+
+#: subscription/views/subscription.py:109
+#| msgid "Subscription deletion"
+msgid "Subscription delete"
+msgstr "Subscription delete"
 
 #: templates/accounts/grant_moderator.html:4
 msgid "Grant moderator's rights"
@@ -874,7 +898,7 @@ msgstr "Description"
 #: templates/modules/module_detail.html:41
 #: templates/modules/modules_list.html:34
 #: templates/partners/partners_list.html:30
-#: templates/quiz_bim/answer_bim/answer_bim_detail.html:15
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:16
 #: templates/quiz_bim/question_bim/question_bim_detail.html:17
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:32
 #: templates/steps/file/file_list.html:37
@@ -898,7 +922,7 @@ msgstr "Change"
 #: templates/modules/module_detail.html:43
 #: templates/modules/modules_list.html:36
 #: templates/partners/partners_list.html:32
-#: templates/quiz_bim/answer_bim/answer_bim_detail.html:20
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:22
 #: templates/quiz_bim/question_bim/question_bim_detail.html:24
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:36
 #: templates/steps/file/file_list.html:41
@@ -1654,7 +1678,6 @@ msgid "Edit file"
 msgstr "Edit file"
 
 #: templates/steps/partial/test_partial.html:7
-#| msgid "test"
 msgid "Take test"
 msgstr "Take test"
 
@@ -1851,10 +1874,6 @@ msgstr "Current subscription"
 msgid "Subscription"
 msgstr "Subscription"
 
-#: templates/subscription/subscription_create.html:14
-msgid "Add subscription"
-msgstr "Add subscription"
-
 #: templates/subscription/subscription_delete.html:3
 msgid "Subscription deletion"
 msgstr "Subscription deletion"
@@ -1862,11 +1881,6 @@ msgstr "Subscription deletion"
 #: templates/subscription/subscription_delete.html:10
 msgid "Are you sure you want to delete the subscription for course"
 msgstr "Are you sure you want to delete the subscription for course"
-
-#: templates/subscription/subscription_list.html:3
-#: templates/subscription/subscription_list.html:11
-msgid "Subscriptions list"
-msgstr "Subscriptions list"
 
 #: templates/subscription/subscription_list.html:23
 msgid "Price"
@@ -1879,11 +1893,6 @@ msgstr "Unpublished"
 #: templates/subscription/subscription_list.html:43
 msgid "Update"
 msgstr "Update"
-
-#: templates/subscription/subscription_update.html:3
-#: templates/subscription/subscription_update.html:13
-msgid "Subscription update"
-msgstr "Subscription update"
 
 #: templates/subscription/subscription_update.html:16
 msgid "Update the subscription"

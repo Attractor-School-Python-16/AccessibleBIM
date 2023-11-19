@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-18 01:12+0600\n"
-"PO-Revision-Date: 2023-11-18 01:13+0600\n"
+"POT-Creation-Date: 2023-11-18 13:36+0600\n"
+"PO-Revision-Date: 2023-11-18 13:37+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -680,6 +680,7 @@ msgstr ""
 "Подписка на курс уже существует. Измените или удалите существующую подписку."
 
 #: subscription/forms/subscription_user_add_form.py:5
+#: subscription/views/subscription.py:197
 #: templates/subscription/subscription_admin/user_add.html:3
 #: templates/subscription/subscription_admin/user_add.html:67
 #: templates/subscription/subscription_admin/user_list.html:45
@@ -687,13 +688,14 @@ msgid "Grant subscription"
 msgstr "Выдать подписку"
 
 #: subscription/forms/subscription_user_delete_form.py:5
+#: subscription/views/subscription.py:238
 #: templates/subscription/subscription_admin/user_delete.html:3
 #: templates/subscription/subscription_admin/user_list.html:42
 msgid "Unsubscribe"
 msgstr "Отменить подписку"
 
 #: subscription/models/user_subscription.py:10
-#: templates/partials/sidebar.html:136
+#: subscription/views/subscription.py:125 templates/partials/sidebar.html:136
 #: templates/subscription/subscription_admin/user_add.html:19
 msgid "Subscriptions"
 msgstr "Подписки"
@@ -710,6 +712,28 @@ msgstr "Дата завершения подписки"
 #: subscription/models/user_subscription.py:14
 msgid "Subscription enabled"
 msgstr "Подписка активна"
+
+#: subscription/views/subscription.py:44
+#: templates/subscription/subscription_list.html:3
+#: templates/subscription/subscription_list.html:11
+msgid "Subscriptions list"
+msgstr "Перечень подписок"
+
+#: subscription/views/subscription.py:62
+#: templates/subscription/subscription_create.html:14
+msgid "Add subscription"
+msgstr "Добавить подписку"
+
+#: subscription/views/subscription.py:92
+#: templates/subscription/subscription_update.html:3
+#: templates/subscription/subscription_update.html:13
+msgid "Subscription update"
+msgstr "Изменение подписки"
+
+#: subscription/views/subscription.py:109
+#| msgid "Subscription deletion"
+msgid "Subscription delete"
+msgstr "Удаление подписки"
 
 #: templates/accounts/grant_moderator.html:4
 msgid "Grant moderator's rights"
@@ -875,7 +899,7 @@ msgstr "Описание"
 #: templates/modules/module_detail.html:41
 #: templates/modules/modules_list.html:34
 #: templates/partners/partners_list.html:30
-#: templates/quiz_bim/answer_bim/answer_bim_detail.html:15
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:16
 #: templates/quiz_bim/question_bim/question_bim_detail.html:17
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:32
 #: templates/steps/file/file_list.html:37
@@ -899,7 +923,7 @@ msgstr "Изменить"
 #: templates/modules/module_detail.html:43
 #: templates/modules/modules_list.html:36
 #: templates/partners/partners_list.html:32
-#: templates/quiz_bim/answer_bim/answer_bim_detail.html:20
+#: templates/quiz_bim/answer_bim/answer_bim_detail.html:22
 #: templates/quiz_bim/question_bim/question_bim_detail.html:24
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:36
 #: templates/steps/file/file_list.html:41
@@ -1642,7 +1666,6 @@ msgid "Edit file"
 msgstr "Редактирование файл"
 
 #: templates/steps/partial/test_partial.html:7
-#| msgid "test"
 msgid "Take test"
 msgstr "Прохождение теста"
 
@@ -1838,10 +1861,6 @@ msgstr "Текущая подписка"
 msgid "Subscription"
 msgstr "Подписка"
 
-#: templates/subscription/subscription_create.html:14
-msgid "Add subscription"
-msgstr "Добавить подписку"
-
 #: templates/subscription/subscription_delete.html:3
 msgid "Subscription deletion"
 msgstr "Удаление подписки"
@@ -1849,11 +1868,6 @@ msgstr "Удаление подписки"
 #: templates/subscription/subscription_delete.html:10
 msgid "Are you sure you want to delete the subscription for course"
 msgstr "Вы уверены, что хотите удалить подписку на курс"
-
-#: templates/subscription/subscription_list.html:3
-#: templates/subscription/subscription_list.html:11
-msgid "Subscriptions list"
-msgstr "Перечень подписок"
 
 #: templates/subscription/subscription_list.html:23
 msgid "Price"
@@ -1866,11 +1880,6 @@ msgstr "Не опубликован"
 #: templates/subscription/subscription_list.html:43
 msgid "Update"
 msgstr "Изменить"
-
-#: templates/subscription/subscription_update.html:3
-#: templates/subscription/subscription_update.html:13
-msgid "Subscription update"
-msgstr "Изменение подписки"
 
 #: templates/subscription/subscription_update.html:16
 msgid "Update the subscription"
