@@ -17,7 +17,7 @@ class VideoModel(AbstractModel):
     video_file = models.FileField(upload_to=video_upload_to, blank=True, null=True, verbose_name=_('Video file'))
 
     def get_absolute_url(self):
-        return reverse("step:video_list")
+        return reverse("step:videomodel_list")
 
     def __str__(self):
         return f'Видео {self.id} {self.video_title}'
