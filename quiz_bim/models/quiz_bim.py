@@ -1,10 +1,11 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from modules.models import AbstractModel
 
 
 class QuizBim(AbstractModel):
-    title = models.CharField(max_length=100, verbose_name='Тема тестирования', blank=True, null=True)
-    questions_qty = models.PositiveIntegerField(verbose_name='Количество вопросов для прохождения', default=0,
+    title = models.CharField(max_length=100, verbose_name=_('Test title'), blank=True, null=True)
+    questions_qty = models.PositiveIntegerField(verbose_name=_('Questions quantity'), default=0,
                                                 blank=True, null=True)
 
     def __str__(self):
@@ -12,5 +13,5 @@ class QuizBim(AbstractModel):
 
     class Meta:
         db_table = 'quiz_bim'
-        verbose_name = 'Тест Bim'
-        verbose_name_plural = 'Тесты Bim'
+        verbose_name = _('Test')
+        verbose_name_plural = _('Tests')
