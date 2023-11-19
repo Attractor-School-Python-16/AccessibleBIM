@@ -1,4 +1,5 @@
 import os
+
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -15,7 +16,7 @@ class FileModel(AbstractModel):
     lesson_file = models.FileField(upload_to=file_upload_to, blank=True, null=True, verbose_name=_('Lesson file'))
 
     def get_absolute_url(self):
-        return reverse("step:file_list")
+        return reverse('step:filemodel_list')
 
     def __str__(self):
         return f'Файл {self.id} {self.file_title}'

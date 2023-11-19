@@ -1,14 +1,15 @@
+{% load i18n %}
 <div class="table-responsive">
     <table class="table border mb-0" id="UserStatisticsTable">
         <thead class="table-light fw-semibold">
             <tr class="align-middle">
-                <th>User</th>
-                <th>Email</th>
-                <th>Country</th>
-                <th>Course</th>
-                <th>Registered at</th>
-                <th>Last Entry</th>
-                <th>Email Verified</th>
+                <th>{% trans 'User' %}</th>
+                <th>{% trans 'Email' %}</th>
+                <th>{% trans 'Country' %}</th>
+                <th>{% trans 'Course' %}</th>
+                <th>{% trans 'Registered at' %}</th>
+                <th>{% trans 'Last Entry' %}</th>
+                <th>{% trans 'Email Verified' %}</th>
             </tr>
         </thead>
         <tbody>
