@@ -11,8 +11,7 @@
 {% block content %}
     <section class="light">
         <div class="row">
-            <div class="heading text-center text-dark"
-                 id="pageHeaderTitle">{% trans 'List of available courses' %}</div>
+            <div class="heading text-center text-dark" id="pageHeaderTitle">{% trans 'List of available courses' %}</div>
             <div class="col-md-12">
                 {% include 'front/partials/filter.html' %}
             </div>
@@ -32,6 +31,7 @@
             {% if is_paginated %}
                 {% include 'front/partials/pagination.html' %}
             {% endif %}
+        </div>
     </section>
 
 {% endblock %}
