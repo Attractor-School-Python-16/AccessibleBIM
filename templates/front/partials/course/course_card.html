@@ -15,7 +15,10 @@
         </div>
         <div class="postcard__bar"></div>
         <div class="postcard__preview-txt">{{ course.description }}</div>
-        <a style="min-width: 125px; width: 20%" href="{% url 'front:course_user_detail' course.id %}" type="button" class="btn pb-4 bg-gradient-info">Подробнее</a>
+        <a style="min-width: 125px; width: 20%"
+           href="{% url 'front:course_user_detail' course.id %}"
+           type="button"
+           class="btn pb-4 bg-gradient-info">Подробнее</a>
         <ul class="postcard__tagbox text-white">
             <li class="tag__item">
                 <i class="fas fa-tag mr-2"></i> {{ course.language|get_language_name }}
