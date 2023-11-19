@@ -1,0 +1,20 @@
+{% extends 'moderator_page.html' %}
+{% load static %}
+
+{% block title %}Team{% endblock %}
+
+{% block moderator_interface %}
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">
+                Are you sure you want to delete the team member
+                <span class="text-danger"> {{ team.name }}</span>?
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Yes</button>
+                <a class="btn btn-primary" href="{% url 'content:team_list' %}" id="cancel-button">No</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
