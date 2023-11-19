@@ -1,6 +1,6 @@
 from django import forms
+
 from quiz_bim.models.quiz_bim import QuizBim
-from django.forms import widgets
 
 
 class QuizBimForm(forms.ModelForm):

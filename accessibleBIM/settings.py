@@ -295,10 +295,12 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen']],
         ],
 
-        'fontNames': ['Arial', 'Arial Nova Light', 'Arial Nova'],
+        'fontNames': ['Arial','Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
+                      'Courier New', 'Franklin Gothic Medium', 'Georgia', 'Impact', 'Microsoft Sans Serif', 'Tahoma',
+                      'Times New Roman', 'Trebuchet MS'],
         'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
         'addDefaultFonts': False,
-        'colors': ['#1974D2', '#1DACD6', '#34C924'],
+        'color': ['#1974D2', '#1DACD6', '#34C924'],
         'lineHeights': ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0'],
 
         'insertImage': ['filename', 'url'],

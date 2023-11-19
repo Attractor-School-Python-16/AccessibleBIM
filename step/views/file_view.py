@@ -7,19 +7,27 @@ from step.forms.file_form import FileForm
 from step.models import FileModel
 
 
-class FileListView(ListBreadcrumbMixin, LoginRequiredMixin, ListView):
+class FileListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = FileModel
     template_name = 'steps/file/file_list.html'
     context_object_name = 'files'
     home_path = reverse_lazy('modules:moderator_page')
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
-class FileDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
+
+class FileDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
     model = FileModel
     queryset = FileModel.objects.all()
     template_name = "steps/file/file_detail.html"
     context_object_name = 'file'
     home_path = reverse_lazy('modules:moderator_page')
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class FileCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
@@ -30,8 +38,8 @@ class FileCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
-        return self.request.user.has_perm('step.add_filemodel')
-
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 class FileUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
     model = FileModel
@@ -41,7 +49,8 @@ class FileUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
-        return self.request.user.has_perm('step.change_filemodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class FileDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -51,4 +60,5 @@ class FileDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
-        return self.request.user.has_perm('step.delete_filemodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser

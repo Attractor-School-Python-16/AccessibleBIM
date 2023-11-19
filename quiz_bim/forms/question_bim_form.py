@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import widgets
+from django.utils.translation import gettext_lazy as _
 from quiz_bim.models.question_bim import QuestionBim
 
 
@@ -9,5 +9,5 @@ class QuestionBimForm(forms.ModelForm):
         model = QuestionBim
         fields = ['title']
         labels = {
-            'title': 'Введите вопрос',
+            'title': _('Enter question'),
         }
