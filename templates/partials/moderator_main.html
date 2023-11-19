@@ -1,9 +1,9 @@
 {% extends 'moderator_page.html' %}
-{% load static %}
+{% load static i18n %}
 {% block moderator_interface %}
     <div class="card mb-5">
         <div class="card-header">
-            <h1>Инструкция по редактированию контента</h1>
+            <h1>{% trans 'Content management instruction' %}</h1>
         </div>
         <div class="card-body">
             {% include "instructions/intro.html" %}
@@ -23,7 +23,7 @@
                 {% include "instructions/statistics.html"%}
                 {% include "instructions/partners.html" %}
             </div>
-            <a href="{% static "files/Инструкция.pdf" %}">Скачать инструкцию</a>
+            <a href="{% static "files/Инструкция.pdf" %}">{% trans 'Download instruction' %}</a>
         </div>
     </div>
 {% endblock %}

@@ -27,24 +27,13 @@
         </div>
     </section>
 
-
-    <section class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto text-center py-5">
-                    <h2 class="text-gradient text-info text-uppercase heading">Наши партнеры</h2>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-sm-5 py-5 position-relative">
+    <section class="section-padding mt-5 mb-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2 class="text-gradient text-info text-uppercase">Наши партнеры</h2>
+                    <h2 class="text-gradient text-info text-uppercase heading">Наши партнеры</h2>
                 </div>
-                <div class="owl-carousel owl-theme mt-5">
+                <div class="owl-carousel owl-theme mt-3">
                     {% for partner in partners %}
                         <div>
                             <div class="item bg-black w-100" style="background-image: url('{{ partner.image.url }}');
@@ -52,11 +41,12 @@
                                                                 background-position: center;
                                                                 background-repeat: no-repeat;
                                                                 background-size: contain;"></div>
-                            <h4 class="text-center">{{ partner.title }}</h4>
+                            <h4 class="text-center content mt-2">{{ partner.title }}</h4>
                         </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </section>
+
 {% endblock %}
