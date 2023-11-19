@@ -124,11 +124,83 @@
     "model": "subscription.userssubscription",
     "pk": 3,
     "fields": {
-      "create_at": "2023-11-04T10:22:24.548Z",
-      "update_at": "2023-11-04T10:22:24.548Z",
+      "create_at": "2023-11-13T10:22:24.548Z",
+      "update_at": "2023-11-13T10:22:24.548Z",
       "subscription": 1,
       "user": 9,
       "end_time": "2023-12-04T16:22:24.548Z",
+      "is_active": true
+    }
+  },
+  {
+    "model": "subscription.userssubscription",
+    "pk": 4,
+    "fields": {
+      "create_at": "2023-11-09T12:01:42.596Z",
+      "update_at": "2023-11-09T12:03:00.571Z",
+      "subscription": 2,
+      "user": 10,
+      "end_time": "2023-12-14T12:01:42.596Z",
+      "is_active": false
+    }
+  },
+  {
+    "model": "subscription.userssubscription",
+    "pk": 5,
+    "fields": {
+      "create_at": "2023-11-11T12:01:49.951Z",
+      "update_at": "2023-11-11T12:03:02.617Z",
+      "subscription": 3,
+      "user": 11,
+      "end_time": "2023-12-14T12:01:49.950Z",
+      "is_active": false
+    }
+  },
+  {
+    "model": "subscription.userssubscription",
+    "pk": 6,
+    "fields": {
+      "create_at": "2023-11-12T12:01:52.808Z",
+      "update_at": "2023-11-12T12:03:04.135Z",
+      "subscription": 4,
+      "user": 12,
+      "end_time": "2023-12-14T12:01:52.808Z",
+      "is_active": false
+    }
+  },
+  {
+    "model": "subscription.userssubscription",
+    "pk": 7,
+    "fields": {
+      "create_at": "2023-11-13T12:03:06.514Z",
+      "update_at": "2023-11-13T12:03:06.514Z",
+      "subscription": 1,
+      "user": 10,
+      "end_time": "2023-12-14T12:03:06.513Z",
+      "is_active": true
+    }
+  },
+  {
+    "model": "subscription.userssubscription",
+    "pk": 8,
+    "fields": {
+      "create_at": "2023-11-13T12:03:09.421Z",
+      "update_at": "2023-11-13T12:03:09.421Z",
+      "subscription": 2,
+      "user": 11,
+      "end_time": "2023-12-14T12:03:09.420Z",
+      "is_active": true
+    }
+  },
+  {
+    "model": "subscription.userssubscription",
+    "pk": 9,
+    "fields": {
+      "create_at": "2023-11-14T12:03:11.602Z",
+      "update_at": "2023-11-14T12:03:11.602Z",
+      "subscription": 3,
+      "user": 12,
+      "end_time": "2023-12-14T12:03:11.602Z",
       "is_active": true
     }
   }

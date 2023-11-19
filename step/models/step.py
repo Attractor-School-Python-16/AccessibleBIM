@@ -7,24 +7,24 @@ from modules.models import AbstractModel
 
 class StepModel(AbstractModel):
     class TypeChoices(models.TextChoices):
-        VIDEO = 'video', _('Видео')
-        TEXT = 'text', _('Текст')
-        TEST = 'test', _('Тест')
+        VIDEO = 'video', _('Video')
+        TEXT = 'text', _('Text')
+        TEST = 'test', _('Test')
 
     chapter = models.ForeignKey('modules.ChapterModel', related_name='step', on_delete=models.CASCADE,
-                                verbose_name='Глава', blank=True, null=True)
-    title = models.CharField(max_length=250, blank=False, null=False, verbose_name='Наименование')
+                                verbose_name=_('Chapter'), blank=True, null=True)
+    title = models.CharField(max_length=250, blank=False, null=False, verbose_name=_('Title'))
     lesson_type = models.CharField(max_length=10, choices=TypeChoices.choices, blank=False, null=False,
-                                   verbose_name='Тип занятия')
-    text = models.ForeignKey('step.TextModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Текст',
+                                   verbose_name=_('Lesson type'))
+    text = models.ForeignKey('step.TextModel', related_name='step', on_delete=models.RESTRICT, verbose_name=_('Text'),
                              blank=True, null=True)
-    video = models.ForeignKey('step.VideoModel', related_name='step', on_delete=models.RESTRICT, verbose_name='Видео',
-                              blank=True, null=True)
-    test = models.ForeignKey('quiz_bim.QuizBim', related_name='step', on_delete=models.RESTRICT, verbose_name='Тест',
+    video = models.ForeignKey('step.VideoModel', related_name='step', on_delete=models.RESTRICT,
+                              verbose_name=_('Video'), blank=True, null=True)
+    test = models.ForeignKey('quiz_bim.QuizBim', related_name='step', on_delete=models.RESTRICT, verbose_name=_('Test'),
                              blank=True, null=True)
-    file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name='Файлы', blank=True, null=True)
-    learn_time = models.PositiveIntegerField(blank=False, null=False, verbose_name='Примерное время на прохождение урока')
-    serial_number = models.PositiveIntegerField(default=1)
+    file = models.ManyToManyField('step.FileModel', related_name='step', verbose_name=_('Files'), blank=True, null=True)
+    learn_time = models.PositiveIntegerField(blank=False, null=False, verbose_name=_('Lesson learn time'))
+    serial_number = models.PositiveIntegerField(default=1, verbose_name=_('Serial number'))
 
     def get_absolute_url(self):
         return reverse("step:step_detail", kwargs={"pk": self.pk})
@@ -42,5 +42,5 @@ class StepModel(AbstractModel):
 
     class Meta:
         db_table = 'steps'
-        verbose_name = 'Занятие'
-        verbose_name_plural = 'Занятия'
+        verbose_name = _('Lesson')
+        verbose_name_plural = _('Lessons')

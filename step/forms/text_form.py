@@ -1,5 +1,8 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
+
 from django_summernote.widgets import SummernoteWidget
+
 from step.models import TextModel
 
 
@@ -8,9 +11,9 @@ class TextForm(forms.ModelForm):
         model = TextModel
         fields = ['text_title', 'text_description', 'content']
         labels = {
-            'text_title': 'Введите наименование лекции',
-            'text_description': 'Укажите описание лекции',
-            'content': 'Содержание лекции',
+            'text_title': _("Enter reading's title"),
+            'text_description': _("Enter reading's description"),
+            'content': _("Content"),
         }
         widgets = {
             'text_description': SummernoteWidget(),
