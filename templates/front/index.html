@@ -11,13 +11,10 @@
                     <h1 class="heading text-gradient text-info pt-5">{% trans 'MISSION' %}</h1>
                     <p class="content text-dark mb-0 text-justify">
                         {% trans 'MISSION_TEXT' %}
-                        Наша миссия - обеспечить доступное и качественное образование
-                        в области инженерии для всех, кто желает развивать свои навыки и знания.
-                        Мы стремимся вдохновить и поддержать студентов, специалистов и энтузиастов инженерии,
-                        предоставляя им обширный выбор курсов, обучающих материалов и практических заданий.<br>
+                        <br>
                     </p>
                     <a href="{% url "front:about" %}" type="button" class="btn btn-outline-dark-blue content mt-4">
-                        {% trans 'About company' %}О компании</a>
+                        {% trans 'About company' %}</a>
                 </div>
                 <div class="col-lg-5 ms-auto">
                     <div class="position-relative">
@@ -33,7 +30,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2 class="text-gradient text-info text-uppercase heading">{% trans 'Our partners' %}Наши партнеры</h2>
+                    <h2 class="text-gradient text-info text-uppercase heading">{% trans 'Our partners' %}</h2>
                 </div>
                 <div class="owl-carousel owl-theme mt-3">
                     {% for partner in partners %}
