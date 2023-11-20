@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 
 from content.forms import PartnerForm
 from content.models import PartnerModel
@@ -34,4 +34,5 @@ class DeletePartnerView(PermissionRequiredMixin, DeleteView):
     model = PartnerModel
     permission_required = 'content.delete_partnermodel'
     success_url = reverse_lazy('content:partners_list')
+    context_object_name = 'partner'
 

@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load static view_breadcrumbs %}
-{% block title %}Удалить текст{% endblock %}
+{% block title %}{% trans 'Delete reading' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,22 +9,26 @@
     <div class="card">
         <div class="card-body">
             {% if steps %}
-                <h5 class="card-text">Данный текст используется в следующих занятиях:</h5>
+                <h5 class="card-text">{% trans 'This reading is ised in the lessons below' %}:</h5>
                 {% for step in steps %}
                     <a href="{% url "step:stepmodel_update" step.id %}">{{ step.title }}</a>
                     </br>
                 {% endfor %}
-                <h5 class="card-text my-2">Для удаления данного текста необходимо в указанных выше занятиях выбрать
-                    другой текст.</h5>
+                <h5 class="card-text my-2">
+                    {% trans 'In order to delete this reading you should change related readings in the lessons above.' %}
+                </h5>
             {% else %}
-                <p class="card-text">Вы точно хотите удалить текст:<span
-                        class="text-danger"> {{ textmodel.text_title }}</span>?
+                <p class="card-text">
+                    {% blocktrans with title=textmodel.text_title %}
+                    Are you sure you want to delete the reading
+                    <span class="text-danger"> {{ title }}</span>?
+                    {% endblocktrans %}
                 </p>
                 <form method="POST">
                     {% csrf_token %}
-                    <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Да</button>
+                    <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans 'Yes' %}</button>
                     <a href="#" class="btn btn-secondary
-                    mx-3" id="cancel-button">Нет</a>
+                    mx-3" id="cancel-button">{% trans 'No' %}</a>
                 </form>
             {% endif %}
         </div>

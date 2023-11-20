@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from content.models import PartnerModel
+from content.models import PartnerModel, TeamModel
 
 
 class AccessibleBIM(TemplateView):
@@ -8,8 +8,7 @@ class AccessibleBIM(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['title'] = 'AccessibleBIM'
-        context['sub_title'] = 'БИМСТАНДАРД'
+        context['title'] = 'Bologna Engineering Excellence'
         context['partners'] = PartnerModel.objects.all()
         return context
 
@@ -20,16 +19,17 @@ class About(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['title'] = 'O нас'
+        context['team'] = TeamModel.objects.all()
         return context
 
 
-class Contacts(TemplateView):
-    template_name = "front/contacts.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['title'] = 'Свяжитесь с нами'
-        return context
+# class Contacts(TemplateView):
+#     template_name = "front/contacts.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data()
+#         context['title'] = 'Свяжитесь с нами'
+#         return context
 
 
 class PrivacyPolicy(TemplateView):

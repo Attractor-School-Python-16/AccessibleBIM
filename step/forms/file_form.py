@@ -1,5 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.files.uploadedfile import UploadedFile
+from django.utils.translation import gettext_lazy as _
 
 from step.models import FileModel
 
@@ -16,19 +18,22 @@ from step.models import FileModel
 # application/xml  .ifcXML
 
 
-CONTENTTYPES = ['text/plain',
-                'application/vnd.ms-excel',
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'application/pdf',
-                'application/msword',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                'application/zip',
-                'application/x-7z-compressed',
-                'application/vnd.rar',
-                'application/octet-stream',
-                'application/x-step',
-                'application/xml',
-                ]
+CONTENTTYPES = [
+    'text/plain',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/zip',
+    'application/x-7z-compressed',
+    'application/vnd.rar',
+    'application/octet-stream',
+    'application/x-step',
+    'application/xml',
+    'image/vnd.dwg',
+    'image/vnd.dxf'
+]
 
 
 class FileForm(forms.ModelForm):
@@ -36,22 +41,24 @@ class FileForm(forms.ModelForm):
         model = FileModel
         fields = ['file_title', 'lesson_file']
         labels = {
-            'file_title': 'Введите наименование загружаемого файла',
-            'lesson_file': 'Загрузите файл',
+            'file_title': _('Enter the name of the uploaded file'),
+            'lesson_file': _('Upload a file'),
         }
 
     def clean_lesson_file(self):
         lesson_file = self.cleaned_data.get("lesson_file", False)
-        if lesson_file:
-            if lesson_file.content_type in CONTENTTYPES:
-                if lesson_file.size <= 20971520:
-                    return lesson_file
-                else:
-                    raise forms.ValidationError("Размер загружаемого файла не должен превышать 20 МБ")
-            else:
-                raise forms.ValidationError("Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX")
-        else:
+
+        if not lesson_file:
             return lesson_file
+
+        if isinstance(lesson_file, UploadedFile):
+            if lesson_file.content_type not in CONTENTTYPES:
+                raise forms.ValidationError(_('Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed'))
+
+            if lesson_file.size > 214958080:
+                raise forms.ValidationError(_('Uploaded file has to be no more than 250 MB'))
+
+        return lesson_file
 
     def clean(self):
         data = self.cleaned_data
@@ -60,4 +67,4 @@ class FileForm(forms.ModelForm):
         if (file_title and lesson_file) or (not file_title and not lesson_file):
             return data
         else:
-            raise forms.ValidationError("При загрузке документа требуется обязательно указать название")
+            raise forms.ValidationError(_("Title is mandatory for uploading a file"))

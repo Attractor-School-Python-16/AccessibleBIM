@@ -20,7 +20,6 @@ class CourseModel(AbstractModel):
     class TypeChoices(models.TextChoices):
         RU = 'RU', _('Русский')
         EN = 'EN', _('Английский')
-        KG = 'KG', _('Кыргызский')
 
     title = models.CharField(_('Course title'), max_length=50, null=False, blank=False)
     description = models.TextField(_('Course description'), max_length=150, null=False, blank=False)

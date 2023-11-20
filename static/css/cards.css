@@ -91,10 +91,14 @@ a:hover {
 .postcard .postcard__tagbox {
     display: flex;
     flex-flow: row wrap;
-    font-size: 14px;
+    font-size: 18px;
     margin: 20px 0 0 0;
     padding: 0;
     justify-content: center;
+}
+
+.postcard__subtitle {
+    font-size: 16px;
 }
 
 .postcard .postcard__tagbox .tag__item {
@@ -134,7 +138,7 @@ a:hover {
     }
 
     .postcard .postcard__title {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .postcard .postcard__tagbox {
@@ -237,4 +241,13 @@ a:hover {
     .blue:nth-child(2n)::before {
         background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
     }
+}
+
+.buying-course{
+    width: 15rem;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    background: #34C924;
+    border-radius: 0 11px 0 11px;
 }

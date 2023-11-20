@@ -1,6 +1,7 @@
 {% extends 'moderator_page.html' %}
+{% load i18n %}
 {% load static view_breadcrumbs %}
-{% block title %}Редактировать занятие{% endblock %}
+{% block title %}{% trans 'Edit lesson' %}{% endblock %}
 {% block moderator_interface %}
     {% block breadcrumbs %}
         {% render_breadcrumbs %}
@@ -8,7 +9,7 @@
     <div class="card mt-3 mb-5">
         <div class="card-body">
             <div class="card-header">
-                <h1>Редактирование занятия</h1>
+                <h1>Edit lesson</h1>
             </div>
             <div class="container">
                 <div class="col" id="form-div">
@@ -17,12 +18,14 @@
                             {{ error }}
                         </div>
                     {% endfor %}
-                    {% include "partials/step_form.html" with button_text="Сохранить" %}
+                    {% trans 'Save' as button_text_save %}
+                    {% include "partials/step_form.html" with button_text=button_text_save %}
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/step_update.js' %}"></script>
 {% endblock %}

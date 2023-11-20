@@ -1,0 +1,79 @@
+{% load static %}
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-coreui-toggle="collapse"
+                data-coreui-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            Занятия
+        </button>
+    </h2>
+    <div id="collapseSeven" class="accordion-collapse collapse" data-coreui-parent="#accordionExample">
+        <div class="accordion-body">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для создания Занятия, необходимо перейти в требуемую Главу соответствующего Курса:
+            </p>
+            <img src="{% static "img/instruction/chapter_detail.PNG" %}" alt="chapter_detail" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Создание Занятия зависит от того, какой тип контента предполагается в данном занятии. В соответствие
+                с этим необходимо выбрать «Добавить видео урок», «Добавить лекцию» или «Добавить текст».
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                На данной странице доступны функции редактирования и удаления Занятий, а также функционал изменения
+                их порядка.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Работа данного функционала схожа с функционалом изменения порядка глав и описана выше.
+            </p>
+            <img src="{% static "img/instruction/step_change_order.PNG" %}" alt="step_change_order" class="w-100 border
+            border-secondary rounded">
+            <h4 style="text-indent: 30px; text-align: justify" class="my-3">
+                Пример формы создания Занятия с видео:
+            </h4>
+            <img src="{% static "img/instruction/step_video_create.PNG" %}" alt="step_video_create" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Для создания Занятия необходимо указать его наименование и продолжительность в минутах.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Создание Занятия с видео и другими типами контента может сопровождаться прикреплением к нему
+                требуемых файлов (.doc, .pdf, файлы BIM проектов, чертежи). Для этого можно как выбрать файлы в поле
+                «Выберите файлы», так и прикрепить новый файл, создав его в полях под полем выбора.
+            </p>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Само видео можно также либо выбрать из уже существующего в поле «Выберите видео», либо можно сразу
+                загрузить требуемое для воспроизведения заполнив поля ниже. При этом, нельзя сделать два действия
+                (выбор и загрузка) одновременно.
+            </p>
+            <h4 style="text-indent: 30px; text-align: justify" class="my-3">
+                Пример формы создания Занятия с лекцией:
+            </h4>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Создание лекции похоже по своему содержанию на создание видео. Здесь также можно прикрепить/выбрать
+                требуемые файлы, а также либо выбрать, либо создать текст. При этом на странице доступны редакторы
+                текста для описания и содержания лекции:
+            </p>
+            <img src="{% static "img/instruction/step_text_create.PNG" %}" alt="step_text_create" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Таким образом, можно сразу придать определенную стилистику где это необходимо.
+            </p>
+            <h4 style="text-indent: 30px; text-align: justify" class="my-3">
+                Пример формы создания Занятия с тестом:
+            </h4>
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                Создание теста выглядит следующим образом:
+            </p>
+            <img src="{% static "img/instruction/step_quiz_create.PNG" %}" alt="step_quiz_create" class="w-100 border
+            border-secondary rounded">
+            <p style="text-indent: 30px; text-align: justify" class="my-3">
+                В данном случае также указывается наименование Занятия, его продолжительность в минутах. Далее либо
+                выбирается существующий тест, либо создается новый, но на данном этапе указывается только название
+                теста.Подробнее о создании теста см. в разделе «Тесты» ниже.
+            </p>
+            <button class="btn btn-secondary mx-2" type="button" data-coreui-toggle="collapse"
+                    data-coreui-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                Свернуть
+            </button>
+        </div>
+    </div>
+</div>

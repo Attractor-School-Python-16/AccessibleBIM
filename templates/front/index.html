@@ -1,20 +1,21 @@
 {% extends "front/base.html" %}
 {% load static %}
 
-{% block title %}AccessibleBIM{% endblock %}
+{% block title %}Bologna Engineering Excellence{% endblock %}
 
 {% block content %}
-    <section class="py-7">
+    <section class="section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 my-auto">
-                    <h1>Welcome!</h1>
-                    <h3>To the educational platform Enhance
-                        Engineering</h3>
-                    <p class="pe-5">Pain is what we go through as we become older. We get insulted by
-                        others, lose trust for those others. We get back stabbed by friends. It becomes
-                        harder for us to give others a hand.</p>
-                    <a href="#" type="button" class="btn btn-outline-dark-blue">Info</a>
+                <div class="col-lg-6">
+                    <h1 class="heading text-gradient text-info pt-5">МИССИЯ</h1>
+                    <p class="content text-dark mb-0 text-justify">
+                        Наша миссия - обеспечить доступное и качественное образование
+                        в области инженерии для всех, кто желает развивать свои навыки и знания.
+                        Мы стремимся вдохновить и поддержать студентов, специалистов и энтузиастов инженерии,
+                        предоставляя им обширный выбор курсов, обучающих материалов и практических заданий.<br>
+                    </p>
+                    <a href="{% url "front:about" %}" type="button" class="btn btn-outline-dark-blue content mt-4">О компании</a>
                 </div>
                 <div class="col-lg-5 ms-auto">
                     <div class="position-relative">
@@ -26,60 +27,13 @@
         </div>
     </section>
 
-    <section class="py-9">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 my-auto">
-                    <h3>Read More About Us</h3>
-                    <p class="pe-5">Pain is what we go through as we become older. We get insulted by others, lose trust
-                        for those others. We get back stabbed by friends. It becomes harder for us to give others a
-                        hand.</p>
-                    <a href="{% url "front:course_user_list" %}" type="button btn-outline-dark-blue" class="btn btn-outline-dark-blue">
-                        Перейти к курсам
-                        <i class="fas fa-arrow-right text-sm ms-1"></i>
-                    </a>
-                </div>
-                <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
-                    <div class="p-3 info-horizontal">
-                        <div class="icon icon-shape bg-dark-blue shadow-primary text-center">
-                            <i class="fas fa-ship opacity-10"></i>
-                        </div>
-                        <div class="description ps-3">
-                            <p class="mb-0">It becomes harder for us to give others a hand. <br> We get our heart broken
-                                by people we love.</p>
-                        </div>
-                    </div>
-
-                    <div class="p-3 info-horizontal">
-                        <div class="icon icon-shape  bg-dark-blue shadow-primary text-center">
-                            <i class="fas fa-handshake opacity-10"></i>
-                        </div>
-                        <div class="description ps-3">
-                            <p class="mb-0">As we live, our hearts turn colder. <br>Cause pain is what we go through as
-                                we become older.</p>
-                        </div>
-                    </div>
-                    <div class="p-3 info-horizontal">
-                        <div class="icon icon-shape  bg-dark-blue shadow-primary text-center">
-                            <i class="fas fa-hourglass opacity-10"></i>
-                        </div>
-                        <div class="description ps-3">
-                            <p class="mb-0">When we lose family over time. <br> What else could rust the heart more over
-                                time? Blackgold.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-sm-5 py-5 position-relative">
+    <section class="section-padding mt-5 mb-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2 class="text-gradient text-info text-uppercase">Наши партнеры</h2>
+                    <h2 class="text-gradient text-info text-uppercase heading">Наши партнеры</h2>
                 </div>
-                <div class="owl-carousel owl-theme mt-5">
+                <div class="owl-carousel owl-theme mt-3">
                     {% for partner in partners %}
                         <div>
                             <div class="item bg-black w-100" style="background-image: url('{{ partner.image.url }}');
@@ -87,11 +41,12 @@
                                                                 background-position: center;
                                                                 background-repeat: no-repeat;
                                                                 background-size: contain;"></div>
-                            <h4 class="text-center">{{ partner.title }}</h4>
+                            <h4 class="text-center content mt-2">{{ partner.title }}</h4>
                         </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </section>
+
 {% endblock %}

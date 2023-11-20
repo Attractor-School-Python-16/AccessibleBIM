@@ -1,13 +1,11 @@
-{% extends 'base.html' %}
-{% block content %}
-    <div class="container">
-        <div class="col">
-            <h3>Тест "{{ test.title }}"</h3>
-            <h4>Количество вопросов: {{ test.question_bim.count }}</h4>
-            <form action="" method="post">
-                {% csrf_token %}
-                <button class="btn btn-success">Пройти тест</button>
-            </form>
-        </div>
+<div class="container">
+    <div class="col" id="quiz_content">
+        <h3>Тест "{{ step.test.title }}"</h3>
+        <h4>Количество вопросов: {{ step.test.question_bim.count }}</h4>
+        <form hx-post="{% url 'quiz_bim:take_quiz' pk=step.test.pk %}"
+              hx-target="#quiz_content">
+            {% csrf_token %}
+            <button class="btn btn-success">Пройти тест</button>
+        </form>
     </div>
-{% endblock %}
+</div>

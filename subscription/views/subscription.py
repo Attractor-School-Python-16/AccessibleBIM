@@ -2,10 +2,12 @@ import uuid
 import xmltodict
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from django.core.exceptions import ValidationError
 from django.db.models import Q
 from django.http import HttpResponseForbidden
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView, TemplateView
@@ -22,6 +24,8 @@ from django.utils.functional import cached_property
 import requests
 import hashlib
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
 
 
 class SubscriptionListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -34,6 +38,10 @@ class SubscriptionListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListVie
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    @cached_property
+    def crumbs(self):
+        return [(_("Subscriptions list"), reverse("subscription:subscriptionmodel_create"))]
 
 
 class SubscriptionCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
@@ -48,6 +56,10 @@ class SubscriptionCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Cre
 
     def get_success_url(self):
         return reverse("subscription:subscriptionmodel_list")
+
+    @cached_property
+    def crumbs(self):
+        return [(_("Add subscription"), reverse("subscription:subscriptionmodel_list"))]
 
 
 class SubscriptionDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -75,6 +87,10 @@ class SubscriptionUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upd
     def get_success_url(self):
         return reverse("subscription:subscriptionmodel_list")
 
+    @cached_property
+    def crumbs(self):
+        return [(_("Subscription update"), reverse("subscription:subscriptionmodel_update", kwargs={'pk':self.object.pk}))]
+
 
 class SubscriptionDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = SubscriptionModel
@@ -86,6 +102,11 @@ class SubscriptionDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, Del
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (_("Subscription delete"), reverse("subscription:subscriptionmodel_delete", kwargs={'pk': self.object.pk}))]
 
 
 class SubscriptionUserListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -101,7 +122,7 @@ class SubscriptionUserListView(ListBreadcrumbMixin, PermissionRequiredMixin, Lis
 
     @cached_property
     def crumbs(self):
-        return [("Подписки", reverse("subscription:subscriptionmodel_user_list"))]
+        return [(_("Subscriptions"), reverse("subscription:subscriptionmodel_user_list"))]
 
 
 class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView, FormMixin):
@@ -126,22 +147,32 @@ class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, De
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form, *args, **kwargs):
-        subscription = get_object_or_404(SubscriptionModel, pk=self.button_value)
-        user = get_object_or_404(CustomUser, pk=self.object.pk)
-        user_subscription = UsersSubscription.objects.all().filter(
-            Q(user_id=self.object.pk) & Q(subscription_id=self.button_value))
-        if user_subscription:
-            user_subscription = get_object_or_404(UsersSubscription,
-                                                  (Q(user_id=self.object.pk) & Q(subscription_id=self.button_value)))
-            user_subscription.end_time = timezone.now() + timedelta(days=30)
-            user_subscription.subscription_id = self.button_value
-            user_subscription.is_active = True
-            user_subscription.save()
-            return redirect('subscription:subscriptionmodel_user_list')
-        else:
-            UsersSubscription.objects.create(subscription=subscription, user=user,
-                                             end_time=timezone.now() + timedelta(days=30))
-            return redirect('subscription:subscriptionmodel_user_list')
+        try:
+            subscription = get_object_or_404(SubscriptionModel, pk=self.button_value)
+            user = get_object_or_404(CustomUser, pk=self.object.pk)
+            if len(user.subscriptions.filter(us_subscriptions__is_active=True)) > 0:
+                raise ValidationError("Нельзя добавить больше одной подписки")
+            user_subscription = UsersSubscription.objects.all().filter(
+                Q(user_id=self.object.pk) & Q(subscription_id=self.button_value))
+            if user_subscription:
+                user_subscription = get_object_or_404(UsersSubscription,
+                                                      (Q(user_id=self.object.pk) & Q(
+                                                          subscription_id=self.button_value)))
+                user_subscription.end_time = timezone.now() + timedelta(days=30)
+                user_subscription.subscription_id = self.button_value
+                user_subscription.is_active = True
+                user_subscription.save()
+                return redirect('subscription:subscriptionmodel_user_list')
+            else:
+                UsersSubscription.objects.create(subscription=subscription, user=user,
+                                                 end_time=timezone.now() + timedelta(days=30))
+                return redirect('subscription:subscriptionmodel_user_list')
+        except ValidationError:
+            context = {
+                'message_title': 'Ошибка добавления подписки',
+                'message': 'Нельзя добавить больше 1ой подписки 1ому пользователю'
+            }
+            return render(self.request, "front/subscriptions/error_payments.html", context)
 
     def post(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -163,7 +194,8 @@ class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, De
 
     @cached_property
     def crumbs(self):
-        return [("Выдать подписку", reverse("subscription:subscriptionmodel_user_add", kwargs={'pk': self.object.pk}))]
+        return [(_("Grant subscription"), reverse("subscription:subscriptionmodel_user_add", kwargs={'pk':
+                                                                                                     self.object.pk}))]
 
 
 class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -203,7 +235,7 @@ class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin,
 
     @cached_property
     def crumbs(self):
-        return [("Отключить подписку",
+        return [(_("Unsubscribe"),
                  reverse("subscription:subscriptionmodel_user_delete", kwargs={'pk': self.object.pk}))]
 
 
@@ -300,4 +332,9 @@ class SubscriptionBuyView(PermissionRequiredMixin, View):
 
 
 class SubscriptionErrorView(TemplateView):
-    template_name = "subscription/error_payments.html"
+    template_name = "front/subscriptions/error_payments.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs['message_title'] = 'Ошибка оплаты'
+        kwargs['message'] = 'Произошла ошибка оплаты'
+        return super().get_context_data(**kwargs)

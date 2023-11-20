@@ -2,16 +2,20 @@
 {% block content %}
     <div class="container">
         <h3>Тест "{{ progress.test.title }}"</h3>
-        <h4>Количество вопросов: {{ progress.test.question_bim.count }}</h4>
-        <h4>Результат:
-            {% if progress.is_passed %}
-                Сдано
-            {% else %}
-                Не сдано
-            {% endif %}
-        </h4>
-        <h4>Верных ответов: {{ progress.correct_answers }} из {{ progress.user_progress.count }} ({{ progress.accuracy|floatformat:2 }})</h4>
-        <a href="#" class="btn btn-primary">Далее</a>
+        <h5>Количество вопросов: {{ progress.test.question_bim.count }}</h5>
+        <h5>Результат:</h5>
+        <h5>Верных ответов: {{ progress.correct_answers }} из {{ progress.user_progress.count }} ({{ progress.accuracy|floatformat:2 }})</h5>
+        {% if progress.is_passed %}
+            <h5>Сдано</h5>
+        {% else %}
+            <h5>Не сдано</h5>
+            <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
+                  hx-target="#quiz_content">
+                {% csrf_token %}
+                <button class="btn btn-success">Повторить попытку</button>
+            </form>
+        {% endif %}
+
         {% for question in questions %}
             <div class="card mt-3">
             <div class="card-body">
@@ -31,15 +35,9 @@
                             {% endif %}
                         {% else %}
                             <input disabled class="form-check-input answer-radio" type="radio" id="answer-{{ answer.id }}" name="question-{{ question.id }}" value="{{ answer.id }}">
-                            {% if answer.is_correct %}
-                                <label class="form-check-label text-success" for="answer-{{ answer.id }}">
-                                    <u>{{ answer.answer }}</u>
-                                </label>
-                            {% else %}
-                                <label class="form-check-label" for="answer-{{ answer.id }}">
+                            <label class="form-check-label" for="answer-{{ answer.id }}">
                                     {{ answer.answer }}
-                                </label>
-                            {% endif %}
+                            </label>
                         {% endif %}
                     </div>
                 {% endfor %}

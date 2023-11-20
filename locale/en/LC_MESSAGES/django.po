@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 22:20+0600\n"
-"PO-Revision-Date: 2023-11-09 16:21+0000\n"
+"POT-Creation-Date: 2023-11-20 02:04+0600\n"
+"PO-Revision-Date: 2023-11-20 02:14+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,362 +19,838 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:211
+#: .\accessibleBIM\settings.py:218
 msgid "Russian"
 msgstr "Russian"
 
-#: accessibleBIM/settings.py:212
+#: .\accessibleBIM\settings.py:219
 msgid "English"
 msgstr "English"
 
-#: accounts/admin.py:10
+#: .\accounts\admin.py:10
 msgid "Personal info"
 msgstr "Personal info"
 
-#: accounts/admin.py:11
+#: .\accounts\admin.py:11
 msgid "Job related info"
 msgstr "Job related info"
 
-#: accounts/admin.py:13
+#: .\accounts\admin.py:13
 msgid "Permissions"
 msgstr "Permissions"
 
-#: accounts/admin.py:24
+#: .\accounts\admin.py:24
 msgid "Important dates"
 msgstr "Important dates"
 
-#: accounts/forms/register_form.py:9
+#: .\accounts\forms\login_form.py:7
+#, fuzzy
+#| msgid "User"
+msgid "Username"
+msgstr "User"
+
+#: .\accounts\forms\login_form.py:12
+#, fuzzy
+#| msgid "Password reset"
+msgid "Password"
+msgstr "Password reset"
+
+#: .\accounts\forms\register_form.py:9
 msgid "captcha"
 msgstr "Enter code on the picture"
 
-#: accounts/models/custom_user.py:34
+#: .\accounts\models\custom_user.py:34
 msgid "entrepreneur"
 msgstr "Entrepreneur"
 
-#: accounts/models/custom_user.py:35
+#: .\accounts\models\custom_user.py:35
 msgid "limited_liability_company"
 msgstr "Limited Liability Company"
 
-#: accounts/models/custom_user.py:36
+#: .\accounts\models\custom_user.py:36
 msgid "opened joint stock company"
 msgstr "Opened Joint Stock Company"
 
-#: accounts/models/custom_user.py:37
+#: .\accounts\models\custom_user.py:37
 msgid "closed joint stock company"
 msgstr "Closed Joint Stock Company"
 
-#: accounts/models/custom_user.py:38
+#: .\accounts\models\custom_user.py:38
 msgid "additional liability company"
 msgstr "Additional Liability Company"
 
-#: accounts/models/custom_user.py:39
+#: .\accounts\models\custom_user.py:39
 msgid "state company"
 msgstr "State Company"
 
-#: accounts/models/custom_user.py:40
+#: .\accounts\models\custom_user.py:40
 msgid "other typecorp"
 msgstr "Other"
 
-#: accounts/models/custom_user.py:43
+#: .\accounts\models\custom_user.py:43
 msgid "first name"
 msgstr "First name"
 
-#: accounts/models/custom_user.py:44
+#: .\accounts\models\custom_user.py:44
 msgid "last name"
 msgstr "Last name"
 
-#: accounts/models/custom_user.py:45
+#: .\accounts\models\custom_user.py:45
 msgid "father name"
 msgstr "Father name"
 
-#: accounts/models/custom_user.py:46
+#: .\accounts\models\custom_user.py:46
 msgid "email address"
 msgstr "Email"
 
-#: accounts/models/custom_user.py:47
+#: .\accounts\models\custom_user.py:47
 msgid "email_verified"
 msgstr "Email verified"
 
-#: accounts/models/custom_user.py:48
+#: .\accounts\models\custom_user.py:48
 msgid "phone_number"
 msgstr "Phone"
 
-#: accounts/models/custom_user.py:49
+#: .\accounts\models\custom_user.py:49
 msgid "job_title"
 msgstr "Job"
 
-#: accounts/models/custom_user.py:50
+#: .\accounts\models\custom_user.py:50
 msgid "country"
 msgstr "Country"
 
-#: accounts/models/custom_user.py:50
+#: .\accounts\models\custom_user.py:50
 msgid "select country"
 msgstr "Select country"
 
-#: accounts/models/custom_user.py:51
+#: .\accounts\models\custom_user.py:51
 msgid "company_name"
 msgstr "Company"
 
-#: accounts/models/custom_user.py:52
+#: .\accounts\models\custom_user.py:52
 msgid "company_type"
 msgstr "Company type"
 
-#: accounts/views/register_view.py:20
+#: .\accounts\views\register_view.py:20
 msgid "Activate your user account"
 msgstr "Activate your user account"
 
-#: currency/models/currency_rate.py:6
+#: .\content\models\partner.py:8
+msgid "partner title"
+msgstr "Title"
+
+#: .\content\models\partner.py:9
+msgid "partner image"
+msgstr "Image"
+
+#: .\content\models\partner.py:16
+msgid "Partner"
+msgstr "Partner"
+
+#: .\content\models\partner.py:17 .\templates\partials\sidebar.html:182
+#: .\templates\partners\partners_create.html:5
+#: .\templates\partners\partners_delete.html:5
+#: .\templates\partners\partners_list.html:5
+#: .\templates\partners\partners_update.html:5
+msgid "Partners"
+msgstr "Partners"
+
+#: .\currency\models\currency_rate.py:6
 msgid "USD"
 msgstr "$"
 
-#: currency/models/currency_rate.py:7
+#: .\currency\models\currency_rate.py:7
 msgid "RUB"
 msgstr "RUB"
 
-#: modules/models/chapter.py:9 modules/models/courses.py:52
-#: templates/chapters/chapter_detail.html:16
+#: .\modules\models\chapter.py:9 .\modules\models\courses.py:47
+#: .\subscription\forms\subscription_form.py:12
+#: .\subscription\models\subscription.py:10
+#: .\templates\chapters\chapter_detail.html:17
+#: .\templates\partials\statistics\statistics_table.html:9
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:14
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:17
+#: .\templates\statistics\users_statistics\users_list_statistics.html:17
+#: .\templates\subscription\subscription_admin\user_add.html:50
+#: .\templates\subscription\subscription_list.html:22
 msgid "Course"
 msgstr "Course"
 
-#: modules/models/chapter.py:10
+#: .\modules\models\chapter.py:10
 msgid "Chapter title"
 msgstr "Chapter title"
 
-#: modules/models/chapter.py:11
+#: .\modules\models\chapter.py:11
 msgid "Chapter description"
 msgstr "Chapter description"
 
-#: modules/models/chapter.py:12 templates/chapters/chapter_detail.html:17
-#: templates/chapters/chapter_detail.html:43
-#: templates/courses/course_detail.html:32
+#: .\modules\models\chapter.py:12 .\step\models\step.py:27
+#: .\templates\chapters\chapter_detail.html:18
+#: .\templates\chapters\chapter_detail.html:48
+#: .\templates\courses\course_detail.html:34
 msgid "Serial number"
-msgstr "#"
+msgstr "Number"
 
-#: modules/models/chapter.py:16 templates/chapters/chapter_detail.html:12
-#: templates/courses/change_chapters_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:13
+#: .\modules\models\chapter.py:16 .\step\models\step.py:15
+#: .\templates\chapters\chapter_detail.html:13
+#: .\templates\courses\change_chapters_order.html:31
 msgid "Chapter"
 msgstr "Chapter"
 
-#: modules/models/chapter.py:17 templates/chapters/chapters_list.html:4
+#: .\modules\models\chapter.py:17 .\templates\chapters\chapters_list.html:4
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:15
 msgid "Chapters"
 msgstr "Chapters"
 
-#: modules/models/course_target.py:8
+#: .\modules\models\course_target.py:8
 msgid "Target title"
 msgstr "Course's target audience"
 
-#: modules/models/course_target.py:9
+#: .\modules\models\course_target.py:9
 msgid "Target description"
 msgstr "Description"
 
-#: modules/models/course_target.py:13
+#: .\modules\models\course_target.py:13
 msgid "Course target"
 msgstr "Target audience"
 
-#: modules/models/course_target.py:14
+#: .\modules\models\course_target.py:14
 msgid "Course targets"
 msgstr "Target audience"
 
-#: modules/models/courses.py:21
+#: .\modules\models\courses.py:21
 msgid "Русский"
-msgstr ""
+msgstr "Russian"
 
-#: modules/models/courses.py:22
+#: .\modules\models\courses.py:22
 msgid "Английский"
-msgstr ""
+msgstr "English"
 
-#: modules/models/courses.py:23
-msgid "Кыргызский"
-msgstr ""
-
-#: modules/models/courses.py:25
+#: .\modules\models\courses.py:24
 msgid "Course title"
 msgstr "Course title"
 
-#: modules/models/courses.py:26
+#: .\modules\models\courses.py:25
 msgid "Course description"
 msgstr "Course description"
 
-#: modules/models/courses.py:27
+#: .\modules\models\courses.py:26
 msgid "Course image"
 msgstr "Course image"
 
-#: modules/models/courses.py:29 modules/models/module.py:34
-#: templates/front/partials/filter.html:6
+#: .\modules\models\courses.py:28 .\modules\models\module.py:34
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:17
+#: .\templates\subscription\subscription_admin\user_add.html:51
 msgid "Module"
 msgstr "Module"
 
-#: modules/models/courses.py:31
-#: templates/course_target/course_target_detail.html:4
-#: templates/course_target/course_target_list.html:4
-#: templates/partials/sidebar.html:45
+#: .\modules\models\courses.py:30
+#: .\templates\course_target\course_target_detail.html:4
+#: .\templates\course_target\course_target_list.html:4
+#: .\templates\partials\sidebar.html:61
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:18
 msgid "Target audience"
 msgstr "Target audience"
 
-#: modules/models/courses.py:32
+#: .\modules\models\courses.py:31
 msgid "Course language"
 msgstr "Language"
 
-#: modules/models/courses.py:34
+#: .\modules\models\courses.py:33
 msgid "Course learn time"
 msgstr "Hours to complete course"
 
-#: modules/models/courses.py:36 modules/models/teacher.py:19
-#: templates/partials/sidebar.html:28
+#: .\modules\models\courses.py:35 .\modules\models\teacher.py:19
+#: .\templates\partials\sidebar.html:44
 msgid "Teachers"
 msgstr "Teachers"
 
-#: modules/models/courses.py:53 templates/courses/courses_list.html:4
+#: .\modules\models\courses.py:48 .\templates\courses\courses_list.html:4
+#: .\templates\partials\sidebar.html:28 .\templates\partials\sidebar.html:168
 msgid "Courses"
 msgstr "Courses"
 
-#: modules/models/module.py:28
+#: .\modules\models\module.py:28
 msgid "Module title"
 msgstr "Module title"
 
-#: modules/models/module.py:29
+#: .\modules\models\module.py:29
 msgid "Module description"
 msgstr "Module description"
 
-#: modules/models/module.py:30
+#: .\modules\models\module.py:30
 msgid "Module image"
 msgstr "Module image"
 
-#: modules/models/module.py:35 templates/partials/sidebar.html:12
+#: .\modules\models\module.py:35 .\templates\partials\sidebar.html:12
 msgid "Modules"
 msgstr "Modules"
 
-#: modules/models/teacher.py:8
+#: .\modules\models\teacher.py:8
 msgid "First name"
 msgstr "First name"
 
-#: modules/models/teacher.py:9
+#: .\modules\models\teacher.py:9
 msgid "Last name"
 msgstr "Last name"
 
-#: modules/models/teacher.py:10
+#: .\modules\models\teacher.py:10
 msgid "Father name"
 msgstr "Father name"
 
-#: modules/models/teacher.py:11 templates/teachers/teacher_detail.html:14
+#: .\modules\models\teacher.py:11 .\templates\teachers\teacher_detail.html:14
 msgid "Job title"
 msgstr "Job title"
 
-#: modules/models/teacher.py:12 templates/teachers/teacher_detail.html:15
+#: .\modules\models\teacher.py:12 .\templates\teachers\teacher_detail.html:15
 msgid "Company"
 msgstr "Company"
 
-#: modules/models/teacher.py:13 templates/teachers/teacher_detail.html:16
+#: .\modules\models\teacher.py:13 .\templates\teachers\teacher_detail.html:16
 msgid "Experience"
 msgstr "Experience"
 
-#: modules/models/teacher.py:14 templates/teachers/teacher_detail.html:17
+#: .\modules\models\teacher.py:14 .\templates\teachers\teacher_detail.html:17
 msgid "About teacher"
 msgstr "About"
 
-#: modules/models/teacher.py:18
+#: .\modules\models\teacher.py:18
 msgid "Teacher"
 msgstr "Teacher"
 
-#: modules/models/user_course_progress.py:7
+#: .\modules\models\user_course_progress.py:7
 msgid "In progress"
 msgstr "In progress"
 
-#: modules/models/user_course_progress.py:8
+#: .\modules\models\user_course_progress.py:8
 msgid "Finished"
 msgstr "Finished"
 
-#: modules/models/user_course_progress.py:15
+#: .\modules\models\user_course_progress.py:15
+#: .\progress\models\progress_test.py:17
+#: .\templates\accounts\grant_moderator.html:42
+#: .\templates\partials\statistics\statistics_table.html:6
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:14
+#: .\templates\statistics\users_statistics\users_list_statistics.html:14
+#: .\templates\subscription\subscription_admin\user_add.html:17
+#: .\templates\subscription\subscription_admin\user_list.html:18
 msgid "User"
 msgstr "User"
 
-#: modules/models/user_course_progress.py:17
+#: .\modules\models\user_course_progress.py:17
 msgid "Step"
 msgstr "Lesson"
 
-#: modules/models/user_course_progress.py:18
+#: .\modules\models\user_course_progress.py:18
 msgid "Status"
 msgstr "Status"
 
-#: modules/models/user_course_progress.py:20
+#: .\modules\models\user_course_progress.py:20
 msgid "Step start"
 msgstr "Lesson start"
 
-#: modules/models/user_course_progress.py:21
+#: .\modules\models\user_course_progress.py:21
 msgid "Step finish"
 msgstr "Lesson finish"
 
-#: modules/models/user_course_progress.py:25
-#: modules/models/user_course_progress.py:26
+#: .\modules\models\user_course_progress.py:25
+#: .\modules\models\user_course_progress.py:26
 msgid "Course progress"
 msgstr "Course progress"
 
-#: step/models/step.py:10
-msgid "Видео"
+#: .\modules\views\courses.py:159
+msgid "Choose different serial numbers for chapters."
+msgstr "Choose different serial numbers for chapters."
+
+#: .\progress\models\progress_test.py:12
+msgid "Test start time"
+msgstr "Test start time"
+
+#: .\progress\models\progress_test.py:13
+msgid "Test end time"
+msgstr "Test end time"
+
+#: .\progress\models\progress_test.py:21 .\quiz_bim\models\question_bim.py:9
+#: .\quiz_bim\models\quiz_bim.py:16 .\step\models\step.py:12
+#: .\step\models\step.py:23
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_detail.html:13
+#: .\templates\steps\partial\test_partial.html:2
+#: .\templates\steps\step\step_detail.html:21
+msgid "Test"
+msgstr "Test"
+
+#: .\progress\models\progress_test.py:22
+msgid "Test passed"
+msgstr "Test passed"
+
+#: .\progress\models\progress_test.py:23
+msgid "Test in progress"
+msgstr "Test in progress"
+
+#: .\progress\models\progress_test.py:39 .\progress\models\progress_test.py:40
+#: .\progress\models\progress_test_answers.py:11
+msgid "Test progress"
+msgstr "Test progress"
+
+#: .\progress\models\progress_test_answers.py:16
+#: .\quiz_bim\models\answer_bim.py:14 .\quiz_bim\models\question_bim.py:7
+#: .\quiz_bim\models\question_bim.py:16
+#: .\templates\quiz_bim\question_bim\question_bim_detail.html:6
+msgid "Question"
+msgstr "Question"
+
+#: .\progress\models\progress_test_answers.py:20
+#: .\quiz_bim\forms\answer_bim_form.py:13 .\quiz_bim\models\answer_bim.py:7
+#: .\quiz_bim\models\answer_bim.py:21
+#: .\templates\quiz_bim\answer_bim\answer_bim_detail.html:6
+msgid "Answer"
+msgstr "Answer"
+
+#: .\progress\models\progress_test_answers.py:24
+msgid "Question-Answer"
+msgstr "Question-Answer"
+
+#: .\progress\models\progress_test_answers.py:25
+msgid "Questions-Answers"
+msgstr "Questions-Answers"
+
+#: .\quiz_bim\forms\answer_bim_form.py:14 .\quiz_bim\models\answer_bim.py:9
+msgid "Right answer"
+msgstr "Correct answer"
+
+#: .\quiz_bim\forms\question_bim_form.py:12
+msgid "Enter question"
+msgstr "Enter question"
+
+#: .\quiz_bim\models\answer_bim.py:8
+msgid "Answer validation"
+msgstr "Answer validation"
+
+#: .\quiz_bim\models\answer_bim.py:9
+msgid "Wrong answer"
+msgstr "Incorrect answer"
+
+#: .\quiz_bim\models\answer_bim.py:22
+msgid "Answers"
+msgstr "Answers"
+
+#: .\quiz_bim\models\question_bim.py:17
+msgid "Questions"
+msgstr "Questions"
+
+#: .\quiz_bim\models\quiz_bim.py:7
+msgid "Test title"
+msgstr "Title"
+
+#: .\quiz_bim\models\quiz_bim.py:8
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_detail.html:14
+#: .\templates\steps\partial\test_partial.html:3
+msgid "Questions quantity"
+msgstr "Questions quantity"
+
+#: .\quiz_bim\models\quiz_bim.py:17 .\templates\partials\sidebar.html:123
+msgid "Tests"
+msgstr "Tests"
+
+#: .\quiz_bim\validators.py:33
+msgid "Question cannot have more than 2 right answers"
+msgstr "Question cannot have more than 2 correct answers"
+
+#: .\quiz_bim\validators.py:44
+msgid "Answer field cannot be empty"
+msgstr "Answer field cannot be empty"
+
+#: .\quiz_bim\validators.py:46
+msgid "Answer should contain at least 2 symbols"
+msgstr "Answer should contain at least 2 symbols"
+
+#: .\quiz_bim\validators.py:48
+msgid "Answer correctness field can take only boolean values"
+msgstr "Answer correctness field can take only boolean values"
+
+#: .\step\forms\file_form.py:44
+msgid "Enter the name of the uploaded file"
+msgstr "Enter the name of the uploaded file"
+
+#: .\step\forms\file_form.py:45
+msgid "Upload a file"
+msgstr "Upload a file"
+
+#: .\step\forms\file_form.py:56
+msgid ""
+"Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 msgstr ""
+"Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 
-#: step/models/step.py:11
-msgid "Текст"
-msgstr ""
+#: .\step\forms\file_form.py:59
+msgid "Uploaded file has to be no more than 250 MB"
+msgstr "Uploaded file has to be no more than 250 MB"
 
-#: step/models/step.py:12
-msgid "Тест"
-msgstr ""
+#: .\step\forms\file_form.py:70 .\step\tests\tests_file\view_tests.py:106
+#: .\step\tests\tests_file\view_tests.py:176
+msgid "Title is mandatory for uploading a file"
+msgstr "Title is mandatory for uploading a file"
 
-#: templates/chapters/change_steps_order.html:4
-#: templates/chapters/change_steps_order.html:35
-#: templates/chapters/chapter_detail.html:39
-msgid "Change lessons ordering"
-msgstr "Change lessons ordering"
+#: .\step\forms\step_form.py:17 .\step\forms\step_form.py:34
+#: .\step\forms\step_form.py:46
+msgid "Enter lesson's title"
+msgstr "Enter lesson's title"
 
-#: templates/chapters/change_steps_order.html:12
-#: templates/chapters/chapter_detail.html:30
-#, python-format
-msgid "List of %(title)s chapter's lessons"
-msgstr "List of %(title)s chapter's lessons"
+#: .\step\forms\step_form.py:18 .\step\forms\step_form.py:35
+#: .\step\forms\step_form.py:47
+msgid "Enter lesson's duration"
+msgstr "Enter lesson's duration"
 
-#: templates/chapters/change_steps_order.html:27
-#: templates/front/chapter/chapter_user_detail_view.html:20
+#: .\step\forms\step_form.py:19 .\step\forms\step_form.py:36
+msgid "Select files"
+msgstr "Select files"
+
+#: .\step\forms\step_form.py:20
+msgid "Select reading"
+msgstr "Select reading"
+
+#: .\step\forms\step_form.py:37
+msgid "Select video"
+msgstr "Select video"
+
+#: .\step\forms\step_form.py:48
+msgid "Select test"
+msgstr "Select test"
+
+#: .\step\forms\text_form.py:14
+msgid "Enter reading's title"
+msgstr "Enter reading's title"
+
+#: .\step\forms\text_form.py:15
+msgid "Enter reading's description"
+msgstr "Enter reading's description"
+
+#: .\step\forms\text_form.py:16 .\templates\steps\partial\text_partial.html:13
+#: .\templates\steps\text\text_detail.html:25
+msgid "Content"
+msgstr "Content"
+
+#: .\step\forms\video_form.py:17
+msgid "Enter video's title"
+msgstr "Enter video's title"
+
+#: .\step\forms\video_form.py:18
+msgid "Enter video's description"
+msgstr "Enter video's description"
+
+#: .\step\forms\video_form.py:19
+msgid "Upload video file"
+msgstr "Upload video file"
+
+#: .\step\forms\video_form.py:29
+msgid "Uploaded file has to be no more than 2 GB"
+msgstr "Uploaded file has to be no more than 2 GB"
+
+#: .\step\forms\video_form.py:31
+msgid "Only MP4, WebM and OGG formats allowed"
+msgstr "Only MP4, WebM and OGG formats allowed"
+
+#: .\step\models\file.py:15
+msgid "File title"
+msgstr "Title"
+
+#: .\step\models\file.py:16
+msgid "Lesson file"
+msgstr "Lesson file"
+
+#: .\step\models\file.py:26 .\templates\steps\step\step_detail.html:26
+msgid "File"
+msgstr "File"
+
+#: .\step\models\file.py:27 .\step\models\step.py:25
+#: .\templates\partials\sidebar.html:78
+msgid "Files"
+msgstr "Files"
+
+#: .\step\models\step.py:10 .\step\models\step.py:22 .\step\models\video.py:27
+#: .\templates\partials\sidebar.html:93
+#: .\templates\steps\step\step_detail.html:15
+msgid "Video"
+msgstr "Video"
+
+#: .\step\models\step.py:11 .\step\models\step.py:19 .\step\models\text.py:21
+msgid "Text"
+msgstr "Reading"
+
+#: .\step\models\step.py:16 .\templates\chapters\chapter_detail.html:49
+#: .\templates\chapters\chapters_list.html:21
+#: .\templates\course_target\course_target_list.html:20
+#: .\templates\courses\course_detail.html:35
+#: .\templates\courses\courses_list.html:20
+#: .\templates\modules\module_detail.html:29
+#: .\templates\modules\modules_list.html:21
+#: .\templates\partners\partners_list.html:17
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_list.html:18
+#: .\templates\steps\file\file_list.html:21
+#: .\templates\steps\step\step_list.html:21
+#: .\templates\steps\text\text_list.html:21
+#: .\templates\steps\video\video_list.html:21
+msgid "Title"
+msgstr "Title"
+
+#: .\step\models\step.py:18
+msgid "Lesson type"
+msgstr "Lesson type"
+
+#: .\step\models\step.py:26
+msgid "Lesson learn time"
+msgstr "Lesson learn time"
+
+#: .\step\models\step.py:45 .\templates\chapters\change_steps_order.html:28
+#: .\templates\front\chapter\chapter_user_detail_view.html:25
 msgid "Lesson"
 msgstr "Lesson"
 
-#: templates/chapters/change_steps_order.html:28
-#: templates/courses/change_chapters_order.html:28
+#: .\step\models\step.py:46
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:16
+msgid "Lessons"
+msgstr "Lessons"
+
+#: .\step\models\text.py:9
+msgid "Text title"
+msgstr "Title"
+
+#: .\step\models\text.py:10
+msgid "Text description"
+msgstr "Description"
+
+#: .\step\models\text.py:11
+msgid "Text content"
+msgstr "Reading content"
+
+#: .\step\models\text.py:22
+msgid "Texts"
+msgstr "Readings"
+
+#: .\step\models\video.py:15
+msgid "Video title"
+msgstr "Title"
+
+#: .\step\models\video.py:16
+msgid "Video description"
+msgstr "Description"
+
+#: .\step\models\video.py:17
+msgid "Video file"
+msgstr "Video file"
+
+#: .\step\models\video.py:28
+msgid "Videos"
+msgstr "Videos"
+
+#: .\step\step_validators.py:20
+msgid "reading"
+msgstr "reading"
+
+#: .\step\step_validators.py:28
+msgid "video"
+msgstr "video"
+
+#: .\step\step_validators.py:35
+msgid "test"
+msgstr "test"
+
+#: .\step\step_validators.py:53
+msgid ""
+"Empty fields found. You should select {} from the list or create a new one"
+msgstr ""
+"Empty fields found. You should select {} from the list or create a new one"
+
+#: .\step\step_validators.py:55
+msgid "You should select {} from the list or create a new one"
+msgstr "You should select {} from the list or create a new one"
+
+#: .\step\step_validators.py:61
+msgid "For editing you should select related content"
+msgstr "For editing you should select related content"
+
+#: .\subscription\forms\subscription_form.py:13
+#: .\subscription\models\subscription.py:11
+msgid "Course price"
+msgstr "Course price"
+
+#: .\subscription\forms\subscription_form.py:14
+#: .\subscription\models\subscription.py:12
+msgid "Publish"
+msgstr "Publish"
+
+#: .\subscription\forms\subscription_form.py:26
+#, python-brace-format
+msgid ""
+"The subscription for course {course.title} already exists.\n"
+" Change or "
+msgstr ""
+"The subscription for course {course.title} already exists. Change or delete "
+"existing subscription"
+
+#: .\subscription\forms\subscription_user_add_form.py:5
+#: .\subscription\views\subscription.py:197
+#: .\templates\subscription\subscription_admin\user_add.html:3
+#: .\templates\subscription\subscription_admin\user_add.html:67
+#: .\templates\subscription\subscription_admin\user_list.html:45
+msgid "Grant subscription"
+msgstr "Grant subscription"
+
+#: .\subscription\forms\subscription_user_delete_form.py:5
+#: .\subscription\views\subscription.py:238
+#: .\templates\subscription\subscription_admin\user_delete.html:3
+#: .\templates\subscription\subscription_admin\user_list.html:42
+msgid "Unsubscribe"
+msgstr "Unsubscribe"
+
+#: .\subscription\models\user_subscription.py:10
+#: .\subscription\views\subscription.py:125
+#: .\templates\partials\sidebar.html:136
+#: .\templates\subscription\subscription_admin\user_add.html:19
+msgid "Subscriptions"
+msgstr "Subscriptions"
+
+#: .\subscription\models\user_subscription.py:12
+#: .\templates\partials\sidebar.html:162
+msgid "Users"
+msgstr "Users"
+
+#: .\subscription\models\user_subscription.py:13
+msgid "Subscription expire date"
+msgstr "Subscription expire date"
+
+#: .\subscription\models\user_subscription.py:14
+msgid "Subscription enabled"
+msgstr "Subscription enabled"
+
+#: .\subscription\views\subscription.py:44
+#: .\templates\subscription\subscription_list.html:3
+#: .\templates\subscription\subscription_list.html:11
+msgid "Subscriptions list"
+msgstr "Subscriptions list"
+
+#: .\subscription\views\subscription.py:62
+#: .\templates\subscription\subscription_create.html:14
+msgid "Add subscription"
+msgstr "Add subscription"
+
+#: .\subscription\views\subscription.py:92
+#: .\templates\subscription\subscription_update.html:3
+#: .\templates\subscription\subscription_update.html:13
+msgid "Subscription update"
+msgstr "Subscription update"
+
+#: .\subscription\views\subscription.py:109
+msgid "Subscription delete"
+msgstr "Subscription delete"
+
+#: .\templates\accounts\grant_moderator.html:4
+msgid "Grant moderator's rights"
+msgstr "Grant moderator's rights"
+
+#: .\templates\accounts\grant_moderator.html:13
+msgid "Grant moderator's rights page"
+msgstr "Grant moderator's rights page"
+
+#: .\templates\accounts\grant_moderator.html:16
+msgid "Search by Email"
+msgstr "Search by Email"
+
+#: .\templates\accounts\grant_moderator.html:18
+msgid "Search"
+msgstr "Search"
+
+#: .\templates\accounts\grant_moderator.html:29
+msgid "Role"
+msgstr "Role"
+
+#: .\templates\accounts\grant_moderator.html:40
+msgid "Moderator"
+msgstr "Moderator"
+
+#: .\templates\accounts\grant_moderator.html:48
+msgid "No users"
+msgstr "No users"
+
+#: .\templates\accounts\grant_moderator.html:57
+#: .\templates\accounts\grant_moderator.html:65
+msgid "Grant"
+msgstr "Grant"
+
+#: .\templates\accounts\grant_moderator.html:59
+#: .\templates\accounts\grant_moderator.html:67
+#: .\templates\socialaccount\connections.html:37
+msgid "Remove"
+msgstr "Remove"
+
+#: .\templates\chapters\change_steps_order.html:4
+#: .\templates\chapters\change_steps_order.html:36
+#: .\templates\chapters\chapter_detail.html:42
+msgid "Change lessons ordering"
+msgstr "Change lessons ordering"
+
+#: .\templates\chapters\change_steps_order.html:13
+#: .\templates\chapters\chapter_detail.html:31
+#, python-format
+msgid ""
+"List of %(title)s chapter's\n"
+"                        lessons"
+msgstr "List of %(title)s chapter's lessons"
+
+#: .\templates\chapters\change_steps_order.html:29
+#: .\templates\courses\change_chapters_order.html:34
 msgid "Current number"
 msgstr "Current number"
 
-#: templates/chapters/change_steps_order.html:29
-#: templates/courses/change_chapters_order.html:29
+#: .\templates\chapters\change_steps_order.html:30
+#: .\templates\courses\change_chapters_order.html:37
 msgid "New number"
 msgstr "New number"
 
-#: templates/chapters/change_steps_order.html:36
-#: templates/courses/change_chapters_order.html:36
+#: .\templates\chapters\change_steps_order.html:37
+#: .\templates\courses\change_chapters_order.html:46
 msgid "Back"
 msgstr "Back"
 
-#: templates/chapters/chapter_create.html:4
-#: templates/chapters/chapter_create.html:12
-#: templates/chapters/chapters_list.html:16
-#: templates/courses/course_detail.html:26
+#: .\templates\chapters\chapter_create.html:4
+#: .\templates\chapters\chapter_create.html:12
+#: .\templates\chapters\chapters_list.html:16
+#: .\templates\courses\course_detail.html:27
 msgid "Add chapter"
 msgstr "Add chapter"
 
-#: templates/chapters/chapter_create.html:13
-#: templates/course_target/course_target_create.html:13
-#: templates/courses/course_create.html:13
-#: templates/modules/module_create.html:13 templates/partials/sidebar.html:17
-#: templates/partials/sidebar.html:33 templates/partials/sidebar.html:50
-#: templates/teachers/teacher_create.html:13
+#: .\templates\chapters\chapter_create.html:13
+#: .\templates\course_target\course_target_create.html:13
+#: .\templates\courses\course_create.html:13
+#: .\templates\modules\module_create.html:13
+#: .\templates\partials\sidebar.html:17 .\templates\partials\sidebar.html:33
+#: .\templates\partials\sidebar.html:49 .\templates\partials\sidebar.html:66
+#: .\templates\partials\sidebar.html:82 .\templates\partials\sidebar.html:97
+#: .\templates\partials\sidebar.html:112 .\templates\partials\sidebar.html:127
+#: .\templates\partials\sidebar.html:186
+#: .\templates\partners\partners_create.html:11
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_create.html:16
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_list.html:13
+#: .\templates\steps\file\file_create.html:18
+#: .\templates\steps\file\file_list.html:15
+#: .\templates\steps\step\step_create.html:22
+#: .\templates\steps\step\step_list.html:16
+#: .\templates\steps\text\text_create.html:18
+#: .\templates\steps\text\text_list.html:15
+#: .\templates\steps\video\video_create.html:18
+#: .\templates\steps\video\video_list.html:15
+#: .\templates\subscription\subscription_create.html:17
+#: .\templates\subscription\subscription_list.html:15
+#: .\templates\teachers\teacher_create.html:13
+#: .\templates\team\team_create.html:11
 msgid "Add"
 msgstr "Add"
 
-#: templates/chapters/chapter_delete.html:4
+#: .\templates\chapters\chapter_delete.html:4
 msgid "Delete chapter"
 msgstr "Delete chapter"
 
-#: templates/chapters/chapter_delete.html:12
+#: .\templates\chapters\chapter_delete.html:12
 #, python-format
 msgid ""
 "\n"
@@ -386,120 +862,168 @@ msgstr ""
 "Are you sure you want to delete the chapter\n"
 "<span class=\"text-danger\"> %(title)s</span>?"
 
-#: templates/chapters/chapter_delete.html:19
-#: templates/course_target/course_target_delete.html:19
-#: templates/courses/course_delete.html:19
-#: templates/modules/module_delete.html:19
-#: templates/teachers/teacher_delete.html:19
+#: .\templates\chapters\chapter_delete.html:19
+#: .\templates\course_target\course_target_delete.html:19
+#: .\templates\modules\module_delete.html:19
+#: .\templates\partners\partners_delete.html:18
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_delete.html:28
+#: .\templates\steps\file\file_delete.html:19
+#: .\templates\steps\step\step_delete.html:19
+#: .\templates\steps\text\text_delete.html:29
+#: .\templates\steps\video\video_delete.html:29
+#: .\templates\subscription\subscription_admin\user_delete.html:18
+#: .\templates\subscription\subscription_delete.html:15
+#: .\templates\teachers\teacher_delete.html:19
 msgid "Yes"
 msgstr "Yes"
 
-#: templates/chapters/chapter_delete.html:20
-#: templates/course_target/course_target_delete.html:20
-#: templates/courses/course_delete.html:20
-#: templates/modules/module_delete.html:20
-#: templates/teachers/teacher_delete.html:20
+#: .\templates\chapters\chapter_delete.html:20
+#: .\templates\course_target\course_target_delete.html:20
+#: .\templates\modules\module_delete.html:20
+#: .\templates\partners\partners_delete.html:19
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_delete.html:30
+#: .\templates\steps\file\file_delete.html:21
+#: .\templates\steps\step\step_delete.html:21
+#: .\templates\steps\text\text_delete.html:31
+#: .\templates\steps\video\video_delete.html:31
+#: .\templates\subscription\subscription_admin\user_delete.html:20
+#: .\templates\subscription\subscription_delete.html:17
+#: .\templates\teachers\teacher_delete.html:20
 msgid "No"
 msgstr "No"
 
-#: templates/chapters/chapter_detail.html:15
+#: .\templates\chapters\chapter_detail.html:16
+#: .\templates\steps\partial\text_partial.html:8
+#: .\templates\steps\text\text_detail.html:20
 msgid "Description"
 msgstr "Description"
 
-#: templates/chapters/chapter_detail.html:21
-#: templates/chapters/chapter_detail.html:60
-#: templates/chapters/chapters_list.html:33
-#: templates/course_target/course_target_detail.html:17
-#: templates/course_target/course_target_list.html:33
-#: templates/courses/change_chapters_order.html:35
-#: templates/courses/course_detail.html:14
-#: templates/courses/course_detail.html:46
-#: templates/courses/courses_list.html:33
-#: templates/modules/module_detail.html:14
-#: templates/modules/module_detail.html:41
-#: templates/modules/modules_list.html:32
-#: templates/teachers/teacher_detail.html:20
-#: templates/teachers/teachers_list.html:33
+#: .\templates\chapters\chapter_detail.html:22
+#: .\templates\chapters\chapter_detail.html:66
+#: .\templates\chapters\chapters_list.html:33
+#: .\templates\course_target\course_target_detail.html:17
+#: .\templates\course_target\course_target_list.html:33
+#: .\templates\courses\change_chapters_order.html:44
+#: .\templates\courses\course_detail.html:14
+#: .\templates\courses\course_detail.html:48
+#: .\templates\courses\courses_list.html:32
+#: .\templates\modules\module_detail.html:14
+#: .\templates\modules\module_detail.html:41
+#: .\templates\modules\modules_list.html:34
+#: .\templates\partners\partners_list.html:30
+#: .\templates\quiz_bim\answer_bim\answer_bim_detail.html:16
+#: .\templates\quiz_bim\question_bim\question_bim_detail.html:17
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_list.html:32
+#: .\templates\steps\file\file_list.html:37
+#: .\templates\steps\step\step_list.html:31
+#: .\templates\steps\text\text_list.html:35
+#: .\templates\steps\video\video_list.html:35
+#: .\templates\teachers\teacher_detail.html:20
+#: .\templates\teachers\teachers_list.html:36
 msgid "Change"
 msgstr "Change"
 
-#: templates/chapters/chapter_detail.html:23
-#: templates/chapters/chapter_detail.html:62
-#: templates/chapters/chapters_list.html:35
-#: templates/course_target/course_target_detail.html:19
-#: templates/course_target/course_target_list.html:35
-#: templates/courses/course_detail.html:16
-#: templates/courses/course_detail.html:48
-#: templates/courses/courses_list.html:35
-#: templates/modules/module_detail.html:16
-#: templates/modules/module_detail.html:43
-#: templates/modules/modules_list.html:34
-#: templates/teachers/teacher_detail.html:22
-#: templates/teachers/teachers_list.html:35
+#: .\templates\chapters\chapter_detail.html:24
+#: .\templates\chapters\chapter_detail.html:68
+#: .\templates\chapters\chapters_list.html:35
+#: .\templates\course_target\course_target_detail.html:19
+#: .\templates\course_target\course_target_list.html:35
+#: .\templates\courses\course_detail.html:16
+#: .\templates\courses\course_detail.html:50
+#: .\templates\courses\courses_list.html:34
+#: .\templates\modules\module_detail.html:16
+#: .\templates\modules\module_detail.html:43
+#: .\templates\modules\modules_list.html:36
+#: .\templates\partners\partners_list.html:32
+#: .\templates\quiz_bim\answer_bim\answer_bim_detail.html:22
+#: .\templates\quiz_bim\question_bim\question_bim_detail.html:24
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_list.html:36
+#: .\templates\steps\file\file_list.html:41
+#: .\templates\steps\partial\test_partial.html:11
+#: .\templates\steps\partial\test_partial.html:22
+#: .\templates\steps\step\step_detail.html:32
+#: .\templates\steps\step\step_list.html:32
+#: .\templates\steps\text\text_detail.html:32
+#: .\templates\steps\text\text_list.html:39
+#: .\templates\steps\video\video_detail.html:37
+#: .\templates\steps\video\video_list.html:40
+#: .\templates\subscription\subscription_list.html:45
+#: .\templates\teachers\teacher_detail.html:22
+#: .\templates\teachers\teachers_list.html:38
 msgid "Delete"
 msgstr "Delete"
 
-#: templates/chapters/chapter_detail.html:33
+#: .\templates\chapters\chapter_detail.html:36
 msgid "Add video lesson"
 msgstr "Add video lesson"
 
-#: templates/chapters/chapter_detail.html:35
+#: .\templates\chapters\chapter_detail.html:38
 msgid "Add text lesson"
 msgstr "Add text lesson"
 
-#: templates/chapters/chapter_detail.html:37
+#: .\templates\chapters\chapter_detail.html:40
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_create.html:3
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_create.html:13
 msgid "Add test"
 msgstr "Add test"
 
-#: templates/chapters/chapter_detail.html:44
-#: templates/chapters/chapters_list.html:21
-#: templates/course_target/course_target_list.html:20
-#: templates/courses/course_detail.html:33
-#: templates/courses/courses_list.html:21
-#: templates/modules/module_detail.html:29
-#: templates/modules/modules_list.html:20
-msgid "Title"
-msgstr "Title"
-
-#: templates/chapters/chapter_detail.html:45
-#: templates/chapters/chapters_list.html:22
-#: templates/course_target/course_target_list.html:21
-#: templates/courses/course_detail.html:34
-#: templates/courses/courses_list.html:22
-#: templates/modules/module_detail.html:30
-#: templates/modules/modules_list.html:21
-#: templates/teachers/teachers_list.html:21
+#: .\templates\chapters\chapter_detail.html:50
+#: .\templates\chapters\chapters_list.html:22
+#: .\templates\course_target\course_target_list.html:21
+#: .\templates\courses\course_detail.html:36
+#: .\templates\courses\courses_list.html:21
+#: .\templates\modules\module_detail.html:30
+#: .\templates\modules\modules_list.html:22
+#: .\templates\partners\partners_list.html:18
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_list.html:19
+#: .\templates\steps\file\file_list.html:22
+#: .\templates\steps\step\step_list.html:22
+#: .\templates\steps\text\text_list.html:22
+#: .\templates\steps\video\video_list.html:22
+#: .\templates\subscription\subscription_list.html:25
+#: .\templates\teachers\teachers_list.html:23
 msgid "Actions"
 msgstr "Actions"
 
-#: templates/chapters/chapter_update.html:4
-#: templates/chapters/chapter_update.html:12
+#: .\templates\chapters\chapter_update.html:4
+#: .\templates\chapters\chapter_update.html:12
 msgid "Edit chapter"
 msgstr "Edit chapter"
 
-#: templates/chapters/chapter_update.html:13
-#: templates/course_target/course_target_update.html:13
-#: templates/courses/course_update.html:13
-#: templates/modules/module_update.html:13
-#: templates/teachers/teacher_update.html:13
+#: .\templates\chapters\chapter_update.html:13
+#: .\templates\course_target\course_target_update.html:13
+#: .\templates\courses\course_update.html:13
+#: .\templates\modules\module_update.html:13
+#: .\templates\partners\partners_update.html:9
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_detail.html:21
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_update.html:16
+#: .\templates\steps\file\file_update.html:18
+#: .\templates\steps\partial\test_partial.html:9
+#: .\templates\steps\partial\test_partial.html:20
+#: .\templates\steps\step\step_detail.html:31
+#: .\templates\steps\text\text_detail.html:31
+#: .\templates\steps\text\text_update.html:18
+#: .\templates\steps\video\video_detail.html:36
+#: .\templates\steps\video\video_update.html:18
+#: .\templates\teachers\teacher_update.html:13
 msgid "Edit"
 msgstr "Edit"
 
-#: templates/chapters/chapters_list.html:15
+#: .\templates\chapters\chapters_list.html:15
 msgid "Chapters list"
 msgstr "Chapters list"
 
-#: templates/course_target/course_target_create.html:4
-#: templates/course_target/course_target_create.html:12
-#: templates/course_target/course_target_list.html:15
+#: .\templates\course_target\course_target_create.html:4
+#: .\templates\course_target\course_target_create.html:12
+#: .\templates\course_target\course_target_list.html:15
 msgid "Add target audience"
 msgstr "Add target audience"
 
-#: templates/course_target/course_target_delete.html:4
+#: .\templates\course_target\course_target_delete.html:4
 msgid "Delete target audience"
 msgstr "Delete target audience"
 
-#: templates/course_target/course_target_delete.html:12
+#: .\templates\course_target\course_target_delete.html:12
 #, python-format
 msgid ""
 "\n"
@@ -511,38 +1035,41 @@ msgstr ""
 "Are you sure you want to delete the target audience\n"
 "<span class=\"text-danger\"> %(title)s</span>?"
 
-#: templates/course_target/course_target_list.html:12
+#: .\templates\course_target\course_target_list.html:12
 msgid "Target audience list"
 msgstr "Target audience list"
 
-#: templates/course_target/course_target_update.html:4
-#: templates/course_target/course_target_update.html:12
+#: .\templates\course_target\course_target_update.html:4
+#: .\templates\course_target\course_target_update.html:12
 msgid "Edit target audience"
 msgstr "Edit target audience"
 
-#: templates/courses/change_chapters_order.html:4
-#: templates/courses/course_detail.html:28
-msgid "Change chapters ordering"
-msgstr "Change chapters ordering"
+#: .\templates\courses\change_chapters_order.html:3
+msgid "Change chapters order"
+msgstr "Change chapters order"
 
-#: templates/courses/change_chapters_order.html:12
-#: templates/courses/course_detail.html:23
+#: .\templates\courses\change_chapters_order.html:13
 #, python-format
-msgid "List of %(title)s course's chapters"
-msgstr "List of %(title)s course's chapters"
+msgid ""
+"\n"
+"                            %(title)s course's chapters list\n"
+"                        "
+msgstr ""
+"\n"
+"%(title)s course's chapters list"
 
-#: templates/courses/course_create.html:4
-#: templates/courses/course_create.html:12
-#: templates/courses/courses_list.html:16
-#: templates/modules/module_detail.html:24
+#: .\templates\courses\course_create.html:4
+#: .\templates\courses\course_create.html:12
+#: .\templates\courses\courses_list.html:15
+#: .\templates\modules\module_detail.html:24
 msgid "Add course"
 msgstr "Add course"
 
-#: templates/courses/course_delete.html:4
+#: .\templates\courses\course_delete.html:4
 msgid "Delete course"
 msgstr "Delete course"
 
-#: templates/courses/course_delete.html:12
+#: .\templates\courses\course_delete.html:12
 #, python-format
 msgid ""
 "\n"
@@ -554,51 +1081,62 @@ msgstr ""
 "Are you sure you want to delete the course\n"
 "<span class=\"text-danger\"> %(title)s</span>?"
 
-#: templates/courses/course_update.html:4
-#: templates/courses/course_update.html:12
+#: .\templates\courses\course_detail.html:23
+#, python-format
+msgid ""
+"List of %(title)s course's\n"
+"                    chapters"
+msgstr "List of %(title)s course's chapters"
+
+#: .\templates\courses\course_detail.html:29
+msgid "Change chapters ordering"
+msgstr "Change chapters ordering"
+
+#: .\templates\courses\course_update.html:4
+#: .\templates\courses\course_update.html:12
 msgid "Edit course"
 msgstr "Edit course"
 
-#: templates/courses/courses_list.html:15
-#: templates/front/courses/courses.html:3
+#: .\templates\courses\courses_list.html:13
+#: .\templates\front\courses\courses.html:3
 msgid "Courses list"
 msgstr "Courses list"
 
-#: templates/front/accounts/change_password.html:4
-#: templates/front/accounts/change_password.html:15
-#: templates/front/accounts/change_password_done.html:4
-#: templates/front/accounts/password-reset/password_reset_confirm.html:13
-#: templates/front/accounts/profile.html:34
+#: .\templates\front\accounts\change_password.html:4
+#: .\templates\front\accounts\change_password.html:15
+#: .\templates\front\accounts\change_password_done.html:4
+#: .\templates\front\accounts\password-reset\password_reset_confirm.html:13
+#: .\templates\front\accounts\profile.html:36
 msgid "Change password"
 msgstr "Change Password"
 
-#: templates/front/accounts/change_password.html:14
+#: .\templates\front\accounts\change_password.html:14
 msgid "Password changing"
 msgstr "Change Password"
 
-#: templates/front/accounts/change_password_done.html:14
+#: .\templates\front\accounts\change_password_done.html:14
 msgid "Password successfully changed"
 msgstr "Password successfully changed"
 
-#: templates/front/accounts/email/invalid_verification_link.html:4
-#: templates/front/accounts/email/verification-email-not-sent.html:4
-#: templates/front/accounts/email/verification-email-sent.html:4
-#: templates/front/accounts/login.html:4
-#: templates/front/accounts/login.html:20
-#: templates/front/accounts/password-reset/password_reset.html:4
+#: .\templates\front\accounts\email\invalid_verification_link.html:4
+#: .\templates\front\accounts\email\verification-email-not-sent.html:4
+#: .\templates\front\accounts\email\verification-email-sent.html:4
+#: .\templates\front\accounts\login.html:4
+#: .\templates\front\accounts\login.html:20
+#: .\templates\front\accounts\password-reset\password_reset.html:4
 msgid "Login"
 msgstr "Login"
 
-#: templates/front/accounts/email/invalid_verification_link.html:20
+#: .\templates\front\accounts\email\invalid_verification_link.html:20
 msgid "Invalid verification link"
 msgstr "Invalid verification link"
 
-#: templates/front/accounts/email/verification-email-not-sent.html:20
+#: .\templates\front\accounts\email\verification-email-not-sent.html:20
 msgid "Error during verification email sending"
 msgstr ""
 "We couldn't send verification email on submitted address. Please try again."
 
-#: templates/front/accounts/email/verification-email-sent.html:17
+#: .\templates\front\accounts\email\verification-email-sent.html:17
 #, python-format
 msgid ""
 "\n"
@@ -609,7 +1147,7 @@ msgstr ""
 "\n"
 "Email was sent to %(email)s. Please check your mailbox and verify your email address."
 
-#: templates/front/accounts/email/verification_email.html:4
+#: .\templates\front\accounts\email\verification_email.html:4
 #, python-format
 msgid ""
 "\n"
@@ -621,49 +1159,68 @@ msgstr ""
 "Dear %(name)s,\n"
 "\n"
 "Please click on the link below to confirm your registration:\n"
-"\tDear %(user.get_full_name)s,\n"
-"\n"
-"Please click on the link below to confirm your registration\n"
 
-#: templates/front/accounts/login.html:64
+#: .\templates\front\accounts\login.html:26
+msgid "Sign in with Google"
+msgstr ""
+
+#: .\templates\front\accounts\login.html:42
+#, fuzzy
+#| msgid "Activate your user account"
+msgid "Sign In to your account"
+msgstr "Activate your user account"
+
+#: .\templates\front\accounts\login.html:57
+#, fuzzy
+#| msgid "Sign Up"
+msgid "Sign in"
+msgstr "Sign Up"
+
+#: .\templates\front\accounts\login.html:63
 msgid "Forgot password"
 msgstr "Forgot password"
 
-#: templates/front/accounts/password-reset/password_reset.html:20
+#: .\templates\front\accounts\login.html:65
+#, fuzzy
+#| msgid "Register"
+msgid "Register Now"
+msgstr "Register"
+
+#: .\templates\front\accounts\password-reset\password_reset.html:20
 msgid "Enter you email to reset password"
 msgstr "Enter you email to reset password"
 
-#: templates/front/accounts/password-reset/password_reset.html:21
+#: .\templates\front\accounts\password-reset\password_reset.html:21
 msgid "Send email"
 msgstr "Send an email"
 
-#: templates/front/accounts/password-reset/password_reset_complete.html:4
-#: templates/front/accounts/password-reset/password_reset_confirm.html:4
-#: templates/front/accounts/password-reset/password_reset_done.html:4
-#: templates/front/accounts/password-reset/password_reset_subject.txt:2
+#: .\templates\front\accounts\password-reset\password_reset_complete.html:4
+#: .\templates\front\accounts\password-reset\password_reset_confirm.html:4
+#: .\templates\front\accounts\password-reset\password_reset_done.html:4
+#: .\templates\front\accounts\password-reset\password_reset_subject.txt:2
 msgid "Password reset"
 msgstr "Password reset"
 
-#: templates/front/accounts/password-reset/password_reset_complete.html:12
+#: .\templates\front\accounts\password-reset\password_reset_complete.html:12
 msgid "Password changed"
 msgstr "Password successfully changed"
 
-#: templates/front/accounts/password-reset/password_reset_confirm.html:37
+#: .\templates\front\accounts\password-reset\password_reset_confirm.html:37
 msgid "Save changes"
 msgstr "Save changes"
 
-#: templates/front/accounts/password-reset/password_reset_confirm.html:41
+#: .\templates\front\accounts\password-reset\password_reset_confirm.html:41
 msgid "Invalid password reset link"
 msgstr ""
 "Invalid link. Probably, you have used it before. Please request a new link."
 
-#: templates/front/accounts/password-reset/password_reset_done.html:12
+#: .\templates\front\accounts\password-reset\password_reset_done.html:12
 msgid "Password reset email sent"
 msgstr ""
 "Email with instructions for changing password was sent. Please check your "
 "mailbox."
 
-#: templates/front/accounts/password-reset/password_reset_email.html:4
+#: .\templates\front\accounts\password-reset\password_reset_email.html:4
 #, python-format
 msgid ""
 "\n"
@@ -676,48 +1233,67 @@ msgstr ""
 "\n"
 "Please click on the link below to reset your password:\n"
 
-#: templates/front/accounts/profile.html:3
+#: .\templates\front\accounts\profile.html:3
+#: .\templates\partials\moderator_header.html:20
 msgid "Profile"
 msgstr "Profile"
 
-#: templates/front/accounts/profile.html:74
+#: .\templates\front\accounts\profile.html:83
 msgid "My courses"
 msgstr "My courses"
 
-#: templates/front/accounts/register.html:4
+#: .\templates\front\accounts\register.html:4
 msgid "Registration"
 msgstr "Registration"
 
-#: templates/front/accounts/register.html:14
-#: templates/front/accounts/register.html:39
+#: .\templates\front\accounts\register.html:14
+#: .\templates\front\accounts\register.html:45
 msgid "Register"
 msgstr "Register"
 
-#: templates/front/chapter/chapter_user_detail_view.html:37
-msgid "Previous lesson"
-msgstr "Previous lesson"
+#: .\templates\front\accounts\register.html:20
+#, fuzzy
+#| msgid "Activate your user account"
+msgid "Create your account"
+msgstr "Activate your user account"
 
-#: templates/front/chapter/chapter_user_detail_view.html:40
-msgid "Next lesson"
-msgstr "Next lesson"
+#: .\templates\front\accounts\register.html:38
+msgid "Отправляя данную форму вы соглашаетесь с"
+msgstr "By submitting this form you agree to"
 
-#: templates/front/chapter/chapter_user_detail_view.html:44
-msgid "Next chapter"
-msgstr "Next chapter"
+#: .\templates\front\accounts\register.html:39
+msgid "Политикой конфиденциальности"
+msgstr "Privacy Policy"
 
-#: templates/front/courses/courses.html:8
+#: .\templates\front\accounts\register.html:40
+msgid "и"
+msgstr "and"
+
+#: .\templates\front\accounts\register.html:40
+msgid "Пользовательским соглашением"
+msgstr "User agreement"
+
+#: .\templates\front\accounts\register.html:47
+msgid "Sign up with Google"
+msgstr ""
+
+#: .\templates\front\courses\courses.html:14
 msgid "List of available courses"
 msgstr "List of available courses"
 
-#: templates/front/courses/courses.html:23
+#: .\templates\front\courses\courses.html:28
 msgid "No courses found"
 msgstr "No courses found"
 
-#: templates/modules/module_create.html:12
+#: .\templates\modules\module_create.html:12
 msgid "Add module:"
 msgstr "Add module:"
 
-#: templates/modules/module_delete.html:12
+#: .\templates\modules\module_delete.html:4
+msgid "Delete module"
+msgstr "Delete module"
+
+#: .\templates\modules\module_delete.html:12
 #, python-format
 msgid ""
 "\n"
@@ -729,82 +1305,276 @@ msgstr ""
 "Are you sure you want to delete the module\n"
 "<span class=\"text-danger\"> %(title)s</span>?"
 
-#: templates/modules/module_detail.html:22
+#: .\templates\modules\module_detail.html:22
 #, python-format
 msgid "List of %(title)s module's courses"
 msgstr "List of %(title)s module's courses"
 
-#: templates/modules/module_update.html:12
+#: .\templates\modules\module_update.html:12
 msgid "Change module"
 msgstr "Change module"
 
-#: templates/modules/modules_list.html:13
+#: .\templates\modules\modules_list.html:13
 msgid "Modules list"
 msgstr "Modules list"
 
-#: templates/modules/modules_list.html:15
+#: .\templates\modules\modules_list.html:15
 msgid "Add modules"
 msgstr "Add modules"
 
-#: templates/partials/sidebar.html:21 templates/partials/sidebar.html:38
-#: templates/partials/sidebar.html:55
+#: .\templates\partials\moderator_header.html:11
+msgid "Main page"
+msgstr "Home"
+
+#: .\templates\partials\moderator_header.html:17
+msgid "Logout"
+msgstr "Logout"
+
+#: .\templates\partials\moderator_header.html:25
+msgid "Grant moderator access"
+msgstr "Grant moderator access"
+
+#: .\templates\partials\moderator_main.html:6
+msgid "Content management instruction"
+msgstr "Content management instruction"
+
+#: .\templates\partials\moderator_main.html:26
+msgid "Download instruction"
+msgstr "Download instruction"
+
+#: .\templates\partials\sidebar.html:21 .\templates\partials\sidebar.html:37
+#: .\templates\partials\sidebar.html:54 .\templates\partials\sidebar.html:71
+#: .\templates\partials\sidebar.html:86 .\templates\partials\sidebar.html:101
+#: .\templates\partials\sidebar.html:116 .\templates\partials\sidebar.html:130
+#: .\templates\partials\sidebar.html:189
 msgid "List"
 msgstr "List"
 
-#: templates/socialaccount/authentication_error.html:4
-#: templates/socialaccount/authentication_error.html:7
-msgid "Social Network Login Failure"
-msgstr ""
+#: .\templates\partials\sidebar.html:108
+msgid "Readings"
+msgstr "Readings"
 
-#: templates/socialaccount/authentication_error.html:9
+#: .\templates\partials\sidebar.html:140
+msgid "Publish courses"
+msgstr "Publish courses"
+
+#: .\templates\partials\sidebar.html:145
+msgid "Grant access"
+msgstr "Grant access"
+
+#: .\templates\partials\sidebar.html:149
+msgid "List of courses"
+msgstr "List of courses"
+
+#: .\templates\partials\sidebar.html:157
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:5
+#: .\templates\statistics\courses_statistics\courses_statistics_detailed.html:5
+#: .\templates\statistics\courses_statistics\courses_statistics_main.html:5
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:5
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:5
+#: .\templates\statistics\users_statistics\users_list_statistics.html:5
+#: .\templates\statistics\users_statistics\users_statistics_main.html:5
+msgid "Statistics"
+msgstr "Statistics"
+
+#: .\templates\partials\sidebar.html:174
+msgid "Sales"
+msgstr "Sales"
+
+#: .\templates\partials\statistics\chart_by_period.html:9
+msgid "7 days"
+msgstr "7 days"
+
+#: .\templates\partials\statistics\chart_by_period.html:10
+msgid "30 days"
+msgstr "30 days"
+
+#: .\templates\partials\statistics\chart_by_period.html:11
+msgid "180 days"
+msgstr "180 days"
+
+#: .\templates\partials\statistics\statistics_table.html:7
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:15
+#: .\templates\statistics\users_statistics\users_list_statistics.html:15
+msgid "Email"
+msgstr "Email"
+
+#: .\templates\partials\statistics\statistics_table.html:8
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:16
+#: .\templates\statistics\users_statistics\users_list_statistics.html:16
+msgid "Country"
+msgstr "Country"
+
+#: .\templates\partials\statistics\statistics_table.html:10
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:18
+#: .\templates\statistics\users_statistics\users_list_statistics.html:18
+msgid "Registered at"
+msgstr "Registered at"
+
+#: .\templates\partials\statistics\statistics_table.html:11
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:19
+#: .\templates\statistics\users_statistics\users_list_statistics.html:19
+msgid "Last Entry"
+msgstr "Last Entry"
+
+#: .\templates\partials\statistics\statistics_table.html:12
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:20
+#: .\templates\statistics\users_statistics\users_list_statistics.html:20
+msgid "Email Verified"
+msgstr "Email Verified"
+
+#: .\templates\partners\partners_create.html:10
+#: .\templates\partners\partners_list.html:11
+msgid "Add partner"
+msgstr "Add partner"
+
+#: .\templates\partners\partners_delete.html:11
+#, python-format
+msgid ""
+"\n"
+"                    Are you sure you want to delete the partner\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the partner <span class=\"text-danger\"> %(title)s</span>?"
+
+#: .\templates\partners\partners_list.html:10
+msgid "Partners list"
+msgstr "Partners list"
+
+#: .\templates\partners\partners_list.html:16
+msgid "Image"
+msgstr "Image"
+
+#: .\templates\partners\partners_update.html:8
+msgid "Edit partner"
+msgstr "Edit partner"
+
+#: .\templates\quiz_bim\answer_bim\answer_bim_detail.html:8
+msgid "Correct"
+msgstr "Correct"
+
+#: .\templates\quiz_bim\answer_bim\answer_bim_detail.html:10
+msgid "Incorrect"
+msgstr "Incorrect"
+
+#: .\templates\quiz_bim\answer_bim\answer_bim_form.html:16
+#: .\templates\quiz_bim\answer_bim\answer_bim_form.html:25
+#: .\templates\quiz_bim\question_bim\question_bim_form.html:9
+#: .\templates\quiz_bim\question_bim\question_bim_form.html:18
+#: .\templates\steps\step\step_update.html:21
+msgid "Save"
+msgstr "Save"
+
+#: .\templates\quiz_bim\answer_bim\answer_bim_form.html:20
+#: .\templates\quiz_bim\question_bim\question_bim_form.html:13
+msgid "Cancel changes"
+msgstr "Cancel changes"
+
+#: .\templates\quiz_bim\question_bim\question_bim_detail.html:12
+msgid "Add answer"
+msgstr "Add answer"
+
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_delete.html:3
+msgid "Delete test"
+msgstr "Delete test"
+
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_delete.html:11
+msgid "This test is used in the lessons below"
+msgstr "This test is used in the lessons below"
+
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_delete.html:17
+msgid ""
+"In order to delete this test you should change related tests in the lessons "
+"above."
+msgstr ""
+"In order to delete this test you should change related tests in the lessons "
+"above."
+
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_delete.html:21
+#, python-format
+msgid ""
+"\n"
+"                    Are you sure you want to delete the test\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                    "
+msgstr ""
+"\n"
+"Are you sure you want to delete the test <span class=\"text-danger\"> %(title)s</span>?"
+
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_detail.html:19
+#: .\templates\steps\partial\test_partial.html:5
+msgid "Add new question"
+msgstr "Add new question"
+
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_list.html:3
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_list.html:11
+msgid "Tests list"
+msgstr "Tests list"
+
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_update.html:3
+#: .\templates\quiz_bim\quiz_bim\quiz_bim_update.html:13
+msgid "Edit test"
+msgstr "Edit test"
+
+#: .\templates\socialaccount\authentication_error.html:4
+#: .\templates\socialaccount\authentication_error.html:7
+msgid "Social Network Login Failure"
+msgstr "Social Network Login Failure"
+
+#: .\templates\socialaccount\authentication_error.html:9
 msgid ""
 "An error occurred while attempting to login via your social network account."
 msgstr ""
+"An error occurred while attempting to login via your social network account."
 
-#: templates/socialaccount/connections.html:5
-#: templates/socialaccount/connections.html:8
+#: .\templates\socialaccount\connections.html:5
+#: .\templates\socialaccount\connections.html:8
 msgid "Account Connections"
-msgstr ""
+msgstr "Account Connections"
 
-#: templates/socialaccount/connections.html:11
+#: .\templates\socialaccount\connections.html:11
 msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
 msgstr ""
+"You can sign in to your account using any of the following third party\n"
+"accounts:"
 
-#: templates/socialaccount/connections.html:37
-msgid "Remove"
-msgstr ""
-
-#: templates/socialaccount/connections.html:45
+#: .\templates\socialaccount\connections.html:45
 msgid ""
 "You currently have no social network accounts connected to this account."
 msgstr ""
+"You currently have no social network accounts connected to this account."
 
-#: templates/socialaccount/connections.html:48
+#: .\templates\socialaccount\connections.html:48
 msgid "Add a 3rd Party Account"
-msgstr ""
+msgstr "Add a 3rd Party Account"
 
-#: templates/socialaccount/login_cancelled.html:4
-#: templates/socialaccount/login_cancelled.html:8
+#: .\templates\socialaccount\login_cancelled.html:4
+#: .\templates\socialaccount\login_cancelled.html:8
 msgid "Login Cancelled"
-msgstr ""
+msgstr "Login Cancelled"
 
-#: templates/socialaccount/login_cancelled.html:12
+#: .\templates\socialaccount\login_cancelled.html:12
 #, python-format
 msgid ""
 "You decided to cancel logging in to our site using one of your existing "
 "accounts. If this was a mistake, please proceed to <a "
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
+"You decided to cancel logging in to our site using one of your existing "
+"accounts. If this was a mistake, please proceed to <a "
+"href=\"%(login_url)s\">sign in</a>."
 
-#: templates/socialaccount/signup.html:4
-#: templates/socialaccount/signup.html:21
-#: templates/socialaccount/signup.html:62
+#: .\templates\socialaccount\signup.html:4
+#: .\templates\socialaccount\signup.html:21
+#: .\templates\socialaccount\signup.html:62
 msgid "Sign Up"
-msgstr ""
+msgstr "Sign Up"
 
-#: templates/socialaccount/signup.html:28
+#: .\templates\socialaccount\signup.html:28
 #, python-format
 msgid ""
 "\n"
@@ -812,24 +1582,395 @@ msgid ""
 "                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
+"\n"
+"You are about to use your %(provider_name)s account to login to %(site_name)s. As a final step, please complete the following form:"
 
-#: templates/teachers/teacher_create.html:4
-#: templates/teachers/teacher_create.html:12
-#: templates/teachers/teachers_list.html:15
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:19
+msgid "Language"
+msgstr "Language"
+
+#: .\templates\statistics\courses_statistics\courses_list_statistics.html:20
+#: .\templates\subscription\subscription_list.html:24
+#: .\templates\subscription\subscription_list.html:36
+msgid "Published"
+msgstr "Published"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_detailed.html:11
+msgid "Users purchased the course"
+msgstr "Users purchased the course"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_detailed.html:15
+msgid "Users completed the course"
+msgstr "Users completed the course"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_detailed.html:19
+msgid "Average course completion time"
+msgstr "Average course completion time"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_detailed.html:25
+#: .\templates\statistics\courses_statistics\courses_statistics_main.html:25
+msgid "Lesson types"
+msgstr "Lesson types"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_detailed.html:29
+msgid "Average lesson completion time"
+msgstr "Average lesson completion time"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_detailed.html:33
+msgid "Test results"
+msgstr "Test results"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_main.html:12
+msgid "Number of existing courses"
+msgstr "Number of existing courses"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_main.html:17
+msgid "Number of published courses"
+msgstr "Number of published courses"
+
+#: .\templates\statistics\courses_statistics\courses_statistics_main.html:31
+msgid "Completed lessons"
+msgstr "Completed lessons"
+
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:12
+msgid "Number of subscriptions"
+msgstr "Number of subscriptions"
+
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:16
+msgid "Number of active subscriptions"
+msgstr "Number of active subscriptions"
+
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:20
+msgid "Lowest course price"
+msgstr "Lowest course price"
+
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:24
+msgid "Average course price"
+msgstr "Average course price"
+
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:28
+msgid "Highest course price"
+msgstr "Highest course price"
+
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:34
+msgid "New subscriptions"
+msgstr "New subscriptions"
+
+#: .\templates\statistics\sales_statistics\sales_statistics_main.html:38
+msgid "Popular courses"
+msgstr "Popular courses"
+
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:38
+msgid "Active course"
+msgstr "Active course"
+
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:48
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:74
+msgid "Tests statistics"
+msgstr "Tests statistics"
+
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:59
+#: .\templates\subscription\subscription_admin\user_add.html:37
+#: .\templates\subscription\subscription_admin\user_list.html:35
+msgid "No active subscriptions"
+msgstr "No active subscriptions"
+
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:62
+msgid "Finished courses"
+msgstr "Completed courses"
+
+#: .\templates\statistics\users_statistics\user_detailed_statistics.html:86
+msgid "No finished courses"
+msgstr "No completed courses"
+
+#: .\templates\statistics\users_statistics\users_statistics_main.html:13
+msgid "Number of registered users"
+msgstr "Number of registered users"
+
+#: .\templates\statistics\users_statistics\users_statistics_main.html:18
+msgid "Number of users with active subscriptions"
+msgstr "Number of users with active subscriptions"
+
+#: .\templates\statistics\users_statistics\users_statistics_main.html:25
+msgid "New users"
+msgstr "New users"
+
+#: .\templates\steps\file\file_create.html:4
+#: .\templates\steps\file\file_create.html:15
+msgid "Add file"
+msgstr "Add file"
+
+#: .\templates\steps\file\file_delete.html:4
+msgid "Delete file"
+msgstr "Delete file"
+
+#: .\templates\steps\file\file_delete.html:12
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete the file\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the file <span class=\"text-danger\"> %(title)s</span>?"
+
+#: .\templates\steps\file\file_detail.html:4
+msgid "View file"
+msgstr "View file"
+
+#: .\templates\steps\file\file_detail.html:15
+#: .\templates\steps\step\step_detail.html:27
+msgid "Download file"
+msgstr "Download file"
+
+#: .\templates\steps\file\file_detail.html:16
+msgid "Back to files list"
+msgstr "Back to files list"
+
+#: .\templates\steps\file\file_list.html:4
+#: .\templates\steps\file\file_list.html:12
+msgid "Files list"
+msgstr "Files list"
+
+#: .\templates\steps\file\file_update.html:4
+#: .\templates\steps\file\file_update.html:15
+msgid "Edit file"
+msgstr "Edit file"
+
+#: .\templates\steps\partial\test_partial.html:7
+msgid "Take test"
+msgstr "Take test"
+
+#: .\templates\steps\partial\test_partial.html:18
+msgid "More"
+msgstr "More"
+
+#: .\templates\steps\partial\video_partial.html:18
+#: .\templates\steps\video\video_detail.html:31
+msgid ""
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"target=\"_blank\">supports HTML5 video</a>"
+msgstr ""
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"target=\"_blank\">supports HTML5 video</a>"
+
+#: .\templates\steps\step\step_create.html:4
+msgid "Add lesson"
+msgstr "Add lesson"
+
+#: .\templates\steps\step\step_create.html:12
+msgid "Adding lesson"
+msgstr "Adding lesson"
+
+#: .\templates\steps\step\step_create.html:23
+msgid "Add questions"
+msgstr "Add questions"
+
+#: .\templates\steps\step\step_delete.html:4
+msgid "Delete lesson"
+msgstr "Delete lesson"
+
+#: .\templates\steps\step\step_delete.html:12
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete the lesson\n"
+"                <span class=\"text-danger\"> %(title)s</span>?\n"
+"                "
+msgstr ""
+"\n"
+"Are you sure you want to delete the lesson <span class=\"text-danger\"> %(title)s</span>?"
+
+#: .\templates\steps\step\step_detail.html:4
+msgid "View lesson"
+msgstr "View lesson"
+
+#: .\templates\steps\step\step_detail.html:18
+msgid "Reading"
+msgstr "Reading"
+
+#: .\templates\steps\step\step_detail.html:34
+msgid "Back to lessons list"
+msgstr "Back to lessons list"
+
+#: .\templates\steps\step\step_list.html:15
+msgid "Lessons list"
+msgstr "Lessons list"
+
+#: .\templates\steps\step\step_update.html:4
+msgid "Edit lesson"
+msgstr "Edit lesson"
+
+#: .\templates\steps\text\text_create.html:4
+#: .\templates\steps\text\text_create.html:15
+msgid "Add reading"
+msgstr "Add reading"
+
+#: .\templates\steps\text\text_delete.html:4
+msgid "Delete reading"
+msgstr "Delete reading"
+
+#: .\templates\steps\text\text_delete.html:12
+msgid "This reading is ised in the lessons below"
+msgstr "This reading is ised in the lessons below"
+
+#: .\templates\steps\text\text_delete.html:18
+msgid ""
+"In order to delete this reading you should change related readings in the "
+"lessons above."
+msgstr ""
+"In order to delete this reading you should change related readings in the "
+"lessons above."
+
+#: .\templates\steps\text\text_delete.html:22
+#, python-format
+msgid ""
+"\n"
+"                    Are you sure you want to delete the reading\n"
+"                    <span class=\"text-danger\"> %(title)s</span>?\n"
+"                    "
+msgstr ""
+"\n"
+"Are you sure you want to delete the reading\n"
+"<span class=\"text-danger\"> %(title)s</span>?"
+
+#: .\templates\steps\text\text_detail.html:4
+msgid "View reading"
+msgstr "View reading"
+
+#: .\templates\steps\text\text_detail.html:33
+msgid "Back to readings list"
+msgstr "Back to readings list"
+
+#: .\templates\steps\text\text_list.html:4
+#: .\templates\steps\text\text_list.html:12
+msgid "Readings list"
+msgstr "Readings list"
+
+#: .\templates\steps\text\text_update.html:4
+#: .\templates\steps\text\text_update.html:15
+msgid "Edit reading"
+msgstr "Edit reading"
+
+#: .\templates\steps\video\video_create.html:4
+#: .\templates\steps\video\video_create.html:15
+msgid "Add video"
+msgstr "Add video"
+
+#: .\templates\steps\video\video_delete.html:4
+msgid "Delete video"
+msgstr "Delete video"
+
+#: .\templates\steps\video\video_delete.html:12
+msgid "This video is ised in the lessons below"
+msgstr "This video is ised in the lessons below"
+
+#: .\templates\steps\video\video_delete.html:18
+msgid ""
+"In order to delete this video you should change related videos in the "
+"lessons above."
+msgstr ""
+"In order to delete this video you should change related videos in the "
+"lessons above."
+
+#: .\templates\steps\video\video_delete.html:22
+#, python-format
+msgid ""
+"\n"
+"                        Are you sure you want to delete the video\n"
+"                        <span class=\"text-danger\"> %(title)s</span>?\n"
+"                     "
+msgstr ""
+"\n"
+"Are you sure you want to delete the video\n"
+"<span class=\"text-danger\"> %(title)s</span>?"
+
+#: .\templates\steps\video\video_detail.html:4
+msgid "View video"
+msgstr "View video"
+
+#: .\templates\steps\video\video_detail.html:39
+msgid "Back to videos list"
+msgstr "Back to videos list"
+
+#: .\templates\steps\video\video_list.html:4
+#: .\templates\steps\video\video_list.html:12
+msgid "Videos list"
+msgstr "Videos list"
+
+#: .\templates\steps\video\video_update.html:4
+#: .\templates\steps\video\video_update.html:15
+msgid "Edit video"
+msgstr "Edit video"
+
+#: .\templates\subscription\subscription_admin\user_add.html:11
+#: .\templates\subscription\subscription_admin\user_list.html:11
+msgid "Grant subscription to user"
+msgstr "Grant subscription to user"
+
+#: .\templates\subscription\subscription_admin\user_add.html:52
+msgid "Access"
+msgstr "Access"
+
+#: .\templates\subscription\subscription_admin\user_delete.html:11
+msgid "Are you sure you want to unsubscribe course"
+msgstr "Are you sure you want to unsubscribe course"
+
+#: .\templates\subscription\subscription_admin\user_delete.html:12
+msgid "from user"
+msgstr "from user"
+
+#: .\templates\subscription\subscription_admin\user_list.html:3
+msgid "Grant subscription to users"
+msgstr "Grant subscription to users"
+
+#: .\templates\subscription\subscription_admin\user_list.html:20
+msgid "Current subscription"
+msgstr "Current subscription"
+
+#: .\templates\subscription\subscription_admin\user_list.html:21
+msgid "Subscription"
+msgstr "Subscription"
+
+#: .\templates\subscription\subscription_delete.html:3
+msgid "Subscription deletion"
+msgstr "Subscription deletion"
+
+#: .\templates\subscription\subscription_delete.html:10
+msgid "Are you sure you want to delete the subscription for course"
+msgstr "Are you sure you want to delete the subscription for course"
+
+#: .\templates\subscription\subscription_list.html:23
+msgid "Price"
+msgstr "Price"
+
+#: .\templates\subscription\subscription_list.html:38
+msgid "Unpublished"
+msgstr "Unpublished"
+
+#: .\templates\subscription\subscription_list.html:43
+msgid "Update"
+msgstr "Update"
+
+#: .\templates\subscription\subscription_update.html:16
+msgid "Update the subscription"
+msgstr "Update the subscription"
+
+#: .\templates\teachers\teacher_create.html:4
+#: .\templates\teachers\teacher_create.html:12
+#: .\templates\teachers\teachers_list.html:16
 msgid "Add teacher"
 msgstr "Add teacher"
 
-#: templates/teachers/teacher_delete.html:4
+#: .\templates\teachers\teacher_delete.html:4
 msgid "Delete teacher"
 msgstr "Delete teacher"
 
-#: templates/teachers/teacher_delete.html:12
+#: .\templates\teachers\teacher_delete.html:12
 #, python-format
-#| msgid ""
-#| "\n"
-#| "                Are you sure you want to delete the chapter\n"
-#| "                <span class=\"text-danger\"> %(title)s</span>?\n"
-#| "                "
 msgid ""
 "\n"
 "                Are you sure you want to delete the teacher\n"
@@ -839,23 +1980,57 @@ msgstr ""
 "\n"
 "Are you sure you want to delete the teacher <span class=\"text-danger\"> %(name)s</span>?"
 
-#: templates/teachers/teacher_detail.html:4
+#: .\templates\teachers\teacher_detail.html:4
 msgid "Teacher info"
 msgstr "Teacher info"
 
-#: templates/teachers/teacher_update.html:4
-#: templates/teachers/teacher_update.html:12
+#: .\templates\teachers\teacher_update.html:4
+#: .\templates\teachers\teacher_update.html:12
 msgid "Edit teacher"
 msgstr "Edit teacher"
 
-#: templates/teachers/teachers_list.html:4
-#: templates/teachers/teachers_list.html:13
+#: .\templates\teachers\teachers_list.html:4
+#: .\templates\teachers\teachers_list.html:13
 msgid "Teachers list"
 msgstr "Teachers list"
 
-#: templates/teachers/teachers_list.html:20
+#: .\templates\teachers\teachers_list.html:22
 msgid "Name"
 msgstr "Name"
+
+#: .\templates\team\team_create.html:5
+msgid "Team"
+msgstr ""
+
+#: .\templates\team\team_create.html:10
+#, fuzzy
+#| msgid "Add test"
+msgid "Add team"
+msgstr "Add test"
+
+#~ msgid "Кыргызский"
+#~ msgstr "Kyrgyz"
+
+#~ msgid "Course chapters list"
+#~ msgstr "Course chapters list"
+
+#~ msgid "Home"
+#~ msgstr "Home"
+
+#~ msgid "Видео"
+#~ msgstr "Video"
+
+#~ msgid "Текст"
+#~ msgstr "Text"
+
+#~ msgid "Тест"
+#~ msgstr "Test"
+
+#~ msgid "Previous lesson"
+#~ msgstr "Previous lesson"
+
+#~ msgid "Next chapter"
+#~ msgstr "Next chapter"
 
 #, python-format
 #~ msgid ""
@@ -893,9 +2068,6 @@ msgstr "Name"
 
 #~ msgid "Invalid verification"
 #~ msgstr "Verification error"
-
-#~ msgid "Email sent"
-#~ msgstr "Email sent"
 
 #~ msgid "You don't have any purchased cources"
 #~ msgstr "You don't have any purchased cources"

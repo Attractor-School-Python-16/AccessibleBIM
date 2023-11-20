@@ -2,14 +2,14 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from modules.models import AbstractModel
+from django.utils.translation import gettext_lazy as _
 
 
 class SubscriptionModel(AbstractModel):
     course = models.ForeignKey('modules.CourseModel', on_delete=models.PROTECT, related_name='subscription',
-                               verbose_name='Курс')
-    price = models.IntegerField(null=False, blank=False, verbose_name='Цена за курс')
-    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
-    user_subscription = models.ManyToManyField(get_user_model(), through="UsersSubscription")
+                               verbose_name=_('Course'))
+    price = models.IntegerField(null=False, blank=False, verbose_name=_('Course price'))
+    is_published = models.BooleanField(default=False, verbose_name=_('Publish'))
 
 
     def get_total_price(self):
@@ -21,4 +21,4 @@ class SubscriptionModel(AbstractModel):
         verbose_name_plural = 'Подписки'
 
     def __str__(self):
-        return f'{self.course}'
+        return f'{self.course} {self.price}'
