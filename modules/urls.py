@@ -1,5 +1,6 @@
 from django.urls import path
 
+from modules.views.course_preview import CoursePreviewView
 from modules.views.modules import ModeratorView
 
 from modules.views.modules import ModulesListView, ModuleCreateView, ModuleDetailView, ModuleDeleteView, \
@@ -48,6 +49,7 @@ urlpatterns = [
     path('course/<int:pk>/delete/', CourseDeleteView.as_view(), name="coursemodel_delete"),
     path('course/<int:pk>/change_chapters_order', CourseChangeChaptersOrderView.as_view(),
          name="change_chapters_order"),
+    path('course/<int:course_pk>/chapter/<int:chapter_pk>/preview/', CoursePreviewView.as_view(), name="coursemodel_preview"),
 
     path('chapters/', ChaptersListView.as_view(), name="chaptermodel_list"),
     path('chapter/create/', ChapterCreateView.as_view(), name="chaptermodel_create"),
