@@ -102,5 +102,7 @@ jobs:
             docker system prune -af
             rm -Rf AccessibleBIM
             git clone -b stage git@github.com:Attractor-School-Python-16/AccessibleBIM.git
+            cp env_dir/env.dev AccessibleBIM
+            cp env_dir/env.prod AccessibleBIM
             cd AccessibleBIM/
             docker compose -f docker-compose.prod.yml up -d --build
