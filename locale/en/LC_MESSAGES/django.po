@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-20 22:05+0600\n"
-"PO-Revision-Date: 2023-11-20 22:23+0600\n"
+"PO-Revision-Date: 2023-11-20 22:54+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1100,7 +1100,7 @@ msgstr "Courses list"
 
 #: templates/front/about.html:13
 msgid "Project goals"
-msgstr "Project goals"
+msgstr "Project Objectives"
 
 #: templates/front/about.html:38
 #| msgid "About teacher"
