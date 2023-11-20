@@ -9,9 +9,11 @@
                     <div class="row">
                         <div class="col-12 mx-auto">
                             {% for progress in user.progress.all %}
-                            	{% if progress.is_overdue and not progress.is_passed %}
-                                    <a href="{% url "quiz_bim:test_completion" progress.pk %}" class="alert alert-info text-white d-block" role="alert">
-                                        У вас есть просроченный <span class="text-decoration-underline text-center">тест</span>. Пройдите тест.
+                                {% if progress.is_overdue and not progress.is_passed %}
+                                    <a href="{% url "quiz_bim:test_completion" progress.pk %}"
+                                       class="alert alert-info text-white d-block" role="alert">
+                                        У вас есть просроченный <span
+                                            class="text-decoration-underline text-center">тест</span>. Пройдите тест.
                                     </a>
                                 {% endif %}
                             {% endfor %}
@@ -64,67 +66,25 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                    <div class="row mb-4">
-                                        <div class="col-auto">
-                                            {% if user.subscriptions.all %}
-                                                {% for subscription in user_subscription %}
-                                                    {% if subscription.is_active %}
-                                                        <span class="h6">Действие подписки до:</span>
-                                                        <span> {{ subscription.end_time }}</span>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            {% endif %}
-                                        </div>
+                                    <div class="align-items-center content mb-2">
+                                        {% for subscription in user_subscription %}
+                                            <span class="text-bold">Действие подписки до:</span>
+                                            <span class="text-bold"> {{ subscription.end_time }}</span>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
                         {% if courses %}
-                            <h3 class="mb-0 text-center content">{% trans 'My courses' %}:</h3>
+                            <h3 class="mb-3 text-center content">{% trans 'My courses' %}:</h3>
                         {% endif %}
 
                         {% for course in courses %}
-                            <article
-                                    class="postcard light mt-5 blue">
-                                <a class="postcard__img_link" href="#">
-                                    <img class="postcard__img" src="https://picsum.photos/1000/1000"
-                                         alt="Image Title"/>
-                                </a>
-                                <div class="postcard__text t-dark">
-                                    <h1 class="heading blue">
-                                        <a href="{% url 'front:course_user_detail' course.id %}">
-                                            {{ course.title }}
-                                        </a>
-                                    </h1>
-                                    <div class="postcard__subtitle small">
-                                        <time datetime="{{ course.update_at }}">
-                                            Последнее обновление: <i class="fas fa-calendar-alt mr-2"></i> {{ course.update_at }}
-                                        </time>
-                                    </div>
-                                    <div class="postcard__bar"></div>
-                                    <div class="postcard__preview-txt">{{ course.description }}</div>
-                                    <a style="min-width: 125px; width: 20%"
-                                       href="{% url 'front:course_user_detail' course.id %}"
-                                       type="button"
-                                       class="btn pb-4 bg-gradient-info">Подробнее</a>
-                                    <ul class="postcard__tagbox text-white">
-                                        <li class="tag__item">
-                                            <i class="fas fa-tag mr-2"></i> {{ course.courseTarget_id }}
-                                        </li>
-                                        <li class="tag__item">
-                                            <i class="fas fa-tag mr-2"></i> {{ course.get_total_tests|make_text_for_test }}
-                                        </li>
-                                        <li class="tag__item">
-                                            <i class="fas fa-tag mr-2"></i> {{ course.get_total_lessons|make_text_for_lessons }}
-                                        </li>
-                                        <li class="tag__item">
-                                            <i class="fas fa-clock mr-2"></i> {{ course.learnTime|make_hour_for_lessons }}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </article>
+                            {% include "front/partials/course/course_card.html" %}
                         {% endfor %}
                     </div>
                 </div>
