@@ -1,5 +1,5 @@
 {% extends "front/base.html" %}
-{% load static %}
+{% load static i18n %}
 
 
 {% block content %}
@@ -10,19 +10,13 @@
                     <div class="row py-5">
                         <div class="col-lg-10 col-md-12 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
                             <h2 class="heading text-gradient text-info text-uppercase text-center">
-                                {% trans 'Project goals' %}Цели проекта:<br></h2>
-                            <p class="text-dark mb-0 mt-3 text-justify content"><span class="ms-5">Мы уверены</span>, что образование
-                                в области инженерии должно быть доступным для всех,
-                                независимо от места жительства или физических ограничений. Мы предоставляем бесплатные и
-                                платные ресурсы, чтобы каждый мог получить знания.</p>
-                            <p class="text-dark mb-0 mt-3 text-justify content"><span class="ms-5">Мы стремимся</span> предложить
-                                высококачественные учебные материалы, разработанные экспертами в
-                                области проектирования, строительства, энергетики, машиностроения. Мы регулярно
-                                обновляем контент, чтобы отражать последние технологические и инновационные тренды в
-                                инженерии.</p>
-                            <p class="text-dark mb-0 mt-3 text-justify content"><span class="ms-5">Мы поддерживаем</span> активное
-                                обучение и практическое применение знаний. Наши курсы включают
-                                задания, проекты и возможность работы с реальными инженерными задачами.</p>
+                                {% trans 'Project goals' %}:<br></h2>
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == 'ru' %}
+                                {% include 'front/partials/static/goals_ru.html' %}
+                            {% elif LANGUAGE_CODE == 'en' %}
+                                {% include 'front/partials/static/goals_en.html' %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -35,11 +29,10 @@
             <div class="row">
                 <div class="col-lg-10 col-md-12 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
                     <h2 class="heading text-gradient text-info text-uppercase text-center">
-                        {% trans 'About team' %}О команде:</h2>
+                        {% trans 'About team' %}:</h2>
                     <p class="content text-dark mb-0 mt-3 text-justify">
                         {% trans 'TEAM_TEXT' %}
-                        Мы команда профессиональных инженеров из разных отраслей, объединяет нас комплексный подход BIM.
-                        Хотим поделиться своим опытом и собрать единомышленников в области инженерии и инноваций.<br>
+                        <br>
                     </p>
                 </div>
             </div>
@@ -69,7 +62,7 @@
         <div class="container mb-4">
             <div class="row">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2 class="heading text-gradient text-info text-uppercase">{% trans 'Contacts' %}Контакты</h2>
+                    <h2 class="heading text-gradient text-info text-uppercase">{% trans 'Contacts' %}</h2>
                     <div class="col-lg-10 fs-5 col-md-12 z-index-2 position-relative px-md-2 px-sm-5 mx-auto text-center body">
                         <a href="mailto:s.alexey@bimstandard.xyz"><i class="bi bi-envelope"></i>
                             s.alexey@bimstandard.xyz</a>
@@ -78,29 +71,6 @@
                         <a href="mailto:erkin@bimstandard.xyz"><i class="bi bi-envelope"></i>
                             erkin@bimstandard.xyz</a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto text-center">
-                    <h2 class="heading text-gradient text-info text-uppercase">{% trans 'Our partners' %}Наши партнеры</h2>
-                </div>
-                <div class="owl-carousel owl-theme mt-5">
-                    <div class="item bg-black"><h4>1</h4></div>
-                    <div class="item"><h4>2</h4></div>
-                    <div class="item"><h4>3</h4></div>
-                    <div class="item"><h4>4</h4></div>
-                    <div class="item"><h4>5</h4></div>
-                    <div class="item"><h4>6</h4></div>
-                    <div class="item"><h4>7</h4></div>
-                    <div class="item"><h4>8</h4></div>
-                    <div class="item"><h4>9</h4></div>
-                    <div class="item"><h4>10</h4></div>
-                    <div class="item"><h4>11</h4></div>
-                    <div class="item"><h4>12</h4></div>
                 </div>
             </div>
         </div>
