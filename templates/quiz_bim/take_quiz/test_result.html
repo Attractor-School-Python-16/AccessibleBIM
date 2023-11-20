@@ -7,6 +7,13 @@
         <h5>Верных ответов: {{ progress.correct_answers }} из {{ progress.user_progress.count }} ({{ progress.accuracy|floatformat:2 }})</h5>
         {% if progress.is_passed %}
             <h5>Сдано</h5>
+            {% if is_moderator %}
+                <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
+                  hx-target="#quiz_content">
+                {% csrf_token %}
+                <button class="btn btn-success">Повторить попытку</button>
+            </form>
+            {% endif %}
         {% else %}
             <h5>Не сдано</h5>
             <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
