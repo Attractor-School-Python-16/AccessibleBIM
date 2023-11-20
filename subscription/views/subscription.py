@@ -2,7 +2,7 @@ import uuid
 import xmltodict
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from django.core.exceptions import ValidationError
 from django.db.models import Q
@@ -24,6 +24,8 @@ from django.utils.functional import cached_property
 import requests
 import hashlib
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
 
 
 class SubscriptionListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -36,6 +38,10 @@ class SubscriptionListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListVie
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    @cached_property
+    def crumbs(self):
+        return [(_("Subscriptions list"), reverse("subscription:subscriptionmodel_create"))]
 
 
 class SubscriptionCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
@@ -50,6 +56,10 @@ class SubscriptionCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, Cre
 
     def get_success_url(self):
         return reverse("subscription:subscriptionmodel_list")
+
+    @cached_property
+    def crumbs(self):
+        return [(_("Add subscription"), reverse("subscription:subscriptionmodel_list"))]
 
 
 class SubscriptionDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
@@ -77,6 +87,10 @@ class SubscriptionUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, Upd
     def get_success_url(self):
         return reverse("subscription:subscriptionmodel_list")
 
+    @cached_property
+    def crumbs(self):
+        return [(_("Subscription update"), reverse("subscription:subscriptionmodel_update", kwargs={'pk':self.object.pk}))]
+
 
 class SubscriptionDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
     model = SubscriptionModel
@@ -88,6 +102,11 @@ class SubscriptionDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, Del
     def has_permission(self):
         user = self.request.user
         return user.groups.filter(name='moderators').exists() or user.is_superuser
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (_("Subscription delete"), reverse("subscription:subscriptionmodel_delete", kwargs={'pk': self.object.pk}))]
 
 
 class SubscriptionUserListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
@@ -103,7 +122,7 @@ class SubscriptionUserListView(ListBreadcrumbMixin, PermissionRequiredMixin, Lis
 
     @cached_property
     def crumbs(self):
-        return [("Подписки", reverse("subscription:subscriptionmodel_user_list"))]
+        return [(_("Subscriptions"), reverse("subscription:subscriptionmodel_user_list"))]
 
 
 class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView, FormMixin):
@@ -175,7 +194,8 @@ class SubscriptionUserAddView(DetailBreadcrumbMixin, PermissionRequiredMixin, De
 
     @cached_property
     def crumbs(self):
-        return [("Выдать подписку", reverse("subscription:subscriptionmodel_user_add", kwargs={'pk': self.object.pk}))]
+        return [(_("Grant subscription"), reverse("subscription:subscriptionmodel_user_add", kwargs={'pk':
+                                                                                                     self.object.pk}))]
 
 
 class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -215,7 +235,7 @@ class SubscriptionUserDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin,
 
     @cached_property
     def crumbs(self):
-        return [("Отключить подписку",
+        return [(_("Unsubscribe"),
                  reverse("subscription:subscriptionmodel_user_delete", kwargs={'pk': self.object.pk}))]
 
 
