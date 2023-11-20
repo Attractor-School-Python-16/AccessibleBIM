@@ -14,7 +14,7 @@
                     <div class="container my-auto">
                         <div class="row">
                             <div class="col-lg-4 col-md-8 col-12 mx-auto">
-                                <div class="card z-index-0 fadeIn3 fadeInBottom">
+                                <div class="card z-index-0 fadeIn3 fadeInBottom mt-4">
                                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                         <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
                                             <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">{% trans 'Login' %}</h4>
@@ -39,7 +39,7 @@
                                                     <div class="alert alert-danger text-white">{{ error }}</div>
                                                 {% endfor %}
                                             {% else %}
-                                                <p class="text-medium-emphasis">{% trans "Sign In to your account" %}</p>
+                                                <p class="text-medium-emphasis text-center">{% trans "Sign In to your account" %}</p>
                                             {% endif %}
 
 
@@ -58,11 +58,11 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <div class="text-center mt-4">
-                                            <a href="{% url 'accounts:password_reset' %}"
-                                               class="btn btn-outline-dark-blue mx-1 w-45">{% trans 'Forgot password' %}</a>
+                                        <div class="text-center mt-1">
                                             <a href="{% url 'accounts:register' %}"
-                                               class="btn btn-outline-primary mx-1 w-45">{% trans 'Register Now' %}</a>
+                                               class="btn btn-outline-primary w-100 mb-1">{% trans 'Register Now' %}</a>
+                                            <a href="{% url 'accounts:password_reset' %}"
+                                               class="text-center" style="font-size: 0.9rem">{% trans 'Forgot password' %}?</a>
                                         </div>
                                     </div>
                                 </div>
