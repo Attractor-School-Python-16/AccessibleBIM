@@ -67,4 +67,4 @@ class FileForm(forms.ModelForm):
         if (file_title and lesson_file) or (not file_title and not lesson_file):
             return data
         else:
-            raise forms.ValidationError(_("Title is mandatory for uploading a file"))
+            raise forms.ValidationError(_("Both title and file are mandatory"))
