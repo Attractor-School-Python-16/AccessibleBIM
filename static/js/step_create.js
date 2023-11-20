@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (videoSelect || textSelect) {
         let deselectButton = document.createElement("button");
-        deselectButton.textContent = "Снять выбор";
+        deselectButton.textContent = gettext("Unselect");
         deselectButton.className = "btn btn-primary"
         deselectButton.addEventListener("click", function (event) {
             event.preventDefault()
@@ -56,6 +56,15 @@ function clearTextAreas() {
     elementsInContentDocument.forEach(function (element) {
         element.innerHTML = "";
     });
+    const form = document.getElementById("main-form");
+    for (const element of form.elements) {
+        if (!element.name || element.disabled || element.type === "submit" || element.type === "button") {
+            continue;
+        }
+        if (element.name === "text-text_description" || element.name === "text-content") {
+            element.value = "";
+        }
+    }
 }
 
 function handleSelectChange(select, type) {
@@ -134,14 +143,14 @@ if (textSelect) {
         elementsInDescDocument.forEach(function (element) {
             if (regex.test(element.innerHTML)) {
                 event.preventDefault();
-                alert("Заполните описание лекции");
+                alert(gettext("Fill reading title"));
             }
         });
 
         elementsInContentDocument.forEach(function (element) {
             if (regex.test(element.innerHTML)) {
                 event.preventDefault();
-                alert("Заполните содержание лекции");
+                alert(gettext("Fill reading content"));
             }
         });
     });

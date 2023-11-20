@@ -31,6 +31,26 @@
         "partnermodel"
       ],
       [
+        "add_teammodel",
+        "content",
+        "teammodel"
+      ],
+      [
+        "change_teammodel",
+        "content",
+        "teammodel"
+      ],
+      [
+        "delete_teammodel",
+        "content",
+        "teammodel"
+      ],
+      [
+        "view_teammodel",
+        "content",
+        "teammodel"
+      ],
+      [
         "add_chaptermodel",
         "modules",
         "chaptermodel"

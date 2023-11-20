@@ -22,7 +22,7 @@ async function getTestProgress(user_pk, course_pk){
 function createBarChartOptions(labels, values){
     let options = {
         series: [{
-            name: 'Результат теста',
+            name: gettext('Test results'),
             data: values
         }],
         chart: {
@@ -54,13 +54,13 @@ async function renderTestCharts() {
         let course_pk = $(element).data("course");
         let response = await getTestProgress(user_pk, course_pk);
         if (response.values.length===0) {
-            $(element).text('No data to display');
+            $(element).text(gettext('No data to display'));
         } else if (!response.error) {
             let options = createBarChartOptions(response.labels, response.values);
             let chart = new ApexCharts(element, options);
             chart.render();
         }else {
-            $(element).text('Error occured while loading data');
+            $(element).text(gettext('Error occured while loading data'));
         }
     });
 }

@@ -1,21 +1,21 @@
-<div class="col-md-6 d-flex align-items-center justify-content-center">
+<div>
     <div>
-        <h2>{{ data.title }}</h2>
+        <h2 class="heading mt-4">{{ data.title }}</h2>
         <div>
             <div>
-                <p>{{ data.description }}</p>
+                <p class="content">{{ data.description }}</p>
             </div>
             <br>
-            <p><strong>Целевая аудитория курса:</strong> {{ data.courseTarget_id.title }}</p>
-            <p><strong>Язык обучения:</strong> {{ data.language }}</p>
-            <p><strong>Время обучения:</strong> {{ data.learnTime }} ч.</p>
-            <p><strong>Преподаватели:</strong></p>
+            <p class="content"><strong>Целевая аудитория курса:</strong> {{ data.courseTarget_id.title }}</p>
+            <p class="content"><strong>Язык обучения:</strong> {{ data.language }}</p>
+            <p class="content"><strong>Время обучения:</strong> {{ data.learnTime }} ч.</p>
+            <p class="content"><strong>Преподаватели:</strong></p>
 
             {% for teacher in data.teachers.all %}
-                <ol style="list-style-type: none">
-                    <li><strong>ФИО:</strong>{{ teacher.get_full_name }}</li>
-                    <li><strong>Должность:</strong>{{ teacher.job_title }}</li>
-                    <li><strong>Место работы:</strong>{{ teacher.corp }}</li>
+                <ol class="content" style="list-style-type: none">
+                    <li><strong>ФИО: </strong>{{ teacher.get_full_name }}</li>
+                    <li><strong>Должность: </strong>{{ teacher.job_title }}</li>
+                    <li><strong>Место работы: </strong>{{ teacher.corp }}</li>
                 </ol>
             {% endfor %}
 

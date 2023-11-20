@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Статистика{% endblock %}
+{% block title %}{% trans 'Statistics' %}{% endblock %}
 
 {% block moderator_interface %}
     <div class="container">
@@ -11,13 +11,13 @@
             <table class="table responsive border mb-0 nowrap bg-white table-striped" id="CoursesStatisticsTable">
                 <thead class="fw-semibold">
                     <tr class="align-middle">
-                        <th>Course</th>
-                        <th>#Chapters</th>
-                        <th>#Lessons</th>
-                        <th>Module</th>
-                        <th>Target</th>
-                        <th>Language</th>
-                        <th>Published</th>
+                        <th>{% trans 'Course' %}</th>
+                        <th>#{% trans 'Chapters' %}</th>
+                        <th>#{% trans 'Lessons' %}</th>
+                        <th>{% trans 'Module' %}</th>
+                        <th>{% trans 'Target audience' %}</th>
+                        <th>{% trans 'Language' %}</th>
+                        <th>{% trans 'Published' %}</th>
                     </tr>
                 </thead>
                 <tbody>
