@@ -70,8 +70,19 @@ jobs:
         run: |
           python manage.py test
 
-  job3:
+  job2:
     needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+      - name: Build the Docker image Prod
+        run: docker build docker-compose.prod.yml --file Dockerfile.prod --tag my-image-name:$(date +%s) *.context=.
+
+
+  job3:
+    needs: job2
     runs-on: ubuntu-latest
 
     steps:
