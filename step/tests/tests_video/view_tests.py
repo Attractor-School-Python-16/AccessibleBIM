@@ -1,8 +1,10 @@
 from http import HTTPStatus
 
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
-from quiz_bim.tests.utils import CustomTestCase, login_superuser, login_user
+
+from quiz_bim.tests.utils import CustomTestCase, login_superuser, login_user, get_video_file
 from step.models import VideoModel
 from step.tests.factories import VideoFactory
 
@@ -58,3 +60,78 @@ class TestVideoDetailView(CustomTestCase):
     def test_no_permissions(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+
+
+class TestVideoCreateView(CustomTestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.correct_data = {
+            "video_title": "Test video",
+            "video_description": "Test video description",
+            "video_file": get_video_file()
+        }
+        cls.url = reverse("step:videomodel_create")
+        super().setUpTestData()
+
+    @login_superuser
+    def test_video_create_view(self):
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url, self.correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(VideoModel.objects.count() - previous_count, 1)
+        video = VideoModel.objects.latest('create_at')
+        self.assertRedirects(response, reverse("step:videomodel_list"))
+        self.assertEqual(video.video_title, self.correct_data['video_title'])
+        self.assertEqual(video.video_description, self.correct_data['video_description'])
+
+    def test_anonymous(self):
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url, self.correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(VideoModel.objects.count() - previous_count, 0)
+
+    @login_user
+    def test_no_permissions(self):
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url, self.correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(VideoModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_title(self):
+        invalid_data = {
+            "video_title": "",
+            "video_description": "Test video description",
+            "video_file": get_video_file()
+        }
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response.context['form'], field="video_title", errors=[_('Please enter video title')])
+        self.assertEqual(VideoModel.objects.count() - previous_count, 0)
+
+    @login_superuser
+    def test_empty_description(self):
+        correct_data = {
+            "video_title": "Test video",
+            "video_description": "",
+            "video_file": get_video_file()
+        }
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(VideoModel.objects.count() - previous_count, 1)
+        video = VideoModel.objects.latest('create_at')
+        self.assertIsNone(video.video_description)
+
+    @login_superuser
+    def test_no_file(self):
+        invalid_data = {
+            "video_title": "Test video",
+            "video_description": "Test video description",
+        }
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response.context['form'], field="video_file", errors=[_('Please upload video file')])
+        self.assertEqual(VideoModel.objects.count() - previous_count, 0)
