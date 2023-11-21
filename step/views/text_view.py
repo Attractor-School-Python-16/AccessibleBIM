@@ -8,19 +8,27 @@ from step.forms.text_form import TextForm
 from step.models import TextModel, StepModel
 
 
-class TextListView(ListBreadcrumbMixin, LoginRequiredMixin, ListView):
+class TextListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = TextModel
     template_name = 'steps/text/text_list.html'
     context_object_name = 'texts'
     home_path = reverse_lazy('modules:moderator_page')
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
-class TextDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
+
+class TextDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
     model = TextModel
     queryset = TextModel.objects.all()
     template_name = "steps/text/text_detail.html"
     context_object_name = 'text'
     home_path = reverse_lazy('modules:moderator_page')
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class TextCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
@@ -31,7 +39,8 @@ class TextCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView)
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
-        return self.request.user.has_perm('step.add_textmodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class TextUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
@@ -42,7 +51,8 @@ class TextUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView)
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
-        return self.request.user.has_perm('step.change_textmodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class TextDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -70,4 +80,5 @@ class TextDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView)
         return super().form_valid(form)
 
     def has_permission(self):
-        return self.request.user.has_perm('step.delete_textmodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
