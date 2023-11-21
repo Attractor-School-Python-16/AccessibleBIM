@@ -69,8 +69,7 @@ def login_user(test_func: object) -> object:
 
 
 def get_image_file():
-    image_content = base64.b64decode(
-        "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO" + "9TXL0Y4OHwAAAABJRU5ErkJggg==")
+    image_content = base64.b64decode("R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")
     image = SimpleUploadedFile("image.jpg", image_content, content_type="image/jpeg")
     return image
 
@@ -78,3 +77,9 @@ def get_image_file():
 def get_txt_file():
     file = SimpleUploadedFile("file.txt", b"File content", content_type="text/plain")
     return file
+
+
+def get_video_file():
+    video_content = base64.b64decode("AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAAIZnJlZQAAAAhtZGF0AAAA1m1vb3YAAABsbXZoZAAAAAAAAAAAAAAAAAAAA+gAAAAAAAEAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABidWR0YQAAAFptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABtZGlyYXBwbAAAAAAAAAAAAAAAAC1pbHN0AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjQxLjEwMA==")
+    video = SimpleUploadedFile("video.mp4", video_content, content_type="video/mp4")
+    return video
