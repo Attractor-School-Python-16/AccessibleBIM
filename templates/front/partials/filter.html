@@ -1,9 +1,10 @@
-<h4 class="text-center heading">Фильтры:</h4>
+{% load i18n %}
+<h4 class="text-center heading">{% trans 'Filters' %}:</h4>
 <form method="get">
     <div class="row justify-content-around mt-4 mb-4">
 
         <div class="col-md-4">
-            <h5 class="content">Модуль:</h5>
+            <h5 class="content">{% trans 'Module' %}:</h5>
             <div id="modules" class="content">
                 <multiple-select-modules inline-template>
                     <select-2 :options="optionsModules" name="modules" v-model="selected"
@@ -12,7 +13,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h5 class="content">Целевая аудитория:</h5>
+            <h5 class="content">{% trans 'Target audience' %}:</h5>
             <div id="targets" class="content">
                 <multiple-select-targets inline-template>
                     <select-2 :options="optionsTargets" name="targets" v-model="selected" multiple=true></select-2>
@@ -20,7 +21,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h5 class="content">Язык обучения:</h5>
+            <h5 class="content">{% trans 'Language' %}:</h5>
             <div id="languages" class="content">
                 <multiple-select-language inline-template>
                     <select-2 :options="optionsLanguage" name="languages" v-model="selected"
@@ -36,6 +37,6 @@
         {{ course_targets|json_script:"course_targets_dict" }}
         {{ modules|json_script:"modules_dict" }}
         {{ languages|json_script:"languages_dict" }}
-        <button type="submit" class="btn btn-info mt-4 content">Поиск</button>
+        <button type="submit" class="btn btn-info mt-4 content">{% trans 'Search' %}</button>
     </div>
 </form>

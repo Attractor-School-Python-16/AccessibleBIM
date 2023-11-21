@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 09:39+0600\n"
-"PO-Revision-Date: 2023-11-21 09:53+0600\n"
+"POT-Creation-Date: 2023-11-21 10:46+0600\n"
+"PO-Revision-Date: 2023-11-21 10:46+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -194,6 +194,10 @@ msgstr "Номер"
 #: modules/models/chapter.py:16 step/models/step.py:15
 #: templates/chapters/chapter_detail.html:13
 #: templates/courses/change_chapters_order.html:31
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:16
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:41
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:64
+#: templates/front/partials/course/chapter_accordion.html:12
 msgid "Chapter"
 msgstr "Глава"
 
@@ -239,6 +243,7 @@ msgid "Course image"
 msgstr "Фото для курса"
 
 #: modules/models/courses.py:28 modules/models/module.py:34
+#: templates/front/partials/filter.html:7
 #: templates/statistics/courses_statistics/courses_list_statistics.html:17
 #: templates/subscription/subscription_admin/user_add.html:51
 msgid "Module"
@@ -247,7 +252,8 @@ msgstr "Модуль"
 #: modules/models/courses.py:30
 #: templates/course_target/course_target_detail.html:4
 #: templates/course_target/course_target_list.html:4
-#: templates/partials/sidebar.html:61
+#: templates/front/partials/course/course_main_block.html:10
+#: templates/front/partials/filter.html:16 templates/partials/sidebar.html:61
 #: templates/statistics/courses_statistics/courses_list_statistics.html:18
 msgid "Target audience"
 msgstr "Целевая аудитория"
@@ -261,12 +267,15 @@ msgid "Course learn time"
 msgstr "Время на прохождение курса (часы)"
 
 #: modules/models/courses.py:35 modules/models/teacher.py:19
+#: templates/front/partials/course/course_main_block.html:13
 #: templates/partials/sidebar.html:44
 msgid "Teachers"
 msgstr "Преподаватели"
 
 #: modules/models/courses.py:48 templates/courses/courses_list.html:4
-#: templates/partials/sidebar.html:28 templates/partials/sidebar.html:198
+#: templates/front/partials/footer.html:7
+#: templates/front/partials/navbar.html:66 templates/partials/sidebar.html:28
+#: templates/partials/sidebar.html:198
 msgid "Courses"
 msgstr "Курсы"
 
@@ -299,6 +308,7 @@ msgid "Father name"
 msgstr "Отчество"
 
 #: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
+#: templates/front/partials/course/course_main_block.html:18
 #: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Должность"
@@ -375,6 +385,9 @@ msgstr "Конец тестирования"
 #: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
 #: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12
 #: step/models/step.py:23 templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
+#: templates/quiz_bim/take_quiz/continue_test.html:4
+#: templates/quiz_bim/take_quiz/take_test.html:4
+#: templates/quiz_bim/take_quiz/test_result.html:5
 #: templates/steps/partial/test_partial.html:2
 #: templates/steps/step/step_detail.html:21
 msgid "Test"
@@ -604,6 +617,9 @@ msgstr "Примерное время на прохождение урока"
 
 #: step/models/step.py:45 templates/chapters/change_steps_order.html:28
 #: templates/front/chapter/chapter_user_detail_view.html:25
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:24
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:28
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:50
 msgid "Lesson"
 msgstr "Занятие"
 
@@ -760,6 +776,7 @@ msgid "Search by Email"
 msgstr "Поиск по Email"
 
 #: templates/accounts/grant_moderator.html:18
+#: templates/front/partials/filter.html:40
 msgid "Search"
 msgstr "Найти"
 
@@ -1143,6 +1160,7 @@ msgstr "Пароль успешно изменен"
 #: templates/front/accounts/login.html:4
 #: templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
+#: templates/front/partials/navbar.html:51
 msgid "Login"
 msgstr "Вход"
 
@@ -1246,6 +1264,7 @@ msgstr ""
 "\n"
 
 #: templates/front/accounts/profile.html:3
+#: templates/front/partials/navbar.html:36
 #: templates/partials/moderator_header.html:20
 msgid "Profile"
 msgstr "Профиль"
@@ -1265,17 +1284,14 @@ msgid "Admin"
 msgstr "Администратор"
 
 #: templates/front/accounts/profile.html:54
-#| msgid "Email Verified"
 msgid "Verified"
 msgstr "Подтвержден"
 
 #: templates/front/accounts/profile.html:58
-#| msgid "email_verified"
 msgid "Not verified"
 msgstr "Не подтвержден"
 
 #: templates/front/accounts/profile.html:76
-#| msgid "Subscriptions list"
 msgid "Subscription valid until"
 msgstr "Действие подписки до"
 
@@ -1411,13 +1427,89 @@ msgstr ""
 "предоставляя им обширный выбор курсов, обучающих материалов и практических "
 "заданий."
 
-#: templates/front/index.html:17
+#: templates/front/index.html:17 templates/front/partials/navbar.html:80
 msgid "About company"
 msgstr "О компании"
 
 #: templates/front/index.html:33
 msgid "Our partners"
 msgstr "Наши партнеры"
+
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:3
+msgid "Navigation"
+msgstr "Навигация"
+
+#: templates/front/partials/course/chapter_accordion.html:4
+msgid "Course content"
+msgstr "Содержание курса"
+
+#: templates/front/partials/course/course_card.html:12
+msgid "Last update"
+msgstr "Последнее обновление"
+
+#: templates/front/partials/course/course_card.html:21
+#: templates/steps/partial/test_partial.html:18
+msgid "More"
+msgstr "Подробнее"
+
+#: templates/front/partials/course/course_card.html:44
+msgid "Purchased course"
+msgstr "Курс приобретен"
+
+#: templates/front/partials/course/course_main_block.html:11
+#: templates/front/partials/filter.html:24
+#: templates/statistics/courses_statistics/courses_list_statistics.html:19
+msgid "Language"
+msgstr "Язык занятия"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "Learn time"
+msgstr "Время обучения"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "h."
+msgstr "ч."
+
+#: templates/front/partials/course/course_main_block.html:17
+#: templates/teachers/teachers_list.html:22
+msgid "Name"
+msgstr "Имя"
+
+#: templates/front/partials/course/course_main_block.html:19
+msgid "Work place"
+msgstr "Место работы"
+
+#: templates/front/partials/filter.html:2
+msgid "Filters"
+msgstr "Фильтры"
+
+#: templates/front/partials/footer.html:10
+#: templates/front/partials/navbar.html:75
+msgid "About"
+msgstr "О нас"
+
+#: templates/front/partials/footer.html:16
+#: templates/front/partials/navbar.html:90
+msgid "Privacy policy"
+msgstr "Политика конфиденциальности"
+
+#: templates/front/partials/footer.html:19
+#: templates/front/partials/navbar.html:95
+msgid "User agreement"
+msgstr "Пользовательское соглашение"
+
+#: templates/front/partials/navbar.html:27
+msgid "Admin panel"
+msgstr "Админ панель"
+
+#: templates/front/partials/navbar.html:43
+#: templates/partials/moderator_header.html:17
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/front/partials/navbar.html:58
+msgid "SignUp"
+msgstr "Регистрация"
 
 #: templates/modules/module_create.html:12
 msgid "Add module:"
@@ -1458,10 +1550,6 @@ msgstr "Добавить модуль"
 #: templates/partials/moderator_header.html:11
 msgid "Main page"
 msgstr "Главная"
-
-#: templates/partials/moderator_header.html:17
-msgid "Logout"
-msgstr "Выйти"
 
 #: templates/partials/moderator_header.html:25
 msgid "Grant moderator access"
@@ -1645,6 +1733,52 @@ msgstr "Список тестов"
 msgid "Edit test"
 msgstr "Редактирование теcта"
 
+#: templates/quiz_bim/take_quiz/continue_test.html:5
+#: templates/quiz_bim/take_quiz/take_test.html:5
+#: templates/quiz_bim/take_quiz/test_result.html:6
+msgid "Number of questions"
+msgstr "Количество вопросов"
+
+#: templates/quiz_bim/take_quiz/continue_test.html:9
+msgid "Continue"
+msgstr "Продолжить"
+
+#: templates/quiz_bim/take_quiz/questions_completion.html:36
+msgid "Done"
+msgstr "Завершить"
+
+#: templates/quiz_bim/take_quiz/take_test.html:9
+#: templates/steps/partial/test_partial.html:7
+msgid "Take test"
+msgstr "Прохождение теста"
+
+#: templates/quiz_bim/take_quiz/test_result.html:7
+msgid "Result"
+msgstr "Результат"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+#| msgid "Correct"
+msgid "Correct answers"
+msgstr "Верных ответов"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+msgid "out of"
+msgstr "из"
+
+#: templates/quiz_bim/take_quiz/test_result.html:11
+#| msgid "Password"
+msgid "Passed"
+msgstr "Сдано"
+
+#: templates/quiz_bim/take_quiz/test_result.html:13
+#| msgid "Test passed"
+msgid "Not passed"
+msgstr "Не сдано"
+
+#: templates/quiz_bim/take_quiz/test_result.html:17
+msgid "Try again"
+msgstr "Повторить попытку"
+
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
@@ -1712,10 +1846,6 @@ msgid ""
 msgstr ""
 "\n"
 "Вы использовали свой %(provider_name)s аккаунт для входа на сайт %(site_name)s. В качестве завершающего шага, пожалуйста, заполните следующую форму:"
-
-#: templates/statistics/courses_statistics/courses_list_statistics.html:19
-msgid "Language"
-msgstr "Язык занятия"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
 #: templates/subscription/subscription_list.html:24
@@ -1865,14 +1995,6 @@ msgstr "Список файлов"
 #: templates/steps/file/file_update.html:15
 msgid "Edit file"
 msgstr "Редактирование файл"
-
-#: templates/steps/partial/test_partial.html:7
-msgid "Take test"
-msgstr "Прохождение теста"
-
-#: templates/steps/partial/test_partial.html:18
-msgid "More"
-msgstr "Подробнее"
 
 #: templates/steps/partial/video_partial.html:18
 #: templates/steps/video/video_detail.html:31
@@ -2121,10 +2243,6 @@ msgstr "Редактировать преподавателя"
 msgid "Teachers list"
 msgstr "Список преподавателей"
 
-#: templates/teachers/teachers_list.html:22
-msgid "Name"
-msgstr "Имя"
-
 #: templates/team/team_create.html:5
 msgid "Team"
 msgstr "Команда"
@@ -2134,8 +2252,8 @@ msgid "Add team"
 msgstr "Добавление команды"
 
 #, fuzzy
-#~ msgid "Username"
-#~ msgstr "Пользователь"
+#~ msgid "Provacy policy"
+#~ msgstr "Политика конфиденциальности"
 
 #~ msgid "Кыргызский"
 #~ msgstr "Кыргызский"

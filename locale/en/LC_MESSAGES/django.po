@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 09:39+0600\n"
-"PO-Revision-Date: 2023-11-21 09:41+0600\n"
+"POT-Creation-Date: 2023-11-21 10:46+0600\n"
+"PO-Revision-Date: 2023-11-21 10:49+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -194,6 +194,10 @@ msgstr "Number"
 #: modules/models/chapter.py:16 step/models/step.py:15
 #: templates/chapters/chapter_detail.html:13
 #: templates/courses/change_chapters_order.html:31
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:16
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:41
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:64
+#: templates/front/partials/course/chapter_accordion.html:12
 msgid "Chapter"
 msgstr "Chapter"
 
@@ -239,6 +243,7 @@ msgid "Course image"
 msgstr "Course image"
 
 #: modules/models/courses.py:28 modules/models/module.py:34
+#: templates/front/partials/filter.html:7
 #: templates/statistics/courses_statistics/courses_list_statistics.html:17
 #: templates/subscription/subscription_admin/user_add.html:51
 msgid "Module"
@@ -247,7 +252,8 @@ msgstr "Module"
 #: modules/models/courses.py:30
 #: templates/course_target/course_target_detail.html:4
 #: templates/course_target/course_target_list.html:4
-#: templates/partials/sidebar.html:61
+#: templates/front/partials/course/course_main_block.html:10
+#: templates/front/partials/filter.html:16 templates/partials/sidebar.html:61
 #: templates/statistics/courses_statistics/courses_list_statistics.html:18
 msgid "Target audience"
 msgstr "Target audience"
@@ -261,12 +267,15 @@ msgid "Course learn time"
 msgstr "Hours to complete course"
 
 #: modules/models/courses.py:35 modules/models/teacher.py:19
+#: templates/front/partials/course/course_main_block.html:13
 #: templates/partials/sidebar.html:44
 msgid "Teachers"
 msgstr "Teachers"
 
 #: modules/models/courses.py:48 templates/courses/courses_list.html:4
-#: templates/partials/sidebar.html:28 templates/partials/sidebar.html:198
+#: templates/front/partials/footer.html:7
+#: templates/front/partials/navbar.html:66 templates/partials/sidebar.html:28
+#: templates/partials/sidebar.html:198
 msgid "Courses"
 msgstr "Courses"
 
@@ -299,6 +308,7 @@ msgid "Father name"
 msgstr "Father name"
 
 #: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
+#: templates/front/partials/course/course_main_block.html:18
 #: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Job title"
@@ -375,6 +385,9 @@ msgstr "Test end time"
 #: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
 #: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12
 #: step/models/step.py:23 templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
+#: templates/quiz_bim/take_quiz/continue_test.html:4
+#: templates/quiz_bim/take_quiz/take_test.html:4
+#: templates/quiz_bim/take_quiz/test_result.html:5
 #: templates/steps/partial/test_partial.html:2
 #: templates/steps/step/step_detail.html:21
 msgid "Test"
@@ -603,6 +616,9 @@ msgstr "Lesson learn time"
 
 #: step/models/step.py:45 templates/chapters/change_steps_order.html:28
 #: templates/front/chapter/chapter_user_detail_view.html:25
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:24
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:28
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:50
 msgid "Lesson"
 msgstr "Lesson"
 
@@ -758,6 +774,7 @@ msgid "Search by Email"
 msgstr "Search by Email"
 
 #: templates/accounts/grant_moderator.html:18
+#: templates/front/partials/filter.html:40
 msgid "Search"
 msgstr "Search"
 
@@ -1145,6 +1162,7 @@ msgstr "Password successfully changed"
 #: templates/front/accounts/login.html:4
 #: templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
+#: templates/front/partials/navbar.html:51
 msgid "Login"
 msgstr "Login"
 
@@ -1249,16 +1267,12 @@ msgstr ""
 "Please click on the link below to reset your password:\n"
 
 #: templates/front/accounts/profile.html:3
+#: templates/front/partials/navbar.html:36
 #: templates/partials/moderator_header.html:20
 msgid "Profile"
 msgstr "Profile"
 
 #: templates/front/accounts/profile.html:15
-#| msgid ""
-#| "\n"
-#| "                                                You are about to use your %(provider_name)s account to login to\n"
-#| "                                                %(site_name)s. As a final step, please complete the following\n"
-#| "                                                form:"
 msgid ""
 "\n"
 "                                            You have an outdated <span class=\"text-decoration-underline text-center\">\n"
@@ -1273,17 +1287,14 @@ msgid "Admin"
 msgstr "Admin"
 
 #: templates/front/accounts/profile.html:54
-#| msgid "Email Verified"
 msgid "Verified"
 msgstr "Verified"
 
 #: templates/front/accounts/profile.html:58
-#| msgid "email_verified"
 msgid "Not verified"
 msgstr "Not verified"
 
 #: templates/front/accounts/profile.html:76
-#| msgid "Subscriptions list"
 msgid "Subscription valid until"
 msgstr "Subscription is valid until"
 
@@ -1333,12 +1344,10 @@ msgid "Previous lesson"
 msgstr "Previous lesson"
 
 #: templates/front/chapter/chapter_user_detail_view.html:66
-#| msgid "Previous lesson"
 msgid "Previous chapter"
 msgstr "Previous chapter"
 
 #: templates/front/chapter/chapter_user_detail_view.html:72
-#| msgid "Add text lesson"
 msgid "Next lesson"
 msgstr "Next lesson"
 
@@ -1347,13 +1356,11 @@ msgid "Next chapter"
 msgstr "Next chapter"
 
 #: templates/front/courses/course_detail.html:25
-#| msgid "Edit course"
 msgid "Start course"
 msgstr "Start course"
 
 #: templates/front/courses/course_detail.html:31
 #: templates/front/courses/course_detail.html:44
-#| msgid "My courses"
 msgid "Buy course"
 msgstr "Buy course"
 
@@ -1399,7 +1406,6 @@ msgid "The page you are looking for cannot be found"
 msgstr "The page you are looking for cannot be found"
 
 #: templates/front/errors/500.html:16
-#| msgid "Error 403"
 msgid "Error 500"
 msgstr "Error 500"
 
@@ -1424,13 +1430,89 @@ msgstr ""
 "offering a wide range of courses, educational materials, and practical "
 "assignments."
 
-#: templates/front/index.html:17
+#: templates/front/index.html:17 templates/front/partials/navbar.html:80
 msgid "About company"
 msgstr "About company"
 
 #: templates/front/index.html:33
 msgid "Our partners"
 msgstr "Partners"
+
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:3
+msgid "Navigation"
+msgstr "Navigation"
+
+#: templates/front/partials/course/chapter_accordion.html:4
+msgid "Course content"
+msgstr "Course content"
+
+#: templates/front/partials/course/course_card.html:12
+msgid "Last update"
+msgstr "Last update"
+
+#: templates/front/partials/course/course_card.html:21
+#: templates/steps/partial/test_partial.html:18
+msgid "More"
+msgstr "More"
+
+#: templates/front/partials/course/course_card.html:44
+msgid "Purchased course"
+msgstr "Purchased course"
+
+#: templates/front/partials/course/course_main_block.html:11
+#: templates/front/partials/filter.html:24
+#: templates/statistics/courses_statistics/courses_list_statistics.html:19
+msgid "Language"
+msgstr "Language"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "Learn time"
+msgstr "Learn time"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "h."
+msgstr "h."
+
+#: templates/front/partials/course/course_main_block.html:17
+#: templates/teachers/teachers_list.html:22
+msgid "Name"
+msgstr "Name"
+
+#: templates/front/partials/course/course_main_block.html:19
+msgid "Work place"
+msgstr "Work place"
+
+#: templates/front/partials/filter.html:2
+msgid "Filters"
+msgstr "Filters"
+
+#: templates/front/partials/footer.html:10
+#: templates/front/partials/navbar.html:75
+msgid "About"
+msgstr "About"
+
+#: templates/front/partials/footer.html:16
+#: templates/front/partials/navbar.html:90
+msgid "Privacy policy"
+msgstr "Privacy policy"
+
+#: templates/front/partials/footer.html:19
+#: templates/front/partials/navbar.html:95
+msgid "User agreement"
+msgstr "User agreement"
+
+#: templates/front/partials/navbar.html:27
+msgid "Admin panel"
+msgstr "Admin panel"
+
+#: templates/front/partials/navbar.html:43
+#: templates/partials/moderator_header.html:17
+msgid "Logout"
+msgstr "Logout"
+
+#: templates/front/partials/navbar.html:58
+msgid "SignUp"
+msgstr "SignUp"
 
 #: templates/modules/module_create.html:12
 msgid "Add module:"
@@ -1472,10 +1554,6 @@ msgstr "Add modules"
 #: templates/partials/moderator_header.html:11
 msgid "Main page"
 msgstr "Home"
-
-#: templates/partials/moderator_header.html:17
-msgid "Logout"
-msgstr "Logout"
 
 #: templates/partials/moderator_header.html:25
 msgid "Grant moderator access"
@@ -1659,6 +1737,54 @@ msgstr "Tests list"
 msgid "Edit test"
 msgstr "Edit test"
 
+#: templates/quiz_bim/take_quiz/continue_test.html:5
+#: templates/quiz_bim/take_quiz/take_test.html:5
+#: templates/quiz_bim/take_quiz/test_result.html:6
+#| msgid "Number of subscriptions"
+msgid "Number of questions"
+msgstr "Number of questions"
+
+#: templates/quiz_bim/take_quiz/continue_test.html:9
+#| msgid "Content"
+msgid "Continue"
+msgstr "Continue"
+
+#: templates/quiz_bim/take_quiz/questions_completion.html:36
+msgid "Done"
+msgstr "Submit"
+
+#: templates/quiz_bim/take_quiz/take_test.html:9
+#: templates/steps/partial/test_partial.html:7
+msgid "Take test"
+msgstr "Take test"
+
+#: templates/quiz_bim/take_quiz/test_result.html:7
+msgid "Result"
+msgstr "Result"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+#| msgid "Correct"
+msgid "Correct answers"
+msgstr "Correct answers"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+msgid "out of"
+msgstr "out of"
+
+#: templates/quiz_bim/take_quiz/test_result.html:11
+#| msgid "Password"
+msgid "Passed"
+msgstr "Passed"
+
+#: templates/quiz_bim/take_quiz/test_result.html:13
+#| msgid "Test passed"
+msgid "Not passed"
+msgstr "Not passed"
+
+#: templates/quiz_bim/take_quiz/test_result.html:17
+msgid "Try again"
+msgstr "Try again"
+
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
@@ -1725,10 +1851,6 @@ msgid ""
 msgstr ""
 "\n"
 "You are about to use your %(provider_name)s account to login to %(site_name)s. As a final step, please complete the following form:"
-
-#: templates/statistics/courses_statistics/courses_list_statistics.html:19
-msgid "Language"
-msgstr "Language"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
 #: templates/subscription/subscription_list.html:24
@@ -1878,14 +2000,6 @@ msgstr "Files list"
 #: templates/steps/file/file_update.html:15
 msgid "Edit file"
 msgstr "Edit file"
-
-#: templates/steps/partial/test_partial.html:7
-msgid "Take test"
-msgstr "Take test"
-
-#: templates/steps/partial/test_partial.html:18
-msgid "More"
-msgstr "More"
 
 #: templates/steps/partial/video_partial.html:18
 #: templates/steps/video/video_detail.html:31
@@ -2135,10 +2249,6 @@ msgstr "Edit teacher"
 msgid "Teachers list"
 msgstr "Teachers list"
 
-#: templates/teachers/teachers_list.html:22
-msgid "Name"
-msgstr "Name"
-
 #: templates/team/team_create.html:5
 msgid "Team"
 msgstr "Team"
@@ -2146,10 +2256,6 @@ msgstr "Team"
 #: templates/team/team_create.html:10
 msgid "Add team"
 msgstr "Add team"
-
-#, fuzzy
-#~ msgid "Username"
-#~ msgstr "User"
 
 #~ msgid "Кыргызский"
 #~ msgstr "Kyrgyz"

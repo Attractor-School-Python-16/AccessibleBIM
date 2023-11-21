@@ -9,7 +9,7 @@
         </h1>
         <div class="postcard__subtitle">
             <time datetime="{{ course.update_at }}">
-                Последнее обновление: <i
+                {% trans 'Last update' %}: <i
                     class="fas fa-calendar-alt mr-2"></i> {{ course.update_at }}
             </time>
         </div>
@@ -18,7 +18,7 @@
         <a style="min-width: 125px; width: 20%"
            href="{% url 'front:course_user_detail' course.id %}"
            type="button"
-           class="btn pb-4 bg-gradient-info">Подробнее</a>
+           class="btn pb-4 bg-gradient-info">{% trans 'More' %}</a>
         <ul class="postcard__tagbox text-white">
             <li class="tag__item">
                 <i class="fas fa-tag mr-2"></i> {{ course.language|get_language_name }}
@@ -41,6 +41,6 @@
         </ul>
     </div>
     {% if my_course %}
-        <div class="buying-course">Курс приобретен</div>
+        <div class="buying-course">{% trans 'Purchased course' %}</div>
     {% endif %}
 </article>
