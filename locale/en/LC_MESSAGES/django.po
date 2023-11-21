@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 19:48+0600\n"
-"PO-Revision-Date: 2023-11-21 19:48+0600\n"
+"POT-Creation-Date: 2023-11-21 20:13+0600\n"
+"PO-Revision-Date: 2023-11-21 20:14+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -143,7 +143,7 @@ msgstr "Photo"
 msgid "Member's name"
 msgstr "Member's name"
 
-#: content/forms/team_form.py:13
+#: content/forms/team_form.py:13 templates/team/team_list.html:17
 msgid "Member's title"
 msgstr "Member's title"
 
@@ -210,6 +210,7 @@ msgstr "Number"
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:41
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:64
 #: templates/front/partials/course/chapter_accordion.html:12
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:15
 msgid "Chapter"
 msgstr "Chapter"
 
@@ -649,7 +650,7 @@ msgstr "Reading"
 #: templates/steps/file/file_list.html:21
 #: templates/steps/step/step_list.html:21
 #: templates/steps/text/text_list.html:21
-#: templates/steps/video/video_list.html:21 templates/team/team_list.html:17
+#: templates/steps/video/video_list.html:21
 msgid "Title"
 msgstr "Title"
 
@@ -662,11 +663,13 @@ msgid "Lesson learn time"
 msgstr "Lesson learn time"
 
 #: step/models/step.py:45 templates/chapters/change_steps_order.html:28
-#: templates/courses/course_preview.html:28
+#: templates/courses/course_preview.html:29
 #: templates/front/chapter/chapter_user_detail_view.html:25
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:24
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:28
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:50
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:27
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:31
 msgid "Lesson"
 msgstr "Lesson"
 
@@ -1166,6 +1169,36 @@ msgstr "List of %(title)s course's chapters"
 msgid "Change chapters ordering"
 msgstr "Change chapters ordering"
 
+#: templates/courses/course_preview.html:4
+#| msgid "Course Preview"
+msgid "Course preview"
+msgstr "Course preview"
+
+#: templates/courses/course_preview.html:50
+#| msgid "Add file"
+msgid "Attached files"
+msgstr "Attached files"
+
+#: templates/courses/course_preview.html:65
+#: templates/front/chapter/chapter_user_detail_view.html:61
+msgid "Previous lesson"
+msgstr "Previous lesson"
+
+#: templates/courses/course_preview.html:70
+#: templates/front/chapter/chapter_user_detail_view.html:66
+msgid "Previous chapter"
+msgstr "Previous chapter"
+
+#: templates/courses/course_preview.html:76
+#: templates/front/chapter/chapter_user_detail_view.html:72
+msgid "Next lesson"
+msgstr "Next lesson"
+
+#: templates/courses/course_preview.html:82
+#: templates/front/chapter/chapter_user_detail_view.html:78
+msgid "Next chapter"
+msgstr "Next chapter"
+
 #: templates/courses/course_update.html:4
 #: templates/courses/course_update.html:12
 msgid "Edit course"
@@ -1395,22 +1428,6 @@ msgstr "Sign up with Google"
 msgid "Attachment"
 msgstr "Attachment"
 
-#: templates/front/chapter/chapter_user_detail_view.html:61
-msgid "Previous lesson"
-msgstr "Previous lesson"
-
-#: templates/front/chapter/chapter_user_detail_view.html:66
-msgid "Previous chapter"
-msgstr "Previous chapter"
-
-#: templates/front/chapter/chapter_user_detail_view.html:72
-msgid "Next lesson"
-msgstr "Next lesson"
-
-#: templates/front/chapter/chapter_user_detail_view.html:78
-msgid "Next chapter"
-msgstr "Next chapter"
-
 #: templates/front/courses/course_detail.html:25
 msgid "Start course"
 msgstr "Start course"
@@ -1495,6 +1512,7 @@ msgid "Our partners"
 msgstr "Partners"
 
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:3
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:3
 msgid "Navigation"
 msgstr "Navigation"
 
@@ -1607,6 +1625,11 @@ msgstr "Modules list"
 #: templates/modules/modules_list.html:15
 msgid "Add modules"
 msgstr "Add modules"
+
+#: templates/partials/course_preview/preview_navbar.html:9
+#| msgid "Back to readings list"
+msgid "Back to course editing"
+msgstr "Back to course editing"
 
 #: templates/partials/moderator_header.html:11
 msgid "Main page"
@@ -2310,7 +2333,6 @@ msgid "Add team member"
 msgstr "Add team member"
 
 #: templates/team/team_delete.html:10
-#| msgid "Are you sure you want to delete the team member?"
 msgid "Are you sure you want to delete the team member"
 msgstr "Are you sure you want to delete the team member"
 
@@ -2322,7 +2344,7 @@ msgstr "Team members"
 msgid "ID"
 msgstr "ID"
 
-#: templates/team/team_update.html:7
+#: templates/team/team_update.html:9
 msgid "Edit team's member:"
 msgstr "Edit team's member:"
 
