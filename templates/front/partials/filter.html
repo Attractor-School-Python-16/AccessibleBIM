@@ -40,3 +40,13 @@
         <button type="submit" class="btn btn-info mt-4 content">{% trans 'Search' %}</button>
     </div>
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let elements = document.querySelectorAll('.select2-container--bootstrap .select2-selection--multiple ' +
+            '.select2-search--inline .select2-search__field');
+      elements.forEach(function (element) {
+        element.style.minWidth = '1em';
+      });
+    });
+  </script>
+

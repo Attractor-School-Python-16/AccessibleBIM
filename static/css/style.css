@@ -111,3 +111,12 @@ body {
 }
 
 
+.select2-container .select2-search--inline {
+    max-width: 50px;
+    min-width: 1em;
+}
+
+.select2-container .select2-search__field {
+    cursor: pointer; !important;
+}
+

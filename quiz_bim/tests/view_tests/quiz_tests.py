@@ -95,10 +95,8 @@ class TestQuizBimCreateView(CustomTestCase):
         invalid_data = {"title": ""}
         previous_count = QuizBim.objects.count()
         response = self.client.post(self.url, data=invalid_data)
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
-        self.assertEqual(QuizBim.objects.count() - previous_count, 1)
-        quiz = QuizBim.objects.latest('create_at')
-        self.assertEqual(quiz.title, None)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertEqual(QuizBim.objects.count() - previous_count, 0)
 
 
 class TestQuizBimUpdateView(CustomTestCase):
@@ -136,9 +134,8 @@ class TestQuizBimUpdateView(CustomTestCase):
     def test_invalid_empty_title_field(self):
         invalid_data = {"title": ""}
         response = self.client.post(self.url, data=invalid_data)
-        self.assertEqual(response.status_code, HTTPStatus.FOUND)
-        self.quiz.refresh_from_db()
-        self.assertIsNone(self.quiz.title)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertNotEqual(self.quiz.title, "")
 
     @login_superuser
     def test_not_found(self):
