@@ -1,6 +1,8 @@
+{% load i18n %}
 <div class="pt-4" style="display: flex">
-    <h3 class="heading" style="overflow-wrap: anywhere;">Навигация</h3>
-    <button type="button" class="btn-close text-secondary ms-auto d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="offcanvasScrolling" aria-label="Close">
+    <h3 class="heading" style="overflow-wrap: anywhere;">{% trans 'Navigation' %}</h3>
+    <button type="button" class="btn-close text-secondary ms-auto d-lg-none" data-bs-dismiss="offcanvas"
+            data-bs-target="offcanvasScrolling" aria-label="Close">
         <i class="bi bi-x-lg"></i>
     </button>
 </div>
@@ -11,7 +13,7 @@
                 <button class="accordion-button collapsed content" type="button" data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                         aria-controls="panelsStayOpen-collapseOne">
-                    <h5 class="content text-decoration-underline">Глава {{ opened_chapter.serial_number }}</h5>
+                    <h5 class="content text-decoration-underline">{% trans 'Chapter' %} {{ opened_chapter.serial_number }}</h5>
                 </button>
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
@@ -19,11 +21,11 @@
                     {% for chapter_step in opened_chapter.step.all|dictsort:"serial_number" %}
                         {% if chapter_step.serial_number == page_obj.number %}
                             <a class="link-info link-offset-1" aria-current="page"
-                               href="?page={{ chapter_step.serial_number }}">Урок {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
+                               href="?page={{ chapter_step.serial_number }}">{% trans 'Lesson' %} {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
                             <br>
                         {% else %}
                             <a class="link-info link-underline-opacity-0 content" aria-current="page"
-                               href="?page={{ chapter_step.serial_number }}">Урок {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
+                               href="?page={{ chapter_step.serial_number }}">{% trans 'Lesson' %} {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
                             <br>
                         {% endif %}
                     {% endfor %}
@@ -36,7 +38,7 @@
                 <button class="accordion-button collapsed content" type="button" data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapse{{ opened_chapter.serial_number }}" aria-expanded="true"
                         aria-controls="panelsStayOpen-collapse{{ opened_chapter.serial_number }}">
-                    <h5 class="content text-decoration-underline">Глава {{ opened_chapter.serial_number }}</h5>
+                    <h5 class="content text-decoration-underline">{% trans 'Chapter' %} {{ opened_chapter.serial_number }}</h5>
                 </button>
             </h2>
             <div id="panelsStayOpen-collapse{{ opened_chapter.serial_number }}"
@@ -44,7 +46,8 @@
                 <div class="accordion-body content">
                     {% for chapter_step in opened_chapter.step.all|dictsort:"serial_number" %}
                         <a class="link-primary link-underline-opacity-0 content" aria-current="page"
-                           href="{% url 'front:chaptermodel_user_detail' chapter_pk=opened_chapter.pk %}?page={{ chapter_step.serial_number }}">Урок {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
+                           href="{% url 'front:chaptermodel_user_detail' chapter_pk=opened_chapter.pk %}?page={{ chapter_step.serial_number }}">
+                            {% trans 'Lesson' %} {{ chapter_step.serial_number }}. {{ chapter_step.title }}</a>
                         <br>
                     {% endfor %}
                 </div>
@@ -58,7 +61,7 @@
             <button class="accordion-button collapsed content" type="button" data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
                     aria-controls="panelsStayOpen-collapseTwo" disabled>
-                <h5 class="content">Глава {{ closed_chapter.serial_number }}</h5>
+                <h5 class="content">{% trans 'Chapter' %} {{ closed_chapter.serial_number }}</h5>
             </button>
         </h2>
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse content">
