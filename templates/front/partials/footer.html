@@ -1,21 +1,22 @@
+{% load i18n %}
 <footer class="footer bg-info navbar-transparent py-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 mb-4 mx-auto text-center">
                 <a href="{% url "front:course_user_list" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
-                    Курсы
+                    {% trans 'Courses' %}
                 </a>
                 <a href="{% url "front:about" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
-                    О нас
+                    {% trans 'About' %}
                 </a>
 {#                <a href="{% url "front:contacts" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">#}
 {#                    Контакты#}
 {#                </a>#}
                 <a href="{% url "front:privacy_policy" %}" class="text-white me-xl-5 me-3 mb-sm-0 mb-2">
-                    Политика конфиденциальности
+                    {% trans 'Privacy policy' %}
                 </a>
                 <a class="text-white me-xl-5 me-3 mb-sm-0 mb-2" href="{% url "front:terms_of_use" %}">
-                    Пользовательское соглашение
+                    {% trans 'User agreement' %}
                 </a>
             </div>
         </div>

@@ -26,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -296,7 +295,7 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen']],
         ],
 
-        'fontNames': ['Arial','Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
+        'fontNames': ['Arial', 'Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
                       'Courier New', 'Franklin Gothic Medium', 'Georgia', 'Impact', 'Microsoft Sans Serif', 'Tahoma',
                       'Times New Roman', 'Trebuchet MS'],
         'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
@@ -323,13 +322,14 @@ SUMMERNOTE_CONFIG = {
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 CAPTCHA_LETTER_ROTATION = None
 
+
 @setup_logging.connect
 def configure_logging(sender=None, **kwargs):
     logging.config.dictConfig(LOGGING)
 
+
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.CRITICAL)
-
 
 LOGGING = {
     "version": 1,
