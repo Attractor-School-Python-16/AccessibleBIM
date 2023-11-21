@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-20 22:05+0600\n"
-"PO-Revision-Date: 2023-11-20 22:54+0600\n"
+"POT-Creation-Date: 2023-11-21 09:39+0600\n"
+"PO-Revision-Date: 2023-11-21 09:41+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -43,7 +43,8 @@ msgstr "Permissions"
 msgid "Important dates"
 msgstr "Important dates"
 
-#: accounts/forms/login_form.py:8
+#: accounts/forms/login_form.py:8 templates/front/accounts/profile.html:52
+#: templates/front/accounts/profile.html:56
 #: templates/partials/statistics/statistics_table.html:7
 #: templates/statistics/users_statistics/user_detailed_statistics.html:15
 #: templates/statistics/users_statistics/users_list_statistics.html:15
@@ -51,7 +52,6 @@ msgid "Email"
 msgstr "Email"
 
 #: accounts/forms/login_form.py:13
-#| msgid "Password reset"
 msgid "Password"
 msgstr "Password"
 
@@ -298,11 +298,13 @@ msgstr "Last name"
 msgid "Father name"
 msgstr "Father name"
 
-#: modules/models/teacher.py:11 templates/teachers/teacher_detail.html:14
+#: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
+#: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Job title"
 
-#: modules/models/teacher.py:12 templates/teachers/teacher_detail.html:15
+#: modules/models/teacher.py:12 templates/front/accounts/profile.html:63
+#: templates/teachers/teacher_detail.html:15
 msgid "Company"
 msgstr "Company"
 
@@ -669,6 +671,8 @@ msgstr "For editing you should select related content"
 
 #: subscription/forms/subscription_form.py:13
 #: subscription/models/subscription.py:11
+#: templates/front/courses/course_detail.html:28
+#: templates/front/courses/course_detail.html:41
 msgid "Course price"
 msgstr "Course price"
 
@@ -762,6 +766,7 @@ msgid "Role"
 msgstr "Role"
 
 #: templates/accounts/grant_moderator.html:40
+#: templates/front/accounts/profile.html:29
 msgid "Moderator"
 msgstr "Moderator"
 
@@ -1102,12 +1107,11 @@ msgstr "Courses list"
 msgid "Project goals"
 msgstr "Project Objectives"
 
-#: templates/front/about.html:38
-#| msgid "About teacher"
+#: templates/front/about.html:32
 msgid "About team"
 msgstr "Team"
 
-#: templates/front/about.html:40
+#: templates/front/about.html:34
 msgid "TEAM_TEXT"
 msgstr ""
 "We are a team of professional engineers from various industries, united by a"
@@ -1115,21 +1119,15 @@ msgstr ""
 "share our expertise and bring like-minded individuals together in the fields"
 " of engineering and innovation."
 
-#: templates/front/about.html:72
-#| msgid "Content"
+#: templates/front/about.html:65
 msgid "Contacts"
 msgstr "Contacts"
-
-#: templates/front/about.html:89 templates/front/index.html:36
-#| msgid "Partners"
-msgid "Our partners"
-msgstr "Partners"
 
 #: templates/front/accounts/change_password.html:4
 #: templates/front/accounts/change_password.html:15
 #: templates/front/accounts/change_password_done.html:4
 #: templates/front/accounts/password-reset/password_reset_confirm.html:13
-#: templates/front/accounts/profile.html:36
+#: templates/front/accounts/profile.html:38
 msgid "Change password"
 msgstr "Change Password"
 
@@ -1188,17 +1186,14 @@ msgid "Sign in with Google"
 msgstr "Sign in with Google"
 
 #: templates/front/accounts/login.html:42
-#| msgid "Activate your user account"
 msgid "Sign In to your account"
 msgstr "Sign In to your account"
 
 #: templates/front/accounts/login.html:57
-#| msgid "Sign Up"
 msgid "Sign in"
 msgstr "Sign in"
 
 #: templates/front/accounts/login.html:63
-#| msgid "Register"
 msgid "Register Now"
 msgstr "Register Now"
 
@@ -1258,7 +1253,41 @@ msgstr ""
 msgid "Profile"
 msgstr "Profile"
 
-#: templates/front/accounts/profile.html:83
+#: templates/front/accounts/profile.html:15
+#| msgid ""
+#| "\n"
+#| "                                                You are about to use your %(provider_name)s account to login to\n"
+#| "                                                %(site_name)s. As a final step, please complete the following\n"
+#| "                                                form:"
+msgid ""
+"\n"
+"                                            You have an outdated <span class=\"text-decoration-underline text-center\">\n"
+"                                            test</span>. Please complete the test.\n"
+"                                        "
+msgstr ""
+"\n"
+"You have an outdated <span class=\"text-decoration-underline text-center\">test</span>. Please complete the test."
+
+#: templates/front/accounts/profile.html:31
+msgid "Admin"
+msgstr "Admin"
+
+#: templates/front/accounts/profile.html:54
+#| msgid "Email Verified"
+msgid "Verified"
+msgstr "Verified"
+
+#: templates/front/accounts/profile.html:58
+#| msgid "email_verified"
+msgid "Not verified"
+msgstr "Not verified"
+
+#: templates/front/accounts/profile.html:76
+#| msgid "Subscriptions list"
+msgid "Subscription valid until"
+msgstr "Subscription is valid until"
+
+#: templates/front/accounts/profile.html:88
 msgid "My courses"
 msgstr "My courses"
 
@@ -1272,7 +1301,6 @@ msgid "Register"
 msgstr "Register"
 
 #: templates/front/accounts/register.html:20
-#| msgid "Activate your user account"
 msgid "Create your account"
 msgstr "Create your account"
 
@@ -1296,6 +1324,43 @@ msgstr "User agreement"
 msgid "Sign up with Google"
 msgstr "Sign up with Google"
 
+#: templates/front/chapter/chapter_user_detail_view.html:46
+msgid "Attachment"
+msgstr "Attachment"
+
+#: templates/front/chapter/chapter_user_detail_view.html:61
+msgid "Previous lesson"
+msgstr "Previous lesson"
+
+#: templates/front/chapter/chapter_user_detail_view.html:66
+#| msgid "Previous lesson"
+msgid "Previous chapter"
+msgstr "Previous chapter"
+
+#: templates/front/chapter/chapter_user_detail_view.html:72
+#| msgid "Add text lesson"
+msgid "Next lesson"
+msgstr "Next lesson"
+
+#: templates/front/chapter/chapter_user_detail_view.html:78
+msgid "Next chapter"
+msgstr "Next chapter"
+
+#: templates/front/courses/course_detail.html:25
+#| msgid "Edit course"
+msgid "Start course"
+msgstr "Start course"
+
+#: templates/front/courses/course_detail.html:31
+#: templates/front/courses/course_detail.html:44
+#| msgid "My courses"
+msgid "Buy course"
+msgstr "Buy course"
+
+#: templates/front/courses/course_detail.html:34
+msgid "To purchase the course, confirm your Email."
+msgstr "To purchase the course, please confirm your email."
+
 #: templates/front/courses/courses.html:14
 msgid "List of available courses"
 msgstr "List of available courses"
@@ -1303,6 +1368,48 @@ msgstr "List of available courses"
 #: templates/front/courses/courses.html:28
 msgid "No courses found"
 msgstr "No courses found"
+
+#: templates/front/errors/403.html:16
+msgid "Error 403"
+msgstr "Error 403"
+
+#: templates/front/errors/403.html:32
+msgid "Access denied"
+msgstr "Access denied"
+
+#: templates/front/errors/403.html:33
+msgid "You don't have permission to open this page"
+msgstr "You don't have permission to open this page"
+
+#: templates/front/errors/403.html:37 templates/front/errors/404.html:36
+#: templates/front/errors/500.html:38
+msgid "Back to main page"
+msgstr "Back to main page"
+
+#: templates/front/errors/404.html:16
+msgid "Error 404"
+msgstr "Error 404"
+
+#: templates/front/errors/404.html:32
+msgid "Page not found"
+msgstr "Page not found"
+
+#: templates/front/errors/404.html:33
+msgid "The page you are looking for cannot be found"
+msgstr "The page you are looking for cannot be found"
+
+#: templates/front/errors/500.html:16
+#| msgid "Error 403"
+msgid "Error 500"
+msgstr "Error 500"
+
+#: templates/front/errors/500.html:32
+msgid "Internal Server Error"
+msgstr "Internal Server Error"
+
+#: templates/front/errors/500.html:34
+msgid "Server encountered an error and could not handle this request"
+msgstr "Server encountered an error and could not handle this request"
 
 #: templates/front/index.html:11
 msgid "MISSION"
@@ -1317,10 +1424,13 @@ msgstr ""
 "offering a wide range of courses, educational materials, and practical "
 "assignments."
 
-#: templates/front/index.html:20
-#| msgid "state company"
+#: templates/front/index.html:17
 msgid "About company"
 msgstr "About company"
+
+#: templates/front/index.html:33
+msgid "Our partners"
+msgstr "Partners"
 
 #: templates/modules/module_create.html:12
 msgid "Add module:"
@@ -2034,7 +2144,6 @@ msgid "Team"
 msgstr "Team"
 
 #: templates/team/team_create.html:10
-#| msgid "Add test"
 msgid "Add team"
 msgstr "Add team"
 
@@ -2059,12 +2168,6 @@ msgstr "Add team"
 
 #~ msgid "Тест"
 #~ msgstr "Test"
-
-#~ msgid "Previous lesson"
-#~ msgstr "Previous lesson"
-
-#~ msgid "Next chapter"
-#~ msgstr "Next chapter"
 
 #, python-format
 #~ msgid ""

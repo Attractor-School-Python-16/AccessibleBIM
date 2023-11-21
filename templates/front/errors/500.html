@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html><!--
 * CoreUI - Free Bootstrap Admin Template
 * @version v4.2.2
@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Ошибка 500</title>
+    <title>{% trans 'Error 500' %}</title>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -28,13 +28,14 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="clearfix">
-                    <h1 class="float-start display-3 me-4">505</h1>
-                    <h4 class="pt-3">Ошибка сервера</h4>
-                    <p class="text-medium-emphasis">Из-за возникшей ошибки сервер не может обработать ваш запрос</p>
+                    <h1 class="float-start display-3 me-4">500</h1>
+                    <h4 class="pt-3">{% trans 'Internal Server Error' %}</h4>
+                    <p class="text-medium-emphasis">
+                        {% trans 'Server encountered an error and could not handle this request' %}
+                    </p>
                 </div>
                 <div class="input-group d-flex justify-content-center">
-                    <a href="{% url "front:accessible_bim" %}" class="btn btn-info">Вернуться на главную
-                        страницу</a>
+                    <a href="{% url "front:accessible_bim" %}" class="btn btn-info">{% trans 'Back to main page' %}</a>
                 </div>
             </div>
         </div>
