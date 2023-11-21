@@ -4,11 +4,17 @@
     <div class="container">
         <h3>{% trans 'Test' %} "{{ progress.test.title }}"</h3>
         <h5>{% trans 'Number of questions' %}: {{ progress.test.question_bim.count }}</h5>
-        <h5>{% trans 'Result' %}:</h5>
         <h5>{% trans 'Correct answers' %}: {{ progress.correct_answers }} {% trans 'out of' %} {{ progress.user_progress.count }}
-            ({{ progress.accuracy|floatformat:2 }})</h5>
+                ({{ progress.accuracy|floatformat:2 }})</h5>
+        <h5>{% trans 'Result' %}:
+            {% if progress.is_passed %}
+                <span class="text-success">{% trans 'Passed' %}</span>
+            {% else %}
+                <span class="text-danger">{% trans 'Not passed' %}</span>
+            {% endif %}
+        </h5>
+
         {% if progress.is_passed %}
-            <h5>{% trans 'Passed' %}</h5>
             {% if is_moderator %}
                 <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
                   hx-target="#quiz_content">
@@ -17,7 +23,6 @@
             </form>
             {% endif %}
         {% else %}
-            <h5>{% trans 'Not passed' %}</h5>
             <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
                   hx-target="#quiz_content">
                 {% csrf_token %}
