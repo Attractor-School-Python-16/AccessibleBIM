@@ -8,7 +8,14 @@
             </div>
             <br>
             <p class="content"><strong>{% trans 'Target audience' %}:</strong> {{ data.courseTarget_id.title }}</p>
-            <p class="content"><strong>{% trans 'Language' %}:</strong> {{ data.language }}</p>
+            <p class="content"><strong>{% trans 'Language' %}:</strong>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == 'ru' %}
+                    Русский
+                {% elif LANGUAGE_CODE == 'en' %}
+                    English
+                {% endif %}
+            </p>
             <p class="content"><strong>{% trans 'Learn time' %}:</strong> {{ data.learnTime }} {% trans 'h.' %}</p>
             <p class="content"><strong>{% trans 'Teachers' %}:</strong></p>
 
