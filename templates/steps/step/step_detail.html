@@ -23,7 +23,7 @@
             {% endif %}
             {% if files %}
                 {% for file in files %}
-                    <p>{% trans 'File' %} {{ file.file_title }}</p>
+                    <p>{% trans 'File' %}: {{ file.file_title }}</p>
                     <a href="{{ file.lesson_file.url }}" download class="btn btn-primary">{% trans 'Download file' %}</a>
                 {% endfor %}
             {% endif %}
