@@ -26,6 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -36,7 +37,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", default=get_random_secret_key())
 DEBUG = (bool(int(os.environ.get('DEBUG', 1))))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-# ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:80", 'http://164.90.198.101.nip.io:80']
 
