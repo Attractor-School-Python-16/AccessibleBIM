@@ -1,0 +1,19 @@
+{% extends "front/base.html" %}
+{% load static i18n %}
+
+{#{% block title %}Политика конфиденциальности{% endblock %}#}
+
+{% block content %}
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == 'ru' %}
+                    {% include 'front/partials/static/terms_ru.html' %}
+                {% elif LANGUAGE_CODE == 'en' %}
+                    {% include 'front/partials/static/terms_en.html' %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

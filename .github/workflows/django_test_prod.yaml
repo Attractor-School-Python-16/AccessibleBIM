@@ -1,0 +1,108 @@
+name: CI-CD PROD
+
+# Controls when the workflows will run
+on:
+  workflow_dispatch:
+  push:
+    branches: [stage]
+  pull_request:
+    branches: [stage]
+
+
+# A workflows run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  job1:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Add in environment variables for the entire "build" job
+    env:
+      CURRENCY: ${{secrets.OPEN_EXCHANGE_RATES_API_KEY}}
+      GMAIL_KEY: ${{secrets.GMAIL_KEY}}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+      DJANGO_ALLOWED_HOSTS: localhost 127.0.0.1 [::1]
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      DATABASE_URL: psql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@127.0.0.1:${{ secrets.POSTGRES_PORT }}/${{ secrets.POSTGRES_DB }}
+    services:
+      postgres_main:
+        image: postgres:15
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+    # If you want to test multiple python version(s)
+    strategy:
+      matrix:
+        python-version: ["3.11"] # ["3.8", "3.9", "3.10"]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+      - name: Run Tests
+        # Step specific environment variables
+        env:
+          DEBUG: "0"
+          DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
+          DB_USERNAME: ${{ env.POSTGRES_USER }}
+          DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          DB_HOST: ${{ env.POSTGRES_HOST }}
+          DB_DATABASE: ${{ env.POSTGRES_DB }}
+          DB_PORT: ${{ env.POSTGRES_PORT }}
+          DATABASE_URL: psql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@127.0.0.1:${{ env.POSTGRES_PORT }}/${{ env.POSTGRES_DB }}
+        run: |
+          python manage.py test
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+      - name: Build the Docker image Prod
+        run: docker build docker-compose.prod.yml --file Dockerfile.prod --tag my-image-name:$(date +%s)
+
+
+  job3:
+    needs: job2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+
+
+          SCRIPT_AFTER: |
+            docker rm -f $(docker ps -a -q)
+            docker rmi -f $(docker images -aq)
+            docker volume rm $(docker volume ls)
+            docker system prune -af
+            rm -Rf AccessibleBIM
+            git clone -b stage git@github.com:Attractor-School-Python-16/AccessibleBIM.git
+            cp env_dir/.env.dev AccessibleBIM
+            cp env_dir/.env.prod AccessibleBIM
+            cd AccessibleBIM/
+            docker compose -f docker-compose.prod.yml up -d --build

@@ -1,0 +1,43 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block title %}{% trans 'View video' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    {% if request.user.is_authenticated %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <h1>{{ video.video_title }}</h1>
+                </div>
+                <h4 class="my-2">{{ video.video_description }}</h4>
+                <div>
+                    <video
+                            id="my-video"
+                            class="video-js"
+                            controls
+                            preload="auto"
+                            width="640"
+                            height="360"
+                            data-setup="{'playbackRates': [0.5, 1, 1.5, 2]}"
+                    >
+                        <source src="{{ video.video_file.url }}" type="video/mp4">
+                        <source src="{{ video.video_file.url }}" type="video/webm">
+                        <source src="{{ video.video_file.url }}" type="audio/ogg">
+
+                        <p class="vjs-no-js">
+                             {% trans 'To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>' %}
+                        </p>
+                    </video>
+                </div>
+                </br>
+                <a href="{% url 'step:videomodel_update' video.id %}" class="btn btn-primary me-2">{% trans 'Edit' %}</a>
+                <a href="{% url 'step:videomodel_delete' video.id %}" class="btn btn-danger me-2">{% trans 'Delete' %}</a>
+                <a href="{% url 'step:videomodel_list' %}" class="btn btn-secondary">
+                    {% trans 'Back to videos list' %}</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

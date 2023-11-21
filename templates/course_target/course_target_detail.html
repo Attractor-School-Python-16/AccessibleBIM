@@ -1,0 +1,23 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block title %}{% trans 'Target audience' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ course_target.title }}</h2>
+        </div>
+        <div class="card-body">
+            <p>{{ course_target.description }}</p>
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'modules:coursetargetmodel_update' course_target.id %}"
+                   class="btn btn-primary mx-3">{% trans 'Change' %}</a>
+                <a href="{% url 'modules:coursetargetmodel_delete' course_target.id %}"
+                   class="btn btn-danger">{% trans 'Delete' %}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

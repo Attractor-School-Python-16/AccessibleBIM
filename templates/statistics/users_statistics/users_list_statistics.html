@@ -1,0 +1,90 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Statistics' %}{% endblock %}
+
+{% block moderator_interface %}
+    <div class="container">
+        <!--Users table-->
+        <div class="table-responsive my-3">
+            <table class="table responsive border mb-0 nowrap bg-white table-striped" id="UserStatisticsTable">
+                <thead class="fw-semibold">
+                    <tr class="align-middle">
+                        <th>{% trans 'User' %}</th>
+                        <th>{% trans 'Email' %}</th>
+                        <th>{% trans 'Country' %}</th>
+                        <th>{% trans 'Course' %}</th>
+                        <th>{% trans 'Registered at' %}</th>
+                        <th>{% trans 'Last Entry' %}</th>
+                        <th>{% trans 'Email Verified' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in people %}
+                        <tr class="align-middle">
+                            <td>
+                                <a href="{% url 'reports:stats_user_detailed' pk=person.pk %}">
+                                    {{ person.get_full_name }}
+                                </a>
+                            </td>
+                            <td class="text-left">{{ person.email }}</td>
+                            <td class="text-center">{{ person.country }}</td>
+                            <td class="text-center">
+                                {% if person.get_current_course %}
+                                    {{ person.get_current_course.title }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                            <td>{{ person.date_joined|date:"j.m.o H:i" }}</td>
+                            <td>{{ person.last_login|date:"j.m.o H:i" }}</td>
+                            <td class="text-center"><input type="checkbox" {% if person.email_verified %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="//cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.13.6/sorting/datetime-moment.js"></script>
+    <script>
+        $.fn.dataTable.moment('D.MM.Y HH:mm');
+
+        DataTable.ext.order['dom-checkbox'] = function (settings, col) {
+            return this.api()
+                .column(col, { order: 'index' })
+                .nodes()
+                .map(function (td, i) {
+                    let el = td.querySelector('input');
+                    return el ? (el.checked ? 1 : 0) : 0;
+                });
+        };
+
+        {% get_current_language as LANGUAGE_CODE %}
+        let lang_url = '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json';
+        let lang = '{{ LANGUAGE_CODE }}';
+        if(lang==='ru'){
+            lang_url = '//cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json';
+        }
+        let table = new DataTable('#UserStatisticsTable', {
+            responsive: true,
+            language: {
+                url: lang_url,
+            },
+            columns: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                { orderDataType: 'dom-checkbox' }
+            ],
+        });
+    </script>
+{% endblock %}

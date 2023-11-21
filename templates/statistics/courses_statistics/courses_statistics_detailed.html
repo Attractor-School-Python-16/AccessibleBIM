@@ -1,0 +1,42 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Statistics' %}{% endblock %}
+
+{% block moderator_interface %}
+    <div class="container">
+        <div class="row g-5 g-xl-8 mb-3">
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                {% trans 'Users purchased the course' as users_purchased_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=subscriptions_qty title=users_purchased_title icon='<i class="fa-solid fa-user-plus fs-2"></i>' %}
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                {% trans 'Users completed the course' as users_completed_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=completions_qty title=users_completed_title icon='<i class="fa-solid fa-user-check fs-2"></i>' %}
+            </div>
+            <div class="col-sm-12 col-md-12 col-xl-4">
+                {% trans 'Average course completion time' as course_completion_time_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=avg_completion_time title=course_completion_time_title icon='<i class="fa-solid fa-clock fs-2"></i>' %}
+            </div>
+        </div>
+
+        <!--Lesson types pie chart-->
+        {% trans 'Lesson types' as lesson_types_title %}
+        {% include 'partials/statistics/chart_card.html' with title=lesson_types_title chart_id='lesson-types-in-course-chart' data_course=course.pk %}
+
+        <!--Step completion time chart-->
+        {% trans 'Average lesson completion time' as lesson_completion_time_title %}
+        {% include 'partials/statistics/chart_card.html' with title=lesson_completion_time_title chart_id='step-completion-time-chart' data_course=course.pk %}
+
+        <!--Test results chart-->
+        {% trans 'Test results' as test_results_title %}
+        {% include 'partials/statistics/chart_card.html' with title=test_results_title chart_id='test-results-in-course-chart' data_course=course.pk %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/statistics_js/statistics_charts.js' %}"></script>
+    <script src="{% static 'js/statistics_js/stats_courses_detailed.js' %}"></script>
+{% endblock %}

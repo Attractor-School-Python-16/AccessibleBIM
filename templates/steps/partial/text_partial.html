@@ -1,0 +1,18 @@
+{% load i18n %}
+<div class="text-content">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <h3 class="content bold text-center">{{ step.text.text_title }}</h3>
+        </li>
+        <li class="list-group-item">
+            <h4 class="content bold text-center">{% trans 'Description' %}:</h4>
+            <p class="text-description content" style="text-align: justify">{{ step.text.text_description | safe }}</p>
+        </li>
+        <li class="list-group-item">
+            <div class="text-body content">
+                <h4 class="content bold text-center">{% trans 'Content' %}:</h4>
+                <p class="content" style="text-align: justify">{{ step.text.content | safe }}</p>
+            </div>
+        </li>
+    </ul>
+</div>

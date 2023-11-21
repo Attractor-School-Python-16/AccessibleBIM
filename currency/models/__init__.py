@@ -1,0 +1,1 @@
+from currency.models.currency_rate import CurrencyRateModel

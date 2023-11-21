@@ -1,0 +1,44 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static view_breadcrumbs %}
+{% block title %}{% trans 'Change lessons ordering' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="container my-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <h1 class="my-3">{% blocktrans with title=chapter.title %}List of {{ title }} chapter's
+                        lessons{% endblocktrans %}</h1></div>
+                {% if messages %}
+                    <ul class="messages list-unstyled">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="text-danger"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="draggable-area">
+                        <ul class="list-group m-3">
+                            {% for step in steps|dictsort:"serial_number" %}
+                                <li class="list-group-item row my-2 draggable" id="pk_{{ step.id }}">
+                                    <div class="col-md-4 col-12 d-inline-block">{% trans 'Lesson' %}: {{ step.title }}</div>
+                                    <div class="col-md-3 col-12 d-inline-block">{% trans 'Current number' %}: {{ step.serial_number }}</div>
+                                    <div class="col-md-3 col-12 d-inline-block" id="new-number">{% trans 'New number' %}:</div>
+                                    <input type="hidden" class="number-value">
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-primary my-3 me-3">{% trans 'Change lessons ordering' %}</button>
+                    <a href="{% url 'modules:chaptermodel_detail' chapter.id %}" class="btn btn-secondary">{% trans 'Back' %}</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/drag_n_drop.js' %}"></script>
+{% endblock %}
+

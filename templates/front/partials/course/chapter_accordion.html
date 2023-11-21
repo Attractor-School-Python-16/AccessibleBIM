@@ -1,0 +1,29 @@
+{% load i18n %}
+<div class="col-md-6 mt-4 mb-5">
+    <div class="accordion" id="accordionExample">
+        <h2 class="heading">{% trans 'Course content' %}:</h2>
+        {% for chapter in chapters|dictsort:"serial_number" %}
+            {% if chapter.step.all %}
+                <div class="accordion-item content">
+                    <p class="accordion-header content">
+                        <button class="accordion-button collapsed p-0 content" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse{{ chapter.pk }}" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapse{{ chapter.pk }}">
+                            <strong class="content text-dark text-decoration-underline">{% trans 'Chapter' %} {{ chapter.serial_number }}: {{ chapter.title }}</strong>
+                        </button>
+                    </p>
+
+                    <div id="panelsStayOpen-collapse{{ chapter.pk }}" class="accordion-collapse content collapse">
+                        <div class="accordion-body p-0 content">
+                            <ol class="text-dark bold content">
+                                {% for step in chapter.step.all %}
+                                    <li><strong class="content text-dark">{{ step.title }}</strong></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

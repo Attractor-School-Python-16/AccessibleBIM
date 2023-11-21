@@ -1,0 +1,26 @@
+{% load i18n %}
+<h3>{% trans 'Test' %} "{{ step.test.title }}"</h3>
+    <h4>{% trans 'Questions quantity' %}: {{ step.test.questions_qty }}</h4>
+    <a class="btn btn-primary" href="{% url "quiz_bim:questionbim_create" pk=step.test.pk %}" role="button">
+        {% trans 'Add new question' %}</a>
+    <a class="btn btn-primary" href="{% url 'quiz_bim:take_quiz' pk=step.test.pk %}" role="button">
+        {% trans 'Take test' %}</a>
+    <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=step.test.pk %}" role="button">
+        {% trans 'Edit' %}</a>
+    <a class="btn btn-danger" href="{% url 'quiz_bim:quizbim_delete' pk=step.test.pk %}" role="button">
+        {% trans 'Delete' %}</a>
+{% for question in questions %}
+    <div class="row justify-content-center mt-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ question.title }}</h5>
+                <a class="btn btn-primary" href="{% url 'quiz_bim:questionbim_detail' pk=question.pk %}" role="button">
+                    {% trans 'More' %}</a>
+                <a class="btn btn-primary" href="{% url 'quiz_bim:questionbim_update' pk=question.pk %}" role="button">
+                    {% trans 'Edit' %}</a>
+                <a class="btn btn-danger" href="{% url 'quiz_bim:questionbim_delete' pk=question.pk %}" role="button">
+                    {% trans 'Delete' %}</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}

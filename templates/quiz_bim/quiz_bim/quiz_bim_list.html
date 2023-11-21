@@ -1,0 +1,45 @@
+{% extends 'moderator_page.html' %}
+{% load view_breadcrumbs i18n %}
+{% block title %}{% trans 'Tests list' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h2>{% trans 'Tests list' %}</h2>
+            </div>
+            <a class="btn btn-primary my-3" href="{% url "quiz_bim:quizbim_create" %}">{% trans 'Add' %}</a>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>{% trans 'Title' %}</th>
+                    <th class="text-end">{% trans 'Actions' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for test in tests|dictsort:"id" %}
+                    <tr>
+                        <td>{{ test.id }}</td>
+                        {% if request.user.is_authenticated %}
+                            <td><a href="{% url 'quiz_bim:quizbim_detail' pk=test.pk %}">{{ test.title }}</a></td>
+                        {% endif %}
+                        <td class="text-end">
+                            {% if perms.step.change_textmodel %}
+                                <a href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}"
+                                   class="btn btn-info btn-sm mb-2">{% trans 'Change' %}</a>
+                            {% endif %}
+                            {% if perms.step.delete_textmodel %}
+                                <a href="{% url 'quiz_bim:quizbim_delete' pk=test.pk %}"
+                                   class="btn btn-danger btn-sm mb-2 ms-2">{% trans 'Delete' %}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'moderator_page.html' %}
+{% load static i18n %}
+{% block moderator_interface %}
+    <div class="card mb-5">
+        <div class="card-header">
+            <h1>{% trans 'Content management instruction' %}</h1>
+        </div>
+        <div class="card-body">
+            {% include "instructions/intro.html" %}
+            <div class="accordion mb-4" id="main-accordion">
+                {% include "instructions/scheme.html" %}
+                {% include "instructions/module.html" %}
+                {% include "instructions/teachers.html" %}
+                {% include "instructions/course_target.html" %}
+                {% include "instructions/course.html" %}
+                {% include "instructions/chapter.html" %}
+                {% include "instructions/step.html" %}
+                {% include "instructions/files.html" %}
+                {% include "instructions/video.html" %}
+                {% include "instructions/text.html" %}
+                {% include "instructions/test.html" %}
+                {% include "instructions/subs.html" %}
+                {% include "instructions/statistics.html"%}
+                {% include "instructions/partners.html" %}
+            </div>
+            <a href="{% static "files/Инструкция.pdf" %}">{% trans 'Download instruction' %}</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,3 @@
+from reports.views.courses_statistics_views.courses_main_statistics_view import CoursesMainStatisticsView
+from reports.views.courses_statistics_views.courses_list_statistics_view import CoursesListStatisticsView
+from reports.views.courses_statistics_views.courses_detailed_statistics_view import CoursesDetailedStatisticsView

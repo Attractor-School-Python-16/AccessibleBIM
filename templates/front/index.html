@@ -1,0 +1,51 @@
+{% extends "front/base.html" %}
+{% load static i18n %}
+
+{% block title %}Bologna Engineering Excellence{% endblock %}
+
+{% block content %}
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="heading text-gradient text-info pt-5">{% trans 'MISSION' %}</h1>
+                    <p class="content text-dark mb-0 text-justify">
+                        {% trans 'MISSION_TEXT' %}
+                        <br>
+                    </p>
+                    <a href="{% url "front:about" %}" type="button" class="btn btn-outline-dark-blue content mt-4">
+                        {% trans 'About company' %}</a>
+                </div>
+                <div class="col-lg-5 ms-auto">
+                    <div class="position-relative">
+                        <img class="max-width-50 w-100 position-relative z-index-2"
+                             src="{% static "img/building.jpg" %}" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding mt-5 mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="text-gradient text-info text-uppercase heading">{% trans 'Our partners' %}</h2>
+                </div>
+                <div class="owl-carousel owl-theme mt-3">
+                    {% for partner in partners %}
+                        <div>
+                            <div class="item bg-black w-100" style="background-image: url('{{ partner.image.url }}');
+                                                                height: 10em;
+                                                                background-position: center;
+                                                                background-repeat: no-repeat;
+                                                                background-size: contain;"></div>
+                            <h4 class="text-center content mt-2">{{ partner.title }}</h4>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

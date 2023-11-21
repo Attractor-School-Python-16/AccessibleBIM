@@ -1,0 +1,47 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block title %}Модули{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="px-sm-0 px-md-5">
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <h2>{% trans 'Modules list' %}</h2>
+                </div>
+                <a href="{% url 'modules:modulemodel_create' %}" class="btn btn-primary my-3">{% trans 'Add modules' %}</a>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>{% trans 'Title' %}</th>
+                            <th class="text-end">{% trans 'Actions' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for module in modules|dictsort:"id" %}
+                            <tr>
+                                <td>{{ module.id }}</td>
+                                <td><a href="{% url 'modules:modulemodel_detail' module.id %}">{{ module.title }}</a>
+                                </td>
+                                <td class="text-end">
+                                    <div class="btn-group">
+                                        <a href="{% url 'modules:modulemodel_update' module.id %}"
+                                           class="btn btn-info btn-sm mx-3">{% trans 'Change' %}</a>
+                                        <a href="{% url 'modules:modulemodel_delete' module.id %}"
+                                           class="btn btn-danger btn-sm">{% trans 'Delete' %}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,213 @@
+{% load i18n %}
+<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+    <div class="sidebar-brand">
+        <a href="{% url 'modules:moderator_page' %}" class="link-secondary" style="text-decoration: none">
+            <h4 class="p-2 mt-1 text-center">Bologna Engineering Excellence</h4>
+        </a>
+    </div>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-brands fa-bimobject"></i>
+                {% trans 'Modules' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:modulemodel_create' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:modulemodel_list' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'List' %}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-solid fa-book"></i>
+                {% trans 'Courses' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:coursemodel_create' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'modules:coursemodel_list' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'List' %}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-solid fa-chalkboard-user"></i>
+                {% trans 'Teachers' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:teachermodel_create' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:teachermodel_list' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'List' %}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-solid fa-graduation-cap"></i>
+                {% trans 'Target audience' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:coursetargetmodel_create' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'modules:coursetargetmodel_list' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'List' %}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-regular fa-file"></i>
+                {% trans 'Files' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_create' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:filemodel_list' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'List' %}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-brands fa-youtube"></i>
+                {% trans 'Video' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_create' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:videomodel_list' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'List' %}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-regular fa-pen-to-square"></i>
+                {% trans 'Readings' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_create' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'step:textmodel_list' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'List' %}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-regular fa-square-check"></i>
+                {% trans 'Tests' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_create' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'Add' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'quiz_bim:quizbim_list' %}"><span
+                        class="nav-icon"></span>{% trans 'List' %}</a></li>
+            </ul>
+        </li>
+
+            <li class="nav-group my-2">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-regular fa-handshake"></i>
+                    {% trans 'Partners' %}</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:add_partner' %}">
+                        <span class="nav-icon"></span>
+                        {% trans 'Add' %}</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:partners_list' %}"><span
+                            class="nav-icon"></span>{% trans 'List' %}</a></li>
+                </ul>
+            </li>
+        {% if perms.content.add_teammodel or perms.content.change_teammodel or perms.content.delete_teammodel or perms.content.view_teammodel %}
+            <li class="nav-group my-2">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-regular fa-handshake"></i>
+                    Team</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:add_team' %}">
+                        <span class="nav-icon"></span>
+                        Add</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'content:team_list' %}"><span
+                            class="nav-icon"></span>List</a></li>
+                </ul>
+            </li>
+        {% endif %}
+
+        <li class="nav-group my-2">
+            <a class="nav-link nav-group-toggle" href="#">
+                <i class="nav-icon fa-solid fa-person-circle-check"></i>
+                {% trans 'Subscriptions' %}</a>
+            <ul class="nav-group-items">
+                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_create' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'Publish courses' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="{% url 'subscription:subscriptionmodel_user_list' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'Grant access' %}</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'subscription:subscriptionmodel_list' %}">
+                    <span class="nav-icon"></span>
+                    {% trans 'List of courses' %}</a>
+                </li>
+            </ul>
+        </li>
+        {% if perms.accounts.can_view_user_statistics or perms.accounts.can_view_course_statistics or perms.accounts.can_view_sales_statistics %}
+            <li class="nav-group my-2">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-solid fa-chart-simple"></i>
+                    {% trans 'Statistics' %}</a>
+                <ul class="nav-group-items">
+                    {% if perms.accounts.can_view_user_statistics %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_users_main' %}">
+                            <span class="nav-icon"></span>
+                            {% trans 'Users' %}</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.accounts.can_view_course_statistics %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_courses_main' %}">
+                            <span class="nav-icon"></span>
+                            {% trans 'Courses' %}</a>
+                        </li>
+                    {% endif %}
+                    {% if perms.accounts.can_view_sales_statistics %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'reports:stats_sales_main' %}">
+                            <span class="nav-icon"></span>
+                            {% trans 'Sales' %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+
+        </li>
+        {% endif %}
+    </ul>
+</div>

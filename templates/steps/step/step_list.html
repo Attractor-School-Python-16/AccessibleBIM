@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'partials/sidebar.html' %}
+            </div>
+            <div class="col-md-9">
+
+                {% block breadcrumbs %}
+                    {% render_breadcrumbs %}
+                {% endblock %}
+                <h1>{% trans 'Lessons list' %}</h1>
+                    <a href="{% url 'step:stepmodel_create' %}" class="btn btn-primary">{% trans 'Add' %}</a>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>{% trans 'Title' %}</th>
+                        <th>{% trans 'Actions' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for step in steps %}
+                        <tr>
+                            <td>{{ step.id }}</td>
+                            <td><a href="{% url 'step:stepmodel_detail' step.id %}">{{ step.title }}</a></td>
+                            <td>
+                                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-info btn-sm">{% trans 'Change' %}</a>
+                                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger btn-sm">{% trans 'Delete' %}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

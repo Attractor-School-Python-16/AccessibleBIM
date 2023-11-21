@@ -1,0 +1,50 @@
+{% load i18n %}
+
+<header class="header header-sticky mb-4">
+    <div class="container-fluid">
+        <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+            <i class="icon icon-lg fa-solid fa-bars"></i>
+        </button>
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="{% url "front:accessible_bim" %}" class="nav-link">{% trans 'Main page' %}</a>
+                </li>
+            </ul>
+            <ul class="nav">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url "accounts:logout" %}">{% trans 'Logout' %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "accounts:profile" %}">{% trans 'Profile' %}: {{ request.user.first_name }}</a>
+                    </li>
+                    {% if perms.accounts.can_grant_moderator_role %}
+                        <li class="nav-item">
+                            <a href="{% url 'accounts:grant_moderator_panel' %}" class="nav-link">
+                                {% trans 'Grant moderator access' %}</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+
+                <li class="nav-item">
+                    <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <select name="language" class="form-select" onchange="this.form.submit();">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="header-divider"></div>
+</header>

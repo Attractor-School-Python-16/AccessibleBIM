@@ -1,0 +1,2155 @@
+[
+{
+  "model": "step.filemodel",
+  "pk": 1,
+  "fields": {
+    "create_at": "2023-09-20T20:15:04.921Z",
+    "update_at": "2023-11-01T12:57:24.520Z",
+    "file_title": "Файл 1",
+    "lesson_file": "steps/files/Тест_файла.docx"
+  }
+},
+{
+  "model": "step.filemodel",
+  "pk": 2,
+  "fields": {
+    "create_at": "2023-11-01T13:11:58.090Z",
+    "update_at": "2023-11-01T13:11:58.090Z",
+    "file_title": "Файл 2",
+    "lesson_file": "steps/files/Тест.txt"
+  }
+},
+{
+  "model": "step.filemodel",
+  "pk": 3,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.988Z",
+    "update_at": "2023-11-01T13:18:51.988Z",
+    "file_title": "Тест",
+    "lesson_file": "steps/files/Тест_q6KVcfH.txt"
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 7,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 1,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 8,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 1,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 9,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 1,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 10,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 1,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 11,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 1,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 17,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 2,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 18,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 2,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 19,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 2,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 27,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 3,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 28,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 3,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 29,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 3,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 37,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 4,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 38,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 4,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 39,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 4,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 47,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 5,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 48,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 5,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 49,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 5,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 57,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 6,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 58,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 6,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 59,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 6,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 67,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 7,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 68,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 7,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 69,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 7,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 77,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 8,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 78,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 8,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 79,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 8,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 87,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 9,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 88,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 9,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 89,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 9,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 97,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 10,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 98,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 10,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 99,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 10,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 107,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 11,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 108,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 11,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 109,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 11,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 110,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 2,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 111,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 2,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 117,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 12,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 118,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 12,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 119,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 12,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 127,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 13,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 128,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 13,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 129,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 13,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 137,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 14,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 138,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 14,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 139,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 14,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 147,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 15,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 148,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 15,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 149,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 15,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 157,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 16,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 158,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 16,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 159,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 16,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 167,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 17,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 168,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 17,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 169,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 17,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 177,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 18,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 178,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 18,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 179,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 18,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 187,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 19,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 188,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 19,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 189,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 19,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 197,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 20,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 198,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 20,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 199,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 20,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 207,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 21,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 208,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 21,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 209,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 21,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 210,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 3,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 211,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 3,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 217,
+  "fields": {
+    "create_at": "2023-11-01T13:15:12.727Z",
+    "update_at": "2023-11-01T13:15:12.727Z",
+    "chapter": 22,
+    "title": "Занятие Видео",
+    "lesson_type": "video",
+    "text": null,
+    "video": 1,
+    "test": null,
+    "learn_time": 10,
+    "serial_number": 1,
+    "file": [
+      1
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 218,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.983Z",
+    "update_at": "2023-11-01T13:18:51.983Z",
+    "chapter": 22,
+    "title": "Занятие Видео 2",
+    "lesson_type": "video",
+    "text": null,
+    "video": 3,
+    "test": null,
+    "learn_time": 11,
+    "serial_number": 2,
+    "file": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 219,
+  "fields": {
+    "create_at": "2023-11-01T13:19:22.952Z",
+    "update_at": "2023-11-01T13:19:22.952Z",
+    "chapter": 22,
+    "title": "Занятие текст 1",
+    "lesson_type": "text",
+    "text": 1,
+    "video": null,
+    "test": null,
+    "learn_time": 13,
+    "serial_number": 3,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 310,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 4,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 311,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 4,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 410,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 5,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 411,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 5,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 510,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 6,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 511,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 6,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 610,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 7,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 611,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 7,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 710,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 8,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 711,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 8,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 810,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 9,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 811,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 9,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 910,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 10,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 911,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 10,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1010,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 11,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1011,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 11,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1110,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 12,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1111,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 12,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1210,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 13,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1211,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 13,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1310,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 14,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1311,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 14,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1410,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 15,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1411,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 15,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1510,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 16,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1511,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 16,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1610,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 17,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1611,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 17,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1710,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 18,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1711,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 18,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1810,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 19,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1811,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 19,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1910,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 20,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 1911,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 20,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 2010,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 21,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 2011,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 21,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 2110,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.507Z",
+    "update_at": "2023-11-01T13:20:04.507Z",
+    "chapter": 22,
+    "title": "Занятие текст 2",
+    "lesson_type": "text",
+    "text": 2,
+    "video": null,
+    "test": null,
+    "learn_time": 14,
+    "serial_number": 4,
+    "file": [
+      3
+    ]
+  }
+},
+{
+  "model": "step.stepmodel",
+  "pk": 2111,
+  "fields": {
+    "create_at": "2023-11-01T13:20:27.814Z",
+    "update_at": "2023-11-01T13:20:27.814Z",
+    "chapter": 22,
+    "title": "Занятие тест 1",
+    "lesson_type": "test",
+    "text": null,
+    "video": null,
+    "test": 1,
+    "learn_time": 15,
+    "serial_number": 5,
+    "file": []
+  }
+},
+{
+  "model": "step.textmodel",
+  "pk": 1,
+  "fields": {
+    "create_at": "2023-09-20T20:02:08.393Z",
+    "update_at": "2023-11-01T13:12:57.954Z",
+    "text_title": "Текст 1",
+    "text_description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p",
+    "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  }
+},
+{
+  "model": "step.textmodel",
+  "pk": 2,
+  "fields": {
+    "create_at": "2023-11-01T13:20:04.503Z",
+    "update_at": "2023-11-01T13:20:04.503Z",
+    "text_title": "Оглавление 2",
+    "text_description": "<p>Описание 2</p>",
+    "content": "<p>Содержимое 2</p>"
+  }
+},
+{
+  "model": "step.videomodel",
+  "pk": 1,
+  "fields": {
+    "create_at": "2023-09-22T10:33:56.487Z",
+    "update_at": "2023-11-01T13:04:14.833Z",
+    "video_title": "Тест видео 1",
+    "video_description": "Описание видео 1",
+    "video_file": "steps/videos/junk-E-cat_-_Maloka.mp4"
+  }
+},
+{
+  "model": "step.videomodel",
+  "pk": 2,
+  "fields": {
+    "create_at": "2023-09-22T13:13:08.996Z",
+    "update_at": "2023-11-01T13:09:20.317Z",
+    "video_title": "Тест видео 2",
+    "video_description": "Описание видео 2",
+    "video_file": "steps/videos/junk-E-cat_-_Levitation.mp4"
+  }
+},
+{
+  "model": "step.videomodel",
+  "pk": 3,
+  "fields": {
+    "create_at": "2023-11-01T13:18:51.796Z",
+    "update_at": "2023-11-01T13:18:51.796Z",
+    "video_title": "Видео 3",
+    "video_description": "Описание видео 3",
+    "video_file": "steps/videos/junk-E-cat_-_Levitation_69amsyh.mp4"
+  }
+}
+]

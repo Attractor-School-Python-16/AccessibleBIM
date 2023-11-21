@@ -1,0 +1,73 @@
+{% extends 'moderator_page.html' %}
+{% load view_breadcrumbs i18n %}
+
+{% block title %}{% trans "Grant moderator's rights" %}{% endblock %}
+
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header">
+                <h2>{% trans "Grant moderator's rights page" %}</h2>
+            </div>
+            <form action="{% url "accounts:grant_moderator_panel" %}" method="get" class="d-flex mt-4" role="search">
+                <input class="form-control me-2" type="search" name="search" placeholder={% trans "Search by Email" %}
+                        aria-label="Search" value="{{ search_query }}">
+                <button class="btn btn-outline-info" type="submit">{% trans "Search" %}</button>
+            </form>
+            <hr style="margin: 35px 0;">
+            <form method="post">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Email</th>
+                            <th scope="col">{% trans "Role" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td><input class="form-check-input mt-0" type="checkbox" name="users"
+                                           value="{{ user.id }}"></td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    {% if user.is_moderator %}
+                                        {% trans "Moderator" %}
+                                    {% else %}
+                                        {% trans "User" %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="3">{% trans "No users" %}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if search_query %}
+                    <div class="d-flex justify-content-end">
+                        <input formaction="{% url 'accounts:grant_moderators' %}?next={{ request.path }}?search={{ search_query }}"
+                               type="submit" class="btn btn-primary me-3" value={% trans "Grant" %}>
+                        <input formaction="{% url 'accounts:remove_moderators' %}?next={{ request.path }}?search={{ search_query }}"
+                               type="submit" class="btn btn-danger" value={% trans "Remove" %}>
+                    </div>
+                {% else %}
+                    <div class="d-flex justify-content-end">
+                        <input formaction="{% url 'accounts:grant_moderators' %}" type="submit"
+                               class="btn btn-primary me-3"
+                               value={% trans "Grant" %}>
+                        <input formaction="{% url 'accounts:remove_moderators' %}" type="submit" class="btn btn-danger"
+                               value={% trans "Remove" %}>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

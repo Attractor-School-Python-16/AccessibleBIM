@@ -1,0 +1,18 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block title %}{% trans 'Add course' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="container my-4">
+        <div class="card">
+            <div class="card-body">
+                <h1>{% trans 'Add course' %}:</h1>
+                {% trans 'Add' as button_text_add %}
+                {% include "partials/form.html" with button_text=button_text_add %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

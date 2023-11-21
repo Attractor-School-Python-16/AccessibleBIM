@@ -1,0 +1,96 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Statistics' %}{% endblock %}
+
+{% block moderator_interface %}
+    <div class="container mb-4">
+        <!--Users table-->
+        <div class="table-responsive my-3">
+            <table class="table responsive border mb-0 nowrap bg-white">
+                <thead class="fw-semibold">
+                    <tr class="align-middle">
+                        <th>{% trans 'User' %}</th>
+                        <th>{% trans 'Email' %}</th>
+                        <th>{% trans 'Country' %}</th>
+                        <th>{% trans 'Course' %}</th>
+                        <th>{% trans 'Registered at' %}</th>
+                        <th>{% trans 'Last Entry' %}</th>
+                        <th>{% trans 'Email Verified' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-middle">
+                      <td>{{ person.get_full_name }}</td>
+                      <td class="text-left">{{ person.email }}</td>
+                      <td class="text-center">{{ person.country }}</td>
+                      <td class="text-center">{{ person.get_current_course }}</td>
+                      <td>{{ person.date_joined|date:"j.m.o H:i" }}</td>
+                      <td>{{ person.last_login|date:"j.m.o H:i" }}</td>
+                      <td class="text-center"><input type="checkbox" {% if person.email_verified %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <h4 class="my-3">{% trans 'Active course' %}:</h4>
+        {% if current_course %}
+            <div class="card">
+                 <div class="card-body">
+                     <h5 class="card-title">{{ current_course.title }}</h5>
+                     <p class="card-text">{{ current_course.description }}</p>
+
+                     <p class="d-inline-flex gap-1">
+                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                               data-bs-target="#current-course-div" aria-expanded="false"
+                               aria-controls="current-course-div">{% trans 'Tests statistics' %}</button>
+                    </p>
+                    <div class="collapse" id="current-course-div">
+                        <div class="test-progress-chart" id="test-progress-chart-{{ current_course.pk }}"
+                                    data-course="{{ current_course.pk }}" data-user="{{ person.pk }}"></div>
+                    </div>
+                 </div>
+
+            </div>
+
+        {% else %}
+            <p>{% trans 'No active subscriptions' %}</p>
+        {% endif %}
+
+        <h4 class="my-3">{% trans 'Finished courses' %}:</h4>
+        {% if past_courses %}
+            {% for subscription in past_courses %}
+                <div class="card my-2">
+                     <div class="card-body">
+                         <h5 class="card-title">{{ subscription.course.title }}</h5>
+                         <p class="card-text">{{ subscription.course.description }}</p>
+
+                         <p class="d-inline-flex gap-1">
+                             <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                     data-bs-target="#past-course-div-{{ subscription.course.pk }}"
+                                     aria-expanded="false" aria-controls="past-course-div-{{ subscription.course.pk }}">
+                                 {% trans 'Tests statistics' %}
+                             </button>
+                         </p>
+                         <div class="collapse" id="past-course-div-{{ subscription.course.pk }}">
+                            <div class="test-progress-chart" id="test-progress-chart-{{ subscription.course.pk }}"
+                                data-course="{{ subscription.course.pk }}" data-user="{{ person.pk }}" ></div>
+                         </div>
+                     </div>
+                </div>
+
+            {% endfor %}
+        {% else %}
+            <p>{% trans 'No finished courses' %}</p>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/statistics_js/stats_user_detailed.js' %}"></script>
+{% endblock %}

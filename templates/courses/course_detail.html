@@ -1,0 +1,64 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card my-4">
+        <div class="card-body">
+            {% include 'partials/main_block.html' with data=course %}
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'modules:coursemodel_update' course.id %}"
+                   class="btn btn-info btn-sm mx-3">{% trans 'Change' %}</a>
+                <a href="{% url 'modules:coursemodel_delete' course.id %}"
+                   class="btn btn-danger btn-sm" style="margin-right: 0.8rem">{% trans 'Delete' %}</a>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h2 class="my-3">{% blocktrans with title=course.title %}List of {{ title }} course's
+                    chapters{% endblocktrans %}</h2>
+            </div>
+            <a href="{% url 'modules:chaptermodel_create' %}?course_pk={{ course.id }}" class="btn btn-primary
+                my-3 me-3">{% trans 'Add chapter' %}</a>
+            {% if first_chapter%}
+                <a href="{% url 'modules:coursemodel_preview' course_pk=course.pk chapter_pk=first_chapter.pk %}?page=1"
+                   class="btn btn-success my-3 me-3">{% trans 'Course Preview' %}</a>
+            {% endif %}
+            <a href="{% url 'modules:change_chapters_order' course.id %}" class="btn btn-secondary
+                my-3">{% trans 'Change chapters ordering' %}</a>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>{% trans 'Serial number' %}</th>
+                        <th>{% trans 'Title' %}</th>
+                        <th class="text-end">{% trans 'Actions' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for chapter in chapters|dictsort:"serial_number" %}
+                        <tr>
+                            <td>{{ chapter.serial_number }}</td>
+                            <td><a href="{% url 'modules:chaptermodel_detail' chapter.id %}">{{ chapter.title }}</a>
+                            </td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <a href="{% url 'modules:chaptermodel_update' chapter.id %}"
+                                       class="btn btn-info btn-sm mx-3">{% trans 'Change' %}</a>
+                                    <a href="{% url 'modules:chaptermodel_delete' chapter.id %}"
+                                       class="btn btn-danger btn-sm">{% trans 'Delete' %}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

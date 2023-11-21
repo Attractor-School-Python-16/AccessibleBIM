@@ -1,0 +1,38 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block title %}{% trans 'View lesson' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h1>{{ step.title }}</h1>
+            </div>
+            {% if step.video %}
+                <h1>{% trans 'Video' %}:</h1>
+                {% include 'steps/partial/video_partial.html' %}
+            {% elif step.text %}
+                <h1>{% trans 'Reading' %}:</h1>
+                {% include 'steps/partial/text_partial.html' %}
+            {% elif step.test %}
+                <h1>{% trans 'Test' %}</h1>
+                {% include 'steps/partial/test_partial.html' %}
+            {% endif %}
+            {% if files %}
+                {% for file in files %}
+                    <p>{% trans 'File' %} {{ file.file_title }}</p>
+                    <a href="{{ file.lesson_file.url }}" download class="btn btn-primary">{% trans 'Download file' %}</a>
+                {% endfor %}
+            {% endif %}
+            <div>
+                <a href="{% url 'step:stepmodel_update' step.id %}" class="btn btn-primary my-2 me-3">{% trans 'Edit' %}</a>
+                <a href="{% url 'step:stepmodel_delete' step.id %}" class="btn btn-danger my-2 me-3">{% trans 'Delete' %}</a>
+                <a href="{% url 'modules:chaptermodel_detail' step.chapter.pk %}" class="btn btn-secondary">
+                    {% trans 'Back to lessons list' %}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
