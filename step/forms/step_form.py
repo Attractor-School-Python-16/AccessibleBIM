@@ -15,7 +15,7 @@ class StepTextForm(forms.ModelForm):
         fields = ['title', 'learn_time', 'file', 'text']
         labels = {
             'title': _("Enter lesson's title"),
-            'learn_time': _("Enter lesson's duration"),
+            'learn_time': _("Enter lesson's duration (min.)"),
             'file': _("Select files"),
             'text': _("Select reading"),
         }
@@ -32,7 +32,7 @@ class StepVideoForm(forms.ModelForm):
         fields = ['title', 'learn_time', 'file', 'video']
         labels = {
             'title': _("Enter lesson's title"),
-            'learn_time': _("Enter lesson's duration"),
+            'learn_time': _("Enter lesson's duration (min.)"),
             'file': _("Select files"),
             'video': _("Select video"),
         }
@@ -44,6 +44,6 @@ class StepQuizForm(forms.ModelForm):
         fields = ['title', 'learn_time', 'test']
         labels = {
             'title': _("Enter lesson's title"),
-            'learn_time': _("Enter lesson's duration"),
+            'learn_time': _("Enter lesson's duration (min.)"),
             'quiz': _("Select test"),
         }

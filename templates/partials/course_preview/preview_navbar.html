@@ -1,10 +1,49 @@
 {% load i18n %}
 {% load static %}
 
-<nav class="navbar position-sticky top-0 navbar-expand-lg bg-info navbar-transparent text-white w-100 shadow-none" style="z-index: 9999">
+<nav class="navbar position-sticky top-0 navbar-expand-lg bg-info navbar-transparent text-white w-100 shadow-none"
+     style="z-index: 9999">
     <div class="container d-flex justify-content-center">
-        <button type="button" class="btn btn-success"><a class="navbar-brand text-white fs-5" href="{% url 'modules:coursemodel_detail' chapter.course.pk %}">
-            Вернуться к редактированию курса
+        <button type="button" class="btn btn-success"><a class="navbar-brand text-white fs-5"
+                                                         href="{% url 'modules:coursemodel_detail' chapter.course.pk %}">
+            {% trans "Back to course editing" %}
+
         </a></button>
     </div>
+         {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                <div class="dropdown">
+                    <a href="#" class="btn bg-transparent dropdown-toggle m-0 " data-bs-toggle="dropdown"
+                       id="navbarDropdownMenuLink2">
+                        {% for language in languages %}
+                            {% if language.code == LANGUAGE_CODE %}
+                                {% if language.code == "ru" %}
+                                    <span class="flag-icon flag-icon-ru"></span>
+                                {% elif language.code == "en" %}
+                                    <span class="flag-icon flag-icon-gb"></span>
+                                {% endif %}
+                                {{ language.name_local }}
+                            {% endif %}
+                        {% endfor %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <li>{% for language in languages %}
+                            <form action="{% url 'set_language' %}" method="post">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}">
+                                <input name="language" type="hidden" value="{{ language.code }}">
+                                <button class="dropdown-item" type="submit">
+                                    {% if language.code == "ru" %}
+                                        <span class="flag-icon flag-icon-ru"></span>
+                                    {% elif language.code == "en" %}
+                                        <span class="flag-icon flag-icon-gb"></span>
+                                    {% endif %}
+                                    {{ language.name_local }}
+                                </button>
+                            </form>
+                        {% endfor %}</li>
+                    </ul>
+                </div>
+
 </nav>
