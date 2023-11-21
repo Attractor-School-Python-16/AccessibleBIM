@@ -9,6 +9,13 @@
             ({{ progress.accuracy|floatformat:2 }})</h5>
         {% if progress.is_passed %}
             <h5>{% trans 'Passed' %}</h5>
+            {% if is_moderator %}
+                <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
+                  hx-target="#quiz_content">
+                {% csrf_token %}
+                <button class="btn btn-success">Повторить попытку</button>
+            </form>
+            {% endif %}
         {% else %}
             <h5>{% trans 'Not passed' %}</h5>
             <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
