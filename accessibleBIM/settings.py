@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import logging
 import os
 import sys
 from pathlib import Path
@@ -25,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
 
-#TEST4
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -146,15 +146,14 @@ DATABASES = {
 #
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ.get("POSTGRES_DB"),
-#         'USER': os.environ.get("POSTGRES_USER"),
-#         'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
-#         'HOST': os.environ.get("POSTGRES_HOST"),
-#         'PORT': os.environ.get("POSTGRES_PORT"),
+#         'NAME': 'test_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': 5432,
 #     }
 #
 # }
-
 
 
 # Password validation
@@ -297,7 +296,7 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen']],
         ],
 
-        'fontNames': ['Arial','Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
+        'fontNames': ['Arial', 'Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
                       'Courier New', 'Franklin Gothic Medium', 'Georgia', 'Impact', 'Microsoft Sans Serif', 'Tahoma',
                       'Times New Roman', 'Trebuchet MS'],
         'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
@@ -327,10 +326,11 @@ CAPTCHA_LETTER_ROTATION = None
 
 @setup_logging.connect
 def configure_logging(sender=None, **kwargs):
-    import logging
-    import logging.config
     logging.config.dictConfig(LOGGING)
 
+
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    logging.disable(logging.CRITICAL)
 
 LOGGING = {
     "version": 1,

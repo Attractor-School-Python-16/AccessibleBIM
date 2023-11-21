@@ -1,5 +1,5 @@
 {% load shuffle %}
-{% load static %}
+{% load static i18n %}
 {% block content %}
     <div class="container mt-5">
         <h2>{{ quiz_title }}</h2>
@@ -33,7 +33,7 @@
 
         <form id="form-test-result" hx-post="{% url "quiz_bim:test_result" progress_test_id %}" hx-target="#quiz_content">
             {% csrf_token %}
-            <button id="test-result-button" class="btn btn-primary" form="form-test-result">Завершить тест</button>
+            <button id="test-result-button" class="btn btn-success" form="form-test-result">{% trans 'Done' %}</button>
         </form>
     </div>
 {% endblock %}
