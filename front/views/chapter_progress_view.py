@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, Http404
 from django.views.generic import DetailView
 from modules.models import ChapterModel
 from modules.models.user_course_progress import UserCourseProgress
@@ -76,7 +76,7 @@ class ChapterUserDetailView(DetailView):
     def get(self, request, *args, **kwargs):
         progress_obj = self.chapter_progress_check()
         if not progress_obj or self.pagination_check():
-            return HttpResponseNotFound("Not found")
+            raise Http404
 
         current_user = request.user
         current_user_subscription = UsersSubscription.objects.filter(user=self.request.user, is_active=True)[0]

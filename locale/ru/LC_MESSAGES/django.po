@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 17:29+0600\n"
-"PO-Revision-Date: 2023-11-19 17:28+0600\n"
+"POT-Creation-Date: 2023-11-21 17:47+0600\n"
+"PO-Revision-Date: 2023-11-21 17:47+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -21,11 +21,11 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:217
+#: accessibleBIM/settings.py:218
 msgid "Russian"
 msgstr "Русский"
 
-#: accessibleBIM/settings.py:218
+#: accessibleBIM/settings.py:219
 msgid "English"
 msgstr "Английский"
 
@@ -44,6 +44,18 @@ msgstr "Разрешения"
 #: accounts/admin.py:24
 msgid "Important dates"
 msgstr "Важные даты"
+
+#: accounts/forms/login_form.py:8 templates/front/accounts/profile.html:52
+#: templates/front/accounts/profile.html:56
+#: templates/partials/statistics/statistics_table.html:7
+#: templates/statistics/users_statistics/user_detailed_statistics.html:15
+#: templates/statistics/users_statistics/users_list_statistics.html:15
+msgid "Email"
+msgstr "Email"
+
+#: accounts/forms/login_form.py:13
+msgid "Password"
+msgstr "Пароль"
 
 #: accounts/forms/register_form.py:9
 msgid "captcha"
@@ -137,7 +149,7 @@ msgstr "Изображение"
 msgid "Partner"
 msgstr "Партнер"
 
-#: content/models/partner.py:17 templates/partials/sidebar.html:182
+#: content/models/partner.py:17 templates/partials/sidebar.html:137
 #: templates/partners/partners_create.html:5
 #: templates/partners/partners_delete.html:5
 #: templates/partners/partners_list.html:5
@@ -153,7 +165,7 @@ msgstr "$"
 msgid "RUB"
 msgstr "руб."
 
-#: modules/models/chapter.py:9 modules/models/courses.py:48
+#: modules/models/chapter.py:9 modules/models/courses.py:47
 #: subscription/forms/subscription_form.py:12
 #: subscription/models/subscription.py:10
 #: templates/chapters/chapter_detail.html:17
@@ -176,14 +188,18 @@ msgstr "Описание главы"
 
 #: modules/models/chapter.py:12 step/models/step.py:27
 #: templates/chapters/chapter_detail.html:18
-#: templates/chapters/chapter_detail.html:48
-#: templates/courses/course_detail.html:34
+#: templates/chapters/chapter_detail.html:50
+#: templates/courses/course_detail.html:38
 msgid "Serial number"
 msgstr "Номер"
 
 #: modules/models/chapter.py:16 step/models/step.py:15
 #: templates/chapters/chapter_detail.html:13
 #: templates/courses/change_chapters_order.html:31
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:16
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:41
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:64
+#: templates/front/partials/course/chapter_accordion.html:12
 msgid "Chapter"
 msgstr "Глава"
 
@@ -216,51 +232,52 @@ msgstr "Русский"
 msgid "Английский"
 msgstr "Английский"
 
-#: modules/models/courses.py:23
-msgid "Кыргызский"
-msgstr "Кыргызский"
-
-#: modules/models/courses.py:25
+#: modules/models/courses.py:24
 msgid "Course title"
 msgstr "Название курса"
 
-#: modules/models/courses.py:26
+#: modules/models/courses.py:25
 msgid "Course description"
 msgstr "Описание курса"
 
-#: modules/models/courses.py:27
+#: modules/models/courses.py:26
 msgid "Course image"
 msgstr "Фото для курса"
 
-#: modules/models/courses.py:29 modules/models/module.py:34
+#: modules/models/courses.py:28 modules/models/module.py:34
+#: templates/front/partials/filter.html:7
 #: templates/statistics/courses_statistics/courses_list_statistics.html:17
 #: templates/subscription/subscription_admin/user_add.html:51
 msgid "Module"
 msgstr "Модуль"
 
-#: modules/models/courses.py:31
+#: modules/models/courses.py:30
 #: templates/course_target/course_target_detail.html:4
 #: templates/course_target/course_target_list.html:4
-#: templates/partials/sidebar.html:61
+#: templates/front/partials/course/course_main_block.html:10
+#: templates/front/partials/filter.html:16 templates/partials/sidebar.html:61
 #: templates/statistics/courses_statistics/courses_list_statistics.html:18
 msgid "Target audience"
 msgstr "Целевая аудитория"
 
-#: modules/models/courses.py:32
+#: modules/models/courses.py:31
 msgid "Course language"
 msgstr "Язык занятия"
 
-#: modules/models/courses.py:34
+#: modules/models/courses.py:33
 msgid "Course learn time"
 msgstr "Время на прохождение курса (часы)"
 
-#: modules/models/courses.py:36 modules/models/teacher.py:19
+#: modules/models/courses.py:35 modules/models/teacher.py:19
+#: templates/front/partials/course/course_main_block.html:13
 #: templates/partials/sidebar.html:44
 msgid "Teachers"
 msgstr "Преподаватели"
 
-#: modules/models/courses.py:49 templates/courses/courses_list.html:4
-#: templates/partials/sidebar.html:28 templates/partials/sidebar.html:168
+#: modules/models/courses.py:48 templates/courses/courses_list.html:4
+#: templates/front/partials/footer.html:7
+#: templates/front/partials/navbar.html:66 templates/partials/sidebar.html:28
+#: templates/partials/sidebar.html:198
 msgid "Courses"
 msgstr "Курсы"
 
@@ -292,11 +309,14 @@ msgstr "Фамилия"
 msgid "Father name"
 msgstr "Отчество"
 
-#: modules/models/teacher.py:11 templates/teachers/teacher_detail.html:14
+#: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
+#: templates/front/partials/course/course_main_block.html:18
+#: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Должность"
 
-#: modules/models/teacher.py:12 templates/teachers/teacher_detail.html:15
+#: modules/models/teacher.py:12 templates/front/accounts/profile.html:63
+#: templates/teachers/teacher_detail.html:15
 msgid "Company"
 msgstr "Компания"
 
@@ -352,7 +372,7 @@ msgstr "Прогресс по курсу"
 msgid "Course progress"
 msgstr "Прогресс по курсу"
 
-#: modules/views/courses.py:159
+#: modules/views/courses.py:162
 msgid "Choose different serial numbers for chapters."
 msgstr "Выберите разные порядковые номера для глав."
 
@@ -367,6 +387,9 @@ msgstr "Конец тестирования"
 #: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
 #: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12 step/models/step.py:23
 #: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
+#: templates/quiz_bim/take_quiz/continue_test.html:4
+#: templates/quiz_bim/take_quiz/take_test.html:4
+#: templates/quiz_bim/take_quiz/test_result.html:5
 #: templates/steps/partial/test_partial.html:2
 #: templates/steps/step/step_detail.html:21
 msgid "Test"
@@ -414,6 +437,10 @@ msgstr "Верный ответ"
 msgid "Enter question"
 msgstr "Введите вопрос"
 
+#: quiz_bim/forms/quiz_bim_form.py:10
+msgid "Please enter title"
+msgstr "Введите название"
+
 #: quiz_bim/models/answer_bim.py:8
 msgid "Answer validation"
 msgstr "Валидация ответа"
@@ -460,27 +487,37 @@ msgstr "Ответ должен быть длиной не менее двух �
 msgid "Answer correctness field can take only boolean values"
 msgstr "Поле верности ответа может принимать только булевые значения"
 
-#: step/forms/file_form.py:42
+#: step/forms/file_for_step_form.py:43
 msgid "Enter the name of the uploaded file"
 msgstr "Введите наименование загружаемого файла"
 
-#: step/forms/file_form.py:43
+#: step/forms/file_for_step_form.py:44
 msgid "Upload a file"
 msgstr "Загрузите файл"
 
-#: step/forms/file_form.py:53
-msgid "Uploaded file has to be no more than 250 MB"
-msgstr "Размер загружаемого файла не должен превышать 250 МБ"
-
-#: step/forms/file_form.py:55
+#: step/forms/file_for_step_form.py:55
 msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 msgstr ""
 "Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, "
 "RFA, DWG, DXF"
 
-#: step/forms/file_form.py:66
+#: step/forms/file_for_step_form.py:58
+msgid "Uploaded file has to be no more than 250 MB"
+msgstr "Размер загружаемого файла не должен превышать 250 МБ"
+
+#: step/forms/file_for_step_form.py:69 step/tests/tests_file/view_tests.py:107
+#: step/tests/tests_file/view_tests.py:178
+msgid ""
+"For uploading attachment you should both enter file title and upload a file"
+msgstr "Для загрузки файла неоходимо указать его название и загрузить файл"
+
+#: step/forms/file_form.py:11
 msgid "Title is mandatory for uploading a file"
 msgstr "При загрузке документа требуется обязательно указать название"
+
+#: step/forms/file_form.py:18
+msgid "Please upload a file"
+msgstr "Загрузите файл"
 
 #: step/forms/step_form.py:17 step/forms/step_form.py:34
 #: step/forms/step_form.py:46
@@ -489,8 +526,8 @@ msgstr "Введите наименование занятия"
 
 #: step/forms/step_form.py:18 step/forms/step_form.py:35
 #: step/forms/step_form.py:47
-msgid "Enter lesson's duration (min.)"
-msgstr "Укажите продолжительность занятия (мин.)"
+msgid "Enter lesson's duration"
+msgstr "Укажите продолжительность занятия"
 
 #: step/forms/step_form.py:19 step/forms/step_form.py:36
 msgid "Select files"
@@ -508,52 +545,73 @@ msgstr "Выберите видео"
 msgid "Select test"
 msgstr "Выберите тест"
 
-#: step/forms/text_form.py:14
+#: step/forms/text_for_step_form.py:14
 msgid "Enter reading's title"
 msgstr "Введите наименование лекции"
 
-#: step/forms/text_form.py:15
+#: step/forms/text_for_step_form.py:15
 msgid "Enter reading's description"
 msgstr "Укажите описание лекции"
 
-#: step/forms/text_form.py:16 templates/steps/partial/text_partial.html:13
+#: step/forms/text_for_step_form.py:16
+#: templates/steps/partial/text_partial.html:13
 #: templates/steps/text/text_detail.html:25
 msgid "Content"
 msgstr "Содержание"
 
-#: step/forms/video_form.py:17
+#: step/forms/text_form.py:11
+msgid "Please enter reading title"
+msgstr "Введите наименование лекции"
+
+#: step/forms/text_form.py:17
+msgid "Please enter reading description"
+msgstr "Укажите описание лекции"
+
+#: step/forms/text_form.py:23
+msgid "Please enter reading content"
+msgstr "Введите наименование лекции"
+
+#: step/forms/video_for_step_form.py:17
 msgid "Enter video's title"
 msgstr "Введите наименование видео"
 
-#: step/forms/video_form.py:18
+#: step/forms/video_for_step_form.py:18
 msgid "Enter video's description"
 msgstr "Укажите описание видео"
 
-#: step/forms/video_form.py:19
+#: step/forms/video_for_step_form.py:19
 msgid "Upload video file"
 msgstr "Загрузите видео файл"
 
-#: step/forms/video_form.py:29
+#: step/forms/video_for_step_form.py:29
 msgid "Uploaded file has to be no more than 2 GB"
 msgstr "Размер загружаемого файла не должен превышать 2ГБ"
 
-#: step/forms/video_form.py:31
+#: step/forms/video_for_step_form.py:31
 msgid "Only MP4, WebM and OGG formats allowed"
 msgstr "Необходимо загрузить видео в формате MP4, WebM или OGG"
 
-#: step/models/file.py:14
+#: step/forms/video_form.py:11
+msgid "Please upload video file"
+msgstr "Загрузите видео файл"
+
+#: step/forms/video_form.py:17
+msgid "Please enter video title"
+msgstr "Введите наименование видео"
+
+#: step/models/file.py:15
 msgid "File title"
 msgstr "Название"
 
-#: step/models/file.py:15
+#: step/models/file.py:16
 msgid "Lesson file"
 msgstr "Файл урока"
 
-#: step/models/file.py:25 templates/steps/step/step_detail.html:26
+#: step/models/file.py:26 templates/steps/step/step_detail.html:26
 msgid "File"
 msgstr "Файл"
 
-#: step/models/file.py:26 step/models/step.py:25
+#: step/models/file.py:27 step/models/step.py:25
 #: templates/partials/sidebar.html:78
 msgid "Files"
 msgstr "Файлы"
@@ -567,10 +625,10 @@ msgstr "Видео"
 msgid "Text"
 msgstr "Лекция"
 
-#: step/models/step.py:16 templates/chapters/chapter_detail.html:49
+#: step/models/step.py:16 templates/chapters/chapter_detail.html:51
 #: templates/chapters/chapters_list.html:21
 #: templates/course_target/course_target_list.html:20
-#: templates/courses/course_detail.html:35
+#: templates/courses/course_detail.html:39
 #: templates/courses/courses_list.html:20
 #: templates/modules/module_detail.html:29
 #: templates/modules/modules_list.html:21
@@ -592,7 +650,11 @@ msgid "Lesson learn time"
 msgstr "Примерное время на прохождение урока"
 
 #: step/models/step.py:45 templates/chapters/change_steps_order.html:28
-#: templates/front/chapter/chapter_user_detail_view.html:24
+#: templates/courses/course_preview.html:28
+#: templates/front/chapter/chapter_user_detail_view.html:25
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:24
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:28
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:50
 msgid "Lesson"
 msgstr "Занятие"
 
@@ -663,6 +725,8 @@ msgstr "Для редактирования необходимо выбрать 
 
 #: subscription/forms/subscription_form.py:13
 #: subscription/models/subscription.py:11
+#: templates/front/courses/course_detail.html:28
+#: templates/front/courses/course_detail.html:41
 msgid "Course price"
 msgstr "Цена"
 
@@ -680,6 +744,7 @@ msgstr ""
 "Подписка на курс уже существует. Измените или удалите существующую подписку."
 
 #: subscription/forms/subscription_user_add_form.py:5
+#: subscription/views/subscription.py:197
 #: templates/subscription/subscription_admin/user_add.html:3
 #: templates/subscription/subscription_admin/user_add.html:67
 #: templates/subscription/subscription_admin/user_list.html:45
@@ -687,19 +752,20 @@ msgid "Grant subscription"
 msgstr "Выдать подписку"
 
 #: subscription/forms/subscription_user_delete_form.py:5
+#: subscription/views/subscription.py:238
 #: templates/subscription/subscription_admin/user_delete.html:3
 #: templates/subscription/subscription_admin/user_list.html:42
 msgid "Unsubscribe"
 msgstr "Отменить подписку"
 
 #: subscription/models/user_subscription.py:10
-#: templates/partials/sidebar.html:136
+#: subscription/views/subscription.py:125 templates/partials/sidebar.html:166
 #: templates/subscription/subscription_admin/user_add.html:19
 msgid "Subscriptions"
 msgstr "Подписки"
 
 #: subscription/models/user_subscription.py:12
-#: templates/partials/sidebar.html:162
+#: templates/partials/sidebar.html:192
 msgid "Users"
 msgstr "Пользователи"
 
@@ -710,6 +776,27 @@ msgstr "Дата завершения подписки"
 #: subscription/models/user_subscription.py:14
 msgid "Subscription enabled"
 msgstr "Подписка активна"
+
+#: subscription/views/subscription.py:44
+#: templates/subscription/subscription_list.html:3
+#: templates/subscription/subscription_list.html:11
+msgid "Subscriptions list"
+msgstr "Перечень подписок"
+
+#: subscription/views/subscription.py:62
+#: templates/subscription/subscription_create.html:14
+msgid "Add subscription"
+msgstr "Добавить подписку"
+
+#: subscription/views/subscription.py:92
+#: templates/subscription/subscription_update.html:3
+#: templates/subscription/subscription_update.html:13
+msgid "Subscription update"
+msgstr "Изменение подписки"
+
+#: subscription/views/subscription.py:109
+msgid "Subscription delete"
+msgstr "Удаление подписки"
 
 #: templates/accounts/grant_moderator.html:4
 msgid "Grant moderator's rights"
@@ -724,6 +811,7 @@ msgid "Search by Email"
 msgstr "Поиск по Email"
 
 #: templates/accounts/grant_moderator.html:18
+#: templates/front/partials/filter.html:40
 msgid "Search"
 msgstr "Найти"
 
@@ -732,6 +820,7 @@ msgid "Role"
 msgstr "Роль"
 
 #: templates/accounts/grant_moderator.html:40
+#: templates/front/accounts/profile.html:29
 msgid "Moderator"
 msgstr "Модератор"
 
@@ -752,7 +841,7 @@ msgstr "Убрать"
 
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
-#: templates/chapters/chapter_detail.html:42
+#: templates/chapters/chapter_detail.html:44
 msgid "Change lessons ordering"
 msgstr "Изменение порядка занятий"
 
@@ -793,7 +882,7 @@ msgstr "Добавить главу"
 #: templates/partials/sidebar.html:33 templates/partials/sidebar.html:49
 #: templates/partials/sidebar.html:66 templates/partials/sidebar.html:82
 #: templates/partials/sidebar.html:97 templates/partials/sidebar.html:112
-#: templates/partials/sidebar.html:127 templates/partials/sidebar.html:186
+#: templates/partials/sidebar.html:127 templates/partials/sidebar.html:141
 #: templates/partners/partners_create.html:11
 #: templates/quiz_bim/quiz_bim/quiz_bim_create.html:16
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:13
@@ -807,7 +896,7 @@ msgstr "Добавить главу"
 #: templates/steps/video/video_list.html:15
 #: templates/subscription/subscription_create.html:17
 #: templates/subscription/subscription_list.html:15
-#: templates/teachers/teacher_create.html:13
+#: templates/teachers/teacher_create.html:13 templates/team/team_create.html:11
 msgid "Add"
 msgstr "Создать"
 
@@ -863,13 +952,13 @@ msgid "Description"
 msgstr "Описание"
 
 #: templates/chapters/chapter_detail.html:22
-#: templates/chapters/chapter_detail.html:66
+#: templates/chapters/chapter_detail.html:68
 #: templates/chapters/chapters_list.html:33
 #: templates/course_target/course_target_detail.html:17
 #: templates/course_target/course_target_list.html:33
 #: templates/courses/change_chapters_order.html:44
 #: templates/courses/course_detail.html:14
-#: templates/courses/course_detail.html:48
+#: templates/courses/course_detail.html:52
 #: templates/courses/courses_list.html:32
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
@@ -888,12 +977,12 @@ msgid "Change"
 msgstr "Изменить"
 
 #: templates/chapters/chapter_detail.html:24
-#: templates/chapters/chapter_detail.html:68
+#: templates/chapters/chapter_detail.html:70
 #: templates/chapters/chapters_list.html:35
 #: templates/course_target/course_target_detail.html:19
 #: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
-#: templates/courses/course_detail.html:50
+#: templates/courses/course_detail.html:54
 #: templates/courses/courses_list.html:34
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
@@ -931,10 +1020,15 @@ msgstr "Добавить лекцию"
 msgid "Add test"
 msgstr "Добавление теcта"
 
-#: templates/chapters/chapter_detail.html:50
+#: templates/chapters/chapter_detail.html:42
+#: templates/courses/course_detail.html:30
+msgid "Course Preview"
+msgstr "Предварительный просмотр курса"
+
+#: templates/chapters/chapter_detail.html:52
 #: templates/chapters/chapters_list.html:22
 #: templates/course_target/course_target_list.html:21
-#: templates/courses/course_detail.html:36
+#: templates/courses/course_detail.html:40
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:30
 #: templates/modules/modules_list.html:22
@@ -1051,7 +1145,7 @@ msgid ""
 "                    chapters"
 msgstr "Список глав курса %(title)s"
 
-#: templates/courses/course_detail.html:29
+#: templates/courses/course_detail.html:33
 msgid "Change chapters ordering"
 msgstr "Изменение порядка глав"
 
@@ -1065,11 +1159,30 @@ msgstr "Редактирование курса"
 msgid "Courses list"
 msgstr "Список курсов"
 
+#: templates/front/about.html:13
+msgid "Project goals"
+msgstr "Цели проекта"
+
+#: templates/front/about.html:32
+msgid "About team"
+msgstr "О команде"
+
+#: templates/front/about.html:34
+msgid "TEAM_TEXT"
+msgstr ""
+"Мы команда профессиональных инженеров из разных отраслей, объединяет нас "
+"комплексный подход BIM. Хотим поделиться своим опытом и собрать "
+"единомышленников в области инженерии и инноваций."
+
+#: templates/front/about.html:65
+msgid "Contacts"
+msgstr "Контакты"
+
 #: templates/front/accounts/change_password.html:4
 #: templates/front/accounts/change_password.html:15
 #: templates/front/accounts/change_password_done.html:4
 #: templates/front/accounts/password-reset/password_reset_confirm.html:13
-#: templates/front/accounts/profile.html:34
+#: templates/front/accounts/profile.html:38
 msgid "Change password"
 msgstr "Сменить пароль"
 
@@ -1086,6 +1199,7 @@ msgstr "Пароль успешно изменен"
 #: templates/front/accounts/email/verification-email-sent.html:4
 #: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
+#: templates/front/partials/navbar.html:51
 msgid "Login"
 msgstr "Вход"
 
@@ -1123,7 +1237,23 @@ msgstr ""
 "\n"
 "Пожалуйста, нажмите на ссылку ниже для подтверждения регистрации:\n"
 
-#: templates/front/accounts/login.html:64
+#: templates/front/accounts/login.html:26
+msgid "Sign in with Google"
+msgstr "Войти через Google"
+
+#: templates/front/accounts/login.html:42
+msgid "Sign In to your account"
+msgstr "Вход в аккаунт"
+
+#: templates/front/accounts/login.html:57
+msgid "Sign in"
+msgstr "Войти"
+
+#: templates/front/accounts/login.html:63
+msgid "Register Now"
+msgstr "Регистрация"
+
+#: templates/front/accounts/login.html:65
 msgid "Forgot password"
 msgstr "Забыли пароль"
 
@@ -1175,11 +1305,41 @@ msgstr ""
 "\n"
 
 #: templates/front/accounts/profile.html:3
+#: templates/front/partials/navbar.html:36
 #: templates/partials/moderator_header.html:20
 msgid "Profile"
 msgstr "Профиль"
 
-#: templates/front/accounts/profile.html:85
+#: templates/front/accounts/profile.html:15
+msgid ""
+"\n"
+"                                            You have an outdated <span "
+"class=\"text-decoration-underline text-center\">\n"
+"                                            test</span>. Please complete the "
+"test.\n"
+"                                        "
+msgstr ""
+"\n"
+"У вас есть просроченный <span class=\"text-decoration-underline text-"
+"center\"> тест</span>. Пожалуйста, завершите тест."
+
+#: templates/front/accounts/profile.html:31
+msgid "Admin"
+msgstr "Администратор"
+
+#: templates/front/accounts/profile.html:54
+msgid "Verified"
+msgstr "Подтвержден"
+
+#: templates/front/accounts/profile.html:58
+msgid "Not verified"
+msgstr "Не подтвержден"
+
+#: templates/front/accounts/profile.html:76
+msgid "Subscription valid until"
+msgstr "Действие подписки до"
+
+#: templates/front/accounts/profile.html:88
 msgid "My courses"
 msgstr "Мои курсы"
 
@@ -1188,17 +1348,213 @@ msgid "Registration"
 msgstr "Регистрация"
 
 #: templates/front/accounts/register.html:14
-#: templates/front/accounts/register.html:39
+#: templates/front/accounts/register.html:45
 msgid "Register"
 msgstr "Зарегистрироваться"
 
-#: templates/front/courses/courses.html:13
+#: templates/front/accounts/register.html:20
+msgid "Create your account"
+msgstr "Создание аккаунта"
+
+#: templates/front/accounts/register.html:38
+msgid "Отправляя данную форму вы соглашаетесь с"
+msgstr "Отправляя данную форму вы соглашаетесь с"
+
+#: templates/front/accounts/register.html:39
+msgid "Политикой конфиденциальности"
+msgstr "Политикой конфиденциальности"
+
+#: templates/front/accounts/register.html:40
+msgid "и"
+msgstr "и"
+
+#: templates/front/accounts/register.html:40
+msgid "Пользовательским соглашением"
+msgstr "Пользовательским соглашением"
+
+#: templates/front/accounts/register.html:47
+msgid "Sign up with Google"
+msgstr "Регистрация через Google"
+
+#: templates/front/chapter/chapter_user_detail_view.html:46
+msgid "Attachment"
+msgstr "Прикрепленные файлы"
+
+#: templates/front/chapter/chapter_user_detail_view.html:61
+msgid "Previous lesson"
+msgstr "Предыдущий урок"
+
+#: templates/front/chapter/chapter_user_detail_view.html:66
+msgid "Previous chapter"
+msgstr "Предыдущая глава"
+
+#: templates/front/chapter/chapter_user_detail_view.html:72
+msgid "Next lesson"
+msgstr "Следующий урок"
+
+#: templates/front/chapter/chapter_user_detail_view.html:78
+msgid "Next chapter"
+msgstr "Следующая глава"
+
+#: templates/front/courses/course_detail.html:25
+msgid "Start course"
+msgstr "Начать курс"
+
+#: templates/front/courses/course_detail.html:31
+#: templates/front/courses/course_detail.html:44
+msgid "Buy course"
+msgstr "Купить курс"
+
+#: templates/front/courses/course_detail.html:34
+msgid "To purchase the course, confirm your Email."
+msgstr "Для приобретения курса подтвердите свой Email."
+
+#: templates/front/courses/courses.html:14
 msgid "List of available courses"
 msgstr "Список доступных курсов"
 
 #: templates/front/courses/courses.html:28
 msgid "No courses found"
 msgstr "Курсы не найдены"
+
+#: templates/front/errors/403.html:16
+msgid "Error 403"
+msgstr "Ошибка 403"
+
+#: templates/front/errors/403.html:32
+msgid "Access denied"
+msgstr "Ошибка доступа"
+
+#: templates/front/errors/403.html:33
+msgid "You don't have permission to open this page"
+msgstr "В доступе к запращиваемому ресурсу отказано"
+
+#: templates/front/errors/403.html:37 templates/front/errors/404.html:36
+#: templates/front/errors/500.html:38
+msgid "Back to main page"
+msgstr "Вернуться на главную страницу"
+
+#: templates/front/errors/404.html:16
+msgid "Error 404"
+msgstr "Ошибка 404"
+
+#: templates/front/errors/404.html:32
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: templates/front/errors/404.html:33
+msgid "The page you are looking for cannot be found"
+msgstr "Запрашиваемая вами страница не найдена, или указан неверный адрес"
+
+#: templates/front/errors/500.html:16
+msgid "Error 500"
+msgstr "Ошибка 500"
+
+#: templates/front/errors/500.html:32
+msgid "Internal Server Error"
+msgstr "Ошибка сервера"
+
+#: templates/front/errors/500.html:34
+msgid "Server encountered an error and could not handle this request"
+msgstr "Из-за возникшей ошибки сервер не может обработать ваш запрос"
+
+#: templates/front/index.html:11
+msgid "MISSION"
+msgstr "МИССИЯ"
+
+#: templates/front/index.html:13
+msgid "MISSION_TEXT"
+msgstr ""
+"Наша миссия - обеспечить доступное и качественное образование в области "
+"инженерии для всех, кто желает развивать свои навыки и знания. Мы стремимся "
+"вдохновить и поддержать студентов, специалистов и энтузиастов инженерии, "
+"предоставляя им обширный выбор курсов, обучающих материалов и практических "
+"заданий."
+
+#: templates/front/index.html:17 templates/front/partials/navbar.html:80
+msgid "About company"
+msgstr "О компании"
+
+#: templates/front/index.html:33
+msgid "Our partners"
+msgstr "Наши партнеры"
+
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:3
+msgid "Navigation"
+msgstr "Навигация"
+
+#: templates/front/partials/course/chapter_accordion.html:4
+msgid "Course content"
+msgstr "Содержание курса"
+
+#: templates/front/partials/course/course_card.html:12
+msgid "Last update"
+msgstr "Последнее обновление"
+
+#: templates/front/partials/course/course_card.html:21
+#: templates/steps/partial/test_partial.html:18
+msgid "More"
+msgstr "Подробнее"
+
+#: templates/front/partials/course/course_card.html:44
+msgid "Purchased course"
+msgstr "Курс приобретен"
+
+#: templates/front/partials/course/course_main_block.html:11
+#: templates/front/partials/filter.html:24
+#: templates/statistics/courses_statistics/courses_list_statistics.html:19
+msgid "Language"
+msgstr "Язык занятия"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "Learn time"
+msgstr "Время обучения"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "h."
+msgstr "ч."
+
+#: templates/front/partials/course/course_main_block.html:17
+#: templates/teachers/teachers_list.html:22
+msgid "Name"
+msgstr "Имя"
+
+#: templates/front/partials/course/course_main_block.html:19
+msgid "Work place"
+msgstr "Место работы"
+
+#: templates/front/partials/filter.html:2
+msgid "Filters"
+msgstr "Фильтры"
+
+#: templates/front/partials/footer.html:10
+#: templates/front/partials/navbar.html:75
+msgid "About"
+msgstr "О нас"
+
+#: templates/front/partials/footer.html:16
+#: templates/front/partials/navbar.html:90
+#: templates/front/privacy-policy.html:4
+msgid "Privacy policy"
+msgstr "Политика конфиденциальности"
+
+#: templates/front/partials/footer.html:19
+#: templates/front/partials/navbar.html:95
+msgid "User agreement"
+msgstr "Пользовательское соглашение"
+
+#: templates/front/partials/navbar.html:27
+msgid "Admin panel"
+msgstr "Админ панель"
+
+#: templates/front/partials/navbar.html:43
+#: templates/partials/moderator_header.html:17
+msgid "Logout"
+msgstr "Выйти"
+
+#: templates/front/partials/navbar.html:58
+msgid "SignUp"
+msgstr "Регистрация"
 
 #: templates/modules/module_create.html:12
 msgid "Add module:"
@@ -1240,10 +1596,6 @@ msgstr "Добавить модуль"
 msgid "Main page"
 msgstr "Главная"
 
-#: templates/partials/moderator_header.html:17
-msgid "Logout"
-msgstr "Выйти"
-
 #: templates/partials/moderator_header.html:25
 msgid "Grant moderator access"
 msgstr "Выдача прав модератора"
@@ -1260,7 +1612,7 @@ msgstr "Скачать инструкцию"
 #: templates/partials/sidebar.html:54 templates/partials/sidebar.html:71
 #: templates/partials/sidebar.html:86 templates/partials/sidebar.html:101
 #: templates/partials/sidebar.html:116 templates/partials/sidebar.html:130
-#: templates/partials/sidebar.html:189
+#: templates/partials/sidebar.html:144
 msgid "List"
 msgstr "Список"
 
@@ -1268,19 +1620,19 @@ msgstr "Список"
 msgid "Readings"
 msgstr "Лекции"
 
-#: templates/partials/sidebar.html:140
+#: templates/partials/sidebar.html:170
 msgid "Publish courses"
 msgstr "Публикация курсов"
 
-#: templates/partials/sidebar.html:145
+#: templates/partials/sidebar.html:175
 msgid "Grant access"
 msgstr "Выдача подписок"
 
-#: templates/partials/sidebar.html:149
+#: templates/partials/sidebar.html:179
 msgid "List of courses"
 msgstr "Список курсов"
 
-#: templates/partials/sidebar.html:157
+#: templates/partials/sidebar.html:187
 #: templates/statistics/courses_statistics/courses_list_statistics.html:5
 #: templates/statistics/courses_statistics/courses_statistics_detailed.html:5
 #: templates/statistics/courses_statistics/courses_statistics_main.html:5
@@ -1291,7 +1643,7 @@ msgstr "Список курсов"
 msgid "Statistics"
 msgstr "Статистика"
 
-#: templates/partials/sidebar.html:174
+#: templates/partials/sidebar.html:204
 msgid "Sales"
 msgstr "Продажи"
 
@@ -1306,12 +1658,6 @@ msgstr "30 дней"
 #: templates/partials/statistics/chart_by_period.html:11
 msgid "180 days"
 msgstr "180 дней"
-
-#: templates/partials/statistics/statistics_table.html:7
-#: templates/statistics/users_statistics/user_detailed_statistics.html:15
-#: templates/statistics/users_statistics/users_list_statistics.html:15
-msgid "Email"
-msgstr "Email"
 
 #: templates/partials/statistics/statistics_table.html:8
 #: templates/statistics/users_statistics/user_detailed_statistics.html:16
@@ -1433,40 +1779,87 @@ msgstr "Список тестов"
 msgid "Edit test"
 msgstr "Редактирование теcта"
 
+#: templates/quiz_bim/take_quiz/continue_test.html:5
+#: templates/quiz_bim/take_quiz/take_test.html:5
+#: templates/quiz_bim/take_quiz/test_result.html:6
+msgid "Number of questions"
+msgstr "Количество вопросов"
+
+#: templates/quiz_bim/take_quiz/continue_test.html:9
+msgid "Continue"
+msgstr "Продолжить"
+
+#: templates/quiz_bim/take_quiz/questions_completion.html:36
+msgid "Done"
+msgstr "Завершить"
+
+#: templates/quiz_bim/take_quiz/take_test.html:9
+#: templates/steps/partial/test_partial.html:7
+msgid "Take test"
+msgstr "Прохождение теста"
+
+#: templates/quiz_bim/take_quiz/test_result.html:7
+msgid "Result"
+msgstr "Результат"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+msgid "Correct answers"
+msgstr "Верных ответов"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+msgid "out of"
+msgstr "из"
+
+#: templates/quiz_bim/take_quiz/test_result.html:11
+msgid "Passed"
+msgstr "Сдано"
+
+#: templates/quiz_bim/take_quiz/test_result.html:20
+msgid "Not passed"
+msgstr "Не сдано"
+
+#: templates/quiz_bim/take_quiz/test_result.html:24
+msgid "Try again"
+msgstr "Повторить попытку"
+
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
-msgstr ""
+msgstr "Ошибка при входе через социальные сети"
 
 #: templates/socialaccount/authentication_error.html:9
 msgid ""
 "An error occurred while attempting to login via your social network account."
 msgstr ""
+"При попытке входа с использование аккаунта социльных сетей возникла ошибка"
 
 #: templates/socialaccount/connections.html:5
 #: templates/socialaccount/connections.html:8
 msgid "Account Connections"
-msgstr ""
+msgstr "Связи с аккаунтом"
 
 #: templates/socialaccount/connections.html:11
 msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
 msgstr ""
+"Вы можете войти, используя аккайнт любой из нижеприведенных социальных сетей:"
 
 #: templates/socialaccount/connections.html:45
 msgid ""
 "You currently have no social network accounts connected to this account."
 msgstr ""
+"На данный момент у вас нет ни одного аккаунта социальной сети, связанного с "
+"данным аккаунтом"
 
 #: templates/socialaccount/connections.html:48
 msgid "Add a 3rd Party Account"
-msgstr ""
+msgstr "Добавить аккаунт третьей стороны"
 
 #: templates/socialaccount/login_cancelled.html:4
 #: templates/socialaccount/login_cancelled.html:8
 msgid "Login Cancelled"
-msgstr ""
+msgstr "Вход отменен"
 
 #: templates/socialaccount/login_cancelled.html:12
 #, python-format
@@ -1475,6 +1868,9 @@ msgid ""
 "accounts. If this was a mistake, please proceed to <a "
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
+"Вы отменили вход на наш сайт через существующий аккаунт. Если это произошло "
+"по ошибке, пожалуйста, перейдите на страницу <a "
+"href=\"%(login_url)s\">входа</a>."
 
 #: templates/socialaccount/signup.html:4 templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
@@ -1491,10 +1887,10 @@ msgid ""
 "step, please complete the following\n"
 "                                                form:"
 msgstr ""
-
-#: templates/statistics/courses_statistics/courses_list_statistics.html:19
-msgid "Language"
-msgstr "Язык занятия"
+"\n"
+"Вы использовали свой %(provider_name)s аккаунт для входа на сайт "
+"%(site_name)s. В качестве завершающего шага, пожалуйста, заполните следующую "
+"форму:"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
 #: templates/subscription/subscription_list.html:24
@@ -1643,14 +2039,6 @@ msgstr "Список файлов"
 #: templates/steps/file/file_update.html:15
 msgid "Edit file"
 msgstr "Редактирование файл"
-
-#: templates/steps/partial/test_partial.html:7
-msgid "Take test"
-msgstr "Прохождение теста"
-
-#: templates/steps/partial/test_partial.html:18
-msgid "More"
-msgstr "Подробнее"
 
 #: templates/steps/partial/video_partial.html:18
 #: templates/steps/video/video_detail.html:31
@@ -1839,10 +2227,6 @@ msgstr "Текущая подписка"
 msgid "Subscription"
 msgstr "Подписка"
 
-#: templates/subscription/subscription_create.html:14
-msgid "Add subscription"
-msgstr "Добавить подписку"
-
 #: templates/subscription/subscription_delete.html:3
 msgid "Subscription deletion"
 msgstr "Удаление подписки"
@@ -1850,11 +2234,6 @@ msgstr "Удаление подписки"
 #: templates/subscription/subscription_delete.html:10
 msgid "Are you sure you want to delete the subscription for course"
 msgstr "Вы уверены, что хотите удалить подписку на курс"
-
-#: templates/subscription/subscription_list.html:3
-#: templates/subscription/subscription_list.html:11
-msgid "Subscriptions list"
-msgstr "Перечень подписок"
 
 #: templates/subscription/subscription_list.html:23
 msgid "Price"
@@ -1867,11 +2246,6 @@ msgstr "Не опубликован"
 #: templates/subscription/subscription_list.html:43
 msgid "Update"
 msgstr "Изменить"
-
-#: templates/subscription/subscription_update.html:3
-#: templates/subscription/subscription_update.html:13
-msgid "Subscription update"
-msgstr "Изменение подписки"
 
 #: templates/subscription/subscription_update.html:16
 msgid "Update the subscription"
@@ -1913,12 +2287,20 @@ msgstr "Редактировать преподавателя"
 msgid "Teachers list"
 msgstr "Список преподавателей"
 
-#: templates/teachers/teachers_list.html:22
-msgid "Name"
-msgstr "Имя"
+#: templates/team/team_create.html:5
+msgid "Team"
+msgstr "Команда"
 
-#~ msgid "Enter lesson's duration"
-#~ msgstr "Укажите продолжительность занятия"
+#: templates/team/team_create.html:10
+msgid "Add team"
+msgstr "Добавление команды"
+
+#, fuzzy
+#~ msgid "Provacy policy"
+#~ msgstr "Политика конфиденциальности"
+
+#~ msgid "Кыргызский"
+#~ msgstr "Кыргызский"
 
 #~ msgid "Course chapters list"
 #~ msgstr "Список глав курса"
@@ -1934,12 +2316,6 @@ msgstr "Имя"
 
 #~ msgid "Тест"
 #~ msgstr "Тест"
-
-#~ msgid "Previous lesson"
-#~ msgstr "Предыдущий урок"
-
-#~ msgid "Next chapter"
-#~ msgstr "Следующая глава"
 
 #, python-format
 #~ msgid ""

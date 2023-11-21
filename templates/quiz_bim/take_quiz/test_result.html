@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
     <div class="container">
-        <h3>Тест "{{ progress.test.title }}"</h3>
-        <h5>Количество вопросов: {{ progress.test.question_bim.count }}</h5>
-        <h5>Результат:</h5>
-        <h5>Верных ответов: {{ progress.correct_answers }} из {{ progress.user_progress.count }} ({{ progress.accuracy|floatformat:2 }})</h5>
+        <h3>{% trans 'Test' %} "{{ progress.test.title }}"</h3>
+        <h5>{% trans 'Number of questions' %}: {{ progress.test.question_bim.count }}</h5>
+        <h5>{% trans 'Result' %}:</h5>
+        <h5>{% trans 'Correct answers' %}: {{ progress.correct_answers }} {% trans 'out of' %} {{ progress.user_progress.count }}
+            ({{ progress.accuracy|floatformat:2 }})</h5>
         {% if progress.is_passed %}
-            <h5>Сдано</h5>
-        {% else %}
-            <h5>Не сдано</h5>
-            <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
+            <h5>{% trans 'Passed' %}</h5>
+            {% if is_moderator %}
+                <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
                   hx-target="#quiz_content">
                 {% csrf_token %}
                 <button class="btn btn-success">Повторить попытку</button>
+            </form>
+            {% endif %}
+        {% else %}
+            <h5>{% trans 'Not passed' %}</h5>
+            <form hx-post="{% url 'quiz_bim:take_quiz' pk=progress.test.pk %}"
+                  hx-target="#quiz_content">
+                {% csrf_token %}
+                <button class="btn btn-success">{% trans 'Try again' %}</button>
             </form>
         {% endif %}
 

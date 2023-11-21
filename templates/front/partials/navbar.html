@@ -21,9 +21,10 @@
                     {% if perms.accounts.can_view_admin_panel %}
                         <li class="nav-item mx-2">
                             <a href="{% url "modules:moderator_page" %}"
-                               class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                               class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center
+                               text-nowrap"
                                role="button">
-                                Админ панель
+                                {% trans 'Admin panel' %}
                             </a>
                         </li>
                     {% endif %}
@@ -32,14 +33,14 @@
                         <a href="{% url "accounts:profile" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
-                            Профиль
+                            {% trans 'Profile' %}
                         </a>
                     </li>
                     <li class="nav-item mx-2 {% if request.resolver_match.view_name == 'accounts:logout' %}active{% endif %}">
                         <a href="{% url "accounts:logout" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
-                            Выйти
+                            {% trans 'Logout' %}
                         </a>
                     </li>
                 {% else %}
@@ -47,14 +48,14 @@
                         <a href="{% url "accounts:login" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
-                            Войти
+                            {% trans 'Login' %}
                         </a>
                     </li>
                     <li class="nav-item mx-2 {% if request.resolver_match.view_name == 'accounts:register' %}active{% endif %}">
                         <a href="{% url "accounts:register" %}"
                            class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                            role="button">
-                            Регистрация
+                            {% trans 'SignUp' %}
                         </a>
                     </li>
                 {% endif %}
@@ -62,7 +63,7 @@
                     <a href="{% url "front:course_user_list" %}"
                        class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                        role="button">
-                        Курсы
+                        {% trans 'Courses' %}
                     </a>
                 </li>
 
@@ -71,12 +72,12 @@
                 <div class="dropdown {% if request.resolver_match.view_name == 'front:about' %}active{% elif  request.resolver_match.view_name == 'front:privacy_policy' %}active{% elif  request.resolver_match.view_name == 'front:terms_of_use' %}active{% endif %}">
                     <a href="#" class="btn bg-transparent dropdown-toggle m-0" data-bs-toggle="dropdown"
                        id="navbarDropdownMenuLink2">
-                        О компании
+                        {% trans 'About' %}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                         <li>
                             <a class="dropdown-item {% if request.resolver_match.view_name == 'front:about' %}active{% endif %}" href="{% url "front:about" %}">
-                                О нас
+                                {% trans 'About company' %}
                             </a>
                         </li>
 {#                        <li>#}
@@ -86,12 +87,12 @@
 {#                        </li>#}
                         <li>
                             <a class="dropdown-item {% if request.resolver_match.view_name == 'front:privacy_policy' %}active{% endif %}" href="{% url "front:privacy_policy" %}">
-                                Политика конфиденциальности
+                                {% trans 'Privacy policy' %}
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item {% if request.resolver_match.url_name == 'terms_of_use' %}active{% endif %}" href="{% url "front:terms_of_use" %}">
-                                Пользовательское соглашение
+                                {% trans 'User agreement' %}
                             </a>
                         </li>
                     </ul>
@@ -102,8 +103,8 @@
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
-                <li class="nav-item mx-2"><div class="dropdown">
-                    <a href="#" class="btn text-white bg-transparent dropdown-toggle m-0 " data-bs-toggle="dropdown"
+                <div class="dropdown">
+                    <a href="#" class="btn bg-transparent dropdown-toggle m-0 " data-bs-toggle="dropdown"
                        id="navbarDropdownMenuLink2">
                         {% for language in languages %}
                             {% if language.code == LANGUAGE_CODE %}
@@ -133,7 +134,7 @@
                             </form>
                         {% endfor %}</li>
                     </ul>
-                </div></li>
+                </div>
             </ul>
         </div>
     </div>

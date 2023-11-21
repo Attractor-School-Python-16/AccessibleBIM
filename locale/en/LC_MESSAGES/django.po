@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 17:29+0600\n"
-"PO-Revision-Date: 2023-11-19 17:27+0600\n"
+"POT-Creation-Date: 2023-11-21 17:47+0600\n"
+"PO-Revision-Date: 2023-11-21 17:45+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: accessibleBIM/settings.py:217
+#: accessibleBIM/settings.py:218
 msgid "Russian"
 msgstr "Russian"
 
-#: accessibleBIM/settings.py:218
+#: accessibleBIM/settings.py:219
 msgid "English"
 msgstr "English"
 
@@ -42,6 +42,18 @@ msgstr "Permissions"
 #: accounts/admin.py:24
 msgid "Important dates"
 msgstr "Important dates"
+
+#: accounts/forms/login_form.py:8 templates/front/accounts/profile.html:52
+#: templates/front/accounts/profile.html:56
+#: templates/partials/statistics/statistics_table.html:7
+#: templates/statistics/users_statistics/user_detailed_statistics.html:15
+#: templates/statistics/users_statistics/users_list_statistics.html:15
+msgid "Email"
+msgstr "Email"
+
+#: accounts/forms/login_form.py:13
+msgid "Password"
+msgstr "Password"
 
 #: accounts/forms/register_form.py:9
 msgid "captcha"
@@ -135,7 +147,7 @@ msgstr "Image"
 msgid "Partner"
 msgstr "Partner"
 
-#: content/models/partner.py:17 templates/partials/sidebar.html:182
+#: content/models/partner.py:17 templates/partials/sidebar.html:137
 #: templates/partners/partners_create.html:5
 #: templates/partners/partners_delete.html:5
 #: templates/partners/partners_list.html:5
@@ -151,7 +163,7 @@ msgstr "$"
 msgid "RUB"
 msgstr "RUB"
 
-#: modules/models/chapter.py:9 modules/models/courses.py:48
+#: modules/models/chapter.py:9 modules/models/courses.py:47
 #: subscription/forms/subscription_form.py:12
 #: subscription/models/subscription.py:10
 #: templates/chapters/chapter_detail.html:17
@@ -174,14 +186,18 @@ msgstr "Chapter description"
 
 #: modules/models/chapter.py:12 step/models/step.py:27
 #: templates/chapters/chapter_detail.html:18
-#: templates/chapters/chapter_detail.html:48
-#: templates/courses/course_detail.html:34
+#: templates/chapters/chapter_detail.html:50
+#: templates/courses/course_detail.html:38
 msgid "Serial number"
 msgstr "Number"
 
 #: modules/models/chapter.py:16 step/models/step.py:15
 #: templates/chapters/chapter_detail.html:13
 #: templates/courses/change_chapters_order.html:31
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:16
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:41
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:64
+#: templates/front/partials/course/chapter_accordion.html:12
 msgid "Chapter"
 msgstr "Chapter"
 
@@ -214,51 +230,52 @@ msgstr "Russian"
 msgid "Английский"
 msgstr "English"
 
-#: modules/models/courses.py:23
-msgid "Кыргызский"
-msgstr "Kyrgyz"
-
-#: modules/models/courses.py:25
+#: modules/models/courses.py:24
 msgid "Course title"
 msgstr "Course title"
 
-#: modules/models/courses.py:26
+#: modules/models/courses.py:25
 msgid "Course description"
 msgstr "Course description"
 
-#: modules/models/courses.py:27
+#: modules/models/courses.py:26
 msgid "Course image"
 msgstr "Course image"
 
-#: modules/models/courses.py:29 modules/models/module.py:34
+#: modules/models/courses.py:28 modules/models/module.py:34
+#: templates/front/partials/filter.html:7
 #: templates/statistics/courses_statistics/courses_list_statistics.html:17
 #: templates/subscription/subscription_admin/user_add.html:51
 msgid "Module"
 msgstr "Module"
 
-#: modules/models/courses.py:31
+#: modules/models/courses.py:30
 #: templates/course_target/course_target_detail.html:4
 #: templates/course_target/course_target_list.html:4
-#: templates/partials/sidebar.html:61
+#: templates/front/partials/course/course_main_block.html:10
+#: templates/front/partials/filter.html:16 templates/partials/sidebar.html:61
 #: templates/statistics/courses_statistics/courses_list_statistics.html:18
 msgid "Target audience"
 msgstr "Target audience"
 
-#: modules/models/courses.py:32
+#: modules/models/courses.py:31
 msgid "Course language"
 msgstr "Language"
 
-#: modules/models/courses.py:34
+#: modules/models/courses.py:33
 msgid "Course learn time"
 msgstr "Hours to complete course"
 
-#: modules/models/courses.py:36 modules/models/teacher.py:19
+#: modules/models/courses.py:35 modules/models/teacher.py:19
+#: templates/front/partials/course/course_main_block.html:13
 #: templates/partials/sidebar.html:44
 msgid "Teachers"
 msgstr "Teachers"
 
-#: modules/models/courses.py:49 templates/courses/courses_list.html:4
-#: templates/partials/sidebar.html:28 templates/partials/sidebar.html:168
+#: modules/models/courses.py:48 templates/courses/courses_list.html:4
+#: templates/front/partials/footer.html:7
+#: templates/front/partials/navbar.html:66 templates/partials/sidebar.html:28
+#: templates/partials/sidebar.html:198
 msgid "Courses"
 msgstr "Courses"
 
@@ -290,11 +307,14 @@ msgstr "Last name"
 msgid "Father name"
 msgstr "Father name"
 
-#: modules/models/teacher.py:11 templates/teachers/teacher_detail.html:14
+#: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
+#: templates/front/partials/course/course_main_block.html:18
+#: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Job title"
 
-#: modules/models/teacher.py:12 templates/teachers/teacher_detail.html:15
+#: modules/models/teacher.py:12 templates/front/accounts/profile.html:63
+#: templates/teachers/teacher_detail.html:15
 msgid "Company"
 msgstr "Company"
 
@@ -350,7 +370,7 @@ msgstr "Lesson finish"
 msgid "Course progress"
 msgstr "Course progress"
 
-#: modules/views/courses.py:159
+#: modules/views/courses.py:162
 msgid "Choose different serial numbers for chapters."
 msgstr "Choose different serial numbers for chapters."
 
@@ -365,6 +385,9 @@ msgstr "Test end time"
 #: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
 #: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12 step/models/step.py:23
 #: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
+#: templates/quiz_bim/take_quiz/continue_test.html:4
+#: templates/quiz_bim/take_quiz/take_test.html:4
+#: templates/quiz_bim/take_quiz/test_result.html:5
 #: templates/steps/partial/test_partial.html:2
 #: templates/steps/step/step_detail.html:21
 msgid "Test"
@@ -412,6 +435,10 @@ msgstr "Correct answer"
 msgid "Enter question"
 msgstr "Enter question"
 
+#: quiz_bim/forms/quiz_bim_form.py:10
+msgid "Please enter title"
+msgstr "Please enter title"
+
 #: quiz_bim/models/answer_bim.py:8
 msgid "Answer validation"
 msgstr "Answer validation"
@@ -458,26 +485,37 @@ msgstr "Answer should contain at least 2 symbols"
 msgid "Answer correctness field can take only boolean values"
 msgstr "Answer correctness field can take only boolean values"
 
-#: step/forms/file_form.py:42
+#: step/forms/file_for_step_form.py:43
 msgid "Enter the name of the uploaded file"
 msgstr "Enter the name of the uploaded file"
 
-#: step/forms/file_form.py:43
+#: step/forms/file_for_step_form.py:44
 msgid "Upload a file"
 msgstr "Upload a file"
 
-#: step/forms/file_form.py:53
-msgid "Uploaded file has to be no more than 250 MB"
-msgstr "Uploaded file has to be no more than 250 MB"
-
-#: step/forms/file_form.py:55
+#: step/forms/file_for_step_form.py:55
 msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 msgstr ""
 "Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 
-#: step/forms/file_form.py:66
+#: step/forms/file_for_step_form.py:58
+msgid "Uploaded file has to be no more than 250 MB"
+msgstr "Uploaded file has to be no more than 250 MB"
+
+#: step/forms/file_for_step_form.py:69 step/tests/tests_file/view_tests.py:107
+#: step/tests/tests_file/view_tests.py:178
+msgid ""
+"For uploading attachment you should both enter file title and upload a file"
+msgstr ""
+"For uploading attachment you should both enter file title and upload a file"
+
+#: step/forms/file_form.py:11
 msgid "Title is mandatory for uploading a file"
 msgstr "Title is mandatory for uploading a file"
+
+#: step/forms/file_form.py:18
+msgid "Please upload a file"
+msgstr "Please upload a file"
 
 #: step/forms/step_form.py:17 step/forms/step_form.py:34
 #: step/forms/step_form.py:46
@@ -486,8 +524,8 @@ msgstr "Enter lesson's title"
 
 #: step/forms/step_form.py:18 step/forms/step_form.py:35
 #: step/forms/step_form.py:47
-msgid "Enter lesson's duration (min.)"
-msgstr "Enter lesson's duration (min.)"
+msgid "Enter lesson's duration"
+msgstr "Enter lesson's duration"
 
 #: step/forms/step_form.py:19 step/forms/step_form.py:36
 msgid "Select files"
@@ -505,52 +543,73 @@ msgstr "Select video"
 msgid "Select test"
 msgstr "Select test"
 
-#: step/forms/text_form.py:14
+#: step/forms/text_for_step_form.py:14
 msgid "Enter reading's title"
 msgstr "Enter reading's title"
 
-#: step/forms/text_form.py:15
+#: step/forms/text_for_step_form.py:15
 msgid "Enter reading's description"
 msgstr "Enter reading's description"
 
-#: step/forms/text_form.py:16 templates/steps/partial/text_partial.html:13
+#: step/forms/text_for_step_form.py:16
+#: templates/steps/partial/text_partial.html:13
 #: templates/steps/text/text_detail.html:25
 msgid "Content"
 msgstr "Content"
 
-#: step/forms/video_form.py:17
+#: step/forms/text_form.py:11
+msgid "Please enter reading title"
+msgstr "Please enter reading title"
+
+#: step/forms/text_form.py:17
+msgid "Please enter reading description"
+msgstr "Please enter reading description"
+
+#: step/forms/text_form.py:23
+msgid "Please enter reading content"
+msgstr "Please enter reading content"
+
+#: step/forms/video_for_step_form.py:17
 msgid "Enter video's title"
 msgstr "Enter video's title"
 
-#: step/forms/video_form.py:18
+#: step/forms/video_for_step_form.py:18
 msgid "Enter video's description"
 msgstr "Enter video's description"
 
-#: step/forms/video_form.py:19
+#: step/forms/video_for_step_form.py:19
 msgid "Upload video file"
 msgstr "Upload video file"
 
-#: step/forms/video_form.py:29
+#: step/forms/video_for_step_form.py:29
 msgid "Uploaded file has to be no more than 2 GB"
 msgstr "Uploaded file has to be no more than 2 GB"
 
-#: step/forms/video_form.py:31
+#: step/forms/video_for_step_form.py:31
 msgid "Only MP4, WebM and OGG formats allowed"
 msgstr "Only MP4, WebM and OGG formats allowed"
 
-#: step/models/file.py:14
+#: step/forms/video_form.py:11
+msgid "Please upload video file"
+msgstr "Please upload video file"
+
+#: step/forms/video_form.py:17
+msgid "Please enter video title"
+msgstr "Please enter video title"
+
+#: step/models/file.py:15
 msgid "File title"
 msgstr "Title"
 
-#: step/models/file.py:15
+#: step/models/file.py:16
 msgid "Lesson file"
 msgstr "Lesson file"
 
-#: step/models/file.py:25 templates/steps/step/step_detail.html:26
+#: step/models/file.py:26 templates/steps/step/step_detail.html:26
 msgid "File"
 msgstr "File"
 
-#: step/models/file.py:26 step/models/step.py:25
+#: step/models/file.py:27 step/models/step.py:25
 #: templates/partials/sidebar.html:78
 msgid "Files"
 msgstr "Files"
@@ -564,10 +623,10 @@ msgstr "Video"
 msgid "Text"
 msgstr "Reading"
 
-#: step/models/step.py:16 templates/chapters/chapter_detail.html:49
+#: step/models/step.py:16 templates/chapters/chapter_detail.html:51
 #: templates/chapters/chapters_list.html:21
 #: templates/course_target/course_target_list.html:20
-#: templates/courses/course_detail.html:35
+#: templates/courses/course_detail.html:39
 #: templates/courses/courses_list.html:20
 #: templates/modules/module_detail.html:29
 #: templates/modules/modules_list.html:21
@@ -589,7 +648,11 @@ msgid "Lesson learn time"
 msgstr "Lesson learn time"
 
 #: step/models/step.py:45 templates/chapters/change_steps_order.html:28
-#: templates/front/chapter/chapter_user_detail_view.html:24
+#: templates/courses/course_preview.html:28
+#: templates/front/chapter/chapter_user_detail_view.html:25
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:24
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:28
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:50
 msgid "Lesson"
 msgstr "Lesson"
 
@@ -658,6 +721,8 @@ msgstr "For editing you should select related content"
 
 #: subscription/forms/subscription_form.py:13
 #: subscription/models/subscription.py:11
+#: templates/front/courses/course_detail.html:28
+#: templates/front/courses/course_detail.html:41
 msgid "Course price"
 msgstr "Course price"
 
@@ -676,6 +741,7 @@ msgstr ""
 "existing subscription"
 
 #: subscription/forms/subscription_user_add_form.py:5
+#: subscription/views/subscription.py:197
 #: templates/subscription/subscription_admin/user_add.html:3
 #: templates/subscription/subscription_admin/user_add.html:67
 #: templates/subscription/subscription_admin/user_list.html:45
@@ -683,19 +749,20 @@ msgid "Grant subscription"
 msgstr "Grant subscription"
 
 #: subscription/forms/subscription_user_delete_form.py:5
+#: subscription/views/subscription.py:238
 #: templates/subscription/subscription_admin/user_delete.html:3
 #: templates/subscription/subscription_admin/user_list.html:42
 msgid "Unsubscribe"
 msgstr "Unsubscribe"
 
 #: subscription/models/user_subscription.py:10
-#: templates/partials/sidebar.html:136
+#: subscription/views/subscription.py:125 templates/partials/sidebar.html:166
 #: templates/subscription/subscription_admin/user_add.html:19
 msgid "Subscriptions"
 msgstr "Subscriptions"
 
 #: subscription/models/user_subscription.py:12
-#: templates/partials/sidebar.html:162
+#: templates/partials/sidebar.html:192
 msgid "Users"
 msgstr "Users"
 
@@ -706,6 +773,27 @@ msgstr "Subscription expire date"
 #: subscription/models/user_subscription.py:14
 msgid "Subscription enabled"
 msgstr "Subscription enabled"
+
+#: subscription/views/subscription.py:44
+#: templates/subscription/subscription_list.html:3
+#: templates/subscription/subscription_list.html:11
+msgid "Subscriptions list"
+msgstr "Subscriptions list"
+
+#: subscription/views/subscription.py:62
+#: templates/subscription/subscription_create.html:14
+msgid "Add subscription"
+msgstr "Add subscription"
+
+#: subscription/views/subscription.py:92
+#: templates/subscription/subscription_update.html:3
+#: templates/subscription/subscription_update.html:13
+msgid "Subscription update"
+msgstr "Subscription update"
+
+#: subscription/views/subscription.py:109
+msgid "Subscription delete"
+msgstr "Subscription delete"
 
 #: templates/accounts/grant_moderator.html:4
 msgid "Grant moderator's rights"
@@ -720,6 +808,7 @@ msgid "Search by Email"
 msgstr "Search by Email"
 
 #: templates/accounts/grant_moderator.html:18
+#: templates/front/partials/filter.html:40
 msgid "Search"
 msgstr "Search"
 
@@ -728,6 +817,7 @@ msgid "Role"
 msgstr "Role"
 
 #: templates/accounts/grant_moderator.html:40
+#: templates/front/accounts/profile.html:29
 msgid "Moderator"
 msgstr "Moderator"
 
@@ -748,7 +838,7 @@ msgstr "Remove"
 
 #: templates/chapters/change_steps_order.html:4
 #: templates/chapters/change_steps_order.html:36
-#: templates/chapters/chapter_detail.html:42
+#: templates/chapters/chapter_detail.html:44
 msgid "Change lessons ordering"
 msgstr "Change lessons ordering"
 
@@ -789,7 +879,7 @@ msgstr "Add chapter"
 #: templates/partials/sidebar.html:33 templates/partials/sidebar.html:49
 #: templates/partials/sidebar.html:66 templates/partials/sidebar.html:82
 #: templates/partials/sidebar.html:97 templates/partials/sidebar.html:112
-#: templates/partials/sidebar.html:127 templates/partials/sidebar.html:186
+#: templates/partials/sidebar.html:127 templates/partials/sidebar.html:141
 #: templates/partners/partners_create.html:11
 #: templates/quiz_bim/quiz_bim/quiz_bim_create.html:16
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:13
@@ -803,7 +893,7 @@ msgstr "Add chapter"
 #: templates/steps/video/video_list.html:15
 #: templates/subscription/subscription_create.html:17
 #: templates/subscription/subscription_list.html:15
-#: templates/teachers/teacher_create.html:13
+#: templates/teachers/teacher_create.html:13 templates/team/team_create.html:11
 msgid "Add"
 msgstr "Add"
 
@@ -860,13 +950,13 @@ msgid "Description"
 msgstr "Description"
 
 #: templates/chapters/chapter_detail.html:22
-#: templates/chapters/chapter_detail.html:66
+#: templates/chapters/chapter_detail.html:68
 #: templates/chapters/chapters_list.html:33
 #: templates/course_target/course_target_detail.html:17
 #: templates/course_target/course_target_list.html:33
 #: templates/courses/change_chapters_order.html:44
 #: templates/courses/course_detail.html:14
-#: templates/courses/course_detail.html:48
+#: templates/courses/course_detail.html:52
 #: templates/courses/courses_list.html:32
 #: templates/modules/module_detail.html:14
 #: templates/modules/module_detail.html:41
@@ -885,12 +975,12 @@ msgid "Change"
 msgstr "Change"
 
 #: templates/chapters/chapter_detail.html:24
-#: templates/chapters/chapter_detail.html:68
+#: templates/chapters/chapter_detail.html:70
 #: templates/chapters/chapters_list.html:35
 #: templates/course_target/course_target_detail.html:19
 #: templates/course_target/course_target_list.html:35
 #: templates/courses/course_detail.html:16
-#: templates/courses/course_detail.html:50
+#: templates/courses/course_detail.html:54
 #: templates/courses/courses_list.html:34
 #: templates/modules/module_detail.html:16
 #: templates/modules/module_detail.html:43
@@ -928,10 +1018,15 @@ msgstr "Add text lesson"
 msgid "Add test"
 msgstr "Add test"
 
-#: templates/chapters/chapter_detail.html:50
+#: templates/chapters/chapter_detail.html:42
+#: templates/courses/course_detail.html:30
+msgid "Course Preview"
+msgstr "Course Preview"
+
+#: templates/chapters/chapter_detail.html:52
 #: templates/chapters/chapters_list.html:22
 #: templates/course_target/course_target_list.html:21
-#: templates/courses/course_detail.html:36
+#: templates/courses/course_detail.html:40
 #: templates/courses/courses_list.html:21
 #: templates/modules/module_detail.html:30
 #: templates/modules/modules_list.html:22
@@ -1049,7 +1144,7 @@ msgid ""
 "                    chapters"
 msgstr "List of %(title)s course's chapters"
 
-#: templates/courses/course_detail.html:29
+#: templates/courses/course_detail.html:33
 msgid "Change chapters ordering"
 msgstr "Change chapters ordering"
 
@@ -1063,11 +1158,31 @@ msgstr "Edit course"
 msgid "Courses list"
 msgstr "Courses list"
 
+#: templates/front/about.html:13
+msgid "Project goals"
+msgstr "Project Objectives"
+
+#: templates/front/about.html:32
+msgid "About team"
+msgstr "Team"
+
+#: templates/front/about.html:34
+msgid "TEAM_TEXT"
+msgstr ""
+"We are a team of professional engineers from various industries, united by a "
+"comprehensive approach to Building Information Modeling (BIM). We want to "
+"share our expertise and bring like-minded individuals together in the fields "
+"of engineering and innovation."
+
+#: templates/front/about.html:65
+msgid "Contacts"
+msgstr "Contacts"
+
 #: templates/front/accounts/change_password.html:4
 #: templates/front/accounts/change_password.html:15
 #: templates/front/accounts/change_password_done.html:4
 #: templates/front/accounts/password-reset/password_reset_confirm.html:13
-#: templates/front/accounts/profile.html:34
+#: templates/front/accounts/profile.html:38
 msgid "Change password"
 msgstr "Change Password"
 
@@ -1084,6 +1199,7 @@ msgstr "Password successfully changed"
 #: templates/front/accounts/email/verification-email-sent.html:4
 #: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
+#: templates/front/partials/navbar.html:51
 msgid "Login"
 msgstr "Login"
 
@@ -1122,7 +1238,23 @@ msgstr ""
 "\n"
 "Please click on the link below to confirm your registration:\n"
 
-#: templates/front/accounts/login.html:64
+#: templates/front/accounts/login.html:26
+msgid "Sign in with Google"
+msgstr "Sign in with Google"
+
+#: templates/front/accounts/login.html:42
+msgid "Sign In to your account"
+msgstr "Sign In to your account"
+
+#: templates/front/accounts/login.html:57
+msgid "Sign in"
+msgstr "Sign in"
+
+#: templates/front/accounts/login.html:63
+msgid "Register Now"
+msgstr "Register Now"
+
+#: templates/front/accounts/login.html:65
 msgid "Forgot password"
 msgstr "Forgot password"
 
@@ -1174,11 +1306,41 @@ msgstr ""
 "Please click on the link below to reset your password:\n"
 
 #: templates/front/accounts/profile.html:3
+#: templates/front/partials/navbar.html:36
 #: templates/partials/moderator_header.html:20
 msgid "Profile"
 msgstr "Profile"
 
-#: templates/front/accounts/profile.html:85
+#: templates/front/accounts/profile.html:15
+msgid ""
+"\n"
+"                                            You have an outdated <span "
+"class=\"text-decoration-underline text-center\">\n"
+"                                            test</span>. Please complete the "
+"test.\n"
+"                                        "
+msgstr ""
+"\n"
+"You have an outdated <span class=\"text-decoration-underline text-"
+"center\">test</span>. Please complete the test."
+
+#: templates/front/accounts/profile.html:31
+msgid "Admin"
+msgstr "Admin"
+
+#: templates/front/accounts/profile.html:54
+msgid "Verified"
+msgstr "Verified"
+
+#: templates/front/accounts/profile.html:58
+msgid "Not verified"
+msgstr "Not verified"
+
+#: templates/front/accounts/profile.html:76
+msgid "Subscription valid until"
+msgstr "Subscription is valid until"
+
+#: templates/front/accounts/profile.html:88
 msgid "My courses"
 msgstr "My courses"
 
@@ -1187,17 +1349,213 @@ msgid "Registration"
 msgstr "Registration"
 
 #: templates/front/accounts/register.html:14
-#: templates/front/accounts/register.html:39
+#: templates/front/accounts/register.html:45
 msgid "Register"
 msgstr "Register"
 
-#: templates/front/courses/courses.html:13
+#: templates/front/accounts/register.html:20
+msgid "Create your account"
+msgstr "Create your account"
+
+#: templates/front/accounts/register.html:38
+msgid "Отправляя данную форму вы соглашаетесь с"
+msgstr "By submitting this form you agree to"
+
+#: templates/front/accounts/register.html:39
+msgid "Политикой конфиденциальности"
+msgstr "Privacy Policy"
+
+#: templates/front/accounts/register.html:40
+msgid "и"
+msgstr "and"
+
+#: templates/front/accounts/register.html:40
+msgid "Пользовательским соглашением"
+msgstr "User agreement"
+
+#: templates/front/accounts/register.html:47
+msgid "Sign up with Google"
+msgstr "Sign up with Google"
+
+#: templates/front/chapter/chapter_user_detail_view.html:46
+msgid "Attachment"
+msgstr "Attachment"
+
+#: templates/front/chapter/chapter_user_detail_view.html:61
+msgid "Previous lesson"
+msgstr "Previous lesson"
+
+#: templates/front/chapter/chapter_user_detail_view.html:66
+msgid "Previous chapter"
+msgstr "Previous chapter"
+
+#: templates/front/chapter/chapter_user_detail_view.html:72
+msgid "Next lesson"
+msgstr "Next lesson"
+
+#: templates/front/chapter/chapter_user_detail_view.html:78
+msgid "Next chapter"
+msgstr "Next chapter"
+
+#: templates/front/courses/course_detail.html:25
+msgid "Start course"
+msgstr "Start course"
+
+#: templates/front/courses/course_detail.html:31
+#: templates/front/courses/course_detail.html:44
+msgid "Buy course"
+msgstr "Buy course"
+
+#: templates/front/courses/course_detail.html:34
+msgid "To purchase the course, confirm your Email."
+msgstr "To purchase the course, please confirm your email."
+
+#: templates/front/courses/courses.html:14
 msgid "List of available courses"
 msgstr "List of available courses"
 
 #: templates/front/courses/courses.html:28
 msgid "No courses found"
 msgstr "No courses found"
+
+#: templates/front/errors/403.html:16
+msgid "Error 403"
+msgstr "Error 403"
+
+#: templates/front/errors/403.html:32
+msgid "Access denied"
+msgstr "Access denied"
+
+#: templates/front/errors/403.html:33
+msgid "You don't have permission to open this page"
+msgstr "You don't have permission to open this page"
+
+#: templates/front/errors/403.html:37 templates/front/errors/404.html:36
+#: templates/front/errors/500.html:38
+msgid "Back to main page"
+msgstr "Back to main page"
+
+#: templates/front/errors/404.html:16
+msgid "Error 404"
+msgstr "Error 404"
+
+#: templates/front/errors/404.html:32
+msgid "Page not found"
+msgstr "Page not found"
+
+#: templates/front/errors/404.html:33
+msgid "The page you are looking for cannot be found"
+msgstr "The page you are looking for cannot be found"
+
+#: templates/front/errors/500.html:16
+msgid "Error 500"
+msgstr "Error 500"
+
+#: templates/front/errors/500.html:32
+msgid "Internal Server Error"
+msgstr "Internal Server Error"
+
+#: templates/front/errors/500.html:34
+msgid "Server encountered an error and could not handle this request"
+msgstr "Server encountered an error and could not handle this request"
+
+#: templates/front/index.html:11
+msgid "MISSION"
+msgstr "MISSION"
+
+#: templates/front/index.html:13
+msgid "MISSION_TEXT"
+msgstr ""
+"Our mission is to provide affordable and high-quality engineering education "
+"for everyone who wishes to enhance their skills and knowledge. We aim to "
+"inspire and support students, professionals, and engineering enthusiasts by "
+"offering a wide range of courses, educational materials, and practical "
+"assignments."
+
+#: templates/front/index.html:17 templates/front/partials/navbar.html:80
+msgid "About company"
+msgstr "About company"
+
+#: templates/front/index.html:33
+msgid "Our partners"
+msgstr "Partners"
+
+#: templates/front/partials/chapter/chapter_sidebar_navigation.html:3
+msgid "Navigation"
+msgstr "Navigation"
+
+#: templates/front/partials/course/chapter_accordion.html:4
+msgid "Course content"
+msgstr "Course content"
+
+#: templates/front/partials/course/course_card.html:12
+msgid "Last update"
+msgstr "Last update"
+
+#: templates/front/partials/course/course_card.html:21
+#: templates/steps/partial/test_partial.html:18
+msgid "More"
+msgstr "More"
+
+#: templates/front/partials/course/course_card.html:44
+msgid "Purchased course"
+msgstr "Purchased course"
+
+#: templates/front/partials/course/course_main_block.html:11
+#: templates/front/partials/filter.html:24
+#: templates/statistics/courses_statistics/courses_list_statistics.html:19
+msgid "Language"
+msgstr "Language"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "Learn time"
+msgstr "Learn time"
+
+#: templates/front/partials/course/course_main_block.html:12
+msgid "h."
+msgstr "h."
+
+#: templates/front/partials/course/course_main_block.html:17
+#: templates/teachers/teachers_list.html:22
+msgid "Name"
+msgstr "Name"
+
+#: templates/front/partials/course/course_main_block.html:19
+msgid "Work place"
+msgstr "Work place"
+
+#: templates/front/partials/filter.html:2
+msgid "Filters"
+msgstr "Filters"
+
+#: templates/front/partials/footer.html:10
+#: templates/front/partials/navbar.html:75
+msgid "About"
+msgstr "About"
+
+#: templates/front/partials/footer.html:16
+#: templates/front/partials/navbar.html:90
+#: templates/front/privacy-policy.html:4
+msgid "Privacy policy"
+msgstr "Privacy policy"
+
+#: templates/front/partials/footer.html:19
+#: templates/front/partials/navbar.html:95
+msgid "User agreement"
+msgstr "User agreement"
+
+#: templates/front/partials/navbar.html:27
+msgid "Admin panel"
+msgstr "Admin panel"
+
+#: templates/front/partials/navbar.html:43
+#: templates/partials/moderator_header.html:17
+msgid "Logout"
+msgstr "Logout"
+
+#: templates/front/partials/navbar.html:58
+msgid "SignUp"
+msgstr "SignUp"
 
 #: templates/modules/module_create.html:12
 msgid "Add module:"
@@ -1240,10 +1598,6 @@ msgstr "Add modules"
 msgid "Main page"
 msgstr "Home"
 
-#: templates/partials/moderator_header.html:17
-msgid "Logout"
-msgstr "Logout"
-
 #: templates/partials/moderator_header.html:25
 msgid "Grant moderator access"
 msgstr "Grant moderator access"
@@ -1260,7 +1614,7 @@ msgstr "Download instruction"
 #: templates/partials/sidebar.html:54 templates/partials/sidebar.html:71
 #: templates/partials/sidebar.html:86 templates/partials/sidebar.html:101
 #: templates/partials/sidebar.html:116 templates/partials/sidebar.html:130
-#: templates/partials/sidebar.html:189
+#: templates/partials/sidebar.html:144
 msgid "List"
 msgstr "List"
 
@@ -1268,19 +1622,19 @@ msgstr "List"
 msgid "Readings"
 msgstr "Readings"
 
-#: templates/partials/sidebar.html:140
+#: templates/partials/sidebar.html:170
 msgid "Publish courses"
 msgstr "Publish courses"
 
-#: templates/partials/sidebar.html:145
+#: templates/partials/sidebar.html:175
 msgid "Grant access"
 msgstr "Grant access"
 
-#: templates/partials/sidebar.html:149
+#: templates/partials/sidebar.html:179
 msgid "List of courses"
 msgstr "List of courses"
 
-#: templates/partials/sidebar.html:157
+#: templates/partials/sidebar.html:187
 #: templates/statistics/courses_statistics/courses_list_statistics.html:5
 #: templates/statistics/courses_statistics/courses_statistics_detailed.html:5
 #: templates/statistics/courses_statistics/courses_statistics_main.html:5
@@ -1291,7 +1645,7 @@ msgstr "List of courses"
 msgid "Statistics"
 msgstr "Statistics"
 
-#: templates/partials/sidebar.html:174
+#: templates/partials/sidebar.html:204
 msgid "Sales"
 msgstr "Sales"
 
@@ -1306,12 +1660,6 @@ msgstr "30 days"
 #: templates/partials/statistics/chart_by_period.html:11
 msgid "180 days"
 msgstr "180 days"
-
-#: templates/partials/statistics/statistics_table.html:7
-#: templates/statistics/users_statistics/user_detailed_statistics.html:15
-#: templates/statistics/users_statistics/users_list_statistics.html:15
-msgid "Email"
-msgstr "Email"
 
 #: templates/partials/statistics/statistics_table.html:8
 #: templates/statistics/users_statistics/user_detailed_statistics.html:16
@@ -1434,6 +1782,49 @@ msgstr "Tests list"
 msgid "Edit test"
 msgstr "Edit test"
 
+#: templates/quiz_bim/take_quiz/continue_test.html:5
+#: templates/quiz_bim/take_quiz/take_test.html:5
+#: templates/quiz_bim/take_quiz/test_result.html:6
+msgid "Number of questions"
+msgstr "Number of questions"
+
+#: templates/quiz_bim/take_quiz/continue_test.html:9
+msgid "Continue"
+msgstr "Continue"
+
+#: templates/quiz_bim/take_quiz/questions_completion.html:36
+msgid "Done"
+msgstr "Submit"
+
+#: templates/quiz_bim/take_quiz/take_test.html:9
+#: templates/steps/partial/test_partial.html:7
+msgid "Take test"
+msgstr "Take test"
+
+#: templates/quiz_bim/take_quiz/test_result.html:7
+msgid "Result"
+msgstr "Result"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+msgid "Correct answers"
+msgstr "Correct answers"
+
+#: templates/quiz_bim/take_quiz/test_result.html:8
+msgid "out of"
+msgstr "out of"
+
+#: templates/quiz_bim/take_quiz/test_result.html:11
+msgid "Passed"
+msgstr "Passed"
+
+#: templates/quiz_bim/take_quiz/test_result.html:20
+msgid "Not passed"
+msgstr "Not passed"
+
+#: templates/quiz_bim/take_quiz/test_result.html:24
+msgid "Try again"
+msgstr "Try again"
+
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
@@ -1502,10 +1893,6 @@ msgstr ""
 "\n"
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
-
-#: templates/statistics/courses_statistics/courses_list_statistics.html:19
-msgid "Language"
-msgstr "Language"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
 #: templates/subscription/subscription_list.html:24
@@ -1655,14 +2042,6 @@ msgstr "Files list"
 #: templates/steps/file/file_update.html:15
 msgid "Edit file"
 msgstr "Edit file"
-
-#: templates/steps/partial/test_partial.html:7
-msgid "Take test"
-msgstr "Take test"
-
-#: templates/steps/partial/test_partial.html:18
-msgid "More"
-msgstr "More"
 
 #: templates/steps/partial/video_partial.html:18
 #: templates/steps/video/video_detail.html:31
@@ -1853,10 +2232,6 @@ msgstr "Current subscription"
 msgid "Subscription"
 msgstr "Subscription"
 
-#: templates/subscription/subscription_create.html:14
-msgid "Add subscription"
-msgstr "Add subscription"
-
 #: templates/subscription/subscription_delete.html:3
 msgid "Subscription deletion"
 msgstr "Subscription deletion"
@@ -1864,11 +2239,6 @@ msgstr "Subscription deletion"
 #: templates/subscription/subscription_delete.html:10
 msgid "Are you sure you want to delete the subscription for course"
 msgstr "Are you sure you want to delete the subscription for course"
-
-#: templates/subscription/subscription_list.html:3
-#: templates/subscription/subscription_list.html:11
-msgid "Subscriptions list"
-msgstr "Subscriptions list"
 
 #: templates/subscription/subscription_list.html:23
 msgid "Price"
@@ -1881,11 +2251,6 @@ msgstr "Unpublished"
 #: templates/subscription/subscription_list.html:43
 msgid "Update"
 msgstr "Update"
-
-#: templates/subscription/subscription_update.html:3
-#: templates/subscription/subscription_update.html:13
-msgid "Subscription update"
-msgstr "Subscription update"
 
 #: templates/subscription/subscription_update.html:16
 msgid "Update the subscription"
@@ -1927,12 +2292,16 @@ msgstr "Edit teacher"
 msgid "Teachers list"
 msgstr "Teachers list"
 
-#: templates/teachers/teachers_list.html:22
-msgid "Name"
-msgstr "Name"
+#: templates/team/team_create.html:5
+msgid "Team"
+msgstr "Team"
 
-#~ msgid "Enter lesson's duration"
-#~ msgstr "Enter lesson's duration"
+#: templates/team/team_create.html:10
+msgid "Add team"
+msgstr "Add team"
+
+#~ msgid "Кыргызский"
+#~ msgstr "Kyrgyz"
 
 #~ msgid "Course chapters list"
 #~ msgstr "Course chapters list"
@@ -1948,12 +2317,6 @@ msgstr "Name"
 
 #~ msgid "Тест"
 #~ msgstr "Test"
-
-#~ msgid "Previous lesson"
-#~ msgstr "Previous lesson"
-
-#~ msgid "Next chapter"
-#~ msgstr "Next chapter"
 
 #, python-format
 #~ msgid ""
