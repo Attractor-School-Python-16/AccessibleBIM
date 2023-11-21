@@ -24,7 +24,13 @@ class TakeQuizView(LoginRequiredMixin, DetailView):
         else:
             progress_test = ProgressTest.objects.get(test_id=pk, user_id=request.user.pk)
         if progress_test.is_passed:
-            return redirect("quiz_bim:test_result", pk=progress_test.pk)
+            if self.request.user.groups.filter(name='moderators').exists() or self.request.user.is_superuser:
+                progress_test.in_progress = True
+                progress_test.is_passed = False
+                progress_test.save()
+                progress_test.user_progress.all().delete()
+            else:
+                return redirect("quiz_bim:test_result", pk=progress_test.pk)
         if not progress_test.is_passed and progress_test.test.questions_qty == progress_test.user_progress.count() and \
                 not progress_test.in_progress:
             progress_test.in_progress = True
@@ -113,4 +119,6 @@ class QuizResultView(UserPassesTestMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["user_answers_id"] = self.get_object().user_progress.values_list("answer_id", flat=True)
         context["questions"] = QuestionBim.objects.filter(test_bim_id=self.get_object().test.pk)
+        if self.request.user.groups.filter(name='moderators').exists() or self.request.user.is_superuser:
+            context["is_moderator"] = True
         return context

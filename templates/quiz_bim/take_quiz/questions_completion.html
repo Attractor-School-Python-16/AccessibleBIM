@@ -33,7 +33,7 @@
 
         <form id="form-test-result" hx-post="{% url "quiz_bim:test_result" progress_test_id %}" hx-target="#quiz_content">
             {% csrf_token %}
-            <button id="test-result-button" class="btn btn-primary" form="form-test-result">Завершить тест</button>
+            <button id="test-result-button" class="btn btn-success" form="form-test-result">Завершить тест</button>
         </form>
     </div>
 {% endblock %}
