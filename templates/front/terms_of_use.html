@@ -1,5 +1,5 @@
 {% extends "front/base.html" %}
-{% load static %}
+{% load static i18n %}
 
 {#{% block title %}Политика конфиденциальности{% endblock %}#}
 
@@ -7,155 +7,12 @@
     <section class="section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 mb-lg-0 mb-md-5 mb-5 mt-md-5 mt-lg-0">
-                    <ul class="nav flex-column bg-white border-radius-lg p-3 position-sticky top-10 shadow-lg">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark d-flex align-items-center" data-scroll=""
-                               href="#link_1">
-                                <i class="material-icons text-dark opacity-5 pe-2">description</i>
-                                Пользовательское соглашение
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark d-flex align-items-center" data-scroll="" href="#link_2">
-                                <i class="material-icons text-dark opacity-5 pe-2">description</i>
-                                Общие положения Пользовательского соглашения
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark d-flex align-items-center" data-scroll="" href="#link_3">
-                                <i class="material-icons text-dark opacity-5 pe-2">description</i>
-                                Общие условия пользования Сервисом
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-8">
-                    <div class="card shadow-lg mb-1">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                            <div class="bg-azure-crayola shadow-info border-radius-lg p-3">
-                                <h3 class="text-white mb-0 heading">Пользовательское соглашение</h3>
-                                <p class="text-white opacity-8 mb-0 content">Последнее обновление: 25 Октября 2023</p>
-                            </div>
-                        </div>
-                        <div class="card-body pt-4">
-                            <p class="text-justify content">Настоящий документ «Пользовательское соглашение» представляет собой предложение
-                                ОсОО «БИМСТАНДАРД» (далее — «Администрация»), заключить договор на изложенных ниже
-                                условиях Соглашения.</p>
-                            <h3 class="mt-5 mb-2 heading" id="link_2"> Общие положения Пользовательского соглашения</h3>
-                            <ol style="list-style-type: none" class="pb-0 mb-0">
-                                <li class="text-justify content"><strong class="text-dark">1.</strong> В настоящем документе и вытекающих или
-                                    связанным с ним отношениях Сторон
-                                    применяются следующие термины и определения:
-                                </li>
-                                <ol style="list-style-type: none" >
-                                    <br>
-                                    <li class="text-justify content"><strong class="text-dark">а)</strong> Платформа — программно - аппаратные
-                                        средства, интегрированные с Сайтом
-                                        Администрации;
-                                    </li>
-                                    <br>
-                                    <li class="text-justify content"><strong class="text-dark">б)</strong> Пользователь — дееспособное физическое
-                                        лицо, присоединившееся к настоящему
-                                        Соглашению в собственном интересе либо выступающее от имени и в интересах
-                                        представляемого
-                                        им юридического лица;
-                                    </li>
-                                    <br>
-                                    <li class="text-justify content"><strong class="text-dark">в)</strong> Сайт Администрации / Сайт —
-                                        интернет-сайты, размещенные в домене или под
-                                        доменами;
-                                    </li>
-                                    <br>
-                                    <li class="text-justify content"><strong class="text-dark">г)</strong> Сервис — комплекс услуг и лицензия,
-                                        предоставляемые Пользователю с использованием
-                                        Платформы.
-                                    </li>
-                                    <br>
-                                    <li class="text-justify content"><strong class="text-dark">д)</strong> Соглашение — настоящее соглашение со
-                                        всеми дополнениями и изменениями.
-                                    </li>
-                                </ol>
-                                <br>
-                                <li class="text-justify content"><strong class="text-dark">2.</strong> Использование вами Сервиса любым способом и в
-                                    любой форме в пределах его
-                                    объявленных функциональных возможностей, включая:
-                                </li>
-                                <br>
-                                <ul class="text-justify content">
-                                    <li>просмотр размещенных на Сайте материалов;</li>
-                                    <br>
-                                    <li>регистрация и / или авторизация на Сайте;</li>
-                                    <br>
-                                    <li>размещение или отображение на Сайте любых материалов, включая, но не
-                                        ограничиваясь такими как: тексты, гипертекстовые ссылки, изображения, аудио и
-                                        видеофайлы,
-                                        сведения и / или иная информация;</li>
-                                    <br>
-                                    <li>
-                                        создает договор на условиях настоящего Соглашения в соответствии с
-                                        соответствующими
-                                        положениями Гражданского кодекса Кыргызской Республики.
-                                    </li>
-                                    <br>
-                                </ul>
-                                <li class="text-justify content"><strong class="text-dark">3.</strong>
-                                    Воспользовавшись любой из указанных выше возможностей по использованию
-                                    Сервиса, вы подтверждаете, что:
-                                </li>
-                                <br>
-                                <ul class="text-justify content">
-                                    <li>Ознакомились с условиями настоящего Соглашения в полном объеме до начала
-                                        использования Сервиса.
-                                    </li>
-                                    <br>
-                                    <li>Принимаете все условия настоящего Соглашения в полном объеме без каких-либо
-                                        изъятий и ограничений с вашей стороны и обязуетесь их соблюдать или прекратить
-                                        использование
-                                        Сервиса. Если вы не согласны с условиями настоящего Соглашения или не имеете
-                                        права на
-                                        заключение договора на их основе, вам следует незамедлительно прекратить любое
-                                        использование
-                                        Сервиса.
-                                    </li>
-                                    <br>
-                                    <li>Соглашение (в том числе любая из его частей) может быть изменено Администрацией
-                                        без какого-либо специального уведомления. Новая редакция Соглашения вступает в
-                                        силу с момента
-                                        ее размещения на Сайте Администрации либо доведения до сведения Пользователя в
-                                        иной удобной
-                                        форме, если иное не предусмотрено новой редакцией Соглашения.
-                                    </li>
-                                    <br>
-                                </ul>
-                                <br>
-                            </ol>
-                            <h3 class="mt-0 mb-3 heading" id="link_3">Общие условия пользования Сервисом</h3>
-                            <ol class="text-justify content" style="list-style-type: none">
-                                <li><strong class="text-dark">4.</strong> Использование функциональных возможностей
-                                    Сервиса допускается только после
-                                    прохождения Пользователем регистрации и авторизации на Сайте в соответствии с
-                                    установленной
-                                    Администрацией процедурой.
-                                </li><br>
-                                <li><strong class="text-dark">5.</strong> Технические, организационные и коммерческие
-                                    условия использования Сервиса, в
-                                    том числе его функциональных возможностей доводятся до сведения Пользователей путем
-                                    отдельного размещения на Сайте или путем нотификации Пользователей.
-                                </li><br>
-                                <li><strong class="text-dark">6.</strong> Выбранные Пользователем логин и пароль
-                                    являются необходимой и достаточной
-                                    информацией для доступа Пользователя на Сайт. Пользователь не имеет права передавать
-                                    свои
-                                    логин и пароль третьим лицам, несет полную ответственность за их сохранность,
-                                    самостоятельно
-                                    выбирая способ их хранения.
-                                </li>
-
-                            </ol>
-                        </div>
-                    </div>
-                </div>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == 'ru' %}
+                    {% include 'front/partials/static/terms_ru.html' %}
+                {% elif LANGUAGE_CODE == 'en' %}
+                    {% include 'front/partials/static/terms_en.html' %}
+                {% endif %}
             </div>
         </div>
     </section>

@@ -15,7 +15,6 @@ import sys
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
-from django.utils.log import DEFAULT_LOGGING
 from django.utils.translation import gettext_lazy as _
 from celery.signals import setup_logging
 
@@ -26,7 +25,6 @@ from environ import Env
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -259,7 +257,6 @@ if 'test' in sys.argv:
     # MEDIA_ROOT = os.path.join(BASE_DIR, 'media_test')
     MEDIA_ROOT = BASE_DIR / 'media_test'
 
-
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 SUMMERNOTE_THEME = 'bs4'
@@ -298,7 +295,7 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen']],
         ],
 
-        'fontNames': ['Arial','Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
+        'fontNames': ['Arial', 'Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
                       'Courier New', 'Franklin Gothic Medium', 'Georgia', 'Impact', 'Microsoft Sans Serif', 'Tahoma',
                       'Times New Roman', 'Trebuchet MS'],
         'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
@@ -325,9 +322,11 @@ SUMMERNOTE_CONFIG = {
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_null',)
 CAPTCHA_LETTER_ROTATION = None
 
+
 @setup_logging.connect
 def configure_logging(sender=None, **kwargs):
     logging.config.dictConfig(LOGGING)
+
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.CRITICAL)
@@ -374,6 +373,3 @@ LOGGING = {
         },
     },
 }
-
-if "test" in sys.argv:
-    LOGGING = DEFAULT_LOGGING
