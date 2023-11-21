@@ -10,6 +10,7 @@ services:
       done &&
       python manage.py collectstatic --noinput &&
       gunicorn accessibleBIM.wsgi:application --bind 0.0.0.0:8000"
+
     volumes:
       - static_volume:/home/app/web/static
       - media_volume:/home/app/web/media
