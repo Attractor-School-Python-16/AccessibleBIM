@@ -228,3 +228,37 @@ class TestVideoUpdateView(CustomTestCase):
         self.video.refresh_from_db()
         self.assertEqual(self.video.video_title, correct_data['video_title'])
         self.assertEqual(self.video.video_description, correct_data['video_description'])
+
+
+class TestVideoDeleteView(CustomTestCase):
+    def setUp(self):
+        self.video = VideoFactory.create()
+        self.url = reverse("step:videomodel_delete", kwargs={"pk": self.video.pk})
+
+    @login_superuser
+    def test_video_delete_view(self):
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count - VideoModel.objects.count(), 1)
+        self.assertRedirects(response, reverse("step:videomodel_list"))
+
+    def test_anonymous(self):
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.assertEqual(previous_count - VideoModel.objects.count(), 0)
+
+    @login_user
+    def test_no_permissions(self):
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(self.url)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.assertEqual(previous_count - VideoModel.objects.count(), 0)
+
+    @login_superuser
+    def test_not_found(self):
+        previous_count = VideoModel.objects.count()
+        response = self.client.post(reverse("step:videomodel_delete", kwargs={"pk": 999}))
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+        self.assertEqual(previous_count - VideoModel.objects.count(), 0)

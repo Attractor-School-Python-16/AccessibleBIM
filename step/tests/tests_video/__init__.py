@@ -3,4 +3,5 @@ from .model_tests import TestVideoModel
 from .view_tests import (TestVideoListView,
                          TestVideoDetailView,
                          TestVideoCreateView,
-                         TestVideoUpdateView,)
+                         TestVideoUpdateView,
+                         TestVideoDeleteView)
