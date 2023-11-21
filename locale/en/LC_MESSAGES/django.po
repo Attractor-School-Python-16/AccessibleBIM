@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 17:47+0600\n"
-"PO-Revision-Date: 2023-11-21 17:45+0600\n"
+"POT-Creation-Date: 2023-11-21 20:13+0600\n"
+"PO-Revision-Date: 2023-11-21 20:14+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -135,6 +135,18 @@ msgstr "Company type"
 msgid "Activate your user account"
 msgstr "Activate your user account"
 
+#: content/forms/team_form.py:11
+msgid "Photo"
+msgstr "Photo"
+
+#: content/forms/team_form.py:12
+msgid "Member's name"
+msgstr "Member's name"
+
+#: content/forms/team_form.py:13 templates/team/team_list.html:17
+msgid "Member's title"
+msgstr "Member's title"
+
 #: content/models/partner.py:8
 msgid "partner title"
 msgstr "Title"
@@ -198,6 +210,7 @@ msgstr "Number"
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:41
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:64
 #: templates/front/partials/course/chapter_accordion.html:12
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:15
 msgid "Chapter"
 msgstr "Chapter"
 
@@ -267,7 +280,7 @@ msgid "Course learn time"
 msgstr "Hours to complete course"
 
 #: modules/models/courses.py:35 modules/models/teacher.py:19
-#: templates/front/partials/course/course_main_block.html:13
+#: templates/front/partials/course/course_main_block.html:20
 #: templates/partials/sidebar.html:44
 msgid "Teachers"
 msgstr "Teachers"
@@ -308,7 +321,7 @@ msgid "Father name"
 msgstr "Father name"
 
 #: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
-#: templates/front/partials/course/course_main_block.html:18
+#: templates/front/partials/course/course_main_block.html:25
 #: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Job title"
@@ -383,8 +396,8 @@ msgid "Test end time"
 msgstr "Test end time"
 
 #: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
-#: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12 step/models/step.py:23
-#: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
+#: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12
+#: step/models/step.py:23 templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
 #: templates/quiz_bim/take_quiz/continue_test.html:4
 #: templates/quiz_bim/take_quiz/take_test.html:4
 #: templates/quiz_bim/take_quiz/test_result.html:5
@@ -406,8 +419,9 @@ msgstr "Test in progress"
 msgid "Test progress"
 msgstr "Test progress"
 
-#: progress/models/progress_test_answers.py:16 quiz_bim/models/answer_bim.py:14
-#: quiz_bim/models/question_bim.py:7 quiz_bim/models/question_bim.py:16
+#: progress/models/progress_test_answers.py:16
+#: quiz_bim/models/answer_bim.py:14 quiz_bim/models/question_bim.py:7
+#: quiz_bim/models/question_bim.py:16
 #: templates/quiz_bim/question_bim/question_bim_detail.html:6
 msgid "Question"
 msgstr "Question"
@@ -494,7 +508,8 @@ msgid "Upload a file"
 msgstr "Upload a file"
 
 #: step/forms/file_for_step_form.py:55
-msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
+msgid ""
+"Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 msgstr ""
 "Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 
@@ -524,8 +539,8 @@ msgstr "Enter lesson's title"
 
 #: step/forms/step_form.py:18 step/forms/step_form.py:35
 #: step/forms/step_form.py:47
-msgid "Enter lesson's duration"
-msgstr "Enter lesson's duration"
+msgid "Enter lesson's duration (min.)"
+msgstr "Enter lesson's duration (min.)"
 
 #: step/forms/step_form.py:19 step/forms/step_form.py:36
 msgid "Select files"
@@ -648,11 +663,13 @@ msgid "Lesson learn time"
 msgstr "Lesson learn time"
 
 #: step/models/step.py:45 templates/chapters/change_steps_order.html:28
-#: templates/courses/course_preview.html:28
+#: templates/courses/course_preview.html:29
 #: templates/front/chapter/chapter_user_detail_view.html:25
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:24
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:28
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:50
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:27
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:31
 msgid "Lesson"
 msgstr "Lesson"
 
@@ -880,6 +897,7 @@ msgstr "Add chapter"
 #: templates/partials/sidebar.html:66 templates/partials/sidebar.html:82
 #: templates/partials/sidebar.html:97 templates/partials/sidebar.html:112
 #: templates/partials/sidebar.html:127 templates/partials/sidebar.html:141
+#: templates/partials/sidebar.html:155
 #: templates/partners/partners_create.html:11
 #: templates/quiz_bim/quiz_bim/quiz_bim_create.html:16
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:13
@@ -893,7 +911,8 @@ msgstr "Add chapter"
 #: templates/steps/video/video_list.html:15
 #: templates/subscription/subscription_create.html:17
 #: templates/subscription/subscription_list.html:15
-#: templates/teachers/teacher_create.html:13 templates/team/team_create.html:11
+#: templates/teachers/teacher_create.html:13
+#: templates/team/team_create.html:11
 msgid "Add"
 msgstr "Add"
 
@@ -925,6 +944,7 @@ msgstr ""
 #: templates/subscription/subscription_admin/user_delete.html:18
 #: templates/subscription/subscription_delete.html:15
 #: templates/teachers/teacher_delete.html:19
+#: templates/team/team_delete.html:15
 msgid "Yes"
 msgstr "Yes"
 
@@ -940,6 +960,7 @@ msgstr "Yes"
 #: templates/subscription/subscription_admin/user_delete.html:20
 #: templates/subscription/subscription_delete.html:17
 #: templates/teachers/teacher_delete.html:20
+#: templates/team/team_delete.html:16
 msgid "No"
 msgstr "No"
 
@@ -970,7 +991,7 @@ msgstr "Description"
 #: templates/steps/text/text_list.html:35
 #: templates/steps/video/video_list.html:35
 #: templates/teachers/teacher_detail.html:20
-#: templates/teachers/teachers_list.html:36
+#: templates/teachers/teachers_list.html:36 templates/team/team_list.html:32
 msgid "Change"
 msgstr "Change"
 
@@ -1000,7 +1021,7 @@ msgstr "Change"
 #: templates/steps/video/video_list.html:40
 #: templates/subscription/subscription_list.html:45
 #: templates/teachers/teacher_detail.html:22
-#: templates/teachers/teachers_list.html:38
+#: templates/teachers/teachers_list.html:38 templates/team/team_list.html:34
 msgid "Delete"
 msgstr "Delete"
 
@@ -1037,7 +1058,7 @@ msgstr "Course Preview"
 #: templates/steps/text/text_list.html:22
 #: templates/steps/video/video_list.html:22
 #: templates/subscription/subscription_list.html:25
-#: templates/teachers/teachers_list.html:23
+#: templates/teachers/teachers_list.html:23 templates/team/team_list.html:18
 msgid "Actions"
 msgstr "Actions"
 
@@ -1148,6 +1169,36 @@ msgstr "List of %(title)s course's chapters"
 msgid "Change chapters ordering"
 msgstr "Change chapters ordering"
 
+#: templates/courses/course_preview.html:4
+#| msgid "Course Preview"
+msgid "Course preview"
+msgstr "Course preview"
+
+#: templates/courses/course_preview.html:50
+#| msgid "Add file"
+msgid "Attached files"
+msgstr "Attached files"
+
+#: templates/courses/course_preview.html:65
+#: templates/front/chapter/chapter_user_detail_view.html:61
+msgid "Previous lesson"
+msgstr "Previous lesson"
+
+#: templates/courses/course_preview.html:70
+#: templates/front/chapter/chapter_user_detail_view.html:66
+msgid "Previous chapter"
+msgstr "Previous chapter"
+
+#: templates/courses/course_preview.html:76
+#: templates/front/chapter/chapter_user_detail_view.html:72
+msgid "Next lesson"
+msgstr "Next lesson"
+
+#: templates/courses/course_preview.html:82
+#: templates/front/chapter/chapter_user_detail_view.html:78
+msgid "Next chapter"
+msgstr "Next chapter"
+
 #: templates/courses/course_update.html:4
 #: templates/courses/course_update.html:12
 msgid "Edit course"
@@ -1169,10 +1220,10 @@ msgstr "Team"
 #: templates/front/about.html:34
 msgid "TEAM_TEXT"
 msgstr ""
-"We are a team of professional engineers from various industries, united by a "
-"comprehensive approach to Building Information Modeling (BIM). We want to "
-"share our expertise and bring like-minded individuals together in the fields "
-"of engineering and innovation."
+"We are a team of professional engineers from various industries, united by a"
+" comprehensive approach to Building Information Modeling (BIM). We want to "
+"share our expertise and bring like-minded individuals together in the fields"
+" of engineering and innovation."
 
 #: templates/front/about.html:65
 msgid "Contacts"
@@ -1197,7 +1248,8 @@ msgstr "Password successfully changed"
 #: templates/front/accounts/email/invalid_verification_link.html:4
 #: templates/front/accounts/email/verification-email-not-sent.html:4
 #: templates/front/accounts/email/verification-email-sent.html:4
-#: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
+#: templates/front/accounts/login.html:4
+#: templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
 #: templates/front/partials/navbar.html:51
 msgid "Login"
@@ -1216,14 +1268,12 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                                Email was sent to %(email)s. Please check "
-"your mailbox and verify your\n"
+"                                Email was sent to %(email)s. Please check your mailbox and verify your\n"
 "                                email address.\n"
 "                            "
 msgstr ""
 "\n"
-"Email was sent to %(email)s. Please check your mailbox and verify your email "
-"address."
+"Email was sent to %(email)s. Please check your mailbox and verify your email address."
 
 #: templates/front/accounts/email/verification_email.html:4
 #, python-format
@@ -1314,15 +1364,12 @@ msgstr "Profile"
 #: templates/front/accounts/profile.html:15
 msgid ""
 "\n"
-"                                            You have an outdated <span "
-"class=\"text-decoration-underline text-center\">\n"
-"                                            test</span>. Please complete the "
-"test.\n"
+"                                            You have an outdated <span class=\"text-decoration-underline text-center\">\n"
+"                                            test</span>. Please complete the test.\n"
 "                                        "
 msgstr ""
 "\n"
-"You have an outdated <span class=\"text-decoration-underline text-"
-"center\">test</span>. Please complete the test."
+"You have an outdated <span class=\"text-decoration-underline text-center\">test</span>. Please complete the test."
 
 #: templates/front/accounts/profile.html:31
 msgid "Admin"
@@ -1380,22 +1427,6 @@ msgstr "Sign up with Google"
 #: templates/front/chapter/chapter_user_detail_view.html:46
 msgid "Attachment"
 msgstr "Attachment"
-
-#: templates/front/chapter/chapter_user_detail_view.html:61
-msgid "Previous lesson"
-msgstr "Previous lesson"
-
-#: templates/front/chapter/chapter_user_detail_view.html:66
-msgid "Previous chapter"
-msgstr "Previous chapter"
-
-#: templates/front/chapter/chapter_user_detail_view.html:72
-msgid "Next lesson"
-msgstr "Next lesson"
-
-#: templates/front/chapter/chapter_user_detail_view.html:78
-msgid "Next chapter"
-msgstr "Next chapter"
 
 #: templates/front/courses/course_detail.html:25
 msgid "Start course"
@@ -1481,6 +1512,7 @@ msgid "Our partners"
 msgstr "Partners"
 
 #: templates/front/partials/chapter/chapter_sidebar_navigation.html:3
+#: templates/partials/course_preview/chapter_sidebar_navigation.html:3
 msgid "Navigation"
 msgstr "Navigation"
 
@@ -1507,20 +1539,20 @@ msgstr "Purchased course"
 msgid "Language"
 msgstr "Language"
 
-#: templates/front/partials/course/course_main_block.html:12
+#: templates/front/partials/course/course_main_block.html:19
 msgid "Learn time"
 msgstr "Learn time"
 
-#: templates/front/partials/course/course_main_block.html:12
+#: templates/front/partials/course/course_main_block.html:19
 msgid "h."
 msgstr "h."
 
-#: templates/front/partials/course/course_main_block.html:17
-#: templates/teachers/teachers_list.html:22
+#: templates/front/partials/course/course_main_block.html:24
+#: templates/teachers/teachers_list.html:22 templates/team/team_list.html:16
 msgid "Name"
 msgstr "Name"
 
-#: templates/front/partials/course/course_main_block.html:19
+#: templates/front/partials/course/course_main_block.html:26
 msgid "Work place"
 msgstr "Work place"
 
@@ -1594,6 +1626,11 @@ msgstr "Modules list"
 msgid "Add modules"
 msgstr "Add modules"
 
+#: templates/partials/course_preview/preview_navbar.html:9
+#| msgid "Back to readings list"
+msgid "Back to course editing"
+msgstr "Back to course editing"
+
 #: templates/partials/moderator_header.html:11
 msgid "Main page"
 msgstr "Home"
@@ -1614,13 +1651,17 @@ msgstr "Download instruction"
 #: templates/partials/sidebar.html:54 templates/partials/sidebar.html:71
 #: templates/partials/sidebar.html:86 templates/partials/sidebar.html:101
 #: templates/partials/sidebar.html:116 templates/partials/sidebar.html:130
-#: templates/partials/sidebar.html:144
+#: templates/partials/sidebar.html:144 templates/partials/sidebar.html:158
 msgid "List"
 msgstr "List"
 
 #: templates/partials/sidebar.html:108
 msgid "Readings"
 msgstr "Readings"
+
+#: templates/partials/sidebar.html:151 templates/team/team_create.html:5
+msgid "Team"
+msgstr "Team"
 
 #: templates/partials/sidebar.html:170
 msgid "Publish courses"
@@ -1699,14 +1740,13 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Are you sure you want to delete the partner <span class=\"text-danger\"> "
-"%(title)s</span>?"
+"Are you sure you want to delete the partner <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/partners/partners_list.html:10
 msgid "Partners list"
 msgstr "Partners list"
 
-#: templates/partners/partners_list.html:16
+#: templates/partners/partners_list.html:16 templates/team/team_list.html:15
 msgid "Image"
 msgstr "Image"
 
@@ -1764,8 +1804,7 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"Are you sure you want to delete the test <span class=\"text-danger\"> "
-"%(title)s</span>?"
+"Are you sure you want to delete the test <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:19
 #: templates/steps/partial/test_partial.html:5
@@ -1875,7 +1914,8 @@ msgstr ""
 "accounts. If this was a mistake, please proceed to <a "
 "href=\"%(login_url)s\">sign in</a>."
 
-#: templates/socialaccount/signup.html:4 templates/socialaccount/signup.html:21
+#: templates/socialaccount/signup.html:4
+#: templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
 msgstr "Sign Up"
@@ -1884,15 +1924,12 @@ msgstr "Sign Up"
 #, python-format
 msgid ""
 "\n"
-"                                                You are about to use your "
-"%(provider_name)s account to login to\n"
-"                                                %(site_name)s. As a final "
-"step, please complete the following\n"
+"                                                You are about to use your %(provider_name)s account to login to\n"
+"                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
 "\n"
-"You are about to use your %(provider_name)s account to login to "
-"%(site_name)s. As a final step, please complete the following form:"
+"You are about to use your %(provider_name)s account to login to %(site_name)s. As a final step, please complete the following form:"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
 #: templates/subscription/subscription_list.html:24
@@ -2018,8 +2055,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Are you sure you want to delete the file <span class=\"text-danger\"> "
-"%(title)s</span>?"
+"Are you sure you want to delete the file <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/steps/file/file_detail.html:4
 msgid "View file"
@@ -2034,7 +2070,8 @@ msgstr "Download file"
 msgid "Back to files list"
 msgstr "Back to files list"
 
-#: templates/steps/file/file_list.html:4 templates/steps/file/file_list.html:12
+#: templates/steps/file/file_list.html:4
+#: templates/steps/file/file_list.html:12
 msgid "Files list"
 msgstr "Files list"
 
@@ -2046,12 +2083,12 @@ msgstr "Edit file"
 #: templates/steps/partial/video_partial.html:18
 #: templates/steps/video/video_detail.html:31
 msgid ""
-"To view this video please enable JavaScript, and consider upgrading to a web "
-"browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
 "target=\"_blank\">supports HTML5 video</a>"
 msgstr ""
-"To view this video please enable JavaScript, and consider upgrading to a web "
-"browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
 "target=\"_blank\">supports HTML5 video</a>"
 
 #: templates/steps/step/step_create.html:4
@@ -2079,8 +2116,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Are you sure you want to delete the lesson <span class=\"text-danger\"> "
-"%(title)s</span>?"
+"Are you sure you want to delete the lesson <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/steps/step/step_detail.html:4
 msgid "View lesson"
@@ -2143,7 +2179,8 @@ msgstr "View reading"
 msgid "Back to readings list"
 msgstr "Back to readings list"
 
-#: templates/steps/text/text_list.html:4 templates/steps/text/text_list.html:12
+#: templates/steps/text/text_list.html:4
+#: templates/steps/text/text_list.html:12
 msgid "Readings list"
 msgstr "Readings list"
 
@@ -2275,8 +2312,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Are you sure you want to delete the teacher <span class=\"text-danger\"> "
-"%(name)s</span>?"
+"Are you sure you want to delete the teacher <span class=\"text-danger\"> %(name)s</span>?"
 
 #: templates/teachers/teacher_detail.html:4
 msgid "Teacher info"
@@ -2292,13 +2328,28 @@ msgstr "Edit teacher"
 msgid "Teachers list"
 msgstr "Teachers list"
 
-#: templates/team/team_create.html:5
-msgid "Team"
-msgstr "Team"
+#: templates/team/team_create.html:10 templates/team/team_list.html:10
+msgid "Add team member"
+msgstr "Add team member"
 
-#: templates/team/team_create.html:10
-msgid "Add team"
-msgstr "Add team"
+#: templates/team/team_delete.html:10
+msgid "Are you sure you want to delete the team member"
+msgstr "Are you sure you want to delete the team member"
+
+#: templates/team/team_list.html:9
+msgid "Team members"
+msgstr "Team members"
+
+#: templates/team/team_list.html:14
+msgid "ID"
+msgstr "ID"
+
+#: templates/team/team_update.html:9
+msgid "Edit team's member:"
+msgstr "Edit team's member:"
+
+#~ msgid "Add team"
+#~ msgstr "Add team"
 
 #~ msgid "Кыргызский"
 #~ msgstr "Kyrgyz"
@@ -2322,26 +2373,21 @@ msgstr "Add team"
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</"
-#~ "span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> "
-#~ "%(teacher.get_full_name)s</span>?"
+#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?"
 
 #, python-format
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.last_name)s "
-#~ "%(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> "
-#~ "%(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</"
-#~ "span>?"
+#~ "Are you sure you want to delete the teacher <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
 
 #, fuzzy, python-format
 #~ msgid ""
