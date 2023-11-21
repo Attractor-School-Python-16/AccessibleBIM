@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-20 22:05+0600\n"
-"PO-Revision-Date: 2023-11-20 22:22+0600\n"
+"POT-Creation-Date: 2023-11-21 09:39+0600\n"
+"PO-Revision-Date: 2023-11-21 09:53+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -43,7 +43,8 @@ msgstr "Разрешения"
 msgid "Important dates"
 msgstr "Важные даты"
 
-#: accounts/forms/login_form.py:8
+#: accounts/forms/login_form.py:8 templates/front/accounts/profile.html:52
+#: templates/front/accounts/profile.html:56
 #: templates/partials/statistics/statistics_table.html:7
 #: templates/statistics/users_statistics/user_detailed_statistics.html:15
 #: templates/statistics/users_statistics/users_list_statistics.html:15
@@ -51,7 +52,6 @@ msgid "Email"
 msgstr "Email"
 
 #: accounts/forms/login_form.py:13
-#| msgid "Password reset"
 msgid "Password"
 msgstr "Пароль"
 
@@ -298,11 +298,13 @@ msgstr "Фамилия"
 msgid "Father name"
 msgstr "Отчество"
 
-#: modules/models/teacher.py:11 templates/teachers/teacher_detail.html:14
+#: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
+#: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Должность"
 
-#: modules/models/teacher.py:12 templates/teachers/teacher_detail.html:15
+#: modules/models/teacher.py:12 templates/front/accounts/profile.html:63
+#: templates/teachers/teacher_detail.html:15
 msgid "Company"
 msgstr "Компания"
 
@@ -672,6 +674,8 @@ msgstr "Для редактирования необходимо выбрать 
 
 #: subscription/forms/subscription_form.py:13
 #: subscription/models/subscription.py:11
+#: templates/front/courses/course_detail.html:28
+#: templates/front/courses/course_detail.html:41
 msgid "Course price"
 msgstr "Цена"
 
@@ -764,6 +768,7 @@ msgid "Role"
 msgstr "Роль"
 
 #: templates/accounts/grant_moderator.html:40
+#: templates/front/accounts/profile.html:29
 msgid "Moderator"
 msgstr "Модератор"
 
@@ -1101,33 +1106,26 @@ msgstr "Список курсов"
 msgid "Project goals"
 msgstr "Цели проекта"
 
-#: templates/front/about.html:38
-#| msgid "About teacher"
+#: templates/front/about.html:32
 msgid "About team"
 msgstr "О команде"
 
-#: templates/front/about.html:40
+#: templates/front/about.html:34
 msgid "TEAM_TEXT"
 msgstr ""
 "Мы команда профессиональных инженеров из разных отраслей, объединяет нас "
 "комплексный подход BIM. Хотим поделиться своим опытом и собрать "
 "единомышленников в области инженерии и инноваций."
 
-#: templates/front/about.html:72
-#| msgid "Content"
+#: templates/front/about.html:65
 msgid "Contacts"
 msgstr "Контакты"
-
-#: templates/front/about.html:89 templates/front/index.html:36
-#| msgid "Partners"
-msgid "Our partners"
-msgstr "Наши партнеры"
 
 #: templates/front/accounts/change_password.html:4
 #: templates/front/accounts/change_password.html:15
 #: templates/front/accounts/change_password_done.html:4
 #: templates/front/accounts/password-reset/password_reset_confirm.html:13
-#: templates/front/accounts/profile.html:36
+#: templates/front/accounts/profile.html:38
 msgid "Change password"
 msgstr "Сменить пароль"
 
@@ -1252,7 +1250,36 @@ msgstr ""
 msgid "Profile"
 msgstr "Профиль"
 
-#: templates/front/accounts/profile.html:83
+#: templates/front/accounts/profile.html:15
+msgid ""
+"\n"
+"                                            You have an outdated <span class=\"text-decoration-underline text-center\">\n"
+"                                            test</span>. Please complete the test.\n"
+"                                        "
+msgstr ""
+"\n"
+"У вас есть просроченный <span class=\"text-decoration-underline text-center\"> тест</span>. Пожалуйста, завершите тест."
+
+#: templates/front/accounts/profile.html:31
+msgid "Admin"
+msgstr "Администратор"
+
+#: templates/front/accounts/profile.html:54
+#| msgid "Email Verified"
+msgid "Verified"
+msgstr "Подтвержден"
+
+#: templates/front/accounts/profile.html:58
+#| msgid "email_verified"
+msgid "Not verified"
+msgstr "Не подтвержден"
+
+#: templates/front/accounts/profile.html:76
+#| msgid "Subscriptions list"
+msgid "Subscription valid until"
+msgstr "Действие подписки до"
+
+#: templates/front/accounts/profile.html:88
 msgid "My courses"
 msgstr "Мои курсы"
 
@@ -1289,6 +1316,39 @@ msgstr "Пользовательским соглашением"
 msgid "Sign up with Google"
 msgstr "Регистрация через Google"
 
+#: templates/front/chapter/chapter_user_detail_view.html:46
+msgid "Attachment"
+msgstr "Прикрепленные файлы"
+
+#: templates/front/chapter/chapter_user_detail_view.html:61
+msgid "Previous lesson"
+msgstr "Предыдущий урок"
+
+#: templates/front/chapter/chapter_user_detail_view.html:66
+msgid "Previous chapter"
+msgstr "Предыдущая глава"
+
+#: templates/front/chapter/chapter_user_detail_view.html:72
+msgid "Next lesson"
+msgstr "Следующий урок"
+
+#: templates/front/chapter/chapter_user_detail_view.html:78
+msgid "Next chapter"
+msgstr "Следующая глава"
+
+#: templates/front/courses/course_detail.html:25
+msgid "Start course"
+msgstr "Начать курс"
+
+#: templates/front/courses/course_detail.html:31
+#: templates/front/courses/course_detail.html:44
+msgid "Buy course"
+msgstr "Купить курс"
+
+#: templates/front/courses/course_detail.html:34
+msgid "To purchase the course, confirm your Email."
+msgstr "Для приобретения курса подтвердите свой Email."
+
 #: templates/front/courses/courses.html:14
 msgid "List of available courses"
 msgstr "Список доступных курсов"
@@ -1296,6 +1356,47 @@ msgstr "Список доступных курсов"
 #: templates/front/courses/courses.html:28
 msgid "No courses found"
 msgstr "Курсы не найдены"
+
+#: templates/front/errors/403.html:16
+msgid "Error 403"
+msgstr "Ошибка 403"
+
+#: templates/front/errors/403.html:32
+msgid "Access denied"
+msgstr "Ошибка доступа"
+
+#: templates/front/errors/403.html:33
+msgid "You don't have permission to open this page"
+msgstr "В доступе к запращиваемому ресурсу отказано"
+
+#: templates/front/errors/403.html:37 templates/front/errors/404.html:36
+#: templates/front/errors/500.html:38
+msgid "Back to main page"
+msgstr "Вернуться на главную страницу"
+
+#: templates/front/errors/404.html:16
+msgid "Error 404"
+msgstr "Ошибка 404"
+
+#: templates/front/errors/404.html:32
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: templates/front/errors/404.html:33
+msgid "The page you are looking for cannot be found"
+msgstr "Запрашиваемая вами страница не найдена, или указан неверный адрес"
+
+#: templates/front/errors/500.html:16
+msgid "Error 500"
+msgstr "Ошибка 500"
+
+#: templates/front/errors/500.html:32
+msgid "Internal Server Error"
+msgstr "Ошибка сервера"
+
+#: templates/front/errors/500.html:34
+msgid "Server encountered an error and could not handle this request"
+msgstr "Из-за возникшей ошибки сервер не может обработать ваш запрос"
 
 #: templates/front/index.html:11
 msgid "MISSION"
@@ -1310,10 +1411,13 @@ msgstr ""
 "предоставляя им обширный выбор курсов, обучающих материалов и практических "
 "заданий."
 
-#: templates/front/index.html:20
-#| msgid "state company"
+#: templates/front/index.html:17
 msgid "About company"
 msgstr "О компании"
+
+#: templates/front/index.html:33
+msgid "Our partners"
+msgstr "Наши партнеры"
 
 #: templates/modules/module_create.html:12
 msgid "Add module:"
@@ -1544,37 +1648,42 @@ msgstr "Редактирование теcта"
 #: templates/socialaccount/authentication_error.html:4
 #: templates/socialaccount/authentication_error.html:7
 msgid "Social Network Login Failure"
-msgstr ""
+msgstr "Ошибка при входе через социальные сети"
 
 #: templates/socialaccount/authentication_error.html:9
 msgid ""
 "An error occurred while attempting to login via your social network account."
 msgstr ""
+"При попытке входа с использование аккаунта социльных сетей возникла ошибка"
 
 #: templates/socialaccount/connections.html:5
 #: templates/socialaccount/connections.html:8
 msgid "Account Connections"
-msgstr ""
+msgstr "Связи с аккаунтом"
 
 #: templates/socialaccount/connections.html:11
 msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
 msgstr ""
+"Вы можете войти, используя аккайнт любой из нижеприведенных социальных "
+"сетей:"
 
 #: templates/socialaccount/connections.html:45
 msgid ""
 "You currently have no social network accounts connected to this account."
 msgstr ""
+"На данный момент у вас нет ни одного аккаунта социальной сети, связанного с "
+"данным аккаунтом"
 
 #: templates/socialaccount/connections.html:48
 msgid "Add a 3rd Party Account"
-msgstr ""
+msgstr "Добавить аккаунт третьей стороны"
 
 #: templates/socialaccount/login_cancelled.html:4
 #: templates/socialaccount/login_cancelled.html:8
 msgid "Login Cancelled"
-msgstr ""
+msgstr "Вход отменен"
 
 #: templates/socialaccount/login_cancelled.html:12
 #, python-format
@@ -1583,6 +1692,9 @@ msgid ""
 "accounts. If this was a mistake, please proceed to <a "
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
+"Вы отменили вход на наш сайт через существующий аккаунт. Если это произошло "
+"по ошибке, пожалуйста, перейдите на страницу <a "
+"href=\"%(login_url)s\">входа</a>."
 
 #: templates/socialaccount/signup.html:4
 #: templates/socialaccount/signup.html:21
@@ -1598,6 +1710,8 @@ msgid ""
 "                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
+"\n"
+"Вы использовали свой %(provider_name)s аккаунт для входа на сайт %(site_name)s. В качестве завершающего шага, пожалуйста, заполните следующую форму:"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:19
 msgid "Language"
@@ -2016,7 +2130,6 @@ msgid "Team"
 msgstr "Команда"
 
 #: templates/team/team_create.html:10
-#| msgid "Add test"
 msgid "Add team"
 msgstr "Добавление команды"
 
@@ -2041,12 +2154,6 @@ msgstr "Добавление команды"
 
 #~ msgid "Тест"
 #~ msgstr "Тест"
-
-#~ msgid "Previous lesson"
-#~ msgstr "Предыдущий урок"
-
-#~ msgid "Next chapter"
-#~ msgstr "Следующая глава"
 
 #, python-format
 #~ msgid ""
