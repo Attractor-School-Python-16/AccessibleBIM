@@ -103,7 +103,8 @@ class TestFileCreateView(CustomTestCase):
         previous_count = FileModel.objects.count()
         response = self.client.post(self.url, invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertFormError(response.context['form'], field=None, errors=[_("Both title and file are mandatory")])
+        self.assertFormError(response.context['form'], field=None,
+                             errors=[_("For uploading attachment you should both enter file title and upload a file")])
         self.assertEqual(FileModel.objects.count() - previous_count, 0)
 
     @login_superuser
@@ -173,7 +174,8 @@ class TestFileUpdateView(CustomTestCase):
         }
         response = self.client.post(self.url, invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertFormError(response.context['form'], field=None, errors=[_("Both title and file are mandatory")])
+        self.assertFormError(response.context['form'], field=None,
+                             errors=[_("For uploading attachment you should both enter file title and upload a file")])
         self.file.refresh_from_db()
         self.assertNotEqual(self.file.file_title, invalid_data['file_title'])
 
