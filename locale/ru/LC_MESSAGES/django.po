@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 17:52+0600\n"
-"PO-Revision-Date: 2023-11-21 17:53+0600\n"
+"POT-Creation-Date: 2023-11-21 19:48+0600\n"
+"PO-Revision-Date: 2023-11-21 19:48+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -134,6 +134,18 @@ msgstr "Вид организации"
 #: accounts/views/register_view.py:20
 msgid "Activate your user account"
 msgstr "Подтвердите ваш аккаунт"
+
+#: content/forms/team_form.py:11
+msgid "Photo"
+msgstr "Фото"
+
+#: content/forms/team_form.py:12
+msgid "Member's name"
+msgstr "Имя члена команды"
+
+#: content/forms/team_form.py:13
+msgid "Member's title"
+msgstr "Должность члена команды"
 
 #: content/models/partner.py:8
 msgid "partner title"
@@ -267,7 +279,7 @@ msgid "Course learn time"
 msgstr "Время на прохождение курса (часы)"
 
 #: modules/models/courses.py:35 modules/models/teacher.py:19
-#: templates/front/partials/course/course_main_block.html:13
+#: templates/front/partials/course/course_main_block.html:20
 #: templates/partials/sidebar.html:44
 msgid "Teachers"
 msgstr "Преподаватели"
@@ -308,7 +320,7 @@ msgid "Father name"
 msgstr "Отчество"
 
 #: modules/models/teacher.py:11 templates/front/accounts/profile.html:69
-#: templates/front/partials/course/course_main_block.html:18
+#: templates/front/partials/course/course_main_block.html:25
 #: templates/teachers/teacher_detail.html:14
 msgid "Job title"
 msgstr "Должность"
@@ -526,7 +538,6 @@ msgstr "Введите наименование занятия"
 
 #: step/forms/step_form.py:18 step/forms/step_form.py:35
 #: step/forms/step_form.py:47
-#| msgid "Enter lesson's duration"
 msgid "Enter lesson's duration (min.)"
 msgstr "Укажите продолжительность занятия (мин.)"
 
@@ -638,7 +649,7 @@ msgstr "Лекция"
 #: templates/steps/file/file_list.html:21
 #: templates/steps/step/step_list.html:21
 #: templates/steps/text/text_list.html:21
-#: templates/steps/video/video_list.html:21
+#: templates/steps/video/video_list.html:21 templates/team/team_list.html:17
 msgid "Title"
 msgstr "Название"
 
@@ -884,6 +895,7 @@ msgstr "Добавить главу"
 #: templates/partials/sidebar.html:66 templates/partials/sidebar.html:82
 #: templates/partials/sidebar.html:97 templates/partials/sidebar.html:112
 #: templates/partials/sidebar.html:127 templates/partials/sidebar.html:141
+#: templates/partials/sidebar.html:155
 #: templates/partners/partners_create.html:11
 #: templates/quiz_bim/quiz_bim/quiz_bim_create.html:16
 #: templates/quiz_bim/quiz_bim/quiz_bim_list.html:13
@@ -929,6 +941,7 @@ msgstr ""
 #: templates/subscription/subscription_admin/user_delete.html:18
 #: templates/subscription/subscription_delete.html:15
 #: templates/teachers/teacher_delete.html:19
+#: templates/team/team_delete.html:15
 msgid "Yes"
 msgstr "Да"
 
@@ -944,6 +957,7 @@ msgstr "Да"
 #: templates/subscription/subscription_admin/user_delete.html:20
 #: templates/subscription/subscription_delete.html:17
 #: templates/teachers/teacher_delete.html:20
+#: templates/team/team_delete.html:16
 msgid "No"
 msgstr "Нет"
 
@@ -974,7 +988,7 @@ msgstr "Описание"
 #: templates/steps/text/text_list.html:35
 #: templates/steps/video/video_list.html:35
 #: templates/teachers/teacher_detail.html:20
-#: templates/teachers/teachers_list.html:36
+#: templates/teachers/teachers_list.html:36 templates/team/team_list.html:32
 msgid "Change"
 msgstr "Изменить"
 
@@ -1004,7 +1018,7 @@ msgstr "Изменить"
 #: templates/steps/video/video_list.html:40
 #: templates/subscription/subscription_list.html:45
 #: templates/teachers/teacher_detail.html:22
-#: templates/teachers/teachers_list.html:38
+#: templates/teachers/teachers_list.html:38 templates/team/team_list.html:34
 msgid "Delete"
 msgstr "Удалить"
 
@@ -1041,7 +1055,7 @@ msgstr "Предварительный просмотр курса"
 #: templates/steps/text/text_list.html:22
 #: templates/steps/video/video_list.html:22
 #: templates/subscription/subscription_list.html:25
-#: templates/teachers/teachers_list.html:23
+#: templates/teachers/teachers_list.html:23 templates/team/team_list.html:18
 msgid "Actions"
 msgstr "Действия"
 
@@ -1503,20 +1517,20 @@ msgstr "Курс приобретен"
 msgid "Language"
 msgstr "Язык занятия"
 
-#: templates/front/partials/course/course_main_block.html:12
+#: templates/front/partials/course/course_main_block.html:19
 msgid "Learn time"
 msgstr "Время обучения"
 
-#: templates/front/partials/course/course_main_block.html:12
+#: templates/front/partials/course/course_main_block.html:19
 msgid "h."
 msgstr "ч."
 
-#: templates/front/partials/course/course_main_block.html:17
-#: templates/teachers/teachers_list.html:22
+#: templates/front/partials/course/course_main_block.html:24
+#: templates/teachers/teachers_list.html:22 templates/team/team_list.html:16
 msgid "Name"
 msgstr "Имя"
 
-#: templates/front/partials/course/course_main_block.html:19
+#: templates/front/partials/course/course_main_block.html:26
 msgid "Work place"
 msgstr "Место работы"
 
@@ -1609,13 +1623,17 @@ msgstr "Скачать инструкцию"
 #: templates/partials/sidebar.html:54 templates/partials/sidebar.html:71
 #: templates/partials/sidebar.html:86 templates/partials/sidebar.html:101
 #: templates/partials/sidebar.html:116 templates/partials/sidebar.html:130
-#: templates/partials/sidebar.html:144
+#: templates/partials/sidebar.html:144 templates/partials/sidebar.html:158
 msgid "List"
 msgstr "Список"
 
 #: templates/partials/sidebar.html:108
 msgid "Readings"
 msgstr "Лекции"
+
+#: templates/partials/sidebar.html:151 templates/team/team_create.html:5
+msgid "Team"
+msgstr "Команда"
 
 #: templates/partials/sidebar.html:170
 msgid "Publish courses"
@@ -1700,7 +1718,7 @@ msgstr ""
 msgid "Partners list"
 msgstr "Список партнеров"
 
-#: templates/partners/partners_list.html:16
+#: templates/partners/partners_list.html:16 templates/team/team_list.html:15
 msgid "Image"
 msgstr "Изображение"
 
@@ -2282,13 +2300,29 @@ msgstr "Редактировать преподавателя"
 msgid "Teachers list"
 msgstr "Список преподавателей"
 
-#: templates/team/team_create.html:5
-msgid "Team"
-msgstr "Команда"
+#: templates/team/team_create.html:10 templates/team/team_list.html:10
+msgid "Add team member"
+msgstr "Добавление члена команды"
 
-#: templates/team/team_create.html:10
-msgid "Add team"
-msgstr "Добавление команды"
+#: templates/team/team_delete.html:10
+#| msgid "Are you sure you want to delete the team member?"
+msgid "Are you sure you want to delete the team member"
+msgstr "Вы уверены, что хотите удалить члена команды"
+
+#: templates/team/team_list.html:9
+msgid "Team members"
+msgstr "Члены команды"
+
+#: templates/team/team_list.html:14
+msgid "ID"
+msgstr "ID"
+
+#: templates/team/team_update.html:7
+msgid "Edit team's member:"
+msgstr "Редактировать члена команды:"
+
+#~ msgid "Add team"
+#~ msgstr "Добавление команды"
 
 #, fuzzy
 #~ msgid "Provacy policy"
