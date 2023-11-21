@@ -71,7 +71,7 @@ jobs:
           python manage.py test
 
   job3:
-    needs: job2
+    needs: job1
     runs-on: ubuntu-latest
 
     steps:
