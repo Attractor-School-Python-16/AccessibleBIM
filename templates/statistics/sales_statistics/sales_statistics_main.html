@@ -1,0 +1,47 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Statistics' %}{% endblock %}
+
+{% block moderator_interface %}
+    <div class="container">
+        <!--Cards-->
+        <div class="row g-5 g-xl-8 mb-3">
+            <div class="col-sm-12 col-md-6">
+                {% trans 'Number of subscriptions' as subscriptions_qty_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=subscriptions_ttl_qty title=subscriptions_qty_title icon='<i class="fa-solid fa-bag-shopping fs-2"></i>' %}
+            </div>
+            <div class="col-sm-12 col-md-6">
+                {% trans 'Number of active subscriptions' as active_subscriptions_qty_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=active_subscriptions_qty title=active_subscriptions_qty_title icon='<i class="fa-solid fa-pen-nib fs-2"></i>' %}
+            </div>
+            <div class="col-sm-12 col-xl-4">
+                {% trans 'Lowest course price' as min_course_price_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=min_course_price|floatformat:2 title=min_course_price_title icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
+            </div>
+            <div class="col-sm-12 col-xl-4">
+                {% trans 'Average course price' as avg_course_price_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=avg_course_price|floatformat:2 title=avg_course_price_title icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
+            </div>
+            <div class="col-sm-12 col-xl-4">
+                {% trans 'Highest course price' as max_course_price_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=max_course_price|floatformat:2 title=max_course_price_title icon='<i class="fa-regular fa-money-bill-1 fs-2"></i>' %}
+            </div>
+        </div>
+
+        <!--New subscriptions chart-->
+        {% trans 'New subscriptions' as new_subscriptions_title %}
+        {% include 'partials/statistics/chart_by_period.html' with title=new_subscriptions_title btn_class='new-subscriptions-chart-btn' chart_id='new-subscriptions-chart' %}
+
+        <!--Popular courses chart-->
+        {% trans 'Popular courses' as popular_courses_title %}
+        {% include 'partials/statistics/chart_by_period.html' with title=popular_courses_title btn_class='popular-courses-chart-btn' chart_id='popular-courses-chart' %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/statistics_js/statistics_charts.js' %}"></script>
+    <script src="{% static 'js/statistics_js/stats_sales_main.js' %}"></script>
+{% endblock %}

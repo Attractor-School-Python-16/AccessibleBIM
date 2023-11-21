@@ -1,0 +1,137 @@
+{% extends 'front/base.html' %}
+{% load i18n %}
+{% load view_breadcrumbs static currency_price i18n %}
+{% block title %}{{ chapter.title }}{% endblock %}
+{% block page_nav %}
+    {% include 'partials/course_preview/preview_navbar.html' %}
+{% endblock %}
+{% block page_header %}{% endblock %}
+{% block content %}
+
+    <div class="container mt-6">
+    <div class="row">
+        <div class="w-sm-100 w-md-50 w-lg-25 ps-6 pt-7 offcanvas offcanvas-start" data-bs-scroll="true"
+             data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling"
+             style="background-color: white; overflow:scroll;">
+            {% include 'partials/course_preview/chapter_sidebar_navigation.html' %}
+        </div>
+        <div class="col-lg-9 col-sm-12 ms-auto">
+            <div class="d-flex justify-content-center">
+                <button class="navbar-toggler fs-2 ms-0 my-auto d-lg-none" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasScrolling" aria-expanded="false" aria-controls="offcanvasScrolling">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="mx-auto">{% include 'partials/course_preview/chapter_user_step.html' %}</div>
+            </div>
+
+                {% for step in steps %}
+                    <h3 class="heading mt-3 text-center">{% trans 'Lesson' %} {{ step.serial_number }}. {{ step.title }}</h3>
+                    {% if step.video %}
+                        {% include 'steps/partial/video_partial.html' %}
+                    {% elif step.text %}
+                        {% include 'steps/partial/text_partial.html' %}
+                    {% elif step.test %}
+                        {% if progress_quiz %}
+                            {% if progress_quiz.in_progress %}
+                                {% include 'quiz_bim/take_quiz/continue_test.html' %}
+                            {% else %}
+                                <div class="col" id="quiz_content"
+                                     hx-get="{% url 'quiz_bim:test_result' pk=progress_quiz.pk %}"
+                                     hx-trigger="load">
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            {% include 'quiz_bim/take_quiz/take_test.html' %}
+                        {% endif %}
+                    {% endif %}
+                    <br>
+                    {% if step.file.all %}
+                        <p class="content mt-4">Прикрепленные файлы:</p>
+                        {% for file in step.file.all %}
+                            <i class="bi bi-paperclip"></i>
+                            <a class="link-info link-offset-1 content text-decoration-underline" href="{{ file.lesson_file.url }}" download>{{ file.file_title }}</a>
+                        {% endfor %}
+                    {% endif %}
+
+
+                {% endfor %}
+                {% if is_paginated %}
+                    <div class="d-flex justify-content-evenly mt-5">
+                        {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-info fs-6">Предыдущий урок</button></a>
+                        {% elif previous_chapter and last_step_serial_number %}
+                            <a href="{% url 'modules:coursemodel_preview' course_pk=previous_chapter.course.pk chapter_pk=previous_chapter.pk %}?page={{ last_step_serial_number }}">
+                                    <button type="button" class="btn btn-success fs-6">Предыдущая глава</button>
+                            </a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                           <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-info fs-6">Следующий урок</button></a>
+                        {% else %}
+                            {% if chapter_end %}
+                                <a href="{% url 'modules:coursemodel_preview' course_pk=next_chapter.course.pk chapter_pk=next_chapter.pk %}?page=1">
+                                    <button type="button" class="btn btn-success fs-6">Следующая глава</button>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+
+            </div>
+        </div>
+
+        <button type="button" class="btn rounded-circle border border-secondary border-2 p-0 bg-white"
+                id="btn-back-to-top" style="position: fixed; bottom: 20px; right: 20px; display: none;  width: 60px;
+                height: 60px; opacity: 60%;">
+            <i class="fs-3 fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+
+{% endblock %}
+{% block page_footer %}{% endblock %}
+{% block page_script %}
+    <script>
+        let mainContainer = $('#offcanvasScrolling')
+
+        {#При открытии страницы на большом экране открывается сайдбар#}
+        if ($(window).width() > 991) {
+           $(mainContainer).addClass('show pt-6').removeClass('pt-7');
+        }
+
+        {#А эта функция будет открывать/закрывать сайдбар при изменении размера страницы#}
+        function toggleSidebar() {
+        if ($(window).width() > 991) {
+           $(mainContainer).addClass('show pt-6').removeClass('pt-7');
+        }
+        else{
+            $(mainContainer).removeClass('show pt-6').addClass('pt-7');
+        }}
+
+        window.addEventListener("resize", toggleSidebar);
+
+        {#Скролл к началу страницы#}
+        let topBtn = document.getElementById("btn-back-to-top");
+
+        window.onscroll = function () {
+          scrollFunction();
+        };
+
+        function scrollFunction() {
+          if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+          ) {
+            topBtn.style.display = "block";
+          } else {
+            topBtn.style.display = "none";
+          }
+        }
+        topBtn.addEventListener("click", backToTop);
+
+        function backToTop() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+    </script>
+{% endblock %}

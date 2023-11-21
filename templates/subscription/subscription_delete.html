@@ -1,0 +1,22 @@
+{% extends 'moderator_page.html' %}
+{% load static view_breadcrumbs i18n %}
+{% block title %}{% trans "Subscription deletion" %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">{% trans "Are you sure you want to delete the subscription for course" %}:<span
+                    class="text-danger"> {{ subscription.course }}</span>?
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans "Yes" %}</button>
+                <a href="#" class="btn btn-secondary
+                    mx-3" id="cancel-button">{% trans "No" %}</a>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/delete_button_func.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-18 00:59+0600\n"
+"PO-Revision-Date: 2023-11-18 00:59+0600\n"
+"Last-Translator: admin admin <admin@admin.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: static/js/statistics_js/statistics_charts.js:26
+#: static/js/statistics_js/statistics_charts.js:54
+#: static/js/statistics_js/stats_user_detailed.js:63
+msgid "Error occured while loading data"
+msgstr "Error occured while loading data"
+
+#: static/js/statistics_js/statistics_charts.js:29
+#: static/js/statistics_js/stats_user_detailed.js:57
+msgid "No data to display"
+msgstr "No data to display"
+
+#: static/js/statistics_js/stats_user_detailed.js:25
+msgid "Test results"
+msgstr "Test results"
+
+#: static/js/step_create.js:20 static/js/step_update.js:15
+msgid "Unselect"
+msgstr "Unselect"
+
+#: static/js/step_create.js:146
+msgid "Fill reading title"
+msgstr "Fill reading title"
+
+#: static/js/step_create.js:153
+#| msgid "Fill reading title"
+msgid "Fill reading content"
+msgstr "Fill reading content"
+
+#: static/js/step_update.js:41
+msgid "Edit related content"
+msgstr "Edit related content"

@@ -1,0 +1,36 @@
+{% extends 'moderator_page.html' %}
+{% load static view_breadcrumbs i18n %}
+{% block title %}{% trans 'Delete test' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-body">
+            {% if steps %}
+                <h5 class="card-text">{% trans 'This test is used in the lessons below' %}:</h5>
+                {% for step in steps %}
+                    <a href="{% url "step:stepmodel_update" step.id %}">{{ step.title }}</a>
+                    </br>
+                {% endfor %}
+                <h5 class="card-text my-2">
+                    {% trans 'In order to delete this test you should change related tests in the lessons above.' %}
+                </h5>
+            {% else %}
+                <p class="card-text">
+                    {% blocktrans with title=test.title %}
+                    Are you sure you want to delete the test
+                    <span class="text-danger"> {{ title }}</span>?
+                    {% endblocktrans %}
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans 'Yes' %}</button>
+                    <a href="#" class="btn btn-secondary
+                    mx-3" id="cancel-button">{% trans 'No' %}</a>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{% static 'js/delete_button_func.js' %}"></script>
+{% endblock %}

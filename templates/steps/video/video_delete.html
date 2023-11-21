@@ -1,0 +1,37 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static view_breadcrumbs %}
+{% block title %}{% trans 'Delete video' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card">
+        <div class="card-body">
+            {% if steps %}
+                <h5 class="card-text">{% trans 'This video is ised in the lessons below' %}:</h5>
+                {% for step in steps %}
+                    <a href="{% url "step:stepmodel_update" step.id %}">{{ step.title }}</a>
+                    </br>
+                {% endfor %}
+                <h5 class="card-text my-2">
+                    {% trans 'In order to delete this video you should change related videos in the lessons above.' %}
+                </h5>
+            {% else %}
+                <p class="card-text">
+                     {% blocktrans with title=video.video_title %}
+                        Are you sure you want to delete the video
+                        <span class="text-danger"> {{ title }}</span>?
+                     {% endblocktrans %}
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans 'Yes' %}</button>
+                    <a href="#" class="btn btn-secondary
+                    mx-3" id="cancel-button">{% trans 'No' %}</a>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{% static 'js/delete_button_func.js' %}"></script>
+{% endblock %}

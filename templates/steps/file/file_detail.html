@@ -1,0 +1,20 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load view_breadcrumbs %}
+{% block title %}{% trans 'View file' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    {% if request.user.is_authenticated %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="card-header">
+                    <h2>File: {{ file.file_title }}</h2>
+                </div>
+                <a href="{{ file.lesson_file.url }}" download class="btn btn-primary my-3 me-3">{% trans 'Download file' %}</a>
+                <a href="{% url 'step:filemodel_list' %}" class="btn btn-secondary">{% trans 'Back to files list' %}</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

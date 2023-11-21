@@ -1,0 +1,23 @@
+{% extends 'moderator_page.html' %}
+{% load view_breadcrumbs i18n %}
+{% block title %}{% trans 'Add test' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <div>
+                    <div class="container my-5">
+                        <div class="card-header">
+                            <h2>{% trans 'Add test' %}:</h2>
+                        </div>
+                        <div>
+                            {% trans 'Add' as button_text_add %}
+                            {% include "partials/form.html" with button_text=button_text_add %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

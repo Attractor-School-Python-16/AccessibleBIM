@@ -1,0 +1,31 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static view_breadcrumbs %}
+{% block title %}{% trans 'Edit lesson' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mt-3 mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h1>Edit lesson</h1>
+            </div>
+            <div class="container">
+                <div class="col" id="form-div">
+                    {% for error in error_messages %}
+                        <div class="alert alert-danger my-2" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                    {% trans 'Save' as button_text_save %}
+                    {% include "partials/step_form.html" with button_text=button_text_save %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/step_update.js' %}"></script>
+{% endblock %}

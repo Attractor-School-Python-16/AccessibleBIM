@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+    Добавить ответ на вопрос в тесте
+{% endblock %}
+{% block content %}
+    <div>
+        <div class="container my-5">
+            <h2>Создайте запись:</h2>
+            <div>
+                {% include "partials/form.html" with button_text="Добавить" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Statistics' %}{% endblock %}
+
+{% block moderator_interface %}
+    <div class="container">
+        <!--Users table-->
+        <div class="table-responsive my-3">
+            <table class="table responsive border mb-0 nowrap bg-white table-striped" id="CoursesStatisticsTable">
+                <thead class="fw-semibold">
+                    <tr class="align-middle">
+                        <th>{% trans 'Course' %}</th>
+                        <th>#{% trans 'Chapters' %}</th>
+                        <th>#{% trans 'Lessons' %}</th>
+                        <th>{% trans 'Module' %}</th>
+                        <th>{% trans 'Target audience' %}</th>
+                        <th>{% trans 'Language' %}</th>
+                        <th>{% trans 'Published' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr class="align-middle">
+                            <td>
+                                <a href="{% url 'reports:stats_course_detailed' pk=course.pk %}">
+                                    {{ course.title }}
+                                </a>
+                            </td>
+                            <td class="text-center">{{ course.get_chapters_qty }}</td>
+                            <td class="text-center">{{ course.get_lessons_qty }}</td>
+                            <td class="text-left">{{ course.module_id.title }}</td>
+                            <td class="text-left">{{ course.courseTarget_id.title }}</td>
+                            <td class="text-center">{{ course.language }}</td>
+                            <td class="text-center"><input type="checkbox" {% if course.subscription.first.is_published %}checked value="1"{% else %}value="0"{% endif %} onclick="return false;">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="//cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json"></script>
+    <script>
+
+        DataTable.ext.order['dom-checkbox'] = function (settings, col) {
+            return this.api()
+                .column(col, { order: 'index' })
+                .nodes()
+                .map(function (td, i) {
+                    let el = td.querySelector('input');
+                    return el ? (el.checked ? 1 : 0) : 0;
+                });
+        };
+
+        {% get_current_language as LANGUAGE_CODE %}
+        let lang_url = '//cdn.datatables.net/plug-ins/1.13.6/i18n/en-GB.json';
+        let lang = '{{ LANGUAGE_CODE }}';
+        if(lang==='ru'){
+            lang_url = '//cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json';
+        }
+        let table = new DataTable('#CoursesStatisticsTable', {
+            responsive: true,
+            language: {
+                url: lang_url,
+            },
+            columns: [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                { orderDataType: 'dom-checkbox' }
+            ],
+        });
+    </script>
+{% endblock %}

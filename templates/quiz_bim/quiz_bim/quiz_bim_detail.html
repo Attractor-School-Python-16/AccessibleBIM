@@ -1,0 +1,43 @@
+{% extends 'moderator_page.html' %}
+{% load view_breadcrumbs i18n %}
+{% load static %}
+{% block title %}{{ test.title }}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-header">
+                    <h3 class="mb-3">{% trans 'Test' %} "{{ test.title }}"</h3>
+                    <h4 id="questions_qty">{% trans 'Questions quantity' %}: {{ test.questions_qty }} </h4>
+                </div>
+                <div class="d-flex flex-column align-items-start my-3">
+                    <a class="btn btn-primary mb-2" hx-get="{% url 'quiz_bim:questionbim_htmx_create' %}"
+                       hx-target="#questionforms" hx-swap="beforeend" role="button" id="create_question">
+                        {% trans 'Add new question' %}</a>
+                    <a class="btn btn-primary" href="{% url 'quiz_bim:quizbim_update' pk=test.pk %}" role="button">
+                        {% trans 'Edit' %}</a>
+                </div>
+                <div class="table-responsive">
+                    <div class="d-flex justify-content-center my-3">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination" id="pagination-block">
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div id="questionforms" class="col"></div>
+                <div class="questions-container">
+                    {% for question in questions %}
+                        <div id="question_block_{{ forloop.counter }}" class="question-block mb-4">
+                            {% include "quiz_bim/question_bim/question_bim_detail.html" %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static "js/questions_pagination.js" %}"></script>
+{% endblock %}

@@ -11,12 +11,10 @@ uploads
 settings_local.py
 
 # Django #
-*.log
 *.pot
-*.pyc
-__pycache__
 db.sqlite3
 media
+media_test
 
 # Backup files #
 *.bak
@@ -109,6 +107,8 @@ celerybeat-schedule.*
 *.sage.py
 
 # Environments
+.env.dev
+.env.prod
 .env
 .venv
 env/
@@ -147,3 +147,9 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+config.txt
+.yml
+.env.dev
+.env.prod
+
+

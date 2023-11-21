@@ -1,0 +1,51 @@
+{% extends 'front/base.html' %}
+{% load currency_price i18n %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- Card image -->
+            <div class="card-header p-0 position-relative z-index-2">
+                <img class="border-radius-lg w-100"
+                     src="{{ course.image.url }}"
+                     alt="Image placeholder"
+                     style="height: 450px;"
+                >
+
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row g-0 ">
+                        {% include 'front/partials/course/course_main_block.html' with data=course %}
+                        {% include 'front/partials/course/chapter_accordion.html' with data=course %}
+                        {% if request.user.is_authenticated %}
+                            {% if user_subscription %}
+                                <a href="{% url 'front:chaptermodel_user_detail' first_chapter.pk %}?page=1"
+                                   class="btn btn-info my-3 content">{% trans 'Start course' %}</a>
+                            {% else %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                <p class="content ms-0">{% trans 'Course price' %}: {% currency_price subscription.price LANGUAGE_CODE %} </p>
+                                <br>
+                                {% if request.user.email_verified %}
+                                    <a href="#" class="btn btn-info my-3 content">{% trans 'Buy course' %}</a>
+                                {% else %}
+                                    <div class="alert alert-warning" role="alert">
+                                        {% trans 'To purchase the course, confirm your Email.' %}
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            <p class="content">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% trans 'Course price' %}: {% currency_price subscription.price LANGUAGE_CODE %}
+                            </p><br>
+                            <a href="{% url "accounts:login" %}" class="btn btn-info my-3 content">
+                                {% trans 'Buy course' %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

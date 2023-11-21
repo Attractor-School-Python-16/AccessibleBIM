@@ -1,0 +1,60 @@
+<div class="pagination justify-content-center">
+    <ul class="pagination pagination-info">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link content" href="?{% if query %}{{ query }}{% endif %}page=1"
+                   aria-label="Start">
+                    <span aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+                </a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link content"
+                   href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.previous_page_number }}"
+                   aria-label="Previous">
+                    <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <span class="page-link" aria-hidden="true"><i class="bi bi-chevron-double-left"></i></span>
+            </li>
+            <li class="page-item">
+                <span class="page-link" aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+            </li>
+
+        {% endif %}
+
+
+
+        {% for i in page_obj.paginator %}
+            <li class="page-item">
+                <a class="page-link" href="?{% if query %}{{ query }}{% endif %}page={{ i.number }}">{{ i.number }}</a>
+            </li>
+        {% endfor %}
+
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link content" href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.next_page_number }}"
+                   aria-label="Previous">
+                    <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link content"
+                   href="?{% if query %}{{ query }}{% endif %}page={{ page_obj.paginator.num_pages }}"
+                   aria-label="Previous">
+                    <span aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <span class="page-link" aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+            </li>
+            <li class="page-item">
+                <span class="page-link" aria-hidden="true"><i class="bi bi-chevron-double-right"></i></span>
+            </li>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,16 @@
+{% load static crispy_forms_filters %}
+
+<form action="" id="main-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    {% for field in form %}
+        <div class="mb-3" id="{{ field.name }}">
+            <div class="my-3">
+                {{ field|as_crispy_field }}
+            </div>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary" id="submit_button">{{ button_text }}</button>
+</form>

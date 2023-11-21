@@ -1,0 +1,30 @@
+{% load static widget_tweaks %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+    {% for field in form %}
+        <div class="mb-3">
+
+            {% if field.field.required %}
+                <label class="form-label content">{{ field.label }}*</label>
+            {% else %}
+                <label class="form-label content">{{ field.label }}</label>
+            {% endif %}
+            <div class="input-group input-group-outline content">
+                {{ field|attr:"class:form-control" }}
+            </div>
+            {% for error in field.errors %}
+                <div class="alert alert-danger text-white content" role="alert">
+                    {{ error }}
+                </div>
+                <div class="alert alert-danger text-white content" role="alert">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-info">{{ button_text }}</button>
+</form>

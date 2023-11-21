@@ -1,0 +1,34 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static view_breadcrumbs %}
+{% block title %}{% trans 'Add lesson' %}{% endblock %}
+{% block moderator_interface %}
+    {% block breadcrumbs %}
+        {% render_breadcrumbs %}
+    {% endblock %}
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="card-header">
+                <h1>{% trans 'Adding lesson' %}</h1>
+            </div>
+            <div class="container">
+                <div class="col">
+                    {% for error in error_messages %}
+                        <div class="alert alert-danger my-2" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                    <div class="table-responsive">
+                        {% trans 'Add' as button_text_add %}
+                        {% trans 'Add questions' as quiz_text %}
+                        {% include "partials/step_form.html" with button_text=button_text_add create_quiz_text=quiz_text %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src={% static "js/step_create.js" %}></script>
+{% endblock %}

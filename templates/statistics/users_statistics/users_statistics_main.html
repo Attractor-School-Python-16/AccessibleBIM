@@ -1,0 +1,36 @@
+{% extends 'moderator_page.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans 'Statistics' %}{% endblock %}
+
+{% block moderator_interface %}
+    <div class="container">
+        <!--Cards-->
+        <div class="row g-5 g-xl-8 mb-4">
+            <div class="col-sm-12 col-md-6">
+                <a href="{% url 'reports:stats_users_list' %}" class="link-underline link-underline-opacity-0">
+                    {% trans 'Number of registered users' as registered_users_title %}
+                    {% include 'partials/statistics/statistics_card.html' with score=registered_users_qty title=registered_users_title icon='<i class="fa-solid fa-user-group fs-2"></i>' %}
+                </a>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                {% trans 'Number of users with active subscriptions' as active_users_title %}
+                {% include 'partials/statistics/statistics_card.html' with score=active_subscribers_qty title=active_users_title icon='<i class="fa-solid fa-user-graduate fs-2"></i>' %}
+            </div>
+        </div>
+
+        <div class="p-1">
+            <!--New customers chart-->
+            {% trans 'New users' as new_users_title %}
+            {% include 'partials/statistics/chart_by_period.html' with title=new_users_title btn_class='new-users-chart-btn' chart_id='new-users-chart' %}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/statistics_js/statistics_charts.js' %}"></script>
+    <script src="{% static 'js/statistics_js/stats_users_main.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'moderator_page.html' %}
+{% load static %}
+
+{% block title %}Team{% endblock %}
+
+{% block moderator_interface %}
+    <h1>Edit team:</h1>
+    {% include "partials/form.html" with button_text="Edit" %}
+{% endblock %}
