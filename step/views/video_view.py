@@ -8,19 +8,27 @@ from step.forms.video_form import VideoForm
 from step.models import VideoModel, StepModel
 
 
-class VideoListView(ListBreadcrumbMixin, LoginRequiredMixin, ListView):
+class VideoListView(ListBreadcrumbMixin, PermissionRequiredMixin, ListView):
     model = VideoModel
     template_name = 'steps/video/video_list.html'
     context_object_name = 'videos'
     home_path = reverse_lazy('modules:moderator_page')
 
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
-class VideoDetailView(DetailBreadcrumbMixin, LoginRequiredMixin, DetailView):
+
+class VideoDetailView(DetailBreadcrumbMixin, PermissionRequiredMixin, DetailView):
     model = VideoModel
     queryset = VideoModel.objects.all()
     template_name = "steps/video/video_detail.html"
     context_object_name = 'video'
     home_path = reverse_lazy('modules:moderator_page')
+
+    def has_permission(self):
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class VideoCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView):
@@ -31,7 +39,8 @@ class VideoCreateView(CreateBreadcrumbMixin, PermissionRequiredMixin, CreateView
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
-        return self.request.user.has_perm('step.add_videomodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class VideoUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView):
@@ -42,7 +51,8 @@ class VideoUpdateView(UpdateBreadcrumbMixin, PermissionRequiredMixin, UpdateView
     home_path = reverse_lazy('modules:moderator_page')
 
     def has_permission(self):
-        return self.request.user.has_perm('step.change_videomodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
 
 
 class VideoDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView):
@@ -70,4 +80,5 @@ class VideoDeleteView(DeleteBreadcrumbMixin, PermissionRequiredMixin, DeleteView
         return super().form_valid(form)
 
     def has_permission(self):
-        return self.request.user.has_perm('step.delete_videomodel')
+        user = self.request.user
+        return user.groups.filter(name='moderators').exists() or user.is_superuser
