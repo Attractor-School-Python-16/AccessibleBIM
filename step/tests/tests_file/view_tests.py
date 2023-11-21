@@ -128,7 +128,7 @@ class TestFileUpdateView(CustomTestCase):
     @login_superuser
     def test_file_update_view(self):
         correct_data = {
-            "file_title": "Test file",
+            "file_title": "New title",
             "lesson_file": get_txt_file()
         }
         response = self.client.post(self.url, correct_data)
@@ -139,7 +139,7 @@ class TestFileUpdateView(CustomTestCase):
 
     def test_anonymous(self):
         correct_data = {
-            "file_title": "Test file",
+            "file_title": "New title",
             "lesson_file": get_txt_file()
         }
         response = self.client.post(self.url, correct_data)
@@ -150,7 +150,7 @@ class TestFileUpdateView(CustomTestCase):
     @login_user
     def test_no_permissions(self):
         correct_data = {
-            "file_title": "Test file",
+            "file_title": "New title",
             "lesson_file": get_txt_file()
         }
         response = self.client.post(self.url, correct_data)
@@ -161,7 +161,7 @@ class TestFileUpdateView(CustomTestCase):
     @login_superuser
     def test_not_found(self):
         invalid_data = {
-            "file_title": "Test file",
+            "file_title": "New title",
             "lesson_file": get_txt_file()
         }
         response = self.client.post(reverse("step:filemodel_update", kwargs={"pk": 999}), invalid_data)
@@ -183,7 +183,7 @@ class TestFileUpdateView(CustomTestCase):
     @login_superuser
     def test_no_file(self):
         invalid_data = {
-            "file_title": "Test file"
+            "file_title": "New title",
         }
         response = self.client.post(self.url, invalid_data)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)

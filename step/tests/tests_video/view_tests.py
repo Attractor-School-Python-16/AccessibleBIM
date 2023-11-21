@@ -135,3 +135,96 @@ class TestVideoCreateView(CustomTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertFormError(response.context['form'], field="video_file", errors=[_('Please upload video file')])
         self.assertEqual(VideoModel.objects.count() - previous_count, 0)
+
+
+class TestVideoUpdateView(CustomTestCase):
+    def setUp(self):
+        self.video = VideoFactory.create()
+        self.url = reverse("step:videomodel_update", kwargs={"pk": self.video.pk})
+
+    @login_superuser
+    def test_video_update_view(self):
+        correct_data = {
+            "video_title": "New title",
+            "video_description": "New description",
+            "video_file": get_video_file()
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.video.refresh_from_db()
+        self.assertEqual(self.video.video_title, correct_data['video_title'])
+        self.assertEqual(self.video.video_description, correct_data['video_description'])
+        self.assertRedirects(response, reverse("step:videomodel_list"))
+
+    def test_anonymous(self):
+        correct_data = {
+            "video_title": "New title",
+            "video_description": "New description",
+            "video_file": get_video_file()
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.video.refresh_from_db()
+        self.assertNotEqual(self.video.video_title, correct_data['video_title'])
+        self.assertNotEqual(self.video.video_description, correct_data['video_description'])
+
+    @login_user
+    def test_no_permissions(self):
+        correct_data = {
+            "video_title": "New title",
+            "video_description": "New description",
+            "video_file": get_video_file()
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FORBIDDEN)
+        self.video.refresh_from_db()
+        self.assertNotEqual(self.video.video_title, correct_data['video_title'])
+        self.assertNotEqual(self.video.video_description, correct_data['video_description'])
+
+    @login_superuser
+    def test_not_found(self):
+        correct_data = {
+            "video_title": "New title",
+            "video_description": "New description",
+            "video_file": get_video_file()
+        }
+        response = self.client.post(reverse("step:videomodel_update", kwargs={"pk": 999}), correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
+
+    @login_superuser
+    def test_empty_title(self):
+        invalid_data = {
+            "video_title": "",
+            "video_description": "New description",
+            "video_file": get_video_file()
+        }
+        response = self.client.post(self.url, invalid_data)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertFormError(response.context['form'], field="video_title", errors=[_('Please enter video title')])
+        self.video.refresh_from_db()
+        self.assertNotEqual(self.video.video_title, invalid_data['video_title'])
+
+    @login_superuser
+    def test_empty_description(self):
+        correct_data = {
+            "video_title": "New title",
+            "video_description": "",
+            "video_file": get_video_file()
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.video.refresh_from_db()
+        self.assertEqual(self.video.video_title, correct_data['video_title'])
+        self.assertIsNone(self.video.video_description)
+
+    @login_superuser
+    def test_no_file(self):
+        correct_data = {
+            "video_title": "New title",
+            "video_description": "New description",
+        }
+        response = self.client.post(self.url, correct_data)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        self.video.refresh_from_db()
+        self.assertEqual(self.video.video_title, correct_data['video_title'])
+        self.assertEqual(self.video.video_description, correct_data['video_description'])
