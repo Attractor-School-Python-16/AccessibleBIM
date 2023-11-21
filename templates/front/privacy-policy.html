@@ -1,7 +1,7 @@
 {% extends "front/base.html" %}
 {% load static i18n %}
 
-{#{% block title %}Политика конфиденциальности{% endblock %}#}
+{% block title %}{% trans 'Privacy policy' %}{% endblock %}
 
 {% block content %}
     {% get_current_language as LANGUAGE_CODE %}
