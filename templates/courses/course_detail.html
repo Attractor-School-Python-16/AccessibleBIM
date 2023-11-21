@@ -25,6 +25,10 @@
             </div>
             <a href="{% url 'modules:chaptermodel_create' %}?course_pk={{ course.id }}" class="btn btn-primary
                 my-3 me-3">{% trans 'Add chapter' %}</a>
+            {% if first_chapter%}
+                <a href="{% url 'modules:coursemodel_preview' course_pk=course.pk chapter_pk=first_chapter.pk %}?page=1"
+                   class="btn btn-success my-3 me-3">{% trans 'Course Preview' %}</a>
+            {% endif %}
             <a href="{% url 'modules:change_chapters_order' course.id %}" class="btn btn-secondary
                 my-3">{% trans 'Change chapters ordering' %}</a>
             <div class="table-responsive">
