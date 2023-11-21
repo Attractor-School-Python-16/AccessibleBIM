@@ -332,6 +332,7 @@ def configure_logging(sender=None, **kwargs):
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     logging.disable(logging.CRITICAL)
 
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
