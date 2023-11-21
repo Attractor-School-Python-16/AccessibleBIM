@@ -43,7 +43,7 @@
                     {% endif %}
                     <br>
                     {% if step.file.all %}
-                        <p class="content mt-4">Прикрепленные файлы:</p>
+                        <p class="content mt-4">{% trans 'Attachment' %}:</p>
                         {% for file in step.file.all %}
                             <i class="bi bi-paperclip"></i>
                             <a class="link-info link-offset-1 content text-decoration-underline"
@@ -57,21 +57,25 @@
                     <div class="d-flex justify-content-evenly mt-5">
                         {% if page_obj.has_previous %}
                             <a href="?page={{ page_obj.previous_page_number }}">
-                                <button type="button" class="btn btn-info fs-6">Предыдущий урок</button>
+                                <button type="button" class="btn btn-info fs-6">
+                                    {% trans 'Previous lesson' %}</button>
                             </a>
                         {% elif previous_chapter %}
                             <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=previous_chapter.pk %}?page={{ last_step_serial_number }}">
-                                <button type="button" class="btn btn-success fs-6">Предыдущая глава</button>
+                                <button type="button" class="btn btn-success fs-6">
+                                    {% trans 'Previous chapter' %}</button>
                             </a>
                         {% endif %}
                         {% if page_obj.has_next %}
                             <a href="?page={{ page_obj.next_page_number }}">
-                                <button type="button" class="btn btn-info fs-6">Следующий урок</button>
+                                <button type="button" class="btn btn-info fs-6">
+                                    {% trans 'Next lesson' %}</button>
                             </a>
                         {% else %}
                             {% if chapter_end %}
                                 <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=next_chapter.pk %}?page=1">
-                                    <button type="button" class="btn btn-success fs-6">Следующая глава</button>
+                                    <button type="button" class="btn btn-success fs-6">
+                                        {% trans 'Next chapter' %}</button>
                                 </a>
                             {% endif %}
                         {% endif %}

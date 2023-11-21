@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import logging
 import os
 import sys
 from pathlib import Path
@@ -25,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = Env()
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", default=get_random_secret_key())
 DEBUG = (bool(int(os.environ.get('DEBUG', 1))))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-# ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:80", 'http://164.90.198.101.nip.io:80']
 
@@ -295,7 +295,7 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen']],
         ],
 
-        'fontNames': ['Arial','Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
+        'fontNames': ['Arial', 'Arial Black', 'Arial Nova Light', 'Arial Nova', 'Comic Sans MS',
                       'Courier New', 'Franklin Gothic Medium', 'Georgia', 'Impact', 'Microsoft Sans Serif', 'Tahoma',
                       'Times New Roman', 'Trebuchet MS'],
         'fontNamesIgnoreCheck': ['Arial Nova Light', 'Arial Nova'],
@@ -325,10 +325,11 @@ CAPTCHA_LETTER_ROTATION = None
 
 @setup_logging.connect
 def configure_logging(sender=None, **kwargs):
-    import logging
-    import logging.config
     logging.config.dictConfig(LOGGING)
 
+
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    logging.disable(logging.CRITICAL)
 
 LOGGING = {
     "version": 1,
