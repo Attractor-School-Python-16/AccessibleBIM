@@ -8,17 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 17:47+0600\n"
-"PO-Revision-Date: 2023-11-21 17:47+0600\n"
+"POT-Creation-Date: 2023-11-21 17:52+0600\n"
+"PO-Revision-Date: 2023-11-21 17:53+0600\n"
 "Last-Translator: admin admin <admin@admin.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
 #: accessibleBIM/settings.py:218
@@ -385,8 +383,8 @@ msgid "Test end time"
 msgstr "Конец тестирования"
 
 #: progress/models/progress_test.py:21 quiz_bim/models/question_bim.py:9
-#: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12 step/models/step.py:23
-#: templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
+#: quiz_bim/models/quiz_bim.py:16 step/models/step.py:12
+#: step/models/step.py:23 templates/quiz_bim/quiz_bim/quiz_bim_detail.html:13
 #: templates/quiz_bim/take_quiz/continue_test.html:4
 #: templates/quiz_bim/take_quiz/take_test.html:4
 #: templates/quiz_bim/take_quiz/test_result.html:5
@@ -408,8 +406,9 @@ msgstr "Тест в процессе"
 msgid "Test progress"
 msgstr "Прогресс теста"
 
-#: progress/models/progress_test_answers.py:16 quiz_bim/models/answer_bim.py:14
-#: quiz_bim/models/question_bim.py:7 quiz_bim/models/question_bim.py:16
+#: progress/models/progress_test_answers.py:16
+#: quiz_bim/models/answer_bim.py:14 quiz_bim/models/question_bim.py:7
+#: quiz_bim/models/question_bim.py:16
 #: templates/quiz_bim/question_bim/question_bim_detail.html:6
 msgid "Question"
 msgstr "Вопрос"
@@ -496,7 +495,8 @@ msgid "Upload a file"
 msgstr "Загрузите файл"
 
 #: step/forms/file_for_step_form.py:55
-msgid "Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
+msgid ""
+"Only PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, RFA, DWG, DXF formats allowed"
 msgstr ""
 "Необходимо загрузить файл в формате PDF, TXT, DOC, DOCX, XLS, XLSX, RVT, "
 "RFA, DWG, DXF"
@@ -526,8 +526,9 @@ msgstr "Введите наименование занятия"
 
 #: step/forms/step_form.py:18 step/forms/step_form.py:35
 #: step/forms/step_form.py:47
-msgid "Enter lesson's duration"
-msgstr "Укажите продолжительность занятия"
+#| msgid "Enter lesson's duration"
+msgid "Enter lesson's duration (min.)"
+msgstr "Укажите продолжительность занятия (мин.)"
 
 #: step/forms/step_form.py:19 step/forms/step_form.py:36
 msgid "Select files"
@@ -896,7 +897,8 @@ msgstr "Добавить главу"
 #: templates/steps/video/video_list.html:15
 #: templates/subscription/subscription_create.html:17
 #: templates/subscription/subscription_list.html:15
-#: templates/teachers/teacher_create.html:13 templates/team/team_create.html:11
+#: templates/teachers/teacher_create.html:13
+#: templates/team/team_create.html:11
 msgid "Add"
 msgstr "Создать"
 
@@ -1090,8 +1092,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Вы точно хотите удалить целевуб аудиторию <span class=\"text-danger\"> "
-"%(title)s</span>?"
+"Вы точно хотите удалить целевуб аудиторию <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/course_target/course_target_list.html:12
 msgid "Target audience list"
@@ -1197,7 +1198,8 @@ msgstr "Пароль успешно изменен"
 #: templates/front/accounts/email/invalid_verification_link.html:4
 #: templates/front/accounts/email/verification-email-not-sent.html:4
 #: templates/front/accounts/email/verification-email-sent.html:4
-#: templates/front/accounts/login.html:4 templates/front/accounts/login.html:20
+#: templates/front/accounts/login.html:4
+#: templates/front/accounts/login.html:20
 #: templates/front/accounts/password-reset/password_reset.html:4
 #: templates/front/partials/navbar.html:51
 msgid "Login"
@@ -1215,14 +1217,12 @@ msgstr "При отправке письма возникла ошибка. По
 #, python-format
 msgid ""
 "\n"
-"                                Email was sent to %(email)s. Please check "
-"your mailbox and verify your\n"
+"                                Email was sent to %(email)s. Please check your mailbox and verify your\n"
 "                                email address.\n"
 "                            "
 msgstr ""
 "\n"
-"Письмо было отправлено на %(email)s. Пожалуйста, проверьте почту и "
-"подтвердите ваш email."
+"Письмо было отправлено на %(email)s. Пожалуйста, проверьте почту и подтвердите ваш email."
 
 #: templates/front/accounts/email/verification_email.html:4
 #, python-format
@@ -1313,15 +1313,12 @@ msgstr "Профиль"
 #: templates/front/accounts/profile.html:15
 msgid ""
 "\n"
-"                                            You have an outdated <span "
-"class=\"text-decoration-underline text-center\">\n"
-"                                            test</span>. Please complete the "
-"test.\n"
+"                                            You have an outdated <span class=\"text-decoration-underline text-center\">\n"
+"                                            test</span>. Please complete the test.\n"
 "                                        "
 msgstr ""
 "\n"
-"У вас есть просроченный <span class=\"text-decoration-underline text-"
-"center\"> тест</span>. Пожалуйста, завершите тест."
+"У вас есть просроченный <span class=\"text-decoration-underline text-center\"> тест</span>. Пожалуйста, завершите тест."
 
 #: templates/front/accounts/profile.html:31
 msgid "Admin"
@@ -1697,8 +1694,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Вы точно хотите удалить партнера <span class=\"text-danger\"> %(title)s</"
-"span>?"
+"Вы точно хотите удалить партнера <span class=\"text-danger\"> %(title)s</span>?"
 
 #: templates/partners/partners_list.html:10
 msgid "Partners list"
@@ -1843,7 +1839,8 @@ msgid ""
 "You can sign in to your account using any of the following third party\n"
 "            accounts:"
 msgstr ""
-"Вы можете войти, используя аккайнт любой из нижеприведенных социальных сетей:"
+"Вы можете войти, используя аккайнт любой из нижеприведенных социальных "
+"сетей:"
 
 #: templates/socialaccount/connections.html:45
 msgid ""
@@ -1872,7 +1869,8 @@ msgstr ""
 "по ошибке, пожалуйста, перейдите на страницу <a "
 "href=\"%(login_url)s\">входа</a>."
 
-#: templates/socialaccount/signup.html:4 templates/socialaccount/signup.html:21
+#: templates/socialaccount/signup.html:4
+#: templates/socialaccount/signup.html:21
 #: templates/socialaccount/signup.html:62
 msgid "Sign Up"
 msgstr "Регистрация"
@@ -1881,16 +1879,12 @@ msgstr "Регистрация"
 #, python-format
 msgid ""
 "\n"
-"                                                You are about to use your "
-"%(provider_name)s account to login to\n"
-"                                                %(site_name)s. As a final "
-"step, please complete the following\n"
+"                                                You are about to use your %(provider_name)s account to login to\n"
+"                                                %(site_name)s. As a final step, please complete the following\n"
 "                                                form:"
 msgstr ""
 "\n"
-"Вы использовали свой %(provider_name)s аккаунт для входа на сайт "
-"%(site_name)s. В качестве завершающего шага, пожалуйста, заполните следующую "
-"форму:"
+"Вы использовали свой %(provider_name)s аккаунт для входа на сайт %(site_name)s. В качестве завершающего шага, пожалуйста, заполните следующую форму:"
 
 #: templates/statistics/courses_statistics/courses_list_statistics.html:20
 #: templates/subscription/subscription_list.html:24
@@ -2031,7 +2025,8 @@ msgstr "Скачать файл"
 msgid "Back to files list"
 msgstr "Вернуться к списку файлов"
 
-#: templates/steps/file/file_list.html:4 templates/steps/file/file_list.html:12
+#: templates/steps/file/file_list.html:4
+#: templates/steps/file/file_list.html:12
 msgid "Files list"
 msgstr "Список файлов"
 
@@ -2043,14 +2038,14 @@ msgstr "Редактирование файл"
 #: templates/steps/partial/video_partial.html:18
 #: templates/steps/video/video_detail.html:31
 msgid ""
-"To view this video please enable JavaScript, and consider upgrading to a web "
-"browser that <a href=\"https://videojs.com/html5-video-support/\" "
+"To view this video please enable JavaScript, and consider upgrading to a web"
+" browser that <a href=\"https://videojs.com/html5-video-support/\" "
 "target=\"_blank\">supports HTML5 video</a>"
 msgstr ""
 "Для просмотра этого видео, пожалуйста, включите JavaScript и рассмотрите "
-"возможность обновления до веб-браузера, <a href=\"https://videojs.com/html5-"
-"video-support/\" target=\"_blank\">который поддерживает видео в формате "
-"HTML5</a>"
+"возможность обновления до веб-браузера, <a "
+"href=\"https://videojs.com/html5-video-support/\" target=\"_blank\">который "
+"поддерживает видео в формате HTML5</a>"
 
 #: templates/steps/step/step_create.html:4
 msgid "Add lesson"
@@ -2139,7 +2134,8 @@ msgstr "Просмотр лекции"
 msgid "Back to readings list"
 msgstr "Вернуться к списку лекций"
 
-#: templates/steps/text/text_list.html:4 templates/steps/text/text_list.html:12
+#: templates/steps/text/text_list.html:4
+#: templates/steps/text/text_list.html:12
 msgid "Readings list"
 msgstr "Список лекций"
 
@@ -2270,8 +2266,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Вы точно хотите удалить преподавателя <span class=\"text-danger\">%(name)s</"
-"span>?"
+"Вы точно хотите удалить преподавателя <span class=\"text-danger\">%(name)s</span>?"
 
 #: templates/teachers/teacher_detail.html:4
 msgid "Teacher info"
@@ -2321,8 +2316,7 @@ msgstr "Добавление команды"
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</"
-#~ "span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.get_full_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
@@ -2332,14 +2326,12 @@ msgstr "Добавление команды"
 #~ msgid ""
 #~ "\n"
 #~ "                Are you sure you want to delete the teacher\n"
-#~ "                <span class=\"text-danger\"> %(teacher.last_name)s "
-#~ "%(teacher.first_name)s %(teacher.father_name)s</span>?\n"
+#~ "                <span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?\n"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
 #~ "Вы точно хотите удалить преподавателя\n"
-#~ "<span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s "
-#~ "%(teacher.father_name)s</span>?"
+#~ "<span class=\"text-danger\"> %(teacher.last_name)s %(teacher.first_name)s %(teacher.father_name)s</span>?"
 
 #, fuzzy, python-format
 #~ msgid ""
@@ -2349,8 +2341,7 @@ msgstr "Добавление команды"
 #~ "                "
 #~ msgstr ""
 #~ "\n"
-#~ "Вы точно хотите удалить модуль <span class=\"text-danger\"> %(title)s</"
-#~ "span>?"
+#~ "Вы точно хотите удалить модуль <span class=\"text-danger\"> %(title)s</span>?"
 
 #~ msgid "Make changes"
 #~ msgstr "Редактировать"
