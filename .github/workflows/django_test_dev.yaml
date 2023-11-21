@@ -69,4 +69,12 @@ jobs:
           DATABASE_URL: psql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@127.0.0.1:${{ env.POSTGRES_PORT }}/${{ env.POSTGRES_DB }}
         run: |
           python manage.py test
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image Dev
+        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         
