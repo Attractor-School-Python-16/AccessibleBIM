@@ -6,8 +6,8 @@
 {% block content %}
     {% get_current_language as LANGUAGE_CODE %}
     {% if LANGUAGE_CODE == 'ru' %}
-        {% include 'front/partials/static/privacy_ru.html' %}
+        {% include 'front/partials/static/privacy_policy_ru.html' %}
     {% elif LANGUAGE_CODE == 'en' %}
-        {% include 'front/partials/static/privacy_en.html' %}
+        {% include 'front/partials/static/privacy_policy_en.html' %}
     {% endif %}
 {% endblock %}
