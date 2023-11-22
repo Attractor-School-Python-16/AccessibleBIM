@@ -1,4 +1,3 @@
-{% if is_paginated %}
     {% for step in chapter.step.all|dictsort:"serial_number" %}
         {% if step.serial_number == page_obj.number %}
             {% if step in finished_steps.all %}
@@ -12,4 +11,3 @@
             <a class="fs-2 ms-1 text-secondary link-underline-opacity-0" href="?page={{ step.serial_number }}"><i class="bi bi-square-fill"></i></a>
         {% endif %}
     {% endfor %}
-{% endif %}

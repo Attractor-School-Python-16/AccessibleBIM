@@ -34,7 +34,7 @@ class ChapterUserDetailView(DetailView):
             finished_steps = UserCourseProgress.objects.filter(user=self.request.user,
                                                                step__chapter=chapter,
                                                                status=1)
-            if finished_steps.count() == chapter.step.count() - 1:
+            if finished_steps.count() == chapter.step.count() - 1 or chapter.step.count() == 1:
                 user_progress.status = 1
                 user_progress.save()
 
@@ -60,7 +60,12 @@ class ChapterUserDetailView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         # Создаем первый объект прогресса, если на данный курс действует подписка.
         current_user = request.user
-        current_user_subscription = UsersSubscription.objects.filter(user=current_user, is_active=True)[0]
+
+        if current_user.is_authenticated:
+            current_user_subscription = UsersSubscription.objects.filter(user=current_user, is_active=True)[0]
+        else:
+            raise Http404
+
         if current_user_subscription:
             current_progress = UserCourseProgress.objects.filter(user=current_user,
                                                                  step__chapter__course=current_user_subscription.subscription.course)
@@ -86,27 +91,27 @@ class ChapterUserDetailView(DetailView):
                 '-updated_at')[0]
         last_progress_chapter = last_progress_object.step.chapter
         if last_progress_chapter == self.get_object():
-            if last_progress_object.step.serial_number != int(request.GET.get('page')):
-                if last_progress_object.step.test:
-                    progress_test_passed = ProgressTest.objects.filter(user=current_user,
-                                                                       test__step=last_progress_object.step,
-                                                                       is_passed=True)
-                    if not progress_test_passed:
-                        next_progress_obj = self.new_progress_obj(chapter=last_progress_chapter)
-                        if next_progress_obj:
-                            self.chapter_next_step_control(next_progress_obj)
-                        return super().get(request, *args, **kwargs)
-                if last_progress_object.status == 0:
-                    last_progress_object.status = 1
-                    last_progress_object.save()
+            
+            if last_progress_object.step.test:
+                progress_test_passed = ProgressTest.objects.filter(user=current_user,
+                                                                   test__step=last_progress_object.step,
+                                                                   is_passed=True)
+                if not progress_test_passed:
+                    next_progress_obj = self.new_progress_obj(chapter=last_progress_chapter)
+                    if next_progress_obj:
+                        self.chapter_next_step_control(next_progress_obj)
+                    return super().get(request, *args, **kwargs)
+            if last_progress_object.status == 0:
+                last_progress_object.status = 1
+                last_progress_object.save()
 
-                next_step = \
-                    last_progress_chapter.step.filter(serial_number=int(request.GET.get('page')))[0]
+            next_step = \
+                last_progress_chapter.step.filter(serial_number=int(request.GET.get('page')))[0]
 
-                next_progress_obj = create_user_course_progress(user=current_user, step=next_step)
+            next_progress_obj = create_user_course_progress(user=current_user, step=next_step)
 
-                if next_progress_obj:
-                    self.chapter_next_step_control(next_progress_obj)
+            if next_progress_obj:
+                self.chapter_next_step_control(next_progress_obj)
 
             finished_steps = UserCourseProgress.objects.filter(user=current_user,
                                                                step__chapter=last_progress_chapter,
