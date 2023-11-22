@@ -3,8 +3,8 @@
     "model": "sites.site",
     "pk": 2,
     "fields": {
-        "domain": "http://127.0.0.1:8000",
-        "name": "http://127.0.0.1:8000"
+        "domain": "http://164.90.198.101.nip.io",
+        "name": "http://164.90.198.101.nip.io"
     }
 }
 ]
