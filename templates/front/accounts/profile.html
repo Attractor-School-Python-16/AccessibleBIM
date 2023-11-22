@@ -8,16 +8,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 mx-auto">
-                            {% for progress in user.progress.all %}
-                                {% if progress.is_overdue and not progress.is_passed %}
-                                    <a href="{% url "quiz_bim:test_completion" progress.pk %}"
+                            {% for step_quiz in step_quiz_query %}
+                                    <a href="{% url 'front:chaptermodel_user_detail' chapter_pk=step_quiz.chapter.pk %}?page={{ step_quiz.pk }}"
                                        class="alert alert-info text-white d-block" role="alert">
                                         {% blocktrans %}
                                             You have an outdated <span class="text-decoration-underline text-center">
                                             test</span>. Please complete the test.
                                         {% endblocktrans %}
                                     </a>
-                                {% endif %}
                             {% endfor %}
                         </div>
                         <div class="col-12 mx-auto">
