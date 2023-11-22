@@ -15,7 +15,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </span>
         </button>
-        <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+        <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
             <ul class="navbar-nav navbar-nav-hover ms-auto">
                 {% if request.user.is_authenticated %}
                     {% if perms.accounts.can_view_admin_panel %}
