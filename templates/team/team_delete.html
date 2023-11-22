@@ -1,5 +1,5 @@
 {% extends 'moderator_page.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block title %}Team{% endblock %}
 
@@ -7,13 +7,13 @@
     <div class="card">
         <div class="card-body">
             <p class="card-text">
-                Are you sure you want to delete the team member
+                {%  trans "Are you sure you want to delete the team member" %}
                 <span class="text-danger"> {{ team.name }}</span>?
             </p>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">Yes</button>
-                <a class="btn btn-primary" href="{% url 'content:team_list' %}" id="cancel-button">No</a>
+                <button type="submit" name="delete" class="btn btn-danger me-4" value="yes">{% trans "Yes" %}</button>
+                <a class="btn btn-primary" href="{% url 'content:team_list' %}" id="cancel-button">{% trans "No" %}</a>
             </form>
         </div>
     </div>
