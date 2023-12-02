@@ -30,7 +30,8 @@ git clone https://github.com/Em1rloneum/accessibleBIM.git
 отсюда https://docs.docker.com/docker-for-mac/install/ для Mac.
 
 3. Добавить файл .env в корневую директорию
-4. В терминале проекта после запустить команду docker-compose build, после запустить команду docker-compose up и все должно работать.
+4. В терминале проекта после запустить команду `docker-compose up -d --build`.
+5. Для работы авторизации необходимо добавить social application через админку. Или добавить необходимую фикстуру. (См. [Как подключить Google Авторизацию в Django](https://www.google.com/search?q=django+google+authentication))
 
 **При добавлении новых файлов фикстур:** 
 1) добавлять в название номер следующий за последним (сейчас последний файл 09_socialaccount.json, значит следующий должен начинаться с 10_...json)
