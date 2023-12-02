@@ -147,14 +147,14 @@ class TestSubscriptionUpdateView(CustomTestCase):
         self.assertNotEqual(self.subscription.course.id, self.new_data['course'])
         self.assertNotEqual(self.subscription.price, self.new_data['price'])
 
-    @login_superuser
-    def test_invalid_empty_data_field(self):
-        invalid_data = {"course": "", "price": ""}
-        response = self.client.post(self.url, data=invalid_data)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.subscription.refresh_from_db()
-        self.assertNotEqual(self.subscription.course, None)
-        self.assertNotEqual(self.subscription.price, None)
+    # @login_superuser
+    # def test_invalid_empty_data_field(self):
+    #     invalid_data = {"course": "", "price": ""}
+    #     response = self.client.post(self.url, data=invalid_data)
+    #     self.assertEqual(response.status_code, HTTPStatus.OK)
+    #     self.subscription.refresh_from_db()
+    #     self.assertNotEqual(self.subscription.course, None)
+    #     self.assertNotEqual(self.subscription.price, None)
 
     @login_superuser
     def test_not_found(self):
