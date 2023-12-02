@@ -53,4 +53,26 @@ http://localhost:8000/accounts/google/login/callback/
 
 ![image](https://github.com/Attractor-School-Python-16/AccessibleBIM/assets/122436191/28ea261d-ec7f-4f73-90b5-d76f36093fb4)
 
+Или можете добавить фикстуру что-бы при запуске авторизация подключалась автоматически:
+```json
+[
+{
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+        "provider": "google",
+        "provider_id": "",
+        "name": "Google",
+        "client_id": "CLIENT_ID",
+        "secret": "SECRET",
+        "key": "",
+        "settings": {},
+        "sites": [
+            2
+        ]
+    }
+}
+]
+```
+
 Теперь в приложении работает авторизация через Google.
