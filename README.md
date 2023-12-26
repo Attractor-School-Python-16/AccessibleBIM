@@ -33,3 +33,6 @@ for fixture in 01_auth.json 02_accounts.json 03_currencies.json 04_modules.json 
 docker-compose exec backend ./manage.py makemigrations
 docker-compose exec backend ./manage.py migrate
 ```
+На текущий момент фикстуры содержат тестовые данные, и данные основных пользователей с правами.
+В дальнейшем, при создании контента, в файлах docker-compose необходимо будет удалить строку с установкой фикстур.
+В противном случае ранее созданные данные будут утеряны.
